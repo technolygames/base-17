@@ -1,0 +1,7 @@
+mar. 02, 2022 7:36:19 P. M. clases.logger exceptionLogger
+WARNING: datosMostrar-0
+java.lang.NullPointerException: Cannot read the array length because "imagedata" is null
+	at venTerciarias.dataWindow.datosMostrar(dataWindow.java:134)
+	at venTerciarias.dataWindow.<init>(dataWindow.java:64)
+	at venTerciarias.dataWindow.main(dataWindow.java:354)
+

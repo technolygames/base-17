@@ -1,0 +1,7 @@
+new logger().logStaticSaver("Error : "+e.getMessage()+" en '()'",Level.WARNING);
+new logger().exceptionLogger(.class.getName(),Level.WARNING,"",e.fillInStackTrace());
+
+new logger().logStaticSaver("Error 37: usuario sin privilegios en '"+validacionVentana8.class.getName()+".botones(valButton)'",Level.WARNING);
+
+new logger().logStaticSaver("Error 18: no se escribió usuario y/o contraseña en '"+validacionVentana8.class.getName()+".botones(valButton)'",Level.WARNING);
+
