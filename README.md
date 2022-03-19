@@ -17,7 +17,8 @@ Este programa se encarga de administrar una tienda de abarrotes. Las caracterís
 - Impresión de ticket en la compra
 - Lector de código de barras
 - Hilos
-Para poder programar, la carpeta con todo el código es "src". Ahí está la base de datos, ventanas, clases, libreria necesarias para poder programar
+
+Para poder programar, la carpeta con todo el código es "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales necesarios para poder programar
 
 This program can be use to manage a grocery store. Features:
 - Can store from a table to mysql's database
@@ -34,4 +35,5 @@ This program can be use to manage a grocery store. Features:
 - Ticket print
 - Barcode reader
 - Threads
+
 Everything is on src folder. Everything is on it. Database, windows, classes, libraries and media
