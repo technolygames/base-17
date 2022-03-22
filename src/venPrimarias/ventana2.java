@@ -76,6 +76,7 @@ public final class ventana2 extends javax.swing.JFrame{
     protected int cod_lote;
     protected int cod_prov;
     protected int cantidad;
+    protected int preciou;
     protected int win;
     
     protected String nom_prod;
@@ -128,6 +129,7 @@ public final class ventana2 extends javax.swing.JFrame{
             "Nombre del producto",
             "Marca",
             "Cantidad",
+            "Precio unitario",
             "Stock"
         });
         dtm.setRowCount(0);
@@ -141,7 +143,7 @@ public final class ventana2 extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         
         addButton.addActionListener((ae)->{
-            if(!txtCodProd.getText().equals("")||!txtCodLote.getText().equals("")||!txtCodProv.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtCant.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
+            if(!txtCodProd.getText().equals("")||!txtCodLote.getText().equals("")||!txtCodProv.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtCant.getText().equals("")||!txtPU.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
                 dtm.addRow(new Object[]{
                     txtCodProd.getText(),
                     txtCodLote.getText(),
@@ -149,6 +151,7 @@ public final class ventana2 extends javax.swing.JFrame{
                     txtProd.getText(),
                     txtMarca.getText(),
                     txtCant.getText(),
+                    txtPU.getText(),
                     jComboBox1.getSelectedItem()
                 });
             }else{
@@ -162,6 +165,7 @@ public final class ventana2 extends javax.swing.JFrame{
             txtProd.setText("");
             txtMarca.setText("");
             txtCant.setText("");
+            txtPU.setText("");
         });
         
         backButton.addActionListener((ae)->{
@@ -178,7 +182,7 @@ public final class ventana2 extends javax.swing.JFrame{
             txtProd.setText("");
             txtMarca.setText("");
             txtCant.setText("");
-            
+            txtPU.setText("");
         });
         
         svdtButton.addActionListener((ae)->{
@@ -190,9 +194,10 @@ public final class ventana2 extends javax.swing.JFrame{
                     nom_prod=dtm.getValueAt(i,3).toString();
                     marca=dtm.getValueAt(i,4).toString();
                     cantidad=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                    stock=dtm.getValueAt(i,6).toString();
+                    preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
+                    stock=dtm.getValueAt(i,7).toString();
                     
-                    new datos().insertarDatosAlmacen(cod_prod,cod_lote,cod_prov,nom_prod,marca,cantidad,stock);
+                    new datos().insertarDatosAlmacen(cod_prod,cod_lote,cod_prov,nom_prod,marca,cantidad,preciou,stock);
                 }
                 JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             }catch(NumberFormatException e){
@@ -233,6 +238,8 @@ public final class ventana2 extends javax.swing.JFrame{
         txtCant = new javax.swing.JTextField();
         picLabel = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        txtPU = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
@@ -309,6 +316,8 @@ public final class ventana2 extends javax.swing.JFrame{
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En Existencia", "Agotado" }));
 
+        jLabel3.setText("Precio unitario:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -318,7 +327,9 @@ public final class ventana2 extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1008, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,9 +356,13 @@ public final class ventana2 extends javax.swing.JFrame{
                                     .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtPU, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49)))
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
@@ -375,7 +390,8 @@ public final class ventana2 extends javax.swing.JFrame{
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCodLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,7 +400,8 @@ public final class ventana2 extends javax.swing.JFrame{
                             .addComponent(txtProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -454,6 +471,7 @@ public final class ventana2 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -468,6 +486,7 @@ public final class ventana2 extends javax.swing.JFrame{
     protected javax.swing.JTextField txtCodProd;
     protected javax.swing.JTextField txtCodProv;
     protected javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtPU;
     protected javax.swing.JTextField txtProd;
     // End of variables declaration//GEN-END:variables
 }

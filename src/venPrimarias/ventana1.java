@@ -11,7 +11,10 @@ import java.io.FileNotFoundException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.EventObject;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -22,6 +25,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import java.util.logging.Level;
+import javax.swing.CellEditor;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JRException;
@@ -78,6 +83,8 @@ public final class ventana1 extends javax.swing.JFrame{
     }
     
     protected datos d;
+    protected PreparedStatement ps;
+    protected ResultSet rs;
     
     protected Image retValue;
     protected Properties p;
@@ -115,7 +122,13 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void settings(){
         p=new Properties();
-        dtm=new DefaultTableModel();
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
         try{
             p.load(new FileInputStream("src/data/config/config.properties"));
             Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
@@ -146,7 +159,12 @@ public final class ventana1 extends javax.swing.JFrame{
         dtm.setRowCount(0);
         jTable1.setModel(dtm);
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setEnabled(false);
+        jTable1.setEnabled(true);
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
     }
     
     protected final void botones(){
@@ -242,6 +260,10 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
         
+        jButton2.addActionListener((a)->{
+            dtm.removeRow(jTable1.getSelectedRow());
+        });
+        
         mkPaidButton.addActionListener((a)->{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
@@ -294,6 +316,7 @@ public final class ventana1 extends javax.swing.JFrame{
         addButton = new javax.swing.JButton();
         mkPaidButton = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -305,6 +328,7 @@ public final class ventana1 extends javax.swing.JFrame{
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
+                txtCodigoKeyPressed2(evt);
             }
         });
 
@@ -337,6 +361,7 @@ public final class ventana1 extends javax.swing.JFrame{
         txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantKeyPressed(evt);
+                txtCantKeyPressed2(evt);
             }
         });
 
@@ -370,6 +395,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
 
         addButton.setText("Añadir campos");
@@ -377,6 +403,8 @@ public final class ventana1 extends javax.swing.JFrame{
         mkPaidButton.setText("Realizar pago");
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButton2.setText("Eliminar fila");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -388,42 +416,47 @@ public final class ventana1 extends javax.swing.JFrame{
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtCodigo))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtProd))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mkPaidButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(genrepButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(calcButton)
-                                .addGap(149, 149, 149)
+                                .addGap(126, 126, 126)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(cleanButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCodigo))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtProd))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addComponent(cleanButton)
+                                .addGap(32, 32, 32)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -470,7 +503,8 @@ public final class ventana1 extends javax.swing.JFrame{
                     .addComponent(genrepButton)
                     .addComponent(cleanButton)
                     .addComponent(addButton)
-                    .addComponent(mkPaidButton))
+                    .addComponent(mkPaidButton)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -524,6 +558,30 @@ public final class ventana1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtTotalKeyPressed
+
+    private void txtCodigoKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed2
+        try{
+            ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+txtCodigo.getText()+";");
+            rs=ps.executeQuery();
+            if(rs.next()){
+                txtProd.setText(rs.getString("nombre_prod"));
+                txtMarca.setText(rs.getString("marca"));
+                txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
+            }
+        }catch(SQLException e){
+            e.fillInStackTrace();
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed2
+
+    private void txtCantKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed2
+        try{
+            int n1=Integer.parseInt(txtCant.getText());
+            int n2=Integer.parseInt(txtPrecio.getText());
+            int res=n2*n1;
+            txtTotal.setText(String.valueOf(res));
+        }catch(NumberFormatException e){
+        }
+    }//GEN-LAST:event_txtCantKeyPressed2
     
     public static void main(String[] args){
         new ventana1().setVisible(true);
@@ -536,6 +594,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton cleanButton;
     protected javax.swing.JButton genrepButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -61,19 +61,19 @@ public class resourceDownload{
         /*f=new File("src/data/libs/"+validar);
         try{
             if(!f.exists()){
+                f.createNewFile();
+            }else{
                 u=new URL(link);
                 uc=u.openConnection();
                 
                 is=uc.getInputStream();
-                fos=new FileOutputStream("src/data/libs/"+validar);
+                fos=new FileOutputStream("src/data/libs/testing/"+validar);
                 
                 new thread(is,fos).run();
                 
                 is.close();
                 fos.flush();
                 fos.close();
-            }else{
-                f.createNewFile();
             }
         }catch(MalformedURLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);

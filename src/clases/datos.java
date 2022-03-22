@@ -104,10 +104,11 @@ public class datos{
      * @param nombreProducto Nombre del producto a almacenar.
      * @param marca Marca del producto que será almacenado.
      * @param cantidad Cantidad que es entraga y almacenada.
+     * @param precioUnitario Precio de cada producto del lote.
      * @param stock Disponibilidad del producto.
      */
-    public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,String stock){
-        String ins2_query="insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+stock+"',now())";
+    public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,int precioUnitario,String stock){
+        String ins2_query="insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precioUnitario+"','"+stock+"',now())";
         try{
             s=getConnection()./*prepareStatement(ins2_query)*/createStatement();
             s.addBatch(ins2_query);
