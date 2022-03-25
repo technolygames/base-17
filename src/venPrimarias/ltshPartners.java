@@ -1,10 +1,11 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-
-import java.awt.Image;
-import java.awt.Toolkit;
+//librerías
+import net.proteanit.sql.DbUtils;
+//java
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,12 +19,10 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
+//extension larga
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
-
-import net.proteanit.sql.DbUtils;
 
 public class ltshPartners extends javax.swing.JFrame{
     public ltshPartners(){
@@ -77,27 +76,6 @@ public class ltshPartners extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
-    
-    protected Image retValue;
-    protected Properties p;
-    
-    public Image getImageIcon(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1io: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void botones(){
         backButton.addActionListener((ae)->{
@@ -242,7 +220,7 @@ public class ltshPartners extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getImageIcon());
+        setIconImage(new Icono().getIconImage());
 
         backButton.setText("Regresar");
 

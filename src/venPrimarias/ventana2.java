@@ -1,10 +1,10 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-
+//java
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
+//extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,7 +68,6 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected datos cn;
     
-    protected Image retValue;
     protected Properties p;
     protected DefaultTableModel dtm;
     
@@ -82,25 +81,6 @@ public final class ventana2 extends javax.swing.JFrame{
     protected String nom_prod;
     protected String marca;
     protected String stock;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana2.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana2.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void settings(){
         p=new Properties();
@@ -242,7 +222,7 @@ public final class ventana2 extends javax.swing.JFrame{
         txtPU = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         backButton.setText("Regresar");
 
@@ -327,9 +307,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1008, Short.MAX_VALUE))
+                            .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCodProd, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -361,8 +339,8 @@ public final class ventana2 extends javax.swing.JFrame{
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(49, 49, 49)))
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()

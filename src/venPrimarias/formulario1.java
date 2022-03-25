@@ -1,13 +1,13 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
 import menus.menuDatosVentana1;
-
+//librerías
 import com.placeholder.PlaceHolder;
-
+//java
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileWriter;
@@ -25,7 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+//extension larga
 import java.util.logging.Level;
 
 public class formulario1 extends javax.swing.JFrame{
@@ -78,30 +78,10 @@ public class formulario1 extends javax.swing.JFrame{
     protected datos cn;
     
     protected File f;
-    protected Image retValue;
     protected Properties p;
     protected JFileChooser jfc;
     
     protected String direccion;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected void settings(){
         new PlaceHolder(txtNombre,"Primer y/o segundo nombre").inicializar();
@@ -275,7 +255,7 @@ public class formulario1 extends javax.swing.JFrame{
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel1.setText("Contraseña.");
 

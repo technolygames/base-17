@@ -1,36 +1,29 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-import java.awt.Component;
-
+import venTerciarias.dataWindow1;
+//librerías
+import net.proteanit.sql.DbUtils;
+//java
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.logging.Level;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import net.proteanit.sql.DbUtils;
+//extension larga
+import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import venTerciarias.dataWindow1;
 
 public final class ltshWorkers extends javax.swing.JFrame{
     public ltshWorkers(){
@@ -85,28 +78,6 @@ public final class ltshWorkers extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
-    
-    protected Image retValue;
-    protected Properties p;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected void settings(){
         wdataButton.setVisible(false);
@@ -270,7 +241,7 @@ public final class ltshWorkers extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

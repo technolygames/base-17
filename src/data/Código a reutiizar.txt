@@ -1,7 +1,23 @@
 new logger().logStaticSaver("Error : "+e.getMessage()+" en '()'",Level.WARNING);
 new logger().exceptionLogger(.class.getName(),Level.WARNING,"",e.fillInStackTrace());
 
+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método '
+new logger().logStaticSaver("Let 1: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtCodigoKeyPressed()'",Level.WARNING);
+new logger().logStaticSaver("Let 2: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtNombreKeyPressed()'",Level.WARNING);
+
 new logger().logStaticSaver("Error 37: usuario sin privilegios en '"+validacionVentana8.class.getName()+".botones(valButton)'",Level.WARNING);
 
 new logger().logStaticSaver("Error 18: no se escribió usuario y/o contraseña en '"+validacionVentana8.class.getName()+".botones(valButton)'",Level.WARNING);
 
+import clases.Icono;
+new Icono().getIconImage()
+
+//selected
+//enabled
+//combo
+//textfields
+
+//clases
+//librerías
+//java
+//extension larga

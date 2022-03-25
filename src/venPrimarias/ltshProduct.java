@@ -1,25 +1,25 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-
+//librerías
+import net.proteanit.sql.DbUtils;
+//java
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import net.proteanit.sql.DbUtils;
+//extension larga
+import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -65,7 +65,7 @@ public final class ltshProduct extends javax.swing.JFrame{
         botones();
         datosMostrar();
         
-        setSize(700,500);
+        setSize(950,550);
         setLocationRelativeTo(null);
         setTitle("Productos vendidos");
         setResizable(false);
@@ -76,28 +76,6 @@ public final class ltshProduct extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
-    
-    protected Image retValue;
-    protected Properties p;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void botones(){
         backButton.addActionListener((ae)->{
@@ -120,9 +98,9 @@ public final class ltshProduct extends javax.swing.JFrame{
         try{
             ps=new datos().getConnection().prepareStatement("select * from productos;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
+                dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -226,7 +204,7 @@ public final class ltshProduct extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

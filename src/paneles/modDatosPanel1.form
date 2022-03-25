@@ -142,10 +142,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="etiDom" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbDomicilio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="etiDom" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbDomicilio" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDom" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

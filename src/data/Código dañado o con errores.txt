@@ -362,3 +362,31 @@ jCheckBox1.addActionListener((ae)->{
                 }
             }
         });
+
+catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-0",k.fillInStackTrace());
+        }
+System.getProperty("user.dir")+
+		  /*File file=new File("src/data/media/dataImage/"+Math.random()+".jpg");
+                    BufferedImage bi=new BufferedImage(picLabel.getWidth(),picLabel.getHeight(),BufferedImage.TYPE_INT_RGB);
+                    Graphics2D g2d=bi.createGraphics();
+                    picLabel.print(g2d);
+                    ImageIO.write(bi, "jpg",file);*/
+
+    /*protected final void ingresarPrueba(){
+        String usuario=txtUsuario.getText();
+        String contra=String.valueOf(txtContraseña.getPassword());
+        
+        if(usuario.equals("metatest")&&contra.equals("0123")){
+            new loadWindow(new javax.swing.JFrame(),true).setVisible(true);
+            dispose();
+            new win10Notification().trayNotify("Inicio de sesión","Se ha iniciado sesión como metausuario",MessageType.WARNING);
+            new logger().logStaticSaver("ATENCIÓN: Se ha iniciado como metausuario. Tiene privilegios elevados como los de un desarrollador",Level.SEVERE);
+        }else{
+            JOptionPane.showMessageDialog(null,"Se ingresaron datos erróneos","Error 9",JOptionPane.INFORMATION_MESSAGE);
+            new logger().logStaticSaver("Inicio de sesión como metausuario no realizado",Level.FINE);
+        }
+    }*/
+    

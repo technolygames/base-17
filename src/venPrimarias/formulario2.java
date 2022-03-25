@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
 import menus.menuDatosVentana2;
 //java
@@ -23,7 +24,7 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
+//extension larga
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario2 extends javax.swing.JFrame{
@@ -72,29 +73,10 @@ public class formulario2 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Image retValue;
     protected Properties p;
     protected JFileChooser jfc;
     
     protected String direccion;
-    
-    public Image getImageIcon(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected void settings(){
         jTextArea1.setLineWrap(true);
@@ -228,7 +210,7 @@ public class formulario2 extends javax.swing.JFrame{
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getImageIcon());
+        setIconImage(new Icono().getIconImage());
 
         backButton.setText("Regresar");
 

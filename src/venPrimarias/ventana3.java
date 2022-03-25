@@ -1,16 +1,19 @@
 package venPrimarias;
-
+//clases
+import clases.Icono;
 import clases.logger;
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
+import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+//extension larga
+import java.util.logging.Level;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class ventana3 extends javax.swing.JFrame{
@@ -58,28 +61,6 @@ public class ventana3 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Image retValue;
-    protected Properties p;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
-    
     protected final void botones(){
         backButton.addActionListener((a)->{
             setVisible(false);
@@ -94,7 +75,7 @@ public class ventana3 extends javax.swing.JFrame{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         backButton.setText("Regresar");
 

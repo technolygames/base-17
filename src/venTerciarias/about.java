@@ -1,27 +1,22 @@
 package venTerciarias;
-
-import clases.datos;
+//clases
+import clases.Icono;
 import clases.logger;
-import java.awt.Image;
+//java
 import java.awt.Cursor;
-import java.awt.Toolkit;
 import java.awt.Desktop;
-import java.io.BufferedWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+//extension larga
+import java.util.logging.Level;
 
 public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
@@ -63,33 +58,17 @@ public final class about extends javax.swing.JDialog{
         }
         
         etiquetas();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Acerca del programa");
         setResizable(false);
-        
-        websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     
-    protected Image retValue;
     protected Properties p;
     
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
+    protected void settings(){
+        websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     
     protected void etiquetas(){
@@ -155,7 +134,7 @@ public final class about extends javax.swing.JDialog{
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel1.setText("Versión:");
 

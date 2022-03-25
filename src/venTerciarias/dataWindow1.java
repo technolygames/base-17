@@ -1,27 +1,29 @@
 package venTerciarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.Icon;
+import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+//extension larga
+import java.util.logging.Level;
 
 public class dataWindow1 extends javax.swing.JDialog{
     public dataWindow1(java.awt.Frame parent,boolean modal){
@@ -76,29 +78,8 @@ public class dataWindow1 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected Image retValue;
-    protected Properties p;
-    
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
-    
     protected void settings(){
-        genLabel.setVisible(true);
+        genLabel.setVisible(false);
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jTextArea2.setLineWrap(true);
@@ -107,11 +88,11 @@ public class dataWindow1 extends javax.swing.JDialog{
     
     protected final void datosMostrar(){
         d=new datos();
-        String id=genLabel.getText();
+        String etiqueta=genLabel.getText();
         try{
-            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp=12346;");
+            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp="+etiqueta+";");
             rs=ps.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
                 etiContra.setText(rs.getString("password"));
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_emp")));
                 etiNombre.setText(rs.getString("nombre_emp"));
@@ -135,6 +116,8 @@ public class dataWindow1 extends javax.swing.JDialog{
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
                 i.flush();
+            }else{
+                System.out.println("no existen");
             }
             ps.close();
             rs.close();
@@ -226,7 +209,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         etiContra = new javax.swing.JLabel();
-        genLabel = new javax.swing.JLabel();
         storeImgButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         etiContacto = new javax.swing.JLabel();
@@ -238,9 +220,10 @@ public class dataWindow1 extends javax.swing.JDialog{
         jLabel16 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        genLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Datos");
@@ -317,6 +300,8 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
+        genLabel.setText("12346");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -326,12 +311,12 @@ public class dataWindow1 extends javax.swing.JDialog{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(storeImgButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(etiFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etiFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(genLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,7 +336,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel12))
-                        .addGap(21, 21, 21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(etiEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -370,8 +355,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(etiIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(etiSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(etiSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

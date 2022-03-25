@@ -75,14 +75,15 @@ public class datos{
      * Guarda los datos de la ventana de productos en la base de datos.
      * 
      * @param codigoProducto Código de identificación del producto.
+     * @param codigoEmpleado Código de identificación del empleado que atendió la venta.
      * @param nombreProducto Nombre del producto.
      * @param marca Marca del producto.
      * @param cantidad Cantidad comprada de los productos.
      * @param precio Precio de cada uno de los productos.
      * @param total Precio total al que se vendieron los prodcutos.
      */
-    public void insertarDatosProducto(int codigoProducto,String nombreProducto,String marca,int cantidad,int precio,int total){
-        String ins1_query="insert into productos(codigo_prod,nombre_prod,marca,cantidad,precio,total,fecha_compra) values('"+codigoProducto+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precio+"','"+total+"',now())";
+    public void insertarDatosProducto(int codigoProducto,int codigoEmpleado,String nombreProducto,String marca,int cantidad,int precio,int total){
+        String ins1_query="insert into productos values('"+codigoProducto+"','"+codigoEmpleado+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precio+"','"+total+"',now())";
         try{
             s=getConnection().createStatement();
             s.addBatch(ins1_query);
@@ -110,7 +111,7 @@ public class datos{
     public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,int precioUnitario,String stock){
         String ins2_query="insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precioUnitario+"','"+stock+"',now())";
         try{
-            s=getConnection()./*prepareStatement(ins2_query)*/createStatement();
+            s=getConnection().createStatement();
             s.addBatch(ins2_query);
             s.executeBatch();
             s.close();
@@ -212,7 +213,7 @@ public class datos{
      * @param foto Foto del proveedor para identificarlo.
      */
     public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
-        String ins5_query="insert into(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,fecha_ingreso,fecha_uentrega) proveedor value(?,?,?,?,?,?,?,now(),now());";
+        String ins5_query="insert into proveedor(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,fecha_ingreso,fecha_uentrega) value(?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins5_query);
             ps.setInt(1,codigoProveedor);

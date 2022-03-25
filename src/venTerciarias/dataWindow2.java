@@ -1,26 +1,29 @@
 package venTerciarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.sql.Blob;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.Icon;
+import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+//extension larga
+import java.util.logging.Level;
 
 public class dataWindow2 extends javax.swing.JDialog{
     public dataWindow2(java.awt.Frame parent,boolean modal){
@@ -75,28 +78,8 @@ public class dataWindow2 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected Image retValue;
-    protected Properties p;
-    
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
-    
     protected void settings(){
+        genLabel.setVisible(false);
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
     }
@@ -105,7 +88,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         d=new datos();
         String id=genLabel.getText();
         try{
-            ps=d.getConnection().prepareStatement("select * from socios where codigo_part=12347;");
+            ps=d.getConnection().prepareStatement("select * from socios where codigo_part="+id+";");
             rs=ps.executeQuery();
             while(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_part")));
@@ -215,7 +198,9 @@ public class dataWindow2 extends javax.swing.JDialog{
         etiUCompra = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
+
+        genLabel.setText("12347");
 
         storeImgButton.setText("Guardar imagen");
 
@@ -283,7 +268,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -312,7 +297,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                         .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(genLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 112, Short.MAX_VALUE)
+                        .addGap(0, 92, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(storeImgButton)
                             .addComponent(backButton)))

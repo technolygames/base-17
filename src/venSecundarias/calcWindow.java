@@ -1,19 +1,19 @@
 package venSecundarias;
-
+//clases
+import clases.Icono;
 import clases.logger;
-import java.awt.Image;
-import java.awt.Toolkit;
 import venPrimarias.ventana1;
-
+//java
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+//extension larga
+import java.util.logging.Level;
 
 public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
@@ -56,6 +56,7 @@ public final class calcWindow extends javax.swing.JDialog{
         }
         
         botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Calculadora");
@@ -66,25 +67,8 @@ public final class calcWindow extends javax.swing.JDialog{
     
     protected ventana1 win;
     
-    protected Image retValue;
-    protected Properties p;
-    
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
+    protected void settings(){
+        txtTotal.setText(String.valueOf(ventana1.resultado));
     }
     
     protected final void botones(){
@@ -125,7 +109,7 @@ public final class calcWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel1.setText("Total:");
 
@@ -198,6 +182,6 @@ public final class calcWindow extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel3;
     protected javax.swing.JTextField txtCambio;
     protected javax.swing.JTextField txtDinIng;
-    public static javax.swing.JTextField txtTotal;
+    protected javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

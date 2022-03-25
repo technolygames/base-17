@@ -1,11 +1,11 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
 import menus.menuDatosVentana3;
 //java
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileWriter;
@@ -71,30 +71,10 @@ public class formulario3 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Image retValue;
     protected Properties p;
     protected JFileChooser jfc;
     
     protected String direccion;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"geticonImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void botones(){
         backButton.addActionListener((ae)->{
@@ -222,7 +202,7 @@ public class formulario3 extends javax.swing.JFrame{
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         backButton.setText("Regresar");
 

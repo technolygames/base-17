@@ -1,13 +1,12 @@
 package venSecundarias;
-
+//clases
 import clases.logger;
-import clases.resourceDownload;
+import clases.Icono;
+//import clases.resourceDownload;//still in use
 import menus.menuVentanas;
-
-import java.awt.Image;
+//java
 import java.awt.Cursor;
 import java.awt.Taskbar;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,10 +21,10 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
+//extension larga
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
 
 public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
@@ -75,7 +74,6 @@ public final class loadWindow extends javax.swing.JFrame{
     protected Taskbar tb;
     
     protected File f;
-    protected Image retValue;
     protected Properties p;
     protected InputStream is;
     protected FileOutputStream fos;
@@ -86,25 +84,6 @@ public final class loadWindow extends javax.swing.JFrame{
     protected int ent;
     
     protected byte[] bites;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void load(){
         tb=Taskbar.getTaskbar();
@@ -127,7 +106,7 @@ public final class loadWindow extends javax.swing.JFrame{
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
                 jProgressBar1.setMaximum(46);
                 tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
-                tb.setWindowProgressValue(loadWindow.this,100);
+                tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 switch(jProgressBar1.getValue()){
                     case 0:
@@ -274,7 +253,7 @@ public final class loadWindow extends javax.swing.JFrame{
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
         setUndecorated(true);
 
         jProgressBar1.setMaximum(46);

@@ -1,22 +1,24 @@
 package menus;
-
+//clases
+import clases.Icono;
 import clases.logger;
 import clases.win10Notification;
 import venPrimarias.proper1;
 import venPrimarias.ventana1;
-import venPrimarias.ltshStorage;
 import venPrimarias.ventana2;
+import venPrimarias.ltshStorage;
 import venPrimarias.ltshProduct;
+import venPrimarias.start;
 import venTerciarias.about;
+import venTerciarias.dataWindow4;
 import venTerciarias.valVentanas.validacionVentana1;
 import venTerciarias.valVentanas.validacionVentana2;
 import venTerciarias.valVentanas.validacionVentana3;
 import venTerciarias.valVentanas.validacionVentana4;
 import venTerciarias.valVentanas.validacionVentana5;
 import venTerciarias.valVentanas.validacionVentana6;
-
+//java
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -29,11 +31,9 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.imageio.ImageIO;
-
+//extension larga
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
-import venPrimarias.start;
-import venTerciarias.dataWindow4;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -82,27 +82,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Image retValue;
     protected Properties p;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'geticonImage()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected void settings(){
         p=new Properties();
@@ -229,7 +209,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 

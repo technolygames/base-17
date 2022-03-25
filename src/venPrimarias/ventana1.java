@@ -1,20 +1,18 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
+import clases.Icono;
 import clases.logger;
-import clases.tickets.datosTicket;
 import venSecundarias.calcWindow;
-
+//java
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.EventObject;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -23,10 +21,8 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
+//extension larga
 import java.util.logging.Level;
-import javax.swing.CellEditor;
-import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JRException;
@@ -86,9 +82,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected PreparedStatement ps;
     protected ResultSet rs;
     
-    protected Image retValue;
     protected Properties p;
-    
     protected DefaultTableModel dtm;
     
     protected String nombre_prod;
@@ -96,29 +90,11 @@ public final class ventana1 extends javax.swing.JFrame{
     
     public static int resultado=0;
     protected int codigo_prod;
+    protected int codigo_emp;
     protected int cantidad;
     protected int precio;
     protected int total;
     protected int win;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected final void settings(){
         p=new Properties();
@@ -129,6 +105,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 return false;
             }
         };
+        
         try{
             p.load(new FileInputStream("src/data/config/config.properties"));
             Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
@@ -147,8 +124,11 @@ public final class ventana1 extends javax.swing.JFrame{
             new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
         }
         
+        txtCodEmp.setText(String.valueOf(start.userID));
+        
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
+            "Código del empleado",
             "Nombre del producto",
             "Marca",
             "Cantidad",
@@ -171,9 +151,10 @@ public final class ventana1 extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         
         addButton.addActionListener((ae)->{
-            if(!txtCodigo.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
+            if(!txtCodigo.getText().equals("")||!txtCodEmp.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
                 dtm.addRow(new Object[]{
                     txtCodigo.getText(),
+                    txtCodEmp.getText(),
                     txtProd.getText(),
                     txtMarca.getText(),
                     txtCant.getText(),
@@ -200,10 +181,9 @@ public final class ventana1 extends javax.swing.JFrame{
         
         calcButton.addActionListener((ae)->{
             try{
-                int n1=0;
                 int res=0;
                 for(int i=0;i<dtm.getRowCount();i++){
-                    n1=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                    int n1=Integer.parseInt(dtm.getValueAt(i,6).toString());
                     res+=n1;
                     
                     resultado=res;
@@ -211,7 +191,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 
                 calcWindow clw=new calcWindow(new javax.swing.JFrame(),true);
                 clw.setVisible(true);
-                calcWindow.txtTotal.setText(String.valueOf(resultado));
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
@@ -268,13 +247,14 @@ public final class ventana1 extends javax.swing.JFrame{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
                     codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                    nombre_prod=dtm.getValueAt(i,1).toString();
-                    marca_prod=dtm.getValueAt(i,2).toString();
-                    cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
-                    precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
-                    total=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                    codigo_emp=Integer.parseInt(dtm.getValueAt(i,1).toString());
+                    nombre_prod=dtm.getValueAt(i,2).toString();
+                    marca_prod=dtm.getValueAt(i,3).toString();
+                    cantidad=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                    precio=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                    total=Integer.parseInt(dtm.getValueAt(i,6).toString());
                     
-                    new datos().insertarDatosProducto(codigo_prod,nombre_prod,marca_prod,cantidad,precio,total);
+                    new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre_prod,marca_prod,cantidad,precio,total);
                 }
                 JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             }catch(NumberFormatException e){
@@ -317,11 +297,13 @@ public final class ventana1 extends javax.swing.JFrame{
         mkPaidButton = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtCodEmp = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel2.setText("Código del producto:");
 
@@ -406,6 +388,8 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jButton2.setText("Eliminar fila");
 
+        jLabel1.setText("Código del empleado:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -417,6 +401,19 @@ public final class ventana1 extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(mkPaidButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(genrepButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(calcButton)
+                                .addGap(126, 126, 126)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(cleanButton)
+                                .addGap(32, 32, 32))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addGroup(layout.createSequentialGroup()
@@ -425,8 +422,12 @@ public final class ventana1 extends javax.swing.JFrame{
                                             .addComponent(txtCodigo))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtCodEmp))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtProd))
+                                            .addComponent(txtProd, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
@@ -443,20 +444,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
                                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(mkPaidButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(genrepButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(calcButton)
-                                .addGap(126, 126, 126)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(cleanButton)
-                                .addGap(32, 32, 32)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -479,12 +467,14 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCodEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -580,6 +570,7 @@ public final class ventana1 extends javax.swing.JFrame{
             int res=n2*n1;
             txtTotal.setText(String.valueOf(res));
         }catch(NumberFormatException e){
+            e.fillInStackTrace();
         }
     }//GEN-LAST:event_txtCantKeyPressed2
     
@@ -595,6 +586,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton genrepButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -607,6 +599,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton mkPaidButton;
     protected javax.swing.JLabel picLabel;
     protected javax.swing.JTextField txtCant;
+    protected javax.swing.JTextField txtCodEmp;
     protected javax.swing.JTextField txtCodigo;
     protected javax.swing.JTextField txtMarca;
     protected javax.swing.JTextField txtPrecio;

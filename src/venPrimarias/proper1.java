@@ -1,13 +1,13 @@
 package venPrimarias;
-
-import clases.datos;
+//clases
+import clases.Icono;
 import clases.logger;
 import clases.thread;
+import venSecundarias.eventViewer;
 import venTerciarias.valVentanas.validacionVentana7;
 import venTerciarias.valVentanas.validacionVentana8;
-
+//java
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileWriter;
@@ -27,9 +27,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import java.awt.event.ActionEvent;
+//extension larga
 import java.util.logging.Level;
+import java.awt.event.ActionEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class proper1 extends javax.swing.JFrame{
@@ -51,11 +51,11 @@ public final class proper1 extends javax.swing.JFrame{
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'proper1()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"proper1-IAE",n.fillInStackTrace());
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'proper1()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"proper1-28",y.fillInStackTrace());
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'proper1()'",Level.WARNING);
@@ -80,10 +80,7 @@ public final class proper1 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected datos d;
-    
     protected File f;
-    protected Image retValue;
     protected Properties p;
     protected InputStream is;
     protected OutputStream os;
@@ -96,25 +93,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected String direccion2;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
-    
-    @Override
-    public Image getIconImage(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            retValue.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
-        }
-        return retValue;
-    }
     
     protected void settings(){
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
@@ -177,6 +155,9 @@ public final class proper1 extends javax.swing.JFrame{
         
         expButton.addActionListener((ae)->{
             new validacionVentana7(new javax.swing.JFrame(),true).setVisible(true);
+        });
+        evButton.addActionListener((a)->{
+            new eventViewer(new javax.swing.JFrame(),true).setVisible(true);
         });
         
         impButton.addActionListener((ae)->{
@@ -393,9 +374,10 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        evButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(getIconImage());
+        setIconImage(new Icono().getIconImage());
 
         jLabel2.setText("Imagen:");
 
@@ -423,6 +405,8 @@ public final class proper1 extends javax.swing.JFrame{
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("jLabel8");
+
+        evButton.setText("Visor de eventos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -462,8 +446,13 @@ public final class proper1 extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)))
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(evButton)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(imgButton)))
                 .addContainerGap())
@@ -473,6 +462,12 @@ public final class proper1 extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(imgButton)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -489,12 +484,9 @@ public final class proper1 extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imgButton)
-                    .addComponent(jLabel2))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(evButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -513,6 +505,7 @@ public final class proper1 extends javax.swing.JFrame{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton backButton;
+    private javax.swing.JButton evButton;
     protected javax.swing.JButton expButton;
     protected javax.swing.JButton iconButton;
     protected javax.swing.JButton imgButton;
