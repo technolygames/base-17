@@ -1,7 +1,0 @@
-mar. 22, 2022 6:25:01 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-10
-java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
-	at venTerciarias.dataWindow1.datosMostrar(dataWindow1.java:142)
-	at venTerciarias.dataWindow1.<init>(dataWindow1.java:66)
-	at venTerciarias.dataWindow1.main(dataWindow1.java:480)
-

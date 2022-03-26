@@ -1,3 +1,0 @@
-mar. 23, 2022 4:33:37 P. M. clases.logger logStaticSaver
-WARNING: Error 11: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,...' at line 1.
-Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'

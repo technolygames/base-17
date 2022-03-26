@@ -157,9 +157,7 @@ public class datos{
             ps.setString(12,estado);
             ps.setString(13,datosExtra);
             ps.setBlob(14,foto);
-            ps.executeUpdate("update empleados set fecha_registro=now(), fecha_sesion=now() where codigo_emp='"+codigoEmpleado+"';");
             ps.execute();
-            
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             ps.close();
         }catch(SQLException e){
@@ -230,6 +228,29 @@ public class datos{
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'",Level.WARNING);
             new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosProveedor-11",e.fillInStackTrace());
+        }
+    }
+    
+    /**
+     * Guarda los datos de la ventana de promociones en la base de datos.
+     * 
+     * @param codigoPromo
+     * @param nombrePromo
+     * @param datosPromo
+     * @param descuento
+     * @param inicio
+     * @param fin
+     */
+    public void insertarDatosPromo(String codigoPromo,String nombrePromo,String datosPromo,float descuento,java.sql.Date inicio,java.sql.Date fin){
+        try{
+            ps=getConnection().prepareStatement("insert into promociones(id_prom,nombre_prom,datos_prom,descuento,inicio,fin) values('"+codigoPromo+"','"+nombrePromo+"','"+datosPromo+"','"+descuento+"','"+inicio+"','"+fin+"');");
+            ps.execute();
+            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosPromo()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosPromo-11",e.fillInStackTrace());
         }
     }
     

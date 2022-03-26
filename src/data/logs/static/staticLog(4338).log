@@ -1,3 +1,0 @@
-mar. 23, 2022 4:21:17 P. M. clases.logger logStaticSaver
-WARNING: Error 10: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1.
-Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'

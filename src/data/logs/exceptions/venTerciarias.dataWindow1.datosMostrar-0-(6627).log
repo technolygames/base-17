@@ -1,7 +1,0 @@
-mar. 23, 2022 4:18:36 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-0
-java.lang.NullPointerException: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null
-	at venTerciarias.dataWindow1.datosMostrar(dataWindow1.java:151)
-	at venTerciarias.dataWindow1.<init>(dataWindow1.java:66)
-	at venTerciarias.dataWindow1.main(dataWindow1.java:476)
-

@@ -1,9 +1,0 @@
-mar. 22, 2022 5:53:19 P. M. clases.logger logStaticSaver
-WARNING: Error 11: Field 'codigo_emp' doesn't have a default value.
-Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProducto()'
-mar. 22, 2022 5:53:21 P. M. clases.logger logStaticSaver
-WARNING: Error 11: Field 'codigo_emp' doesn't have a default value.
-Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProducto()'
-mar. 22, 2022 5:53:21 P. M. clases.logger logStaticSaver
-WARNING: Error 11: Field 'codigo_emp' doesn't have a default value.
-Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProducto()'
