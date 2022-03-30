@@ -14,7 +14,7 @@ Este programa se encarga de administrar una tienda de abarrotes. Las caracterís
 - En caso de actualización del programa, descarga los archivos y librerías
 - Correcta gestión de errores
 - Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
-- Impresión de ticket en la compra
+- Creación de ticket y factura
 - Lector de código de barras
 - Hilos
 
@@ -32,7 +32,7 @@ This program can be use to manage a grocery store. Features:
 - in case of program update, file and libraries download from internet
 - Exception handling
 - Employee, partners, providers image storage if is needed to make physical IDs
-- Ticket print
+- Ticket and invoice print
 - Barcode reader
 - Threads
 
