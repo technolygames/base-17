@@ -117,8 +117,10 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiFoto.setIcon(l);
                 i.flush();
             }else{
-                System.out.println("no existen");
+                JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
             }
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -156,7 +158,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                     blob=rs.getBlob("foto");
                     bytes=blob.getBytes(1,(int)blob.length());
                     fos.write(bytes);
+                    break;
                 }
+                
                 ps.close();
                 fos.close();
                 fos.flush();

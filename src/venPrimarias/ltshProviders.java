@@ -94,7 +94,7 @@ public class ltshProviders extends javax.swing.JFrame{
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,fecha_ingreso,fecha_uentrega from proveedor;");
             rs=ps.executeQuery();
@@ -106,7 +106,6 @@ public class ltshProviders extends javax.swing.JFrame{
             jTable1.getRowSorter().toggleSortOrder(0);
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
-            jTable1.getModel();
             
             ps.close();
             rs.close();
@@ -119,105 +118,123 @@ public class ltshProviders extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            String id=jTextField1.getText();
-            int i=jComboBox1.getSelectedIndex();
-            if(i==0){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where codigo_prov='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==1){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where nombre_prov='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==2){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidop_prov='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==3){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidom_prov='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==4){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where empresa='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==5){
-                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where contacto='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
+            switch(jComboBox1.getSelectedIndex()){
+                case 0:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where codigo_prov='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 1:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where nombre_prov='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 2:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidop_prov='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 3:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidom_prov='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 4:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where empresa='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 5:
+                    ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where contacto='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
@@ -257,7 +274,7 @@ public class ltshProviders extends javax.swing.JFrame{
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Proveedores");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno", "Empresa", "Contacto" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del proveedor", "Nombre", "Apellido paterno", "Apellido materno", "Empresa", "Contacto" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -286,13 +303,13 @@ public class ltshProviders extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -311,7 +328,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     .addComponent(searchButton)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)

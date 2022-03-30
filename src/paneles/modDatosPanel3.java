@@ -94,9 +94,12 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox1.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jTextField1.getText().equals("")){
-                            new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
+                            while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
+                                new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
@@ -139,9 +142,12 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox2.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jTextField2.getText().equals("")){
-                            new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
+                            while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
+                                new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
@@ -184,9 +190,12 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox3.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jTextField3.getText().equals("")){
-                            new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
+                            while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
+                                new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
@@ -229,9 +238,12 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox4.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jTextField4.getText().equals("")){
-                            new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true){
+                            while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true){
+                                new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la empresa a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió la empresa a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
@@ -274,9 +286,12 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox5.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jTextField5.getText().equals("")){
-                            new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true){
+                            while(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true){
+                                new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el contacto a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox5)'",Level.WARNING);

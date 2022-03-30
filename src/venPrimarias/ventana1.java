@@ -557,9 +557,14 @@ public final class ventana1 extends javax.swing.JFrame{
                 txtProd.setText(rs.getString("nombre_prod"));
                 txtMarca.setText(rs.getString("marca"));
                 txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodigoKeyPressed2()'",Level.WARNING);
             }
         }catch(SQLException e){
-            e.fillInStackTrace();
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodigoKeyPressed2()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCodigoKeyPressed2-11",e.fillInStackTrace());
         }
     }//GEN-LAST:event_txtCodigoKeyPressed2
 
@@ -570,7 +575,9 @@ public final class ventana1 extends javax.swing.JFrame{
             int res=n2*n1;
             txtTotal.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            e.fillInStackTrace();
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCantKeyPressed2()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCantKeyPressed2-18",e.fillInStackTrace());
         }
     }//GEN-LAST:event_txtCantKeyPressed2
     

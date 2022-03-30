@@ -13,13 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.RowSorter;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
+import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -94,7 +94,7 @@ public class ltshPartners extends javax.swing.JFrame{
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios;");
             rs=ps.executeQuery();
@@ -106,7 +106,6 @@ public class ltshPartners extends javax.swing.JFrame{
             jTable1.getRowSorter().toggleSortOrder(0);
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
-            jTable1.getModel();
             
             ps.close();
             rs.close();
@@ -119,73 +118,85 @@ public class ltshPartners extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            String id=jTextField1.getText();
-            int i=jComboBox1.getSelectedIndex();
-            if(i==0){
-                ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where codigo_part="+id+";");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==1){
-                ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where nombre_part='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==2){
-                ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidop_part='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==3){
-                ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidom_part='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
+            switch(jComboBox1.getSelectedIndex()){
+                case 0:
+                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where codigo_part="+jTextField1.getText()+";");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 1:
+                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where nombre_part='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 2:
+                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidop_part='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 3:
+                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidom_part='"+jTextField1.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
@@ -241,7 +252,7 @@ public class ltshPartners extends javax.swing.JFrame{
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Socios");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del socio", "Nombre", "Apellido paterno", "Apellido materno" }));
 
         searchButton.setText("Buscar");
 
@@ -258,13 +269,13 @@ public class ltshPartners extends javax.swing.JFrame{
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)
-                        .addGap(46, 46, 46)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -279,7 +290,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)

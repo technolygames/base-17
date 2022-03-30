@@ -90,7 +90,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         try{
             ps=d.getConnection().prepareStatement("select * from socios where codigo_part="+id+";");
             rs=ps.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_part")));
                 etiNombre.setText(rs.getString("nombre_part"));
                 etiApellidoP.setText(rs.getString("apellidop_part"));
@@ -107,7 +107,11 @@ public class dataWindow2 extends javax.swing.JDialog{
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
                 i.flush();
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
             }
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -145,6 +149,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     blob=rs.getBlob("foto");
                     bytes=blob.getBytes(1,(int)blob.length());
                     fos.write(bytes);
+                    break;
                 }
                 
                 ps.close();

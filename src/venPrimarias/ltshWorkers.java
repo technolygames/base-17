@@ -65,7 +65,6 @@ public final class ltshWorkers extends javax.swing.JFrame{
         
         botones();
         datosMostrar();
-        settings();
         
         setSize(1200,700);
         setLocationRelativeTo(null);
@@ -79,11 +78,8 @@ public final class ltshWorkers extends javax.swing.JFrame{
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
     
-    protected void settings(){
-        wdataButton.setVisible(false);
-    }
-    
     protected final void botones(){
+        dtm=new DefaultTableModel();
         backButton.addActionListener((ae)->{
             setVisible(false);
             dispose();
@@ -93,10 +89,6 @@ public final class ltshWorkers extends javax.swing.JFrame{
             datosBuscar();
         });
         
-        wdataButton.addActionListener((ae)->{
-            new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
         refreshButton.addActionListener((e)->{
             datosMostrar();
         });
@@ -104,7 +96,7 @@ public final class ltshWorkers extends javax.swing.JFrame{
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados;");
             rs=ps.executeQuery();
@@ -136,73 +128,85 @@ public final class ltshWorkers extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            String id=txtBuscar.getText();
-            int i=jComboBox1.getSelectedIndex();
-            if(i==0){
-                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where codigo_emp='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==1){
-                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where nombre_emp='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==2){
-                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where apellidop_emp='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==3){
-                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion where apellidom_emp='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
+            switch(jComboBox1.getSelectedIndex()){
+                case 0:
+                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where codigo_emp='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 1:
+                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where nombre_emp='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 2:
+                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where apellidop_emp='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 3:
+                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where apellidom_emp='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
@@ -228,55 +232,41 @@ public final class ltshWorkers extends javax.swing.JFrame{
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
-        wdataButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         backButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setEnabled(false);
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Empleados");
 
         searchButton.setText("Buscar");
 
-        wdataButton.setText("Ver datos");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del empleado", "Nombre", "Apellido paterno", "Apellido materno" }));
 
         backButton.setText("Regresar");
 
         refreshButton.setText("Recargar");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setEnabled(false);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,18 +275,16 @@ public final class ltshWorkers extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(wdataButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
@@ -312,10 +300,9 @@ public final class ltshWorkers extends javax.swing.JFrame{
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(wdataButton)
                     .addComponent(backButton)
                     .addComponent(refreshButton))
                 .addContainerGap())
@@ -338,6 +325,5 @@ public final class ltshWorkers extends javax.swing.JFrame{
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JButton wdataButton;
     // End of variables declaration//GEN-END:variables
 }

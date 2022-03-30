@@ -123,6 +123,7 @@ public class dataWindow4 extends javax.swing.JDialog{
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
                 i.flush();
+                break;
             }
             ps.close();
             rs.close();
@@ -161,6 +162,7 @@ public class dataWindow4 extends javax.swing.JDialog{
                     blob=rs.getBlob("foto");
                     bytes=blob.getBytes(1,(int)blob.length());
                     fos.write(bytes);
+                    break;
                 }
                 ps.close();
                 fos.close();

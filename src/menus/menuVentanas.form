@@ -83,19 +83,23 @@
                   <Component id="ltpsButton" alignment="0" max="32767" attributes="0"/>
                   <Component id="ltprvButton" alignment="0" max="32767" attributes="0"/>
                   <Component id="ltshButton" max="32767" attributes="0"/>
+                  <Component id="ltoffButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="picLabel" min="-2" pref="80" max="-2" attributes="0"/>
-                  <Component id="closeButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="picLabel" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="closeButton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="74" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="form3Button" max="32767" attributes="0"/>
-                  <Component id="productButton" max="32767" attributes="0"/>
-                  <Component id="form1Button" max="32767" attributes="0"/>
-                  <Component id="storeButton" max="32767" attributes="0"/>
-                  <Component id="form2Button" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="offButton" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="form3Button" max="32767" attributes="0"/>
+                      <Component id="productButton" max="32767" attributes="0"/>
+                      <Component id="form1Button" max="32767" attributes="0"/>
+                      <Component id="storeButton" max="32767" attributes="0"/>
+                      <Component id="form2Button" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -120,10 +124,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ltstButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="ltshButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="closeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="ltshButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="form3Button" min="-2" max="-2" attributes="0"/>
@@ -137,7 +138,15 @@
                       <Component id="productButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ltoffButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="offButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="closeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -205,6 +214,16 @@
     <Component class="javax.swing.JButton" name="ltprvButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lista de proveedores"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ltoffButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lista de descuentos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="offButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Descuentos"/>
       </Properties>
     </Component>
   </SubComponents>

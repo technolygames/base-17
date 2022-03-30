@@ -332,7 +332,9 @@ public final class proper1 extends javax.swing.JFrame{
                 
                 p.store(new BufferedWriter(new FileWriter("src/data/config/config.properties")),"config1");
                 
+                is.close();
                 os.close();
+                os.flush();
             }else{
                 f.createNewFile();
             }

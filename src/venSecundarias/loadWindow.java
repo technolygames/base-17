@@ -102,9 +102,9 @@ public final class loadWindow extends javax.swing.JFrame{
         }
         
         ActionListener al=(ActionEvent ae)->{
-            if(jProgressBar1.getValue()<46&&Taskbar.isTaskbarSupported()){
+            if(jProgressBar1.getValue()<48&&Taskbar.isTaskbarSupported()){
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
-                jProgressBar1.setMaximum(46);
+                jProgressBar1.setMaximum(48);
                 tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
                 tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -229,6 +229,11 @@ public final class loadWindow extends javax.swing.JFrame{
                         jLabel2.setText("PlaceHolder.jar");
                         //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("PlaceHolder.jar"));
                         break;
+                    case 48:
+                        jLabel2.setText(null);
+                        jLabel2.setText("jcalendar-1.4.jar");
+                        //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("jcalendar-1.4.jar"));
+                        break;
                     default:
                         new logger().logStaticSaver("No se puede descargar las librerías",Level.WARNING);
                         tb.setWindowProgressState(loadWindow.this,Taskbar.State.ERROR);
@@ -256,7 +261,7 @@ public final class loadWindow extends javax.swing.JFrame{
         setIconImage(new Icono().getIconImage());
         setUndecorated(true);
 
-        jProgressBar1.setMaximum(46);
+        jProgressBar1.setMaximum(48);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Cargando:");

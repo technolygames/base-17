@@ -46,7 +46,7 @@ Error 38: error de validación; solo roles específicos son aceptados
 Error 39: no se puede descargar las librerías (.jar)
 Error 40: la ventana no puede ser iniciada correctamente
 Error 41: error al pasar la imagen de la ventana de webcam al formulario
-
+Error 42: no se puede establecer conexión a internet
 
 -Exclusivo para desarrollador
 Rel 1E: se creó o importó correctamente

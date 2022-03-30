@@ -8,6 +8,8 @@ import venPrimarias.ventana1;
 import venPrimarias.ventana2;
 import venPrimarias.ltshStorage;
 import venPrimarias.ltshProduct;
+import venPrimarias.ltshOff;
+import venPrimarias.ventana3;
 import venPrimarias.start;
 import venTerciarias.about;
 import venTerciarias.dataWindow4;
@@ -109,6 +111,10 @@ public final class menuVentanas extends javax.swing.JFrame{
     }
     
     protected final void botones(){
+        offButton.addActionListener((a)->{
+            new ventana3().setVisible(true);
+        });
+        
         productButton.addActionListener((ae)->{
             new ventana1().setVisible(true);
         });
@@ -147,6 +153,10 @@ public final class menuVentanas extends javax.swing.JFrame{
         
         ltshButton.addActionListener((ae)->{
             new ltshProduct().setVisible(true);
+        });
+        
+        ltoffButton.addActionListener((a)->{
+            new ltshOff().setVisible(true);
         });
         
         closeButton.addActionListener((ae)->{
@@ -198,6 +208,8 @@ public final class menuVentanas extends javax.swing.JFrame{
         picLabel = new javax.swing.JLabel();
         form3Button = new javax.swing.JButton();
         ltprvButton = new javax.swing.JButton();
+        ltoffButton = new javax.swing.JButton();
+        offButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         properButton = new javax.swing.JMenuItem();
@@ -235,6 +247,10 @@ public final class menuVentanas extends javax.swing.JFrame{
 
         ltprvButton.setText("Lista de proveedores");
 
+        ltoffButton.setText("Lista de descuentos");
+
+        offButton.setText("Descuentos");
+
         jMenu3.setText("Opciones");
 
         properButton.setText("Ajustes");
@@ -268,18 +284,21 @@ public final class menuVentanas extends javax.swing.JFrame{
                     .addComponent(ltwkButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ltpsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ltprvButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ltshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ltshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltoffButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(closeButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(form3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(form1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(storeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(form2Button))
+                    .addComponent(offButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(form3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(form1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(storeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(form2Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -299,9 +318,7 @@ public final class menuVentanas extends javax.swing.JFrame{
                         .addGap(18, 18, 18)
                         .addComponent(ltstButton)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ltshButton)
-                            .addComponent(closeButton)))
+                        .addComponent(ltshButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(form3Button)
                         .addGap(18, 18, 18)
@@ -312,7 +329,13 @@ public final class menuVentanas extends javax.swing.JFrame{
                         .addComponent(storeButton)
                         .addGap(18, 18, 18)
                         .addComponent(productButton)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ltoffButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(offButton)
+                        .addComponent(closeButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,11 +357,13 @@ public final class menuVentanas extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JButton ltoffButton;
     private javax.swing.JButton ltprvButton;
     private javax.swing.JButton ltpsButton;
     private javax.swing.JButton ltshButton;
     private javax.swing.JButton ltstButton;
     private javax.swing.JButton ltwkButton;
+    private javax.swing.JButton offButton;
     private javax.swing.JLabel picLabel;
     private javax.swing.JButton productButton;
     private javax.swing.JMenuItem properButton;

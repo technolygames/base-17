@@ -94,7 +94,7 @@ public final class ltshStorage extends javax.swing.JFrame{
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from almacen;");
             rs=ps.executeQuery();
@@ -106,7 +106,6 @@ public final class ltshStorage extends javax.swing.JFrame{
             jTable1.getRowSorter().toggleSortOrder(0);
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
-            jTable1.getModel();
             
             ps.close();
             rs.close();
@@ -119,89 +118,92 @@ public final class ltshStorage extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<>(dtm);
+        sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            String id=txtBuscar.getText();
-            int i=jComboBox1.getSelectedIndex();
-            if(i==0){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==1){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote="+id+";");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==2){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+id+";");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==3){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==4){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
+            switch(jComboBox1.getSelectedIndex()){
+                case 0:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+txtBuscar.getText()+";");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
+                    if(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 1:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote="+txtBuscar.getText()+";");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
+                    while(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 2:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+txtBuscar.getText()+";");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
+                    while(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 3:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
+                    while(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 4:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
+                    while(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
@@ -276,10 +278,10 @@ public final class ltshStorage extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,13 +300,11 @@ public final class ltshStorage extends javax.swing.JFrame{
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(refreshButton, javax.swing.GroupLayout.Alignment.TRAILING))

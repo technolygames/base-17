@@ -5,8 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.UnknownHostException;
@@ -25,9 +28,11 @@ public class resourceDownload{
     protected FileOutputStream fos;
     protected File f;
     
-    protected URL u;
-    protected Socket s;
-    protected URLConnection uc;
+    protected URL u=null;
+    protected Socket s=null;
+    protected InetAddress ia=null;
+    protected SocketAddress sa=null;
+    protected URLConnection uc=null;
     
     /**
      * Esta clase se encarga de verificar si hay conectividad a internet.
@@ -37,16 +42,22 @@ public class resourceDownload{
      */
     public boolean checkConnection(String url,int puerto){
         try{
-            s=new Socket(url,puerto);
-            if(s.isConnected()==true){
-                sis=true;
-            }else{
-                sis=false;
-            }
+            s=new Socket();
+            ia=InetAddress.getByName(url);
+            sa=new InetSocketAddress(ia,puerto);
+            
+            s.bind(sa);
+            s.connect(sa);
+            
+            sis=s.isConnected();
         }catch(UnknownHostException e){
-            e.fillInStackTrace();
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 42",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 42: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-42",e.fillInStackTrace());
         }catch(IOException x){
-            x.fillInStackTrace();
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1I: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-1I",x.fillInStackTrace());
         }
         return sis;
     }
@@ -62,7 +73,9 @@ public class resourceDownload{
         try{
             if(!f.exists()){
                 f.createNewFile();
-            }else{
+            }
+            
+            if(!f.exists()&&f.length()==0&&checkConnection(link, 443)==true){
                 u=new URL(link);
                 uc=u.openConnection();
                 

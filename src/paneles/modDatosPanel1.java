@@ -120,9 +120,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbContra.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtContra.getPassword().equals("")){
-                            new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true){
+                            while(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContra)'",Level.WARNING);
@@ -197,9 +200,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbNombre.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtNombre.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true){
+                            while(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbNombre)'",Level.WARNING);
@@ -274,9 +280,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbAP.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtAP.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtAP.getText().equals("")&&cbAP.isSelected()==true){
+                            while(!txtAP.getText().equals("")&&cbAP.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAP)'",Level.WARNING);
@@ -351,9 +360,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbAM.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtAM.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtAM.getText().equals("")&&cbAM.isSelected()==true){
+                            while(!txtAM.getText().equals("")&&cbAM.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAM)'",Level.WARNING);
@@ -428,9 +440,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbDomicilio.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtDom.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set domicilio='"+txtDom.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true){
+                            while(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set domicilio='"+txtDom.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el domicilio nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el domicilio a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbDom)'",Level.WARNING);
@@ -505,8 +520,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbPuesto.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set puesto='"+jComboBox1.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true){
+                            while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set puesto='"+jComboBox1.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo puesto","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se seleccionó el nuevo puesto.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbPuesto.isSelected()==false){
@@ -577,9 +600,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbExp.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtExp.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtExp.getText().equals("")&&cbExp.isSelected()==true){
+                            while(!txtExp.getText().equals("")&&cbExp.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbExp)'",Level.WARNING);
@@ -654,9 +680,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbGE.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtGE.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtGE.getText().equals("")&&cbGE.isSelected()==true){
+                            while(!txtGE.getText().equals("")&&cbGE.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbGE)'",Level.WARNING);
@@ -731,9 +760,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbContacto.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!cbContacto.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true){
+                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContacto)'",Level.WARNING);
@@ -808,9 +840,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbEdad.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtEdad.getText().equals("")){
-                            new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                            consulta();
+                        if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true){
+                            while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
                             new logger().logStaticSaver("Error 11: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbEdad)'",Level.WARNING);
@@ -885,8 +920,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbEstado.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set estado='"+jComboBox2.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true){
+                            while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true){
+                                new datos().actualizarDatosEmpleado("set estado='"+jComboBox2.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo estado del empleado","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se seleccionó el nuevo estado del empleado.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbEstado.isSelected()==false){
