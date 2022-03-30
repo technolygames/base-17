@@ -102,9 +102,9 @@ public final class loadWindow extends javax.swing.JFrame{
         }
         
         ActionListener al=(ActionEvent ae)->{
-            if(jProgressBar1.getValue()<48&&Taskbar.isTaskbarSupported()){
+            if(jProgressBar1.getValue()<40&&Taskbar.isTaskbarSupported()){
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
-                jProgressBar1.setMaximum(48);
+                jProgressBar1.setMaximum(40);
                 tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
                 tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -181,55 +181,35 @@ public final class loadWindow extends javax.swing.JFrame{
                         break;
                     case 28:
                         jLabel2.setText(null);
-                        jLabel2.setText("JPanelWebCam.jar");
-                        //new resourceDownload().downloadLibs("JPanelWebCam.jar",p.getProperty("JPanelWebCam.jar"));
-                        break;
-                    case 30:
-                        jLabel2.setText(null);
                         jLabel2.setText("mysql-connector-java-8.0.17.jar");
                         //new resourceDownload().downloadLibs("mysql-connector-java-8.0.17.jar",p.getProperty("mysql-connector-java-8.0.17.jar"));
                         break;
-                    case 32:
+                    case 30:
                         jLabel2.setText(null);
                         jLabel2.setText("oclc-dbutils-1.0.20080317.jar");
                         //new resourceDownload().downloadLibs("oclc-dbutils-1.0.20080317.jar",p.getProperty("oclc-dbutils-1.0.20080317.jar"));
                         break;
-                    case 34:
+                    case 32:
                         jLabel2.setText(null);
                         jLabel2.setText("ojdbc6_g.jar");
                         //new resourceDownload().downloadLibs("ojdbc6_g.jar",p.getProperty("ojdbc6_g.jar"));
                         break;
-                    case 36:
+                    case 34:
                         jLabel2.setText(null);
                         jLabel2.setText("poi-3.5-FINAL.jar");
                         //new resourceDownload().downloadLibs("poi-3.5-FINAL.jar",p.getProperty("poi-3.5-FINAL.jar"));
                         break;
-                    case 38:
+                    case 36:
                         jLabel2.setText(null);
                         jLabel2.setText("rs2xml.jar");
                         //new resourceDownload().downloadLibs("rs2xml.jar",p.getProperty("rs2xml.jar"));
                         break;
-                    case 40:
-                        jLabel2.setText(null);
-                        jLabel2.setText("slf4j-api-1.7.2.jar");
-                        //new resourceDownload().downloadLibs("slf4j-api-1.7.2.jar",p.getProperty("slf4j-api-1.7.2.jar"));
-                        break;
-                    case 42:
-                        jLabel2.setText(null);
-                        jLabel2.setText("slf4j-simple-1.6.1.jar");
-                        //new resourceDownload().downloadLibs("slf4j-simple-1.6.1.jar",p.getProperty("slf4j-simple-1.6.1.jar"));
-                        break;
-                    case 44:
-                        jLabel2.setText(null);
-                        jLabel2.setText("webcam-capture-0.3.10.jar");
-                        //new resourceDownload().downloadLibs("webcam-capture-0.3.10.jar",p.getProperty("webcam-capture-0.3.10.jar"));
-                        break;
-                    case 46:
+                    case 38:
                         jLabel2.setText(null);
                         jLabel2.setText("PlaceHolder.jar");
                         //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("PlaceHolder.jar"));
                         break;
-                    case 48:
+                    case 40:
                         jLabel2.setText(null);
                         jLabel2.setText("jcalendar-1.4.jar");
                         //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("jcalendar-1.4.jar"));

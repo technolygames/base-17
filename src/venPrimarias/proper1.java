@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.Icono;
 import clases.logger;
 import clases.thread;
+import com.formdev.flatlaf.FlatDarkLaf;
 import venSecundarias.eventViewer;
 import venTerciarias.valVentanas.validacionVentana7;
 import venTerciarias.valVentanas.validacionVentana8;
@@ -95,6 +96,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected String nombreArchivo2;
     
     protected void settings(){
+        UIManager.installLookAndFeel("FlatLafDark","com.formdev.flatlaf.FlatDarkLaf");
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
         expButton.setEnabled(false);
         impButton.setEnabled(false);
@@ -123,7 +125,7 @@ public final class proper1 extends javax.swing.JFrame{
             Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
             jLabel3.setIcon(l);
             jTextField1.setText(nombre);
-            jComboBox2.getModel().setSelectedItem(diseños);
+            jComboBox1.getModel().setSelectedItem(diseños);
             
             i.flush();
         }catch(NumberFormatException e){
@@ -255,9 +257,9 @@ public final class proper1 extends javax.swing.JFrame{
             }
         });
         
-        jComboBox2.addActionListener((ae)->{
+        jComboBox1.addActionListener((ae)->{
             try{
-                diseños=jComboBox2.getSelectedItem().toString();
+                diseños=jComboBox1.getSelectedItem().toString();
                 UIManager.setLookAndFeel(diseños);
                 SwingUtilities.updateComponentTreeUI(this);
             }catch(ClassNotFoundException e){
@@ -285,10 +287,11 @@ public final class proper1 extends javax.swing.JFrame{
     }
     
     protected final void combo1(){
+        UIManager.installLookAndFeel("FlatLafDark","com.formdev.flatlaf.FlatDarkLaf");
         UIManager.LookAndFeelInfo[] lafi=UIManager.getInstalledLookAndFeels();
         try{
             for(UIManager.LookAndFeelInfo lafi1:lafi){
-                jComboBox2.addItem(lafi1.getClassName());
+                jComboBox1.addItem(lafi1.getClassName());
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
@@ -367,7 +370,7 @@ public final class proper1 extends javax.swing.JFrame{
         backButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         impButton = new javax.swing.JButton();
         expButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -427,7 +430,7 @@ public final class proper1 extends javax.swing.JFrame{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(10, 10, 10))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,7 +448,7 @@ public final class proper1 extends javax.swing.JFrame{
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)))
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +476,7 @@ public final class proper1 extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -489,7 +492,7 @@ public final class proper1 extends javax.swing.JFrame{
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(evButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -512,7 +515,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected javax.swing.JButton iconButton;
     protected javax.swing.JButton imgButton;
     protected javax.swing.JButton impButton;
-    protected javax.swing.JComboBox<String> jComboBox2;
+    protected javax.swing.JComboBox<String> jComboBox1;
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JLabel jLabel3;
     protected javax.swing.JLabel jLabel4;

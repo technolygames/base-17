@@ -93,13 +93,11 @@
               <EmptySpace pref="74" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="offButton" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="form3Button" max="32767" attributes="0"/>
-                      <Component id="productButton" max="32767" attributes="0"/>
-                      <Component id="form1Button" max="32767" attributes="0"/>
-                      <Component id="storeButton" max="32767" attributes="0"/>
-                      <Component id="form2Button" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="form3Button" max="32767" attributes="0"/>
+                  <Component id="productButton" max="32767" attributes="0"/>
+                  <Component id="form1Button" max="32767" attributes="0"/>
+                  <Component id="storeButton" max="32767" attributes="0"/>
+                  <Component id="form2Button" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
