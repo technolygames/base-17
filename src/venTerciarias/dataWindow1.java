@@ -304,7 +304,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        genLabel.setText("12346");
+        genLabel.setText("12345");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

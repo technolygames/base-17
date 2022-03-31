@@ -205,7 +205,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
 
-        genLabel.setText("12347");
+        genLabel.setText("12345");
 
         storeImgButton.setText("Guardar imagen");
 
