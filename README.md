@@ -18,7 +18,10 @@ Este programa se encarga de administrar una tienda de abarrotes. Las caracterís
 - Lector de código de barras
 - Hilos
 
-Para poder programar, la carpeta con todo el código es "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales necesarios para poder programar
+Para poder programar, la carpeta con todo el código es "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales necesarios para poder programar.
+
+Notas:
+- Para que no dé el error al momento de una excepción, se debe crear la carpeta en la siguiente dirección: src/data/logs. No debe estar fuera de logs ni mucho menos dentro de la carpeta static
 
 This program can be use to manage a grocery store. Features:
 - Can store from a table to mysql's database
@@ -37,3 +40,6 @@ This program can be use to manage a grocery store. Features:
 - Threads
 
 Everything is on src folder. Everything is on it. Database, windows, classes, libraries and media
+
+Notes:
+- To avoid a message during an exception, you will create a new folder into "src/data/logs" called "exceptions". This don't be created outside of logs folder nor into static folder
