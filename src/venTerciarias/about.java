@@ -29,31 +29,31 @@ public final class about extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error IAE: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-28",k.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-0",k.fillInStackTrace());
         }catch(FileNotFoundException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+y.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-1IO",y.fillInStackTrace());
         }catch(IOException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'about()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"about-2IO",s.fillInStackTrace());
         }
         
@@ -90,11 +90,11 @@ public final class about extends javax.swing.JDialog{
             websiteLabel.setText(p.getProperty("website"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiqueta-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiquetas-2IO",x.fillInStackTrace());
         }
     }
@@ -306,19 +306,19 @@ public final class about extends javax.swing.JDialog{
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 31",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 31: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
+            new logger().staticLogger("Error 31: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-31",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-0",x.fillInStackTrace());
         }catch(FileNotFoundException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-1IO",ñ.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
             new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-2IO",k.fillInStackTrace());
         }
     }//GEN-LAST:event_websiteLabelMouseClicked

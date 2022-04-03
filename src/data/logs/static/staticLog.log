@@ -1,0 +1,12 @@
+abr. 02, 2022 8:49:54 P. M. clases.logger staticLogger
+WARNING: Error 18: no se ingresaron correctamente el usuario y/o contraseña.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'
+abr. 02, 2022 8:52:22 P. M. clases.logger staticLogger
+WARNING: Error 18: no se ingresaron correctamente el usuario y/o contraseña.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'
+abr. 02, 2022 8:52:22 P. M. clases.logger staticLogger
+WARNING: Error 18: no se ingresaron correctamente el usuario y/o contraseña.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'
+abr. 02, 2022 9:01:18 P. M. clases.logger staticLogger
+WARNING: Error 14: no existen o no se ingresaron los datos a buscar y cambiar.
+Ocurrió en 'venTerciarias.valVentanas.validacionVentana5', en el método 'botones(valButton)'

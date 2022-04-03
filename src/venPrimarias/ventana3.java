@@ -29,31 +29,31 @@ public class ventana3 extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-IE",x.fillInStackTrace());
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'ventana3()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-2IO",d.fillInStackTrace());
         }
         
@@ -80,11 +80,11 @@ public class ventana3 extends javax.swing.JFrame{
             i.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Erron:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
         }
         jTextArea1.setLineWrap(true);
@@ -119,15 +119,15 @@ public class ventana3 extends javax.swing.JFrame{
                     new datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                    new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().staticLogger("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
                 new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-18",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
                 new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-0",x.fillInStackTrace());
             }
         });

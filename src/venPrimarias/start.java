@@ -24,7 +24,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
-import java.awt.event.ActionListener;
 
 public final class start extends javax.swing.JFrame{
     public start(){
@@ -36,31 +35,31 @@ public final class start extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-IE",x.fillInStackTrace());
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'start()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"start-2IO",d.fillInStackTrace());
         }
         
@@ -97,11 +96,11 @@ public final class start extends javax.swing.JFrame{
             i.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
     }
@@ -117,7 +116,7 @@ public final class start extends javax.swing.JFrame{
                 login();
             }catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'botones(loginButton)'",Level.WARNING);
+                new logger().staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'botones(loginButton)'",Level.WARNING);
                 new logger().exceptionLogger(start.class.getName(),Level.WARNING,"botones-0",e.fillInStackTrace());
             }
         });
@@ -142,18 +141,18 @@ public final class start extends javax.swing.JFrame{
                 new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
+                new logger().staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
+            new logger().staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"login-9",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error Prueba: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
+            new logger().staticLogger("Error Prueba: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"login-Prueba",x.fillInStackTrace());
         }
     }
@@ -252,7 +251,7 @@ public final class start extends javax.swing.JFrame{
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 2",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Let 2: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'txtUsuarioKeyPressed()'",Level.WARNING);
+            new logger().staticLogger("Let 2: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'txtUsuarioKeyPressed()'",Level.WARNING);
             evt.consume();
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed

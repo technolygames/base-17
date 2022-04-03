@@ -30,31 +30,31 @@ public class validacionVentana7 extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-IE",x.fillInStackTrace());
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'validacionVentana7()'",Level.WARNING);
             new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"validacionVentana7-2IO",d.fillInStackTrace());
         }
         
@@ -87,21 +87,21 @@ public class validacionVentana7 extends javax.swing.JDialog{
                             dispose();
                         }else{
                             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 37",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 37: usuario sin privilegios.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
+                            new logger().staticLogger("Error 37: usuario sin privilegios.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
                         }
                     }else{
                         JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger().logStaticSaver("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
+                        new logger().staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
                     }
                     ps.close();
                     rs.close();
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\n Escribe tu usuario y contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().logStaticSaver("Error 18: no se escribió usuario y/o contraseña.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
+                    new logger().staticLogger("Error 18: no se escribió usuario y/o contraseña.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
                 }
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
+                new logger().staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
                 new logger().exceptionLogger(validacionVentana7.class.getName(),Level.WARNING,"botones.val-9",e.fillInStackTrace());
             }
         });

@@ -52,11 +52,11 @@ public class resourceDownload{
             sis=s.isConnected();
         }catch(UnknownHostException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 42",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 42: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().staticLogger("Error 42: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
             new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-42",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1I: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().staticLogger("Error 1I: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
             new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-1I",x.fillInStackTrace());
         }
         return sis;

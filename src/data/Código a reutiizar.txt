@@ -12,6 +12,8 @@ new logger().logStaticSaver("Error 18: no se escribió usuario y/o contraseña e
 import clases.Icono;
 new Icono().getIconImage()
 
+System.getProperty("user.dir");
+
 //selected
 //enabled
 //combo

@@ -31,11 +31,11 @@ public class Icono{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(Icono.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(Icono.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;

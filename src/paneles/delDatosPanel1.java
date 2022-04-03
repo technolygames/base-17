@@ -22,31 +22,31 @@ public class delDatosPanel1 extends javax.swing.JPanel{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-IE",x.fillInStackTrace());
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
+            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'delDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"delDatosPanel1-2IO",d.fillInStackTrace());
         }
         
@@ -66,11 +66,11 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                     new datos().eliminarDatosEmpleado(codigo);
                 }else{
                     JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().logStaticSaver("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
+                    new logger().staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
+                new logger().staticLogger("Error Prueba: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
                 new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"botones.delete-Prueba",e.fillInStackTrace());
             }
         });
