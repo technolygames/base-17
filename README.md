@@ -22,7 +22,7 @@ Para poder programar, la carpeta con todo el código es "src". Ahí está la bas
 
 Notas:
 - Para que no dé el error al momento de una excepción, se debe crear la carpeta en la siguiente dirección: src/data/logs. No debe estar fuera de logs ni mucho menos dentro de la carpeta static
-- A veces saldrán errores por el uso de look and feel de windows en otros sistemas. Para prevenir este error, elimine el archivo que está en src/data/config llamado "config.properties" y reemplazarlo por precofig.properties cambiándole el nombre por el mismo del archivo eliminado. Es recomendable que se copie preconfig.properties, con el contenido, en vez de hacerlo en el mismo archivo
+- A veces saldrán errores por el uso de look and feel de windows en otros sistemas. Para prevenir este error, elimine el archivo que está en src/data/config llamado "config.properties" y reemplazarlo por preconfig.properties cambiándole el nombre por el mismo del archivo eliminado. Es recomendable que se haga una copia del archivo preconfig en vez de hacerlo en el mismo archivo
 
 This program can be use to manage a grocery store. Features:
 - Can store from a table to mysql's database
@@ -44,4 +44,4 @@ Everything is on src folder. Everything is on it. Database, windows, classes, li
 
 Notes:
 - To avoid a message during an exception, you will create a new folder into "src/data/logs" called "exceptions". This don't be created outside of logs folder nor into static folder
-- Sometimes will throw exceptions caused by using windows look and feel in other systems. To avoid this exception, delete file into src/data/config called "config.properties", replace by "preconfig.properties" renaming as the previous deleted file (config.properties). I recommend you to copy preconfig.properties instead using the same file
+- Sometimes will throw exceptions caused by using windows' look and feel in other systems. To avoid this exception, delete file into src/data/config called "config.properties", replace by "preconfig.properties" and rename it as the previous deleted file (config.properties). I recommend you to copy preconfig.properties instead of using the same file
