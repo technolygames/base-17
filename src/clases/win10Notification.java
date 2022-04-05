@@ -6,14 +6,11 @@ import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,7 +32,7 @@ public class win10Notification{
         try{
             if(st.isSupported()){
                 p=new Properties();
-                p.load(new FileInputStream("src/data/config/config.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
                 Image i=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
                 TrayIcon ti=new TrayIcon(i);
                 st.add(ti);

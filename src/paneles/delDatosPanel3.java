@@ -1,54 +1,15 @@
 package paneles;
 
 import clases.datos;
+import clases.laf;
 import clases.logger;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class delDatosPanel3 extends javax.swing.JPanel{
     public delDatosPanel3(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(delDatosPanel3.this,delDatosPanel3.class.getName(),"delDatosPanel3");
         
         botones();
     }

@@ -2,22 +2,16 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.Icono;
+import clases.laf;
 import clases.logger;
 //librerías
 import net.proteanit.sql.DbUtils;
 //java
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
-import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
@@ -27,40 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProviders extends javax.swing.JFrame{
     public ltshProviders(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error iE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-iE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException j){
-            JOptionPane.showMessageDialog(null,"Error:\n"+j.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+j.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-28",j.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'ltshProviders()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(ltshProviders.this,ltshProviders.class.getName(),"ltshProviders");
         
         botones();
         datosMostrar();
@@ -305,7 +266,7 @@ public class ltshProviders extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

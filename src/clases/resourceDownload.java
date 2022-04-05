@@ -69,7 +69,7 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        /*f=new File("src/data/libs/"+validar);
+        /*f=new File(System.getProperty("user.dir")+"/src/data/libs/"+validar);
         try{
             if(!f.exists()){
                 f.createNewFile();

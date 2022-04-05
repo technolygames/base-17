@@ -45,7 +45,7 @@ public class datosTicket{
             SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
             
-            p.load(new FileInputStream("src/data/config/config.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
             
             ticket.addCabecera(p.getProperty("nombre"));
             ticket.addCabecera(ticket.darEspacio());
@@ -135,15 +135,15 @@ public class datosTicket{
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE_T1",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error NFE_T1: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket",e.fillInStackTrace());
+            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-NFE_T1",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket",x.fillInStackTrace());
+            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-1IO",x.fillInStackTrace());
         }catch(IOException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 2IO: "+n.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket",n.fillInStackTrace());
+            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-2IO",n.fillInStackTrace());
         }
     }
 }

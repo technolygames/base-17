@@ -1,6 +1,7 @@
 package menus;
 //clases
 import clases.Icono;
+import clases.laf;
 import clases.logger;
 import clases.win10Notification;
 import venPrimarias.proper1;
@@ -27,11 +28,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.Icon;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.imageio.ImageIO;
 //extension larga
 import java.awt.event.ActionEvent;
@@ -40,40 +38,7 @@ import java.util.logging.Level;
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menuVentanas()'",Level.WARNING);
-            new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menuVentanas-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(menuVentanas.this,menuVentanas.class.getName(),"menuVentanas");
         
         menu();
         botones();
@@ -89,7 +54,7 @@ public final class menuVentanas extends javax.swing.JFrame{
     protected void settings(){
         p=new Properties();
         try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
             Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
             ImageIcon im=new ImageIcon(i);
             Icon l=new ImageIcon(im.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));

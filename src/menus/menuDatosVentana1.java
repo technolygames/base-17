@@ -1,59 +1,16 @@
 package menus;
 //clases
 import clases.Icono;
-import clases.logger;
+import clases.laf;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
 //java
 import java.awt.BorderLayout;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import javax.swing.UIManager;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
-//extension larga
-import java.util.logging.Level;
 
 public class menuDatosVentana1 extends javax.swing.JFrame{
     public menuDatosVentana1(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(menuDatosVentana1.this,menuDatosVentana1.class.getName(),"menuDatosVentana1");
         
         botones();
         

@@ -41,9 +41,9 @@ public class thread extends Thread{
             os.flush();
             os.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 26H: "+e.getMessage()+"\nOcurrió en la clase '"+thread.class.getName()+"', en el método 'run()'",Level.WARNING);
-            new logger().exceptionLogger(thread.class.getName(),Level.WARNING,"run-26H",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 2IO: "+e.getMessage()+"\nOcurrió en la clase '"+thread.class.getName()+"', en el método 'run()'",Level.WARNING);
+            new logger().exceptionLogger(thread.class.getName(),Level.WARNING,"run-2IO",e.fillInStackTrace());
         }
     }
 }

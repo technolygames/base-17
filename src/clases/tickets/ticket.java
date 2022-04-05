@@ -100,12 +100,13 @@ public class ticket{
             items.clear();
             totales.clear();
             lineasPie.clear();
+            
             imp.flush();
             imp.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T1.1",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error IOE_T1.1: "+e.getMessage()+"\nOcurriÃ³ en la clase '"+ticket.class.getName()+"', en el mÃ©todo 'imprimirDocumento()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento",e.fillInStackTrace());
+            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-IOE_T1.1",e.fillInStackTrace());
         }finally{
             cabezaLineas.removeAll(cabezaLineas);
             subcabezaLineas.removeAll(subcabezaLineas);

@@ -2,20 +2,14 @@ package venPrimarias;
 //clases
 import clases.Icono;
 import clases.datos;
+import clases.laf;
 import clases.logger;
 //java
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import javax.swing.RowSorter;
-import javax.swing.UIManager;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
@@ -25,40 +19,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'ltshOff()'",Level.WARNING);
-            new logger().exceptionLogger(ltshOff.class.getName(),Level.WARNING,"ltshOff-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(ltshOff.this,ltshOff.class.getName(),"ltshOff");
         
         botones();
         datosMostrar();
@@ -120,7 +81,7 @@ public class ltshOff extends javax.swing.JFrame{
         backButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -150,14 +111,14 @@ public class ltshOff extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton)))
+                        .addComponent(backButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

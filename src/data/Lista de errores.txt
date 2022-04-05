@@ -1,5 +1,5 @@
-Error Prueba: error aún no encontrado (si sale en algún contexto, contactar a programador)
-Error 0: error desconocido o no mapeado
+Error Prueba: error aún no encontrado
+Error 0: error desconocido y no mapeado
 
 Notice 1: es una advertencia sobre el uso de ciertos elementos que están en prueba o una advertencia sobre el uso de componentes de la aplicación
 
@@ -49,7 +49,9 @@ Error 41: error al pasar la imagen de la ventana de webcam al formulario
 Error 42: no se puede establecer conexión a internet
 
 -Exclusivo para desarrollador
-Rel 1E: se creó o importó correctamente
+Rel 1E: se creó correctamente la base de datos
+Rel 2E: se importó correctamente la base de datos
+Rel 3E: se exportó correctamente la base de datos
 
 Error 1E: no pudo iniciar la clase JRStyledTextParser
 Error 2E: no se pudo crear la base de datos

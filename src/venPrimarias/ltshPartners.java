@@ -2,22 +2,16 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.Icono;
+import clases.laf;
 import clases.logger;
 //librerías
 import net.proteanit.sql.DbUtils;
 //java
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.Properties;
 import javax.swing.RowSorter;
-import javax.swing.UIManager;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
@@ -27,40 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshPartners extends javax.swing.JFrame{
     public ltshPartners(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartners-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'ltshPartners()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"ltshPartnert-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(ltshPartners.this,ltshPartners.class.getName(),"ltshPartners");
         
         botones();
         datosMostrar();

@@ -2,26 +2,23 @@ package venTerciarias;
 //clases
 import clases.datos;
 import clases.Icono;
+import clases.laf;
 import clases.logger;
+import venPrimarias.start;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.Properties;
 import javax.swing.Icon;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 
@@ -29,40 +26,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'dataWindow3()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(dataWindow3.this,dataWindow3.class.getName(),"dataWindow3");
         
         botones();
         datosMostrar();
@@ -104,6 +68,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 ImageIcon im=new ImageIcon(i);
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
+                
                 i.flush();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
@@ -132,8 +97,8 @@ public class dataWindow3 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+etiCodigo.getText()+"';");
-                File f=new File("src/data/media/dataImage/proveedor/"+(int)(Math.random()*100000)+".jpg");
-                File f2=new File("src/data/media/dataImage/proveedor");
+                File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/proveedor/"+(int)(Math.random()*100000)+".jpg");
+                File f2=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/proveedor");
                 
                 if(!f2.exists()){
                     f2.mkdir();
@@ -149,6 +114,8 @@ public class dataWindow3 extends javax.swing.JDialog{
                     fos.write(bytes);
                     break;
                 }
+                
+                new logger().staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
                 
                 ps.close();
                 fos.close();

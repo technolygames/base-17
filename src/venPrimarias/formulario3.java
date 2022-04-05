@@ -2,6 +2,7 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.Icono;
+import clases.laf;
 import clases.logger;
 import menus.menuDatosVentana3;
 //java
@@ -16,12 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.Icon;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 //con extensión larga
 import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -29,40 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario3 extends javax.swing.JFrame{
     public formulario3(){
         initComponents();
-        try{
-            Properties style=new Properties();
-            style.load(new FileInputStream("src/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
-            SwingUtilities.updateComponentTreeUI(this);
-        }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-CNFE",e.fillInStackTrace());
-        }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-IAE",n.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-28",y.fillInStackTrace());
-        }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-0",k.fillInStackTrace());
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-2IO",d.fillInStackTrace());
-        }
+        new laf().LookAndFeel(formulario3.this,formulario3.class.getName(),"formulario3");
         
         botones();
         
@@ -96,7 +61,7 @@ public class formulario3 extends javax.swing.JFrame{
         miInsImage.addActionListener((ae)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream("src/data/config/filechooserd.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form3"));
                 
                 File f=jfc.getCurrentDirectory();
@@ -117,7 +82,7 @@ public class formulario3 extends javax.swing.JFrame{
                         picLabel.setIcon(i);
                         
                         p.setProperty("lastdirectory_form3",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
@@ -163,14 +128,10 @@ public class formulario3 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
                 new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-1IO",e.fillInStackTrace());
-            }catch(IOException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-2IO",x.fillInStackTrace());
-            }catch(NullPointerException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-0",n.fillInStackTrace());
+            }catch(NullPointerException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-0",x.fillInStackTrace());
             }
         });
     }

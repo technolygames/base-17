@@ -26,7 +26,7 @@ public class Icono{
     public Image getIconImage(){
         p=new Properties();
         try{
-            p.load(new FileInputStream("src/data/config/config.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
             retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
             retValue.flush();
         }catch(FileNotFoundException e){

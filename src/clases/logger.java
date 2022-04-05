@@ -21,7 +21,7 @@ public class logger{
     
     static{
         try{
-            fh=new FileHandler("src/data/logs/static/staticLog.log",0,1,true);
+            fh=new FileHandler(System.getProperty("user.dir")+"/src/data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
         }catch(IOException x){
@@ -43,7 +43,7 @@ public class logger{
             logger.log(level,message);
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
-            new logger().exceptionLogger(logger.class.getName(),Level.WARNING,"logStaticSaver-SE",e.fillInStackTrace());
+            new logger().exceptionLogger(logger.class.getName(),Level.WARNING,"staticLogger-SE",e.fillInStackTrace());
         }
     }
     
@@ -58,7 +58,7 @@ public class logger{
     public void exceptionLogger(String className,Level level,String methodName,Throwable exception){
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
-            fh2=new FileHandler("src/data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
+            fh2=new FileHandler(System.getProperty("user.dir")+"/src/data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
             fh2.setFormatter(new SimpleFormatter());
             logger.addHandler(fh2);
             logger.log(level,methodName,exception);
@@ -70,7 +70,7 @@ public class logger{
             new logger().staticLogger("Error SE: "+e.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IOE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error SE: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
+            new logger().staticLogger("Error IOE: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
         }
     }
 }
