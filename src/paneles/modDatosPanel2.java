@@ -259,7 +259,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         searchButton.setText("Buscar");
 

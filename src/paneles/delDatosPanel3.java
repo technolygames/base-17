@@ -46,7 +46,7 @@ public class delDatosPanel3 extends javax.swing.JPanel{
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         deleteButton.setText("Eliminar datos");
 

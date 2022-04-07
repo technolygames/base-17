@@ -4,8 +4,9 @@ import venPrimarias.start;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -42,7 +43,7 @@ public class datos{
     public Connection getConnection(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties"));
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties",StandardCharsets.UTF_8));
             
             controlador=p.getProperty("driver");
             ip=p.getProperty("ip");

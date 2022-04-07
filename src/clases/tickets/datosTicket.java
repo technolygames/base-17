@@ -5,6 +5,8 @@ import clases.logger;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -45,7 +47,7 @@ public class datosTicket{
             SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
             
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             
             ticket.addCabecera(p.getProperty("nombre"));
             ticket.addCabecera(ticket.darEspacio());

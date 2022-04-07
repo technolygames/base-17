@@ -2,9 +2,10 @@ package clases;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class Icono{
     public Image getIconImage(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
             retValue.flush();
         }catch(FileNotFoundException e){

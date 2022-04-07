@@ -50,7 +50,7 @@ public class delDatosPanel1 extends javax.swing.JPanel{
 
         jLabel1.setText("Código del empleado:");
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

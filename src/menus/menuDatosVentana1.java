@@ -27,17 +27,13 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((e)->{
-            delDatosPanel1 ddp1=new delDatosPanel1();
-            ddp1.setVisible(true);
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(ddp1,BorderLayout.CENTER);
+            menuDatosVentana1.this.getContentPane().add(new delDatosPanel1(),BorderLayout.CENTER);
         });
         
         miModData.addActionListener((e)->{
-            modDatosPanel1 mdp1=new modDatosPanel1();
-            mdp1.setVisible(true);
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(mdp1,BorderLayout.CENTER);
+            menuDatosVentana1.this.getContentPane().add(new modDatosPanel1(),BorderLayout.CENTER);
         });
     }
     

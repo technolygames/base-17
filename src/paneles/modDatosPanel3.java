@@ -326,7 +326,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         searchButton.setText("Buscar");
 

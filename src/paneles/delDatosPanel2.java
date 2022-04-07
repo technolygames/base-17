@@ -46,7 +46,7 @@ public class delDatosPanel2 extends javax.swing.JPanel{
         deleteButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         jLabel1.setText("Código del socio:");
 

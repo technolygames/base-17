@@ -67,10 +67,10 @@ public final class loadWindow extends javax.swing.JFrame{
         }
         
         ActionListener al=(ActionEvent ae)->{
-            if(jProgressBar1.getValue()<40){
+            if(jProgressBar1.getValue()<42){
                 if(Taskbar.isTaskbarSupported()){
                     jProgressBar1.setValue(jProgressBar1.getValue()+2);
-                    jProgressBar1.setMaximum(40);
+                    jProgressBar1.setMaximum(42);
                     tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
                     tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -178,7 +178,12 @@ public final class loadWindow extends javax.swing.JFrame{
                         case 40:
                             jLabel2.setText(null);
                             jLabel2.setText("jcalendar-1.4.jar");
-                            //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("jcalendar-1.4.jar"));
+                            //new resourceDownload().downloadLibs("jcalendar-1.4.jar",p.getProperty("jcalendar-1.4.jar"));
+                            break;
+                        case 42:
+                            jLabel2.setText(null);
+                            jLabel2.setText("gson-2.9.0.jar");
+                            //new resourceDownload().downloadLibs("gson-2.9.0.jar",p.getProperty("gson-2.9.0.jar"));
                             break;
                         default:
                             new logger().staticLogger("No se puede descargar las librerías",Level.WARNING);
@@ -292,7 +297,12 @@ public final class loadWindow extends javax.swing.JFrame{
                         case 40:
                             jLabel2.setText(null);
                             jLabel2.setText("jcalendar-1.4.jar");
-                            //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("jcalendar-1.4.jar"));
+                            //new resourceDownload().downloadLibs("jcalendar-1.4.jar",p.getProperty("jcalendar-1.4.jar"));
+                            break;
+                        case 42:
+                            jLabel2.setText(null);
+                            jLabel2.setText("gson-2.9.0.jar");
+                            //new resourceDownload().downloadLibs("gson-2.9.0.jar",p.getProperty("gson-2.9.0.jar"));
                             break;
                         default:
                             new logger().staticLogger("No se puede descargar las librerías",Level.WARNING);

@@ -4,6 +4,7 @@ import clases.logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
@@ -71,7 +72,7 @@ public class ticket{
      */
     public static void imprimirDocumento(String impresora){
         try{
-            FileWriter imp=new FileWriter(impresora);
+            FileWriter imp=new FileWriter(impresora,StandardCharsets.UTF_8);
             char[] cortarPapel=new char[]{0x1B,'m'};
             
             for(int cabecera=0;cabecera<cabezaLineas.size();cabecera++){

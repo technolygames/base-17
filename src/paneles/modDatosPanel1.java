@@ -997,7 +997,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         cbDomicilio = new javax.swing.JCheckBox();
         txtDom = new javax.swing.JTextField();
 
-        closeButton.setText("Cerrar");
+        closeButton.setText("Cerrar panel");
 
         etiContra.setText("Contraseña");
 
@@ -1133,10 +1133,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     .addComponent(etiAM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(etiDom)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbDomicilio)))
+                    .addComponent(etiDom)
+                    .addComponent(cbDomicilio)
                     .addComponent(txtDom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

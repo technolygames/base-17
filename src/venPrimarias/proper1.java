@@ -31,6 +31,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.ActionEvent;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class proper1 extends javax.swing.JFrame{
@@ -72,7 +74,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected final void configIn(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             
             direccion=p.getProperty("imagenes");
             icono=p.getProperty("icono");
@@ -133,7 +135,7 @@ public final class proper1 extends javax.swing.JFrame{
         iconButton.addActionListener((ae)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties"));
+                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_icon"));
                 
                 File k=jfc.getCurrentDirectory();
@@ -148,7 +150,7 @@ public final class proper1 extends javax.swing.JFrame{
                         nombreArchivo2=f.getName();
                         
                         p.setProperty("lastdirectory_icon",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8)),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'",Level.WARNING);
@@ -173,7 +175,7 @@ public final class proper1 extends javax.swing.JFrame{
         imgButton.addActionListener((ActionEvent ae)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties"));
+                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
                 File k=jfc.getCurrentDirectory();
                 
@@ -195,7 +197,7 @@ public final class proper1 extends javax.swing.JFrame{
                         i.flush();
                         
                         p.setProperty("lastdirectory_image",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFil eChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8)),"JFil eChooserDirection");
                     }catch(FileNotFoundException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);
@@ -301,7 +303,7 @@ public final class proper1 extends javax.swing.JFrame{
                 
                 new thread(is,os).run();
                 
-                p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/config.properties")),"config1");
+                p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8)),"config1");
                 
                 new logger().staticLogger("Rel 1: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.FINE);
                 
@@ -319,10 +321,10 @@ public final class proper1 extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32H",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 32H: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
             new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-32H",x.fillInStackTrace());
-        }catch(NullPointerException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+ñ.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-0",ñ.fillInStackTrace());
+        }catch(NullPointerException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-0",n.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 26H: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);

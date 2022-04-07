@@ -6,6 +6,7 @@ import paneles.delDatosPanel3;
 import paneles.modDatosPanel3;
 //java
 import java.awt.BorderLayout;
+import java.awt.Component;
 
 public class menuDatosVentana3 extends javax.swing.JFrame{
     public menuDatosVentana3(){
@@ -26,17 +27,13 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-            delDatosPanel3 ddp3=new delDatosPanel3();
-            ddp3.setVisible(true);
             menuDatosVentana3.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana3.this.getContentPane().add(ddp3,BorderLayout.CENTER);
+            menuDatosVentana3.this.getContentPane().add(new delDatosPanel3(),BorderLayout.CENTER);
         });
         
         miModData.addActionListener((a)->{
-            modDatosPanel3 mdp3=new modDatosPanel3();
-            mdp3.setVisible(true);
             menuDatosVentana3.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana3.this.getContentPane().add(mdp3,BorderLayout.CENTER);
+            menuDatosVentana3.this.getContentPane().add(new modDatosPanel3(),BorderLayout.CENTER);
         });
     }
     
