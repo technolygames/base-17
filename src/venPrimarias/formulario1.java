@@ -141,7 +141,7 @@ public class formulario1 extends javax.swing.JFrame{
                     String apellidom_emp=txtAM.getText();
                     String domicilio=txtDom.getText();
                     String puesto=jComboBox1.getSelectedItem().toString();
-                    String experiencia=txtExp.getText();
+                    int experiencia=Integer.parseInt(txtExp.getText());
                     String grado_estudios=txtEstudios.getText();
                     int contacto=Integer.parseInt(txtContacto.getText());
                     int edad=Integer.parseInt(txtEdad.getText());

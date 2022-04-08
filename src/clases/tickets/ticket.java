@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase encargada de imprimir y dar forma al ticket.
+ * 
+ * @author unknown
+ */
 public class ticket{
     static ArrayList<String> cabezaLineas=new ArrayList<String>();
     static ArrayList<String> subcabezaLineas=new ArrayList<String>();

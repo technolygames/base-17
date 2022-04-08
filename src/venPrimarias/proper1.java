@@ -135,7 +135,7 @@ public final class proper1 extends javax.swing.JFrame{
         iconButton.addActionListener((ae)->{
             try{
                 p=new Properties();
-                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_icon"));
                 
                 File k=jfc.getCurrentDirectory();
@@ -150,7 +150,7 @@ public final class proper1 extends javax.swing.JFrame{
                         nombreArchivo2=f.getName();
                         
                         p.setProperty("lastdirectory_icon",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8)),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'",Level.WARNING);
@@ -175,7 +175,7 @@ public final class proper1 extends javax.swing.JFrame{
         imgButton.addActionListener((ActionEvent ae)->{
             try{
                 p=new Properties();
-                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
                 File k=jfc.getCurrentDirectory();
                 
@@ -197,7 +197,7 @@ public final class proper1 extends javax.swing.JFrame{
                         i.flush();
                         
                         p.setProperty("lastdirectory_image",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties",StandardCharsets.UTF_8)),"JFil eChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFil eChooserDirection");
                     }catch(FileNotFoundException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);

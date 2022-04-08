@@ -1,0 +1,15 @@
+{
+   "contraseña": "123456",
+   "codigo_emp": 1234567,
+   "nombre_emp": "Pruebas",
+   "apellidop_emp": "Pruebas",
+   "apellidom_emp": "Pruebas",
+   "domicilio": "calle falsa 123, springfield, gringolandia",
+   "puesto": "Empleado",
+   "experiencia": 0,
+   "grado_estudios": "Bachillerato",
+   "contacto": 123456789,
+   "edad": 20,
+   "estado": "Activo",
+   "datos_extra": "datos extra de prueba"
+}

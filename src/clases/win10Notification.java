@@ -6,17 +6,18 @@ import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
- * Clase encargada de mostrar notificaciones en Windows 10.
- * Muestra notificaciones en Windows 10.
+ * Clase encargada de mostrar notificaciones.
+ * Muestra notificaciones en sistemas que lo soporten.
+ * 
+ * @author erick
  */
 public class win10Notification{
     protected Properties p;
@@ -33,7 +34,7 @@ public class win10Notification{
         try{
             if(st.isSupported()){
                 p=new Properties();
-                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
                 Image i=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
                 TrayIcon ti=new TrayIcon(i);
                 st.add(ti);

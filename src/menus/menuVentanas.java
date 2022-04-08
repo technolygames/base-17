@@ -33,8 +33,6 @@ import javax.swing.JOptionPane;
 import javax.imageio.ImageIO;
 //extension larga
 import java.awt.event.ActionEvent;
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 public final class menuVentanas extends javax.swing.JFrame{
@@ -56,7 +54,7 @@ public final class menuVentanas extends javax.swing.JFrame{
     protected void settings(){
         p=new Properties();
         try{
-            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
             Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
             ImageIcon im=new ImageIcon(i);
             Icon l=new ImageIcon(im.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));

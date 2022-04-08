@@ -1,5 +1,7 @@
 package venTerciarias;
 //clases
+import clases.BackupHandler.escritorJSON;
+import clases.BackupHandler.lectorJSON;
 import clases.datos;
 import clases.Icono;
 import clases.laf;
@@ -271,7 +273,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        genLabel.setText("12345");
+        genLabel.setText("1234567");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

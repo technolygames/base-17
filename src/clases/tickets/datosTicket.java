@@ -3,7 +3,6 @@ package clases.tickets;
 import clases.logger;
 
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
@@ -21,6 +20,8 @@ import javax.swing.JTable;
 /**
  * Clase encargada de imprimir el ticket de compra.
  * Se encarga de imprimir el ticket con los objetos comprados, cantidad y total.
+ * 
+ * @author unknown
  */
 public class datosTicket{
     //String total;

@@ -1,30 +1,31 @@
 package clases;
-
+//clases
 import venPrimarias.start;
-
+//java
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-
+//extension larga
 import java.util.logging.Level;
 
 /**
  * Clase intermedia entre el gestor de base de datos y el programa.
  * Se encarga de registrar, actualizar y eliminar los datos que el usuario desee.
+ * 
+ * @author erick
  */
 public class datos{
+    protected Statement s;
     protected Connection cn;
     protected PreparedStatement ps;
-    protected Statement s;
     
     protected Properties p;
     
@@ -43,7 +44,7 @@ public class datos{
     public Connection getConnection(){
         p=new Properties();
         try{
-            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties",StandardCharsets.UTF_8));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties"));
             
             controlador=p.getProperty("driver");
             ip=p.getProperty("ip");
@@ -158,7 +159,7 @@ public class datos{
      * @param datosExtra Datos extras que el CV del empleado se quieran agregar.
      * @param foto Foto del empleado.
      */
-    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra,InputStream foto){
+    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,int experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra,InputStream foto){
         try{
             ps=getConnection().prepareStatement("insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto,fecha_registro,fecha_sesion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
             ps.setString(1,password);
@@ -168,7 +169,7 @@ public class datos{
             ps.setString(5,apellidoMaternoEmpleado);
             ps.setString(6,domicilio);
             ps.setString(7,puesto);
-            ps.setString(8,experiencia);
+            ps.setInt(8,experiencia);
             ps.setString(9,gradoEstudios);
             ps.setInt(10,contacto);
             ps.setInt(11,edad);
@@ -192,20 +193,20 @@ public class datos{
      * 
      * @param codigoSocio Código de identificación del socio.
      * @param nombreSocio Nombre(s) del socio.
-     * @param apellidopSocio Apellido paterno del socio.
-     * @param apellidomSocio Apellido materno del socio.
+     * @param apellidoPaternoSocio Apellido paterno del socio.
+     * @param apellidoMaternoSocio Apellido materno del socio.
      * @param tipoSocio Tipo de afiliación.
      * @param datosExtra Datos extra que se quieran agregar como descripción del socio.
      * @param foto Foto del socio para identificarlo.
      */
-    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidopSocio,String apellidomSocio,String tipoSocio,String datosExtra,InputStream foto){
+    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String datosExtra,InputStream foto){
         String ins4_query="insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins4_query);
             ps.setInt(1,codigoSocio);
             ps.setString(2,nombreSocio);
-            ps.setString(3,apellidopSocio);
-            ps.setString(4,apellidomSocio);
+            ps.setString(3,apellidoPaternoSocio);
+            ps.setString(4,apellidoMaternoSocio);
             ps.setString(5,tipoSocio);
             ps.setString(6,datosExtra);
             ps.setBinaryStream(7,foto);
@@ -226,19 +227,19 @@ public class datos{
      * 
      * @param codigoProveedor Código de identificación del proveedor.
      * @param nombreProveedor Nombre(s) del proveedor.
-     * @param apellidoPaternoProvedor Apellido paterno del proveedor.
+     * @param apellidoPaternoProveedor Apellido paterno del proveedor.
      * @param apellidoMaternoProveedor Apellido materno del proveedor.
      * @param empresa Empresa procedencia del proveedor.
      * @param contacto Número de contacto del proveedor.
      * @param foto Foto del proveedor para identificarlo.
      */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
+    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
         String ins5_query="insert into proveedor(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,fecha_ingreso,fecha_uentrega) value(?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins5_query);
             ps.setInt(1,codigoProveedor);
             ps.setString(2,nombreProveedor);
-            ps.setString(3,apellidoPaternoProvedor);
+            ps.setString(3,apellidoPaternoProveedor);
             ps.setString(4,apellidoMaternoProveedor);
             ps.setString(5,empresa);
             ps.setInt(6,contacto);

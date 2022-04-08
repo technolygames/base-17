@@ -1,10 +1,9 @@
 package clases;
 
 import java.awt.Component;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
@@ -13,7 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- * Clase para cargar el diseño a utilizar en las clases
+ * Clase para cargar el diseño a utilizar en las clases.
  * 
  * @author erick
  */
@@ -28,7 +27,7 @@ public class laf{
     public void LookAndFeel(Component componente,String clase,String metodo){
         try{
             Properties style=new Properties();
-            style.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
+            style.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/config.properties"));
             UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
