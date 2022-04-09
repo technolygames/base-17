@@ -2,8 +2,10 @@ package venPrimarias;
 //clases
 import clases.Icono;
 import clases.laf;
-import java.awt.BorderLayout;
 import paneles.databaseConfig;
+import paneles.backupHandler;
+//java
+import java.awt.BorderLayout;
 
 public class adminTools extends javax.swing.JFrame{
     public adminTools(){
@@ -27,6 +29,11 @@ public class adminTools extends javax.swing.JFrame{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new databaseConfig(),BorderLayout.CENTER);
         });
+        
+        jMenuItem2.addActionListener((a)->{
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(new backupHandler(),BorderLayout.CENTER);
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -37,6 +44,7 @@ public class adminTools extends javax.swing.JFrame{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
@@ -47,6 +55,9 @@ public class adminTools extends javax.swing.JFrame{
 
         jMenuItem1.setText("Configurar BD");
         jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Backups");
+        jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
@@ -81,5 +92,6 @@ public class adminTools extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

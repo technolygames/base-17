@@ -1,15 +1,16 @@
 package clases.BackupHandler;
-
+//clases
 import clases.logger;
+//librerías
 import com.google.gson.stream.JsonWriter;
-
-import java.io.FileOutputStream;
+//java
 import java.io.IOException;
+import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-
-import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
+//con extensión larga
+import java.util.logging.Level;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Esta clase se encarga de crear archivos JSON para guardar datos.
