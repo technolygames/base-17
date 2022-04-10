@@ -75,6 +75,12 @@ public class datos{
         return cn;
     }
     
+    /**
+     * Crea la base de datos que se usará para importar la base de datos.
+     * Advertencia: no usar en otras clases.
+     * 
+     * @param nombre Nombre de la base de datos.
+     */
     public void crearBD(String nombre){
         try{
             ps=getConnection().prepareStatement("create database "+nombre+";");
@@ -84,9 +90,9 @@ public class datos{
             
             ps.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1E",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1E: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'",Level.WARNING);
-            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"crearBD-2E",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 5E",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 5E: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"crearBD-5E",e.fillInStackTrace());
         }
     }
     

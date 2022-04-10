@@ -53,9 +53,9 @@ Rel 1E: se creó correctamente la base de datos
 Rel 2E: se importó correctamente la base de datos
 Rel 3E: se exportó correctamente la base de datos
 
-Error 1E: no pudo iniciar la clase JRStyledTextParser
-Error 2E: no se pudo crear la base de datos
-Error 3E: las consultas hacen demasiadas conexiones
+Error 4E: no pudo iniciar la clase JRStyledTextParser
+Error 5E: no se pudo crear la base de datos
+Error 6E: las consultas hacen demasiadas conexiones
 
 -Errores especiales
 _T1: error al imprimir ticket

@@ -1,10 +1,11 @@
 package clases;
-
+//java
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
+//con extensión larga
+import java.util.logging.Level;
 
 /**
  * Clase encargada del flujo de datos.
