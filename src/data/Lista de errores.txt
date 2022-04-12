@@ -1,4 +1,5 @@
 Error Prueba: error aún no encontrado
+Error <random+E>: error que no fue asignado a un número específico de error, pero que se conoce su funcionalidad
 Error 0: error desconocido y no mapeado
 
 Notice 1: es una advertencia sobre el uso de ciertos elementos que están en prueba o una advertencia sobre el uso de componentes de la aplicación
@@ -59,7 +60,6 @@ Error 6E: las consultas hacen demasiadas conexiones
 
 -Errores especiales
 _T1: error al imprimir ticket
-_T1.1: error al imprimir (es del método de la clase)
 _T2: error al dar formato al ticket
 _H1: error al momento de ejecutar el hilo
 

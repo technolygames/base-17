@@ -35,11 +35,10 @@ public class datosTicket{
      * @param tabla Tabla que obtendrá los datos para el ticket.
      * @param empleado Empleado que atendió en la venta.
      * @param total0 Precio total de los productos.
-     * @param iva Impuesto de valor adquirido según el paí­s.
      * @param pago Método de pago utilizado al comprar.
      * @param cambio Cambio devuelto al comprador.
      */
-    public void imprimirTicket(JTable tabla,String empleado,String total0,int iva,String pago,String cambio){
+    public void imprimirTicket(JTable tabla,String empleado,int total0,String pago,int cambio){
         try{
             Date date=new Date();
             Properties p=new Properties();
@@ -125,20 +124,18 @@ public class datosTicket{
                 //agrego los items al detalle
                 ticket.addItem(items,cantidad,precio);
             }
-            ticket.addTotal("Subtotal: ",total0);
-            ticket.addTotal("IVA: ",iva+"%");
-            int t0=Integer.parseInt(total0);
-            int total6=(int)(t0+(t0*0.16));
-            ticket.addTotal("Total: ",String.valueOf(total6));
+            ticket.addTotal("Subtotal: ",String.valueOf(total0));
+            ticket.addTotal("IVA: ","0%");
+            ticket.addTotal("Total: ",String.valueOf(total0));
             ticket.addTotal("Paga con: ",pago);
-            ticket.addTotal("Cambio: ",cambio);
+            ticket.addTotal("Cambio: ",String.valueOf(cambio));
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
-            ticket.imprimirDocumento("");
+            ticket.imprimirDocumento("src/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",true);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE_T1",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error NFE_T1: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-NFE_T1",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
+            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-18",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
