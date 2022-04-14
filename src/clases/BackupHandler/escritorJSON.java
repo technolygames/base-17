@@ -64,9 +64,9 @@ public class escritorJSON{
             new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'",Level.WARNING);
             new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataWorkerJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'",Level.WARNING);
-            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataWorkerJson-ISA",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'",Level.WARNING);
+            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataWorkerJson-ISE",x.fillInStackTrace());
         }
     }
     
@@ -100,9 +100,9 @@ public class escritorJSON{
             new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'",Level.WARNING);
             new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataPartnerJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'",Level.WARNING);
-            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataPartnerJson-ISA",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'",Level.WARNING);
+            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataPartnerJson-ISE",x.fillInStackTrace());
         }
     }
     
@@ -137,9 +137,9 @@ public class escritorJSON{
             new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'",Level.WARNING);
             new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataProviderJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'",Level.WARNING);
-            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataProviderJson-ISA",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'",Level.WARNING);
+            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataProviderJson-ISE",x.fillInStackTrace());
         }
     }
 }

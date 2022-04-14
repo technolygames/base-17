@@ -30,9 +30,9 @@ public class delDatosPanel3 extends javax.swing.JPanel{
                     new logger().staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
-                new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"botones.delete-Prueba",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
+                new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"botones.delete-NFE",e.fillInStackTrace());
             }
         });
     }

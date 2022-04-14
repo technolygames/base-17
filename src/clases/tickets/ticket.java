@@ -87,32 +87,27 @@ public class ticket{
             char[] cortarPapel=new char[]{0x1B,'m'};
             
             imp.write(caracter);
-            
             for(int cabecera=0;cabecera<cabezaLineas.size();cabecera++){
                 cadena+=cabezaLineas.get(cabecera);
                 setFormato(imp,27);
-                imp.write(cadena);
             }
             for(int subcabecera=0;subcabecera<subcabezaLineas.size();subcabecera++){
                 cadena+=subcabezaLineas.get(subcabecera);
-                imp.write(cadena);
             }
             for(int ITEM=0;ITEM<items.size();ITEM++){
                 cadena+=items.get(ITEM);
-                imp.write(cadena);
             }
             for(int total=0;total<totales.size();total++){
                 cadena+=totales.get(total);
-                imp.write(cadena);
             }
             for(int pie=0;pie<lineasPie.size();pie++){
                 cadena+=lineasPie.get(pie);
-                imp.write(cadena);
             }
+            imp.write(cadena);
             
             imp.write(cortarPapel);
             
-            DocFlavor flavor=DocFlavor.BYTE_ARRAY.AUTOSENSE;
+            DocFlavor flavor=DocFlavor.INPUT_STREAM.AUTOSENSE;
             PrintService service=PrintServiceLookup.lookupDefaultPrintService();
             DocPrintJob pj=service.createPrintJob();
             byte[] bytes=cadena.getBytes();
@@ -133,14 +128,16 @@ public class ticket{
             
             imp.flush();
             imp.close();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_H1",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IOE_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-IOE_H1",e.fillInStackTrace());
         }catch(PrintException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error PE_T1",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error PE_T1: "+x.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
             new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-PE_T1",x.fillInStackTrace());
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO_H1",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
+            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-1IO_H1",e.fillInStackTrace());
+        }catch(IllegalStateException n){
+            
         }finally{
             cabezaLineas.removeAll(cabezaLineas);
             subcabezaLineas.removeAll(subcabezaLineas);

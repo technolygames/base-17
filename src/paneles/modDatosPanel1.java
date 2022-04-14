@@ -87,8 +87,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContra)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContra)'",Level.WARNING);
                         }
                     });
                 }
@@ -167,8 +167,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbNombre)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbNombre)'",Level.WARNING);
                         }
                     });
                 }
@@ -247,8 +247,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAP)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAP)'",Level.WARNING);
                         }
                     });
                 }
@@ -327,8 +327,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAM)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAM)'",Level.WARNING);
                         }
                     });
                 }
@@ -407,8 +407,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el domicilio nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el domicilio a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbDom)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el domicilio nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el domicilio a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbDom)'",Level.WARNING);
                         }
                     });
                 }
@@ -487,8 +487,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo puesto","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se seleccionó el nuevo puesto.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo puesto","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se seleccionó el nuevo puesto.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
                         }
                     });
                 }
@@ -567,8 +567,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbExp)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbExp)'",Level.WARNING);
                         }
                     });
                 }
@@ -647,8 +647,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbGE)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbGE)'",Level.WARNING);
                         }
                     });
                 }
@@ -727,8 +727,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContacto)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContacto)'",Level.WARNING);
                         }
                     });
                 }
@@ -807,8 +807,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbEdad)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbEdad)'",Level.WARNING);
                         }
                     });
                 }
@@ -887,8 +887,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo estado del empleado","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se seleccionó el nuevo estado del empleado.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo estado del empleado","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se seleccionó el nuevo estado del empleado.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
                         }
                     });
                 }
@@ -949,9 +949,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"consulta-14",e.fillInStackTrace());
         }
     }
     

@@ -259,9 +259,9 @@ public final class about extends javax.swing.JDialog{
             p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/acerca.properties"));
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 31",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 31: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-31",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-1I",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);

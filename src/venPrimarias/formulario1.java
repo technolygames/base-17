@@ -155,9 +155,9 @@ public class formulario1 extends javax.swing.JFrame{
                     new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-18",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-NFE",e.fillInStackTrace());
             }catch(ArrayIndexOutOfBoundsException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error AIOOBE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);

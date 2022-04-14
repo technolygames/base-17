@@ -49,8 +49,8 @@ public class validacionVentana5 extends javax.swing.JDialog{
                             new logger().staticLogger("Validación correcta a 'formulario3'.\nOcurrió en la clase '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
                             dispose();
                         }else{
-                            JOptionPane.showMessageDialog(null,"Acceso restringido","Error 37",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 37: usuario sin privilegios en '"+validacionVentana5.class.getName()+".botones(valButton)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 38: usuario sin privilegios en '"+validacionVentana5.class.getName()+".botones(valButton)'",Level.WARNING);
                         }
                     }else{
                         JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);

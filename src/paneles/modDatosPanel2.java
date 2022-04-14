@@ -59,8 +59,8 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
                         }
                     });
                 }
@@ -104,8 +104,8 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
                         }
                     });
                 }
@@ -149,8 +149,8 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
                         }
                     });
                 }
@@ -193,8 +193,8 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo tipo de socio","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se seleccionó el nuevo tipo de socio.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo tipo de socio","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se seleccionó el nuevo tipo de socio.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
                         }
                     });
                 }
@@ -232,9 +232,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel2.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel2.class.getName(),Level.WARNING,"consulta-14",e.fillInStackTrace());
         }
     }
     

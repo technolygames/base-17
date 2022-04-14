@@ -105,8 +105,11 @@ public class ltshStorage extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote="+txtBuscar.getText()+";");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -121,8 +124,11 @@ public class ltshStorage extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+txtBuscar.getText()+";");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -137,8 +143,11 @@ public class ltshStorage extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -153,8 +162,11 @@ public class ltshStorage extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -175,9 +187,9 @@ public class ltshStorage extends javax.swing.JFrame{
             new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
         }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error Prueba: "+p.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-Prueba",p.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-AIOOBE",p.fillInStackTrace());
         }catch(IndexOutOfBoundsException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);

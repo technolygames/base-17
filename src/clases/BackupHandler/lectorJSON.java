@@ -87,9 +87,9 @@ public class lectorJSON{
             new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'",Level.WARNING);
             new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataWorkerJson-2IO",x.fillInStackTrace());
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'",Level.WARNING);
-            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataWorkerJson-ISA",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'",Level.WARNING);
+            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataWorkerJson-ISE",n.fillInStackTrace());
         }
     }
     
@@ -137,9 +137,9 @@ public class lectorJSON{
             new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'",Level.WARNING);
             new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataPartnerJson-2IO",x.fillInStackTrace());
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'",Level.WARNING);
-            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataPartnerJson-ISA",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'",Level.WARNING);
+            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataPartnerJson-ISE",n.fillInStackTrace());
         }
     }
     
@@ -188,9 +188,9 @@ public class lectorJSON{
             new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'",Level.WARNING);
             new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataProviderJson-2IO",x.fillInStackTrace());
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISA",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error ISA: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'",Level.WARNING);
-            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataProviderJson-ISA",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'",Level.WARNING);
+            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataProviderJson-ISE",n.fillInStackTrace());
         }
     }
 }

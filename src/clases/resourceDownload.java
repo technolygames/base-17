@@ -52,13 +52,13 @@ public class resourceDownload{
             
             sis=s.isConnected();
         }catch(UnknownHostException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 42",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 42: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
-            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-42",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-1I",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1I: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
-            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-1I",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'",Level.WARNING);
+            new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"checkConnection-1IO",x.fillInStackTrace());
         }
         return sis;
     }
@@ -70,7 +70,7 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        /*f=new File(System.getProperty("user.dir")+"/src/data/libs/"+validar);
+        f=new File(System.getProperty("user.dir")+"/src/data/libs/"+validar);
         try{
             if(!f.exists()){
                 f.createNewFile();
@@ -101,6 +101,6 @@ public class resourceDownload{
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
             new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"downloadLibs-2IO",k.fillInStackTrace());
-        }*/
+        }
     }
 }

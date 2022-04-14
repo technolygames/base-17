@@ -1,5 +1,6 @@
 package paneles;
 
+import clases.Icono;
 import clases.datos;
 import clases.laf;
 import clases.logger;
@@ -296,9 +297,9 @@ public class modDatosPanel3 extends javax.swing.JPanel{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'consulta()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel3.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'consulta()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel3.class.getName(),Level.WARNING,"consulta-14",e.fillInStackTrace());
         }
     }
     

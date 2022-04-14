@@ -98,9 +98,9 @@ public final class proper1 extends javax.swing.JFrame{
             
             i.flush();
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-32",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-NFE",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'",Level.WARNING);
@@ -198,10 +198,6 @@ public final class proper1 extends javax.swing.JFrame{
                         
                         p.setProperty("lastdirectory_image",f.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFil eChooserDirection");
-                    }catch(FileNotFoundException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                        new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);
-                        new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-1IO",e.fillInStackTrace());
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);
@@ -314,21 +310,21 @@ public final class proper1 extends javax.swing.JFrame{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 27",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 27: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-27",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-1IO",e.fillInStackTrace());
         }catch(NumberFormatException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32H",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 32H: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-32H",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error NFE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-NFE",x.fillInStackTrace());
         }catch(NullPointerException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
             new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-0",n.fillInStackTrace());
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 26H: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-27h",k.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-2IO",k.fillInStackTrace());
         }
     }
     

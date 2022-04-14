@@ -89,9 +89,9 @@ public class importWindow extends javax.swing.JDialog{
                 os.flush();
                 is.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 7: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(importButton)'",Level.WARNING);
-                new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"botones.import-7",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(importButton)'",Level.WARNING);
+                new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"botones.import-7E",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(importButton)'",Level.WARNING);

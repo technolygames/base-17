@@ -157,9 +157,9 @@ public final class ventana1 extends javax.swing.JFrame{
                 calcWindow clw=new calcWindow(new javax.swing.JFrame(),true);
                 clw.setVisible(true);
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.calc-18",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.calc-NFE",e.fillInStackTrace());
             }
         });
         
@@ -198,9 +198,9 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().staticLogger("Error NCDFE: "+ñ.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
                 new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-NCDFE",ñ.fillInStackTrace());
             }catch(SQLException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+d,"Error Prueba",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error Prueba: "+k.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-Prueba",k.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+d,"Error 10",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 10: "+k.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-10",k.fillInStackTrace());
             }
         });
         
@@ -225,9 +225,9 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.FINE);
                 new datosTicket().imprimirTicket(jTable1, "Prueba", total, "efectivo", calcWindow.cambio);
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.mkPaid-18",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.mkPaid-NFE",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'",Level.WARNING);
@@ -542,9 +542,9 @@ public final class ventana1 extends javax.swing.JFrame{
             int res=n2*n1;
             txtTotal.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            /*JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCantKeyPressed2()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCantKeyPressed2-18",e.fillInStackTrace());*/
+            /*JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCantKeyPressed2()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCantKeyPressed2-NFE",e.fillInStackTrace());*/
         }
     }//GEN-LAST:event_txtCantKeyPressed2
     

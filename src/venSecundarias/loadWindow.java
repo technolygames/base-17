@@ -186,7 +186,7 @@ public final class loadWindow extends javax.swing.JFrame{
                             //new resourceDownload().downloadLibs("gson-2.9.0.jar",p.getProperty("gson-2.9.0.jar"));
                             break;
                         default:
-                            new logger().staticLogger("No se puede descargar las librerías",Level.WARNING);
+                            new logger().staticLogger("Error 39: no se puede descargar las librerías",Level.WARNING);
                             tb.setWindowProgressState(loadWindow.this,Taskbar.State.ERROR);
                     }
                 }else{
@@ -305,7 +305,7 @@ public final class loadWindow extends javax.swing.JFrame{
                             //new resourceDownload().downloadLibs("gson-2.9.0.jar",p.getProperty("gson-2.9.0.jar"));
                             break;
                         default:
-                            new logger().staticLogger("No se puede descargar las librerías",Level.WARNING);
+                            new logger().staticLogger("Error 39: no se puede descargar las librerías",Level.WARNING);
                     }
                 }
             }else{

@@ -141,9 +141,9 @@ public class ltshProduct extends javax.swing.JFrame{
                     break;
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-16",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-14",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);

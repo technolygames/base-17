@@ -168,7 +168,7 @@ public class ltshPartners extends javax.swing.JFrame{
             new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
         }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error Prueba: "+p.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"datosBuscar-Prueba",p.fillInStackTrace());
         }catch(IndexOutOfBoundsException n){

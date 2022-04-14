@@ -139,9 +139,9 @@ public final class menuVentanas extends javax.swing.JFrame{
             try{
                 new proper1().setVisible(true);
             }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(properButton)'",Level.WARNING);
-                new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menu.proper-24",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error ISE: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(properButton)'",Level.WARNING);
+                new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menu.proper-ISE",e.fillInStackTrace());
             }
         });
         
