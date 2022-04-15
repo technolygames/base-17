@@ -38,11 +38,11 @@ public class lectorJSON{
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
      * 
-     * @param nombre Nombre el archivo a leer.
+     * @param dir Nombre el archivo a leer.
      */
-    public void readDataWorkerJson(String nombre){
+    public void readDataWorkerJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+nombre+".json"),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
@@ -102,11 +102,11 @@ public class lectorJSON{
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de socios, para volver a almacenar los datos en la base de datos.
      * 
-     * @param nombre Nombre el archivo a leer.
+     * @param dir Nombre el archivo a leer.
      */
-    public void readDataPartnerJson(String nombre){
+    public void readDataPartnerJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombre+".json"),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
@@ -152,11 +152,11 @@ public class lectorJSON{
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de proveedor, para volver a almacenar los datos en la base de datos.
      * 
-     * @param nombre Nombre el archivo a leer.
+     * @param dir Nombre el archivo a leer.
      */
-    public void readDataProviderJson(String nombre){
+    public void readDataProviderJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombre+".json"),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
             jsonr.beginObject();
             
             while(jsonr.hasNext()){

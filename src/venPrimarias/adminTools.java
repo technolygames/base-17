@@ -3,9 +3,11 @@ package venPrimarias;
 import clases.Icono;
 import clases.laf;
 import paneles.databaseConfig;
-import paneles.backupHandler;
 //java
 import java.awt.BorderLayout;
+import paneles.partDataRestore;
+import paneles.provDataRestore;
+import paneles.workerDataRestore;
 
 public class adminTools extends javax.swing.JFrame{
     public adminTools(){
@@ -32,7 +34,17 @@ public class adminTools extends javax.swing.JFrame{
         
         jMenuItem2.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new backupHandler(),BorderLayout.CENTER);
+            this.getContentPane().add(new workerDataRestore(),BorderLayout.CENTER);
+        });
+        
+        jMenuItem3.addActionListener((a)->{
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(new partDataRestore(),BorderLayout.CENTER);
+        });
+        
+        jMenuItem4.addActionListener((a)->{
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(new provDataRestore(),BorderLayout.CENTER);
         });
     }
     
@@ -44,7 +56,10 @@ public class adminTools extends javax.swing.JFrame{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
@@ -56,10 +71,20 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem1.setText("Configurar BD");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Backups");
-        jMenu1.add(jMenuItem2);
-
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Backup");
+
+        jMenuItem2.setText("Empleados");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Socios");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Proveedores");
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -90,8 +115,11 @@ public class adminTools extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

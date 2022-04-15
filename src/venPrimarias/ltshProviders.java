@@ -210,9 +210,9 @@ public class ltshProviders extends javax.swing.JFrame{
             new logger().staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"datosBuscar-AIOOBE",p.fillInStackTrace());
         }catch(IndexOutOfBoundsException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"datosBuscar-32",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IOOBE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"datosBuscar-IOOBE",n.fillInStackTrace());
         }
     }
     

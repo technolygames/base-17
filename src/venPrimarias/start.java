@@ -119,9 +119,9 @@ public final class start extends javax.swing.JFrame{
             new logger().staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
             new logger().exceptionLogger(start.class.getName(),Level.WARNING,"login-9",e.fillInStackTrace());
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage()+"\nTipo: NullPointer","Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0-(NullPointer): "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
-            new logger().exceptionLogger(start.class.getName(),Level.WARNING,"login-0.NullPointer",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
+            new logger().exceptionLogger(start.class.getName(),Level.WARNING,"login-0",x.fillInStackTrace());
         }
     }
     

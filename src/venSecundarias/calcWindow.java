@@ -48,9 +48,9 @@ public final class calcWindow extends javax.swing.JDialog{
                 txtCambio.setText(res);
                 cambio=Integer.parseInt(txtCambio.getText());
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
-                new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"botones.calc-NFE",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
+                new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"botones.calc-32",e.fillInStackTrace());
             }
         });
     }

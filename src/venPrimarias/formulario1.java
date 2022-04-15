@@ -154,22 +154,22 @@ public class formulario1 extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 }
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-NFE",e.fillInStackTrace());
-            }catch(ArrayIndexOutOfBoundsException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error AIOOBE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-AIOOBE",x.fillInStackTrace());
-            }catch(NullPointerException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
-            }catch(FileNotFoundException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+k.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-1IO",k.fillInStackTrace());
+            }catch(FileNotFoundException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+            }catch(NullPointerException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-0",x.fillInStackTrace());
+            }catch(NumberFormatException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-32",n.fillInStackTrace());
+            }catch(ArrayIndexOutOfBoundsException k){
+                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error AIOOBE: "+k.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-AIOOBE",k.fillInStackTrace());
             }
         });
     }

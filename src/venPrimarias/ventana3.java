@@ -87,9 +87,9 @@ public class ventana3 extends javax.swing.JFrame{
                     new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error NFE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-NFE",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-32",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);

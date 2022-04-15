@@ -137,6 +137,10 @@ public class formulario2 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-0",x.fillInStackTrace());
+            }catch(NumberFormatException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-32",n.fillInStackTrace());
             }
         });
     }

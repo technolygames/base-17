@@ -1,16 +1,15 @@
-Error Prueba: error aún no encontrado
+¿Error Prueba: error aún no encontrado
 Error <random+E>: error que no fue asignado a un número específico de error, pero que se conoce su funcionalidad
 Error 0: error desconocido y no mapeado
 
 Notice 1: es una advertencia sobre el uso de ciertos elementos que están en prueba o una advertencia sobre el uso de componentes de la aplicación
 
-Rel 1: se guardó correctamente
-Rel 2: se actualizó correctamente
-Rel 3: se eliminó correctamente
+Rel 1: se guardaron correctamente los datos a la base de datos 
+Rel 2: se actualizaron correctamente los datos en la base de datos 
+Rel 3: se eliminaron correctamente los datos de la base de datos 
 
 Let 4: no se aceptan los valores que tratan de escribir (letras)
 Let 5: no se aceptan los valores que tratan de escribir (números)
-Let 6: (dudo que aparezca) no se aceptan los valores que tratan de ingresar o escribir (fecha) - eliminado
 
 Error 9: no se inició sesión; los datos solicitdos no son los correctos o no existen-
 Error 10: no se inicializó y/o encendió el puerto de la base de datos--
@@ -24,8 +23,8 @@ Error 18: posible ingreso erróneo o nulo de datos-----------
 Error 24: no se puede abrir la imagen------
 Error 25: error en las notificaciones; el sistema operativo en el que se está o estuvo ejecutando no soporta las notificaciones. Leer manual y especificaciones-
 Error 28: no se pudo cargar el estilo de las ventanas (Look And Feel)--
-Error 32: error al ingresar cierto tipo de dato (números)
-Error 34: valores no tolerados por el programa.IAE-
+Error 32: error al ingresar cierto tipo de dato (números)-
+Error 34: valores no tolerados por el programa.IllegalArgumentException-
 Error 37: el programa no encontró el driver de conexión a la base de datos-
 Error 38: error de validación; solo roles específicos son aceptados-
 Error 39: no se puede descargar las librerías (.jar)-

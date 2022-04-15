@@ -667,3 +667,14 @@ Ocurrió en la clase 'clases.tickets.ticket', en el método 'imprimirDocumento()
 abr. 12, 2022 3:53:38 A. M. clases.logger staticLogger
 WARNING: Error PE_T1: Printer is not accepting job.
 Ocurrió en la clase 'clases.tickets.ticket', en el método 'imprimirDocumento()'
+abr. 14, 2022 7:27:17 P. M. clases.logger staticLogger
+WARNING: Error 10: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server..
+Ocurrió en la clase 'clases.datos', en el método 'getConnection()'
+abr. 14, 2022 7:27:20 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null.
+Ocurrió en la clase 'venPrimarias.ltshWorkers', en el método 'datosMostrar()'
+abr. 14, 2022 7:27:20 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null.
+Ocurrió en la clase 'venPrimarias.ltshWorkers', en el método 'datosMostrar()'

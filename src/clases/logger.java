@@ -23,7 +23,7 @@ public class logger{
         try{
             fh=new FileHandler(System.getProperty("user.dir")+"/src/data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
         }

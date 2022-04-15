@@ -66,9 +66,9 @@ public class databaseConfig extends javax.swing.JPanel{
                 new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
             }catch(NumberFormatException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error NFE: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-NFE",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-32",x.fillInStackTrace());
             }catch(NullPointerException n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
@@ -183,7 +183,6 @@ public class databaseConfig extends javax.swing.JPanel{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JComboBox<String> jComboBox1;

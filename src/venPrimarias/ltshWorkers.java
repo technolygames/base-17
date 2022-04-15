@@ -181,9 +181,9 @@ public class ltshWorkers extends javax.swing.JFrame{
             new logger().staticLogger("Error AIOOBE: "+ñ.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-AIOOBE",ñ.fillInStackTrace());
         }catch(IndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 32: "+p.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-32",p.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error IOOBE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error IOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-IOOBE",p.fillInStackTrace());
         }
     }
     

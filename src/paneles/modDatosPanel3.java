@@ -63,8 +63,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
                         }
                     });
                 }
@@ -111,8 +111,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
                         }
                     });
                 }
@@ -159,8 +159,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
                         }
                     });
                 }
@@ -207,8 +207,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la empresa a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió la empresa a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba la empresa a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió la empresa a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
                         }
                     });
                 }
@@ -255,8 +255,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                                 break;
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox5)'",Level.WARNING);
+                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
+                            new logger().staticLogger("Error 18: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'botones(jCheckBox5)'",Level.WARNING);
                         }
                     });
                 }
