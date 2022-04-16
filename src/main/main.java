@@ -18,5 +18,6 @@ public class main{
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/data/dataBackup/Socios");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores");
+        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/data/generic/tickets");
     }
 }

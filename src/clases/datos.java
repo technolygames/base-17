@@ -86,7 +86,7 @@ public class datos{
             ps=getConnection().prepareStatement("create database "+nombre+";");
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -184,7 +184,7 @@ public class datos{
             ps.setBlob(14,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -218,7 +218,7 @@ public class datos{
             ps.setBinaryStream(7,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -252,7 +252,7 @@ public class datos{
             ps.setBinaryStream(7,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -277,7 +277,7 @@ public class datos{
             ps=getConnection().prepareStatement("insert into promociones(id_prom,nombre_prom,datos_prom,descuento,inicio,fin) values('"+codigoPromo+"','"+nombrePromo+"','"+datosPromo+"','"+descuento+"','"+inicio+"','"+fin+"');");
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -301,7 +301,7 @@ public class datos{
             ps=getConnection().prepareStatement(up1_query);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -325,7 +325,7 @@ public class datos{
             ps=getConnection().prepareStatement(up2_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
         
             ps.close();
         }catch(SQLException e){
@@ -341,7 +341,7 @@ public class datos{
             ps=getConnection().prepareStatement(up2_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -363,7 +363,7 @@ public class datos{
             ps=getConnection().prepareStatement(del1_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -385,7 +385,7 @@ public class datos{
             ps=getConnection().prepareStatement(del2_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -407,7 +407,7 @@ public class datos{
             ps=getConnection().prepareStatement(del3_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){

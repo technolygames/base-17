@@ -46,7 +46,7 @@ public class validacionVentana2 extends javax.swing.JDialog{
                     if(rs.next()){
                         if(rs.getString("puesto").equals("Dueño")||rs.getString("puesto").equals("Programador")||rs.getString("puesto").equals("Desarrollador")){
                             new formulario1().setVisible(true);
-                            new logger().staticLogger("Validación correcta a 'formulario1'.\nOcurrió en la clase '"+validacionVentana2.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+                            new logger().staticLogger("Rel 5: validación correcta a 'formulario1'.\nOcurrió en la clase '"+validacionVentana2.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
                             dispose();
                         }else{
                             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);

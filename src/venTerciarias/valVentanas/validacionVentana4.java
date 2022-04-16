@@ -46,7 +46,7 @@ public class validacionVentana4 extends javax.swing.JDialog{
                     if(rs.next()){
                         if(rs.getString("puesto").equals("Dueño")||rs.getString("puesto").equals("Programador")||rs.getString("puesto").equals("Desarrollador")){
                             new ltshPartners().setVisible(true);
-                            new logger().staticLogger("Validación correcta a 'ltshPartners'.\nOcurrió en la clase '"+validacionVentana4.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+                            new logger().staticLogger("Rel 5: validación correcta a 'ltshPartners'.\nOcurrió en la clase '"+validacionVentana4.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
                             dispose();
                         }else{
                             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);

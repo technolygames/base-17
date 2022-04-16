@@ -106,7 +106,7 @@ public final class start extends javax.swing.JFrame{
                 nameUser=rs.getString("nombre_emp");
                 userID=rs.getInt("codigo_emp");
                 new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
-                new logger().staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID,Level.FINE);
+                new logger().staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID,Level.INFO);
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
@@ -218,8 +218,8 @@ public final class start extends javax.swing.JFrame{
     
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 5",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 5: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'txtUsuarioKeyPressed()'",Level.WARNING);
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'txtUsuarioKeyPressed()'",Level.WARNING);
             evt.consume();
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed

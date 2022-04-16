@@ -128,7 +128,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                     break;
                 }
                 
-                new logger().staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+                new logger().staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
                 
                 ps.close();
                 fos.close();

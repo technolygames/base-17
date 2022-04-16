@@ -12,6 +12,8 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;
+import venPrimarias.proper1;
+import venPrimarias.start;
 
 public class databaseConfig extends javax.swing.JPanel{
     public databaseConfig(){
@@ -59,6 +61,9 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.setProperty("pass",jTextField3.getText());
                 p.setProperty("ip",jTextField4.getText());
                 p.setProperty("port", jTextField5.getText());
+                
+                JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
+                new logger().staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.INFO);
                 
                 p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties")),"Configuración de la base de datos");
             }catch(FileNotFoundException e){

@@ -1,5 +1,7 @@
+<no existe>: etiqueta sin asignar
 ¿Error Prueba: error aún no encontrado
 Error <random+E>: error que no fue asignado a un número específico de error, pero que se conoce su funcionalidad
+
 Error 0: error desconocido y no mapeado
 
 Notice 1: es una advertencia sobre el uso de ciertos elementos que están en prueba o una advertencia sobre el uso de componentes de la aplicación
@@ -7,10 +9,13 @@ Notice 1: es una advertencia sobre el uso de ciertos elementos que están en pru
 Rel 1: se guardaron correctamente los datos a la base de datos 
 Rel 2: se actualizaron correctamente los datos en la base de datos 
 Rel 3: se eliminaron correctamente los datos de la base de datos 
+Rel 4: se han guardado los cambios
+Rel 5: se ha validado el acceso a ventana de administración
 
-Let 4: no se aceptan los valores que tratan de escribir (letras)
-Let 5: no se aceptan los valores que tratan de escribir (números)
+Let 6: no se aceptan los valores que tratan de escribir (letras)
+Let 7: no se aceptan los valores que tratan de escribir (números)
 
+Error 8: <no existe>
 Error 9: no se inició sesión; los datos solicitdos no son los correctos o no existen-
 Error 10: no se inicializó y/o encendió el puerto de la base de datos--
 Error 11: no se ingresaron correctamente los datos solicitados-

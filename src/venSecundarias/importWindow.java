@@ -83,7 +83,7 @@ public class importWindow extends javax.swing.JDialog{
                 new thread(is,os).run();
                 
                 JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
-                new logger().staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+                new logger().staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
                 
                 os.close();
                 os.flush();

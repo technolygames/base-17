@@ -58,7 +58,7 @@ public class exportWindow extends javax.swing.JDialog{
             new thread(is,os).run();
             
             JOptionPane.showMessageDialog(null,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'copia()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
+            new logger().staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'copia()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             os.close();
             os.flush();

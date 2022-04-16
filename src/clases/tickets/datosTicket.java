@@ -131,6 +131,7 @@ public class datosTicket{
             ticket.addTotal("Cambio: ",String.valueOf(cambio));
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
+            
             ticket.imprimirDocumento("src/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",true);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
