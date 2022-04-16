@@ -693,3 +693,11 @@ Usuario que hizo la acción: 12345
 abr. 16, 2022 12:43:53 A. M. clases.logger staticLogger
 WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
 Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 16, 2022 1:20:14 A. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 12345
+abr. 16, 2022 1:20:35 A. M. clases.logger staticLogger
+INFO: Rel 5: validación correcta a 'adminTools'.
+Ocurrió en la clase 'venTerciarias.valVentanas.validacionVentana9', en el método 'botones(valButton)'.
+Usuario que hizo la acción: 12345
