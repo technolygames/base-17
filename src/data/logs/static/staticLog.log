@@ -701,3 +701,7 @@ abr. 16, 2022 1:20:35 A. M. clases.logger staticLogger
 INFO: Rel 5: validación correcta a 'adminTools'.
 Ocurrió en la clase 'venTerciarias.valVentanas.validacionVentana9', en el método 'botones(valButton)'.
 Usuario que hizo la acción: 12345
+abr. 18, 2022 11:41:38 A. M. clases.logger staticLogger
+INFO: Rel 1E: se creó correctamente la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'crearBD()'.
+Usuario que hizo la acción: 0

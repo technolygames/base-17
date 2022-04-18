@@ -100,11 +100,6 @@ public class dataWindow2 extends javax.swing.JDialog{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
                 File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/socios/"+(int)(Math.random()*100000)+".jpg");
-                File f2=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/socios");
-                
-                if(!f2.exists()){
-                    f2.mkdir();
-                }
                 
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;

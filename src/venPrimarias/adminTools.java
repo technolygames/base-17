@@ -5,6 +5,8 @@ import clases.laf;
 import paneles.databaseConfig;
 //java
 import java.awt.BorderLayout;
+import paneles.databaseExport;
+import paneles.databaseImport;
 import paneles.partDataRestore;
 import paneles.provDataRestore;
 import paneles.workerDataRestore;
@@ -46,6 +48,16 @@ public class adminTools extends javax.swing.JFrame{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new provDataRestore(),BorderLayout.CENTER);
         });
+        
+        jMenuItem5.addActionListener((a)->{
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(new databaseImport(),BorderLayout.CENTER);
+        });
+        
+        jMenuItem6.addActionListener((a)->{
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(new databaseExport(),BorderLayout.CENTER);
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -56,6 +68,8 @@ public class adminTools extends javax.swing.JFrame{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -66,10 +80,16 @@ public class adminTools extends javax.swing.JFrame{
 
         backButton.setText("Regresar");
 
-        jMenu1.setText("Ventana");
+        jMenu1.setText("Base de datos");
 
         jMenuItem1.setText("Configurar BD");
         jMenu1.add(jMenuItem1);
+
+        jMenuItem5.setText("Importar BD");
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Exportar BD");
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -121,5 +141,7 @@ public class adminTools extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }

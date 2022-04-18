@@ -39,7 +39,7 @@ public class escritorJSON{
      */
     public void writeDataWorkerJson(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreEmpleado+"-"+(int)(Math.random()*10000)+".json"),StandardCharsets.UTF_8));
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreEmpleado+"-"+codigoEmpleado+".json"),StandardCharsets.UTF_8));
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("password").value(password);
@@ -82,7 +82,7 @@ public class escritorJSON{
      */
     public void writeDataPartnerJson(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String datosExtra){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreSocio+"-"+(int)(Math.random()*10000)+".json"),StandardCharsets.UTF_8));
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreSocio+"-"+codigoSocio+".json"),StandardCharsets.UTF_8));
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("codigo_part").value(codigoSocio);
@@ -119,7 +119,7 @@ public class escritorJSON{
      */
     public void writeDataProviderJson(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreProveedor+"-"+(int)(Math.random()*10000)+".json"),StandardCharsets.UTF_8));
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreProveedor+"-"+codigoProveedor+".json"),StandardCharsets.UTF_8));
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("codigo_prov").value(codigoProveedor);

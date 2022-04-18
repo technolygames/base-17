@@ -158,7 +158,6 @@ public class lectorJSON{
         try{
             jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
             jsonr.beginObject();
-            
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
                 if(name.equals("codigo_prov")){

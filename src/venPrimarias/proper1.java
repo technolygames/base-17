@@ -5,8 +5,6 @@ import clases.laf;
 import clases.logger;
 import clases.thread;
 import venTerciarias.valVentanas.validacionVentana7;
-import venTerciarias.valVentanas.validacionVentana8;
-import venTerciarias.valVentanas.validacionVentana9;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
@@ -67,8 +65,6 @@ public final class proper1 extends javax.swing.JFrame{
     
     protected void settings(){
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
-        expButton.setEnabled(false);
-        impButton.setEnabled(false);
     }
     
     protected final void configIn(){
@@ -122,14 +118,6 @@ public final class proper1 extends javax.swing.JFrame{
         backButton.addActionListener((ae)->{
             setVisible(false);
             dispose();
-        });
-        
-        expButton.addActionListener((ae)->{
-            new validacionVentana7(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
-        impButton.addActionListener((ae)->{
-            new validacionVentana8(new javax.swing.JFrame(),true).setVisible(true);
         });
         
         iconButton.addActionListener((ae)->{
@@ -248,7 +236,7 @@ public final class proper1 extends javax.swing.JFrame{
         });
         
         toolsButton.addActionListener((a)->{
-            new validacionVentana9(new javax.swing.JFrame(),true).setVisible(true);
+            new validacionVentana7(new javax.swing.JFrame(),true).setVisible(true);
         });
     }
     
@@ -340,9 +328,6 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        impButton = new javax.swing.JButton();
-        expButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         iconButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -365,12 +350,6 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setText("Look And Feel:");
-
-        impButton.setText("Importar");
-
-        expButton.setText("Exportar");
-
-        jLabel5.setText("Base de datos:");
 
         jLabel6.setText("Icono de ventana:");
 
@@ -398,7 +377,16 @@ public final class proper1 extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imgButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, 0, 423, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -410,25 +398,10 @@ public final class proper1 extends javax.swing.JFrame{
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(impButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(expButton))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(toolsButton)))
-                                .addGap(0, 262, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imgButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -442,11 +415,6 @@ public final class proper1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(impButton)
-                            .addComponent(expButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -483,16 +451,13 @@ public final class proper1 extends javax.swing.JFrame{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton backButton;
-    protected javax.swing.JButton expButton;
     protected javax.swing.JButton iconButton;
     protected javax.swing.JButton imgButton;
-    protected javax.swing.JButton impButton;
     protected javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JLabel jLabel3;
     protected javax.swing.JLabel jLabel4;
-    protected javax.swing.JLabel jLabel5;
     protected javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

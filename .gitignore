@@ -1,2 +1,4 @@
 src/data/config/libs.txt
+src/data/database/MySQL/diagram_sql.dia~
 build/
+test/

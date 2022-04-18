@@ -6,6 +6,7 @@ import clases.laf;
 //java
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import paneles.databaseImport;
 
 public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
@@ -30,7 +31,7 @@ public class databaseWindow extends javax.swing.JDialog{
     protected final void botones(){
         createButton.addActionListener((ae)->{
             new datos().crearBD(jTextField1.getText());
-            nombredb=jTextField1.getText();
+            databaseImport.jTextField3.setText(jTextField1.getText());
         });
         
         backButton.addActionListener((ae)->{
