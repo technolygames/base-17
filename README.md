@@ -26,7 +26,10 @@ Notas:
 
 Instalación:
 
-Para poder usar sin problemas y/o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp). Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en src/data/database/MySQL, nombrado como tienda.sql. Después, se debe cambiar el archivo config.properties (src/data/config) por preconfig.properties, cambiándole a este último el nombre por el archivo eliminado. En caso de tener un servidor de base de datos de MySQL previamente configurado, se debe configurar en el panel de "Configurar BD" en Herramientas de administrador los datos necesarios del servidor.
+- Para poder usar sin problemas y/o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp).
+- Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en src/data/database/MySQL, nombrado como tienda.sql.
+- Después, se debe cambiar el archivo config.properties (src/data/config) por preconfig.properties, cambiándole a este último el nombre por el archivo eliminado.
+- En caso de tener un servidor de base de datos de MySQL previamente configurado, se debe configurar en el panel de "Configurar BD" en Herramientas de administrador los datos necesarios del servidor.
 
 A java program to manage a grocery
 
@@ -54,4 +57,7 @@ Notes:
 
 Installation:
 
-To use without troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp; are the same thing) It's needed to the correct execution of the program. Database can be found on the following path: "src/data/database/MySQL", named as tienda.sql. After of this, it'll need to change config.properties by preconfig.properties, changing preconfig like previous deleted file. In case of have a MySQL database server previously configurated, it'll need to configurate on database config panel on admin tools ("Herramientas de administrador") window with the server ip.
+- To use without troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp; are the same thing).
+- It's needed to the correct execution of the program. Database can be found on the following path: "src/data/database/MySQL", named as tienda.sql.
+- After of this, it'll need to change config.properties by preconfig.properties, changing preconfig like previous deleted file.
+- In case of have a MySQL database server previously configurated, it'll need to configurate on database config panel on admin tools ("Herramientas de administrador") window with the server ip.
