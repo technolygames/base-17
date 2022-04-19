@@ -1,6 +1,5 @@
 # base16
 Un programa hecho en Java para administrar una tienda de abarrotes
-A java program to manage a grocery
 
 Este programa se encarga de administrar una tienda de abarrotes. Las características son:
 - Poder guardar, desde una tabla, todos los datos a mysql;
@@ -25,8 +24,11 @@ Notas:
 - Para que no dé el error al momento de una excepción, se debe crear la carpeta en la siguiente dirección: src/data/logs. No debe estar fuera de logs ni mucho menos dentro de la carpeta static
 - A veces saldrán errores por el uso de look and feel de windows en otros sistemas. Para prevenir este error, elimine el archivo que está en src/data/config llamado "config.properties" y reemplazarlo por preconfig.properties cambiándole el nombre por el mismo del archivo eliminado. Es recomendable que se haga una copia del archivo preconfig en vez de hacerlo en el mismo archivo
 
-Instalación
+Instalación:
+
 Para poder usar sin problemas y/o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp). Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en src/data/database/MySQL, nombrado como tienda.sql. Después, se debe cambiar el archivo config.properties (src/data/config) por preconfig.properties, cambiándole a este último el nombre por el archivo eliminado. En caso de tener un servidor de base de datos de MySQL previamente configurado, se debe configurar en el panel de "Configurar BD" en Herramientas de administrador los datos necesarios del servidor.
+
+A java program to manage a grocery
 
 This program can be use to manage a grocery store. Features:
 - Can store from a table to mysql's database
@@ -50,5 +52,6 @@ Notes:
 - To avoid a message during an exception, you will create a new folder into "src/data/logs" called "exceptions". This don't be created outside of logs folder nor into static folder
 - Sometimes will throw exceptions caused by using windows' look and feel in other systems. To avoid this exception, delete file into src/data/config called "config.properties", replace by "preconfig.properties" and rename it as the previous deleted file (config.properties). I recommend you to copy preconfig.properties instead of using the same file
 
-Installation
+Installation:
+
 To use without troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp; are the same thing) It's needed to the correct execution of the program. Database can be found on the following path: "src/data/database/MySQL", named as tienda.sql. After of this, it'll need to change config.properties by preconfig.properties, changing preconfig like previous deleted file. In case of have a MySQL database server previously configurated, it'll need to configurate on database config panel on admin tools ("Herramientas de administrador") window with the server ip.
