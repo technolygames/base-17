@@ -705,3 +705,71 @@ abr. 18, 2022 11:41:38 A. M. clases.logger staticLogger
 INFO: Rel 1E: se creó correctamente la base de datos.
 Ocurrió en la clase 'clases.datos', en el método 'crearBD()'.
 Usuario que hizo la acción: 0
+abr. 19, 2022 1:51:13 P. M. clases.logger staticLogger
+WARNING: Error 2IO: C:\Users\erick\Desktop\Base-jdk16\base\src\data\dataBackup\Empleados\Pruebas\Pruebas-1234567.json (El sistema no puede encontrar la ruta especificada).
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 19, 2022 2:30:43 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:35:33 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:43:23 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:43:23 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:44:05 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:46:17 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:46:17 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:47:00 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:52:11 P. M. clases.logger staticLogger
+WARNING: Error 1IO: .
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:52:28 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:52:28 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 2 column 17 path $.password.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 19, 2022 2:54:05 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 19, 2022 3:00:22 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 19, 2022 3:05:17 P. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 99876
+abr. 19, 2022 3:07:01 P. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 99876
+abr. 19, 2022 3:18:44 P. M. clases.logger staticLogger
+INFO: Rel 5: validación correcta a 'adminTools'.
+Ocurrió en la clase 'venTerciarias.valVentanas.validacionVentana7', en el método 'botones(valButton)'.
+Usuario que hizo la acción: 0
+abr. 19, 2022 3:22:42 P. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 99876
+abr. 19, 2022 3:22:55 P. M. clases.logger staticLogger
+INFO: Rel 5: validación correcta a 'adminTools'.
+Ocurrió en la clase 'venTerciarias.valVentanas.validacionVentana7', en el método 'botones(valButton)'.
+Usuario que hizo la acción: 99876
+abr. 19, 2022 3:24:03 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'venTerciarias.dataWindow4', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 99876

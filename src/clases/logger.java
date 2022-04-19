@@ -1,9 +1,10 @@
 package clases;
-
+//java
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+//extension larga
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;

@@ -1,20 +1,21 @@
 package clases.tickets;
-
+//clases
 import clases.logger;
-
+//java
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.logging.Level;
+import javax.print.Doc;
+import javax.print.SimpleDoc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.Doc;
 import javax.print.PrintException;
-import javax.print.SimpleDoc;
+import javax.print.PrintServiceLookup;
 import javax.swing.JOptionPane;
+//extension larga
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
 
 /**
  * Clase encargada de imprimir y dar forma al ticket.

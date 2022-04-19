@@ -1,17 +1,18 @@
 package clases;
-
-import java.awt.AWTException;
+//java
 import java.awt.Image;
-import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.TrayIcon.MessageType;
+import java.awt.SystemTray;
+import java.awt.AWTException;
+import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
+//extension larga
+import java.util.logging.Level;
+import java.awt.TrayIcon.MessageType;
 
 /**
  * Clase encargada de mostrar notificaciones.

@@ -3,6 +3,7 @@ package clases.BackupHandler;
 import clases.logger;
 //librerías
 import com.google.gson.stream.JsonWriter;
+import java.io.File;
 //java
 import java.io.IOException;
 import java.io.FileOutputStream;
@@ -37,9 +38,11 @@ public class escritorJSON{
      * @param estado Estado laboral del empleado en el negocio.
      * @param datosExtra Datos extras.
      */
-    public void writeDataWorkerJson(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra){
+    public void writeDataWorkerJson(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,int experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreEmpleado+"-"+codigoEmpleado+".json"),StandardCharsets.UTF_8));
+            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+nombreEmpleado+"-"+codigoEmpleado).mkdir();
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+nombreEmpleado+"-"+codigoEmpleado+"/"+nombreEmpleado+"-"+codigoEmpleado+".json"),StandardCharsets.UTF_8));
+            new escritorFoto().storePicWorker(codigoEmpleado, nombreEmpleado);
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("password").value(password);
@@ -55,6 +58,7 @@ public class escritorJSON{
             jsonw.name("edad").value(edad);
             jsonw.name("estado").value(estado);
             jsonw.name("datos_extra").value(datosExtra);
+            jsonw.name("imagen").value(escritorFoto.dir1);
             jsonw.endObject();
             
             jsonw.flush();
@@ -82,7 +86,9 @@ public class escritorJSON{
      */
     public void writeDataPartnerJson(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String datosExtra){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreSocio+"-"+codigoSocio+".json"),StandardCharsets.UTF_8));
+            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio).mkdir();
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio+"/"+nombreSocio+"-"+codigoSocio+".json"),StandardCharsets.UTF_8));
+            new escritorFoto().storePicPartner(codigoSocio,nombreSocio);
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("codigo_part").value(codigoSocio);
@@ -91,6 +97,7 @@ public class escritorJSON{
             jsonw.name("apellidom_part").value(apellidoMaternoSocio);
             jsonw.name("tipo_socio").value(tipoSocio);
             jsonw.name("datos_extra").value(datosExtra);
+            jsonw.name("imagen").value(escritorFoto.dir2);
             jsonw.endObject();
             
             jsonw.flush();
@@ -109,7 +116,6 @@ public class escritorJSON{
     /**
      * Se encarga de crear archivos JSON como copia de seguridad para la tabla proveedor.
      * 
-     * 
      * @param codigoProveedor Código de identificación del proveedor.
      * @param nombreProveedor Nombre(s) del proveedor.
      * @param apellidoPaternoProveedor Apellido paterno del proveedor.
@@ -119,7 +125,9 @@ public class escritorJSON{
      */
     public void writeDataProviderJson(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto){
         try{
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("src/data/dataBackup/"+nombreProveedor+"-"+codigoProveedor+".json"),StandardCharsets.UTF_8));
+            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor).mkdir();
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor+"/"+nombreProveedor+"-"+codigoProveedor+".json"),StandardCharsets.UTF_8));
+            new escritorFoto().storePicProvider(codigoProveedor,nombreProveedor);
             jsonw.beginObject();
             jsonw.setIndent("   ");
             jsonw.name("codigo_prov").value(codigoProveedor);
@@ -128,6 +136,7 @@ public class escritorJSON{
             jsonw.name("apellidom_prov").value(apellidoMaternoProveedor);
             jsonw.name("empresa").value(empresa);
             jsonw.name("contacto").value(contacto);
+            jsonw.name("imagen").value(escritorFoto.dir3);
             jsonw.endObject();
             
             jsonw.flush();

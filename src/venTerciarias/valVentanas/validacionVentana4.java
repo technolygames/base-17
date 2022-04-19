@@ -25,6 +25,8 @@ public class validacionVentana4 extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Validación");
         setResizable(false);
+        
+        jTextField1.setText(start.nameUser);
     }
     
     protected final void botones(){

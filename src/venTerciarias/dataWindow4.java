@@ -9,6 +9,7 @@ import venPrimarias.start;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +22,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
+import javax.imageio.ImageIO;
+import menus.menuVentanas;
 
 public class dataWindow4 extends javax.swing.JDialog{
     public dataWindow4(java.awt.Frame parent,boolean modal){
@@ -80,11 +83,11 @@ public class dataWindow4 extends javax.swing.JDialog{
                 empleado=nombreCompleto;
                 
                 byte[] imagen=rs.getBytes("foto");
-                
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
                 ImageIcon im=new ImageIcon(i);
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
+                
                 i.flush();
                 break;
             }

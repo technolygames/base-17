@@ -4,6 +4,7 @@ import clases.datos;
 import clases.Icono;
 import clases.laf;
 import clases.logger;
+import venPrimarias.adminTools;
 import venPrimarias.start;
 //java
 import java.sql.ResultSet;
@@ -12,7 +13,6 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
-import venPrimarias.adminTools;
 
 public class validacionVentana7 extends javax.swing.JDialog{
     public validacionVentana7(java.awt.Frame parent,boolean modal){
@@ -25,6 +25,8 @@ public class validacionVentana7 extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Validación");
         setResizable(false);
+        
+        jTextField1.setText(start.nameUser);
     }
     
     protected final void botones(){

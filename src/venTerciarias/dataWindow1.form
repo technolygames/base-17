@@ -514,7 +514,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="genLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1234567"/>
+        <Property name="text" type="java.lang.String" value="123456"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

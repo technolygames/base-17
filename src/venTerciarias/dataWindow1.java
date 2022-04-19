@@ -1,7 +1,6 @@
 package venTerciarias;
 //clases
 import clases.BackupHandler.escritorJSON;
-import clases.BackupHandler.lectorJSON;
 import clases.datos;
 import clases.Icono;
 import clases.laf;
@@ -39,8 +38,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         setResizable(false);
     }
     
-    protected datos d;
-    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
@@ -53,10 +50,9 @@ public class dataWindow1 extends javax.swing.JDialog{
     }
     
     protected final void datosMostrar(){
-        d=new datos();
         String etiqueta=genLabel.getText();
         try{
-            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp="+etiqueta+";");
+            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp="+etiqueta+";");
             rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
@@ -66,7 +62,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiApellidoM.setText(rs.getString("apellidom_emp"));
                 jTextArea1.setText(rs.getString("domicilio"));
                 etiPuesto.setText(rs.getString("puesto"));
-                etiExp.setText(rs.getString("experiencia"));
+                etiExp.setText(String.valueOf(rs.getInt("experiencia")));
                 etiEstudios.setText(rs.getString("grado_estudios"));
                 etiContacto.setText(rs.getString("contacto"));
                 etiEdad.setText(String.valueOf(rs.getInt("edad")));
@@ -75,8 +71,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
                 
-                byte[] imagen=rs.getBytes("foto");
+                //new escritorJSON().writeDataWorkerJson(rs.getString("password"),rs.getInt("codigo_emp"), rs.getString("nombre_emp"), rs.getString("apellidop_emp"), rs.getString("apellidom_emp"), rs.getString("domicilio"), rs.getString("puesto"), rs.getInt("experiencia"), rs.getString("grado_estudios"), rs.getInt("contacto"), rs.getInt("edad"), rs.getString("estado"), rs.getString("datos_extra"));
                 
+                byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
                 ImageIcon im=new ImageIcon(i);
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
@@ -268,7 +265,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        genLabel.setText("1234567");
+        genLabel.setText("123456");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

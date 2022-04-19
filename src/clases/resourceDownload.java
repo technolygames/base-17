@@ -1,20 +1,21 @@
 package clases;
-
+//java
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
-import java.net.Socket;
-import java.net.SocketAddress;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.net.Socket;
+import java.net.InetAddress;
+import java.net.SocketAddress;
 import java.net.URLConnection;
+import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
+import java.net.MalformedURLException;
 import javax.swing.JOptionPane;
+//extension larga
+import java.util.logging.Level;
 
 /**
  * Clase encargada de descargar los recursos necesarios para el correcto funcionamiento del programa.
@@ -76,7 +77,7 @@ public class resourceDownload{
                 f.createNewFile();
             }
             
-            if(!f.exists()&&f.length()==0&&checkConnection(link, 443)==true){
+            if(!f.exists()&&f.length()==0&&checkConnection(link,443)==true){
                 u=new URL(link);
                 uc=u.openConnection();
                 

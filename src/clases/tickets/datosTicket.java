@@ -1,21 +1,21 @@
 package clases.tickets;
-
+//clases
 import clases.logger;
-
+//java
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
-import javax.swing.JOptionPane;
-
-import java.util.logging.Level;
 import javax.swing.JTable;
+import javax.swing.JOptionPane;
+//extension larga
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
 
 /**
  * Clase encargada de imprimir el ticket de compra.

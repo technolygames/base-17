@@ -35,6 +35,7 @@ public class lectorJSON{
     protected int edad;
     protected String estado;
     protected String datosExtra1;
+    protected String foto1;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
      * 
@@ -46,7 +47,7 @@ public class lectorJSON{
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
-                if(name.equals("contraseña")){
+                if(name.equals("password")){
                     password=jsonr.nextString();
                 }else if(name.equals("codigo_emp")){
                     codigoEmpleado=jsonr.nextInt();
@@ -72,9 +73,11 @@ public class lectorJSON{
                     estado=jsonr.nextString();
                 }else if(name.equals("datos_extra")){
                     datosExtra1=jsonr.nextString();
+                }else if(name.equals("imagen")){
+                    foto1=jsonr.nextString();
                 }
             }
-            new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,domicilio,puesto,experiencia,gradoEstudios,contacto1,edad,estado,datosExtra1,new FileInputStream("C:\\Users\\erick\\Pictures\\5aacd4140462d64e88cb30273858510c.jpg"));
+            new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,domicilio,puesto,experiencia,gradoEstudios,contacto1,edad,estado,datosExtra1,new FileInputStream(foto1));
             jsonr.endObject();
             
             jsonr.close();
@@ -99,6 +102,7 @@ public class lectorJSON{
     protected String apellidoMaternoSocio;
     protected String tipoSocio;
     protected String datosExtra2;
+    protected String foto2;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de socios, para volver a almacenar los datos en la base de datos.
      * 
@@ -122,9 +126,11 @@ public class lectorJSON{
                     tipoSocio=jsonr.nextString();
                 }else if(name.equals("datos_extra")){
                     datosExtra2=jsonr.nextString();
+                }else if(name.equals("imagen")){
+                    foto2=jsonr.nextString();
                 }
             }
-            new datos().insertarDatosSocio(codigoSocio,nombreSocio,apellidoPaternoSocio,apellidoMaternoSocio,tipoSocio,datosExtra2,new FileInputStream(""));
+            new datos().insertarDatosSocio(codigoSocio,nombreSocio,apellidoPaternoSocio,apellidoMaternoSocio,tipoSocio,datosExtra2,new FileInputStream(foto2));
             jsonr.endObject();
             
             jsonr.close();
@@ -149,6 +155,7 @@ public class lectorJSON{
     protected String apellidoMaternoProveedor;
     protected String empresa;
     protected int contacto2;
+    protected String foto3;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de proveedor, para volver a almacenar los datos en la base de datos.
      * 
@@ -172,9 +179,11 @@ public class lectorJSON{
                     empresa=jsonr.nextString();
                 }else if(name.equals("contacto")){
                     contacto2=jsonr.nextInt();
+                }else if(name.equals("imagen")){
+                    foto3=jsonr.nextString();
                 }
             }
-            new datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto2,new FileInputStream("C:\\Users\\erick\\Pictures\\5aacd4140462d64e88cb30273858510c.jpg"));
+            new datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto2,new FileInputStream(foto3));
             jsonr.endObject();
             
             jsonr.close();
