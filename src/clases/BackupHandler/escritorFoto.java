@@ -27,6 +27,13 @@ public class escritorFoto{
     
     protected ResultSet rs;
     protected PreparedStatement ps;
+    
+    /**
+     * Almacena la foto de perfil del empleado en una carpeta designada.
+     * 
+     * @param codigoEmpleado Código de identificación del empleado.
+     * @param nombreEmpleado Nombre(s) del empleado.
+     */
     public void storePicWorker(int codigoEmpleado,String nombreEmpleado){
         try{
             ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+codigoEmpleado+"';");
@@ -68,6 +75,12 @@ public class escritorFoto{
         }
     }
     
+    /**
+     * Almacena la foto de perfil del socio en una carpeta designada.
+     * 
+     * @param codigoSocio Código de identificación del socio.
+     * @param nombreSocio Nombre(s) del socio.
+     */
     public void storePicPartner(int codigoSocio,String nombreSocio){
         try{
             ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+codigoSocio+"';");
@@ -109,6 +122,12 @@ public class escritorFoto{
         }
     }
     
+    /**
+     * Almacena la foto de perfil del proveedor en una carpeta designada.
+     * 
+     * @param codigoProveedor Código de identificación del proveedor.
+     * @param nombreProveedor Nombre(s) del proveedor.
+     */
     public void storePicProvider(int codigoProveedor,String nombreProveedor){
         try{
             ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+codigoProveedor+"';");

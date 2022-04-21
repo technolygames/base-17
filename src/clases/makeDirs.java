@@ -10,6 +10,8 @@ import java.io.File;
 public class makeDirs{
     /**
      * Verifica si existen las carpetas. Si no existen, las crea automáticamente.
+     * 
+     * @param dir Dirección a verificar y crear.
      */
     public void makeDir(String dir){
         File direccion=new File(dir);

@@ -1,13 +1,15 @@
 package paneles;
-
+//clases
 import clases.datos;
 import clases.laf;
 import clases.logger;
-import java.sql.PreparedStatement;
+//java
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+//extension larga
+import java.util.logging.Level;
 
 public class modDatosPanel2 extends javax.swing.JPanel{
     public modDatosPanel2(){

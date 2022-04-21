@@ -19,11 +19,11 @@ import java.util.logging.Level;
  */
 public class laf{
     /**
-     * Clase para usar el diseño seleccionado en la ventana 'proper1'
+     * Clase para usar el diseño seleccionado en la ventana 'proper1'.
      * 
-     * @param componente Ventana que mostrará el diseño
-     * @param clase Nombre de la clase (clase.class.getName())
-     * @param metodo Método completo (constructor())
+     * @param componente Ventana que mostrará el diseño.
+     * @param clase Nombre de la clase (clase.class.getName()).
+     * @param metodo Método completo (method()).
      */
     public void LookAndFeel(Component componente,String clase,String metodo){
         try{

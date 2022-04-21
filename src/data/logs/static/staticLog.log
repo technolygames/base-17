@@ -828,3 +828,49 @@ Usuario que hizo la acción: 0
 abr. 20, 2022 7:27:18 P. M. clases.logger staticLogger
 WARNING: Error 0: Cannot read the array length because "b" is null.
 Ocurrió en la clase 'paneles.databaseExport', en el método 'copia()'
+abr. 21, 2022 12:33:05 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 21, 2022 12:34:07 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 21, 2022 1:36:43 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 1:36:45 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 1:36:45 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:10:01 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del socio.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:10:02 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:10:02 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:14:17 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:14:40 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:14:52 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'.
+Usuario que hizo la acción: 0
+abr. 21, 2022 2:14:52 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'.
+Usuario que hizo la acción: 0

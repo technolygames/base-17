@@ -1,6 +1,6 @@
 {
    "password": "123456",
-   "codigo_emp": 123456,
+   "codigo_emp": 1234567,
    "nombre_emp": "Pruebas",
    "apellidop_emp": "Pruebas",
    "apellidom_emp": "Pruebas",
@@ -12,5 +12,5 @@
    "edad": 20,
    "estado": "Activo",
    "datos_extra": "datos extra de prueba",
-   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Empleados\\Pruebas-123456\\Pruebas-123456.jpg"
+   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Empleados\\Pruebas-1234567\\Pruebas-1234567.jpg"
 }

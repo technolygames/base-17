@@ -1,10 +1,13 @@
 package paneles;
-
+//clases
 import clases.datos;
 import clases.laf;
 import clases.logger;
-import java.util.logging.Level;
+import clases.BackupHandler.escritorJSON;
+//java
 import javax.swing.JOptionPane;
+//extension larga
+import java.util.logging.Level;
 
 public class delDatosPanel1 extends javax.swing.JPanel{
     public delDatosPanel1(){
@@ -24,7 +27,13 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                 if(!jTextField1.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());
                     
-                    new datos().eliminarDatosEmpleado(codigo);
+                    int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                    if(opcion==0){
+                        new escritorJSON().writeDataWorkerJson(codigo);
+                        new datos().eliminarDatosEmpleado(codigo);
+                    }else if(opcion==1){
+                        new datos().eliminarDatosEmpleado(codigo);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger().staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);

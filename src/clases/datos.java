@@ -269,12 +269,12 @@ public class datos{
     /**
      * Guarda los datos de la ventana de promociones en la base de datos.
      * 
-     * @param codigoPromo
-     * @param nombrePromo
-     * @param datosPromo
-     * @param descuento
-     * @param inicio
-     * @param fin
+     * @param codigoPromo Código de la promoción.
+     * @param nombrePromo Nombre de la promoción.
+     * @param datosPromo Datos descriptivos de la promoción para que sea válida.
+     * @param descuento Porcentaje de descuento.
+     * @param inicio Fecha de inicio de la promoción.
+     * @param fin Fecha de finalización de la promoción.
      */
     public void insertarDatosPromo(String codigoPromo,String nombrePromo,String datosPromo,float descuento,java.sql.Date inicio,java.sql.Date fin){
         try{
@@ -292,12 +292,12 @@ public class datos{
     }
     
     /**
-     * Actualiza los datos de la tabla de empleados.
+     * Actualiza datos de la tabla de empleados.
      * Esta es específica para empleados. No usar como universal.
      * 
-     * Para que se pueda usar esta clase, se debe usar la sintaxis que estará en la documentación del programa
+     * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados
+     * @param consulta datos que serán modificados.
      */
     public void actualizarDatosEmpleado(String consulta){
         String up1_query="update empleados "+consulta;
@@ -316,12 +316,12 @@ public class datos{
     }
     
     /**
-     * Actualiza los datos de la tabla de socios.
+     * Actualiza datos de la tabla de socios.
      * Esta es específica para socios. No usar como universal.
      * 
-     * Para que se pueda usar esta clase, se debe usar la sintaxis que estará en la documentación del programa
+     * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados
+     * @param consulta datos que serán modificados.
      */
     public void actualizarDatosSocio(String consulta){
         String up2_query="update socios "+consulta;
@@ -339,6 +339,14 @@ public class datos{
         }
     }
     
+    /**
+     * Actualiza datos de la tabla de proveedores.
+     * Esta es específica para socios. No usar como universal.
+     * 
+     * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
+     * 
+     * @param consulta datos que serán modificados.
+     */
     public void actualizarDatosProveedor(String consulta){
         String up2_query="update proveedor "+consulta;
         try{
@@ -356,8 +364,9 @@ public class datos{
     }
     
     /**
-     * Elimina los datos especificados en la tabla 'Empleados'.
+     * Elimina datos específicos de la tabla empleados.
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio.
+     * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoEmpleado Código del empleado al que se eliminarán los datos.
      */
@@ -378,8 +387,9 @@ public class datos{
     }
     
     /**
-     * Elimina los datos especificados en la tabla 'Socios'.
+     * Elimina datos específicos de la tabla socios.
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de desafiliación.
+     * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoSocio Código del socio al que se eliminarán los datos.
      */
@@ -400,8 +410,9 @@ public class datos{
     }
     
     /**
-     * Elimina los datos especificados en la tabla 'Proveedor.
+     * Elimina datos específicos de la tabla proveedor.
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
+     * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoProveedor Código del proveedor al que se eliminarán los datos.
      */

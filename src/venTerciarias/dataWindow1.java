@@ -71,7 +71,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
                 
-                //new escritorJSON().writeDataWorkerJson(rs.getString("password"),rs.getInt("codigo_emp"), rs.getString("nombre_emp"), rs.getString("apellidop_emp"), rs.getString("apellidom_emp"), rs.getString("domicilio"), rs.getString("puesto"), rs.getInt("experiencia"), rs.getString("grado_estudios"), rs.getInt("contacto"), rs.getInt("edad"), rs.getString("estado"), rs.getString("datos_extra"));
+                //new escritorJSON().writeDataWorkerJson(rs.getInt("codigo_emp"));
                 
                 byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);

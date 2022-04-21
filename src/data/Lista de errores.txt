@@ -1,6 +1,6 @@
 <no existe>: etiqueta sin asignar
-¿Error Prueba: error aún no encontrado
-Error <random+E>: error que no fue asignado a un número específico de error, pero que se conoce su funcionalidad
+Error Prueba: error aún no encontrado
+Error <random+E>: error que no le fue asignado a un número específico de error, pero que se conoce su funcionalidad. Favor de reportarlo
 
 Error 0: error desconocido y no mapeado
 

@@ -67,7 +67,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
                 etiUCompra.setText(String.valueOf(rs.getDate("fecha_ucompra")));
                 
-                new escritorJSON().writeDataPartnerJson(rs.getInt("codigo_part"), rs.getString("nombre_part"), rs.getString("apellidop_part"), rs.getString("apellidom_part"), rs.getString("tipo_socio"), rs.getString("correo"), rs.getString("rfc"), rs.getString("datos_extra"));
+                //new escritorJSON().writeDataPartnerJson(rs.getInt("codigo_part"));
                 
                 byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);

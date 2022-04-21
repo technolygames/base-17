@@ -6,7 +6,6 @@ import paneles.delDatosPanel3;
 import paneles.modDatosPanel3;
 //java
 import java.awt.BorderLayout;
-import java.awt.Component;
 
 public class menuDatosVentana3 extends javax.swing.JFrame{
     public menuDatosVentana3(){

@@ -22,7 +22,7 @@ public class Icono{
     /**
      * Obtiene el ícono que está destinado a usarse en las ventanas.
      * 
-     * @return La imagen a usar
+     * @return La imagen a usar.
      */
     public Image getIconImage(){
         p=new Properties();

@@ -1,17 +1,19 @@
 package paneles;
-
-import clases.BackupHandler.lectorJSON;
+//clases
 import clases.laf;
 import clases.logger;
+import clases.BackupHandler.lectorJSON;
+//java
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
+//extension larga
+import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class workerDataRestore extends javax.swing.JPanel{

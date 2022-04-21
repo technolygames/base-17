@@ -64,7 +64,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
                 etiUEntrega.setText(String.valueOf(rs.getDate("fecha_uentrega")));
                 
-                new escritorJSON().writeDataProviderJson(rs.getInt("codigo_prov"), rs.getString("nombre_prov"), rs.getString("apellidop_prov"), rs.getString("apellidom_prov"), rs.getString("empresa"), rs.getInt("contacto"));
+                //new escritorJSON().writeDataProviderJson(rs.getInt("codigo_prov"));
                 
                 byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
