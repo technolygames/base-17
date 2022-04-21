@@ -45,6 +45,7 @@ public class databaseExport extends javax.swing.JPanel{
         try{
             Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
             
+            pr.getOutputStream().write(13);
             is=pr.getInputStream();
             os=new FileOutputStream(new File(System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada));
             

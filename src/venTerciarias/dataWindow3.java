@@ -1,5 +1,7 @@
 package venTerciarias;
 //clases
+import clases.BackupHandler.escritorJSON;
+import clases.BackupHandler.lectorJSON;
 import clases.datos;
 import clases.Icono;
 import clases.laf;
@@ -62,8 +64,9 @@ public class dataWindow3 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
                 etiUEntrega.setText(String.valueOf(rs.getDate("fecha_uentrega")));
                 
-                byte[] imagen=rs.getBytes("foto");
+                new escritorJSON().writeDataProviderJson(rs.getInt("codigo_prov"), rs.getString("nombre_prov"), rs.getString("apellidop_prov"), rs.getString("apellidom_prov"), rs.getString("empresa"), rs.getInt("contacto"));
                 
+                byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
                 ImageIcon im=new ImageIcon(i);
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
@@ -164,7 +167,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
 
-        genLabel.setText("99876");
+        genLabel.setText("12345");
 
         storeImgButton.setText("Guardar imagen");
 

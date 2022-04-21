@@ -202,11 +202,13 @@ public class datos{
      * @param apellidoPaternoSocio Apellido paterno del socio.
      * @param apellidoMaternoSocio Apellido materno del socio.
      * @param tipoSocio Tipo de afiliación.
+     * @param correo Correo de contacto del empleado.
+     * @param rfc RFC para tramitar factura.
      * @param datosExtra Datos extra que se quieran agregar como descripción del socio.
      * @param foto Foto del socio para identificarlo.
      */
-    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String datosExtra,InputStream foto){
-        String ins4_query="insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,now(),now());";
+    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String correo,String rfc,String datosExtra,InputStream foto){
+        String ins4_query="insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,correo,rfc,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins4_query);
             ps.setInt(1,codigoSocio);
@@ -214,8 +216,10 @@ public class datos{
             ps.setString(3,apellidoPaternoSocio);
             ps.setString(4,apellidoMaternoSocio);
             ps.setString(5,tipoSocio);
-            ps.setString(6,datosExtra);
-            ps.setBinaryStream(7,foto);
+            ps.setString(6,correo);
+            ps.setString(7,rfc);
+            ps.setString(8,datosExtra);
+            ps.setBinaryStream(9,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);

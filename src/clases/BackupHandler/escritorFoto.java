@@ -72,9 +72,9 @@ public class escritorFoto{
         try{
             ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+codigoSocio+"';");
             
-            dir2=System.getProperty("user.dir")+"\\src\\data\\dataBackup\\Socios\\"+nombreSocio+"\\"+nombreSocio+"-"+codigoSocio+".jpg";
+            dir2=System.getProperty("user.dir")+"\\src\\data\\dataBackup\\Socios\\"+nombreSocio+"-"+codigoSocio+"\\"+nombreSocio+"-"+codigoSocio+".jpg";
             
-            FileOutputStream fos=new FileOutputStream(dir1);
+            FileOutputStream fos=new FileOutputStream(dir2);
             byte[] bytes;
             Blob blob;
             rs=ps.executeQuery();
@@ -113,9 +113,9 @@ public class escritorFoto{
         try{
             ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+codigoProveedor+"';");
             
-            dir3=System.getProperty("user.dir")+"\\src\\data\\dataBackup\\Proveedores\\"+nombreProveedor+"\\"+nombreProveedor+"-"+codigoProveedor+".jpg";
+            dir3=System.getProperty("user.dir")+"\\src\\data\\dataBackup\\Proveedores\\"+nombreProveedor+"-"+codigoProveedor+"\\"+nombreProveedor+"-"+codigoProveedor+".jpg";
             
-            FileOutputStream fos=new FileOutputStream(dir1);
+            FileOutputStream fos=new FileOutputStream(dir3);
             byte[] bytes;
             Blob blob;
             rs=ps.executeQuery();

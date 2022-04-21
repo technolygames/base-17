@@ -1,0 +1,11 @@
+{
+   "codigo_part": 12345,
+   "nombre_part": "Prueba",
+   "apellidop_part": "Prueba",
+   "apellidom_part": "Prueba",
+   "tipo_socio": "Item 1",
+   "correo": "prueba123@hotmail.com",
+   "rfc": "prueba123456prb/1",
+   "datos_extra": "Datos extra de prueba",
+   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Socios\\Prueba-12345\\Prueba-12345.jpg"
+}

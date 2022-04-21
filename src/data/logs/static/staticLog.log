@@ -773,3 +773,58 @@ abr. 19, 2022 3:24:03 P. M. clases.logger staticLogger
 INFO: Se guardó correctamente la imagen del empleado.
 Ocurrió en la clase 'venTerciarias.dataWindow4', en el método 'botones(storeImgButton)'.
 Usuario que hizo la acción: 99876
+abr. 20, 2022 5:01:13 P. M. clases.logger staticLogger
+WARNING: Error 14: Column 'correo' not found..
+Ocurrió en 'paneles.modDatosPanel2', en el método 'consulta()'
+abr. 20, 2022 5:11:28 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 5:12:09 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 5:12:09 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 5:12:11 P. M. clases.logger staticLogger
+WARNING: Error 18: no se seleccionó el nuevo tipo de socio.
+Ocurrió en 'paneles.modDatosPanel2', en el método 'botones(jCheckBox4)'
+abr. 20, 2022 5:12:11 P. M. clases.logger staticLogger
+WARNING: Error 18: no se seleccionó el nuevo tipo de socio.
+Ocurrió en 'paneles.modDatosPanel2', en el método 'botones(jCheckBox4)'
+abr. 20, 2022 5:12:11 P. M. clases.logger staticLogger
+WARNING: Error 18: no se seleccionó el nuevo tipo de socio.
+Ocurrió en 'paneles.modDatosPanel2', en el método 'botones(jCheckBox4)'
+abr. 20, 2022 5:22:54 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosSocio()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 6:29:10 P. M. clases.logger staticLogger
+WARNING: Error 2IO: C:\Users\erick\Desktop\Base-jdk16\base\src\data\dataBackup\Socios\Prueba-12345\Prueba-12345.json (El sistema no puede encontrar la ruta especificada).
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataPartnerJson()'
+abr. 20, 2022 6:33:53 P. M. clases.logger staticLogger
+WARNING: Error 0: null.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'storePicPartner()'
+abr. 20, 2022 6:36:06 P. M. clases.logger staticLogger
+WARNING: Error 0: null.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'storePicPartner()'
+abr. 20, 2022 6:44:17 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del socio.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 6:49:02 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was NUMBER at line 2 column 26 path $.codigo_part.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataProviderJson()'
+abr. 20, 2022 7:07:04 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 7:13:26 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'.
+Usuario que hizo la acción: 0
+abr. 20, 2022 7:27:18 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot read the array length because "b" is null.
+Ocurrió en la clase 'paneles.databaseExport', en el método 'copia()'

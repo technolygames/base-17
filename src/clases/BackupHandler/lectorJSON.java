@@ -39,7 +39,7 @@ public class lectorJSON{
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
      * 
-     * @param dir Nombre el archivo a leer.
+     * @param dir Nombre el archivo a+- leer.
      */
     public void readDataWorkerJson(String dir){
         try{
@@ -97,10 +97,13 @@ public class lectorJSON{
     }
     
     protected int codigoSocio;
+    
     protected String nombreSocio;
     protected String apellidoPaternoSocio;
     protected String apellidoMaternoSocio;
     protected String tipoSocio;
+    protected String correo;
+    protected String rfc;
     protected String datosExtra2;
     protected String foto2;
     /**
@@ -124,13 +127,17 @@ public class lectorJSON{
                     apellidoMaternoSocio=jsonr.nextString();
                 }else if(name.equals("tipo_socio")){
                     tipoSocio=jsonr.nextString();
+                }else if(name.equals("correo")){
+                    correo=jsonr.nextString();
+                }else if(name.equals("rfc")){
+                    rfc=jsonr.nextString();
                 }else if(name.equals("datos_extra")){
                     datosExtra2=jsonr.nextString();
                 }else if(name.equals("imagen")){
                     foto2=jsonr.nextString();
                 }
             }
-            new datos().insertarDatosSocio(codigoSocio,nombreSocio,apellidoPaternoSocio,apellidoMaternoSocio,tipoSocio,datosExtra2,new FileInputStream(foto2));
+            new datos().insertarDatosSocio(codigoSocio,nombreSocio,apellidoPaternoSocio,apellidoMaternoSocio,tipoSocio,correo,rfc,datosExtra2,new FileInputStream(foto2));
             jsonr.endObject();
             
             jsonr.close();

@@ -19,7 +19,7 @@ public class partDataRestore extends javax.swing.JPanel{
         initComponents();
         new laf().LookAndFeel(partDataRestore.this,partDataRestore.class.getName(),"partDataRestore");
         
-        botones();
+        botones(); 
     }
     
     protected JFileChooser filechooser;
@@ -63,7 +63,7 @@ public class partDataRestore extends javax.swing.JPanel{
         });
         
         loadDataButton.addActionListener((a)->{
-            new lectorJSON().readDataProviderJson(jTextField1.getText());
+            new lectorJSON().readDataPartnerJson(jTextField1.getText());
         });
     }
     

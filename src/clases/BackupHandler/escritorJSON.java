@@ -82,12 +82,14 @@ public class escritorJSON{
      * @param apellidoPaternoSocio Apellido paterno del socio.
      * @param apellidoMaternoSocio Apellido materno del socio.
      * @param tipoSocio Tipo de afiliación del socio.
+     * @param correo Correo de contacto del socio.
+     * @param rfc RFC del socio.
      * @param datosExtra Datos extras.
      */
-    public void writeDataPartnerJson(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String datosExtra){
+    public void writeDataPartnerJson(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String correo,String rfc,String datosExtra){
         try{
-            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio).mkdir();
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio+"/"+nombreSocio+"-"+codigoSocio+".json"),StandardCharsets.UTF_8));
+            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio+"-"+codigoSocio).mkdir();
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Socios/"+nombreSocio+"-"+codigoSocio+"/"+nombreSocio+"-"+codigoSocio+".json"),StandardCharsets.UTF_8));
             new escritorFoto().storePicPartner(codigoSocio,nombreSocio);
             jsonw.beginObject();
             jsonw.setIndent("   ");
@@ -96,6 +98,8 @@ public class escritorJSON{
             jsonw.name("apellidop_part").value(apellidoPaternoSocio);
             jsonw.name("apellidom_part").value(apellidoMaternoSocio);
             jsonw.name("tipo_socio").value(tipoSocio);
+            jsonw.name("correo").value(correo);
+            jsonw.name("rfc").value(rfc);
             jsonw.name("datos_extra").value(datosExtra);
             jsonw.name("imagen").value(escritorFoto.dir2);
             jsonw.endObject();
@@ -125,8 +129,8 @@ public class escritorJSON{
      */
     public void writeDataProviderJson(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto){
         try{
-            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor).mkdir();
-            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor+"/"+nombreProveedor+"-"+codigoProveedor+".json"),StandardCharsets.UTF_8));
+            new File(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor+"-"+codigoProveedor).mkdir();
+            jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Proveedores/"+nombreProveedor+"-"+codigoProveedor+"/"+nombreProveedor+"-"+codigoProveedor+".json"),StandardCharsets.UTF_8));
             new escritorFoto().storePicProvider(codigoProveedor,nombreProveedor);
             jsonw.beginObject();
             jsonw.setIndent("   ");
