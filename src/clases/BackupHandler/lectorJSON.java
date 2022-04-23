@@ -36,6 +36,9 @@ public class lectorJSON{
     protected String estado;
     protected String datosExtra1;
     protected String foto1;
+    protected int anular;
+    protected int numeroVentas;
+    protected int numeroAcciones;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
      * 
@@ -75,9 +78,12 @@ public class lectorJSON{
                     datosExtra1=jsonr.nextString();
                 }else if(name.equals("imagen")){
                     foto1=jsonr.nextString();
+                }else if(name.equals("datos")){
+                    leerDatosSecundarios(jsonr);
                 }
             }
             new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,domicilio,puesto,experiencia,gradoEstudios,contacto1,edad,estado,datosExtra1,new FileInputStream(foto1));
+            new datos().insertarDatosConteo(codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,numeroVentas,numeroAcciones);
             jsonr.endObject();
             
             jsonr.close();
@@ -93,6 +99,36 @@ public class lectorJSON{
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error ISE: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'",Level.WARNING);
             new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"readDataWorkerJson-ISE",n.fillInStackTrace());
+        }
+    }
+    
+    /**
+     * Lee datos del método para cargar datos de los empleados. Estos datos son los que vienen como objetos secundarios.
+     * 
+     * @param json El lector del archivo json con esos datos
+     * 
+     * Nota: no usar en otros métodos.
+     */
+    protected void leerDatosSecundarios(JsonReader json){
+        try{
+            json.beginObject();
+            while(json.hasNext()){
+                String name=json.nextName();
+                if(name.equals("no_ventas")){
+                    numeroVentas=jsonr.nextInt();
+                }else if(name.equals("no_acciones")){
+                    numeroAcciones=jsonr.nextInt();
+                }
+            }
+            json.endObject();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'leerDatosSecundarios()'",Level.WARNING);
+            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"leerDatosSecundarios-2IO",e.fillInStackTrace());
+        }catch(IllegalStateException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'leerDatosSecundarios()'",Level.WARNING);
+            new logger().exceptionLogger(lectorJSON.class.getName(),Level.WARNING,"leerDatosSecundarios-ISE",x.fillInStackTrace());
         }
     }
     

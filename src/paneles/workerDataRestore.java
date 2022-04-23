@@ -65,7 +65,6 @@ public class workerDataRestore extends javax.swing.JPanel{
         });
         
         loadDataButton.addActionListener((a)->{
-            
             new lectorJSON().readDataWorkerJson(jTextField1.getText());
         });
     }

@@ -874,3 +874,58 @@ abr. 21, 2022 2:14:52 P. M. clases.logger staticLogger
 INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
 Ocurrió en la clase 'clases.datos', en el método 'insertarDatosProveedor()'.
 Usuario que hizo la acción: 0
+abr. 23, 2022 9:54:48 A. M. clases.logger staticLogger
+WARNING: Error 14: no hay datos que concuerden con los datos escritos.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+abr. 23, 2022 10:02:52 A. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 23, 2022 10:03:01 A. M. clases.logger staticLogger
+WARNING: Error ISE: Nesting problem..
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 10:03:01 A. M. clases.logger staticLogger
+WARNING: Error ISE: Nesting problem..
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 10:05:42 A. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 23, 2022 10:05:52 A. M. clases.logger staticLogger
+WARNING: Error ISE: JSON must have only one top-level value..
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 10:05:52 A. M. clases.logger staticLogger
+WARNING: Error ISE: JSON must have only one top-level value..
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 10:24:51 A. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 23, 2022 10:47:26 A. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.flush()" because "this.jsonw" is null.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+abr. 23, 2022 10:55:18 A. M. clases.logger staticLogger
+WARNING: Error 14: Column 'nombre_emp' not found..
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 11:07:31 A. M. clases.logger staticLogger
+WARNING: Error 14: Column 'codigo_emp' in where clause is ambiguous.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 23, 2022 2:16:13 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was BEGIN_OBJECT at line 16 column 14 path $.datos.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 23, 2022 2:24:39 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected END_OBJECT but was NAME at line 17 column 8 path $.datos..
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 23, 2022 2:25:20 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected END_OBJECT but was NAME at line 17 column 8 path $.datos..
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 23, 2022 2:25:20 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected END_OBJECT but was NAME at line 17 column 8 path $.datos..
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 23, 2022 2:34:37 P. M. clases.logger staticLogger
+WARNING: Error 11: Duplicate entry '1234567' for key 'PRIMARY'.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'
+abr. 23, 2022 2:34:39 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo()'.
+Usuario que hizo la acción: 0

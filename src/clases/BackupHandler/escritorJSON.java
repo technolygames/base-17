@@ -34,7 +34,7 @@ public class escritorJSON{
      */
     public void writeDataWorkerJson(int codigoEmpleado){
         try{
-            ps=new datos().getConnection().prepareStatement("select*from empleados where codigo_emp='"+codigoEmpleado+"'");
+            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas,conteo.no_acciones from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
             rs=ps.executeQuery();
             while(rs.next()){
                 new File(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")).mkdir();
@@ -56,6 +56,10 @@ public class escritorJSON{
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
                 jsonw.name("imagen").value(escritorFoto.dir1);
+                jsonw.name("datos").beginObject();
+                jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
+                jsonw.name("no_acciones").value(rs.getInt("no_acciones"));
+                jsonw.endObject();
                 jsonw.endObject();
                 break;
             }

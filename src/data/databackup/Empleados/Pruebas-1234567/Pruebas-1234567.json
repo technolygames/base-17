@@ -12,5 +12,9 @@
    "edad": 20,
    "estado": "Activo",
    "datos_extra": "datos extra de prueba",
-   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Empleados\\Pruebas-1234567\\Pruebas-1234567.jpg"
+   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Empleados\\Pruebas-123456\\Pruebas-123456.jpg",
+   "datos": {
+      "no_ventas": 12,
+      "no_acciones": 12
+   }
 }
