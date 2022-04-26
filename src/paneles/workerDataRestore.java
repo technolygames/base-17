@@ -20,7 +20,7 @@ public class workerDataRestore extends javax.swing.JPanel{
     public workerDataRestore(){
         initComponents();
         new laf().LookAndFeel(workerDataRestore.this,workerDataRestore.class.getName(),"workerDataRestore");
-        
+         
         botones();
     }
     

@@ -105,6 +105,9 @@ public final class start extends javax.swing.JFrame{
                 dispose();
                 nameUser=rs.getString("nombre_emp");
                 userID=rs.getInt("codigo_emp");
+                
+                new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                
                 new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
                 new logger().staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID,Level.INFO);
             }else{

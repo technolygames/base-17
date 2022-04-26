@@ -38,7 +38,6 @@ public class lectorJSON{
     protected String foto1;
     protected int anular;
     protected int numeroVentas;
-    protected int numeroAcciones;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
      * 
@@ -80,10 +79,12 @@ public class lectorJSON{
                     foto1=jsonr.nextString();
                 }else if(name.equals("datos")){
                     leerDatosSecundarios(jsonr);
+                }else{
+                    jsonr.skipValue();
                 }
             }
             new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,domicilio,puesto,experiencia,gradoEstudios,contacto1,edad,estado,datosExtra1,new FileInputStream(foto1));
-            new datos().insertarDatosConteo(codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,numeroVentas,numeroAcciones);
+            new datos().insertarDatosConteo(codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,numeroVentas);
             jsonr.endObject();
             
             jsonr.close();
@@ -116,8 +117,6 @@ public class lectorJSON{
                 String name=json.nextName();
                 if(name.equals("no_ventas")){
                     numeroVentas=jsonr.nextInt();
-                }else if(name.equals("no_acciones")){
-                    numeroAcciones=jsonr.nextInt();
                 }
             }
             json.endObject();

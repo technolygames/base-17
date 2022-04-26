@@ -26,12 +26,15 @@ public class delDatosPanel1 extends javax.swing.JPanel{
             try{
                 if(!jTextField1.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());
-                    
                     int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
                     if(opcion==0){
                         new escritorJSON().writeDataWorkerJson(codigo);
+                        new datos().eliminarDatosProductos(codigo);
+                        new datos().eliminarDatosConteo(codigo); 
                         new datos().eliminarDatosEmpleado(codigo);
                     }else if(opcion==1){
+                        new datos().eliminarDatosProductos(codigo);
+                        new datos().eliminarDatosConteo(codigo);
                         new datos().eliminarDatosEmpleado(codigo);
                     }
                 }else{

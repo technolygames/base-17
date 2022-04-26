@@ -70,8 +70,8 @@ public class dataWindow1 extends javax.swing.JDialog{
                 jTextArea2.setText(rs.getString("datos_extra"));
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
-                
-                new escritorJSON().writeDataWorkerJson(rs.getInt("codigo_emp"));
+                 
+                //new escritorJSON().writeDataWorkerJson(rs.getInt("codigo_emp"));
                 
                 byte[] imagen=rs.getBytes("foto");
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
@@ -265,7 +265,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
-        genLabel.setText("123456");
+        genLabel.setText("99876");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -929,3 +929,428 @@ abr. 23, 2022 2:34:39 P. M. clases.logger staticLogger
 INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
 Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo()'.
 Usuario que hizo la acción: 0
+abr. 25, 2022 12:04:26 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:04:29 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:04:29 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:12:43 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:12:47 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:12:47 P. M. clases.logger staticLogger
+WARNING: Error 17: org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; Invalid byte 1 of 1-byte UTF-8 sequence..
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:15:07 P. M. clases.logger staticLogger
+WARNING: Error EIIE: null.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:17:00 P. M. clases.logger staticLogger
+WARNING: Error EIIE: null.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:33:13 P. M. clases.logger staticLogger
+WARNING: Error EIIE: null.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:35:18 P. M. clases.logger staticLogger
+WARNING: Error EIIE: null.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 12:44:26 P. M. clases.logger staticLogger
+WARNING: Error EIIE: null.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 2:27:20 P. M. clases.logger staticLogger
+WARNING: Error NCDFE: org/apache/commons/javaflow/bytecode/Continuable.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 2:39:34 P. M. clases.logger staticLogger
+WARNING: Error NCDFE: org/apache/commons/javaflow/bytecode/Continuable.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 25, 2022 4:49:51 P. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 99876
+abr. 25, 2022 4:52:32 P. M. clases.logger staticLogger
+INFO: Inicio de sesión correcto.
+Ocurrió en la clase 'venPrimarias.start', en el método 'login()'.
+Usuario logeado: 99876
+abr. 25, 2022 4:54:19 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 4:54:24 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:54:24 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:54:34 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:54:34 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:54:34 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:59:00 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:59:00 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:59:00 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 4:59:00 P. M. clases.logger staticLogger
+WARNING: Error 13: Cannot delete or update a parent row: a foreign key constraint fails (`tienda`.`conteo`, CONSTRAINT `conteo_ibfk_1` FOREIGN KEY (`codigo_emp`) REFERENCES `empleados` (`codigo_emp`)).
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 25, 2022 5:00:07 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:37 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:37 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:37 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:00:40 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:55 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:56 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:56 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:57 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:57 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:28:57 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:31:09 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 25, 2022 5:32:56 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 19 column 24 path $.datos.fechas_logIn.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'leerDatosSecundarios()'
+abr. 25, 2022 5:32:58 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 19 column 24 path $.datos.fechas_logIn.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 25, 2022 5:32:58 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was STRING at line 19 column 24 path $.datos.fechas_logIn.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 25, 2022 5:39:57 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:31:33 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.close()" because "this.jsonw" is null.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 26, 2022 2:31:41 P. M. clases.logger staticLogger
+WARNING: Error 13: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where empleados.codigo_emp='99876' and conteo.codigo_emp='99876' and producto...' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 26, 2022 2:31:41 P. M. clases.logger staticLogger
+WARNING: Error 13: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where empleados.codigo_emp='99876' and conteo.codigo_emp='99876' and producto...' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 26, 2022 2:34:53 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.close()" because "this.jsonw" is null.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 26, 2022 2:35:05 P. M. clases.logger staticLogger
+WARNING: Error 13: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where empleados.codigo_emp='99876', conteo.codigo_emp='99876' and productos.c...' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 26, 2022 2:35:05 P. M. clases.logger staticLogger
+WARNING: Error 13: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where empleados.codigo_emp='99876', conteo.codigo_emp='99876' and productos.c...' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'
+abr. 26, 2022 2:41:30 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.close()" because "this.jsonw" is null.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 26, 2022 2:41:31 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:31 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:31 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:31 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:31 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:41:33 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:51:25 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was NUMBER at line 18 column 24 path $.datos.no_acciones.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'leerDatosSecundarios()'
+abr. 26, 2022 2:51:28 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was NUMBER at line 18 column 24 path $.datos.no_acciones.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 26, 2022 2:51:28 P. M. clases.logger staticLogger
+WARNING: Error ISE: Expected a name but was NUMBER at line 18 column 24 path $.datos.no_acciones.
+Ocurrió en la clase 'clases.BackupHandler.lectorJSON', en el método 'readDataWorkerJson()'
+abr. 26, 2022 2:52:12 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:52:12 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:52:12 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.close()" because "this.jsonw" is null.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:06 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:08 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:08 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:08 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 2:55:08 P. M. clases.logger staticLogger
+INFO: Rel 3: se eliminaron correctamente los datos de la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'eliminarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:01:13 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "com.google.gson.stream.JsonWriter.close()" because "this.jsonw" is null.
+Ocurrió en la clase 'clases.BackupHandler.escritorJSON', en el método 'writeDataWorkerJson()'
+abr. 26, 2022 3:04:25 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:04:25 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:04:25 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:08:40 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:08:40 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:08:40 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:15:05 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:15:05 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:16:30 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:16:30 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:16:30 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:16:30 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:16:30 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosEmpleado()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:18:01 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosConteo2()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:19:30 P. M. clases.logger staticLogger
+INFO: Se guardó correctamente la imagen del empleado.
+Ocurrió en la clase 'clases.BackupHandler.escritorFoto', en el método 'botones(storeImgButton)'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:35:47 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a ka base de datos.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(mkPaidButton)'.
+Usuario que hizo los cambios: 0
+abr. 26, 2022 3:35:47 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:35:47 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:39:12 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a ka base de datos.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(mkPaidButton)'.
+Usuario que hizo los cambios: 0
+abr. 26, 2022 3:39:20 P. M. clases.logger staticLogger
+WARNING: Error 12: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'qhere codigo_emp='99876'' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'
+abr. 26, 2022 3:39:20 P. M. clases.logger staticLogger
+WARNING: Error 12: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'qhere codigo_emp='99876'' at line 1.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'
+abr. 26, 2022 3:40:41 P. M. clases.logger staticLogger
+INFO: Rel 1: se guardaron correctamente los datos a ka base de datos.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(mkPaidButton)'.
+Usuario que hizo los cambios: 0
+abr. 26, 2022 3:40:41 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'.
+Usuario que hizo la acción: 0
+abr. 26, 2022 3:40:41 P. M. clases.logger staticLogger
+INFO: Rel 2: se actualizaron correctamente los datos.
+Ocurrió en la clase 'clases.datos', en el método 'actualizarDatosConteo()'.
+Usuario que hizo la acción: 0

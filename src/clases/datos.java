@@ -299,18 +299,17 @@ public class datos{
     /**
      * Guarda los datos para conteo de asistencia del empleado.
      * 
-     * @param codigoEmpleado 
-     * @param nombreEmpleado 
-     * @param apellidoPaternoEmpleado 
-     * @param apellidoMaternoEmpleado 
+     * @param codigoEmpleado Código de identificación del empleado.
+     * @param nombreEmpleado Nombre(s) del empleado.
+     * @param apellidoPaternoEmpleado Apellido paterno del empleado.
+     * @param apellidoMaternoEmpleado Apellido materno del empleado.
      */
     public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado){
         try{
-            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,fecha_sesion) values('"+codigoEmpleado+"','"+nombreEmpleado+"','"+apellidoPaternoEmpleado+"','"+apellidoMaternoEmpleado+"',now());");
+            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values('"+codigoEmpleado+"','"+nombreEmpleado+"','"+apellidoPaternoEmpleado+"','"+apellidoMaternoEmpleado+"',0,now());");
             ps.execute();
             
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -323,22 +322,20 @@ public class datos{
     /**
      * Guarda los datos para conteo de asistencia del empleado.
      * 
-     * @param codigoEmpleado 
-     * @param nombreEmpleado 
-     * @param apellidoPaternoEmpleado 
-     * @param apellidoMaternoEmpleado 
-     * @param numeroVentas 
-     * @param numeroAcciones 
+     * @param codigoEmpleado Código de identificación del empleado.
+     * @param nombreEmpleado Nombre(s) del empleado.
+     * @param apellidoPaternoEmpleado Apellido paterno del empleado.
+     * @param apellidoMaternoEmpleado Apellido materno del empleado.
+     * @param numeroVentas Cantidad de ventas realizadas por el empleado.
      * 
      * Nota: este método es solo para cargar datos de respaldo eliminados previamente.
      */
-    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,int numeroVentas,int numeroAcciones){
+    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,int numeroVentas){
         try{
-            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,no_acciones,fecha_sesion) values('"+codigoEmpleado+"','"+nombreEmpleado+"','"+apellidoPaternoEmpleado+"','"+apellidoMaternoEmpleado+"','"+numeroVentas+"','"+numeroAcciones+"',now());");
+            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values('"+codigoEmpleado+"','"+nombreEmpleado+"','"+apellidoPaternoEmpleado+"','"+apellidoMaternoEmpleado+"','"+numeroVentas+"',now());");
             ps.execute();
             
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+            new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
         }catch(SQLException e){
@@ -433,7 +430,6 @@ public class datos{
             ps=getConnection().prepareStatement("update conteo "+consulta);
             ps.execute();
             
-            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
             new logger().staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
@@ -441,6 +437,30 @@ public class datos{
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteo()'",Level.WARNING);
             new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"actualizarDatosConteo-12",e.fillInStackTrace());
+        }
+    }
+    
+    /**
+     * Elimina datos específicos de la tabla productos.
+     * Prácticamente son todos los productos que ha vendido el empleado al que se le eliminaron los datos de la base de datos.
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
+     * Se pueden reestablecer si previamente se creó la copia de seguridad. Excepto los productos que ha vendido.
+     * En su caso, solo será añadido un número con la cantidad de productos que vendió antes de que fueran eliminados los datos.
+     * 
+     * @param codigoEmpleado Código del proveedor al que se eliminarán los datos.
+     */
+    public void eliminarDatosProductos(int codigoEmpleado){
+        try{
+            ps=getConnection().prepareStatement("delete from productos where codigo_emp='"+codigoEmpleado+"';");
+            ps.execute();
+            
+            new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"eliminarDatosProductos-13",e.fillInStackTrace());
         }
     }
     
@@ -526,7 +546,6 @@ public class datos{
             ps=getConnection().prepareStatement("delete from conteo where codigo_emp='"+codigoEmpleado+"';");
             ps.execute();
             
-            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
             new logger().staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();

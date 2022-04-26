@@ -20,7 +20,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.setToolTipText("Regresar al formulario");
+        backButton.setToolTipText("Regresar al formulario"); 
         backButton.addActionListener((e)->{
             setVisible(false);
             dispose();

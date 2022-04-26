@@ -1,0 +1,19 @@
+{
+   "password": "123456",
+   "codigo_emp": 99876,
+   "nombre_emp": "Prueba",
+   "apellidop_emp": "Prueba",
+   "apellidom_emp": "Prueba",
+   "domicilio": "calle falsa 123, springfield, gringolandia",
+   "puesto": "Programador",
+   "experiencia": 0,
+   "grado_estudios": "Bachillerato",
+   "contacto": 123456789,
+   "edad": 18,
+   "estado": "Activo",
+   "datos_extra": "datos extra de prueba",
+   "imagen": "C:\\Users\\erick\\Desktop\\Base-jdk16\\base\\src\\data\\dataBackup\\Empleados\\Pruebas-123456\\Pruebas-123456.jpg",
+   "datos": {
+      "no_ventas": 12
+   }
+}

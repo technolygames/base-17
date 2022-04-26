@@ -34,12 +34,13 @@ public class escritorJSON{
      */
     public void writeDataWorkerJson(int codigoEmpleado){
         try{
-            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas,conteo.no_acciones from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
+            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
             rs=ps.executeQuery();
             while(rs.next()){
                 new File(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/src/data/dataBackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+"/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicWorker(rs.getInt("codigo_emp"),rs.getString("nombre_emp"));
+                
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
                 jsonw.name("password").value(rs.getString("password"));
@@ -58,12 +59,10 @@ public class escritorJSON{
                 jsonw.name("imagen").value(escritorFoto.dir1);
                 jsonw.name("datos").beginObject();
                 jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
-                jsonw.name("no_acciones").value(rs.getInt("no_acciones"));
                 jsonw.endObject();
                 jsonw.endObject();
                 break;
             }
-            
             ps.close();
             rs.close();
             jsonw.flush();
@@ -80,6 +79,10 @@ public class escritorJSON{
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'",Level.WARNING);
             new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataWorkerJson-14",n.fillInStackTrace());
+        }catch(NullPointerException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 0: "+s.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'",Level.WARNING);
+            new logger().exceptionLogger(escritorJSON.class.getName(),Level.WARNING,"writeDataWorkerJson-0",s.fillInStackTrace());
         }
     }
     
