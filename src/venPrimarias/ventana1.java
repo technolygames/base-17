@@ -208,10 +208,9 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().staticLogger("Error 17: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
                 new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-17",e.fillInStackTrace());
             }catch(ExceptionInInitializerError x){
-                System.out.println(x.getCause());
-                /*JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error EIIE",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error EIIE",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error EIIE: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-EIIE",x.fillInStackTrace());*/
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-EIIE",x.fillInStackTrace());
             }catch(NoClassDefFoundError n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error NCDFE",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error NCDFE: "+n.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
@@ -221,11 +220,17 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().staticLogger("Error 10: "+k.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
                 new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-10",k.fillInStackTrace());
             }catch(IOException s){
-                s.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-2IO",s.fillInStackTrace());
             }catch(JRFontNotFoundException l){
-                l.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+l.getMessage(),"Error JRFNFE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error JRFNFE: "+l.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-JRFNFE",l.fillInStackTrace());
             }catch(InaccessibleObjectException r){
-                r.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+r.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error IAE: "+r.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-IAE",r.fillInStackTrace());
             }
         });
         
@@ -250,7 +255,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                 new logger().staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.INFO);
                 new datos().actualizarDatosConteo("set no_ventas=no_ventas+1 where codigo_emp='"+txtCodEmp.getText()+"' and fecha_sesion='"+new SimpleDateFormat("yyyy/MM/dd").format(new Date())+"';");
-                //new datosTicket().imprimirTicket(jTable1,"Prueba",total,"efectivo",calcWindow.cambio);
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
                 new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'",Level.WARNING);

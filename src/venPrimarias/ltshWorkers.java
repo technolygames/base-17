@@ -58,9 +58,9 @@ public class ltshWorkers extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados;");
+            ps=new datos().getConnection().prepareStatement("select * from empleados;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+            dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
             }
@@ -92,9 +92,9 @@ public class ltshWorkers extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where codigo_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
@@ -111,9 +111,9 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where nombre_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where nombre_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
@@ -130,9 +130,9 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where apellidop_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidop_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
@@ -149,9 +149,9 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,fecha_registro,fecha_sesion from empleados where apellidom_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidom_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
@@ -211,7 +211,7 @@ public class ltshWorkers extends javax.swing.JFrame{
 
         searchButton.setText("Buscar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del empleado", "Nombre", "Apellido paterno", "Apellido materno" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno" }));
 
         backButton.setText("Regresar");
 

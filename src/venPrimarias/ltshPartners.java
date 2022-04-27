@@ -57,11 +57,11 @@ public class ltshPartners extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<TableModel>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios;");
+            ps=new datos().getConnection().prepareStatement("select * from socios;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+            dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -83,11 +83,11 @@ public class ltshPartners extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where codigo_part="+jTextField1.getText()+";");
+                    ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part="+jTextField1.getText()+";");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
@@ -102,11 +102,11 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where nombre_part='"+jTextField1.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from socios where nombre_part='"+jTextField1.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
@@ -121,11 +121,11 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidop_part='"+jTextField1.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from socios where apellidop_part='"+jTextField1.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
@@ -140,11 +140,11 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,fecha_ingreso,fecha_ucompra from socios where apellidom_part='"+jTextField1.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from socios where apellidom_part='"+jTextField1.getText()+"';");
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del socio","Nombre del socio","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fegra de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7),rs.getDate(8)});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
@@ -213,7 +213,7 @@ public class ltshPartners extends javax.swing.JFrame{
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Socios");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del socio", "Nombre", "Apellido paterno", "Apellido materno" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno" }));
 
         searchButton.setText("Buscar");
 
@@ -246,7 +246,7 @@ public class ltshPartners extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))

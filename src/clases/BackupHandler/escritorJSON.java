@@ -63,6 +63,7 @@ public class escritorJSON{
                 jsonw.endObject();
                 break;
             }
+            
             ps.close();
             rs.close();
             jsonw.flush();

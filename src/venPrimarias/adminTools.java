@@ -17,10 +17,16 @@ public class adminTools extends javax.swing.JFrame{
         new laf().LookAndFeel(adminTools.this,adminTools.class.getName(),"adminTools");
         
         botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Herramientas de administrador");
         setResizable(false);
+    }
+    
+    protected void settings(){
+        jMenuItem5.setEnabled(false);
+        jMenuItem6.setEnabled(false);
     }
     
     protected final void botones(){

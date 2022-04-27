@@ -79,13 +79,7 @@ public final class start extends javax.swing.JFrame{
         });
         
         loginButton.addActionListener((ae)->{
-            try{
-                login();
-            }catch(NullPointerException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'botones(loginButton)'",Level.WARNING);
-                new logger().exceptionLogger(start.class.getName(),Level.WARNING,"botones-0",e.fillInStackTrace());
-            }
+            login();
         });
     }
     
