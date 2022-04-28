@@ -388,6 +388,12 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jLabel1.setText("Código del empleado:");
 
+        txtCodEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodEmpKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -546,7 +552,7 @@ public final class ventana1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtTotalKeyPressed
-
+    
     private void txtCodigoKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed2
         try{
             ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+txtCodigo.getText()+";");
@@ -565,7 +571,7 @@ public final class ventana1 extends javax.swing.JFrame{
             new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCodigoKeyPressed2-14",e.fillInStackTrace());*/
         }
     }//GEN-LAST:event_txtCodigoKeyPressed2
-
+    
     private void txtCantKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed2
         try{
             int n1=Integer.parseInt(txtCant.getText());
@@ -578,6 +584,14 @@ public final class ventana1 extends javax.swing.JFrame{
             new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"txtCantKeyPressed2-32",e.fillInStackTrace());*/
         }
     }//GEN-LAST:event_txtCantKeyPressed2
+    
+    private void txtCodEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEmpKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodEmpKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodEmpKeyPressed
     
     public static void main(String[] args){
         new ventana1().setVisible(true);

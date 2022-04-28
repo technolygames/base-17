@@ -52,6 +52,7 @@ public class ventana3 extends javax.swing.JFrame{
             new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
         }
+        jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
     }
@@ -73,7 +74,7 @@ public class ventana3 extends javax.swing.JFrame{
         
         svdtButton.addActionListener((a)->{
             try{
-                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextArea1.getText().equals("")||!jTextField3.getText().equals("")){
+                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextArea1.getText().equals("")||!jTextField3.getText().equals(".")||!jTextField3.getText().equals("")){
                     String codigo=jTextField1.getText();
                     String nombre=jTextField2.getText();
                     String datos=jTextArea1.getText();
@@ -130,6 +131,18 @@ public class ventana3 extends javax.swing.JFrame{
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setText("Código promocional:");
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre promocional:");
 
@@ -230,6 +243,22 @@ public class ventana3 extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+    
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField2KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyPressed
     
     public static void main(String args[]){
         new ventana3().setVisible(true);

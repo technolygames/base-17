@@ -62,6 +62,12 @@ public class delDatosPanel1 extends javax.swing.JPanel{
 
         jLabel1.setText("Código del empleado:");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+
         closeButton.setText("Cerrar panel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -96,6 +102,14 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

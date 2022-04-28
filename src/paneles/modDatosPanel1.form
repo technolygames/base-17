@@ -229,6 +229,9 @@
     <Component class="javax.swing.JPasswordField" name="txtContra">
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiPuesto">
       <Properties>
@@ -241,8 +244,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAP">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAPKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAM">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAMKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="cbPuesto">
     </Component>
@@ -262,6 +271,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtExp">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtExpKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="cbExp">
     </Component>
@@ -285,6 +297,9 @@
     <Component class="javax.swing.JCheckBox" name="cbGE">
     </Component>
     <Component class="javax.swing.JTextField" name="txtGE">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtGEKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiContacto">
       <Properties>
@@ -294,6 +309,9 @@
     <Component class="javax.swing.JCheckBox" name="cbContacto">
     </Component>
     <Component class="javax.swing.JTextField" name="txtContacto">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContactoKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiEdad">
       <Properties>
@@ -303,6 +321,9 @@
     <Component class="javax.swing.JCheckBox" name="cbEdad">
     </Component>
     <Component class="javax.swing.JTextField" name="txtEdad">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiEstado">
       <Properties>

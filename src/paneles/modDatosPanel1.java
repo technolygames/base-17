@@ -1008,11 +1008,35 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiAM.setText("Apellido materno");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
+
         etiPuesto.setText("Puesto");
 
         jButton1.setText("Actualizar datos");
 
+        txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAPKeyPressed(evt);
+            }
+        });
+
+        txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAMKeyPressed(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+
+        txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpKeyPressed(evt);
+            }
+        });
 
         etiExp.setText("Experiencia");
 
@@ -1020,9 +1044,27 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiGE.setText("Grado de estudios");
 
+        txtGE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtGEKeyPressed(evt);
+            }
+        });
+
         etiContacto.setText("Contacto");
 
+        txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContactoKeyPressed(evt);
+            }
+        });
+
         etiEdad.setText("Edad");
+
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEdadKeyPressed(evt);
+            }
+        });
 
         etiEstado.setText("Estado");
 
@@ -1174,6 +1216,62 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtNombreKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyPressed
+    
+    private void txtAPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPKeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtAPKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAPKeyPressed
+    
+    private void txtAMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMKeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtAMKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAMKeyPressed
+    
+    private void txtExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtExpKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtExpKeyPressed
+    
+    private void txtGEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGEKeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtGEKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtGEKeyPressed
+    
+    private void txtContactoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtContactoKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContactoKeyPressed
+    
+    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'txtEdadKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdadKeyPressed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbAM;

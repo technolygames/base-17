@@ -258,11 +258,23 @@ public final class ventana2 extends javax.swing.JFrame{
 
         jLabel1.setText("Cantidad:");
 
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantKeyPressed(evt);
+            }
+        });
+
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En Existencia", "Agotado" }));
 
         jLabel3.setText("Precio unitario:");
+
+        txtPU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPUKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -394,7 +406,7 @@ public final class ventana2 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtProdKeyPressed
-        
+    
     private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
@@ -402,7 +414,23 @@ public final class ventana2 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
-        
+    
+    private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'txtCantKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantKeyPressed
+    
+    private void txtPUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPUKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'txtPUKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPUKeyPressed
+    
     public static void main(String[] args){
         new ventana2().setVisible(true);
     }

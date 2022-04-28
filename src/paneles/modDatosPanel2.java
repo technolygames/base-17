@@ -427,9 +427,27 @@ public class modDatosPanel2 extends javax.swing.JPanel{
 
         jLabel1.setText("Nombre(s)");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+
         jLabel2.setText("Apellido paterno");
 
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
+        });
+
         jLabel3.setText("Apellido materno");
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
+        });
 
         jLabel4.setText("Tipo de socio");
 
@@ -547,6 +565,30 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+    
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField2KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField2KeyPressed
+    
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField3KeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField3KeyPressed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

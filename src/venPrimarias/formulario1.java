@@ -262,6 +262,30 @@ public class formulario1 extends javax.swing.JFrame{
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
 
+        txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpKeyPressed(evt);
+            }
+        });
+
+        txtEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEstudiosKeyPressed(evt);
+            }
+        });
+
+        txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContactoKeyPressed(evt);
+            }
+        });
+
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEdadKeyPressed(evt);
+            }
+        });
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -453,7 +477,7 @@ public class formulario1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtAPKeyPressed
-
+    
     private void txtAMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
@@ -461,6 +485,38 @@ public class formulario1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtAMKeyPressed
+    
+    private void txtExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtExpKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtExpKeyPressed
+    
+    private void txtEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstudiosKeyPressed
+        if(Character.isDigit(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEstudiosKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEstudiosKeyPressed
+    
+    private void txtContactoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtContactoKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtContactoKeyPressed
+    
+    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEdadKeyPressed()'",Level.WARNING);
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdadKeyPressed
     
     public static void main(String args[]){
         new formulario1().setVisible(true);
