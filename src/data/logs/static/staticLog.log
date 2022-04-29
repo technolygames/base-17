@@ -1666,3 +1666,9 @@ Ocurrió en la clase 'venPrimarias.ventana3', en el método 'jTextField2KeyPress
 abr. 28, 2022 4:46:16 P. M. clases.logger staticLogger
 WARNING: Let 7: se ingresaron números en un campo equivocado.
 Ocurrió en la clase 'venPrimarias.ventana3', en el método 'jTextField2KeyPressed()'
+abr. 29, 2022 2:46:39 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @15bfd87.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'botones(genrepButton)'
+abr. 29, 2022 3:17:20 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @1f36e637.
+Ocurrió en la clase 'venSecundarias.paymentWindow', en el método 'imprimirReporte()'

@@ -4,24 +4,17 @@ import clases.datos;
 import clases.Icono;
 import clases.laf;
 import clases.logger;
-import clases.tickets.datosTicket;
 import venSecundarias.calcWindow;
 //java
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.awt.Image;
-import java.io.FileReader;
-import java.lang.reflect.InaccessibleObjectException;
-import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -30,15 +23,6 @@ import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.util.JRFontNotFoundException;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
@@ -111,7 +95,6 @@ public final class ventana1 extends javax.swing.JFrame{
             "Total"
         });
         
-        genrepButton.setEnabled(false);
         dtm.setRowCount(0);
         jTable1.setModel(dtm);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -186,54 +169,6 @@ public final class ventana1 extends javax.swing.JFrame{
             txtTotal.setText("");
         });
         
-        genrepButton.addActionListener((ae)->{
-            try{
-                p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
-                Connection cn=new datos().getConnection();
-                Map<String,Object> params=new HashMap<String,Object>(3);
-                params.put("codigo_prod",String.valueOf(codigo_prod));
-                params.put("nombre_reporte",p.getProperty("nombre"));
-                params.put("imagen_dir",p.getProperty("imagenes"));
-                JasperDesign jd=JRXmlLoader.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/database/Jasper/reportes.jrxml"));
-                JasperReport jr=JasperCompileManager.compileReport(jd);
-                JasperPrint jp=JasperFillManager.fillReport(jr,params,cn);
-                JasperViewer jv=new JasperViewer(jp);
-                jv.viewReport(jp);
-                jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                jv.setVisible(true);
-                
-                cn.close();
-            }catch(JRException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 17",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 17: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-17",e.fillInStackTrace());
-            }catch(ExceptionInInitializerError x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error EIIE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error EIIE: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-EIIE",x.fillInStackTrace());
-            }catch(NoClassDefFoundError n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error NCDFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error NCDFE: "+n.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-NCDFE",n.fillInStackTrace());
-            }catch(SQLException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 10",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 10: "+k.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-10",k.fillInStackTrace());
-            }catch(IOException s){
-                JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-2IO",s.fillInStackTrace());
-            }catch(JRFontNotFoundException l){
-                JOptionPane.showMessageDialog(null,"Error:\n"+l.getMessage(),"Error JRFNFE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error JRFNFE: "+l.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-JRFNFE",l.fillInStackTrace());
-            }catch(InaccessibleObjectException r){
-                JOptionPane.showMessageDialog(null,"Error:\n"+r.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error IAE: "+r.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-IAE",r.fillInStackTrace());
-            }
-        });
-        
         jButton2.addActionListener((a)->{
             dtm.removeRow(jTable1.getSelectedRow());
         });
@@ -288,7 +223,6 @@ public final class ventana1 extends javax.swing.JFrame{
         jLabel9 = new javax.swing.JLabel();
         calcButton = new javax.swing.JButton();
         cleanButton = new javax.swing.JButton();
-        genrepButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         addButton = new javax.swing.JButton();
@@ -362,8 +296,6 @@ public final class ventana1 extends javax.swing.JFrame{
 
         cleanButton.setText("Limpiar campos");
 
-        genrepButton.setText("Generar factura");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -406,15 +338,13 @@ public final class ventana1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mkPaidButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(genrepButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(calcButton)
-                                .addGap(126, 126, 126)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addButton)
-                                .addGap(18, 18, 18)
+                                .addGap(64, 64, 64)
                                 .addComponent(cleanButton)
                                 .addGap(32, 32, 32))
                             .addGroup(layout.createSequentialGroup()
@@ -494,7 +424,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(calcButton)
-                    .addComponent(genrepButton)
                     .addComponent(cleanButton)
                     .addComponent(addButton)
                     .addComponent(mkPaidButton)
@@ -602,7 +531,6 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton backButton;
     protected javax.swing.JButton calcButton;
     protected javax.swing.JButton cleanButton;
-    protected javax.swing.JButton genrepButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
