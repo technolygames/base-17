@@ -1,5 +1,7 @@
-<no existe>: etiqueta sin asignar
+Hay errores que están impares o que deberían seguir una secuencia, pero muchos fueron creados al azar. Además de que sería difícil de reasignarlos
+
 Error Prueba: error aún no encontrado
+Error <número>: error sin asignar
 Error <random+E>: error que no le fue asignado a un número específico de error, pero que se conoce su funcionalidad. Favor de reportarlo
 
 Error 0: error desconocido y no mapeado
@@ -15,13 +17,13 @@ Rel 5: se ha validado el acceso a ventana de administración
 Let 6: no se aceptan los valores que tratan de escribir (letras)
 Let 7: no se aceptan los valores que tratan de escribir (números)
 
-Error 8: <no existe>
 Error 9: no se inició sesión; los datos solicitdos no son los correctos o no existen-
 Error 10: no se inicializó y/o encendió el puerto de la base de datos--
 Error 11: no se ingresaron correctamente los datos solicitados-
 Error 12: no se pudo actualizar los datos; los datos solicitados no son los correctos-
 Error 13: no se pudo eliminar los datos; los datos a borrar no son los correctos o no existen-
 Error 14: no se pudo buscar; no se ingresaron correctamente los datos y/o a opción seleccionada no es la correcta------
+Error 15: campos que se agregaron al archivo json que no se usan---
 Error 16: no se pudo mostrar los datos en la tabla-----
 Error 17: no se pudo generar el reporte o factura-
 Error 18: posible ingreso erróneo o nulo de datos-----------

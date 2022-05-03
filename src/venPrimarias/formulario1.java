@@ -49,7 +49,6 @@ public class formulario1 extends javax.swing.JFrame{
     protected String direccion;
     
     protected void settings(){
-        new PlaceHolder(txtNombre,"Primer y/o segundo nombre").inicializar();
         new PlaceHolder(txtExp,"En años").inicializar();
         txtNombre.setToolTipText("Primer y/o segundo nombre");
         txtExp.setToolTipText("En años");

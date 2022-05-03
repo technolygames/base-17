@@ -5,7 +5,7 @@ import clases.datos;
 import clases.laf;
 import clases.logger;
 import clases.tickets.datosTicket;
-
+//java
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-
+//extension larga
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
