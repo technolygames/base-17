@@ -58,8 +58,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected String icono;
     protected String nombre;
     protected String diseños;
-    protected String direccion;
-    protected String direccion2;
+    protected String direccion1;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
     
@@ -72,20 +71,20 @@ public final class proper1 extends javax.swing.JFrame{
         try{
             p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             
-            direccion=p.getProperty("imagenes");
+            direccion1=p.getProperty("imagenes");
             icono=p.getProperty("icono");
             diseños=p.getProperty("look_and_feel");
             nombre=p.getProperty("nombre");
             
-            if(!new File(direccion).exists()){
-                direccion=p.getProperty("imagen_respaldo");
+            if(!new File(direccion1).exists()){
+                direccion1=p.getProperty("imagen_respaldo");
             }
             
             if(!new File(icono).exists()){
                 icono=p.getProperty("icono_respaldo");
             }
             
-            Image i=ImageIO.read(new FileInputStream(direccion));
+            Image i=ImageIO.read(new FileInputStream(direccion1));
             ImageIcon im=new ImageIcon(i);
             Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
             jLabel3.setIcon(l);
@@ -175,10 +174,10 @@ public final class proper1 extends javax.swing.JFrame{
                 if(JFileChooser.APPROVE_OPTION==ñ){
                     try{
                         f=jfc.getSelectedFile();
-                        direccion=f.getPath();
+                        direccion1=f.getPath();
                         nombreArchivo1=f.getName();
                         
-                        Image i=ImageIO.read(new FileInputStream(direccion));
+                        Image i=ImageIO.read(new FileInputStream(direccion1));
                         ImageIcon im=new ImageIcon(i);
                         Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
                         jLabel3.setIcon(l);
@@ -269,9 +268,9 @@ public final class proper1 extends javax.swing.JFrame{
         String dato2=System.getProperty("user.dir")+"/src/data/media/copy/icon/";
         try{
             if(f.exists()){
-                p.setProperty("imagenes",direccion);
+                p.setProperty("imagenes",direccion1);
                 
-                is=new FileInputStream(direccion);
+                is=new FileInputStream(direccion1);
                 os=new FileOutputStream(dato1+nombreArchivo1);
                 
                 new thread(is,os).run();

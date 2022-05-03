@@ -518,9 +518,8 @@ public class datos{
      * @param codigoProveedor Código del proveedor al que se eliminarán los datos.
      */
     public void eliminarDatosProveedor(int codigoProveedor){
-        String del3_query="delete from proveedor where codigo_prov='"+codigoProveedor+"';";
         try{
-            ps=getConnection().prepareStatement(del3_query);
+            ps=getConnection().prepareStatement("delete from proveedor where codigo_prov='"+codigoProveedor+"';");
             ps.execute();
             
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);

@@ -90,22 +90,25 @@ public class ticket{
             imp.write(caracter);
             for(int cabecera=0;cabecera<cabezaLineas.size();cabecera++){
                 cadena+=cabezaLineas.get(cabecera);
+                imp.write(cadena);
                 setFormato(imp,27);
             }
             for(int subcabecera=0;subcabecera<subcabezaLineas.size();subcabecera++){
                 cadena+=subcabezaLineas.get(subcabecera);
+                imp.write(cadena);
             }
             for(int ITEM=0;ITEM<items.size();ITEM++){
                 cadena+=items.get(ITEM);
+                imp.write(cadena);
             }
             for(int total=0;total<totales.size();total++){
                 cadena+=totales.get(total);
+                imp.write(cadena);
             }
             for(int pie=0;pie<lineasPie.size();pie++){
                 cadena+=lineasPie.get(pie);
+                imp.write(cadena);
             }
-            imp.write(cadena);
-            
             imp.write(cortarPapel);
             
             DocFlavor flavor=DocFlavor.INPUT_STREAM.AUTOSENSE;
