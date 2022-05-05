@@ -25,8 +25,6 @@ public final class calcWindow extends javax.swing.JDialog{
     
     public static int cambio;
     
-    protected ventana1 win;
-    
     protected void settings(){
         txtTotal.setText(String.valueOf(ventana1.resultado));
     }

@@ -55,7 +55,7 @@ public class datosTicket{
             ticket.addCabecera(ticket.darEspacio());
             ticket.addSubcabecera(ticket.dibujarLinea(40));
             ticket.addSubcabecera(ticket.darEspacio());
-            ticket.addSubcabecera("Ticket No. "+(Math.random()*10000)+"");
+            ticket.addSubcabecera("Ticket no.: '"+(Math.random()*10000)+"'");
             ticket.addSubcabecera(ticket.darEspacio());
             ticket.addSubcabecera("-"+fecha.format(date)+"-"+hora.format(date));
             ticket.addSubcabecera(ticket.darEspacio());
@@ -98,16 +98,16 @@ public class datosTicket{
                 }
                 //precio
                 String precio2=tabla.getValueAt(i,4).toString();
-                double precio3=Double.parseDouble(precio2);
-                int precio4=0;
-                precio2=form.format(precio3);
+                String precio3="";
+                double precio4=Double.parseDouble(precio2);
+                int precio5=0;
+                precio2=form.format(precio4);
                 if(precio2.length()<17){
-                    precio4=17-precio2.length();
-                    String pre="";
-                    for(int j=0;j<precio4;j++){
-                        pre+=" ";
+                    precio5=17-precio2.length();
+                    for(int j=0;j<precio5;j++){
+                        precio3+=" ";
                     }
-                    precio=pre+precio2;
+                    precio=precio3+precio2;
                 }
                 //total
                 /*String total2=tabla.getValueAt(i,5).toString();
@@ -125,14 +125,14 @@ public class datosTicket{
                 ticket.addItem(items,cantidad,precio);
             }
             ticket.addTotal("Subtotal: ",String.valueOf(total0));
-            ticket.addTotal("IVA: ","0%");
+            ticket.addTotal("IVA: ","%");
             ticket.addTotal("Total: ",String.valueOf(total0));
             ticket.addTotal("Paga con: ",pago);
             ticket.addTotal("Cambio: ",String.valueOf(cambio));
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
             
-            ticket.imprimirDocumento("src/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",true);
+            ticket.imprimirDocumento(System.getProperty("user.dir")+"/src/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",true);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);

@@ -72,11 +72,9 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="cbExp" min="-2" pref="19" max="-2" attributes="0"/>
-                                      <Component id="cbGE" alignment="1" min="-2" pref="19" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="cbExp" min="-2" pref="19" max="-2" attributes="0"/>
                                   <Component id="cbPuesto" alignment="0" min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="cbGE" alignment="0" min="-2" pref="19" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -119,70 +117,92 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtContra" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbContra" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiContra" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiContra" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbContra" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbNombre" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiNombre" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiNombre" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbNombre" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtAP" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbAP" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiAP" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiAP" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbAP" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtAM" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbAM" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiAM" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiAM" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbAM" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="etiDom" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbDomicilio" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDom" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiDom" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbDomicilio" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbPuesto" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiPuesto" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiPuesto" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbPuesto" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cbExp" min="-2" max="-2" attributes="0"/>
                   <Component id="txtExp" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiExp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiExp" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbExp" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cbGE" min="-2" max="-2" attributes="0"/>
                   <Component id="txtGE" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiGE" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiGE" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbGE" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cbContacto" min="-2" max="-2" attributes="0"/>
                   <Component id="txtContacto" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiContacto" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiContacto" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbContacto" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="cbEdad" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtEdad" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="etiEdad" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiEdad" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbEdad" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="etiEstado" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbEstado" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiEstado" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbEstado" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="closeButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>

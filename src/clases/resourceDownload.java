@@ -30,11 +30,11 @@ public class resourceDownload{
     protected FileOutputStream fos;
     protected File f;
     
-    protected URL u=null;
-    protected Socket s=null;
-    protected InetAddress ia=null;
-    protected SocketAddress sa=null;
-    protected URLConnection uc=null;
+    protected URL u;
+    protected Socket s;
+    protected InetAddress ia;
+    protected SocketAddress sa;
+    protected URLConnection uc;
     
     /**
      * Esta clase se encarga de verificar si hay conectividad a internet.

@@ -26,9 +26,9 @@ public class win10Notification{
     /**
      * Método encargado en mostrar la notificiación.
      * 
-     * @param notification Título de la notificacion
-     * @param message Mensaje que se mostrará en la notificació
-     * @param mt Tipo de mensaje (puede se ERROR, INFO, NONE y WARNING)
+     * @param notification Título de la notificacion.
+     * @param message Mensaje que se mostrará en la notificación.
+     * @param mt Tipo de mensaje (puede se ERROR, INFO, NONE y WARNING).
      */
     public void trayNotify(String notification,String message,MessageType mt){
         SystemTray st=SystemTray.getSystemTray();

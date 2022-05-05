@@ -141,7 +141,9 @@ public class ticket{
             new logger().staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
             new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-1IO_H1",e.fillInStackTrace());
         }catch(IllegalStateException n){
-            
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
+            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-15",n.fillInStackTrace());
         }finally{
             cabezaLineas.removeAll(cabezaLineas);
             subcabezaLineas.removeAll(subcabezaLineas);

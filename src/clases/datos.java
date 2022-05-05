@@ -109,10 +109,9 @@ public class datos{
      * @param total Precio total al que se vendieron los prodcutos.
      */
     public void insertarDatosProducto(int codigoProducto,int codigoEmpleado,String nombreProducto,String marca,int cantidad,int precio,int total){
-        String ins1_query="insert into productos values('"+codigoProducto+"','"+codigoEmpleado+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precio+"','"+total+"',now())";
         try{
             s=getConnection().createStatement();
-            s.addBatch(ins1_query);
+            s.addBatch("insert into productos values('"+codigoProducto+"','"+codigoEmpleado+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precio+"','"+total+"',now())");
             s.executeBatch();
             
             s.close();
@@ -136,10 +135,9 @@ public class datos{
      * @param stock Disponibilidad del producto.
      */
     public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,int precioUnitario,String stock){
-        String ins2_query="insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precioUnitario+"','"+stock+"',now())";
         try{
             s=getConnection().createStatement();
-            s.addBatch(ins2_query);
+            s.addBatch("insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precioUnitario+"','"+stock+"',now())");
             s.executeBatch();
             
             s.close();
