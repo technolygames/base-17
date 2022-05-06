@@ -51,14 +51,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(false);
                 jCheckBox5.setEnabled(false);
                 jCheckBox6.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField2.setEnabled(false);
-                jTextField3.setEnabled(false);
-                jTextField4.setEnabled(false);
-                jTextField5.setEnabled(false);
+                jTextField1.setEnabled(true);
                 //función
                 if(jCheckBox1.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -68,9 +63,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox1)'",Level.WARNING);
                         }
                     });
                 }
@@ -81,14 +73,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(true);
                 jCheckBox5.setEnabled(true);
                 jCheckBox6.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField2.setEnabled(true);
-                jTextField3.setEnabled(true);
-                jTextField4.setEnabled(true);
-                jTextField5.setEnabled(true);
+                jTextField1.setEnabled(false);
+                jTextField1.setText("");
             }
         });
         
@@ -106,14 +94,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(false);
                 jCheckBox5.setEnabled(false);
                 jCheckBox6.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField1.setEnabled(false);
-                jTextField3.setEnabled(false);
-                jTextField4.setEnabled(false);
-                jTextField5.setEnabled(false);
+                jTextField2.setEnabled(true);
                 //función
                 if(jCheckBox2.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -123,9 +106,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox2)'",Level.WARNING);
                         }
                     });
                 }
@@ -136,14 +116,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(true);
                 jCheckBox5.setEnabled(true);
                 jCheckBox6.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField1.setEnabled(true);
-                jTextField3.setEnabled(true);
-                jTextField4.setEnabled(true);
-                jTextField5.setEnabled(true);
+                jTextField2.setEnabled(false);
+                jTextField2.setText("");
             }
         });
         
@@ -161,14 +137,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(false);
                 jCheckBox5.setEnabled(false);
                 jCheckBox6.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField1.setEnabled(false);
-                jTextField2.setEnabled(false);
-                jTextField4.setEnabled(false);
-                jTextField5.setEnabled(false);
+                jTextField3.setEnabled(true);
                 //función
                 if(jCheckBox3.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -178,9 +149,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox3)'",Level.WARNING);
                         }
                     });
                 }
@@ -191,14 +159,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox4.setEnabled(true);
                 jCheckBox5.setEnabled(true);
                 jCheckBox6.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField1.setEnabled(true);
-                jTextField2.setEnabled(true);
-                jTextField4.setEnabled(true);
-                jTextField5.setEnabled(true);
+                jTextField3.setEnabled(false);
+                jTextField3.setText("");
             }
         });
         
@@ -216,13 +180,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(false);
                 jCheckBox5.setEnabled(false);
                 jCheckBox6.setEnabled(false);
+                //combo
+                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField1.setEnabled(false);
-                jTextField2.setEnabled(false);
-                jTextField3.setEnabled(false);
-                jTextField4.setEnabled(false);
-                jTextField5.setEnabled(false);
                 //función
                 if(jCheckBox4.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -232,9 +193,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo tipo de socio","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se seleccionó el nuevo tipo de socio.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
                         }
                     });
                 }
@@ -245,13 +203,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(true);
                 jCheckBox5.setEnabled(true);
                 jCheckBox6.setEnabled(true);
+                //combo
+                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField1.setEnabled(true);
-                jTextField2.setEnabled(true);
-                jTextField3.setEnabled(true);
-                jTextField4.setEnabled(true);
-                jTextField5.setEnabled(true);
             }
         });
         
@@ -269,14 +224,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(false);
                 jCheckBox4.setEnabled(false);
                 jCheckBox6.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField1.setEnabled(false);
-                jTextField2.setEnabled(false);
-                jTextField3.setEnabled(false);
-                jTextField5.setEnabled(false);
+                jTextField4.setEnabled(true);
                 //función
                 if(jCheckBox5.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -286,9 +236,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo correo","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el nuevo correo del socio.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
                         }
                     });
                 }
@@ -299,14 +246,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(true);
                 jCheckBox4.setEnabled(true);
                 jCheckBox6.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField1.setEnabled(true);
-                jTextField2.setEnabled(true);
-                jTextField3.setEnabled(true);
-                jTextField5.setEnabled(true);
+                jTextField4.setEnabled(false);
+                jTextField4.setText("");
             }
         });
         
@@ -324,14 +267,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(false);
                 jCheckBox4.setEnabled(false);
                 jCheckBox5.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
-                jTextField1.setEnabled(false);
-                jTextField2.setEnabled(false);
-                jTextField3.setEnabled(false);
-                jTextField4.setEnabled(false);
+                jTextField5.setEnabled(true);
                 //función
                 if(jCheckBox6.isSelected()==true){
                     jButton1.addActionListener((p)->{
@@ -341,9 +279,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo rfc","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el nuevo rfc del socio.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'botones(jCheckBox4)'",Level.WARNING);
                         }
                     });
                 }
@@ -354,14 +289,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jCheckBox3.setEnabled(true);
                 jCheckBox4.setEnabled(true);
                 jCheckBox5.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
-                jTextField1.setEnabled(true);
-                jTextField2.setEnabled(true);
-                jTextField3.setEnabled(true);
-                jTextField4.setEnabled(true);
+                jTextField5.setEnabled(false);
+                jTextField5.setText("");
             }
         });
         
@@ -427,6 +358,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
 
         jLabel1.setText("Nombre(s)");
 
+        jTextField1.setEnabled(false);
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
@@ -435,6 +367,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
 
         jLabel2.setText("Apellido paterno");
 
+        jTextField2.setEnabled(false);
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
@@ -443,6 +376,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
 
         jLabel3.setText("Apellido materno");
 
+        jTextField3.setEnabled(false);
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField3KeyPressed(evt);
@@ -454,10 +388,15 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         jButton1.setText("Actualizar datos");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setEnabled(false);
 
         jLabel5.setText("Correo");
 
+        jTextField4.setEnabled(false);
+
         jLabel6.setText("RFC");
+
+        jTextField5.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

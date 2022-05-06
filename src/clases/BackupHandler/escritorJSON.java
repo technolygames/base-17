@@ -48,11 +48,13 @@ public class escritorJSON{
                 jsonw.name("nombre_emp").value(rs.getString("nombre_emp"));
                 jsonw.name("apellidop_emp").value(rs.getString("apellidop_emp"));
                 jsonw.name("apellidom_emp").value(rs.getString("apellidom_emp"));
+                jsonw.name("curp").value(rs.getString("curp"));
                 jsonw.name("domicilio").value(rs.getString("domicilio"));
                 jsonw.name("puesto").value(rs.getString("puesto"));
                 jsonw.name("experiencia").value(rs.getInt("experiencia"));
                 jsonw.name("grado_estudios").value(rs.getString("grado_estudios"));
                 jsonw.name("contacto").value(rs.getInt("contacto"));
+                jsonw.name("fecha_nacimiento").value(rs.getString("fecha_nacimiento"));
                 jsonw.name("edad").value(rs.getInt("edad"));
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));

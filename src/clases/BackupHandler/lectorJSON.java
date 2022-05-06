@@ -27,11 +27,13 @@ public class lectorJSON{
     protected String nombreEmpleado;
     protected String apellidoPaternoEmpleado;
     protected String apellidoMaternoEmpleado;
+    protected String curp;
     protected String domicilio;
     protected String puesto;
     protected int experiencia;
     protected String gradoEstudios;
     protected int contacto1;
+    protected String fechaNacimiento;
     protected int edad;
     protected String estado;
     protected String datosExtra1;
@@ -59,6 +61,8 @@ public class lectorJSON{
                     apellidoPaternoEmpleado=jsonr.nextString();
                 }else if(name.equals("apellidom_emp")){
                     apellidoMaternoEmpleado=jsonr.nextString();
+                }else if(name.equals("curp")){
+                    curp=jsonr.nextString();
                 }else if(name.equals("domicilio")){
                     domicilio=jsonr.nextString();
                 }else if(name.equals("puesto")){
@@ -69,6 +73,8 @@ public class lectorJSON{
                     gradoEstudios=jsonr.nextString();
                 }else if(name.equals("contacto")){
                     contacto1=jsonr.nextInt();
+                }else if(name.equals("fecha_nacimiento")){
+                    fechaNacimiento=jsonr.nextString();
                 }else if(name.equals("edad")){
                     edad=jsonr.nextInt();
                 }else if(name.equals("estado")){
@@ -83,7 +89,7 @@ public class lectorJSON{
                     jsonr.skipValue();
                 }
             }
-            new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,domicilio,puesto,experiencia,gradoEstudios,contacto1,edad,estado,datosExtra1,new FileInputStream(foto1));
+            new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,curp,domicilio,puesto,experiencia,gradoEstudios,contacto1,fechaNacimiento,edad,estado,datosExtra1,new FileInputStream(foto1));
             new datos().insertarDatosConteo(codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,numeroVentas);
             jsonr.endObject();
             

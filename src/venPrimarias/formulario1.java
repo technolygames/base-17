@@ -54,10 +54,10 @@ public class formulario1 extends javax.swing.JFrame{
     
     protected void settings(){
         new PlaceHolder(txtExp,"En años").inicializar();
-        new PlaceHolder(jTextField2,"dd-MM-yyyy").inicializar();
+        new PlaceHolder(jTextField2,"yyyy-MM-dd").inicializar();
         txtNombre.setToolTipText("Primer y/o segundo nombre");
         txtExp.setToolTipText("En años");
-        jTextField2.setToolTipText("dd-MM-yyyy");
+        jTextField2.setToolTipText("yyyy-MM-dd");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
     }
@@ -143,17 +143,19 @@ public class formulario1 extends javax.swing.JFrame{
                     String nombre_emp=txtNombre.getText();
                     String apellidop_emp=txtAP.getText();
                     String apellidom_emp=txtAM.getText();
+                    String curp=jTextField1.getText();
                     String domicilio=txtDom.getText();
                     String puesto=jComboBox1.getSelectedItem().toString();
                     int experiencia=Integer.parseInt(txtExp.getText());
                     String grado_estudios=txtEstudios.getText();
                     int contacto=Integer.parseInt(txtContacto.getText());
+                    String fechaNacimiento=jTextField2.getText();
                     int edad=Integer.parseInt(txtEdad.getText());
                     String estado=jComboBox2.getSelectedItem().toString();
                     String datos_extra=jTextArea1.getText();
                     InputStream foto=new FileInputStream(direccion);
                     
-                    new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto);
+                    new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,curp,domicilio,puesto,experiencia,grado_estudios,contacto,fechaNacimiento,edad,estado,datos_extra,foto);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
@@ -551,10 +553,10 @@ public class formulario1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed
-
+    
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         try{
-            DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter format=DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate fecha=LocalDate.parse(jTextField2.getText(),format);
             Period edad=Period.between(fecha,LocalDate.now());
             txtEdad.setText(String.valueOf(edad.getYears()));

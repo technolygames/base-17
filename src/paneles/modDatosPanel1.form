@@ -19,29 +19,10 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="txtSearch" min="-2" pref="115" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="etiDom" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiEstado" max="32767" attributes="0"/>
-                          <Component id="etiEdad" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiContacto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiGE" alignment="0" pref="150" max="32767" attributes="0"/>
-                          <Component id="etiExp" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiPuesto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiAM" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiAP" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiNombre" alignment="0" max="32767" attributes="0"/>
-                          <Component id="etiContra" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="etiEdad" max="32767" attributes="0"/>
+                          <Component id="etiEstado" pref="150" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -51,24 +32,27 @@
                               <Component id="jComboBox2" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="cbContra" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbEdad" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtContra" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="txtEdad" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="cbNombre" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="etiDom" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiContacto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiGE" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiExp" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiPuesto" alignment="1" pref="150" max="32767" attributes="0"/>
+                          <Component id="etiFN" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cbFN" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtNombre" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="cbAP" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAP" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="cbAM" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAM" max="32767" attributes="0"/>
+                              <Component id="dcFN" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -84,22 +68,65 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="cbContacto" min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Component id="cbEdad" min="-2" pref="19" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="cbContacto" min="-2" pref="19" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtContacto" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="txtEdad" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="txtContacto" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="cbDomicilio" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtDom" max="32767" attributes="0"/>
+                              <Component id="txtDom" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="etiAM" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="etiAP" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiNombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiContra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="etiCURP" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cbCURP" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtCURP" min="-2" pref="170" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbContra" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtContra" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbNombre" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtNombre" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbAP" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtAP" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbAM" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtAM" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="txtSearch" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="closeButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -146,6 +173,14 @@
                       <Component id="cbAM" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="txtCURP" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiCURP" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbCURP" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtDom" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -184,6 +219,14 @@
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Component id="etiContacto" min="-2" max="-2" attributes="0"/>
                       <Component id="cbContacto" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="dcFN" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="etiFN" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbFN" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -247,8 +290,14 @@
     <Component class="javax.swing.JCheckBox" name="cbAM">
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtContra">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyPressed"/>
       </Events>
@@ -264,11 +313,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAP">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAPKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAM">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAMKeyPressed"/>
       </Events>
@@ -285,12 +340,16 @@
             <StringItem index="3" value="Due&#xf1;o"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtExp">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtExpKeyPressed"/>
       </Events>
@@ -317,6 +376,9 @@
     <Component class="javax.swing.JCheckBox" name="cbGE">
     </Component>
     <Component class="javax.swing.JTextField" name="txtGE">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtGEKeyPressed"/>
       </Events>
@@ -329,6 +391,9 @@
     <Component class="javax.swing.JCheckBox" name="cbContacto">
     </Component>
     <Component class="javax.swing.JTextField" name="txtContacto">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContactoKeyPressed"/>
       </Events>
@@ -341,6 +406,9 @@
     <Component class="javax.swing.JCheckBox" name="cbEdad">
     </Component>
     <Component class="javax.swing.JTextField" name="txtEdad">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadKeyPressed"/>
       </Events>
@@ -360,6 +428,7 @@
             <StringItem index="1" value="Inactivo"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -373,6 +442,33 @@
     <Component class="javax.swing.JCheckBox" name="cbDomicilio">
     </Component>
     <Component class="javax.swing.JTextField" name="txtDom">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etiCURP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CURP"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cbCURP">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCURP">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etiFN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cbFN">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="dcFN">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

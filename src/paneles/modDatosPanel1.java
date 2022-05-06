@@ -28,10 +28,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         etiNombre.setToolTipText("Nombre(s)");
         etiAP.setToolTipText("Apellido paterno");
         etiAM.setToolTipText("Apellido materno");
+        etiCURP.setToolTipText("Clave única de registro de población");
         etiPuesto.setToolTipText("Puesto");
         etiExp.setToolTipText("Experiencia");
         etiGE.setToolTipText("Grado de estudios");
         etiContacto.setToolTipText("Contacto");
+        etiFN.setToolTipText("Fecha de nacimiento");
         etiEdad.setToolTipText("Edad");
         etiEstado.setToolTipText("Estado");
     }
@@ -65,31 +67,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtContra.setEnabled(true);
                 //función
                 if(cbContra.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true){
-                            while(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true){
+                        if(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
+                            while(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContra)'",Level.WARNING);
                         }
                     });
                 }
@@ -105,19 +94,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtContra.setEnabled(false);
+                txtContra.setText("");
             }
         });
         
@@ -145,31 +125,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtNombre.setEnabled(true);
                 //función
                 if(cbNombre.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true){
-                            while(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true){
+                        if(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
+                            while(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbNombre)'",Level.WARNING);
                         }
                     });
                 }
@@ -185,19 +152,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtNombre.setEnabled(false);
+                txtNombre.setText("");
             }
         });
         
@@ -225,31 +183,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtAP.setEnabled(true);
                 //función
                 if(cbAP.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtAP.getText().equals("")&&cbAP.isSelected()==true){
-                            while(!txtAP.getText().equals("")&&cbAP.isSelected()==true){
+                        if(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
+                            while(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAP)'",Level.WARNING);
                         }
                     });
                 }
@@ -265,19 +210,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtAP.setEnabled(false);
+                txtAP.setText("");
             }
         });
         
@@ -305,31 +241,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtAM.setEnabled(true);
                 //función
                 if(cbAM.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtAM.getText().equals("")&&cbAM.isSelected()==true){
-                            while(!txtAM.getText().equals("")&&cbAM.isSelected()==true){
+                        if(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
+                            while(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAM)'",Level.WARNING);
                         }
                     });
                 }
@@ -345,19 +268,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtAM.setEnabled(false);
+                txtAM.setText("");
             }
         });
         
@@ -385,31 +299,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtDom.setEnabled(true);
                 //función
                 if(cbDomicilio.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true){
-                            while(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true){
+                        if(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
+                            while(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set domicilio='"+txtDom.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el domicilio nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el domicilio a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbDom)'",Level.WARNING);
                         }
                     });
                 }
@@ -425,19 +326,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtDom.setEnabled(false);
+                txtDom.setText("");
             }
         });
         
@@ -466,30 +358,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //combobox
-                jComboBox2.setEnabled(false);
+                jComboBox1.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
                 //función
                 if(cbPuesto.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true){
-                            while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true){
+                        if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
+                            while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set puesto='"+jComboBox1.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo puesto","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se seleccionó el nuevo puesto.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
                         }
                     });
                 }
@@ -506,18 +386,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //combobox
-                jComboBox2.setEnabled(true);
+                jComboBox1.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
             }
         });
         
@@ -545,31 +416,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtExp.setEnabled(true);
                 //función
                 if(cbExp.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtExp.getText().equals("")&&cbExp.isSelected()==true){
-                            while(!txtExp.getText().equals("")&&cbExp.isSelected()==true){
+                        if(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
+                            while(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbExp)'",Level.WARNING);
                         }
                     });
                 }
@@ -585,19 +443,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtExp.setEnabled(false);
+                txtExp.setText("");
             }
         });
         
@@ -625,31 +474,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtGE.setEnabled(true);
                 //función
                 if(cbGE.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtGE.getText().equals("")&&cbGE.isSelected()==true){
-                            while(!txtGE.getText().equals("")&&cbGE.isSelected()==true){
+                        if(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
+                            while(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbGE)'",Level.WARNING);
                         }
                     });
                 }
@@ -665,19 +501,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtGE.setEnabled(false);
+                txtGE.setText("");
             }
         });
         
@@ -705,31 +532,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbGE.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtContacto.setEnabled(true);
                 //función
                 if(cbContacto.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true){
-                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true){
+                        if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
+                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContacto)'",Level.WARNING);
                         }
                     });
                 }
@@ -745,19 +559,74 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbGE.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtContacto.setEnabled(false);
+                txtContacto.setText("");
+            }
+        });
+        
+        cbFN.addActionListener((a)->{
+            if(cbFN.isSelected()==true){
+                //selected
+                cbContra.setSelected(false);
+                cbNombre.setSelected(false);
+                cbAP.setSelected(false);
+                cbAM.setSelected(false);
+                cbCURP.setSelected(false);
+                cbDomicilio.setSelected(false);
+                cbPuesto.setSelected(false);
+                cbExp.setSelected(false);
+                cbGE.setSelected(false);
+                cbContacto.setSelected(false);
+                cbEdad.setSelected(false);
+                cbEstado.setSelected(false);
+                //enabled
+                cbContra.setEnabled(false);
+                cbNombre.setEnabled(false);
+                cbAP.setEnabled(false);
+                cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
+                cbDomicilio.setEnabled(false);
+                cbPuesto.setEnabled(false);
+                cbExp.setEnabled(false);
+                cbGE.setEnabled(false);
+                cbContacto.setEnabled(false);
+                cbEdad.setEnabled(false);
+                cbEstado.setEnabled(false);
+                //textfields
+                txtSearch.setEnabled(false);
+                dcFN.setEnabled(true);
+                //función
+                if(cbFN.isSelected()==true){
+                    jButton1.addActionListener((b)->{
+                        if(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
+                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
+                                new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
+            }else if(cbFN.isSelected()==false){
+                //enabled
+                cbContra.setEnabled(true);
+                cbNombre.setEnabled(true);
+                cbAP.setEnabled(true);
+                cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
+                cbDomicilio.setEnabled(true);
+                cbPuesto.setEnabled(true);
+                cbExp.setEnabled(true);
+                cbGE.setEnabled(true);
+                cbContacto.setEnabled(true);
+                cbEdad.setEnabled(true);
+                cbEstado.setEnabled(true);
+                //textfields
+                txtSearch.setEnabled(true);
+                dcFN.setEnabled(false);
+                dcFN.setDate(null);
             }
         });
         
@@ -785,31 +654,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
                 cbEstado.setEnabled(false);
-                //combo
-                jComboBox1.setEnabled(false);
-                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
+                txtSearch.setEnabled(false);
+                txtEdad.setEnabled(true);
                 //función
                 if(cbEdad.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true){
-                            while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true){
+                        if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
+                            while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbEdad)'",Level.WARNING);
                         }
                     });
                 }
@@ -825,19 +681,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
                 cbEstado.setEnabled(true);
-                //combo
-                jComboBox1.setEnabled(true);
-                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
+                txtSearch.setEnabled(true);
+                txtEdad.setEnabled(false);
+                txtEdad.setText("");
             }
         });
         
@@ -866,30 +713,18 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 //combo
-                jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(true);
                 //textfields
-                txtSearch.setEditable(false);
-                txtContra.setEditable(false);
-                txtNombre.setEditable(false);
-                txtAP.setEditable(false);
-                txtAM.setEditable(false);
-                txtDom.setEditable(false);
-                txtExp.setEditable(false);
-                txtGE.setEditable(false);
-                txtContacto.setEditable(false);
-                txtEdad.setEditable(false);
+                txtSearch.setEnabled(false);
                 //función
                 if(cbEstado.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true){
-                            while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true){
+                        if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
+                            while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set estado='"+jComboBox2.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Error: seleccione el nuevo estado del empleado","Error 18",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 18: no se seleccionó el nuevo estado del empleado.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbPuesto)'",Level.WARNING);
                         }
                     });
                 }
@@ -906,18 +741,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 //combo
-                jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(false);
                 //textfields
-                txtSearch.setEditable(true);
-                txtContra.setEditable(true);
-                txtNombre.setEditable(true);
-                txtAP.setEditable(true);
-                txtAM.setEditable(true);
-                txtDom.setEditable(true);
-                txtExp.setEditable(true);
-                txtGE.setEditable(true);
-                txtContacto.setEditable(true);
-                txtEdad.setEditable(true);
+                txtSearch.setEnabled(true);
             }
         });
         
@@ -997,6 +823,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         etiDom = new javax.swing.JLabel();
         cbDomicilio = new javax.swing.JCheckBox();
         txtDom = new javax.swing.JTextField();
+        etiCURP = new javax.swing.JLabel();
+        cbCURP = new javax.swing.JCheckBox();
+        txtCURP = new javax.swing.JTextField();
+        etiFN = new javax.swing.JLabel();
+        cbFN = new javax.swing.JCheckBox();
+        dcFN = new com.toedter.calendar.JDateChooser();
 
         closeButton.setText("Cerrar panel");
 
@@ -1008,6 +840,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiAM.setText("Apellido materno");
 
+        txtContra.setEnabled(false);
+
+        txtNombre.setEnabled(false);
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
@@ -1018,12 +853,14 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         jButton1.setText("Actualizar datos");
 
+        txtAP.setEnabled(false);
         txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAPKeyPressed(evt);
             }
         });
 
+        txtAM.setEnabled(false);
         txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAMKeyPressed(evt);
@@ -1031,7 +868,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+        jComboBox1.setEnabled(false);
 
+        txtExp.setEnabled(false);
         txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExpKeyPressed(evt);
@@ -1044,6 +883,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiGE.setText("Grado de estudios");
 
+        txtGE.setEnabled(false);
         txtGE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtGEKeyPressed(evt);
@@ -1052,6 +892,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiContacto.setText("Contacto");
 
+        txtContacto.setEnabled(false);
         txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtContactoKeyPressed(evt);
@@ -1060,6 +901,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiEdad.setText("Edad");
 
+        txtEdad.setEnabled(false);
         txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEdadKeyPressed(evt);
@@ -1069,8 +911,19 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         etiEstado.setText("Estado");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboBox2.setEnabled(false);
 
         etiDom.setText("Domicilio");
+
+        txtDom.setEnabled(false);
+
+        etiCURP.setText("CURP");
+
+        txtCURP.setEnabled(false);
+
+        etiFN.setText("Fecha de nacimiento");
+
+        dcFN.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1080,26 +933,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(etiDom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiEdad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiGE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(etiExp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiPuesto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiAM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiAP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiContra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(etiEdad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -1107,21 +943,23 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbContra)
+                                .addComponent(cbEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(etiDom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiGE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiExp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiPuesto, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(etiFN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbNombre)
+                                .addComponent(cbFN)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNombre))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbAP)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAP))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbAM)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAM))
+                                .addComponent(dcFN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbExp, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1133,17 +971,51 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                     .addComponent(txtExp)
                                     .addComponent(txtGE, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbDomicilio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDom)))))
+                                .addComponent(txtDom, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(etiAM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(etiAP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiContra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etiCURP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbCURP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cbContra)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cbNombre)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtNombre))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cbAP)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtAP))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cbAM)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtAM)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(closeButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1177,6 +1049,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(etiAM)
                         .addComponent(cbAM)))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(etiCURP)
+                        .addComponent(cbCURP)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1207,6 +1085,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(etiContacto)
                         .addComponent(cbContacto)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dcFN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(etiFN)
+                        .addComponent(cbFN)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1286,24 +1170,29 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox cbAM;
     private javax.swing.JCheckBox cbAP;
+    private javax.swing.JCheckBox cbCURP;
     private javax.swing.JCheckBox cbContacto;
     private javax.swing.JCheckBox cbContra;
     private javax.swing.JCheckBox cbDomicilio;
     private javax.swing.JCheckBox cbEdad;
     private javax.swing.JCheckBox cbEstado;
     private javax.swing.JCheckBox cbExp;
+    private javax.swing.JCheckBox cbFN;
     private javax.swing.JCheckBox cbGE;
     private javax.swing.JCheckBox cbNombre;
     private javax.swing.JCheckBox cbPuesto;
     private javax.swing.JButton closeButton;
+    private com.toedter.calendar.JDateChooser dcFN;
     private javax.swing.JLabel etiAM;
     private javax.swing.JLabel etiAP;
+    private javax.swing.JLabel etiCURP;
     private javax.swing.JLabel etiContacto;
     private javax.swing.JLabel etiContra;
     private javax.swing.JLabel etiDom;
     private javax.swing.JLabel etiEdad;
     private javax.swing.JLabel etiEstado;
     private javax.swing.JLabel etiExp;
+    private javax.swing.JLabel etiFN;
     private javax.swing.JLabel etiGE;
     private javax.swing.JLabel etiNombre;
     private javax.swing.JLabel etiPuesto;
@@ -1313,6 +1202,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtAM;
     private javax.swing.JTextField txtAP;
+    private javax.swing.JTextField txtCURP;
     private javax.swing.JTextField txtContacto;
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtDom;
