@@ -34,6 +34,7 @@ import javax.imageio.ImageIO;
 //extension larga
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
+import static venPrimarias.start.userID;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -152,6 +153,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem3.addActionListener((a)->{
             new start().setVisible(true);
             new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),TrayIcon.MessageType.INFO);
+            new logger().staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(jMenuItem2)'.\nUsuario que terminó sesión: "+jMenuItem2.getText(),Level.INFO);
             dispose();
         });
     }

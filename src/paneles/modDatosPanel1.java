@@ -49,22 +49,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -87,11 +91,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -107,22 +113,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
                 cbContra.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -145,11 +155,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -165,22 +177,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbNombre.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -203,11 +219,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbNombre.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -223,22 +241,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -261,17 +283,83 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
                 txtAM.setEnabled(false);
                 txtAM.setText("");
+            }
+        });
+        
+        cbCURP.addActionListener((a)->{
+            if(cbCURP.isSelected()==true){
+                //selected
+                cbContra.setSelected(false);
+                cbNombre.setSelected(false);
+                cbAP.setSelected(false);
+                cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
+                cbPuesto.setSelected(false);
+                cbExp.setSelected(false);
+                cbGE.setSelected(false);
+                cbContacto.setSelected(false);
+                cbFN.setSelected(false);
+                cbEdad.setSelected(false);
+                cbEstado.setSelected(false);
+                //enabled
+                cbContra.setEnabled(false);
+                cbNombre.setEnabled(false);
+                cbAP.setEnabled(false);
+                cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
+                cbPuesto.setEnabled(false);
+                cbExp.setEnabled(false);
+                cbGE.setEnabled(false);
+                cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
+                cbEdad.setEnabled(false);
+                cbEstado.setEnabled(false);
+                //textfields
+                txtSearch.setEnabled(false);
+                txtCURP.setEnabled(true);
+                //función
+                if(cbCURP.isSelected()==true){
+                    jButton1.addActionListener((b)->{
+                        if(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
+                            while(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
+                                new datos().actualizarDatosEmpleado("set curp='"+txtCURP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
+            }else if(cbCURP.isSelected()==false){
+                //enabled
+                cbContra.setEnabled(true);
+                cbNombre.setEnabled(true);
+                cbAP.setEnabled(true);
+                cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
+                cbPuesto.setEnabled(true);
+                cbExp.setEnabled(true);
+                cbGE.setEnabled(true);
+                cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
+                cbEdad.setEnabled(true);
+                cbEstado.setEnabled(true);
+                //textfields
+                txtSearch.setEnabled(true);
+                txtCURP.setEnabled(false);
+                txtCURP.setText("");
             }
         });
         
@@ -282,10 +370,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
@@ -293,10 +383,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -320,10 +412,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -340,10 +434,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
@@ -351,10 +447,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //combobox
@@ -379,10 +477,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //combobox
@@ -399,10 +499,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
@@ -410,10 +512,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -437,10 +541,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -457,10 +563,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
@@ -468,10 +576,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -495,10 +605,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -515,10 +627,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
@@ -526,10 +640,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
@@ -553,10 +669,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
@@ -601,8 +719,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 if(cbFN.isSelected()==true){
                     jButton1.addActionListener((b)->{
                         if(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
-                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
-                                new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            while(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
+                                new datos().actualizarDatosEmpleado("set fecha_nacimiento='"+new java.sql.Date(dcFN.getDate().getTime())+"' where codigo_emp='"+txtSearch.getText()+"';");
                                 consulta();
                                 break;
                             }
@@ -637,22 +755,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEstado.setSelected(false);
                 //enabled
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEstado.setEnabled(false);
                 //textfields
                 txtSearch.setEnabled(false);
@@ -675,11 +797,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEstado.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(true);
@@ -695,22 +819,26 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbCURP.setSelected(false);
                 cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
+                cbFN.setSelected(false);
                 cbEdad.setSelected(false);
                 //enabled
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbCURP.setEnabled(false);
                 cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
+                cbFN.setEnabled(false);
                 cbEdad.setEnabled(false);
                 //combo
                 jComboBox2.setEnabled(true);
@@ -734,11 +862,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbCURP.setEnabled(true);
                 cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
+                cbFN.setEnabled(true);
                 cbEdad.setEnabled(true);
                 //combo
                 jComboBox2.setEnabled(false);

@@ -87,8 +87,8 @@ public final class start extends javax.swing.JFrame{
         String usuario=txtUsuario.getText();
         String contra=String.valueOf(txtContraseña.getPassword());
         
-        String consulta="select * from empleados where password='"+contra+"' and nombre_emp='"+usuario+"';";
-        String fecha="update empleados set fecha_sesion=now() where password='"+contra+"';";
+        String consulta="select * from empleados where password='"+contra+"' and nombre_emp='"+usuario+"' or curp='"+usuario+"';";
+        String fecha="update empleados set fecha_sesion=now() where password='"+contra+"' and nombre_emp='"+usuario+"' or curp='"+usuario+"';";
         
         try{
             ps=new datos().getConnection().prepareStatement(consulta);
@@ -140,12 +140,6 @@ public final class start extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
-
-        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUsuarioKeyPressed(evt);
-            }
-        });
 
         jLabel1.setText("Usuario:");
 
@@ -212,14 +206,6 @@ public final class start extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-        if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'txtUsuarioKeyPressed()'",Level.WARNING);
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtUsuarioKeyPressed
     
     public static void main(String[] args){
         new start().setVisible(true);
