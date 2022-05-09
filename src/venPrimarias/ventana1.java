@@ -37,7 +37,6 @@ public final class ventana1 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected datos d;
     protected PreparedStatement ps;
     protected ResultSet rs;
     
@@ -53,7 +52,6 @@ public final class ventana1 extends javax.swing.JFrame{
     protected int cantidad;
     protected int precio;
     protected int total;
-    protected int win;
     
     protected final void settings(){
         p=new Properties();

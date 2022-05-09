@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,7 +23,6 @@ import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
-import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 
 public final class start extends javax.swing.JFrame{
@@ -38,14 +38,10 @@ public final class start extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected datos d;
-    
     protected Properties p;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
-    
-    public String nombreVal;
     
     public static String nameUser;
     public static int userID;

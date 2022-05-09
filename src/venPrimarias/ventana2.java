@@ -31,8 +31,6 @@ public final class ventana2 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected datos cn;
-    
     protected Properties p;
     protected DefaultTableModel dtm;
     
@@ -41,7 +39,6 @@ public final class ventana2 extends javax.swing.JFrame{
     protected int cod_prov;
     protected int cantidad;
     protected int preciou;
-    protected int win;
     
     protected String nom_prod;
     protected String marca;
@@ -86,7 +83,6 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
-        
         addButton.addActionListener((ae)->{
             if(!txtCodProd.getText().equals("")||!txtCodLote.getText().equals("")||!txtCodProv.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtCant.getText().equals("")||!txtPU.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
                 dtm.addRow(new Object[]{

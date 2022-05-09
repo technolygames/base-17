@@ -11760,3 +11760,15 @@ may. 07, 2022 4:51:29 P. M. clases.logger staticLogger
 INFO: Sesión finalizada.
 Ocurrió en la clase 'menus.menuVentanas', en el método 'menu(jMenuItem2)'.
 Usuario que terminó sesión: Prueba
+may. 09, 2022 3:52:00 P. M. clases.logger staticLogger
+INFO: Rel 4: se han guardado las condiguraciones.
+Ocurrió en la clase 'venPrimarias.proper1', en el método 'configOut()'.
+Usuario que hizo los cambios: 0
+may. 09, 2022 3:52:42 P. M. clases.logger staticLogger
+INFO: Rel 4: se han guardado las condiguraciones.
+Ocurrió en la clase 'venPrimarias.proper1', en el método 'configOut()'.
+Usuario que hizo los cambios: 0
+may. 09, 2022 3:52:42 P. M. clases.logger staticLogger
+INFO: Rel 4: se han guardado las condiguraciones.
+Ocurrió en la clase 'venPrimarias.proper1', en el método 'configOut()'.
+Usuario que hizo los cambios: 0

@@ -1,63 +1,62 @@
 # base16
-Un programa hecho en Java para administrar una tienda de abarrotes
-
-Este programa se encarga de administrar una tienda de abarrotes. Las características son:
-- Poder guardar, desde una tabla, todos los datos a mysql;
-- Personalizar el programa a tu gusto, con: 
-* Look and feel
-* Icono de ventana personalizable
-* Cambiar el nombre del programa
-* Importar/Exportar la base de datos
-- Almacena los datos de empleados, socios y proveedores
-- Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
-- En caso de actualización del programa, descarga los archivos y librerías
-- Correcta gestión de errores
-- Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
-- Creación de ticket y factura
-- Lector de código de barras
-- Almacenamiento preventivo al eliminar datos de la base de datos o crearla por seguridad
-- Hilos
-
-Para poder programar, la carpeta con todo el código es "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales necesarios para poder programar.
-
-Notas:
-- Para que no dé el error al momento de una excepción, se debe crear la carpeta en la siguiente dirección: src/data/logs. No debe estar fuera de logs ni mucho menos dentro de la carpeta static
-- A veces saldrán errores por el uso de look and feel de windows en otros sistemas. Para prevenir este error, elimine el archivo que está en src/data/config llamado "config.properties" y reemplazarlo por preconfig.properties cambiándole el nombre por el mismo del archivo eliminado. Es recomendable que se haga una copia del archivo preconfig en vez de hacerlo en el mismo archivo
-
-Instalación:
-
-- Para poder usar sin problemas y/o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp).
-- Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en src/data/database/MySQL, nombrado como tienda.sql.
-- Después, se debe cambiar el archivo config.properties (src/data/config) por preconfig.properties, cambiándole a este último el nombre por el archivo eliminado.
-- En caso de tener un servidor de base de datos de MySQL previamente configurado, se debe configurar en el panel de "Configurar BD" en Herramientas de administrador los datos necesarios del servidor.
-
-A java program to manage a grocery
-
-This program can be use to manage a grocery store. Features:
-- Can store from a table to mysql's database
+(EN)
+A java program to manage a grocery. Features:
+- Can store data from a graphical table to database
 - Can be customable with:
 * Look and feel
 * Customable window icon
-* Switch name
+* Customable frame image
+* Switchable name
 * Import/export database
+- Employee, partners, providers, sold and stored items data display on a table or detailed window
 - Employee, partners and providers data storage
-- Employee, partners, providers, sold and store items data display on a table or detailed window
-- in case of program update, file and libraries download from internet
-- Exception handling
 - Employee, partners, providers image storage if is needed to make physical IDs
-- Ticket and invoice print
+- in case of program's update, files and libraries download
+- Exception handling
+- JSON backup handler
+- Bill and ticket print
 - Barcode reader
 - Threads
 
-Everything is on src folder. Everything is on it. Database, windows, classes, libraries and media
+To start programming, everything is on "src" folder. Database, windows, classes, libraries and media
 
 Notes:
-- To avoid a message during an exception, you will create a new folder into "src/data/logs" called "exceptions". This don't be created outside of logs folder nor into static folder
-- Sometimes will throw exceptions caused by using windows' look and feel in other systems. To avoid this exception, delete file into src/data/config called "config.properties", replace by "preconfig.properties" and rename it as the previous deleted file (config.properties). I recommend you to copy preconfig.properties instead of using the same file
+- To avoid a message during an exception, you will create a new folder into "src/data/logs" called "exceptions". This don't be created outside of logs folder nor into static folder.
+- Sometimes will throw exceptions caused by using windows' look and feel in other systems. To avoid this exception, delete file into "src/data/config" called "config.properties", replace by "preconfig.properties" and rename it as the previous deleted file (config.properties). I recommend you to copy "preconfig.properties" instead of using the same file.
 
 Installation:
 
-- To use without troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp; are the same thing).
-- It's needed to the correct execution of the program. Database can be found on the following path: "src/data/database/MySQL", named as tienda.sql.
-- After of this, it'll need to change config.properties by preconfig.properties, changing preconfig like previous deleted file.
-- In case of have a MySQL database server previously configurated, it'll need to configurate on database config panel on admin tools ("Herramientas de administrador") window with the server ip.
+- To use without any troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp). It's needed to the correct execution of the program. Database can be found on the following path: "src/data/database/MySQL", called as tienda.sql.
+- After of this, you'll need to replace "config.properties" by "preconfig.properties", renaming it as the previous deleted file. I recommend you to copy "preconfig.properties" instead of using the same file
+- In case if have a MySQL database server previously configurated and completed database import step, you'll need configurate on "Configurar BD" panel inside in the window called "Herramientas de administrador" ("Administrator Tools") the server connection.
+
+(ES)
+Programa hecho en Java para administrar una tienda de abarrotes. Sus características:
+- Poder guardar, desde una tabla, datos a una base de datos
+- Puede ser personalizado con: 
+* Look and feel
+* Icono de ventana personalizable
+* Imagen de ventana personalizable 
+* Cambiar el nombre del programa
+* Importar/Exportar la base de datos
+- Almacena datos de empleados, socios y proveedores
+- Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
+- Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
+- En caso de actualización, descarga los archivos y librerías
+- Gestión de errores
+- Gestión de copias de seguridad con JSON
+- Impresión de ticket y factura
+- Lector de código de barras
+- Hilos
+
+Para poder programar, todo el código está en la carpeta "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales.
+
+Notas:
+- Para que no dé un mensaje en el momento de una excepción, se debe crear la carpeta en la siguiente dirección: "src/data/logs". No debe estar fuera de logs ni mucho menos dentro de la carpeta static.
+- A veces lanzará errores por el uso de apariencia de windows en otros sistemas. Para prevenir este error, elimine el archivo que está en "src/data/config" llamado "config.properties" y reemplázalo por "preconfig.properties" renombrándolo como el archivo eliminado (config.properties). Recomiendo que se haga una copia del archivo preconfig en vez de usar el mismo archivo.
+
+Instalación:
+
+- Para poder usar sin problemas o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp). Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en "src/data/database/MySQL", llamado como tienda.sql.
+- Después, debes cambiar el archivo "config.properties" por "preconfig.properties", renombrándolo como el archivo eliminado.
+- En caso de que tengas un servidor de base de datos de MySQL ya configurado y hayas completado el paso de la importación de la base de datos, debes configurar, en el panel de "Configurar BD" en Herramientas de administrador, la conexión al servidor.
