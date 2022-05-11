@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
 import java.lang.reflect.InaccessibleObjectException;
@@ -52,11 +51,12 @@ public class paymentWindow extends javax.swing.JDialog{
         
         mkPaidButton.addActionListener((a)->{
             int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas imprimir reporte de compra?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
-            if(opcion==0){
-                imprimirReporte();
-                new datosTicket().imprimirTicket(null, "", 0, "", 0);
-            }else if(opcion==1){
-                new datosTicket().imprimirTicket(null, "", 0, "", 0);
+            switch(opcion){
+                case 0:
+                    imprimirReporte();
+                    new datosTicket().imprimirTicket(null,"",0,"",0);
+                case 1:
+                    new datosTicket().imprimirTicket(null,"",0,"",0);
             }
         });
     }

@@ -86,7 +86,7 @@ public class validacionVentana5 extends javax.swing.JDialog{
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
 
-        jLabel1.setText("Usuario.");
+        jLabel1.setText("Usuario:");
 
         jLabel2.setText("Contraseña:");
 

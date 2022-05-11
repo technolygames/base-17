@@ -47,12 +47,12 @@ public class databaseConfig extends javax.swing.JPanel{
     }
     
     protected final void botones(){
+        p=new Properties();
         closeButton.addActionListener((a)->{
             setVisible(false);
         });
         
         storeButton.addActionListener((a)->{
-            p=new Properties();
             try{
                 p.setProperty("driver",jComboBox1.getSelectedItem().toString());
                 p.setProperty("database",jTextField1.getText());

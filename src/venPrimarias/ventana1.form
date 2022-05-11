@@ -96,7 +96,7 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="backButton" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="picLabel" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="picLabel" alignment="1" min="-2" pref="63" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

@@ -33,8 +33,6 @@ public class databaseImport extends javax.swing.JPanel{
     protected InputStream is;
     protected OutputStream os;
     
-    protected String direccion;
-    
     protected void settings(){
         jTextField3.setText(databaseWindow.nombredb);
     }

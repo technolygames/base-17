@@ -3,9 +3,6 @@ package venTerciarias;
 import clases.datos;
 import clases.Icono;
 import clases.laf;
-//java
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
 import paneles.databaseImport;
 
 public class databaseWindow extends javax.swing.JDialog{
@@ -20,11 +17,6 @@ public class databaseWindow extends javax.swing.JDialog{
         setTitle("Crear base de datos");
         setResizable(false);
     }
-    
-    protected datos d;
-    
-    protected PreparedStatement ps;
-    protected ResultSet rs;
     
     public static String nombredb;
     

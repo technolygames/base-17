@@ -9,6 +9,7 @@ import venTerciarias.valVentanas.validacionVentana7;
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +30,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.ActionEvent;
-import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 

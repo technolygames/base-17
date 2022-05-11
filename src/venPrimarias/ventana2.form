@@ -82,7 +82,7 @@
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="picLabel" min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="picLabel" min="-2" pref="63" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="svdtButton" min="-2" max="-2" attributes="0"/>

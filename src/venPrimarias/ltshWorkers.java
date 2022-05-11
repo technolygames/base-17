@@ -45,12 +45,12 @@ public class ltshWorkers extends javax.swing.JFrame{
             dispose();
         });
         
-        searchButton.addActionListener((ae)->{
-            datosBuscar();
-        });
-        
         refreshButton.addActionListener((e)->{
             datosMostrar();
+        });
+        
+        searchButton.addActionListener((ae)->{
+            datosBuscar();
         });
     }
     

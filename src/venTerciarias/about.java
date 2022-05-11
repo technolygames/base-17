@@ -8,6 +8,7 @@ import java.awt.Cursor;
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
+import java.nio.charset.StandardCharsets;
 
 public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
@@ -39,7 +41,7 @@ public final class about extends javax.swing.JDialog{
     protected void etiquetas(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/acerca.properties"));
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/acerca.properties",StandardCharsets.UTF_8));
             
             versionLabel.setText(p.getProperty("version"));
             estableLabel.setText(p.getProperty("estable"));
