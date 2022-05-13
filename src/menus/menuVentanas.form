@@ -85,12 +85,12 @@
                   <Component id="ltshButton" max="32767" attributes="0"/>
                   <Component id="ltoffButton" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace pref="116" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="closeButton" min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="picLabel" min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace pref="116" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="storeButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="productButton" alignment="1" max="32767" attributes="0"/>

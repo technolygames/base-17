@@ -9,7 +9,6 @@ import venPrimarias.start;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -22,12 +21,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
-import javax.imageio.ImageIO;
-import menus.menuVentanas;
 
 public class dataWindow4 extends javax.swing.JDialog{
     public dataWindow4(java.awt.Frame parent,boolean modal){
-        super(parent, modal);
+        super(parent,modal);
         initComponents();
         new laf().LookAndFeel(dataWindow4.this,dataWindow4.class.getName(),"dataWindow4");
         
@@ -39,8 +36,6 @@ public class dataWindow4 extends javax.swing.JDialog{
         setTitle("Datos del empleado");
         setResizable(false);
     }
-    
-    protected datos d;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
@@ -56,11 +51,10 @@ public class dataWindow4 extends javax.swing.JDialog{
     }
     
     protected final void datosMostrar(){
-        d=new datos();
         try{
-            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp='"+start.userID+"';");
+            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp='"+start.userID+"';");
             rs=ps.executeQuery();
-            while(rs.next()){
+            if(rs.next()){
                 etiContra.setText(rs.getString("password"));
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_emp")));
                 etiNombre.setText(rs.getString("nombre_emp"));
@@ -91,7 +85,6 @@ public class dataWindow4 extends javax.swing.JDialog{
                 etiFoto.setIcon(l);
                 
                 i.flush();
-                break;
             }
             ps.close();
             rs.close();
@@ -115,7 +108,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+etiCodigo.getText()+"';");
-                File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/empleados/perfil/"+(int)(Math.random()*100000)+".jpg");
+                File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/Empleados/perfil/"+(int)(Math.random()*100000)+".jpg");
                 
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;
@@ -377,7 +370,7 @@ public class dataWindow4 extends javax.swing.JDialog{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)

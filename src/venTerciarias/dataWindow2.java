@@ -38,8 +38,6 @@ public class dataWindow2 extends javax.swing.JDialog{
         setResizable(false);
     }
     
-    protected datos d;
-    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
@@ -50,10 +48,9 @@ public class dataWindow2 extends javax.swing.JDialog{
     }
     
     protected final void datosMostrar(){
-        d=new datos();
-        String id=genLabel.getText();
+        String etiqueta=genLabel.getText();
         try{
-            ps=d.getConnection().prepareStatement("select * from socios where codigo_part="+id+";");
+            ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part="+etiqueta+";");
             rs=ps.executeQuery();
             if(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_part")));
@@ -103,7 +100,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
-                File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/socios/"+(int)(Math.random()*100000)+".jpg");
+                File f=new File(System.getProperty("user.dir")+"/src/data/media/dataImage/Socios/"+(int)(Math.random()*100000)+".jpg");
                 
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;
@@ -282,7 +279,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(5, 5, 5)
-                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(genLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()

@@ -34,7 +34,6 @@ import javax.imageio.ImageIO;
 //extension larga
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
-import static venPrimarias.start.userID;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -140,9 +139,9 @@ public final class menuVentanas extends javax.swing.JFrame{
             try{
                 new proper1().setVisible(true);
             }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error ISE",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error ISE: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(properButton)'",Level.WARNING);
-                new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menu.proper-ISE",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 15",JOptionPane.WARNING_MESSAGE);
+                new logger().staticLogger("Error 15: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(properButton)'",Level.WARNING);
+                new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menu.proper-15",e.fillInStackTrace());
             }
         });
         
@@ -253,11 +252,11 @@ public final class menuVentanas extends javax.swing.JFrame{
                     .addComponent(ltprvButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ltshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ltoffButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(storeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(productButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
