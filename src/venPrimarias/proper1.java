@@ -42,6 +42,7 @@ public final class proper1 extends javax.swing.JFrame{
         configIn();
         combo1();
         settings();
+        slider();
         
         setSize(670,320);
         setLocationRelativeTo(null);
@@ -49,16 +50,19 @@ public final class proper1 extends javax.swing.JFrame{
         setResizable(false);
     }
     
+    protected ImageIcon ii[];
     protected File f;
     protected Properties p;
     protected InputStream is;
     protected OutputStream os;
     protected JFileChooser jfc;
     
+    protected int i,l1;
+    
     protected String icono;
     protected String nombre;
     protected String diseños;
-    protected String direccion1;
+    protected String imagenes;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
     
@@ -71,27 +75,23 @@ public final class proper1 extends javax.swing.JFrame{
         try{
             p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             
-            direccion1=p.getProperty("imagenes");
+            imagenes=p.getProperty("imagenes");
             icono=p.getProperty("icono");
             diseños=p.getProperty("look_and_feel");
             nombre=p.getProperty("nombre");
             
-            if(!new File(direccion1).exists()){
-                direccion1=p.getProperty("imagen_respaldo");
+            if(!new File(imagenes).exists()){
+                imagenes=p.getProperty("imagen_respaldo");
             }
             
             if(!new File(icono).exists()){
                 icono=p.getProperty("icono_respaldo");
             }
             
-            Image i=ImageIO.read(new FileInputStream(direccion1));
-            ImageIcon im=new ImageIcon(i);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
-            jLabel3.setIcon(l);
+            imageLoader(imagenes,"Ventanas");
+            
             jTextField1.setText(nombre);
             jComboBox1.getModel().setSelectedItem(diseños);
-            
-            i.flush();
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'",Level.WARNING);
@@ -174,10 +174,10 @@ public final class proper1 extends javax.swing.JFrame{
                 if(JFileChooser.APPROVE_OPTION==ñ){
                     try{
                         f=jfc.getSelectedFile();
-                        direccion1=f.getPath();
+                        imagenes=f.getPath();
                         nombreArchivo1=f.getName();
                         
-                        Image i=ImageIO.read(new FileInputStream(direccion1));
+                        Image i=ImageIO.read(new FileInputStream(imagenes));
                         ImageIcon im=new ImageIcon(i);
                         Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
                         jLabel3.setIcon(l);
@@ -268,9 +268,9 @@ public final class proper1 extends javax.swing.JFrame{
         String dato2=System.getProperty("user.dir")+"/src/data/media/copy/icon/";
         try{
             if(f.exists()){
-                p.setProperty("imagenes",direccion1);
+                p.setProperty("imagenes",imagenes);
                 
-                is=new FileInputStream(direccion1);
+                is=new FileInputStream(imagenes);
                 os=new FileOutputStream(dato1+nombreArchivo1);
                 
                 new thread(is,os).run();
@@ -316,6 +316,51 @@ public final class proper1 extends javax.swing.JFrame{
         }
     }
     
+    protected void slider(){
+        ii=new ImageIcon[2];
+        ii[0]=new ImageIcon();
+        ii[1]=new ImageIcon();
+        
+        rightButton.addActionListener((a)->{
+            if(a.getSource()==rightButton){
+                if(i!=ii.length-1){
+                    i=i+1;
+                    imageLoader(imagenes,"Ventanas");
+                    rightButton.setEnabled(false);
+                    leftButton.setEnabled(true);
+                }
+            }
+        });
+        
+        leftButton.addActionListener((a)->{
+            if(a.getSource()==leftButton){
+                if(i!=0){
+                    i=i-1;
+                    imageLoader(icono,"Icono");
+                    rightButton.setEnabled(true);
+                    leftButton.setEnabled(false);
+                }
+            }
+        });
+    }
+    
+    protected void imageLoader(String dir,String text){
+        try{
+            Image i=ImageIO.read(new FileInputStream(dir));
+            ImageIcon im=new ImageIcon(i);
+            Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
+            jLabel3.setIcon(l);
+            jLabel5.setText(null);
+            jLabel5.setText(text);
+            
+            i.flush();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'imageLoader()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"imageLoader-2IO",e.fillInStackTrace());
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -324,7 +369,6 @@ public final class proper1 extends javax.swing.JFrame{
         imgButton = new javax.swing.JButton();
         schButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -334,6 +378,10 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel8 = new javax.swing.JLabel();
         toolsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        leftButton = new javax.swing.JButton();
+        rightButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
@@ -345,8 +393,6 @@ public final class proper1 extends javax.swing.JFrame{
         schButton.setText("Guardar cambios");
 
         backButton.setText("Regresar");
-
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setText("Look And Feel:");
 
@@ -363,6 +409,14 @@ public final class proper1 extends javax.swing.JFrame{
 
         jLabel1.setText("Administrador:");
 
+        leftButton.setText("<<");
+
+        rightButton.setText(">>");
+
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -375,17 +429,8 @@ public final class proper1 extends javax.swing.JFrame{
                         .addComponent(schButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imgButton))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, 423, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -400,10 +445,28 @@ public final class proper1 extends javax.swing.JFrame{
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(toolsButton)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 352, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imgButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,13 +489,18 @@ public final class proper1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(toolsButton)
                             .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(imgButton)
-                            .addComponent(jLabel2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rightButton)
+                    .addComponent(leftButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imgButton)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -457,10 +525,13 @@ public final class proper1 extends javax.swing.JFrame{
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JLabel jLabel3;
     protected javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     protected javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton leftButton;
+    private javax.swing.JButton rightButton;
     protected javax.swing.JButton schButton;
     private javax.swing.JButton toolsButton;
     // End of variables declaration//GEN-END:variables

@@ -3,6 +3,8 @@ package paneles;
 import clases.laf;
 import clases.logger;
 import clases.thread;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import venPrimarias.start;
 //java
 import java.io.File;
@@ -10,6 +12,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -43,19 +48,28 @@ public class databaseExport extends javax.swing.JPanel{
         String nombrebdExportada=based+(int)(Math.random()*1000)+".sql";
         
         try{
-            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
+            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based+">"+System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada);
             
-            pr.getOutputStream().write(13);
             is=pr.getInputStream();
-            os=new FileOutputStream(new File(System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada));
+            InputStreamReader isr=new InputStreamReader(is,StandardCharsets.UTF_8);
+            BufferedReader br=new BufferedReader(isr);
+            BufferedWriter bw=new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada)));
             
-            new thread(is,os).run();
+            String line=null;
+            StringBuilder buffer=new StringBuilder();
+            while((line=br.readLine())!=null){
+                buffer.append(line+"\n");
+            }
+            
+            String toWrite=buffer.toString();
+            bw.write(toWrite);
             
             JOptionPane.showMessageDialog(null,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
             new logger().staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'copia()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
-            os.close();
-            os.flush();
+            isr.close();
+            br.close();
+            bw.close();
             is.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 8E",JOptionPane.WARNING_MESSAGE);

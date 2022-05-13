@@ -212,6 +212,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         etiIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

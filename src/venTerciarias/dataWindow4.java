@@ -228,6 +228,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
+        jTextArea2.setFocusable(false);
         jScrollPane2.setViewportView(jTextArea2);
 
         jLabel5.setText("Nombre:");
@@ -267,6 +268,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel17.setText("CURP:");
@@ -275,7 +277,7 @@ public class dataWindow4 extends javax.swing.JDialog{
 
         etiFN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel18.setText("Fecha de nacimiento:");
+        jLabel18.setText("F. nacimiento:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
