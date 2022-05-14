@@ -46,8 +46,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtUsuario" max="32767" attributes="0"/>
                                   <Component id="txtContraseña" pref="120" max="32767" attributes="0"/>
+                                  <Component id="txtUsuario" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="nameLabel" max="32767" attributes="0"/>

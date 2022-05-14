@@ -57,7 +57,7 @@ public final class about extends javax.swing.JDialog{
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiqueta-1IO",e.fillInStackTrace());
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiquetas-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
@@ -72,27 +72,27 @@ public final class about extends javax.swing.JDialog{
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         versionLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        devLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        devLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         pubLabel = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel07 = new javax.swing.JLabel();
         fpubLabel = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jdkLabel = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jreLabel = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         devonLabel = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         estableLabel = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         finLabel = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         inicioLabel = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         websiteLabel = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel7");
@@ -104,47 +104,47 @@ public final class about extends javax.swing.JDialog{
 
         versionLabel.setText("jLabel1");
 
-        jLabel3.setText("Desarrolladora:");
+        jLabel5.setText("Desarrolladora:");
 
         devLabel.setText("jLabel5");
 
-        jLabel5.setText("Publicadora:");
+        jLabel6.setText("Publicadora:");
 
         pubLabel.setText("jLabel6");
 
-        jLabel9.setText("Fecha de publicación:");
+        jLabel07.setText("Fecha de publicación:");
 
         fpubLabel.setText("jLabel7");
 
-        jLabel11.setText("Versión de JDK:");
+        jLabel8.setText("Versión de JDK:");
 
         jdkLabel.setText("jLabel8");
 
-        jLabel13.setText("Versión de JRE:");
+        jLabel9.setText("Versión de JRE:");
 
         jreLabel.setText("jLabel9");
 
-        jLabel15.setText("Desarrollado en:");
+        jLabel10.setText("Desarrollado en:");
 
         devonLabel.setText("jLabel10");
 
-        jLabel17.setText("Última versión estable:");
+        jLabel2.setText("Última versión estable:");
 
         estableLabel.setText("jLabel2");
 
-        jLabel19.setText("Fin del desarrollo:");
+        jLabel4.setText("Fin del desarrollo:");
 
         finLabel.setText("jLabel4");
 
-        jLabel24.setText("Gracias por adquirirlo");
+        jLabel24.setText("Gracias por adquirirlo.");
 
-        jLabel25.setText("Inicio del desarrollo:");
+        jLabel3.setText("Inicio del desarrollo:");
 
         inicioLabel.setText("jLabel3");
 
-        jLabel8.setText("Página del desarrollador:");
+        jLabel11.setText("Página del desarrollador:");
 
-        websiteLabel.setText("jLabel12");
+        websiteLabel.setText("jLabel11");
         websiteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 websiteLabelMouseClicked(evt);
@@ -159,24 +159,24 @@ public final class about extends javax.swing.JDialog{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 26, Short.MAX_VALUE)
                         .addComponent(jLabel23)
                         .addGap(306, 306, 306))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel07, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(versionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,43 +204,43 @@ public final class about extends javax.swing.JDialog{
                     .addComponent(versionLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
+                    .addComponent(jLabel2)
                     .addComponent(estableLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
+                    .addComponent(jLabel3)
                     .addComponent(inicioLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
+                    .addComponent(jLabel4)
                     .addComponent(finLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
                     .addComponent(devLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
                     .addComponent(pubLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(jLabel07)
                     .addComponent(fpubLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
+                    .addComponent(jLabel8)
                     .addComponent(jdkLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
+                    .addComponent(jLabel9)
                     .addComponent(jreLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
+                    .addComponent(jLabel10)
                     .addComponent(devonLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabel11)
                     .addComponent(websiteLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel24)
@@ -251,10 +251,6 @@ public final class about extends javax.swing.JDialog{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String[] args){
-        new about(new javax.swing.JFrame(),true).setVisible(true);
-    }
-    
     private void websiteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteLabelMouseClicked
         p=new Properties();
         try{
@@ -262,22 +258,26 @@ public final class about extends javax.swing.JDialog{
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-1I",e.fillInStackTrace());
+            new logger().staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-1I",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-0",x.fillInStackTrace());
+            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-0",x.fillInStackTrace());
         }catch(FileNotFoundException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-1IO",ñ.fillInStackTrace());
+            new logger().staticLogger("Error 1IO: "+ñ.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-1IO",ñ.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"MouseClicked-2IO",k.fillInStackTrace());
+            new logger().staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-2IO",k.fillInStackTrace());
         }
     }//GEN-LAST:event_websiteLabelMouseClicked
+    
+    public static void main(String[] args){
+        new about(new javax.swing.JFrame(),true).setVisible(true);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel devLabel;
@@ -286,17 +286,17 @@ public final class about extends javax.swing.JDialog{
     private javax.swing.JLabel finLabel;
     private javax.swing.JLabel fpubLabel;
     private javax.swing.JLabel inicioLabel;
+    private javax.swing.JLabel jLabel07;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
