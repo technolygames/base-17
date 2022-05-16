@@ -13,14 +13,18 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         new laf().LookAndFeel(menuDatosVentana1.this,menuDatosVentana1.class.getName(),"menuDatosVentana1");
         
         botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
         setResizable(false);
     }
     
-    protected final void botones(){
+    protected void settings(){
         backButton.setToolTipText("Regresar al formulario"); 
+    }
+    
+    protected final void botones(){
         backButton.addActionListener((e)->{
             setVisible(false);
             dispose();

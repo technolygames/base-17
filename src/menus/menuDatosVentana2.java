@@ -13,10 +13,15 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         new laf().LookAndFeel(menuDatosVentana2.this,menuDatosVentana2.class.getName(),"menuDatosVentana2");
         
         botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
         setResizable(false);
+    }
+    
+    protected void settings(){
+        backButton.setToolTipText("Regresar al formulario"); 
     }
     
     protected final void botones(){

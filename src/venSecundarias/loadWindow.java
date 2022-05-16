@@ -16,8 +16,6 @@ import javax.swing.Timer;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
@@ -36,11 +34,11 @@ public final class loadWindow extends javax.swing.JFrame{
     protected Properties p;
     
     protected final void load(){
-        tb=Taskbar.getTaskbar();
         p=new Properties();
+        tb=Taskbar.getTaskbar();
         
         try{
-            p.load(new FileInputStream("src/data/config/libs.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/libs.properties"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'load()'",Level.WARNING);
@@ -51,7 +49,7 @@ public final class loadWindow extends javax.swing.JFrame{
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"load-2IO",x.fillInStackTrace());
         }
         
-        ActionListener al=(ActionEvent ae)->{
+        t=new Timer(100,(a)->{
             if(jProgressBar1.getValue()<50){
                 if(Taskbar.isTaskbarSupported()){
                     int valor=jProgressBar1.getValue();
@@ -340,8 +338,7 @@ public final class loadWindow extends javax.swing.JFrame{
                 new menuVentanas().setVisible(true);
                 dispose();
             }
-        };
-        t=new Timer(100,al);
+        });
         t.start();
     }
     
