@@ -10,12 +10,19 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.awt.Image;
+import java.io.FileReader;
+import java.lang.reflect.InaccessibleObjectException;
+import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -23,6 +30,17 @@ import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRFontNotFoundException;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
@@ -102,6 +120,8 @@ public final class ventana1 extends javax.swing.JFrame{
                 dtm.isCellEditable(i,j);
             }
         }
+        
+        jButton3.setEnabled(false);
     }
     
     protected final void botones(){
@@ -171,6 +191,10 @@ public final class ventana1 extends javax.swing.JFrame{
             dtm.removeRow(jTable1.getSelectedRow());
         });
         
+        jButton3.addActionListener((a)->{
+            imprimirReporte();
+        });
+        
         mkPaidButton.addActionListener((a)->{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
@@ -198,6 +222,55 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.mkPaid-0",x.fillInStackTrace());
             }
         });
+    }
+    
+    protected void imprimirReporte(){
+        p=new Properties();
+        try{
+            p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
+            Connection cn=new datos().getConnection();
+            Map<String,Object> params=new HashMap<String,Object>(2);
+            JasperDesign jd=JRXmlLoader.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/database/Jasper/reportes.jrxml"));
+            params.put("codigo_emp",txtCodEmp.getText());
+            params.put("nombre_reporte",p.getProperty("nombre"));
+            JasperReport jr=JasperCompileManager.compileReport(jd);
+            JasperPrint jp=JasperFillManager.fillReport(jr,params,cn);
+            JasperViewer jv=new JasperViewer(jp);
+            jv.viewReport(jp);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(true);
+            JasperExportManager.exportReportToPdf(jp);
+            
+            cn.close();
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 17",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 17: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-17",e.fillInStackTrace());
+        }catch(ExceptionInInitializerError x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error EIIE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error EIIE: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-EIIE",x.fillInStackTrace());
+        }catch(NoClassDefFoundError n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error NCDFE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error NCDFE: "+n.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-NCDFE",n.fillInStackTrace());
+        }catch(SQLException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 10",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 10: "+k.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-10",k.fillInStackTrace());
+        }catch(IOException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-2IO",s.fillInStackTrace());
+        }catch(JRFontNotFoundException l){
+            JOptionPane.showMessageDialog(null,"Error:\n"+l.getMessage(),"Error JRFNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error JRFNFE: "+l.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-JRFNFE",l.fillInStackTrace());
+        }catch(InaccessibleObjectException r){
+            JOptionPane.showMessageDialog(null,"Error:\n"+r.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().staticLogger("Error IAE: "+r.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'imprimirReporte()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"imprimirReporte-IAE",r.fillInStackTrace());
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -229,6 +302,7 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -324,6 +398,8 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
 
+        jButton3.setText("Reporte");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -336,6 +412,8 @@ public final class ventana1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mkPaidButton)
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -425,7 +503,8 @@ public final class ventana1 extends javax.swing.JFrame{
                     .addComponent(cleanButton)
                     .addComponent(addButton)
                     .addComponent(mkPaidButton)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -531,6 +610,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton cleanButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -11775,3 +11775,40 @@ Usuario que hizo los cambios: 0
 may. 17, 2022 4:00:00 P. M. clases.logger staticLogger
 WARNING: Error 14: no hay datos que concuerden con los datos escritos.
 Ocurrió en la clase 'venPrimarias.ltshWorkers', en el método 'datosBuscar()'
+may. 18, 2022 3:30:23 P. M. clases.logger staticLogger
+WARNING: Error 10: No suitable driver.
+Ocurrió en la clase 'clases.datos', en el método 'getConnection()'
+may. 18, 2022 3:30:30 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+may. 18, 2022 3:40:20 P. M. clases.logger staticLogger
+WARNING: Error 10: No suitable driver.
+Ocurrió en la clase 'clases.datos', en el método 'getConnection()'
+may. 18, 2022 3:40:23 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+may. 18, 2022 3:45:31 P. M. clases.logger staticLogger
+WARNING: Error 10: No suitable driver.
+Ocurrió en la clase 'clases.datos', en el método 'getConnection()'
+may. 18, 2022 3:45:35 P. M. clases.logger staticLogger
+WARNING: Error 0: Cannot invoke "java.sql.Connection.prepareStatement(String)" because the return value of "clases.datos.getConnection()" is null.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+may. 23, 2022 2:03:39 P. M. clases.logger staticLogger
+WARNING: Error NCDFE: javax/servlet/ServletOutputStream.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'
+may. 23, 2022 3:06:06 P. M. clases.logger staticLogger
+WARNING: Error 17: Report design not valid : 
+	 1. Query parameter not found : codigo_prod.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'
+may. 23, 2022 3:11:50 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @133e16fd.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'
+may. 23, 2022 3:33:03 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @140e5a13.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'
+may. 23, 2022 3:44:22 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @60438a68.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'
+may. 23, 2022 3:54:51 P. M. clases.logger staticLogger
+WARNING: Error IAE: Unable to make field transient java.util.Set java.util.AbstractMap.keySet accessible: module java.base does not "opens java.util" to unnamed module @60438a68.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'imprimirReporte()'

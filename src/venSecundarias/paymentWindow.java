@@ -66,10 +66,10 @@ public class paymentWindow extends javax.swing.JDialog{
         try{
             p.load(new FileReader(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8));
             Connection cn=new datos().getConnection();
-            Map<String,Object> params=new HashMap<String,Object>();
-            params.put("codigo_prod","");
-            params.put("nombre_reporte",p.getProperty("nombre"));
+            Map<String,Object> params=new HashMap<String,Object>(2);
             JasperDesign jd=JRXmlLoader.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/database/Jasper/reportes.jrxml"));
+            params.put("codigo_emp","");
+            params.put("nombre_reporte",p.getProperty("nombre"));
             JasperReport jr=JasperCompileManager.compileReport(jd);
             JasperPrint jp=JasperFillManager.fillReport(jr,params,cn);
             JasperViewer jv=new JasperViewer(jp);
