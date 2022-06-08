@@ -32,7 +32,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.imageio.ImageIO;
 //extension larga
-import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 
 public final class menuVentanas extends javax.swing.JFrame{
@@ -131,11 +130,11 @@ public final class menuVentanas extends javax.swing.JFrame{
     }
     
     protected final void menu(){
-        aboutButton.addActionListener((ActionEvent ae)->{
+        aboutButton.addActionListener((a)->{
             new about(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        properButton.addActionListener((ActionEvent ae)->{
+        properButton.addActionListener((a)->{
             try{
                 new proper1().setVisible(true);
             }catch(IllegalArgumentException e){

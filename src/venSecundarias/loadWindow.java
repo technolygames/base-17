@@ -36,7 +36,6 @@ public final class loadWindow extends javax.swing.JFrame{
     protected final void load(){
         p=new Properties();
         tb=Taskbar.getTaskbar();
-        
         try{
             p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/libs.properties"));
         }catch(FileNotFoundException e){

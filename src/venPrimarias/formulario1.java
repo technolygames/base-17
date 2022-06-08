@@ -115,6 +115,10 @@ public class formulario1 extends javax.swing.JFrame{
             }
         });
         
+        jMenuItem3.addActionListener((a)->{
+            picLabel.setText("Foto");
+        });
+        
         miClearFields.addActionListener((a)->{
             txtPassword.setText("");
             txtCodigo.setText("");
@@ -221,6 +225,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
@@ -339,6 +344,9 @@ public class formulario1 extends javax.swing.JFrame{
 
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
+
+        jMenuItem3.setText("Limpiar foto");
+        jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
 
@@ -591,6 +599,7 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem miClearFields;
