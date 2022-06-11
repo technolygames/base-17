@@ -11824,3 +11824,39 @@ jun. 08, 2022 5:30:06 P. M. clases.logger staticLogger
 INFO: Rel 3E: se exportó correctamente la base de datos.
 Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
 Usuario que hizo la acción: 0
+jun. 10, 2022 3:24:36 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:25:28 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:25:28 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:25:43 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:25:43 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:25:43 P. M. clases.logger staticLogger
+INFO: Rel 3E: se exportó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseExport$exportDB', en el método 'run()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:27:38 P. M. clases.logger staticLogger
+INFO: Rel 1E: se creó correctamente la base de datos.
+Ocurrió en la clase 'clases.datos', en el método 'crearBD()'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:27:58 P. M. clases.logger staticLogger
+INFO: Rel 2E: se importó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseImport', en el método 'botones(importButton)'.
+Usuario que hizo la acción: 0
+jun. 10, 2022 3:27:58 P. M. clases.logger staticLogger
+INFO: Rel 2E: se importó correctamente la base de datos.
+Ocurrió en la clase 'paneles.databaseImport', en el método 'botones(importButton)'.
+Usuario que hizo la acción: 0

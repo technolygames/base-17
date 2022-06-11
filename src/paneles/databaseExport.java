@@ -3,9 +3,9 @@ package paneles;
 import clases.laf;
 import clases.logger;
 import clases.thread;
+import clases.threadReader;
 import venPrimarias.start;
 //java
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -24,7 +24,6 @@ public class databaseExport extends javax.swing.JPanel{
         botones();
     }
     
-    protected File f;
     protected InputStream is;
     protected OutputStream os;
     
@@ -45,14 +44,16 @@ public class databaseExport extends javax.swing.JPanel{
             String passUsuario=jPasswordField1.getPassword().toString();
             String based=jTextField3.getText();
             String nombrebdExportada=based+(int)(Math.random()*1000)+".sql";
+            String dir=System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada;
             
             try{
                 Properties p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/data/config/databaseInfo.properties"));
-                Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" -h "+p.getProperty("ip")+" "+based);
+                Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" -h "+p.getProperty("ip")+" "+based+">"+dir);
+                new Thread(new threadReader(pr.getErrorStream())).start();
                 
                 is=pr.getInputStream();
-                os=new FileOutputStream(new File(System.getProperty("user.dir")+"/src/data/database/MySQL/"+nombrebdExportada));
+                os=new FileOutputStream(dir);
                 
                 new Thread(new thread(is,os)).start();
                 
