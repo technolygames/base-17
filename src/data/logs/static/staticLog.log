@@ -11860,3 +11860,7 @@ jun. 10, 2022 3:27:58 P. M. clases.logger staticLogger
 INFO: Rel 2E: se importó correctamente la base de datos.
 Ocurrió en la clase 'paneles.databaseImport', en el método 'botones(importButton)'.
 Usuario que hizo la acción: 0
+jun. 18, 2022 11:46:23 A. M. clases.logger staticLogger
+INFO: Rel 4: se han guardado las condiguraciones.
+Ocurrió en la clase 'venPrimarias.proper1', en el método 'configOut()'.
+Usuario que hizo los cambios: 0

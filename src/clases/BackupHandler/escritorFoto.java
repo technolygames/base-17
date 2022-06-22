@@ -54,8 +54,8 @@ public class escritorFoto{
             new logger().staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
-            fos.close();
             fos.flush();
+            fos.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'",Level.WARNING);
@@ -101,8 +101,8 @@ public class escritorFoto{
             new logger().staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
-            fos.close();
             fos.flush();
+            fos.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'",Level.WARNING);
@@ -148,8 +148,8 @@ public class escritorFoto{
             new logger().staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
             
             ps.close();
-            fos.close();
             fos.flush();
+            fos.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'",Level.WARNING);

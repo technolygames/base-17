@@ -10,13 +10,12 @@ A java program to manage a grocery. Features:
 * Import/export database
 - Employee, partners, providers, sold and stored items data display on a table or detailed window
 - Employee, partners and providers data storage
-- Employee, partners, providers image storage if is needed to make physical IDs
+- Employee, partners and providers image storage if it's need to make physical IDs
 - in case of program's update, files and libraries download
 - Exception handling
 - JSON backup handler
-- Bill and ticket print
-- Barcode reader
-- Threads
+- Bill and invoice print
+- Execution threads
 
 To start programming, everything is on "src" folder. Database, windows, classes, libraries and media
 
@@ -42,8 +41,7 @@ Programa hecho en Java para administrar una tienda de abarrotes. Sus caracterís
 - Gestión de errores
 - Gestión de copias de seguridad con JSON
 - Impresión de ticket y factura
-- Lector de código de barras
-- Hilos
+- Hilos de ejecución
 
 Para poder programar, todo el código está en la carpeta "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales.
 

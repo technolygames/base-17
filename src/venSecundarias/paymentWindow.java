@@ -30,7 +30,8 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class paymentWindow extends javax.swing.JDialog{
-    public paymentWindow(){
+    public paymentWindow(java.awt.Frame parent,boolean modal){
+        super(parent,modal);
         initComponents();
         new laf().LookAndFeel(paymentWindow.this,paymentWindow.class.getName(),"paymentWindow");
         
@@ -148,7 +149,7 @@ public class paymentWindow extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new paymentWindow().setVisible(true);
+        new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

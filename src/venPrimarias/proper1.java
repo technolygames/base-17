@@ -180,10 +180,11 @@ public final class proper1 extends javax.swing.JFrame{
                         ImageIcon im=new ImageIcon(i);
                         Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
                         jLabel3.setIcon(l);
-                        i.flush();
                         
                         p.setProperty("lastdirectory_image",f.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/filechooserd.properties")),"JFil eChooserDirection");
+                        
+                        i.flush();
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);
@@ -272,7 +273,7 @@ public final class proper1 extends javax.swing.JFrame{
                 is=new FileInputStream(imagenes);
                 os=new FileOutputStream(dato1+nombreArchivo1);
                 
-                new thread(is,os).run();
+                new Thread(new thread(is,os)).start();
                 
                 p.setProperty("imagen_respaldo",dato1+nombreArchivo1);
                 p.setProperty("look_and_feel",design);
@@ -283,7 +284,7 @@ public final class proper1 extends javax.swing.JFrame{
                 is=new FileInputStream(icono);
                 os=new FileOutputStream(dato2+nombreArchivo2);
                 
-                new thread(is,os).run();
+                new Thread(new thread(is,os)).start();
                 
                 p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/data/config/config.properties",StandardCharsets.UTF_8)),"config1");
                 
@@ -291,8 +292,8 @@ public final class proper1 extends javax.swing.JFrame{
                 new logger().staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.INFO);
                 
                 is.close();
-                os.close();
                 os.flush();
+                os.close();
             }else{
                 f.createNewFile();
             }
