@@ -37,6 +37,8 @@ public class threadReader implements Runnable{
                 System.out.println(texto);
                 leido=is.read(buffer);
             }
+            
+            is.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 2IO: "+e.getMessage()+"\nOcurrió en la clase '"+threadReader.class.getName()+"', en el método 'run()'",Level.WARNING);

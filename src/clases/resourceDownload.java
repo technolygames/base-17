@@ -82,14 +82,14 @@ public class resourceDownload{
                 uc=u.openConnection();
                 
                 is=uc.getInputStream();
-                fos=new FileOutputStream(System.getProperty("user.dir")+"src/data/libs/"+validar);
+                fos=new FileOutputStream(System.getProperty("user.dir")+"/src/data/libs/"+validar);
                 
-                new thread(is,fos).run();
-                
-                is.close();
-                fos.flush();
-                fos.close();
+                new Thread(new thread(is,fos)).start();
             }
+            
+            is.close();
+            fos.flush();
+            fos.close();
         }catch(MalformedURLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
