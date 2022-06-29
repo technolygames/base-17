@@ -30,7 +30,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="closeButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jTextField1" pref="360" max="32767" attributes="0"/>
+                          <Component id="jTextField1" pref="330" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="searchButton" min="-2" max="-2" attributes="0"/>
@@ -50,7 +50,7 @@
                   <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="222" max="32767" attributes="0"/>
+              <EmptySpace pref="209" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="loadDataButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="closeButton" alignment="3" min="-2" max="-2" attributes="0"/>

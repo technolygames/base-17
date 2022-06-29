@@ -64,7 +64,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected String nombre_prod;
     protected String marca_prod;
     
-    public static int resultado=0;
+    public static int resultado;
     protected int codigo_prod;
     protected int codigo_emp;
     protected int cantidad;
@@ -128,7 +128,7 @@ public final class ventana1 extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         p=new Properties();
         
-        addButton.addActionListener((ae)->{
+        addButton.addActionListener((a)->{
             if(!txtCodigo.getText().equals("")||!txtCodEmp.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
                 dtm.addRow(new Object[]{
                     txtCodigo.getText(),
@@ -152,12 +152,12 @@ public final class ventana1 extends javax.swing.JFrame{
             txtTotal.setText("");
         });
         
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        calcButton.addActionListener((ae)->{
+        calcButton.addActionListener((a)->{
             try{
                 int res=0;
                 for(int i=0;i<dtm.getRowCount();i++){
@@ -176,7 +176,7 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
         
-        cleanButton.addActionListener((ae)->{
+        cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
             txtCodigo.setText("");

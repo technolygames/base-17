@@ -42,7 +42,6 @@ public class formulario1 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected File f;
     protected Properties p;
     protected JFileChooser jfc;
     
@@ -57,33 +56,29 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((ae)->{
+        jMenuItem1.addActionListener((a)->{
             new menuDatosVentana1().setVisible(true);
         });
         
-        jMenuItem2.addActionListener((ae)->{
+        jMenuItem2.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
                 
-                File f=jfc.getCurrentDirectory();
-                
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
-                jfc.setCurrentDirectory(f);
                 
-                int n=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==n){
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
-                        f=jfc.getSelectedFile();
+                        File f=jfc.getSelectedFile();
                         direccion=f.getPath();
                         
-                        ImageIcon ii=new ImageIcon(f.toString());
+                        ImageIcon ii=new ImageIcon(direccion);
                         Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
                         picLabel.setText(null);
                         picLabel.setIcon(i);
@@ -132,7 +127,7 @@ public class formulario1 extends javax.swing.JFrame{
             jTextArea1.setText("");
         });
         
-        storeButton.addActionListener((ae)->{
+        storeButton.addActionListener((a)->{
             try{
                 if(!txtPassword.getPassword().equals("")||!txtCodigo.getText().equals("")||!txtNombre.getText().equals("")||!txtAP.getText().equals("")||!txtAM.getText().equals("")||!txtDom.getText().equals("")||!txtExp.getText().equals("")||!txtEstudios.getText().equals("")||!txtContacto.getText().equals("")||!txtEdad.getText().equals("")||!jTextArea1.getText().equals("")){
                     String password=String.valueOf(txtPassword.getPassword());

@@ -21,12 +21,12 @@ public class databaseWindow extends javax.swing.JDialog{
     public static String nombredb;
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        createButton.addActionListener((ae)->{
+        createButton.addActionListener((a)->{
             new datos().crearBD(jTextField1.getText());
             databaseImport.jTextField3.setText(jTextField1.getText());
         });

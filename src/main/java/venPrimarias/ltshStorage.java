@@ -39,7 +39,7 @@ public class ltshStorage extends javax.swing.JFrame{
     protected RowSorter<TableModel> sorter;
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
@@ -48,7 +48,7 @@ public class ltshStorage extends javax.swing.JFrame{
             datosMostrar();
         });
         
-        searchButton.addActionListener((ae)->{
+        searchButton.addActionListener((a)->{
             datosBuscar();
         });
     }

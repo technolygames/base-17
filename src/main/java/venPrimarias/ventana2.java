@@ -83,7 +83,7 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
-        addButton.addActionListener((ae)->{
+        addButton.addActionListener((a)->{
             if(!txtCodProd.getText().equals("")||!txtCodLote.getText().equals("")||!txtCodProv.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtCant.getText().equals("")||!txtPU.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
                 dtm.addRow(new Object[]{
                     txtCodProd.getText(),
@@ -109,12 +109,12 @@ public final class ventana2 extends javax.swing.JFrame{
             txtPU.setText("");
         });
         
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        cleanButton.addActionListener((ae)->{
+        cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
             txtCodProd.setText("");
@@ -126,7 +126,7 @@ public final class ventana2 extends javax.swing.JFrame{
             txtPU.setText("");
         });
         
-        svdtButton.addActionListener((ae)->{
+        svdtButton.addActionListener((a)->{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
                     cod_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());

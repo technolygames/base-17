@@ -18,6 +18,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
         setResizable(false);
+        pack();
     }
     
     protected void settings(){
@@ -25,19 +26,21 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((e)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        miDelData.addActionListener((e)->{
+        miDelData.addActionListener((a)->{
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana1.this.getContentPane().add(new delDatosPanel1(),BorderLayout.CENTER);
+            menuDatosVentana1.this.pack();
         });
         
-        miModData.addActionListener((e)->{
+        miModData.addActionListener((a)->{
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana1.this.getContentPane().add(new modDatosPanel1(),BorderLayout.CENTER);
+            menuDatosVentana1.this.pack();
         });
     }
     
@@ -79,8 +82,8 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(374, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(400, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );

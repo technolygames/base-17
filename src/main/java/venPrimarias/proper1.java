@@ -19,7 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
@@ -29,7 +28,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
-import java.awt.event.ActionEvent;
 import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -42,15 +40,19 @@ public final class proper1 extends javax.swing.JFrame{
         configIn();
         combo();
         settings();
-        slider();
+        
+        {
+            imageLoader("Ventanas",jTextField2.getText());
+        }
         
         setLocationRelativeTo(null);
         setTitle("Configuración");
         setResizable(false);
+        pack();
     }
     
-    protected ImageIcon ii[];
-    protected File f;
+    protected ImageIcon ii;
+    protected File f1;
     protected Properties p;
     protected InputStream is;
     protected OutputStream os;
@@ -59,6 +61,8 @@ public final class proper1 extends javax.swing.JFrame{
     protected int i;
     
     protected String icono;
+    protected String nImagen1;
+    protected String nImagen2;
     protected String nombre;
     protected String design;
     protected String imagenes;
@@ -67,6 +71,8 @@ public final class proper1 extends javax.swing.JFrame{
     
     protected void settings(){
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
+        jTextField2.setVisible(false);
+        jTextField3.setVisible(false);
     }
     
     protected final void configIn(){
@@ -75,21 +81,31 @@ public final class proper1 extends javax.swing.JFrame{
             p.load(new FileReader(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties",StandardCharsets.UTF_8));
             
             imagenes=p.getProperty("imagenes");
+            File f2=new File(imagenes);
+            nombreArchivo1=f2.getName();
+                
             icono=p.getProperty("icono");
+            File f3=new File(icono);
+            nombreArchivo2=f3.getName();
+            
             design=p.getProperty("look_and_feel");
             nombre=p.getProperty("nombre");
             
             if(!new File(imagenes).exists()){
                 imagenes=p.getProperty("imagen_respaldo");
+                File k=new File(imagenes);
+                nombreArchivo1=k.getName();
             }
             
             if(!new File(icono).exists()){
                 icono=p.getProperty("icono_respaldo");
+                File k=new File(icono);
+                nombreArchivo2=k.getName();
             }
             
-            imageLoader(imagenes,"Ventanas");
-            
             jTextField1.setText(nombre);
+            jTextField2.setText(imagenes);
+            jTextField3.setText(icono);
             jComboBox1.getModel().setSelectedItem(design);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
@@ -113,29 +129,29 @@ public final class proper1 extends javax.swing.JFrame{
     protected final void botones(){
         p=new Properties();
         
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        iconButton.addActionListener((ae)->{
+        
+        iconButton.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_icon"));
                 
-                File k=jfc.getCurrentDirectory();
-                
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
                 
-                int n=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==n){
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
-                        f=jfc.getSelectedFile();
-                        icono=f.getPath();
-                        nombreArchivo2=f.getName();
+                        File f3=jfc.getSelectedFile();
+                        icono=f3.getPath();
+                        nombreArchivo2=f3.getName();
                         
-                        p.setProperty("lastdirectory_icon",f.getParent());
+                        jTextField3.setText(icono);
+                        
+                        p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
@@ -158,33 +174,26 @@ public final class proper1 extends javax.swing.JFrame{
             }
         });
         
-        imgButton.addActionListener((ActionEvent ae)->{
+        imgButton.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
-                File k=jfc.getCurrentDirectory();
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo JPG","jpg"));
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo JPEG","jpeg"));
                 
-                int ñ=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==ñ){
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
-                        f=jfc.getSelectedFile();
-                        imagenes=f.getPath();
-                        nombreArchivo1=f.getName();
+                        File f2=jfc.getSelectedFile();
+                        imagenes=f2.getPath();
+                        nombreArchivo1=f2.getName();
                         
-                        Image i=ImageIO.read(new FileInputStream(imagenes));
-                        ImageIcon im=new ImageIcon(i);
-                        Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
-                        jLabel3.setIcon(l);
+                        jTextField2.setText(imagenes);
                         
-                        p.setProperty("lastdirectory_image",f.getParent());
+                        p.setProperty("lastdirectory_image",f2.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFil eChooserDirection");
-                        
-                        i.flush();
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
                         new logger().staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'",Level.WARNING);
@@ -206,7 +215,7 @@ public final class proper1 extends javax.swing.JFrame{
             }
         });
         
-        jComboBox1.addActionListener((ae)->{
+        jComboBox1.addActionListener((a)->{
             try{
                 design=jComboBox1.getSelectedItem().toString();
                 UIManager.setLookAndFeel(design);
@@ -230,7 +239,29 @@ public final class proper1 extends javax.swing.JFrame{
             }
         });
         
-        schButton.addActionListener((ae)->{
+        leftButton.addActionListener((a)->{
+            if(a.getSource()==leftButton){
+                if(i!=0){
+                    imageLoader("Icono",jTextField3.getText());
+                    rightButton.setEnabled(true);
+                    leftButton.setEnabled(false);
+                    i=i-1;
+                }
+            }
+        });
+        
+        rightButton.addActionListener((a)->{
+            if(a.getSource()==rightButton){
+                if(i!=-1){
+                    imageLoader("Ventanas",jTextField2.getText());
+                    rightButton.setEnabled(false);
+                    leftButton.setEnabled(true);
+                    i=i+1;
+                }
+            }
+        });
+        
+        schButton.addActionListener((a)->{
             configOut();
         });
         
@@ -263,11 +294,11 @@ public final class proper1 extends javax.swing.JFrame{
     
     protected final void configOut(){
         p=new Properties();
-        f=new File(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties");
-        String dato1=System.getProperty("user.dir")+"/src/main/resources/data/media/copy/label/";
-        String dato2=System.getProperty("user.dir")+"/src/main/resources/data/media/copy/icon/";
+        f1=new File(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties");
+        String dato1=System.getProperty("user.dir")+"\\src\\main\\resources\\data\\media\\forms\\copy\\";
+        String dato2=System.getProperty("user.dir")+"\\src\\main\\resources\\data\\media\\icon\\copy\\";
         try{
-            if(f.exists()){
+            if(f1.exists()){
                 p.setProperty("imagenes",imagenes);
                 
                 is=new FileInputStream(imagenes);
@@ -295,7 +326,7 @@ public final class proper1 extends javax.swing.JFrame{
                 os.flush();
                 os.close();
             }else{
-                f.createNewFile();
+                f1.createNewFile();
             }
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
@@ -316,49 +347,12 @@ public final class proper1 extends javax.swing.JFrame{
         }
     }
     
-    protected void slider(){
-        ii=new ImageIcon[2];
-        ii[0]=new ImageIcon();
-        ii[1]=new ImageIcon();
-        
-        rightButton.addActionListener((a)->{
-            if(a.getSource()==rightButton){
-                if(i!=ii.length-1){
-                    i=i+1;
-                    imageLoader(imagenes,"Ventanas");
-                    rightButton.setEnabled(false);
-                    leftButton.setEnabled(true);
-                }
-            }
-        });
-        
-        leftButton.addActionListener((a)->{
-            if(a.getSource()==leftButton){
-                if(i!=0){
-                    i=i-1;
-                    imageLoader(icono,"Icono");
-                    rightButton.setEnabled(true);
-                    leftButton.setEnabled(false);
-                }
-            }
-        });
-    }
-    
-    protected void imageLoader(String dir,String text){
-        try{
-            Image i=ImageIO.read(new FileInputStream(dir));
-            ImageIcon im=new ImageIcon(i);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
-            jLabel3.setIcon(l);
-            jLabel5.setText(null);
-            jLabel5.setText(text);
-            
-            i.flush();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'imageLoader()'",Level.WARNING);
-            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"imageLoader-2IO",e.fillInStackTrace());
-        }
+    protected void imageLoader(String label,String image){
+        ii=new ImageIcon(image);
+        Icon l=new ImageIcon(ii.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
+        jLabel3.setIcon(l);
+        jLabel5.setText(null);
+        jLabel5.setText(label);
     }
     
     @SuppressWarnings("unchecked")
@@ -382,6 +376,8 @@ public final class proper1 extends javax.swing.JFrame{
         rightButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new Icono().getIconImage());
@@ -424,49 +420,58 @@ public final class proper1 extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(schButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(schButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(toolsButton)))
+                                        .addGap(0, 299, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(iconButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addComponent(jTextField3)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(toolsButton)))
-                                .addGap(0, 297, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                        .addComponent(iconButton)))
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(imgButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,7 +485,8 @@ public final class proper1 extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(iconButton))
+                            .addComponent(iconButton)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -497,10 +503,12 @@ public final class proper1 extends javax.swing.JFrame{
                     .addComponent(rightButton)
                     .addComponent(leftButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgButton)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -530,6 +538,8 @@ public final class proper1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton leftButton;
     private javax.swing.JButton rightButton;
     protected javax.swing.JButton schButton;

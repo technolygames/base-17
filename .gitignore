@@ -7,6 +7,7 @@
 
 # Log file
 *.log
+*.log.*
 
 # BlueJ files
 *.ctxt
@@ -22,7 +23,7 @@
 *.tar.gz
 *.rar
 
-# Personal ignore #
+# Project ignore #
 /src/data/config/libs.txt
 /src/data/database/MySQL/diagram_sql.dia~
 /src/data/logs/static/

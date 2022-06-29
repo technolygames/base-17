@@ -18,6 +18,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
         setResizable(false);
+        pack();
     }
     
     protected void settings(){
@@ -25,7 +26,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
@@ -33,11 +34,13 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         miDelData.addActionListener((a)->{
            menuDatosVentana2.this.setLayout(new BorderLayout());
            menuDatosVentana2.this.getContentPane().add(new delDatosPanel2(),BorderLayout.CENTER);
+           menuDatosVentana2.this.pack();
         });
         
         miModData.addActionListener((a)->{
             menuDatosVentana2.this.setLayout(new BorderLayout());
             menuDatosVentana2.this.getContentPane().add(new modDatosPanel2(),BorderLayout.CENTER);
+            menuDatosVentana2.this.pack();
         });
     }
     

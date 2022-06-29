@@ -30,12 +30,12 @@ public final class calcWindow extends javax.swing.JDialog{
     }
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        calButton.addActionListener((ae)->{
+        calButton.addActionListener((a)->{
             try{
                 int n1=Integer.parseInt(txtTotal.getText());
                 int n2=Integer.parseInt(txtDinIng.getText());

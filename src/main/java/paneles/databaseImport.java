@@ -39,7 +39,7 @@ public class databaseImport extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((ae)->{
+        closeButton.addActionListener((a)->{
             setVisible(false);
         });
         
@@ -47,7 +47,7 @@ public class databaseImport extends javax.swing.JPanel{
             new databaseWindow(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        fileButton.addActionListener((ae)->{
+        fileButton.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
@@ -55,11 +55,10 @@ public class databaseImport extends javax.swing.JPanel{
                 
                 chooser.setFileFilter(new FileNameExtensionFilter("Archivo SQL","sql"));
                 
-                int i=chooser.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==i){
+                if(JFileChooser.APPROVE_OPTION==chooser.showOpenDialog(null)){
                     File f=chooser.getSelectedFile();
                     
-                    jTextField2.setText(f.toString());
+                    jTextField2.setText(f.getPath());
                     
                     p.setProperty("lastdirectory_database_import",f.getParent());
                     p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFileChooserDirection");
@@ -71,7 +70,7 @@ public class databaseImport extends javax.swing.JPanel{
             }
         });
         
-        importButton.addActionListener((ae)->{
+        importButton.addActionListener((a)->{
             new Thread(new importDB()).start();
         });
     }
@@ -153,29 +152,30 @@ public class databaseImport extends javax.swing.JPanel{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(importButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(createButton)
-                        .addGap(0, 54, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(closeButton))
-                            .addComponent(jTextField2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileButton)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jTextField3)
+                                    .addComponent(jPasswordField1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(closeButton))
+                                    .addComponent(jTextField2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fileButton))))
+                    .addComponent(importButton))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -197,9 +197,9 @@ public class databaseImport extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(fileButton)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fileButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(importButton)
                     .addComponent(closeButton))

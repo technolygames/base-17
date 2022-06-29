@@ -30,12 +30,12 @@ public class validacionVentana3 extends javax.swing.JDialog{
     }
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(true);
             dispose();
         });
         
-        valButton.addActionListener((ae)->{
+        valButton.addActionListener((a)->{
             String usuario=jTextField1.getText();
             String contra=String.valueOf(jPasswordField1.getPassword());
             

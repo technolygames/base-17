@@ -46,8 +46,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Ventana principal");
         setResizable(false);
-        
-        //pack();
+        pack();
     }
     
     protected Properties p;
@@ -81,43 +80,43 @@ public final class menuVentanas extends javax.swing.JFrame{
             new ventana3().setVisible(true);
         });
         
-        productButton.addActionListener((ae)->{
+        productButton.addActionListener((a)->{
             new ventana1().setVisible(true);
         });
         
-        storeButton.addActionListener((ae)->{
+        storeButton.addActionListener((a)->{
             new ventana2().setVisible(true);
         });
         
-        form1Button.addActionListener((ae)->{
+        form1Button.addActionListener((a)->{
             new validacionVentana2(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        form2Button.addActionListener((ae)->{
+        form2Button.addActionListener((a)->{
             new validacionVentana1(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        form3Button.addActionListener((ae)->{
+        form3Button.addActionListener((a)->{
             new validacionVentana5(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        ltprvButton.addActionListener((ae)->{
+        ltprvButton.addActionListener((a)->{
             new validacionVentana6(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        ltpsButton.addActionListener((ae)->{
+        ltpsButton.addActionListener((a)->{
             new validacionVentana4(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        ltwkButton.addActionListener((ae)->{
+        ltwkButton.addActionListener((a)->{
             new validacionVentana3(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        ltstButton.addActionListener((ae)->{
+        ltstButton.addActionListener((a)->{
             new ltshStorage().setVisible(true);
         });
         
-        ltshButton.addActionListener((ae)->{
+        ltshButton.addActionListener((a)->{
             new ltshProduct().setVisible(true);
         });
         
@@ -125,7 +124,7 @@ public final class menuVentanas extends javax.swing.JFrame{
             new ltshOff().setVisible(true);
         });
         
-        closeButton.addActionListener((ae)->{
+        closeButton.addActionListener((a)->{
             System.exit(0);
             dispose();
         });
@@ -137,13 +136,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         properButton.addActionListener((a)->{
-            try{
-                new proper1().setVisible(true);
-            }catch(IllegalArgumentException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 15",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 15: "+e.getMessage()+".\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(properButton)'",Level.WARNING);
-                new logger().exceptionLogger(menuVentanas.class.getName(),Level.WARNING,"menu.proper-15",e.fillInStackTrace());
-            }
+            new proper1().setVisible(true);
         });
         
         jMenuItem2.addActionListener((a)->{

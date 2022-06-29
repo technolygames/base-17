@@ -42,16 +42,16 @@ public class formulario3 extends javax.swing.JFrame{
     protected String direccion;
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((ae)->{
+        jMenuItem1.addActionListener((a)->{
             new menuDatosVentana3().setVisible(true);
         });
         
-        miClearFields.addActionListener((ae)->{
+        miClearFields.addActionListener((a)->{
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
@@ -62,25 +62,20 @@ public class formulario3 extends javax.swing.JFrame{
             picLabel.setText("Foto");
         });
         
-        miInsImage.addActionListener((ae)->{
+        miInsImage.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form3"));
                 
-                File f=jfc.getCurrentDirectory();
-                
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
                 
-                jfc.setCurrentDirectory(f);
-                
-                int n=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==n){
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
-                        f=jfc.getSelectedFile();
+                        File f=jfc.getSelectedFile();
                         direccion=f.getPath();
                         
-                        ImageIcon ii=new ImageIcon(f.toString());
+                        ImageIcon ii=new ImageIcon(direccion);
                         Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
                         picLabel.setText(null);
                         picLabel.setIcon(i);
@@ -108,7 +103,7 @@ public class formulario3 extends javax.swing.JFrame{
             }
         });
         
-        svdtButton.addActionListener((ae)->{
+        svdtButton.addActionListener((a)->{
             try{
                 if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextField5.getText().equals("")||!jTextField6.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());

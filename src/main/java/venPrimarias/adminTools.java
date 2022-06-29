@@ -22,11 +22,12 @@ public class adminTools extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Herramientas de administrador");
         setResizable(false);
+        pack();
     }
     
     protected void settings(){
-        jMenuItem5.setEnabled(false);
-        jMenuItem6.setEnabled(false);
+        jMenuItem5.setEnabled(true);
+        jMenuItem6.setEnabled(true);
     }
     
     protected final void botones(){
@@ -38,31 +39,37 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem1.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new databaseConfig(),BorderLayout.CENTER);
+            this.pack();
         });
         
         jMenuItem2.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new workerDataRestore(),BorderLayout.CENTER);
+            this.pack();
         });
         
         jMenuItem3.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new partDataRestore(),BorderLayout.CENTER);
+            this.pack();
         });
         
         jMenuItem4.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new provDataRestore(),BorderLayout.CENTER);
+            this.pack();
         });
         
         jMenuItem5.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new databaseImport(),BorderLayout.CENTER);
+            this.pack();
         });
         
         jMenuItem6.addActionListener((a)->{
             this.getContentPane().setLayout(new BorderLayout());
             this.getContentPane().add(new databaseExport(),BorderLayout.CENTER);
+            this.pack();
         });
     }
     

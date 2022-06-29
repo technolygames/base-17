@@ -48,12 +48,12 @@ public class formulario2 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((ae)->{
+        jMenuItem1.addActionListener((a)->{
             new menuDatosVentana2().setVisible(true);
         });
         
@@ -73,19 +73,14 @@ public class formulario2 extends javax.swing.JFrame{
                 p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form2"));
                 
-                File f=jfc.getCurrentDirectory();
-                
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
                 
-                jfc.setCurrentDirectory(f);
-                
-                int n=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==n){
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
-                        f=jfc.getSelectedFile();
+                        File f=jfc.getSelectedFile();
                         direccion=f.getPath();
                         
-                        ImageIcon ii=new ImageIcon(f.toString());
+                        ImageIcon ii=new ImageIcon(direccion);
                         Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
                         picLabel.setText(null);
                         picLabel.setIcon(i);
@@ -113,7 +108,7 @@ public class formulario2 extends javax.swing.JFrame{
             }
         });
         
-        storeButton.addActionListener((ae)->{
+        storeButton.addActionListener((a)->{
             try{
                 if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextArea1.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());

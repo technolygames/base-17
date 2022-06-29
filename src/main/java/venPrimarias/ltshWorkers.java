@@ -40,16 +40,16 @@ public class ltshWorkers extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        refreshButton.addActionListener((e)->{
+        refreshButton.addActionListener((a)->{
             datosMostrar();
         });
         
-        searchButton.addActionListener((ae)->{
+        searchButton.addActionListener((a)->{
             datosBuscar();
         });
     }

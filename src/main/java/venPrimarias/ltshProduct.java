@@ -39,16 +39,16 @@ public class ltshProduct extends javax.swing.JFrame{
     protected RowSorter<TableModel> sorter;
     
     protected final void botones(){
-        backButton.addActionListener((ae)->{
+        backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
-        refreshButton.addActionListener((e)->{
+        refreshButton.addActionListener((a)->{
             datosMostrar();
         });
         
-        searchButton.addActionListener((ae)->{
+        searchButton.addActionListener((a)->{
             datosBuscar();
         });
     }

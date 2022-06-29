@@ -36,7 +36,7 @@ public final class start extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Inicio");
         setResizable(false);
-        //pack();
+        pack();
     }
     
     protected Properties p;
@@ -70,12 +70,12 @@ public final class start extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((ae)->{
+        closeButton.addActionListener((a)->{
             System.exit(0);
             dispose();
         });
         
-        loginButton.addActionListener((ae)->{
+        loginButton.addActionListener((a)->{
             login();
         });
     }

@@ -17,11 +17,10 @@ public class main{
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/logs/exceptions");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/logs/static");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media");
-        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/copy");
-        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/copy/icon");
-        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/copy/label");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/forms");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/icon");
+        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/icon/copy/");
+        new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/forms/copy/");
         new makeDirs().makeDir(System.getProperty("user.dir")+"/src/main/resources/data/media/secondary");
     }
 }

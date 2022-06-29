@@ -1,3 +1,4 @@
+Los guiones significan la cantidad de clases y ventanas que lanzan, dan o usan ese código de error
 Hay errores que están impares o que deberían seguir una secuencia, pero muchos fueron creados al azar. Además de que sería difícil de reasignarlos
 
 Error Prueba: error aún no encontrado
@@ -47,6 +48,7 @@ Error 5E: no se pudo crear la base de datos
 Error 6E: las consultas hacen demasiadas conexiones
 Error 7E: no se pudo importar la base de datos
 Error 8E: no se pudo exportar la base de datos
+Error 9E: error o evento producido en consola
 
 -Errores especiales
 _T1: error al imprimir ticket

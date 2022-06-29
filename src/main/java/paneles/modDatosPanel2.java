@@ -56,7 +56,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField1.setEnabled(true);
                 //función
                 if(jCheckBox1.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
                                 new datos().actualizarDatosSocio("set nombre_part='"+jTextField1.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -99,7 +99,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField2.setEnabled(true);
                 //función
                 if(jCheckBox2.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
                                 new datos().actualizarDatosSocio("set apellidop_part='"+jTextField2.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -142,7 +142,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField3.setEnabled(true);
                 //función
                 if(jCheckBox3.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
                                 new datos().actualizarDatosSocio("set apellidom_part='"+jTextField3.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -186,7 +186,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 //función
                 if(jCheckBox4.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
                             while(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
                                 new datos().actualizarDatosSocio("set tipo_socio='"+jComboBox1.getSelectedItem().toString()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -229,7 +229,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField4.setEnabled(true);
                 //función
                 if(jCheckBox5.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
                                 new datos().actualizarDatosSocio("set correo='"+jTextField4.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -272,7 +272,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField5.setEnabled(true);
                 //función
                 if(jCheckBox6.isSelected()==true){
-                    jButton1.addActionListener((p)->{
+                    jButton1.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
                                 new datos().actualizarDatosSocio("set rfc='"+jTextField5.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -406,10 +406,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
@@ -449,8 +445,12 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCheckBox5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jTextField4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(closeButton)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,10 +497,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel6)
                         .addComponent(jCheckBox6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(closeButton)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(closeButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
