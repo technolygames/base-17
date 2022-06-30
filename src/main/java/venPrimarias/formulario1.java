@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 import menus.menuDatosVentana1;
@@ -219,7 +219,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setText("Contraseña:");
 

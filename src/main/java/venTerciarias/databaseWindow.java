@@ -1,7 +1,7 @@
 package venTerciarias;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import paneles.databaseImport;
 
@@ -42,7 +42,7 @@ public class databaseWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setText("Nombre de la base de datos:");
 

@@ -2,7 +2,7 @@ package venTerciarias;
 //clases
 import clases.BackupHandler.escritorJSON;
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 import venPrimarias.start;
@@ -194,7 +194,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Datos");

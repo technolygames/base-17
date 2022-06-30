@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.icono;
+import clases.frameIcon;
 import clases.datos;
 import clases.imageFormLoader;
 import clases.laf;
@@ -98,7 +98,7 @@ public class ventana3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         backButton.setText("Regresar");
 

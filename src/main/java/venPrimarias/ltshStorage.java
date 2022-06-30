@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 //librerías
@@ -212,7 +212,7 @@ public class ltshStorage extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

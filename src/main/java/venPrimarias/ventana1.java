@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.imageFormLoader;
 import clases.laf;
 import clases.logger;
@@ -281,7 +281,7 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel2.setText("Código del producto:");
 

@@ -1,6 +1,6 @@
 package venTerciarias;
 //clases
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 //java
@@ -98,7 +98,7 @@ public final class about extends javax.swing.JDialog{
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setText("Versión:");
 

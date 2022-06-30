@@ -1,7 +1,7 @@
 package venTerciarias.valVentanas;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 import venPrimarias.formulario1;
@@ -84,7 +84,7 @@ public class validacionVentana2 extends javax.swing.JDialog{
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setText("Usuario:");
 

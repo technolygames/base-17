@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 import clases.imageFormLoader;
@@ -127,7 +127,7 @@ public final class start extends javax.swing.JFrame{
         textField1.setText("textField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         jLabel1.setText("Usuario:");
 

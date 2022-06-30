@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import paneles.delDatosPanel3;
 import paneles.modDatosPanel3;
@@ -55,7 +55,7 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         backButton.setText("Regresar");
 

@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.icono;
+import clases.frameIcon;
 import clases.imageFormLoader;
 import clases.laf;
 import clases.logger;
@@ -156,7 +156,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 

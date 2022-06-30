@@ -16,7 +16,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class icono{
+public class frameIcon{
     protected String image;
     
     protected Image retValue;
@@ -41,12 +41,12 @@ public class icono{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(icono.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+frameIcon.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(frameIcon.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(icono.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+frameIcon.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(frameIcon.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }

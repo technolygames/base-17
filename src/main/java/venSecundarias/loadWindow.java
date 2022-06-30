@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import menus.menuVentanas;
 //java
@@ -113,7 +113,7 @@ public final class loadWindow extends javax.swing.JFrame{
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
         setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

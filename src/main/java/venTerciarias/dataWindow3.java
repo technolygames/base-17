@@ -3,7 +3,7 @@ package venTerciarias;
 import clases.BackupHandler.escritorJSON;
 import clases.BackupHandler.lectorJSON;
 import clases.datos;
-import clases.icono;
+import clases.frameIcon;
 import clases.laf;
 import clases.logger;
 import venPrimarias.start;
@@ -162,7 +162,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new icono().getIconImage());
+        setIconImage(new frameIcon().getIconImage());
 
         genLabel.setText("12345");
 
