@@ -17,7 +17,7 @@ import java.util.logging.Level;
  * @author erick
  */
 public class icono{
-    protected String icono;
+    protected String image;
     
     protected Image retValue;
     protected Properties p;
@@ -31,13 +31,13 @@ public class icono{
         p=new Properties();
         try{
             p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            icono=p.getProperty("icono");
+            image=p.getProperty("icono");
             
-            if(!new File(icono).exists()){
-                icono=p.getProperty("icono_respaldo");
+            if(!new File(image).exists()){
+                image=p.getProperty("icono_respaldo");
             }
             
-            retValue=Toolkit.getDefaultToolkit().getImage(icono);
+            retValue=Toolkit.getDefaultToolkit().getImage(image);
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
