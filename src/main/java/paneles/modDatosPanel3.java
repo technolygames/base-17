@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public class modDatosPanel3 extends javax.swing.JPanel{
     public modDatosPanel3(){
         initComponents();
-        new laf().LookAndFeel(modDatosPanel3.this,modDatosPanel3.class.getName(),"modDatosPanel3");
+        new laf(modDatosPanel3.class.getName()).LookAndFeel(modDatosPanel3.this);
         
         botones();
         settings();

@@ -1,18 +1,11 @@
 package venPrimarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.datos;
+import clases.imageFormLoader;
 import clases.laf;
 import clases.logger;
 //java
-import java.awt.Image;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -20,7 +13,8 @@ import java.util.logging.Level;
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
-        new laf().LookAndFeel(ventana3.this,ventana3.class.getName(),"ventana3");
+        new laf(ventana3.class.getName()).LookAndFeel(ventana3.this);
+        new imageFormLoader(ventana3.class.getName()).setFormImage(picLabel);
         
         botones();
         settings();
@@ -31,27 +25,7 @@ public class ventana3 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Properties p;
-    
     protected void settings(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
-            ImageIcon im=new ImageIcon(i);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-            picLabel.setIcon(l);
-            
-            i.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Erron:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
-        }
         jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
@@ -124,7 +98,7 @@ public class ventana3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

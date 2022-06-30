@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import clases.thread;
@@ -34,7 +34,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public final class proper1 extends javax.swing.JFrame{
     public proper1(){
         initComponents();
-        new laf().LookAndFeel(proper1.this,proper1.class.getName(),"proper1");
+        new laf(proper1.class.getName()).LookAndFeel(proper1.this);
         
         botones();
         configIn();
@@ -380,7 +380,7 @@ public final class proper1 extends javax.swing.JFrame{
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel2.setText("Imagen:");
 

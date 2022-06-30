@@ -1,18 +1,11 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
+import clases.imageFormLoader;
 import clases.laf;
 import clases.logger;
 //java
-import java.awt.Image;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -21,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
         initComponents();
-        new laf().LookAndFeel(ventana2.this,ventana2.class.getName(),"ventana2");
+        new laf(ventana2.class.getName()).LookAndFeel(ventana2.this);
+        new imageFormLoader(ventana2.class.getName()).setFormImage(picLabel);
         
         botones();
         settings();
@@ -31,7 +25,6 @@ public final class ventana2 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Properties p;
     protected DefaultTableModel dtm;
     
     protected int cod_prod;
@@ -45,24 +38,7 @@ public final class ventana2 extends javax.swing.JFrame{
     protected String stock;
     
     protected final void settings(){
-        p=new Properties();
         dtm=new DefaultTableModel();
-        try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
-            ImageIcon ii=new ImageIcon(i);
-            Icon icono=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-            picLabel.setIcon(icono);
-            i.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana2.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana2.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
-        }
         
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
@@ -184,7 +160,7 @@ public final class ventana2 extends javax.swing.JFrame{
         picLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

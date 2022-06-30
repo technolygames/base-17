@@ -1,7 +1,7 @@
 package venTerciarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import venPrimarias.start;
@@ -26,7 +26,7 @@ public class dataWindow4 extends javax.swing.JDialog{
     public dataWindow4(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new laf().LookAndFeel(dataWindow4.this,dataWindow4.class.getName(),"dataWindow4");
+        new laf(dataWindow4.class.getName()).LookAndFeel(dataWindow4.this);
         
         botones();
         datosMostrar();
@@ -192,7 +192,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         etiNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

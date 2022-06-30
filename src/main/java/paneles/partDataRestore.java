@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class partDataRestore extends javax.swing.JPanel{
     public partDataRestore(){
         initComponents();
-        new laf().LookAndFeel(partDataRestore.this,partDataRestore.class.getName(),"partDataRestore");
+        new laf(partDataRestore.class.getName()).LookAndFeel(partDataRestore.this);
         
         botones(); 
     }

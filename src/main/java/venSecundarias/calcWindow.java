@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import venPrimarias.ventana1;
@@ -13,7 +13,7 @@ public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new laf().LookAndFeel(calcWindow.this,calcWindow.class.getName(),"calcWindow");
+        new laf(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
         
         botones();
         settings();
@@ -67,7 +67,7 @@ public final class calcWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setText("Total:");
 

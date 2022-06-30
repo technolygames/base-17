@@ -12,7 +12,7 @@ import java.util.logging.Level;
 public class delDatosPanel1 extends javax.swing.JPanel{
     public delDatosPanel1(){
         initComponents();
-        new laf().LookAndFeel(delDatosPanel1.this,delDatosPanel1.class.getName(),"delDatosPanel1");
+        new laf(delDatosPanel1.class.getName()).LookAndFeel(delDatosPanel1.this);
         
         botones();
     }

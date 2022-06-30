@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import menus.menuDatosVentana2;
@@ -27,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
         initComponents();
-        new laf().LookAndFeel(formulario2.this,formulario2.class.getName(),"formulario2");
+        new laf(formulario2.class.getName()).LookAndFeel(formulario2.this);
          
         botones();
         settings();
@@ -175,7 +175,7 @@ public class formulario2 extends javax.swing.JFrame{
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

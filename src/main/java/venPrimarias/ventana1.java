@@ -1,15 +1,14 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
+import clases.imageFormLoader;
 import clases.laf;
 import clases.logger;
 import venSecundarias.calcWindow;
 //java
 import java.io.IOException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.awt.Image;
 import java.io.FileReader;
 import java.lang.reflect.InaccessibleObjectException;
 import java.nio.charset.StandardCharsets;
@@ -22,15 +21,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -45,7 +39,8 @@ import net.sf.jasperreports.view.JasperViewer;
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
         initComponents();
-        new laf().LookAndFeel(ventana1.this,ventana1.class.getName(),"ventana1");
+        new laf(ventana1.class.getName()).LookAndFeel(ventana1.this);
+        new imageFormLoader(ventana1.class.getName()).setFormImage(picLabel);
         
         botones();
         settings();
@@ -72,7 +67,6 @@ public final class ventana1 extends javax.swing.JFrame{
     protected int total;
     
     protected final void settings(){
-        p=new Properties();
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -80,24 +74,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 return false;
             }
         };
-        
-        try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
-            ImageIcon im=new ImageIcon(i);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-            picLabel.setIcon(l);
-            
-            i.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Erron:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
-        }
         
         txtCodEmp.setText(String.valueOf(start.userID));
         
@@ -126,8 +102,6 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
-        p=new Properties();
-        
         addButton.addActionListener((a)->{
             if(!txtCodigo.getText().equals("")||!txtCodEmp.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
                 dtm.addRow(new Object[]{
@@ -307,7 +281,7 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel2.setText("Código del producto:");
 

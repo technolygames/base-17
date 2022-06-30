@@ -24,7 +24,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class databaseImport extends javax.swing.JPanel{
     public databaseImport(){
         initComponents();
-        new laf().LookAndFeel(databaseImport.this,databaseImport.class.getName(),"databaseImport");
+        new laf(databaseImport.class.getName()).LookAndFeel(databaseImport.this);
         
         botones();
         settings();

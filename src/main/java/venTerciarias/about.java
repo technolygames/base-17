@@ -1,6 +1,6 @@
 package venTerciarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 //java
@@ -22,7 +22,7 @@ public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
-        new laf().LookAndFeel(about.this,about.class.getName(),"about");
+        new laf(about.class.getName()).LookAndFeel(about.this);
         
         etiquetas();
         settings();
@@ -98,7 +98,7 @@ public final class about extends javax.swing.JDialog{
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setText("Versión:");
 

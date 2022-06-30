@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.datos;
 import clases.laf;
 import clases.logger;
@@ -33,7 +33,7 @@ public class paymentWindow extends javax.swing.JDialog{
     public paymentWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new laf().LookAndFeel(paymentWindow.this,paymentWindow.class.getName(),"paymentWindow");
+        new laf(paymentWindow.class.getName()).LookAndFeel(paymentWindow.this);
         
         botones();
         
@@ -118,7 +118,7 @@ public class paymentWindow extends javax.swing.JDialog{
         mkPaidButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

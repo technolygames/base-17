@@ -17,7 +17,7 @@ import java.util.logging.Level;
 public class databaseConfig extends javax.swing.JPanel{
     public databaseConfig(){
         initComponents();
-        new laf().LookAndFeel(databaseConfig.this,databaseConfig.class.getName(),"databaseConfig");
+        new laf(databaseConfig.class.getName()).LookAndFeel(databaseConfig.this);
         
         botones();
         loadConfig();

@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 public class menuDatosVentana1 extends javax.swing.JFrame{
     public menuDatosVentana1(){
         initComponents();
-        new laf().LookAndFeel(menuDatosVentana1.this,menuDatosVentana1.class.getName(),"menuDatosVentana1");
+        new laf(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -55,7 +55,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

@@ -2,6 +2,7 @@ package clases;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,29 +16,37 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class Icono{
+public class icono{
+    protected String icono;
+    
     protected Image retValue;
     protected Properties p;
     
     /**
      * Obtiene el ícono que está destinado a usarse en las ventanas.
      * 
-     * @return La imagen a usar.
+     * @return la imagen a usar.
      */
     public Image getIconImage(){
         p=new Properties();
         try{
             p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
+            icono=p.getProperty("icono");
+            
+            if(!new File(icono).exists()){
+                icono=p.getProperty("icono_respaldo");
+            }
+            
+            retValue=Toolkit.getDefaultToolkit().getImage(icono);
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(Icono.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
+            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(icono.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+Icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(Icono.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
+            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+icono.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(icono.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }

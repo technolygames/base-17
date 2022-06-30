@@ -1,7 +1,7 @@
 package venTerciarias.valVentanas;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import venPrimarias.ltshWorkers;
@@ -18,7 +18,7 @@ public class validacionVentana3 extends javax.swing.JDialog{
     public validacionVentana3(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new laf().LookAndFeel(validacionVentana3.this,validacionVentana3.class.getName(),"validacionVentana3");
+        new laf(validacionVentana3.class.getName()).LookAndFeel(validacionVentana3.this);
         
         botones();
         
@@ -84,7 +84,7 @@ public class validacionVentana3 extends javax.swing.JDialog{
         valButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setText("Usuario:");
 

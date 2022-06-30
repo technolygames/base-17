@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 //librerías
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProviders extends javax.swing.JFrame{
     public ltshProviders(){
         initComponents();
-        new laf().LookAndFeel(ltshProviders.this,ltshProviders.class.getName(),"ltshProviders");
+        new laf(ltshProviders.class.getName()).LookAndFeel(ltshProviders.this);
         
         botones();
         datosMostrar();
@@ -230,7 +230,7 @@ public class ltshProviders extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Proveedores");

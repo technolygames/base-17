@@ -30,7 +30,7 @@ public class thread implements Runnable{
     }
     
     /**
-     * Método que puede ser uasdo para habilitar el flujo de datos.
+     * Método que puede ser usado para habilitar el flujo de datos.
      */
     @Override
     public void run(){

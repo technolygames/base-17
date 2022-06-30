@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 //librerías
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshPartners extends javax.swing.JFrame{
     public ltshPartners(){
         initComponents();
-        new laf().LookAndFeel(ltshPartners.this,ltshPartners.class.getName(),"ltshPartners");
+        new laf(ltshPartners.class.getName()).LookAndFeel(ltshPartners.this);
         
         botones();
         datosMostrar();
@@ -192,7 +192,7 @@ public class ltshPartners extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

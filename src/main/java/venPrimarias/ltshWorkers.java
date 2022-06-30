@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 //librerías
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshWorkers extends javax.swing.JFrame{
     public ltshWorkers(){
         initComponents();
-        new laf().LookAndFeel(ltshWorkers.this,ltshWorkers.class.getName(),"ltshWorkers");
+        new laf(ltshWorkers.class.getName()).LookAndFeel(ltshWorkers.this);
         
         botones();
         datosMostrar();
@@ -204,7 +204,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Empleados");

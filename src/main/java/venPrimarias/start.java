@@ -1,24 +1,20 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
+import clases.imageFormLoader;
 import clases.win10Notification;
 import venSecundarias.loadWindow;
 //java
-import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -28,7 +24,8 @@ import java.nio.charset.StandardCharsets;
 public final class start extends javax.swing.JFrame{
     public start(){
         initComponents();
-        new laf().LookAndFeel(start.this,start.class.getName(),"start");
+        new laf(start.class.getName()).LookAndFeel(start.this);
+        new imageFormLoader(start.class.getName()).setFormImage(picLabel);
         
         botones();
         settings();
@@ -51,13 +48,7 @@ public final class start extends javax.swing.JFrame{
         p=new Properties();
         try{
             p.load(new FileReader(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties",StandardCharsets.UTF_8));
-            Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
-            ImageIcon im=new ImageIcon(i);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-            picLabel.setIcon(l);
             nameLabel.setText(p.getProperty("nombre"));
-            
-            i.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'",Level.WARNING);
@@ -136,7 +127,7 @@ public final class start extends javax.swing.JFrame{
         textField1.setText("textField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setText("Usuario:");
 

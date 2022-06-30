@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class databaseExport extends javax.swing.JPanel{
     public databaseExport(){
         initComponents();
-        new laf().LookAndFeel(databaseExport.this,databaseExport.class.getName(),"databaseExport");
+        new laf(databaseExport.class.getName()).LookAndFeel(databaseExport.this);
         
         botones();
     }

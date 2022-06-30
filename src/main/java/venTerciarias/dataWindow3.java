@@ -3,7 +3,7 @@ package venTerciarias;
 import clases.BackupHandler.escritorJSON;
 import clases.BackupHandler.lectorJSON;
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import venPrimarias.start;
@@ -28,7 +28,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new laf().LookAndFeel(dataWindow3.this,dataWindow3.class.getName(),"dataWindow3");
+        new laf(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
         
         botones();
         datosMostrar();
@@ -162,7 +162,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         genLabel.setText("12345");
 

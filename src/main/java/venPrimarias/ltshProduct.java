@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 //librerías
@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProduct extends javax.swing.JFrame{
     public ltshProduct(){
         initComponents();
-        new laf().LookAndFeel(ltshProduct.this,ltshProduct.class.getName(),"ltshProduct");
+        new laf(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
         
         botones();
         datosMostrar();
@@ -180,7 +180,7 @@ public class ltshProduct extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.datos;
 import clases.laf;
 import clases.logger;
@@ -19,7 +19,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        new laf().LookAndFeel(ltshOff.this,ltshOff.class.getName(),"ltshOff");
+        new laf(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
         
         botones();
         datosMostrar();
@@ -82,7 +82,7 @@ public class ltshOff extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Descuentos");

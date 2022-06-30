@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class provDataRestore extends javax.swing.JPanel{
     public provDataRestore(){
         initComponents();
-        new laf().LookAndFeel(provDataRestore.this,provDataRestore.class.getName(),"provDataRestore");
+        new laf(provDataRestore.class.getName()).LookAndFeel(provDataRestore.this);
         
         botones();
     }

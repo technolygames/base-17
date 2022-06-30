@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import paneles.databaseConfig;
 import paneles.databaseExport;
@@ -14,7 +14,7 @@ import java.awt.BorderLayout;
 public class adminTools extends javax.swing.JFrame{
     public adminTools(){
         initComponents();
-        new laf().LookAndFeel(adminTools.this,adminTools.class.getName(),"adminTools");
+        new laf(adminTools.class.getName()).LookAndFeel(adminTools.this);
         
         botones();
         settings();
@@ -89,7 +89,7 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 

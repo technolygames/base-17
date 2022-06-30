@@ -25,7 +25,7 @@ public class threadReader implements Runnable{
     }
     
     /**
-     * Método que puede ser uasdo para que pueda leer e imprimir el error en consola.
+     * Método que puede ser usado para que pueda leer e imprimir el error en consola.
      */
     @Override
     public void run(){

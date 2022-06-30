@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import menus.menuVentanas;
 //java
@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
         initComponents();
-        new laf().LookAndFeel(loadWindow.this,loadWindow.class.getName(),"loadWindow");
+        new laf(loadWindow.class.getName()).LookAndFeel(loadWindow.this);
         
         load();
         
@@ -113,7 +113,7 @@ public final class loadWindow extends javax.swing.JFrame{
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
         setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

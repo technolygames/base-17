@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.Icono;
+import clases.icono;
 import clases.laf;
 import clases.logger;
 import menus.menuDatosVentana1;
@@ -31,7 +31,7 @@ import java.time.format.DateTimeParseException;
 public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
         initComponents();
-        new laf().LookAndFeel(formulario1.this,formulario1.class.getName(),"formulario1");
+        new laf(formulario1.class.getName()).LookAndFeel(formulario1.this);
         
         botones();
         settings();
@@ -219,7 +219,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         jLabel1.setText("Contraseña:");
 

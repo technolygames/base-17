@@ -1,23 +1,14 @@
 package venPrimarias;
 //clases
-import clases.Icono;
+import clases.icono;
+import clases.imageFormLoader;
 import clases.laf;
-import clases.logger;
-import java.awt.Image;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.logging.Level;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class ventana4 extends javax.swing.JFrame{
     public ventana4(){
         initComponents();
-        new laf().LookAndFeel(ventana4.this,ventana4.class.getName(),"ventana4");
+        new laf(ventana4.class.getName()).LookAndFeel(ventana4.this);
+        new imageFormLoader(ventana4.class.getName()).setFormImage(picLabel);
         
         botones();
         settings();
@@ -27,26 +18,8 @@ public class ventana4 extends javax.swing.JFrame{
         setResizable(false);
     }
     
-    protected Properties p;
-    
     protected void settings(){
-        p=new Properties();
-        try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
-            Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
-            ImageIcon ii=new ImageIcon(i);
-            Icon icono=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-            picLabel.setIcon(icono);
-            i.flush();
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ventana4.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana4.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
-        }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ventana4.class.getName()+"', en el método 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana4.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
-        }
+        
     }
     
     protected final void botones(){
@@ -64,7 +37,7 @@ public class ventana4 extends javax.swing.JFrame{
         picLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new Icono().getIconImage());
+        setIconImage(new icono().getIconImage());
 
         backButton.setText("Regresar");
 
