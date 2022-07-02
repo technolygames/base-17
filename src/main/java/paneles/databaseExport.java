@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread;
 import clases.threadReader;
@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class databaseExport extends javax.swing.JPanel{
     public databaseExport(){
         initComponents();
-        new laf(databaseExport.class.getName()).LookAndFeel(databaseExport.this);
+        new guiMediaHandler(databaseExport.class.getName()).LookAndFeel(databaseExport.this);
         
         botones();
     }
@@ -58,19 +58,19 @@ public class databaseExport extends javax.swing.JPanel{
                 new Thread(new thread(is,os)).start();
                 
                 JOptionPane.showMessageDialog(null,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
-                new logger().staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+                new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 os.flush();
                 os.close();
                 is.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 8E",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 8E: "+e.getMessage()+".\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'",Level.WARNING);
-                new logger().exceptionLogger(exportDB.class.getName(),Level.WARNING,"run-8E",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 8E",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 8E: "+e.getMessage()+".\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'");
+                new logger(Level.SEVERE).exceptionLogger(exportDB.class.getName(),"run-8E",e.fillInStackTrace());
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'",Level.WARNING);
-                new logger().exceptionLogger(exportDB.class.getName(),Level.WARNING,"run-0",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+exportDB.class.getName()+"', en el método 'run()'");
+                new logger(Level.SEVERE).exceptionLogger(exportDB.class.getName(),"run-0",x.fillInStackTrace());
             }
         }
     }

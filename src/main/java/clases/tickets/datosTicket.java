@@ -134,17 +134,17 @@ public class datosTicket{
             
             ticket.imprimirDocumento(System.getProperty("user.dir")+"/src/main/resources/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",true);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-18",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
+            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-18",e.fillInStackTrace());
         }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-1IO",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
+            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-1IO",x.fillInStackTrace());
         }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+n.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'",Level.WARNING);
-            new logger().exceptionLogger(datosTicket.class.getName(),Level.WARNING,"imprimirTicket-2IO",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
+            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-2IO",n.fillInStackTrace());
         }
     }
 }

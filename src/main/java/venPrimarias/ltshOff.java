@@ -1,8 +1,7 @@
 package venPrimarias;
 //clases
-import clases.frameIcon;
 import clases.datos;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        new laf(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
+        new guiMediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
         
         botones();
         datosMostrar();
@@ -65,9 +64,9 @@ public class ltshOff extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshPartners.class.getName(),Level.WARNING,"datosMostrar-16",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosMostrar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosMostrar-16",e.fillInStackTrace());
         }
     }
     
@@ -82,7 +81,7 @@ public class ltshOff extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(ltshOff.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Descuentos");

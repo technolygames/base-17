@@ -1,8 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.frameIcon;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana2;
 //java
@@ -27,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
         initComponents();
-        new laf(formulario2.class.getName()).LookAndFeel(formulario2.this);
+        new guiMediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
          
         botones();
         settings();
@@ -88,23 +87,23 @@ public class formulario2 extends javax.swing.JFrame{
                         p.setProperty("lastdirectory_form2",f.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
-                        new logger().staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
-                        new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-24",e.fillInStackTrace());
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
+                        new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-24",e.fillInStackTrace());
                     }
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-40",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-1IO",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-1IO",x.fillInStackTrace());
             }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-2IO",n.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-2IO",n.fillInStackTrace());
             }
         });
         
@@ -124,20 +123,20 @@ public class formulario2 extends javax.swing.JFrame{
                     new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,correo,rfc,datos,foto);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
                 }
             }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-1IO",e.fillInStackTrace());
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-0",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-0",x.fillInStackTrace());
             }catch(NumberFormatException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-32",n.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-32",n.fillInStackTrace());
             }
         });
     }
@@ -175,7 +174,7 @@ public class formulario2 extends javax.swing.JFrame{
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(formulario2.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -338,7 +337,7 @@ public class formulario2 extends javax.swing.JFrame{
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
@@ -346,7 +345,7 @@ public class formulario2 extends javax.swing.JFrame{
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField2KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField2KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
@@ -354,7 +353,7 @@ public class formulario2 extends javax.swing.JFrame{
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField3KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField3KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
@@ -362,7 +361,7 @@ public class formulario2 extends javax.swing.JFrame{
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField4KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField4KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed

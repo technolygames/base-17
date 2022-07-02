@@ -1,8 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.frameIcon;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 //librerías
 import net.proteanit.sql.DbUtils;
@@ -21,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProduct extends javax.swing.JFrame{
     public ltshProduct(){
         initComponents();
-        new laf(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
+        new guiMediaHandler(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
         
         botones();
         datosMostrar();
@@ -71,9 +70,9 @@ public class ltshProduct extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosMostrar-16",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosMostrar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosMostrar-16",e.fillInStackTrace());
         }
     }
     
@@ -86,8 +85,11 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -102,8 +104,11 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where codigo_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -118,8 +123,11 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -134,8 +142,11 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where marca='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    while(rs.next()){
+                    if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -148,21 +159,21 @@ public class ltshProduct extends javax.swing.JFrame{
                     break;
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-14",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-14",e.fillInStackTrace());
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-0",x.fillInStackTrace());
         }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-AIOOBE",p.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-AIOOBE",p.fillInStackTrace());
         }catch(IndexOutOfBoundsException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IOOBE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-IOOBE",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IOOBE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-IOOBE",n.fillInStackTrace());
         }
     }
     
@@ -180,7 +191,7 @@ public class ltshProduct extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(ltshProduct.class.getName()).getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

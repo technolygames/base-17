@@ -1,8 +1,7 @@
 package venTerciarias.valVentanas;
 //clases
 import clases.datos;
-import clases.frameIcon;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import venPrimarias.formulario3;
 import venPrimarias.start;
@@ -18,7 +17,7 @@ public class validacionVentana5 extends javax.swing.JDialog{
     public validacionVentana5(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new laf(validacionVentana5.class.getName()).LookAndFeel(validacionVentana5.this);
+        new guiMediaHandler(validacionVentana5.class.getName()).LookAndFeel(validacionVentana5.this);
         
         botones();
         
@@ -48,26 +47,26 @@ public class validacionVentana5 extends javax.swing.JDialog{
                     if(rs.next()){
                         if(rs.getString("puesto").equals("Dueño")||rs.getString("puesto").equals("Programador")||rs.getString("puesto").equals("Desarrollador")){
                             new formulario3().setVisible(true);
-                            new logger().staticLogger("Rel 5: validación correcta a 'formulario3'.\nOcurrió en la clase '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+                            new logger(Level.INFO).staticLogger("Rel 5: validación correcta a 'formulario3'.\nOcurrió en la clase '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                             dispose();
                         }else{
                             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);
-                            new logger().staticLogger("Error 38: usuario sin privilegios en '"+validacionVentana5.class.getName()+".botones(valButton)'",Level.WARNING);
+                            new logger(Level.WARNING).staticLogger("Error 38: usuario sin privilegios en '"+validacionVentana5.class.getName()+".botones(valButton)'");
                         }
                     }else{
                         JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger().staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
+                        new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'");
                     }
                     ps.close();
                     rs.close();
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\n Escribe tu usuario y/o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().staticLogger("Error 18: no se escribió usuario y/o contraseña en '"+validacionVentana5.class.getName()+".botones(valButton)'",Level.WARNING);
+                    new logger(Level.WARNING).staticLogger("Error 18: no se escribió usuario y/o contraseña en '"+validacionVentana5.class.getName()+".botones(valButton)'");
                 }
             }catch(SQLException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'",Level.WARNING);
-                new logger().exceptionLogger(validacionVentana5.class.getName(),Level.WARNING,"botones.val-9",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+validacionVentana5.class.getName()+"', en el método 'botones(valButton)'");
+                new logger(Level.SEVERE).exceptionLogger(validacionVentana5.class.getName(),"botones.val-9",e.fillInStackTrace());
             }
         });
     }
@@ -84,7 +83,7 @@ public class validacionVentana5 extends javax.swing.JDialog{
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(validacionVentana5.class.getName()).getIconImage());
 
         jLabel1.setText("Usuario:");
 

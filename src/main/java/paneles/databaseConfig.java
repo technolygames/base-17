@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import venPrimarias.start;
 //java
@@ -17,7 +17,7 @@ import java.util.logging.Level;
 public class databaseConfig extends javax.swing.JPanel{
     public databaseConfig(){
         initComponents();
-        new laf(databaseConfig.class.getName()).LookAndFeel(databaseConfig.this);
+        new guiMediaHandler(databaseConfig.class.getName()).LookAndFeel(databaseConfig.this);
         
         botones();
         loadConfig();
@@ -36,13 +36,13 @@ public class databaseConfig extends javax.swing.JPanel{
             jTextField4.setText(p.getProperty("ip"));
             jTextField5.setText(p.getProperty("port"));
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'",Level.WARNING);
-            new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"loadConfig-1IO",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"loadConfig-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'",Level.WARNING);
-            new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"loadConfig-2IO",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"loadConfig-2IO",x.fillInStackTrace());
         }
     }
     
@@ -62,25 +62,25 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.setProperty("port", jTextField5.getText());
                 
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                new logger().staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID),Level.INFO);
+                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
                 
                 p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/databaseInfo.properties")),"Configuración de la base de datos");
             }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-1IO",e.fillInStackTrace());
             }catch(NumberFormatException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-32",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-32",x.fillInStackTrace());
             }catch(NullPointerException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-0",n.fillInStackTrace());
             }catch(IOException s){
-                JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(databaseConfig.class.getName(),Level.WARNING,"botones.store-2IO",s.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-2IO",s.fillInStackTrace());
             }
         });
     }

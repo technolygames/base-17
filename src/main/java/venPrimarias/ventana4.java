@@ -1,14 +1,12 @@
 package venPrimarias;
 //clases
-import clases.frameIcon;
-import clases.imageFormLoader;
-import clases.laf;
+import clases.guiMediaHandler;
 
 public class ventana4 extends javax.swing.JFrame{
     public ventana4(){
         initComponents();
-        new laf(ventana4.class.getName()).LookAndFeel(ventana4.this);
-        new imageFormLoader(ventana4.class.getName()).setFormImage(picLabel);
+        new guiMediaHandler(ventana4.class.getName()).LookAndFeel(ventana4.this);
+        new guiMediaHandler(ventana4.class.getName()).FormImage(picLabel);
         
         botones();
         settings();
@@ -37,7 +35,7 @@ public class ventana4 extends javax.swing.JFrame{
         picLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(ventana4.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

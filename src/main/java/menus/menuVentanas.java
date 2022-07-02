@@ -1,8 +1,6 @@
 package menus;
 //clases
-import clases.frameIcon;
-import clases.imageFormLoader;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import clases.win10Notification;
 import venPrimarias.proper1;
@@ -30,8 +28,8 @@ import java.util.logging.Level;
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
         initComponents();
-        new laf(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
-        new imageFormLoader(menuVentanas.class.getName()).setFormImage(picLabel);
+        new guiMediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
+        new guiMediaHandler(menuVentanas.class.getName()).FormImage(picLabel);
         
         menu();
         botones();
@@ -121,7 +119,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem3.addActionListener((a)->{
             new start().setVisible(true);
             new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),TrayIcon.MessageType.INFO);
-            new logger().staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(jMenuItem2)'.\nUsuario que terminó sesión: "+jMenuItem2.getText(),Level.INFO);
+            new logger(Level.SEVERE).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(jMenuItem2)'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
             dispose();
         });
     }
@@ -156,7 +154,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(menuVentanas.class.getName()).getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 

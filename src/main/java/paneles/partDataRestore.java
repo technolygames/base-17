@@ -1,8 +1,8 @@
 package paneles;
 //clases
-import clases.laf;
 import clases.logger;
 import clases.BackupHandler.lectorJSON;
+import clases.guiMediaHandler;
 //java
 import java.awt.HeadlessException;
 import java.io.File;
@@ -19,7 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class partDataRestore extends javax.swing.JPanel{
     public partDataRestore(){
         initComponents();
-        new laf(partDataRestore.class.getName()).LookAndFeel(partDataRestore.this);
+        new guiMediaHandler(partDataRestore.class.getName()).LookAndFeel(partDataRestore.this);
         
         botones(); 
     }
@@ -50,17 +50,17 @@ public class partDataRestore extends javax.swing.JPanel{
                     jTextField1.setText(f.toString());
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'",Level.WARNING);
-                new logger().exceptionLogger(partDataRestore.class.getName(),Level.WARNING,"botones.search-40",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
+                new logger(Level.SEVERE).exceptionLogger(partDataRestore.class.getName(),"botones.search-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'",Level.WARNING);
-                new logger().exceptionLogger(partDataRestore.class.getName(),Level.WARNING,"botones.search-1IO",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
+                new logger(Level.SEVERE).exceptionLogger(partDataRestore.class.getName(),"botones.search-1IO",x.fillInStackTrace());
             }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'",Level.WARNING);
-                new logger().exceptionLogger(partDataRestore.class.getName(),Level.WARNING,"botones.search-2IO",n.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+partDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
+                new logger(Level.SEVERE).exceptionLogger(partDataRestore.class.getName(),"botones.search-2IO",n.fillInStackTrace());
             }
         });
         

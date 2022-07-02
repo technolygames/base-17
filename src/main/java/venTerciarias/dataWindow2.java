@@ -1,9 +1,7 @@
 package venTerciarias;
 //clases
-import clases.BackupHandler.escritorJSON;
 import clases.datos;
-import clases.frameIcon;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 import venPrimarias.start;
 //java
@@ -27,7 +25,7 @@ public class dataWindow2 extends javax.swing.JDialog{
     public dataWindow2(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new laf(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
+        new guiMediaHandler(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
         
         botones();
         datosMostrar();
@@ -75,19 +73,19 @@ public class dataWindow2 extends javax.swing.JDialog{
                 i.flush();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
+                new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'datosMostrar()'");
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"datosMostrar-14",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'");
+            new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"datosMostrar-14",e.fillInStackTrace());
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"datosMostrar-0",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'");
+            new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"datosMostrar-0",x.fillInStackTrace());
         }
     }
     
@@ -113,27 +111,27 @@ public class dataWindow2 extends javax.swing.JDialog{
                     break;
                 }
                 
-                new logger().staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.INFO);
+                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 ps.close();
                 fos.close();
                 fos.flush();
             }catch(SQLException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
-                new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"botones.storeImg-14",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-14",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
-                new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"botones.storeImg-10",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-10",x.fillInStackTrace());
             }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
-                new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"botones.storeImg-10",n.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-10",n.fillInStackTrace());
             }catch(NullPointerException y){
-                JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
-                new logger().exceptionLogger(dataWindow2.class.getName(),Level.WARNING,"botones.storeImg-0",y.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-0",y.fillInStackTrace());
             }
         });
     }
@@ -170,7 +168,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(dataWindow2.class.getName()).getIconImage());
 
         genLabel.setText("12345");
 

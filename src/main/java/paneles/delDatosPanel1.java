@@ -1,9 +1,9 @@
 package paneles;
 //clases
 import clases.datos;
-import clases.laf;
 import clases.logger;
 import clases.BackupHandler.escritorJSON;
+import clases.guiMediaHandler;
 //java
 import javax.swing.JOptionPane;
 //extension larga
@@ -12,7 +12,7 @@ import java.util.logging.Level;
 public class delDatosPanel1 extends javax.swing.JPanel{
     public delDatosPanel1(){
         initComponents();
-        new laf(delDatosPanel1.class.getName()).LookAndFeel(delDatosPanel1.this);
+        new guiMediaHandler(delDatosPanel1.class.getName()).LookAndFeel(delDatosPanel1.this);
         
         botones();
     }
@@ -39,12 +39,12 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                     }
                 }else{
                     JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
+                    new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'");
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
-                new logger().exceptionLogger(delDatosPanel1.class.getName(),Level.WARNING,"botones.delete-32",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'botones(deleteButton)'");
+                new logger(Level.SEVERE).exceptionLogger(delDatosPanel1.class.getName(),"botones.delete-32",e.fillInStackTrace());
             }
         });
     }
@@ -106,7 +106,7 @@ public class delDatosPanel1 extends javax.swing.JPanel{
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+delDatosPanel1.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed

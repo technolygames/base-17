@@ -1,7 +1,7 @@
 package paneles;
 //clases
 import clases.datos;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import java.util.logging.Level;
 public class modDatosPanel2 extends javax.swing.JPanel{
     public modDatosPanel2(){
         initComponents();
-        new laf(modDatosPanel2.class.getName()).LookAndFeel(modDatosPanel2.this);
+        new guiMediaHandler(modDatosPanel2.class.getName()).LookAndFeel(modDatosPanel2.this);
         
         botones();
         settings();
@@ -314,14 +314,14 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jLabel6.setText(rs.getString("rfc"));
             }else{
                 JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'",Level.WARNING);
+                new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel2.class.getName(),Level.WARNING,"consulta-14",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");
+            new logger(Level.SEVERE).exceptionLogger(modDatosPanel2.class.getName(),"consulta-14",e.fillInStackTrace());
         }
     }
     
@@ -508,7 +508,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
@@ -516,7 +516,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField2KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField2KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
@@ -524,7 +524,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField3KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'jTextField3KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed

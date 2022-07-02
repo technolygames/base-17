@@ -1,7 +1,6 @@
 package venTerciarias;
 //clases
-import clases.frameIcon;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.awt.Cursor;
@@ -22,7 +21,7 @@ public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
-        new laf(about.class.getName()).LookAndFeel(about.this);
+        new guiMediaHandler(about.class.getName()).LookAndFeel(about.this);
         
         etiquetas();
         settings();
@@ -55,13 +54,13 @@ public final class about extends javax.swing.JDialog{
             devonLabel.setText(p.getProperty("devon"));
             websiteLabel.setText(p.getProperty("website"));
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiquetas-1IO",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"etiquetas-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiquetas-2IO",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"etiquetas-2IO",x.fillInStackTrace());
         }
     }
     
@@ -98,7 +97,7 @@ public final class about extends javax.swing.JDialog{
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(about.class.getName()).getIconImage());
 
         jLabel1.setText("Versión:");
 
@@ -257,21 +256,21 @@ public final class about extends javax.swing.JDialog{
             p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/acerca.properties"));
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-1I",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"websiteLabelMouseClicked-1I",e.fillInStackTrace());
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-0",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"websiteLabelMouseClicked-0",x.fillInStackTrace());
         }catch(FileNotFoundException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+n.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-1IO",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+n.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"websiteLabelMouseClicked-1IO",n.fillInStackTrace());
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"websiteLabelMouseClicked-2IO",k.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");
+            new logger(Level.SEVERE).exceptionLogger(about.class.getName(),"websiteLabelMouseClicked-2IO",k.fillInStackTrace());
         }
     }//GEN-LAST:event_websiteLabelMouseClicked
     

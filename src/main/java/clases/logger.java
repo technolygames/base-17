@@ -17,6 +17,17 @@ import java.util.logging.SimpleFormatter;
  * @author erick
  */
 public class logger{
+    protected Level level;
+    
+    /**
+     * Inicializa la instancia para mandar el estado del mensaje log al archivo estático y/o de excepción.
+     * 
+     * @param nivel para clasificar de mejor manera al mensaje log en el/los archivos log.
+     */
+    public logger(Level nivel){
+        this.level=nivel;
+    }
+    
     protected static FileHandler fh;
     protected FileHandler fh2;
     
@@ -24,9 +35,9 @@ public class logger{
         try{
             fh=new FileHandler(System.getProperty("user.dir")+"/src/main/resources/data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -36,15 +47,15 @@ public class logger{
      * @param message Mensaje que se almacenará en el archivo .log.
      * @param level Nivel de prioridad del evento.
      */
-    public void staticLogger(String message,Level level){
+    public void staticLogger(String message){
         Logger logger=Logger.getLogger("staticLogger");
         try{
             fh.setFormatter(new SimpleFormatter());
             logger.addHandler(fh);
             logger.log(level,message);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
-            new logger().exceptionLogger(logger.class.getName(),Level.WARNING,"staticLogger-SE",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).exceptionLogger(logger.class.getName(),"staticLogger-SE",e.fillInStackTrace());
         }
     }
     
@@ -56,7 +67,7 @@ public class logger{
      * @param methodName Nombre del método en el que está ocurriendo el error.
      * @param exception Excepción (o error) al que se le manejará y guardará en el archivo log.
      */
-    public void exceptionLogger(String className,Level level,String methodName,Throwable exception){
+    public void exceptionLogger(String className,String methodName,Throwable exception){
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
             fh2=new FileHandler(System.getProperty("user.dir")+"/src/main/resources/data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
@@ -67,11 +78,11 @@ public class logger{
             fh2.flush();
             fh2.close();
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error SE: "+e.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error SE: "+e.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'");
         }
     }
 }

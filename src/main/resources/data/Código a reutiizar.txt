@@ -25,3 +25,6 @@ System.getProperty("user.dir");
 //extension larga
 new logger().staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'restaurar()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID),Level.FINE);
 new laf().LookAndFeel(validacionVentana9.this,validacionVentana9.class.getName(),"validacionVentana9");
+
+ERROR_MESSAGE
+SEVERE

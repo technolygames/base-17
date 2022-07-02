@@ -1,9 +1,7 @@
 package venPrimarias;
 //clases
-import clases.frameIcon;
 import clases.datos;
-import clases.imageFormLoader;
-import clases.laf;
+import clases.guiMediaHandler;
 import clases.logger;
 //java
 import javax.swing.JOptionPane;
@@ -13,8 +11,8 @@ import java.util.logging.Level;
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
-        new laf(ventana3.class.getName()).LookAndFeel(ventana3.this);
-        new imageFormLoader(ventana3.class.getName()).setFormImage(picLabel);
+        new guiMediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
+        new guiMediaHandler(ventana3.class.getName()).FormImage(picLabel);
         
         botones();
         settings();
@@ -59,16 +57,16 @@ public class ventana3 extends javax.swing.JFrame{
                     new datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-32",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
+                new logger(Level.SEVERE).exceptionLogger(ventana3.class.getName(),"botones.svdt-32",e.fillInStackTrace());
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"botones.svdt-0",x.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
+                new logger(Level.SEVERE).exceptionLogger(ventana3.class.getName(),"botones.svdt-0",x.fillInStackTrace());
             }
         });
     }
@@ -98,7 +96,7 @@ public class ventana3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new frameIcon().getIconImage());
+        setIconImage(new guiMediaHandler(ventana3.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -170,12 +168,9 @@ public class ventana3 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, 0)))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,7 +216,7 @@ public class ventana3 extends javax.swing.JFrame{
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField1KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
@@ -229,7 +224,7 @@ public class ventana3 extends javax.swing.JFrame{
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField2KeyPressed()'",Level.WARNING);
+            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField2KeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed

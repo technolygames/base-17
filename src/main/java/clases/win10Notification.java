@@ -47,21 +47,21 @@ public class win10Notification{
                 i.flush();
             }
         }catch(AWTException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 24: "+e.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
-            new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-24",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'");
+            new logger(Level.SEVERE).exceptionLogger(win10Notification.class.getName(),"trayNotify-24",e.fillInStackTrace());
         }catch(UnsupportedOperationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 25",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 25: "+x.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
-            new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-25",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 25",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 25: "+x.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'");
+            new logger(Level.SEVERE).exceptionLogger(win10Notification.class.getName(),"trayNotify-25",x.fillInStackTrace());
         }catch(FileNotFoundException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO: "+n.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
-            new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-1IO",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+n.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'");
+            new logger(Level.SEVERE).exceptionLogger(win10Notification.class.getName(),"trayNotify-1IO",n.fillInStackTrace());
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
-            new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-2IO",k.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'");
+            new logger(Level.SEVERE).exceptionLogger(win10Notification.class.getName(),"trayNotify-2IO",k.fillInStackTrace());
         }
     }
 }

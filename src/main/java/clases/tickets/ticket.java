@@ -64,9 +64,9 @@ public class ticket{
             char[] ESC_CUT_PAPER=new char[]{0x1B,'!',(char)formato};
             fw.write(ESC_CUT_PAPER);
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T2",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error IOE_T2: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'setFormato()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"setFormato",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T2",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error IOE_T2: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'setFormato()'");
+            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"setFormato",e.fillInStackTrace());
         }
     }
     
@@ -133,17 +133,17 @@ public class ticket{
             imp.flush();
             imp.close();
         }catch(PrintException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error PE_T1",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error PE_T1: "+x.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-PE_T1",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error PE_T1",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error PE_T1: "+x.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
+            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-PE_T1",x.fillInStackTrace());
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO_H1",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-1IO_H1",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO_H1",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
+            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-1IO_H1",e.fillInStackTrace());
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.WARNING_MESSAGE);
-            new logger().staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
-            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento-15",n.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
+            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-15",n.fillInStackTrace());
         }finally{
             cabezaLineas.removeAll(cabezaLineas);
             subcabezaLineas.removeAll(subcabezaLineas);
