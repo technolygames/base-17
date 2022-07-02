@@ -14,7 +14,7 @@ A java program to manage a grocery. Features:
 - in case of update, download files from internet
 - Exception handling
 - JSON backup handler
-- Bill and invoice print
+- Bill print
 - Execution threads
 
 To start programming, everything is on "src" folder. Database, windows, classes and media
@@ -40,7 +40,7 @@ Programa hecho en Java para administrar una tienda de abarrotes. Sus caracterís
 - En caso de actualización, descarga los archivos de internet
 - Gestión de errores
 - Gestión de copias de seguridad con JSON
-- Impresión de ticket y factura
+- Impresión de ticket
 - Hilos de ejecución
 
 Para poder programar, todo el código está en la carpeta "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales.
