@@ -201,7 +201,6 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -297,8 +296,6 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
 
-        jButton3.setText("Reporte");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,8 +308,6 @@ public final class ventana1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mkPaidButton)
-                                .addGap(48, 48, 48)
-                                .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,8 +397,7 @@ public final class ventana1 extends javax.swing.JFrame{
                     .addComponent(cleanButton)
                     .addComponent(addButton)
                     .addComponent(mkPaidButton)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -509,7 +503,6 @@ public final class ventana1 extends javax.swing.JFrame{
     protected javax.swing.JButton cleanButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
