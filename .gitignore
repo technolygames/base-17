@@ -24,10 +24,10 @@
 *.rar
 
 # Project ignore #
-/src/data/config/libs.txt
-/src/data/database/MySQL/diagram_sql.dia~
-/src/data/logs/static/
-/src/data/logs/exceptions/
+/data/config/libs.txt
+/data/database/MySQL/diagram_sql.dia~
+/data/logs/static/
+/data/logs/exceptions/
 /target/
 /test/
 
