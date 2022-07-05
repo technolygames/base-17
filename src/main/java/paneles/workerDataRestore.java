@@ -1,19 +1,11 @@
 package paneles;
 //clases
-import clases.logger;
 import clases.BackupHandler.lectorJSON;
 import clases.guiMediaHandler;
 //java
-import java.awt.HeadlessException;
 import java.io.File;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
-import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class workerDataRestore extends javax.swing.JPanel{
@@ -25,7 +17,6 @@ public class workerDataRestore extends javax.swing.JPanel{
     }
     
     protected JFileChooser filechooser;
-    protected Properties p;
     
     protected final void botones(){
         closeButton.addActionListener((a)->{
@@ -33,34 +24,12 @@ public class workerDataRestore extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            try{
-                p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
-                filechooser=new JFileChooser(p.getProperty("lastdirectory_workdr"));
-                
-                File f=filechooser.getCurrentDirectory();
-                
-                filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
-                
-                filechooser.setCurrentDirectory(f);
-                
-                int n=filechooser.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==n){
-                    f=filechooser.getSelectedFile();
-                    jTextField1.setText(f.toString());
-                }
-            }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+workerDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
-                new logger(Level.SEVERE).exceptionLogger(workerDataRestore.class.getName(),"botones.search-40",e.fillInStackTrace());
-            }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+workerDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
-                new logger(Level.SEVERE).exceptionLogger(workerDataRestore.class.getName(),"botones.search-1IO",x.fillInStackTrace());
-            }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+workerDataRestore.class.getName()+"', en el método 'botones(searchButton)'");
-                new logger(Level.SEVERE).exceptionLogger(workerDataRestore.class.getName(),"botones.search-2IO",n.fillInStackTrace());
+            filechooser=new JFileChooser(System.getProperty("user.dir")+"/data/databackup/Empleados");
+            filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
+            
+            if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){
+                File f=filechooser.getSelectedFile();
+                jTextField1.setText(f.toString());
             }
         });
         

@@ -44,7 +44,7 @@ public class datos{
     public Connection getConnection(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/databaseInfo.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/databaseInfo.properties"));
             
             controlador=p.getProperty("driver");
             ip=p.getProperty("ip");
@@ -386,7 +386,7 @@ public class datos{
             
             JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-        
+            
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);

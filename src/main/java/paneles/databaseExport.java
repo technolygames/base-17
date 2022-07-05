@@ -44,11 +44,11 @@ public class databaseExport extends javax.swing.JPanel{
             String passUsuario=jPasswordField1.getPassword().toString();
             String based=jTextField3.getText();
             String nombrebdExportada=based+(int)(Math.random()*1000)+".sql";
-            String dir=System.getProperty("user.dir")+"/src/main/resources/data/database/MySQL/"+nombrebdExportada;
+            String dir=System.getProperty("user.dir")+"/data/database/MySQL/"+nombrebdExportada;
             
             try{
                 Properties p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/databaseInfo.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/databaseInfo.properties"));
                 Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" -h "+p.getProperty("ip")+" "+based+">"+dir);
                 new Thread(new threadReader(pr.getErrorStream())).start();
                 

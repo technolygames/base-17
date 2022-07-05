@@ -50,7 +50,7 @@ public class databaseImport extends javax.swing.JPanel{
         fileButton.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/filechooserd.properties"));
                 JFileChooser chooser=new JFileChooser(p.getProperty("lastdirectory_database_import"));
                 
                 chooser.setFileFilter(new FileNameExtensionFilter("Archivo SQL","sql"));
@@ -61,7 +61,7 @@ public class databaseImport extends javax.swing.JPanel{
                     jTextField2.setText(f.getPath());
                     
                     p.setProperty("lastdirectory_database_import",f.getParent());
-                    p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFileChooserDirection");
+                    p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFileChooserDirection");
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
@@ -85,7 +85,7 @@ public class databaseImport extends javax.swing.JPanel{
             
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/databaseInfo.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/databaseInfo.properties"));
                 Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysql.exe -u "+user+" -p "+pass+" -h "+p.getProperty("ip")+" "+db+"<"+dbDir);
                 new Thread(new threadReader(pr.getErrorStream())).start();
                 

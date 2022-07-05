@@ -40,7 +40,7 @@ public final class about extends javax.swing.JDialog{
     protected void etiquetas(){
         p=new Properties();
         try{
-            p.load(new FileReader(System.getProperty("user.dir")+"/src/main/resources/data/config/acerca.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader(System.getProperty("user.dir")+"/data/config/acerca.properties",StandardCharsets.UTF_8));
             
             versionLabel.setText(p.getProperty("version"));
             estableLabel.setText(p.getProperty("estable"));
@@ -253,7 +253,7 @@ public final class about extends javax.swing.JDialog{
     private void websiteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteLabelMouseClicked
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/acerca.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/acerca.properties"));
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);

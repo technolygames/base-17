@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.technolygames</groupId>
-    <artifactId>base1</artifactId>
+    <artifactId>base1-16</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
@@ -35,12 +35,6 @@
         <!--Fin principales-->
         
         <!--Secundarias-->
-        <!--mysql-->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.6.1</version>
-        </dependency>
         <!--Fin secundarias-->
         
         <!--Dependencias propias-->
@@ -49,8 +43,9 @@
             <artifactId>rs2xml</artifactId>
             <scope>system</scope>
             <version>1.0</version>
-            <systemPath>${project.basedir}/libs/rs2xml.jar</systemPath>
+            <systemPath>${project.basedir}/data/libs/rs2xml.jar</systemPath>
         </dependency>
         <!--Fin dependencias propias-->
     </dependencies>
+    <name>base1-16</name>
 </project>

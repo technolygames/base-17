@@ -72,7 +72,7 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        f=new File(System.getProperty("user.dir")+"/src/main/resources/data/libs/test/"+validar);
+        f=new File(System.getProperty("user.dir")+"/data/libs/test/"+validar);
         try{
             if(!f.exists()){
                 f.createNewFile();
@@ -84,7 +84,7 @@ public class resourceDownload{
                 
                 is=uc.getInputStream();
                 bis=new BufferedInputStream(is);
-                os=new FileOutputStream(System.getProperty("user.dir")+"/src/main/resources/data/libs/test/"+validar);
+                os=new FileOutputStream(System.getProperty("user.dir")+"/data/libs/test/"+validar);
                 
                 new Thread(new thread(is,os)).start();
             }

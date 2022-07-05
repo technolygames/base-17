@@ -52,7 +52,7 @@ public class guiMediaHandler{
     public void FormImage(JLabel etiqueta){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/config.properties"));
             image=p.getProperty("imagenes");
             
             if(!new File(image).exists()){
@@ -82,7 +82,7 @@ public class guiMediaHandler{
     public Image getIconImage(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
+            p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/config.properties"));
             icon=p.getProperty("icono");
             
             if(!new File(icon).exists()){
@@ -111,7 +111,7 @@ public class guiMediaHandler{
     public void LookAndFeel(Component componente){
         try{
             Properties style=new Properties();
-            style.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties"));
+            style.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/config.properties"));
             UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){

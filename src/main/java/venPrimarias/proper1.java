@@ -77,7 +77,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected final void configIn(){
         p=new Properties();
         try{
-            p.load(new FileReader(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader(System.getProperty("user.dir")+"/data/config/config.properties",StandardCharsets.UTF_8));
             
             imagenes=p.getProperty("imagenes");
             File f2=new File(imagenes);
@@ -137,7 +137,7 @@ public final class proper1 extends javax.swing.JFrame{
         iconButton.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_icon"));
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
@@ -151,7 +151,7 @@ public final class proper1 extends javax.swing.JFrame{
                         jTextField3.setText(icono);
                         
                         p.setProperty("lastdirectory_icon",f3.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
@@ -176,7 +176,7 @@ public final class proper1 extends javax.swing.JFrame{
         imgButton.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties"));
+                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
@@ -192,7 +192,7 @@ public final class proper1 extends javax.swing.JFrame{
                         jTextField2.setText(imagenes);
                         
                         p.setProperty("lastdirectory_image",f2.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/filechooserd.properties")),"JFil eChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFil eChooserDirection");
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
@@ -293,9 +293,9 @@ public final class proper1 extends javax.swing.JFrame{
     
     protected final void configOut(){
         p=new Properties();
-        f1=new File(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties");
-        String dato1=System.getProperty("user.dir")+"\\src\\main\\resources\\data\\media\\forms\\copy\\";
-        String dato2=System.getProperty("user.dir")+"\\src\\main\\resources\\data\\media\\icon\\copy\\";
+        f1=new File(System.getProperty("user.dir")+"/data/config/config.properties");
+        String dato1=System.getProperty("user.dir")+"\\data\\media\\forms\\copy\\";
+        String dato2=System.getProperty("user.dir")+"\\data\\media\\icon\\copy\\";
         try{
             if(f1.exists()){
                 p.setProperty("imagenes",imagenes);
@@ -316,7 +316,7 @@ public final class proper1 extends javax.swing.JFrame{
                 
                 new Thread(new thread(is,os)).start();
                 
-                p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/src/main/resources/data/config/config.properties",StandardCharsets.UTF_8)),"config1");
+                p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/config.properties",StandardCharsets.UTF_8)),"config1");
                 
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));

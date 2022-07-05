@@ -33,7 +33,7 @@ public class logger{
     
     static{
         try{
-            fh=new FileHandler(System.getProperty("user.dir")+"/src/main/resources/data/logs/static/staticLog.log",0,1,true);
+            fh=new FileHandler(System.getProperty("user.dir")+"/data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
         }catch(IOException x){
@@ -45,7 +45,6 @@ public class logger{
      * Método encargado de guardar los datos de eventos ocurridos durante la ejecución del programa en un mismo archivo.
      * 
      * @param message Mensaje que se almacenará en el archivo .log.
-     * @param level Nivel de prioridad del evento.
      */
     public void staticLogger(String message){
         Logger logger=Logger.getLogger("staticLogger");
@@ -63,14 +62,13 @@ public class logger{
      * Método que se encarga de guardar los datos de eventos ocurridos durante la ejecución del programa en varios archivos.
      * 
      * @param className Nombre de la clase en la que sucede el evento.
-     * @param level Nivel de prioridadd de la excepción.
      * @param methodName Nombre del método en el que está ocurriendo el error.
      * @param exception Excepción (o error) al que se le manejará y guardará en el archivo log.
      */
     public void exceptionLogger(String className,String methodName,Throwable exception){
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
-            fh2=new FileHandler(System.getProperty("user.dir")+"/src/main/resources/data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
+            fh2=new FileHandler(System.getProperty("user.dir")+"/data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
             fh2.setFormatter(new SimpleFormatter());
             logger.addHandler(fh2);
             logger.log(level,methodName,exception);

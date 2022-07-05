@@ -94,7 +94,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+etiCodigo.getText()+"';");
-                File f=new File(System.getProperty("user.dir")+"/src/main/resources/data/media/dataImage/proveedor/"+(int)(Math.random()*100000)+".jpg");
+                File f=new File(System.getProperty("user.dir")+"/data/media/dataImage/proveedor/"+(int)(Math.random()*100000)+".jpg");
                 
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;
