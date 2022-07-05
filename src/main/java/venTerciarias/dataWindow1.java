@@ -74,12 +74,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                 //new escritorJSON().writeDataWorkerJson(rs.getInt("codigo_emp"));
                 
                 byte[] imagen=rs.getBytes("foto");
-                Image i=Toolkit.getDefaultToolkit().createImage(imagen);
-                ImageIcon im=new ImageIcon(i);
+                ImageIcon im=new ImageIcon(Toolkit.getDefaultToolkit().createImage(imagen));
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
-                
-                i.flush();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'");
@@ -123,8 +120,8 @@ public class dataWindow1 extends javax.swing.JDialog{
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 ps.close();
-                fos.close();
                 fos.flush();
+                fos.close();
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'");

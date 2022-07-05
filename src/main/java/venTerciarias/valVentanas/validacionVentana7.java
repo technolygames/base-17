@@ -57,7 +57,6 @@ public class validacionVentana7 extends javax.swing.JDialog{
                         JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+validacionVentana7.class.getName()+"', en el método 'botones(valButton)'");
                     }
-                    
                     ps.close();
                     rs.close();
                 }else{

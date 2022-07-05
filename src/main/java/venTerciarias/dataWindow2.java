@@ -65,12 +65,9 @@ public class dataWindow2 extends javax.swing.JDialog{
                 //new escritorJSON().writeDataPartnerJson(rs.getInt("codigo_part"));
                 
                 byte[] imagen=rs.getBytes("foto");
-                Image i=Toolkit.getDefaultToolkit().createImage(imagen);
-                ImageIcon im=new ImageIcon(i);
+                ImageIcon im=new ImageIcon(Toolkit.getDefaultToolkit().createImage(imagen));
                 Icon l=new ImageIcon(im.getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT));
                 etiFoto.setIcon(l);
-                
-                i.flush();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'datosMostrar()'");

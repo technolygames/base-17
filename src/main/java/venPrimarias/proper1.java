@@ -3,10 +3,12 @@ package venPrimarias;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread;
+import java.awt.Frame;
 import venTerciarias.valVentanas.validacionVentana7;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
+import java.awt.Window;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -28,7 +30,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import menus.menuVentanas;
 
 public final class proper1 extends javax.swing.JFrame{
     public proper1(){
@@ -60,8 +64,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected int i;
     
     protected String icono;
-    protected String nImagen1;
-    protected String nImagen2;
     protected String nombre;
     protected String design;
     protected String imagenes;
@@ -149,6 +151,7 @@ public final class proper1 extends javax.swing.JFrame{
                         nombreArchivo2=f3.getName();
                         
                         jTextField3.setText(icono);
+                        imageLoader("Icono",jTextField3.getText());
                         
                         p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFileChooserDirection");
@@ -190,6 +193,7 @@ public final class proper1 extends javax.swing.JFrame{
                         nombreArchivo1=f2.getName();
                         
                         jTextField2.setText(imagenes);
+                        imageLoader("Ventanas",jTextField2.getText());
                         
                         p.setProperty("lastdirectory_image",f2.getParent());
                         p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFil eChooserDirection");
@@ -218,7 +222,9 @@ public final class proper1 extends javax.swing.JFrame{
             try{
                 design=jComboBox1.getSelectedItem().toString();
                 UIManager.setLookAndFeel(design);
-                SwingUtilities.updateComponentTreeUI(this);
+                for(Frame frame:Frame.getFrames()){
+                    SwingUtilities.updateComponentTreeUI(frame);
+                }
             }catch(ClassNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
