@@ -39,11 +39,13 @@ public class formulario1 extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Formulario 1");
         setResizable(false);
+        pack();
     }
     
     protected Properties p;
     protected JFileChooser jfc;
     
+    protected String userdir=System.getProperty("user.dir");
     protected String direccion;
     
     protected void settings(){
@@ -67,7 +69,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenuItem2.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/filechooserd.properties"));
+                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
@@ -83,7 +85,7 @@ public class formulario1 extends javax.swing.JFrame{
                         picLabel.setIcon(i);
                         
                         p.setProperty("lastdirectory_form1",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(System.getProperty("user.dir")+"/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'");
@@ -384,13 +386,11 @@ public class formulario1 extends javax.swing.JFrame{
                                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(storeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
@@ -464,8 +464,8 @@ public class formulario1 extends javax.swing.JFrame{
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(storeButton))
+                    .addComponent(storeButton)
+                    .addComponent(backButton))
                 .addContainerGap())
         );
 

@@ -20,7 +20,7 @@ public final class ventana2 extends javax.swing.JFrame{
         
         setLocationRelativeTo(null);
         setTitle("Almacén");
-        setResizable(false);
+        pack();
     }
     
     protected DefaultTableModel dtm;

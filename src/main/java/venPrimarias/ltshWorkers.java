@@ -28,7 +28,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         setSize(1200,700);
         setLocationRelativeTo(null);
         setTitle("Empleados");
-        setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

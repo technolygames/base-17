@@ -26,7 +26,7 @@ public class ltshOff extends javax.swing.JFrame{
         setSize(1100,600);
         setLocationRelativeTo(null);
         setTitle("Descuentos");
-        setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

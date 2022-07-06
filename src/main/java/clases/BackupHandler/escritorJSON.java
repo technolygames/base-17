@@ -23,6 +23,8 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class escritorJSON{
+    protected String userdir=System.getProperty("user.dir");
+    
     protected JsonWriter jsonw;
     protected PreparedStatement ps;
     protected ResultSet rs;
@@ -37,8 +39,8 @@ public class escritorJSON{
             ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
             rs=ps.executeQuery();
             while(rs.next()){
-                new File(System.getProperty("user.dir")+"/data/databackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/data/databackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+"/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+".json"),StandardCharsets.UTF_8));
+                new File(userdir+"/data/databackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+"/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicWorker(rs.getInt("codigo_emp"),rs.getString("nombre_emp"));
                 
                 jsonw.beginObject();
@@ -99,8 +101,8 @@ public class escritorJSON{
             ps=new datos().getConnection().prepareStatement("select*from socios where codigo_part='"+codigoSocio+"'");
             rs=ps.executeQuery();
             while(rs.next()){
-                new File(System.getProperty("user.dir")+"/data/databackup/Socios/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/data/databackup/Socios/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")+"/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")+".json"),StandardCharsets.UTF_8));
+                new File(userdir+"/data/databackup/Socios/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Socios/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")+"/"+rs.getString("nombre_part")+"-"+rs.getInt("codigo_part")+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicPartner(rs.getInt("codigo_part"),rs.getString("nombre_part"));
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -146,8 +148,8 @@ public class escritorJSON{
             ps=new datos().getConnection().prepareStatement("select*from proveedor where codigo_prov='"+codigoProveedor+"';");
             rs=ps.executeQuery();
             while(rs.next()){
-                new File(System.getProperty("user.dir")+"/data/databackup/Proveedores/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(System.getProperty("user.dir")+"/data/databackup/Proveedores/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")+"/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")+".json"),StandardCharsets.UTF_8));
+                new File(userdir+"/data/databackup/Proveedores/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Proveedores/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")+"/"+rs.getString("nombre_prov")+"-"+rs.getInt("codigo_prov")+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicProvider(rs.getInt("codigo_prov"),rs.getString("nombre_prov"));
                 jsonw.beginObject();
                 jsonw.setIndent("   ");

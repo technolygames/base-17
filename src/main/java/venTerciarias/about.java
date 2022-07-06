@@ -29,9 +29,12 @@ public final class about extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Acerca del programa");
         setResizable(false);
+        pack();
     }
     
     protected Properties p;
+    
+    protected String userdir=System.getProperty("user.dir");
     
     protected void settings(){
         websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -40,7 +43,7 @@ public final class about extends javax.swing.JDialog{
     protected void etiquetas(){
         p=new Properties();
         try{
-            p.load(new FileReader(System.getProperty("user.dir")+"/data/config/acerca.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader(userdir+"/data/config/acerca.properties",StandardCharsets.UTF_8));
             
             versionLabel.setText(p.getProperty("version"));
             estableLabel.setText(p.getProperty("estable"));
@@ -253,7 +256,7 @@ public final class about extends javax.swing.JDialog{
     private void websiteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteLabelMouseClicked
         p=new Properties();
         try{
-            p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/acerca.properties"));
+            p.load(new FileInputStream(userdir+"/data/config/acerca.properties"));
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);

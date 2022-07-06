@@ -14,6 +14,7 @@ public class ventana4 extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Pedidos");
         setResizable(false);
+        pack();
     }
     
     protected void settings(){

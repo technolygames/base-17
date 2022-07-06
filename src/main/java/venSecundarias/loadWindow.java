@@ -16,6 +16,7 @@ public final class loadWindow extends javax.swing.JFrame{
         
         setLocationRelativeTo(null);
         setResizable(false);
+        pack();
     }
     
     protected Timer t;

@@ -28,7 +28,7 @@ public class ltshProduct extends javax.swing.JFrame{
         setSize(950,550);
         setLocationRelativeTo(null);
         setTitle("Ventas");
-        setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

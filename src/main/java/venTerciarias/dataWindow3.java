@@ -34,6 +34,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Datos del proveedor");
         setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

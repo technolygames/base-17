@@ -38,17 +38,19 @@ public class databaseExport extends javax.swing.JPanel{
     }
     
     protected class exportDB implements Runnable{
+        protected String userdir=System.getProperty("user.dir");
+        
         @Override
         public void run(){
             String nombreUsuario=jTextField1.getText();
             String passUsuario=jPasswordField1.getPassword().toString();
             String based=jTextField3.getText();
             String nombrebdExportada=based+(int)(Math.random()*1000)+".sql";
-            String dir=System.getProperty("user.dir")+"/data/database/MySQL/"+nombrebdExportada;
+            String dir=userdir+"/data/database/MySQL/"+nombrebdExportada;
             
             try{
                 Properties p=new Properties();
-                p.load(new FileInputStream(System.getProperty("user.dir")+"/data/config/databaseInfo.properties"));
+                p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
                 Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" -h "+p.getProperty("ip")+" "+based+">"+dir);
                 new Thread(new threadReader(pr.getErrorStream())).start();
                 

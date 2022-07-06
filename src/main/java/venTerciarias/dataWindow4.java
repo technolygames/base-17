@@ -34,6 +34,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Datos del empleado");
         setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

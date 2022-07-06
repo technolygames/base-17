@@ -34,6 +34,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Datos del socio");
         setResizable(false);
+        pack();
     }
     
     protected ResultSet rs;

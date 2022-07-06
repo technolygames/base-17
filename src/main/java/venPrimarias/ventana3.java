@@ -21,6 +21,7 @@ public class ventana3 extends javax.swing.JFrame{
         setLocationRelativeTo(null);
         setTitle("Descuentos y promociones");
         setResizable(false);
+        pack();
     }
     
     protected void settings(){

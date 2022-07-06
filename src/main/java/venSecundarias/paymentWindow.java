@@ -17,6 +17,7 @@ public class paymentWindow extends javax.swing.JDialog{
         setLocationRelativeTo(null);
         setTitle("Pago");
         setResizable(false);
+        pack();
     }
     
     protected Properties p;
