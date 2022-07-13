@@ -1,7 +1,6 @@
 package paneles;
 //clases
 import clases.datos;
-import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import java.util.logging.Level;
 public class modDatosPanel3 extends javax.swing.JPanel{
     public modDatosPanel3(){
         initComponents();
-        new guiMediaHandler(modDatosPanel3.class.getName()).LookAndFeel(modDatosPanel3.this);
         
         botones();
         settings();

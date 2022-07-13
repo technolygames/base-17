@@ -26,7 +26,7 @@ import java.util.logging.Level;
  */
 public class resourceDownload{
     protected boolean estado;
-    protected String userdir=System.getProperty("user.dir");
+    protected String userdir=datos.userdir;
     
     protected BufferedInputStream bis;
     protected InputStream is;

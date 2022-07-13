@@ -25,7 +25,7 @@ public class escritorFoto{
     public static String dir2;
     public static String dir3;
     
-    protected String userdir=System.getProperty("user.dir");
+    protected String userdir=datos.userdir;
     
     protected ResultSet rs;
     protected PreparedStatement ps;

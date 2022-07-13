@@ -1,7 +1,7 @@
 package paneles;
 //clases
 import clases.BackupHandler.lectorJSON;
-import clases.guiMediaHandler;
+import clases.datos;
 //java
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -11,7 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class partDataRestore extends javax.swing.JPanel{
     public partDataRestore(){
         initComponents();
-        new guiMediaHandler(partDataRestore.class.getName()).LookAndFeel(partDataRestore.this);
         
         botones(); 
     }
@@ -24,7 +23,7 @@ public class partDataRestore extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            filechooser=new JFileChooser(System.getProperty("user.dir")+"/data/databackup/Empleados");
+            filechooser=new JFileChooser(datos.userdir+"/data/databackup/Empleados");
             filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
             if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){

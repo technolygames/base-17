@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class escritorJSON{
-    protected String userdir=System.getProperty("user.dir");
+    protected String userdir=datos.userdir;
     
     protected JsonWriter jsonw;
     protected PreparedStatement ps;

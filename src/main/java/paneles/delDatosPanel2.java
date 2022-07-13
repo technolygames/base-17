@@ -3,7 +3,6 @@ package paneles;
 import clases.datos;
 import clases.logger;
 import clases.BackupHandler.escritorJSON;
-import clases.guiMediaHandler;
 //java
 import javax.swing.JOptionPane;
 //extension larga
@@ -12,12 +11,11 @@ import java.util.logging.Level;
 public class delDatosPanel2 extends javax.swing.JPanel{
     public delDatosPanel2(){
         initComponents();
-        new guiMediaHandler(delDatosPanel2.class.getName()).LookAndFeel(delDatosPanel2.this);
         
         botones();
     }
     
-    protected void botones(){
+    protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
         });

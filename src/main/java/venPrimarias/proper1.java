@@ -1,8 +1,10 @@
 package venPrimarias;
 //clases
+import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Frame;
 import venTerciarias.valVentanas.validacionVentana7;
 //java
@@ -29,6 +31,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class proper1 extends javax.swing.JFrame{
@@ -59,7 +62,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected String icono;
     protected String nombre;
     protected String design;
-    protected String userdir=System.getProperty("user.dir");
+    protected String userdir=datos.userdir;
     protected String imagenes;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
@@ -147,6 +150,8 @@ public final class proper1 extends javax.swing.JFrame{
                         
                         jTextField3.setText(icono);
                         imageLoader("Icono",jTextField3.getText());
+                        rightButton.setEnabled(true);
+                        leftButton.setEnabled(false);
                         
                         p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
@@ -189,9 +194,11 @@ public final class proper1 extends javax.swing.JFrame{
                         
                         jTextField2.setText(imagenes);
                         imageLoader("Ventanas",jTextField2.getText());
+                        rightButton.setEnabled(false);
+                        leftButton.setEnabled(true);
                         
                         p.setProperty("lastdirectory_image",f2.getParent());
-                        p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFil eChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
@@ -271,8 +278,11 @@ public final class proper1 extends javax.swing.JFrame{
         });
     }
     
+    static{
+        UIManager.installLookAndFeel(new FlatDarkLaf().getName(),new FlatDarkLaf().getClass().getName());
+    }
+    
     protected final void combo(){
-        UIManager.installLookAndFeel("FlatLafDark","com.formdev.flatlaf.FlatDarkLaf");
         try{
             for(UIManager.LookAndFeelInfo lafi:UIManager.getInstalledLookAndFeels()){
                 jComboBox1.addItem(lafi.getClassName());

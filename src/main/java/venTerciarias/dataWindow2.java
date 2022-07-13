@@ -96,7 +96,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
-                File f=new File(System.getProperty("user.dir")+"/data/media/dataImage/socios/"+(int)(Math.random()*100000)+".jpg");
+                File f=new File(datos.userdir+"/data/media/dataImage/socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
                 
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;

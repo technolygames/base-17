@@ -1,7 +1,6 @@
 package paneles;
 //clases
 import clases.datos;
-import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import java.util.logging.Level;
 public class modDatosPanel2 extends javax.swing.JPanel{
     public modDatosPanel2(){
         initComponents();
-        new guiMediaHandler(modDatosPanel2.class.getName()).LookAndFeel(modDatosPanel2.this);
         
         botones();
         settings();
@@ -32,7 +30,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         jLabel6.setToolTipText("RFC");
     }
     
-    protected void botones(){
+    protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
         });
