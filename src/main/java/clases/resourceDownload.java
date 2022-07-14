@@ -28,13 +28,13 @@ public class resourceDownload{
     protected boolean estado;
     protected String userdir=datos.userdir;
     
-    protected BufferedInputStream bis;
+    protected File f;
     protected InputStream is;
     protected OutputStream os;
-    protected File f;
     
     protected URL u;
     protected Socket s;
+    protected SocketAddress sa;
     protected URLConnection uc;
     
     /**
@@ -48,7 +48,7 @@ public class resourceDownload{
     public boolean checkConnection(String url,int puerto){
         try{
             s=new Socket();
-            SocketAddress sa=new InetSocketAddress(url,puerto);
+            sa=new InetSocketAddress(url,puerto);
             
             s.bind(sa);
             s.connect(sa);
@@ -84,13 +84,12 @@ public class resourceDownload{
                 uc=u.openConnection();
                 
                 is=uc.getInputStream();
-                bis=new BufferedInputStream(is);
                 os=new FileOutputStream(userdir+"/data/libs/test/"+validar);
                 
                 new Thread(new thread(is,os)).start();
             }
             
-            bis.close();
+            is.close();
             os.flush();
             os.close();
         }catch(MalformedURLException e){
