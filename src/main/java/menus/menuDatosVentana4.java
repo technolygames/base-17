@@ -1,18 +1,17 @@
 package menus;
 //clases
 import clases.guiMediaHandler;
-import paneles.delDatosPanel3;
-import paneles.modDatosPanel3;
+import paneles.delDatosPanel4;
+import paneles.modDatosPanel4;
 //java
 import java.awt.BorderLayout;
 
-public class menuDatosVentana3 extends javax.swing.JFrame{
-    public menuDatosVentana3(){
+public class menuDatosVentana4 extends javax.swing.JFrame{
+    public menuDatosVentana4(){
         initComponents();
-        new guiMediaHandler(menuDatosVentana3.class.getName()).LookAndFeel(menuDatosVentana3.this);
+        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -31,15 +30,15 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-            menuDatosVentana3.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana3.this.getContentPane().add(new delDatosPanel3(),BorderLayout.CENTER);
-            menuDatosVentana3.this.pack();
+            menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
+            menuDatosVentana4.this.getContentPane().add(new delDatosPanel4(),BorderLayout.CENTER);
+            menuDatosVentana4.this.pack();
         });
         
         miModData.addActionListener((a)->{
-            menuDatosVentana3.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana3.this.getContentPane().add(new modDatosPanel3(),BorderLayout.CENTER);
-            menuDatosVentana3.this.pack();
+            menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
+            menuDatosVentana4.this.getContentPane().add(new modDatosPanel4(),BorderLayout.CENTER);
+            menuDatosVentana4.this.pack();
         });
     }
     
@@ -53,8 +52,8 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         miDelData = new javax.swing.JMenuItem();
         miModData = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(menuDatosVentana3.class.getName()).getIconImage());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new guiMediaHandler(menuDatosVentana4.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -74,15 +73,15 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(349, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(319, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -91,7 +90,7 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new menuDatosVentana3().setVisible(true);
+        new menuDatosVentana4().setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

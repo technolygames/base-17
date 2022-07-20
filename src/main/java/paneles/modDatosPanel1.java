@@ -74,7 +74,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEnabled(true);
                 //función
                 if(cbContra.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
                             while(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -138,7 +138,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEnabled(true);
                 //función
                 if(cbNombre.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
                             while(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -202,7 +202,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtAP.setEnabled(true);
                 //función
                 if(cbAP.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
                             while(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -266,7 +266,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtAM.setEnabled(true);
                 //función
                 if(cbAM.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
                             while(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -330,7 +330,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtCURP.setEnabled(true);
                 //función
                 if(cbCURP.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
                             while(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set curp='"+txtCURP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -394,7 +394,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtDom.setEnabled(true);
                 //función
                 if(cbDomicilio.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
                             while(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set domicilio='"+txtDom.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -459,7 +459,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 //función
                 if(cbPuesto.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
                             while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set puesto='"+jComboBox1.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -523,7 +523,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEnabled(true);
                 //función
                 if(cbExp.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
                             while(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -587,7 +587,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEnabled(true);
                 //función
                 if(cbGE.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
                             while(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -651,7 +651,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContacto.setEnabled(true);
                 //función
                 if(cbContacto.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
                             while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -715,7 +715,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 dcFN.setEnabled(true);
                 //función
                 if(cbFN.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
                             while(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set fecha_nacimiento='"+new java.sql.Date(dcFN.getDate().getTime())+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -779,7 +779,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtEdad.setEnabled(true);
                 //función
                 if(cbEdad.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
                             while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -844,7 +844,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 //función
                 if(cbEstado.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
                             while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
                                 new datos().actualizarDatosEmpleado("set estado='"+jComboBox2.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
@@ -926,7 +926,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         txtContra = new javax.swing.JPasswordField();
         txtNombre = new javax.swing.JTextField();
         etiPuesto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         txtAP = new javax.swing.JTextField();
         txtAM = new javax.swing.JTextField();
         cbPuesto = new javax.swing.JCheckBox();
@@ -979,7 +979,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiPuesto.setText("Puesto");
 
-        jButton1.setText("Actualizar datos");
+        updateButton.setText("Actualizar datos");
 
         txtAP.setEnabled(false);
         txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1141,7 +1141,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton)))
                 .addContainerGap(133, Short.MAX_VALUE))
@@ -1233,7 +1233,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         .addComponent(cbEstado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(updateButton)
                     .addComponent(closeButton))
                 .addContainerGap())
         );
@@ -1324,7 +1324,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JLabel etiGE;
     private javax.swing.JLabel etiNombre;
     private javax.swing.JLabel etiPuesto;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JButton searchButton;
@@ -1339,5 +1338,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JTextField txtGE;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

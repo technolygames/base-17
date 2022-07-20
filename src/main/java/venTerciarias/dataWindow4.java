@@ -72,7 +72,7 @@ public class dataWindow4 extends javax.swing.JDialog{
                 jTextArea2.setText(rs.getString("datos_extra"));
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
-                
+                 
                 String nombreCompleto=etiNombre.getText()+" "+etiApellidoP+" "+etiApellidoM;
                 int codigoEmpleado=Integer.parseInt(etiCodigo.getText());
                 codigo=codigoEmpleado;

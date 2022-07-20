@@ -350,6 +350,15 @@ public class datos{
     }
     
     /**
+     * 
+     * 
+     * @param consulta
+     */
+    public void actualizarDatosAlmacen(String consulta){
+        
+    }
+    
+    /**
      * Actualiza datos de la tabla de empleados.
      * Esta es específica para empleados. No usar como universal.
      * 
@@ -466,6 +475,15 @@ public class datos{
             new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosProductos-13",e.fillInStackTrace());
         }
+    }
+    
+    /**
+     * 
+     * 
+     * @param codigoProducto 
+     */
+    public void eliminarDatosAlmacen(String codigoProducto){
+        
     }
     
     /**

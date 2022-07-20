@@ -51,7 +51,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jTextField1.setEnabled(true);
                 //función
                 if(jCheckBox1.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
                                 new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
@@ -91,7 +91,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jTextField2.setEnabled(true);
                 //función
                 if(jCheckBox2.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
                                 new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
@@ -131,7 +131,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jTextField3.setEnabled(true);
                 //función
                 if(jCheckBox3.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
                                 new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
@@ -171,7 +171,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jTextField4.setEnabled(true);
                 //función
                 if(jCheckBox4.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
                                 new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
@@ -211,7 +211,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jTextField5.setEnabled(true);
                 //función
                 if(jCheckBox5.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
                                 new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
@@ -284,7 +284,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
 
         closeButton.setText("Cerrar panel");
 
@@ -335,7 +335,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
             }
         });
 
-        jButton1.setText("Actualizar datos");
+        updateButton.setText("Actualizar datos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -345,7 +345,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton))
                     .addGroup(layout.createSequentialGroup()
@@ -416,7 +416,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
-                    .addComponent(jButton1))
+                    .addComponent(updateButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -463,7 +463,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -481,5 +480,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     private javax.swing.JTextField jTextField5;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
+import menus.menuDatosVentana4;
 
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
@@ -100,6 +101,10 @@ public final class ventana2 extends javax.swing.JFrame{
             txtPU.setText("");
         });
         
+        updateDataButton.addActionListener((a)->{
+            new menuDatosVentana4().setVisible(true);
+        });
+        
         svdtButton.addActionListener((a)->{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
@@ -156,6 +161,7 @@ public final class ventana2 extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         txtPU = new javax.swing.JTextField();
         picLabel = new javax.swing.JLabel();
+        updateDataButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(ventana2.class.getName()).getIconImage());
@@ -246,6 +252,8 @@ public final class ventana2 extends javax.swing.JFrame{
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        updateDataButton.setText("Editar precios");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -299,9 +307,11 @@ public final class ventana2 extends javax.swing.JFrame{
                         .addComponent(svdtButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addButton)
-                        .addGap(64, 64, 64)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cleanButton)
-                        .addGap(32, 32, 32)
+                        .addGap(213, 213, 213)
+                        .addComponent(updateDataButton)
+                        .addGap(18, 18, 18)
                         .addComponent(backButton)))
                 .addContainerGap())
         );
@@ -354,7 +364,8 @@ public final class ventana2 extends javax.swing.JFrame{
                     .addComponent(backButton)
                     .addComponent(cleanButton)
                     .addComponent(addButton)
-                    .addComponent(svdtButton))
+                    .addComponent(svdtButton)
+                    .addComponent(updateDataButton))
                 .addContainerGap())
         );
 
@@ -446,5 +457,6 @@ public final class ventana2 extends javax.swing.JFrame{
     protected javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtPU;
     protected javax.swing.JTextField txtProd;
+    private javax.swing.JButton updateDataButton;
     // End of variables declaration//GEN-END:variables
 }

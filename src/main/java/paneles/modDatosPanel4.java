@@ -1,53 +1,51 @@
 package paneles;
-public class updatePanel extends javax.swing.JPanel{
-    public updatePanel(){
+public class modDatosPanel4 extends javax.swing.JPanel{
+    public modDatosPanel4(){
         initComponents();
         
         botones();
     }
     
-    protected void botones(){
+    protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
         });
-        
-        updateButton.addActionListener((a)->{
-            
-        });
     }
-               
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        closeButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+
+        updateButton.setText("Actualizar datos");
 
         closeButton.setText("Cerrar panel");
-
-        updateButton.setText("Actualizar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(updateButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(closeButton)
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(closeButton)
-                    .addComponent(updateButton))
+                    .addComponent(updateButton)
+                    .addComponent(closeButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JButton updateButton;

@@ -54,7 +54,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField1.setEnabled(true);
                 //función
                 if(jCheckBox1.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
                                 new datos().actualizarDatosSocio("set nombre_part='"+jTextField1.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -97,7 +97,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField2.setEnabled(true);
                 //función
                 if(jCheckBox2.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
                                 new datos().actualizarDatosSocio("set apellidop_part='"+jTextField2.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -140,7 +140,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField3.setEnabled(true);
                 //función
                 if(jCheckBox3.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
                                 new datos().actualizarDatosSocio("set apellidom_part='"+jTextField3.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -184,7 +184,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 //función
                 if(jCheckBox4.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
                             while(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
                                 new datos().actualizarDatosSocio("set tipo_socio='"+jComboBox1.getSelectedItem().toString()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -227,7 +227,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField4.setEnabled(true);
                 //función
                 if(jCheckBox5.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
                                 new datos().actualizarDatosSocio("set correo='"+jTextField4.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -270,7 +270,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jTextField5.setEnabled(true);
                 //función
                 if(jCheckBox6.isSelected()==true){
-                    jButton1.addActionListener((b)->{
+                    updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
                                 new datos().actualizarDatosSocio("set rfc='"+jTextField5.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
@@ -341,7 +341,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         jCheckBox3 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         jCheckBox4 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -383,7 +383,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
 
         jLabel4.setText("Tipo de socio");
 
-        jButton1.setText("Actualizar datos");
+        updateButton.setText("Actualizar datos");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setEnabled(false);
@@ -445,7 +445,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton)))
                 .addContainerGap(73, Short.MAX_VALUE))
@@ -497,7 +497,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         .addComponent(jCheckBox6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(updateButton)
                     .addComponent(closeButton))
                 .addContainerGap())
         );
@@ -529,7 +529,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -550,5 +549,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     private javax.swing.JTextField jTextField5;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtSearch;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
