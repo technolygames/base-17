@@ -24,13 +24,17 @@ public class delDatosPanel2 extends javax.swing.JPanel{
             try{
                 if(!jTextField1.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());
-                    
                     int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                    if(opcion==0){
-                        new escritorJSON().writeDataPartnerJson(codigo);
-                        new datos().eliminarDatosSocio(codigo);
-                    }else if(opcion==1){
-                        new datos().eliminarDatosSocio(codigo);
+                    switch(opcion){
+                        case 0:{
+                            new escritorJSON().writeDataPartnerJson(codigo);
+                            new datos().eliminarDatosSocio(codigo);
+                            break;
+                        }
+                        case 1:{
+                            new datos().eliminarDatosSocio(codigo);
+                            break;
+                        }
                     }
                 }else{
                     JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);

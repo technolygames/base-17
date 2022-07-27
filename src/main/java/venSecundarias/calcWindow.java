@@ -2,6 +2,7 @@ package venSecundarias;
 //clases
 import clases.guiMediaHandler;
 import clases.logger;
+import java.awt.event.KeyEvent;
 import venPrimarias.ventana1;
 //java
 import javax.swing.JOptionPane;
@@ -23,10 +24,8 @@ public final class calcWindow extends javax.swing.JDialog{
         pack();
     }
     
-    public static int cambio;
-    
     protected void settings(){
-        txtTotal.setText(String.valueOf(ventana1.resultado));
+        txtTotal.setText(String.valueOf(paymentWindow.result));
     }
     
     protected final void botones(){
@@ -44,7 +43,7 @@ public final class calcWindow extends javax.swing.JDialog{
                 String res=Integer.toString(Math.abs(resultado));
                 
                 txtCambio.setText(res);
-                cambio=Integer.parseInt(txtCambio.getText());
+                paymentWindow.jLabel6.setText(txtCambio.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'");
@@ -96,7 +95,7 @@ public final class calcWindow extends javax.swing.JDialog{
                             .addComponent(txtDinIng, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                             .addComponent(txtCambio)
                             .addComponent(txtTotal)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(calButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
@@ -117,11 +116,11 @@ public final class calcWindow extends javax.swing.JDialog{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(calButton)
-                    .addComponent(backButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(backButton)
+                    .addComponent(calButton))
+                .addContainerGap())
         );
 
         pack();

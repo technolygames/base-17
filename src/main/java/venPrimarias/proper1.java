@@ -150,8 +150,6 @@ public final class proper1 extends javax.swing.JFrame{
                         
                         jTextField3.setText(icono);
                         imageLoader("Icono",jTextField3.getText());
-                        rightButton.setEnabled(true);
-                        leftButton.setEnabled(false);
                         
                         p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
@@ -194,8 +192,6 @@ public final class proper1 extends javax.swing.JFrame{
                         
                         jTextField2.setText(imagenes);
                         imageLoader("Ventanas",jTextField2.getText());
-                        rightButton.setEnabled(false);
-                        leftButton.setEnabled(true);
                         
                         p.setProperty("lastdirectory_image",f2.getParent());
                         p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");

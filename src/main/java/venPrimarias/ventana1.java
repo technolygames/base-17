@@ -4,13 +4,11 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import venSecundarias.calcWindow;
+import venSecundarias.paymentWindow;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -33,20 +31,24 @@ public final class ventana1 extends javax.swing.JFrame{
     protected PreparedStatement ps;
     protected ResultSet rs;
     
-    protected Properties p;
-    protected DefaultTableModel dtm;
+    public static DefaultTableModel dtm;
     
     protected String nombre_prod;
-    protected String marca_prod;
+    public static String nombre_emp;
+    protected String marca;
     
-    public static int resultado;
     protected int codigo_prod;
     protected int codigo_emp;
     protected int cantidad;
+    public static int cambio;
     protected int precio;
     protected int total;
     
     protected final void settings(){
+        txtCodEmp.setText(String.valueOf(start.userID));
+        jLabel7.setText(String.valueOf(cambio));
+        jLabel7.setVisible(false);
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -55,11 +57,8 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         };
         
-        txtCodEmp.setText(String.valueOf(start.userID));
-        
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
-            "Código del empleado",
             "Nombre del producto",
             "Marca",
             "Cantidad",
@@ -67,24 +66,25 @@ public final class ventana1 extends javax.swing.JFrame{
             "Total"
         });
         
-        dtm.setRowCount(0);
-        jTable1.setModel(dtm);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setEnabled(true);
         for(int i=0;i<dtm.getRowCount();i++){
             for(int j=0;j<dtm.getColumnCount();j++){
                 dtm.isCellEditable(i,j);
             }
         }
+        
+        dtm.setRowCount(0);
+        
+        jTable1.setEnabled(true);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.setModel(dtm);
     }
     
     protected final void botones(){
         dtm=new DefaultTableModel();
         addButton.addActionListener((a)->{
-            if(!txtCodigo.getText().equals("")||!txtCodEmp.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
+            if(!txtCodigo.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
                 dtm.addRow(new Object[]{
                     txtCodigo.getText(),
-                    txtCodEmp.getText(),
                     txtProd.getText(),
                     txtMarca.getText(),
                     txtCant.getText(),
@@ -109,28 +109,10 @@ public final class ventana1 extends javax.swing.JFrame{
             dispose();
         });
         
-        calcButton.addActionListener((a)->{
-            try{
-                int res=0;
-                for(int i=0;i<dtm.getRowCount();i++){
-                    int n1=Integer.parseInt(dtm.getValueAt(i,6).toString());
-                    res+=n1;
-                    
-                    resultado=res;
-                }
-                
-                calcWindow clw=new calcWindow(new javax.swing.JFrame(),true);
-                clw.setVisible(true);
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(calcButton)'");
-                new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"botones.calc-32",e.fillInStackTrace());
-            }
-        });
-        
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
+            jLabel7.setText("");
             txtCodigo.setText("");
             txtProd.setText("");
             txtMarca.setText("");
@@ -147,19 +129,16 @@ public final class ventana1 extends javax.swing.JFrame{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
                     codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                    codigo_emp=Integer.parseInt(dtm.getValueAt(i,1).toString());
-                    nombre_prod=dtm.getValueAt(i,2).toString();
-                    marca_prod=dtm.getValueAt(i,3).toString();
-                    cantidad=Integer.parseInt(dtm.getValueAt(i,4).toString());
-                    precio=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                    total=Integer.parseInt(dtm.getValueAt(i,6).toString());
-                    
-                    new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre_prod,marca_prod,cantidad,precio,total);
+                    nombre_prod=dtm.getValueAt(i,1).toString();
+                    marca=dtm.getValueAt(i,2).toString();
+                    cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
+                    precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                    total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                 }
                 
-                JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
-                new datos().actualizarDatosConteo("set no_ventas=no_ventas+1 where codigo_emp='"+txtCodEmp.getText()+"' and fecha_sesion='"+new SimpleDateFormat("yyyy/MM/dd").format(new Date())+"';");
+                cambio=Integer.parseInt(jLabel7.getText());
+                nombre_emp=txtCodEmp.getText();
+                new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'");
@@ -191,7 +170,6 @@ public final class ventana1 extends javax.swing.JFrame{
         jLabel8 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        calcButton = new javax.swing.JButton();
         cleanButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -201,6 +179,7 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -262,8 +241,6 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jLabel9.setText("Total:");
 
-        calcButton.setText("Calcular");
-
         cleanButton.setText("Limpiar campos");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -296,6 +273,8 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
 
+        jLabel7.setText("jLabel7");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,10 +290,8 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(calcButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(addButton)
-                                .addGap(64, 64, 64)
+                                .addGap(98, 98, 98)
                                 .addComponent(cleanButton)
                                 .addGap(32, 32, 32))
                             .addGroup(layout.createSequentialGroup()
@@ -322,32 +299,35 @@ public final class ventana1 extends javax.swing.JFrame{
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtCodigo))
+                                            .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtCodEmp))
+                                            .addComponent(txtCodEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtProd, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtProd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6)
-                                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
-                                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
-                                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -360,7 +340,9 @@ public final class ventana1 extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -393,7 +375,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
-                    .addComponent(calcButton)
                     .addComponent(cleanButton)
                     .addComponent(addButton)
                     .addComponent(mkPaidButton)
@@ -499,7 +480,6 @@ public final class ventana1 extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton addButton;
     protected javax.swing.JButton backButton;
-    protected javax.swing.JButton calcButton;
     protected javax.swing.JButton cleanButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -509,6 +489,7 @@ public final class ventana1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    public static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;

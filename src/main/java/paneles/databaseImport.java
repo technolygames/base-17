@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -33,7 +32,6 @@ public class databaseImport extends javax.swing.JPanel{
     
     protected Properties p;
     protected InputStream is;
-    protected OutputStream os;
     
     protected void settings(){
         jTextField3.setText(databaseWindow.nombredb);
@@ -87,19 +85,16 @@ public class databaseImport extends javax.swing.JPanel{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
-                Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysql.exe -u "+user+" -p "+pass+" -h "+p.getProperty("ip")+" "+db+"<"+dbDir);
+                Process pr=Runtime.getRuntime().exec("cmd /c mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
                 new Thread(new threadReader(pr.getErrorStream())).start();
                 
-                os=pr.getOutputStream();
                 is=new FileInputStream(dbDir);
                 
-                new Thread(new thread(is,os)).start();
+                new Thread(new thread(is,pr.getOutputStream())).start();
                 
                 JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
-                os.close();
-                os.flush();
                 is.close();
             }catch(IOException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);

@@ -355,7 +355,19 @@ public class datos{
      * @param consulta
      */
     public void actualizarDatosAlmacen(String consulta){
-        
+        try{
+            ps=getConnection().prepareStatement("update almacen "+consulta);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosAlmacen-12",e.fillInStackTrace());
+        }
     }
     
     /**
@@ -465,7 +477,7 @@ public class datos{
     public void eliminarDatosProductos(int codigoEmpleado){
         try{
             ps=getConnection().prepareStatement("delete from productos where codigo_emp='"+codigoEmpleado+"';");
-            ps.execute();
+            ps.executeUpdate();
             
             new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
@@ -478,12 +490,26 @@ public class datos{
     }
     
     /**
-     * 
+     * Elimina datos específicos de la tabla almacén.
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de que la descripción del producto sea errónea.
+     * En este caso, no aplica la copia de seguridad con JSON.
      * 
      * @param codigoProducto 
      */
     public void eliminarDatosAlmacen(String codigoProducto){
-        
+        try{
+            ps=getConnection().prepareStatement("delete from almacen where codigo_prod="+codigoProducto+";");
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosAlmacen-13",e.fillInStackTrace());
+        }
     }
     
     /**
@@ -496,7 +522,7 @@ public class datos{
     public void eliminarDatosEmpleado(int codigoEmpleado){
         try{
             ps=getConnection().prepareStatement("delete from empleados where codigo_emp='"+codigoEmpleado+"';");
-            ps.execute();
+            ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
@@ -519,7 +545,7 @@ public class datos{
     public void eliminarDatosSocio(int codigoSocio){
         try{
             ps=getConnection().prepareStatement("delete from socios where codigo_part='"+codigoSocio+"';");
-            ps.execute();
+            ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
@@ -542,7 +568,7 @@ public class datos{
     public void eliminarDatosProveedor(int codigoProveedor){
         try{
             ps=getConnection().prepareStatement("delete from proveedor where codigo_prov='"+codigoProveedor+"';");
-            ps.execute();
+            ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
@@ -565,7 +591,7 @@ public class datos{
     public void eliminarDatosConteo(int codigoEmpleado){
         try{
             ps=getConnection().prepareStatement("delete from conteo where codigo_emp='"+codigoEmpleado+"';");
-            ps.execute();
+            ps.executeUpdate();
             
             new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los datos de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             

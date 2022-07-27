@@ -4,6 +4,7 @@ Hay errores que están impares o que deberían seguir una secuencia, pero muchos
 Error Prueba: error aún no encontrado
 Error <número>: error sin asignar
 Error <random+E>: error que no le fue asignado a un número específico de error, pero que se conoce su funcionalidad. Favor de reportarlo
+Guiones: cantidad de clases/ventanas que hacen uso de esa descripción
 
 Error 0: error desconocido y no mapeado
 
@@ -53,6 +54,7 @@ Error 9E: error o evento producido en consola
 -Errores especiales
 _T1: error al imprimir ticket
 _T2: error al dar formato al ticket
+_T3: error al abrir la gaveta
 _H1: error al momento de ejecutar el hilo
 
 -Errores de Entrada/Salida
