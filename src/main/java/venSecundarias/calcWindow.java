@@ -2,8 +2,6 @@ package venSecundarias;
 //clases
 import clases.guiMediaHandler;
 import clases.logger;
-import java.awt.event.KeyEvent;
-import venPrimarias.ventana1;
 //java
 import javax.swing.JOptionPane;
 //extension larga

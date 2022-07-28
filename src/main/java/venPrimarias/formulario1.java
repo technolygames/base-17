@@ -528,14 +528,6 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
-    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
-        if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEdadKeyPressed()'");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtEdadKeyPressed
-    
     private void txtFNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNKeyPressed
         try{
             DateTimeFormatter format=DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -546,6 +538,14 @@ public class formulario1 extends javax.swing.JFrame{
             //not catch
         }
     }//GEN-LAST:event_txtFNKeyPressed
+    
+    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEdadKeyPressed()'");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEdadKeyPressed
     
     public static void main(String args[]){
         new formulario1().setVisible(true);
@@ -579,7 +579,7 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem miClearFields;
-    public static javax.swing.JLabel picLabel;
+    private javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     private javax.swing.JTextField txtAM;
     private javax.swing.JTextField txtAP;

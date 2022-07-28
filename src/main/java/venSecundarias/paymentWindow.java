@@ -39,8 +39,10 @@ public class paymentWindow extends javax.swing.JDialog{
     protected int resultado;
     protected int cantidad;
     protected int precio;
-    protected int total;
     public static int result;
+    protected int total;
+    
+    protected boolean state=false;
     
     protected void settings(){
         dtm=new DefaultTableModel();
@@ -80,7 +82,6 @@ public class paymentWindow extends javax.swing.JDialog{
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"settings-32",e.fillInStackTrace());
         }
-        jLabel6.setText(String.valueOf(ventana1.cambio));
         
         jTable1.setEnabled(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -94,13 +95,20 @@ public class paymentWindow extends javax.swing.JDialog{
         });
         
         cancelButton.addActionListener((a)->{
-            int i=JOptionPane.showConfirmDialog(null,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            switch(i){
-                case 0:{
-                    setVisible(false);
-                    dispose();
-                    break;
+            while(state==false){
+                int i=JOptionPane.showConfirmDialog(null,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                switch(i){
+                    case 0:{
+                        setVisible(false);
+                        dispose();
+                        break;
+                    }
                 }
+                break;
+            }
+            if(state==true){
+                setVisible(false);
+                dispose();
             }
         });
         
@@ -127,6 +135,10 @@ public class paymentWindow extends javax.swing.JDialog{
             try{
                 switch(jComboBox1.getSelectedIndex()){
                     case 0:{
+                        /*
+                        Efectivo
+                        Cash
+                        */
                         for(int i=0;i<dtm.getRowCount();i++){
                             codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
                             codigo_emp=Integer.parseInt(jLabel2.getText());
@@ -139,6 +151,8 @@ public class paymentWindow extends javax.swing.JDialog{
                             new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre_prod,marca_prod,cantidad,precio,total);
                         }
                         
+                        state=true;
+                        cancelButton.setText("Regresar");
                         new datosTicket().imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),Integer.parseInt(jLabel6.getText()),true);
                         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                         new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
@@ -146,14 +160,18 @@ public class paymentWindow extends javax.swing.JDialog{
                         break;
                     }
                     case 1:{
+                        /*
+                        Tarjeta
+                        Card
+                        */
                         for(int i=0;i<dtm.getRowCount();i++){
                             codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                            codigo_emp=Integer.parseInt(dtm.getValueAt(i,1).toString());
-                            nombre_prod=dtm.getValueAt(i,2).toString();
-                            marca_prod=dtm.getValueAt(i,3).toString();
-                            cantidad=Integer.parseInt(dtm.getValueAt(i,4).toString());
-                            precio=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                            total=Integer.parseInt(dtm.getValueAt(i,6).toString());
+                            codigo_emp=Integer.parseInt(jLabel2.getText());
+                            nombre_prod=dtm.getValueAt(i,1).toString();
+                            marca_prod=dtm.getValueAt(i,2).toString();
+                            cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
+                            precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                            total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                             
                             new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre_prod,marca_prod,cantidad,precio,total);
                         }
@@ -161,7 +179,9 @@ public class paymentWindow extends javax.swing.JDialog{
                         Aquí deberá ir el código para que se pague con tarjeta
                         Here will being the code for payment with card
                         */
-                        new datosTicket().imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),Integer.parseInt(jLabel6.getText()),false);
+                        state=true;
+                        cancelButton.setText("Regresar");
+                        new datosTicket().imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),Integer.parseInt("0"),false);
                         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                         new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
                         new datos().actualizarDatosConteo("set no_ventas=no_ventas+1 where codigo_emp='"+jLabel2.getText()+"' and fecha_sesion='"+new SimpleDateFormat("yyyy/MM/dd").format(new Date())+"';");

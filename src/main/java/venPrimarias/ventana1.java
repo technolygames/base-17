@@ -3,7 +3,6 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
-import venSecundarias.calcWindow;
 import venSecundarias.paymentWindow;
 //java
 import java.sql.ResultSet;
@@ -40,14 +39,11 @@ public final class ventana1 extends javax.swing.JFrame{
     protected int codigo_prod;
     protected int codigo_emp;
     protected int cantidad;
-    public static int cambio;
     protected int precio;
     protected int total;
     
     protected final void settings(){
         txtCodEmp.setText(String.valueOf(start.userID));
-        jLabel7.setText(String.valueOf(cambio));
-        jLabel7.setVisible(false);
         
         dtm=new DefaultTableModel(){
             @Override
@@ -112,7 +108,6 @@ public final class ventana1 extends javax.swing.JFrame{
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
-            jLabel7.setText("");
             txtCodigo.setText("");
             txtProd.setText("");
             txtMarca.setText("");
@@ -136,7 +131,6 @@ public final class ventana1 extends javax.swing.JFrame{
                     total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                 }
                 
-                cambio=Integer.parseInt(jLabel7.getText());
                 nombre_emp=txtCodEmp.getText();
                 new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
             }catch(NumberFormatException e){
@@ -179,7 +173,6 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtCodEmp = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -273,8 +266,6 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         });
 
-        jLabel7.setText("jLabel7");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,10 +315,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel9)
                                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -340,9 +328,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -393,6 +379,14 @@ public final class ventana1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
+    private void txtCodEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEmpKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodEmpKeyPressed()'");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodEmpKeyPressed
+
     private void txtProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
@@ -409,14 +403,6 @@ public final class ventana1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
     
-    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
-        if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtPrecioKeyPressed()'");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtPrecioKeyPressed
-    
     private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
@@ -424,6 +410,14 @@ public final class ventana1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtCantKeyPressed
+
+    private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
+        if(Character.isLetter(evt.getKeyChar())){
+            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtPrecioKeyPressed()'");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioKeyPressed
     
     private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
@@ -465,14 +459,6 @@ public final class ventana1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtCantKeyPressed2
     
-    private void txtCodEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEmpKeyPressed
-        if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodEmpKeyPressed()'");
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtCodEmpKeyPressed
-    
     public static void main(String[] args){
         new ventana1().setVisible(true);
     }
@@ -489,7 +475,6 @@ public final class ventana1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    public static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
