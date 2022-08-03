@@ -1,12 +1,14 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana1;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -45,13 +47,15 @@ public class formulario1 extends javax.swing.JFrame{
     protected Properties p;
     protected JFileChooser jfc;
     
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     protected String direccion;
     
     protected void settings(){
         txtNombre.setToolTipText("Primer y/o segundo nombre");
         txtExp.setToolTipText("En años");
-        txtFN.setToolTipText("yyyy-MM-dd");
+        txtDay.setToolTipText("dd");
+        txtMonth.setToolTipText("MM");
+        txtYear.setToolTipText("yyyy");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
     }
@@ -142,7 +146,7 @@ public class formulario1 extends javax.swing.JFrame{
                     int experiencia=Integer.parseInt(txtExp.getText());
                     String grado_estudios=txtEstudios.getText();
                     int contacto=Integer.parseInt(txtContacto.getText());
-                    String fechaNacimiento=txtFN.getText();
+                    String fechaNacimiento=txtYear.getText()+"-"+txtMonth.getText()+"-"+txtDay.getText();;
                     int edad=Integer.parseInt(txtEdad.getText());
                     String estado=jComboBox2.getSelectedItem().toString();
                     String datos_extra=jTextArea1.getText();
@@ -175,7 +179,7 @@ public class formulario1 extends javax.swing.JFrame{
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(){
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -210,7 +214,11 @@ public class formulario1 extends javax.swing.JFrame{
         jLabel10 = new javax.swing.JLabel();
         txtCURP = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtFN = new javax.swing.JTextField();
+        txtDay = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtMonth = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtYear = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -240,52 +248,67 @@ public class formulario1 extends javax.swing.JFrame{
 
         jLabel11.setText("Datos extra:");
 
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtCodigoKeyPressed(evt);
             }
         });
 
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtNombreKeyPressed(evt);
             }
         });
 
-        txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtAP.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtAPKeyPressed(evt);
             }
         });
 
-        txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtAM.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtAMKeyPressed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Empleado","Programador","Desarrollador","Dueño"}));
 
-        txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtExp.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtExpKeyPressed(evt);
             }
         });
 
-        txtEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtEstudios.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtEstudiosKeyPressed(evt);
             }
         });
 
-        txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtContacto.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtContactoKeyPressed(evt);
             }
         });
 
-        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtYear.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
+                txtYearKeyPressed(evt);
+            }
+        });
+
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter(){
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt){
                 txtEdadKeyPressed(evt);
             }
         });
@@ -296,7 +319,7 @@ public class formulario1 extends javax.swing.JFrame{
 
         picLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         picLabel.setText("Foto");
-        picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0,0,0)));
 
         storeButton.setText("Guardar datos");
 
@@ -308,7 +331,7 @@ public class formulario1 extends javax.swing.JFrame{
 
         jLabel6.setText("Estado:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Activo","Inactivo"}));
 
         jLabel12.setText("Domicilio:");
 
@@ -316,11 +339,9 @@ public class formulario1 extends javax.swing.JFrame{
 
         jLabel15.setText("F. nacimiento:");
 
-        txtFN.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtFNKeyPressed(evt);
-            }
-        });
+        jLabel16.setText("-");
+
+        jLabel17.setText("-");
 
         jMenu1.setText("Datos");
 
@@ -355,23 +376,34 @@ public class formulario1 extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 99,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 99,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 99,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 98,javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,javax.swing.GroupLayout.DEFAULT_SIZE,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(txtDay,javax.swing.GroupLayout.PREFERRED_SIZE,28,javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(jLabel16)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(jLabel17)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(txtYear))
                                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,11 +414,9 @@ public class formulario1 extends javax.swing.JFrame{
                                         .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -448,7 +478,11 @@ public class formulario1 extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
@@ -472,7 +506,7 @@ public class formulario1 extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtCodigoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtCodigoKeyPressed()'");
@@ -480,7 +514,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
-    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtNombreKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtNombreKeyPressed()'");
@@ -488,7 +522,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtNombreKeyPressed
     
-    private void txtAPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPKeyPressed
+    private void txtAPKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAPKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtAPKeyPressed()'");
@@ -496,7 +530,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtAPKeyPressed
     
-    private void txtAMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMKeyPressed
+    private void txtAMKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtAMKeyPressed()'");
@@ -504,7 +538,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtAMKeyPressed
     
-    private void txtExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyPressed
+    private void txtExpKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtExpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtExpKeyPressed()'");
@@ -512,7 +546,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtExpKeyPressed
     
-    private void txtEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstudiosKeyPressed
+    private void txtEstudiosKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEstudiosKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEstudiosKeyPressed()'");
@@ -520,7 +554,7 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtEstudiosKeyPressed
     
-    private void txtContactoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyPressed
+    private void txtContactoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtContactoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtContactoKeyPressed()'");
@@ -528,25 +562,27 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
-    private void txtFNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNKeyPressed
-        try{
-            DateTimeFormatter format=DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate fecha=LocalDate.parse(txtFN.getText(),format);
-            Period edad=Period.between(fecha,LocalDate.now());
-            txtEdad.setText(String.valueOf(edad.getYears()));
-        }catch(DateTimeParseException e){
-            //not catch
+    private void txtYearKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtYearKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try{
+                String formato=txtYear.getText()+"-"+txtMonth.getText()+"-"+txtDay.getText();
+                txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(formato,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
+            }catch(DateTimeParseException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtFNKeyPressed()'");
+                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"txtFNKeyPressed-0",e.fillInStackTrace());
+            }
         }
-    }//GEN-LAST:event_txtFNKeyPressed
-    
-    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
+    }//GEN-LAST:event_txtYearKeyPressed
+
+    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEdadKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtEdadKeyPressed()'");
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed
-    
+
     public static void main(String args[]){
         new formulario1().setVisible(true);
     }
@@ -562,6 +598,8 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -586,12 +624,14 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JTextField txtCURP;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtContacto;
+    private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtDom;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEstudios;
     private javax.swing.JTextField txtExp;
-    private javax.swing.JTextField txtFN;
+    private javax.swing.JTextField txtMonth;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
 }

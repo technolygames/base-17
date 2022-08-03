@@ -3,12 +3,12 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
+import menus.menuDatosVentana4;
 //java
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
-import menus.menuDatosVentana4;
 
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
@@ -25,16 +25,6 @@ public final class ventana2 extends javax.swing.JFrame{
     }
     
     protected DefaultTableModel dtm;
-    
-    protected String nombre_prod;
-    protected String marca;
-    protected String stock;
-    
-    protected int codigo_prod;
-    protected int codigo_lote;
-    protected int codigo_prov;
-    protected int cantidad;
-    protected int preciou;
     
     protected final void settings(){
         dtm=new DefaultTableModel();
@@ -108,16 +98,16 @@ public final class ventana2 extends javax.swing.JFrame{
         svdtButton.addActionListener((a)->{
             try{
                 for(int i=0;i<dtm.getRowCount();i++){
-                    codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                    codigo_lote=Integer.parseInt(dtm.getValueAt(i,1).toString());
-                    codigo_prov=Integer.parseInt(dtm.getValueAt(i,2).toString());
-                    nombre_prod=dtm.getValueAt(i,3).toString();
-                    marca=dtm.getValueAt(i,4).toString();
-                    cantidad=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                    preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
-                    stock=dtm.getValueAt(i,7).toString();
+                    int codigoProducto=Integer.parseInt(dtm.getValueAt(i,0).toString());
+                    int codigoLote=Integer.parseInt(dtm.getValueAt(i,1).toString());
+                    int codigoProveedor=Integer.parseInt(dtm.getValueAt(i,2).toString());
+                    String nombreProducto=dtm.getValueAt(i,3).toString();
+                    String marca=dtm.getValueAt(i,4).toString();
+                    int cantidad=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                    int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
+                    String stock=dtm.getValueAt(i,7).toString();
                     
-                    new datos().insertarDatosAlmacen(codigo_prod,codigo_lote,codigo_prov,nombre_prod,marca,cantidad,preciou,stock);
+                    new datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
                 }
                 JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
@@ -428,9 +418,9 @@ public final class ventana2 extends javax.swing.JFrame{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton addButton;
-    protected javax.swing.JButton backButton;
-    protected javax.swing.JButton cleanButton;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton cleanButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -443,15 +433,15 @@ public final class ventana2 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    protected javax.swing.JLabel picLabel;
-    protected javax.swing.JButton svdtButton;
-    protected javax.swing.JTextField txtCant;
-    protected javax.swing.JTextField txtCodLote;
-    protected javax.swing.JTextField txtCodProd;
-    protected javax.swing.JTextField txtCodProv;
-    protected javax.swing.JTextField txtMarca;
+    private javax.swing.JLabel picLabel;
+    private javax.swing.JButton svdtButton;
+    private javax.swing.JTextField txtCant;
+    private javax.swing.JTextField txtCodLote;
+    private javax.swing.JTextField txtCodProd;
+    private javax.swing.JTextField txtCodProv;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtPU;
-    protected javax.swing.JTextField txtProd;
+    private javax.swing.JTextField txtProd;
     private javax.swing.JButton updateDataButton;
     // End of variables declaration//GEN-END:variables
 }

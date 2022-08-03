@@ -92,6 +92,6 @@ public class databaseWindow extends javax.swing.JDialog{
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
     private javax.swing.JLabel jLabel1;
-    protected javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

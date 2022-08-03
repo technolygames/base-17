@@ -1,6 +1,7 @@
 package clases.BackupHandler;
 //clases
 import clases.datos;
+import clases.dirs;
 import clases.logger;
 //librerías
 import com.google.gson.stream.JsonWriter;
@@ -23,7 +24,7 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class escritorJSON{
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected JsonWriter jsonw;
     protected PreparedStatement ps;

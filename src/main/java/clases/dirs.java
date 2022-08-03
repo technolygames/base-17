@@ -8,6 +8,7 @@ import java.io.File;
  * @author erick
  */
 public class dirs{
+    public static String userdir=System.getProperty("user.dir");
     
     /**
      * Verifica si existen las carpetas. Si no existen, las crea automáticamente.

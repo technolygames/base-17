@@ -252,7 +252,7 @@ public class ventana3 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    protected javax.swing.JLabel picLabel;
+    private javax.swing.JLabel picLabel;
     private javax.swing.JButton svdtButton;
     // End of variables declaration//GEN-END:variables
 }

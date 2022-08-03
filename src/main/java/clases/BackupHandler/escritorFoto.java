@@ -1,6 +1,7 @@
 package clases.BackupHandler;
 //clases
 import clases.datos;
+import clases.dirs;
 import clases.logger;
 import venPrimarias.start;
 //java
@@ -25,7 +26,7 @@ public class escritorFoto{
     public static String dir2;
     public static String dir3;
     
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected ResultSet rs;
     protected PreparedStatement ps;

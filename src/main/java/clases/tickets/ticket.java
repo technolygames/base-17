@@ -32,7 +32,7 @@ public class ticket{
     /**
      * Inicializa la instancia para imprimir el ticket por medio de la ticketera.
      * 
-     * @param impresora Ticketera a la que se imprimirá¡ el documento.
+     * @param impresora a la que se imprimirá el documento.
      * @param gaveta Abrirá la gaveta.
      */
     public ticket(String impresora,boolean gaveta){

@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Clase encargada de leer los archivos creados para copia de seguridad
+ * Clase encargada de leer los archivos creados para copia de seguridad.
  * 
  * @author erick
  */
@@ -110,9 +110,10 @@ public class lectorJSON{
     }
     
     /**
-     * Lee datos del método para cargar datos de los empleados. Estos datos son los que vienen como objetos secundarios.
+     * Lee datos del método para cargar datos de los empleados.<br>
+     * Estos datos son los que vienen como objetos secundarios.
      * 
-     * @param json El lector del archivo json con esos datos
+     * @param json El lector del archivo json con esos datos.
      * 
      * Nota: no usar en otros métodos.
      */

@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.datos;
+import clases.dirs;
 import clases.logger;
 import venPrimarias.start;
 //java
@@ -22,7 +22,7 @@ public class databaseConfig extends javax.swing.JPanel{
         loadConfig();
     }
     
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected Properties p;
     

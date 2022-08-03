@@ -6,6 +6,8 @@ import clases.BackupHandler.escritorJSON;
 //java
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public class delDatosPanel2 extends javax.swing.JPanel{
@@ -21,31 +23,42 @@ public class delDatosPanel2 extends javax.swing.JPanel{
         });
         
         deleteButton.addActionListener((a)->{
-            try{
-                if(!jTextField1.getText().equals("")){
-                    int codigo=Integer.parseInt(jTextField1.getText());
-                    int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-                    switch(opcion){
-                        case 0:{
-                            new escritorJSON().writeDataPartnerJson(codigo);
-                            new datos().eliminarDatosSocio(codigo);
-                            break;
-                        }
-                        case 1:{
-                            new datos().eliminarDatosSocio(codigo);
-                            break;
-                        }
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'botones(deleteButton)'");
-                }
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'botones(deleteButton)'");
-                new logger(Level.SEVERE).exceptionLogger(delDatosPanel2.class.getName(),"botones.delete-32",e.fillInStackTrace());
+            deleteData();
+        });
+        
+        jTextField1.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                deleteData();
             }
         });
+    }
+    
+    protected void deleteData(){
+        try{
+            if(!jTextField1.getText().equals("")){
+                int codigo=Integer.parseInt(jTextField1.getText());
+                int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                switch(opcion){
+                    case 0:{
+                        new escritorJSON().writeDataPartnerJson(codigo);
+                        new datos().eliminarDatosSocio(codigo);
+                        break;
+                    }
+                    case 1:{
+                        new datos().eliminarDatosSocio(codigo);
+                        break;
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'botones(deleteButton)'");
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'botones(deleteButton)'");
+            new logger(Level.SEVERE).exceptionLogger(delDatosPanel2.class.getName(),"botones.delete-32",e.fillInStackTrace());
+        }
     }
     
     @SuppressWarnings("unchecked")

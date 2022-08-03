@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public class modDatosPanel1 extends javax.swing.JPanel{
@@ -17,9 +19,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         settings();
         botones();
     }
-    
-    protected PreparedStatement ps;
-    protected ResultSet rs;
     
     protected void settings(){
         etiContra.setToolTipText("Contraseña");
@@ -878,12 +877,21 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         searchButton.addActionListener((a)->{
             consulta();
         });
+        
+        txtSearch.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    consulta();
+                }
+            }
+        });
     }
     
     protected void consulta(){
         try{
-            ps=new datos().getConnection().prepareStatement("select password,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado from empleados where codigo_emp='"+txtSearch.getText()+"';");
-            rs=ps.executeQuery();
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp='"+txtSearch.getText()+"';");
+            ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
                 etiNombre.setText(rs.getString("nombre_emp"));
@@ -1137,7 +1145,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtAM)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(layout.createSequentialGroup()

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 
 /**
- * Clase intermedia entre el gestor de base de datos y el programa.
+ * Clase intermedia entre el gestor de base de datos y el programa.<br>
  * Se encarga de registrar, actualizar y eliminar los datos que el usuario desee.
  * 
  * @author erick
@@ -29,14 +29,12 @@ public class datos{
     
     protected Properties p;
     
-    protected String controlador;
+    protected String db;
+    protected String driver;
     protected String ip;
-    protected String puerto;
-    protected String bd;
-    protected String usuario;
-    protected String contraseña;
-    
-    public static String userdir=System.getProperty("user.dir");
+    protected String pass;
+    protected String port;
+    protected String user;
     
     /**
      * Conexión a la base de datos.
@@ -46,17 +44,17 @@ public class datos{
     public Connection getConnection(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
+            p.load(new FileInputStream(dirs.userdir+"/data/config/databaseInfo.properties"));
             
-            controlador=p.getProperty("driver");
+            db=p.getProperty("database");
+            driver=p.getProperty("driver");
             ip=p.getProperty("ip");
-            puerto=p.getProperty("port");
-            bd=p.getProperty("database");
-            usuario=p.getProperty("user");
-            contraseña=p.getProperty("pass");
+            pass=p.getProperty("pass");
+            port=p.getProperty("port");
+            user=p.getProperty("user");
             
-            Class.forName(controlador);
-            cn=DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/"+bd+"?serverTimezone=UTC",usuario,contraseña);
+            Class.forName(driver);
+            cn=DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 10",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 10: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
@@ -350,9 +348,10 @@ public class datos{
     }
     
     /**
+     * Actualiza datos de la tabla de empleados.<br>
+     * Esta es específica para almacén. No usar como universal.
      * 
-     * 
-     * @param consulta
+     * @param consulta para cambiar los datos especificados.
      */
     public void actualizarDatosAlmacen(String consulta){
         try{
@@ -371,12 +370,12 @@ public class datos{
     }
     
     /**
-     * Actualiza datos de la tabla de empleados.
+     * Actualiza datos de la tabla de empleados.<br>
      * Esta es específica para empleados. No usar como universal.
-     * 
+     * <p>
      * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados.
+     * @param consulta para cambiar los datos especificados.
      */
     public void actualizarDatosEmpleado(String consulta){
         try{
@@ -395,12 +394,12 @@ public class datos{
     }
     
     /**
-     * Actualiza datos de la tabla de socios.
+     * Actualiza datos de la tabla de socios.<br>
      * Esta es específica para socios. No usar como universal.
-     * 
+     * <p>
      * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados.
+     * @param consulta para cambiar los datos especificados.
      */
     public void actualizarDatosSocio(String consulta){
         try{
@@ -419,12 +418,12 @@ public class datos{
     }
     
     /**
-     * Actualiza datos de la tabla de proveedores.
+     * Actualiza datos de la tabla de proveedores.<br>
      * Esta es específica para socios. No usar como universal.
-     * 
+     * <p>
      * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados.
+     * @param consulta para cambiar los datos especificados.
      */
     public void actualizarDatosProveedor(String consulta){
         try{
@@ -443,12 +442,12 @@ public class datos{
     }
     
     /**
-     * Actualiza datos de la tabla de conteo.
+     * Actualiza datos de la tabla de conteo.<br>
      * Esta es específica para socios. No usar como universal.
-     * 
+     * <p>
      * Para que se pueda usar esta clase, se debe usar la sintaxis que está en la documentación del programa.
      * 
-     * @param consulta datos que serán modificados.
+     * @param consulta para cambiar los datos especificados.
      */
     public void actualizarDatosConteo(String consulta){
         try{
@@ -466,7 +465,7 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla productos.
+     * Elimina datos específicos de la tabla productos.<br>
      * Prácticamente son todos los productos que ha vendido el empleado al que se le eliminaron los datos de la base de datos.
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
      * Se pueden reestablecer si previamente se creó la copia de seguridad. Excepto los productos que ha vendido.
@@ -490,13 +489,13 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla almacén.
+     * Elimina datos específicos de la tabla almacén.<br>
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de que la descripción del producto sea errónea.
      * En este caso, no aplica la copia de seguridad con JSON.
      * 
      * @param codigoProducto 
      */
-    public void eliminarDatosAlmacen(String codigoProducto){
+    public void eliminarDatosAlmacen(int codigoProducto){
         try{
             ps=getConnection().prepareStatement("delete from almacen where codigo_prod="+codigoProducto+";");
             ps.executeUpdate();
@@ -513,7 +512,7 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla empleados.
+     * Elimina datos específicos de la tabla empleados.<br>
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio.
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
@@ -536,7 +535,7 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla socios.
+     * Elimina datos específicos de la tabla socios.<br>
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de desafiliación.
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
@@ -559,7 +558,7 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla proveedor.
+     * Elimina datos específicos de la tabla proveedor.<br>
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
@@ -582,7 +581,7 @@ public class datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla conteo.
+     * Elimina datos específicos de la tabla conteo.<br>
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 

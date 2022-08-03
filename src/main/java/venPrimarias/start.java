@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.win10Notification;
@@ -41,11 +42,12 @@ public final class start extends javax.swing.JFrame{
     
     public static String nameUser;
     public static int userID;
+    public static String role;
     
     protected final void settings(){
         p=new Properties();
         try{
-            p.load(new FileReader(datos.userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader(dirs.userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
             nameLabel.setText(p.getProperty("nombre"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
@@ -70,22 +72,20 @@ public final class start extends javax.swing.JFrame{
     }
     
     protected final void login(){
-        String usuario=txtUsuario.getText();
-        String contra=String.valueOf(txtContraseña.getPassword());
-        
-        String consulta="select * from empleados where password='"+contra+"' and nombre_emp='"+usuario+"' or curp='"+usuario+"';";
-        String fecha="update empleados set fecha_sesion=now() where password='"+contra+"' and nombre_emp='"+usuario+"' or curp='"+usuario+"';";
+        String user=txtUsuario.getText();
+        String pass=String.valueOf(txtContraseña.getPassword());
         
         try{
             if(!txtUsuario.getText().equals("")||!txtContraseña.getPassword().equals("")){
-                ps=new datos().getConnection().prepareStatement(consulta);
-                ps.executeUpdate(fecha);
+                ps=new datos().getConnection().prepareStatement("select * from empleados where password='"+pass+"' and nombre_emp='"+user+"' or curp='"+user+"';");
+                ps.executeUpdate("update empleados set fecha_sesion=now() where password='"+pass+"' and nombre_emp='"+user+"' or curp='"+user+"';");
                 rs=ps.executeQuery();
                 if(rs.next()){
                     new loadWindow().setVisible(true);
                     dispose();
                     nameUser=rs.getString("nombre_emp");
                     userID=rs.getInt("codigo_emp");
+                    role=rs.getString("puesto");
                     
                     new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                     
@@ -203,14 +203,14 @@ public final class start extends javax.swing.JFrame{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton closeButton;
+    private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    protected javax.swing.JButton loginButton;
+    private javax.swing.JButton loginButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel picLabel;
     private java.awt.TextField textField1;
-    protected javax.swing.JPasswordField txtContraseña;
-    protected javax.swing.JTextField txtUsuario;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

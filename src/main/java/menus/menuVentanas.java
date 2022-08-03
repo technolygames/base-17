@@ -2,23 +2,24 @@ package menus;
 //clases
 import clases.guiMediaHandler;
 import clases.logger;
+import clases.validation;
 import clases.win10Notification;
+import venPrimarias.formulario1;
+import venPrimarias.formulario2;
+import venPrimarias.formulario3;
+import venPrimarias.ltshOff;
+import venPrimarias.ltshPartners;
+import venPrimarias.ltshProduct;
+import venPrimarias.ltshProviders;
+import venPrimarias.ltshStorage;
+import venPrimarias.ltshWorkers;
 import venPrimarias.proper1;
+import venPrimarias.start;
 import venPrimarias.ventana1;
 import venPrimarias.ventana2;
-import venPrimarias.ltshStorage;
-import venPrimarias.ltshProduct;
-import venPrimarias.ltshOff;
 import venPrimarias.ventana3;
-import venPrimarias.start;
 import venTerciarias.about;
 import venTerciarias.dataWindow4;
-import venTerciarias.valVentanas.validacionVentana1;
-import venTerciarias.valVentanas.validacionVentana2;
-import venTerciarias.valVentanas.validacionVentana3;
-import venTerciarias.valVentanas.validacionVentana4;
-import venTerciarias.valVentanas.validacionVentana5;
-import venTerciarias.valVentanas.validacionVentana6;
 //java
 import java.awt.TrayIcon;
 import java.util.Properties;
@@ -62,27 +63,27 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         form1Button.addActionListener((a)->{
-            new validacionVentana2(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new formulario1(),start.role,formulario1.class.getName()).toRestrictedForm();
         });
         
         form2Button.addActionListener((a)->{
-            new validacionVentana1(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new formulario2(),start.role,formulario2.class.getName()).toRestrictedForm();
         });
         
         form3Button.addActionListener((a)->{
-            new validacionVentana5(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new formulario3(),start.role,formulario3.class.getName()).toRestrictedForm();
         });
         
         ltprvButton.addActionListener((a)->{
-            new validacionVentana6(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new ltshProviders(),start.role,ltshProviders.class.getName()).toRestrictedForm();
         });
         
         ltpsButton.addActionListener((a)->{
-            new validacionVentana4(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new ltshPartners(),start.role,ltshPartners.class.getName()).toRestrictedForm();
         });
         
         ltwkButton.addActionListener((a)->{
-            new validacionVentana3(new javax.swing.JFrame(),true).setVisible(true);
+            new validation(new ltshWorkers(),start.role,ltshWorkers.class.getName()).toRestrictedForm();
         });
         
         ltstButton.addActionListener((a)->{

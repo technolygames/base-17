@@ -5,6 +5,8 @@ import clases.logger;
 //java
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 
 public final class calcWindow extends javax.swing.JDialog{
@@ -33,21 +35,34 @@ public final class calcWindow extends javax.swing.JDialog{
         });
         
         calButton.addActionListener((a)->{
-            try{
-                int n1=Integer.parseInt(txtTotal.getText());
-                int n2=Integer.parseInt(txtDinIng.getText());
-                int resultado=n1-n2;
-                
-                String res=Integer.toString(Math.abs(resultado));
-                
-                txtCambio.setText(res);
-                paymentWindow.jLabel6.setText(txtCambio.getText());
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'");
-                new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"botones.calc-32",e.fillInStackTrace());
+            calculate();
+        });
+        
+        txtDinIng.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    calculate();
+                }
             }
         });
+    }
+    
+    protected void calculate(){
+        try{
+            int n1=Integer.parseInt(txtTotal.getText());
+            int n2=Integer.parseInt(txtDinIng.getText());
+            int resultado=n1-n2;
+            
+            String res=Integer.toString(Math.abs(resultado));
+            
+            txtCambio.setText(res);
+            paymentWindow.jLabel6.setText(txtCambio.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'");
+            new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"botones.calc-32",e.fillInStackTrace());
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -134,8 +149,8 @@ public final class calcWindow extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    protected javax.swing.JTextField txtCambio;
-    protected javax.swing.JTextField txtDinIng;
-    protected javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtCambio;
+    private javax.swing.JTextField txtDinIng;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

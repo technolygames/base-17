@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public class modDatosPanel2 extends javax.swing.JPanel{
@@ -17,9 +19,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         botones();
         settings();
     }
-    
-    protected PreparedStatement ps;
-    protected ResultSet rs;
     
     protected void settings(){
         jLabel1.setToolTipText("Nombre(s)");
@@ -297,12 +296,21 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         searchButton.addActionListener((a)->{
             consulta();
         });
+        
+        txtSearch.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    consulta();
+                }
+            }
+        });
     }
     
     protected void consulta(){
         try{
-            ps=new datos().getConnection().prepareStatement("select nombre_part,apellidop_part,apellidom_part,tipo_socio,correo,rfc from socios where codigo_part='"+txtSearch.getText()+"';");
-            rs=ps.executeQuery();
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part='"+txtSearch.getText()+"';");
+            ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_part"));
                 jLabel2.setText(rs.getString("apellidop_part"));
@@ -404,7 +412,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(layout.createSequentialGroup()

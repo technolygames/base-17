@@ -1,11 +1,10 @@
 package main;
 //clases
-import clases.datos;
 import clases.dirs;
 import venPrimarias.start;
 
 public class main{
-    protected static String userdir=datos.userdir;
+    protected static String userdir=dirs.userdir;
     public static void main(String[] args){
         new start().setVisible(true);
         new dirs().makeDir(userdir+"/data/config");

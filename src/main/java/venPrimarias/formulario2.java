@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana2;
@@ -40,7 +41,7 @@ public class formulario2 extends javax.swing.JFrame{
     protected Properties p;
     protected JFileChooser jfc;
     
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     protected String direccion;
     
     protected void settings(){
@@ -398,7 +399,7 @@ public class formulario2 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
-    public static javax.swing.JLabel picLabel;
+    private javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables
 }

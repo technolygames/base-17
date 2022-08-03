@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
 
 /**
- * Clase encargada de mostrar notificaciones.
+ * Clase encargada de mostrar notificaciones.<br>
  * Muestra notificaciones en sistemas que lo soporten.
  * 
  * @author erick
@@ -35,7 +35,7 @@ public class win10Notification{
         try{
             if(st.isSupported()){
                 p=new Properties();
-                p.load(new FileInputStream(datos.userdir+"/data/config/config.properties"));
+                p.load(new FileInputStream(dirs.userdir+"/data/config/config.properties"));
                 Image i=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
                 TrayIcon ti=new TrayIcon(i);
                 st.add(ti);

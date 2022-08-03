@@ -19,9 +19,12 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.util.logging.Level;
 
 /**
- * Clase encargada de manejar los diseños de las ventanas o interfaces gráficas de usuario.
- * Carga y valida las imágenes seleccionadas en la ventana de configuración.
- * Carga el diseño, o color de fondo del programa, de las ventanas.
+ * Clase encargada de manejar los diseños de las ventanas o interfaces gráficas de usuario.<br>
+ * <ul>
+ * <li>Carga y valida las imágenes seleccionadas en la ventana de configuración.</li>
+ * <li>Carga el diseño, o color de fondo del programa, de las ventanas.</li>
+ * <li>Carga el ícono de la ventana.</li>
+ * </ul>
  * 
  * @author erick
  */
@@ -29,7 +32,7 @@ public class guiMediaHandler{
     protected String clase;
     
     /**
-     * Inicializa la instancia para que registre en qué clase se ustá usando las funciones de esta clase.
+     * Inicializa la instancia para que registre en qué clase se ustá usando las funciones de esta clase.<br>
      * Esto para ver si hay problemas en la clase que usa las funciones de esta clase.
      * 
      * @param clase que está usando las funciones.
@@ -40,7 +43,7 @@ public class guiMediaHandler{
     
     protected String icon;
     protected String image;
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected Image retValue;
     protected Properties p;
@@ -75,7 +78,7 @@ public class guiMediaHandler{
     }
     
     /**
-     * Obtiene el ícono que está destinado a usarse en las ventanas.
+     * Obtiene el ícono que está destinado a usarse en las ventanas.<br>
      * Aparece en la esquina superior izquierda de la ventana.
      * 
      * @return la imagen a usar.

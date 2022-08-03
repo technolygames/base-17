@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.datos;
+import clases.dirs;
 import clases.logger;
 import clases.thread;
 import clases.threadReader;
@@ -28,7 +28,7 @@ public class databaseImport extends javax.swing.JPanel{
         settings();
     }
     
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected Properties p;
     protected InputStream is;
@@ -70,42 +70,37 @@ public class databaseImport extends javax.swing.JPanel{
         });
         
         importButton.addActionListener((a)->{
-            new Thread(new importDB()).start();
+            new Thread(()->{
+                String user=jTextField1.getText();
+                String pass=jPasswordField1.getPassword().toString();
+                String db=jTextField3.getText();
+                String dbDir=jTextField2.getText();
+                
+                try{
+                    p=new Properties();
+                    p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
+                    Process pr=Runtime.getRuntime().exec("cmd /c mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
+                    new Thread(new threadReader(pr.getErrorStream())).start();
+                    
+                    is=new FileInputStream(dbDir);
+                    
+                    new Thread(new thread(is,pr.getOutputStream())).start();
+                    
+                    JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
+                    new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                    
+                    is.close();
+                }catch(IOException e){
+                    JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);
+                    new logger(Level.SEVERE).staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'");
+                    new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.import-7E",e.fillInStackTrace());
+                }catch(NullPointerException x){
+                    JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                    new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'");
+                    new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.import-0",x.fillInStackTrace());
+                }
+            }).start();
         });
-    }
-    
-    protected class importDB implements Runnable{
-        @Override
-        public void run(){
-            String user=jTextField1.getText();
-            String pass=jPasswordField1.getPassword().toString();
-            String db=jTextField3.getText();
-            String dbDir=jTextField2.getText();
-            
-            try{
-                p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
-                Process pr=Runtime.getRuntime().exec("cmd /c mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
-                new Thread(new threadReader(pr.getErrorStream())).start();
-                
-                is=new FileInputStream(dbDir);
-                
-                new Thread(new thread(is,pr.getOutputStream())).start();
-                
-                JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-                
-                is.close();
-            }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+importDB.class.getName()+"', en el método 'run()'");
-                new logger(Level.SEVERE).exceptionLogger(importDB.class.getName(),"run-7E",e.fillInStackTrace());
-            }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+importDB.class.getName()+"', en el método 'run()'");
-                new logger(Level.SEVERE).exceptionLogger(importDB.class.getName(),"run-0",x.fillInStackTrace());
-            }
-        }
     }
     
     @SuppressWarnings("unchecked")

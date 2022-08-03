@@ -18,14 +18,14 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 
 /**
- * Clase encargada de descargar los recursos necesarios para el correcto funcionamiento del programa.
+ * Clase encargada de descargar los recursos necesarios para el correcto funcionamiento del programa.<br>
  * Descarga las librerías e idiomas.
  * 
  * @author erick
  */
 public class resourceDownload{
     protected boolean estado;
-    protected String userdir=datos.userdir;
+    protected String userdir=dirs.userdir;
     
     protected File f;
     protected InputStream is;
