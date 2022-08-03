@@ -1,20 +1,20 @@
 # base16
 (EN)
 A java program to manage a grocery. Features:
-- Can store data from a graphical table to database
+- Can store data from a graphical table to database table
+- Employee, partners and providers data storage
+- Employee, partners and providers image storage if it is need to make physical IDs
+- Employee, partners, providers, sold and stored items data display on a table or detailed window
+- Bill print
 - Can be customable with:
 * Look and feel
 * Customable window icon
 * Customable frame image
 * Switchable name
-* Import/export database
-- Employee, partners, providers, sold and stored items data display on a table or detailed window
-- Employee, partners and providers data storage
-- Employee, partners and providers image storage if it's need to make physical IDs
 - in case of update, download files from internet
-- Exception handling
+- Import/export database
 - JSON backup handler
-- Bill print
+- Exception handling
 - Execution threads
 
 To start programming, everything is on "src" folder. Database, windows, classes and media
@@ -28,19 +28,19 @@ Installation:
 (ES)
 Programa hecho en Java para administrar una tienda de abarrotes. Sus características:
 - Poder guardar, desde una tabla, datos a una base de datos
-- Puede ser personalizado con: 
+- Almacena datos de empleados, socios y proveedores
+- Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
+- Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
+- Impresión de ticket
+- Puede ser personalizado con:
 * Look and feel
 * Icono de ventana personalizable
 * Imagen de ventana personalizable 
 * Cambiar el nombre del programa
-* Importar/Exportar la base de datos
-- Almacena datos de empleados, socios y proveedores
-- Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
-- Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
 - En caso de actualización, descarga los archivos de internet
-- Gestión de errores
 - Gestión de copias de seguridad con JSON
-- Impresión de ticket
+- Importar/Exportar la base de datos
+- Gestión de errores
 - Hilos de ejecución
 
 Para poder programar, todo el código está en la carpeta "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales.
