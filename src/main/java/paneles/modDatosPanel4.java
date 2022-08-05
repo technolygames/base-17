@@ -6,6 +6,7 @@ import clases.logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 //extension larga
 import java.awt.event.KeyEvent;
@@ -22,6 +23,118 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
+        });
+        
+        jCheckBox1.addActionListener((a)->{
+            if(jCheckBox1.isSelected()==true){
+                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
+                //textfields
+                txtSearch.setEnabled(false);
+                jTextField1.setEnabled(true);
+            }else if(jCheckBox1.isSelected()==false){
+                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
+                //textfields
+                txtSearch.setEnabled(true);
+                jTextField1.setEnabled(false);
+                jTextField1.setText("");
+            }
+        });
+        
+        jCheckBox2.addActionListener((a)->{
+            if(jCheckBox2.isSelected()==true){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
+                //textfields
+                txtSearch.setEnabled(false);
+                jTextField2.setEnabled(true);
+            }else if(jCheckBox2.isSelected()==false){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
+                //textfields
+                txtSearch.setEnabled(true);
+                jTextField2.setEnabled(false);
+                jTextField2.setText("");
+            }
+        });
+        
+        jCheckBox3.addActionListener((a)->{
+            if(jCheckBox3.isSelected()==true){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
+                //textfields
+                txtSearch.setEnabled(false);
+                jTextField3.setEnabled(true);
+            }else if(jCheckBox3.isSelected()==false){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
+                //textfields
+                txtSearch.setEnabled(true);
+                jTextField3.setEnabled(false);
+                jTextField3.setText("");
+            }
+        });
+        
+        jCheckBox4.addActionListener((a)->{
+            if(jCheckBox4.isSelected()==true){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
+                //textfields
+                txtSearch.setEnabled(false);
+                jTextField4.setEnabled(true);
+            }else if(jCheckBox4.isSelected()==false){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
+                //textfields
+                txtSearch.setEnabled(true);
+                jTextField4.setEnabled(false);
+                jTextField4.setText("");
+            }
+        });
+        
+        jCheckBox5.addActionListener((a)->{
+            if(jCheckBox5.isSelected()==true){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
+                //combo
+                jComboBox1.setEnabled(true);
+                //textfields
+                txtSearch.setEnabled(false);
+            }else if(jCheckBox5.isSelected()==false){
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
+                //combo
+                jComboBox1.setEnabled(false);
+                jComboBox1.getModel().setSelectedItem("En Existencia");
+                //textfields
+                txtSearch.setEnabled(true);
+            }
         });
         
         searchButton.addActionListener((a)->{
@@ -98,7 +211,16 @@ public class modDatosPanel4 extends javax.swing.JPanel{
 
         jLabel5.setText("Stock");
 
+        jTextField1.setEnabled(false);
+
+        jTextField2.setEnabled(false);
+
+        jTextField3.setEnabled(false);
+
+        jTextField4.setEnabled(false);
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En Existencia", "Agotado" }));
+        jComboBox1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

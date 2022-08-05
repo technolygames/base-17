@@ -6,6 +6,7 @@ import clases.logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 //extension larga
 import java.awt.event.KeyEvent;
@@ -42,32 +43,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbContra.addActionListener((a)->{
             if(cbContra.isSelected()==true){
-                //selected
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtContra.setEnabled(true);
@@ -84,19 +64,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbContra.isSelected()==false){
-                //enabled
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtContra.setEnabled(false);
@@ -106,32 +77,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbNombre.addActionListener((a)->{
             if(cbNombre.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtNombre.setEnabled(true);
@@ -148,19 +98,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbNombre.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtNombre.setEnabled(false);
@@ -170,32 +111,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbAP.addActionListener((a)->{
             if(cbAP.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtAP.setEnabled(true);
@@ -212,19 +132,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbAP.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtAP.setEnabled(false);
@@ -234,32 +145,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbAM.addActionListener((a)->{
             if(cbAM.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtAM.setEnabled(true);
@@ -276,19 +166,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbAM.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtAM.setEnabled(false);
@@ -298,32 +179,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbCURP.addActionListener((a)->{
             if(cbCURP.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtCURP.setEnabled(true);
@@ -340,19 +200,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbCURP.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtCURP.setEnabled(false);
@@ -362,32 +213,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbDomicilio.addActionListener((a)->{
             if(cbDomicilio.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtDom.setEnabled(true);
@@ -404,19 +234,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbDomicilio.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEditable(true);
                 txtDom.setEnabled(false);
@@ -426,32 +247,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbPuesto.addActionListener((a)->{
             if(cbPuesto.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //combobox
                 jComboBox1.setEnabled(true);
                 //textfields
@@ -469,21 +269,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbPuesto.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //combobox
                 jComboBox1.setEnabled(false);
+                jComboBox1.getModel().setSelectedItem("Empleado");
                 //textfields
                 txtSearch.setEnabled(true);
             }
@@ -491,32 +283,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbExp.addActionListener((a)->{
             if(cbExp.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtExp.setEnabled(true);
@@ -533,19 +304,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbExp.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtExp.setEnabled(false);
@@ -555,32 +317,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbGE.addActionListener((a)->{
             if(cbGE.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtGE.setEnabled(true);
@@ -597,19 +338,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbGE.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbContacto,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtGE.setEnabled(false);
@@ -619,32 +351,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbContacto.addActionListener((a)->{
             if(cbContacto.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtContacto.setEnabled(true);
@@ -661,19 +372,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbContacto.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbFN,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtContacto.setEnabled(false);
@@ -683,32 +385,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbFN.addActionListener((a)->{
             if(cbFN.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbEdad.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbEdad.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 dcFN.setEnabled(true);
@@ -725,19 +406,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbFN.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbEdad.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbEdad,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 dcFN.setEnabled(false);
@@ -747,32 +419,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbEdad.addActionListener((a)->{
             if(cbEdad.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEstado.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEstado.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 txtEdad.setEnabled(true);
@@ -789,19 +440,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbEdad.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEstado.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEstado};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 txtEdad.setEnabled(false);
@@ -811,32 +453,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbEstado.addActionListener((a)->{
             if(cbEstado.isSelected()==true){
-                //selected
-                cbContra.setSelected(false);
-                cbNombre.setSelected(false);
-                cbAP.setSelected(false);
-                cbAM.setSelected(false);
-                cbCURP.setSelected(false);
-                cbDomicilio.setSelected(false);
-                cbPuesto.setSelected(false);
-                cbExp.setSelected(false);
-                cbGE.setSelected(false);
-                cbContacto.setSelected(false);
-                cbFN.setSelected(false);
-                cbEdad.setSelected(false);
-                //enabled
-                cbContra.setEnabled(false);
-                cbNombre.setEnabled(false);
-                cbAP.setEnabled(false);
-                cbAM.setEnabled(false);
-                cbCURP.setEnabled(false);
-                cbDomicilio.setEnabled(false);
-                cbPuesto.setEnabled(false);
-                cbExp.setEnabled(false);
-                cbGE.setEnabled(false);
-                cbContacto.setEnabled(false);
-                cbFN.setEnabled(false);
-                cbEdad.setEnabled(false);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //combo
                 jComboBox2.setEnabled(true);
                 //textfields
@@ -854,21 +475,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     });
                 }
             }else if(cbEstado.isSelected()==false){
-                //enabled
-                cbContra.setEnabled(true);
-                cbNombre.setEnabled(true);
-                cbAP.setEnabled(true);
-                cbAM.setEnabled(true);
-                cbCURP.setEnabled(true);
-                cbDomicilio.setEnabled(true);
-                cbPuesto.setEnabled(true);
-                cbExp.setEnabled(true);
-                cbGE.setEnabled(true);
-                cbContacto.setEnabled(true);
-                cbFN.setEnabled(true);
-                cbEdad.setEnabled(true);
+                JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //combo
                 jComboBox2.setEnabled(false);
+                jComboBox2.getModel().setSelectedItem("Activo");
                 //textfields
                 txtSearch.setEnabled(true);
             }

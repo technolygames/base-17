@@ -6,6 +6,7 @@ import clases.logger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 //extension larga
 import java.awt.event.KeyEvent;
@@ -35,16 +36,11 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         jCheckBox1.addActionListener((a)->{
             if(jCheckBox1.isSelected()==true){
-                //selected
-                jCheckBox2.setSelected(false);
-                jCheckBox3.setSelected(false);
-                jCheckBox4.setSelected(false);
-                jCheckBox5.setSelected(false);
-                //enabled
-                jCheckBox2.setEnabled(false);
-                jCheckBox3.setEnabled(false);
-                jCheckBox4.setEnabled(false);
-                jCheckBox5.setEnabled(false);
+                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField1.setEnabled(true);
@@ -61,11 +57,10 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox1.isSelected()==false){
-                //enabled
-                jCheckBox2.setEnabled(true);
-                jCheckBox3.setEnabled(true);
-                jCheckBox4.setEnabled(true);
-                jCheckBox5.setEnabled(true);
+                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 jTextField1.setEnabled(false);
@@ -75,16 +70,11 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         jCheckBox2.addActionListener((a)->{
             if(jCheckBox2.isSelected()==true){
-                //selected
-                jCheckBox1.setSelected(false);
-                jCheckBox3.setSelected(false);
-                jCheckBox4.setSelected(false);
-                jCheckBox5.setSelected(false);
-                //enabled
-                jCheckBox1.setEnabled(false);
-                jCheckBox3.setEnabled(false);
-                jCheckBox4.setEnabled(false);
-                jCheckBox5.setEnabled(false);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField2.setEnabled(true);
@@ -101,11 +91,10 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox2.isSelected()==false){
-                //enabled
-                jCheckBox1.setEnabled(true);
-                jCheckBox3.setEnabled(true);
-                jCheckBox4.setEnabled(true);
-                jCheckBox5.setEnabled(true);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 jTextField2.setEnabled(false);
@@ -115,16 +104,11 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         jCheckBox3.addActionListener((a)->{
             if(jCheckBox3.isSelected()==true){
-                //selected
-                jCheckBox1.setSelected(false);
-                jCheckBox2.setSelected(false);
-                jCheckBox4.setSelected(false);
-                jCheckBox5.setSelected(false);
-                //enabled
-                jCheckBox1.setEnabled(false);
-                jCheckBox2.setEnabled(false);
-                jCheckBox4.setEnabled(false);
-                jCheckBox5.setEnabled(false);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField3.setEnabled(true);
@@ -141,11 +125,10 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox3.isSelected()==false){
-                //enabled
-                jCheckBox1.setEnabled(true);
-                jCheckBox2.setEnabled(true);
-                jCheckBox4.setEnabled(true);
-                jCheckBox5.setEnabled(true);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 jTextField3.setEnabled(false);
@@ -155,16 +138,11 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         jCheckBox4.addActionListener((a)->{
             if(jCheckBox4.isSelected()==true){
-                //selected
-                jCheckBox1.setSelected(false);
-                jCheckBox2.setSelected(false);
-                jCheckBox3.setSelected(false);
-                jCheckBox5.setSelected(false);
-                //enabled
-                jCheckBox1.setEnabled(false);
-                jCheckBox2.setEnabled(false);
-                jCheckBox3.setEnabled(false);
-                jCheckBox5.setEnabled(false);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField4.setEnabled(true);
@@ -181,11 +159,10 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox4.isSelected()==false){
-                //enabled
-                jCheckBox1.setEnabled(true);
-                jCheckBox2.setEnabled(true);
-                jCheckBox3.setEnabled(true);
-                jCheckBox5.setEnabled(true);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 jTextField4.setEnabled(false);
@@ -195,16 +172,11 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         jCheckBox5.addActionListener((a)->{
             if(jCheckBox5.isSelected()==true){
-                //selected
-                jCheckBox1.setSelected(false);
-                jCheckBox2.setSelected(false);
-                jCheckBox3.setSelected(false);
-                jCheckBox4.setSelected(false);
-                //enabled
-                jCheckBox1.setEnabled(false);
-                jCheckBox2.setEnabled(false);
-                jCheckBox3.setEnabled(false);
-                jCheckBox4.setEnabled(false);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(false);
+                    c.setSelected(false);
+                }
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField5.setEnabled(true);
@@ -221,11 +193,10 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox5.isSelected()==false){
-                //enabled
-                jCheckBox1.setEnabled(true);
-                jCheckBox2.setEnabled(true);
-                jCheckBox3.setEnabled(true);
-                jCheckBox4.setEnabled(true);
+                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
+                for(JCheckBox c:checkboxes){
+                    c.setEnabled(true);
+                }
                 //textfields
                 txtSearch.setEnabled(true);
                 jTextField5.setEnabled(false);
