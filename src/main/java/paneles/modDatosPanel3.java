@@ -49,7 +49,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
-                                new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -83,7 +83,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
-                                new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -117,7 +117,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
-                                new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -151,7 +151,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
-                                new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -185,7 +185,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
-                                new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -220,7 +220,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov='"+txtSearch.getText()+"';");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_prov"));

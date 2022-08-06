@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
+import venPrimarias.start;
 
 public class modDatosPanel4 extends javax.swing.JPanel{
     public modDatosPanel4(){
@@ -35,6 +36,22 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField1.setEnabled(true);
+                //función
+                if(jCheckBox1.isSelected()==true){
+                    updateButton.addActionListener((b)->{
+                        if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
+                            while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
+                                new datos().actualizarDatosAlmacen("set nombre_prod='"+jTextField1.getText()+"' where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+                                
+                                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox1)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                                
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
             }else if(jCheckBox1.isSelected()==false){
                 JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
@@ -57,6 +74,22 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField2.setEnabled(true);
+                //función
+                if(jCheckBox2.isSelected()==true){
+                    updateButton.addActionListener((b)->{
+                        if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
+                            while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
+                                new datos().actualizarDatosAlmacen("set marca='"+jTextField2.getText()+"' where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+                                
+                                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox2)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                                
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
             }else if(jCheckBox2.isSelected()==false){
                 JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
@@ -79,6 +112,22 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField3.setEnabled(true);
+                //función
+                if(jCheckBox3.isSelected()==true){
+                    updateButton.addActionListener((b)->{
+                        if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
+                            while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
+                                new datos().actualizarDatosAlmacen("set cantidad='"+Integer.parseInt(jTextField3.getText())+"' where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+                                
+                                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox3)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                                
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
             }else if(jCheckBox3.isSelected()==false){
                 JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
@@ -101,6 +150,22 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 jTextField4.setEnabled(true);
+                //función
+                if(jCheckBox4.isSelected()==true){
+                    updateButton.addActionListener((b)->{
+                        if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
+                            while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
+                                new datos().actualizarDatosAlmacen("set precio_unitario='"+Integer.parseInt(jTextField4.getText())+"' where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+                                
+                                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox4)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                                
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
             }else if(jCheckBox4.isSelected()==false){
                 JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
                 for(JCheckBox c:checkboxes){
@@ -124,6 +189,22 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 jComboBox1.setEnabled(true);
                 //textfields
                 txtSearch.setEnabled(false);
+                //función
+                if(jCheckBox5.isSelected()==true){
+                    updateButton.addActionListener((b)->{
+                        if(!jComboBox1.getModel().getSelectedItem().equals(jLabel5.getText())&&jCheckBox5.isSelected()==true&&jComboBox1.isEnabled()==true){
+                            while(!jComboBox1.getModel().getSelectedItem().equals(jLabel5.getText())&&jCheckBox5.isSelected()==true&&jComboBox1.isEnabled()==true){
+                                new datos().actualizarDatosAlmacen("set stock='"+jComboBox1.getSelectedItem().toString()+"' where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+                                
+                                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox5)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                                
+                                consulta();
+                                break;
+                            }
+                        }
+                    });
+                }
             }else if(jCheckBox5.isSelected()==false){
                 JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
                 for(JCheckBox c:checkboxes){
@@ -153,7 +234,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod='"+txtSearch.getText()+"';");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_prod"));

@@ -50,7 +50,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
-                                new datos().actualizarDatosSocio("set nombre_part='"+jTextField1.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set nombre_part='"+jTextField1.getText()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -84,7 +84,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
-                                new datos().actualizarDatosSocio("set apellidop_part='"+jTextField2.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set apellidop_part='"+jTextField2.getText()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -118,7 +118,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
-                                new datos().actualizarDatosSocio("set apellidom_part='"+jTextField3.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set apellidom_part='"+jTextField3.getText()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -153,7 +153,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
                             while(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
-                                new datos().actualizarDatosSocio("set tipo_socio='"+jComboBox1.getSelectedItem().toString()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set tipo_socio='"+jComboBox1.getSelectedItem().toString()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -190,7 +190,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
-                                new datos().actualizarDatosSocio("set correo='"+jTextField4.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set correo='"+jTextField4.getText()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -224,7 +224,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
-                                new datos().actualizarDatosSocio("set rfc='"+jTextField5.getText()+"' where codigo_part='"+txtSearch.getText()+"';");
+                                new datos().actualizarDatosSocio("set rfc='"+jTextField5.getText()+"' where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
                                 consulta();
                                 break;
                             }
@@ -259,7 +259,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part='"+txtSearch.getText()+"';");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part='"+Integer.parseInt(txtSearch.getText())+"';");
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_part"));

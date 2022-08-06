@@ -358,9 +358,6 @@ public class datos{
             ps=getConnection().prepareStatement("update almacen "+consulta);
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
