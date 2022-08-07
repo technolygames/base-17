@@ -8,20 +8,19 @@ import menus.menuDatosVentana2;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 //extension larga
+import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario2 extends javax.swing.JFrame{
@@ -88,7 +87,7 @@ public class formulario2 extends javax.swing.JFrame{
                         picLabel.setIcon(i);
                         
                         p.setProperty("lastdirectory_form2",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");

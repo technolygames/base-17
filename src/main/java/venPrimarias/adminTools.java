@@ -1,5 +1,6 @@
 package venPrimarias;
 //clases
+import clases.dirs;
 import clases.guiMediaHandler;
 import paneles.databaseConfig;
 import paneles.databaseExport;
@@ -9,6 +10,11 @@ import paneles.provDataRestore;
 import paneles.workerDataRestore;
 //java
 import java.awt.BorderLayout;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import javax.swing.JMenuItem;
 import paneles.environmentPanel;
 
 public class adminTools extends javax.swing.JFrame{
@@ -25,9 +31,24 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }
     
-    protected void settings(){
-        jMenuItem5.setEnabled(true);
-        jMenuItem6.setEnabled(true);
+    public void settings(){
+        JMenuItem[] items={jMenuItem5,jMenuItem6};
+        try{
+            Properties p=new Properties();
+            p.load(new FileInputStream(dirs.userdir+"/data/config/env.properties"));
+            if(p.getProperty("local_mysql").equals("")){
+                for(JMenuItem c:items){
+                    c.setEnabled(false);
+                    c.setToolTipText("Para activar estas funciones, establece la dirección de MySQL en la sección de Sistema>Variables");
+                }
+            }else{
+                for(JMenuItem c:items){
+                    c.setEnabled(true);
+                }
+            }
+        }catch(FileNotFoundException e){
+        }catch(IOException x){
+        }
     }
     
     protected final void botones(){

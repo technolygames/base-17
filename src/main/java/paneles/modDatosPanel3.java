@@ -35,8 +35,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         jCheckBox1.addActionListener((a)->{
+            JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
             if(jCheckBox1.isSelected()==true){
-                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -57,7 +57,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox1.isSelected()==false){
-                JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -69,8 +68,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         jCheckBox2.addActionListener((a)->{
+            JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
             if(jCheckBox2.isSelected()==true){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -91,7 +90,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox2.isSelected()==false){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -103,8 +101,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         jCheckBox3.addActionListener((a)->{
+            JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
             if(jCheckBox3.isSelected()==true){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -125,7 +123,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox3.isSelected()==false){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -137,8 +134,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         jCheckBox4.addActionListener((a)->{
+            JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
             if(jCheckBox4.isSelected()==true){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -159,7 +156,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox4.isSelected()==false){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -171,8 +167,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         jCheckBox5.addActionListener((a)->{
+            JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
             if(jCheckBox5.isSelected()==true){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -193,7 +189,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     });
                 }
             }else if(jCheckBox5.isSelected()==false){
-                JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4};
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }

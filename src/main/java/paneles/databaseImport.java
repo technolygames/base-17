@@ -8,11 +8,10 @@ import venPrimarias.start;
 import venTerciarias.databaseWindow;
 //java
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
@@ -28,10 +27,10 @@ public class databaseImport extends javax.swing.JPanel{
         settings();
     }
     
-    protected String userdir=dirs.userdir;
-    
     protected Properties p;
     protected InputStream is;
+    
+    protected String userdir=dirs.userdir;
     
     protected void settings(){
         jTextField3.setText(databaseWindow.nombredb);
@@ -60,7 +59,7 @@ public class databaseImport extends javax.swing.JPanel{
                     jTextField2.setText(f.getPath());
                     
                     p.setProperty("lastdirectory_database_import",f.getParent());
-                    p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/filechooserd.properties")),"JFileChooserDirection");
+                    p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
@@ -70,37 +69,43 @@ public class databaseImport extends javax.swing.JPanel{
         });
         
         importButton.addActionListener((a)->{
-            new Thread(()->{
-                String user=jTextField1.getText();
-                String pass=jPasswordField1.getPassword().toString();
-                String db=jTextField3.getText();
-                String dbDir=jTextField2.getText();
-                
-                try{
-                    p=new Properties();
-                    p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
-                    Process pr=Runtime.getRuntime().exec("cmd /c mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
-                    new Thread(new threadReader(pr.getErrorStream())).start();
-                    
-                    is=new FileInputStream(dbDir);
-                    
-                    new Thread(new thread(is,pr.getOutputStream())).start();
-                    
-                    JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
-                    new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-                    
-                    is.close();
-                }catch(IOException e){
-                    JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);
-                    new logger(Level.SEVERE).staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'");
-                    new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.import-7E",e.fillInStackTrace());
-                }catch(NullPointerException x){
-                    JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                    new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(importButton)'");
-                    new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.import-0",x.fillInStackTrace());
-                }
-            }).start();
+            importDatabase();
         });
+    }
+    
+    protected void importDatabase(){
+        new Thread(()->{
+            String user=jTextField1.getText();
+            String pass=jPasswordField1.getPassword().toString();
+            String db=jTextField3.getText();
+            String dbDir=jTextField2.getText();
+            
+            try{
+                Properties env=new Properties();
+                p=new Properties();
+                p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
+                p.load(new FileInputStream(userdir+"/data/config/env.properties"));
+                Process pr=Runtime.getRuntime().exec("cmd /c "+env.getProperty("local_mysql")+"mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
+                new Thread(new threadReader(pr.getErrorStream())).start();
+                
+                is=new FileInputStream(dbDir);
+                
+                new Thread(new thread(is,pr.getOutputStream())).start();
+                
+                JOptionPane.showMessageDialog(null,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
+                new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                
+                is.close();
+            }catch(IOException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
+                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-7E",e.fillInStackTrace());
+            }catch(NullPointerException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
+                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-0",x.fillInStackTrace());
+            }
+        }).start();
     }
     
     @SuppressWarnings("unchecked")

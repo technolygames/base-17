@@ -164,7 +164,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyPressed,txtCodigoKeyPressed2"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtProd">
@@ -204,7 +204,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCant">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCantKeyPressed,txtCantKeyPressed2"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCantKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backButton">

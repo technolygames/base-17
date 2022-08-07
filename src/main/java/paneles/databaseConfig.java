@@ -4,11 +4,11 @@ import clases.dirs;
 import clases.logger;
 import venPrimarias.start;
 //java
-import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //con extensión larga
@@ -19,17 +19,19 @@ public class databaseConfig extends javax.swing.JPanel{
         initComponents();
         
         botones();
-        loadConfig();
+        configIn();
     }
+    
+    protected Properties p;
+    protected File f;
     
     protected String userdir=dirs.userdir;
     
-    protected Properties p;
-    
-    protected void loadConfig(){
+    protected void configIn(){
         p=new Properties();
         try{
             p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
+            
             jComboBox1.getModel().setSelectedItem(p.getProperty("driver"));
             jTextField1.setText(p.getProperty("database"));
             jTextField2.setText(p.getProperty("user"));
@@ -54,7 +56,14 @@ public class databaseConfig extends javax.swing.JPanel{
         });
         
         storeButton.addActionListener((a)->{
-            try{
+            configOut();
+        });
+    }
+    
+    protected void configOut(){
+        f=new File(userdir+"/data/config/databaseInfo.properties");
+        try{
+            if(f.exists()){
                 p.setProperty("driver",jComboBox1.getSelectedItem().toString());
                 p.setProperty("database",jTextField1.getText());
                 p.setProperty("user",jTextField2.getText());
@@ -65,25 +74,27 @@ public class databaseConfig extends javax.swing.JPanel{
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
                 
-                p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/databaseInfo.properties")),"Configuración de la base de datos");
-            }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-1IO",e.fillInStackTrace());
-            }catch(NumberFormatException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-32",x.fillInStackTrace());
-            }catch(NullPointerException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-0",n.fillInStackTrace());
-            }catch(IOException s){
-                JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"botones.store-2IO",s.fillInStackTrace());
+                p.store(new FileOutputStream(userdir+"/data/config/databaseInfo.properties"),"Configuración de la base de datos");
+            }else{
+                f.createNewFile();
             }
-        });
+        }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-1IO",e.fillInStackTrace());
+        }catch(NumberFormatException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-32",x.fillInStackTrace());
+        }catch(NullPointerException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-0",n.fillInStackTrace());
+        }catch(IOException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-2IO",s.fillInStackTrace());
+        }
     }
     
     @SuppressWarnings("unchecked")

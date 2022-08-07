@@ -8,6 +8,7 @@ Formulario:
 -Para pedir una factura/reporte, la persona debe otorgar un correo electrónico y rfc. Puede o no afiliarse al negocio.
 -Si va a afiliar un socio nuevo, es necesario pedir el rfc y un correo electrónico.
 -Al crear un descuento, no se debe borrar el punto que hay por defecto. En caso de que no esté, favor de escribir al inicio de la cantidad del descuento el punto para que sea decimal (por ejemplo: .15); nunca escribir el símbolo de porcentaje.
+-Al tratar de eliminar el registro de un empleado que no ha iniciado sesión en el programa haciendo copia de seguridad, mejor elimina los datos completos porque el programa lanzará un error 0 porque no existen datos de ese usuario en la tabla de conteo.
 Informe de errores:
 -En caso de que aparezca la ventana emergente con código de error "0" o "Prueba", por favor de hacernos llegar, con muestra en una screenshot (captura de pantalla), del error, cómo lo produjo, fecha y hora en la que apareció el error.
 -Hay un bug en los paneles de modificación de datos. Todas las veces va a dar error. Se "arregló" poniendo contrapesos para que no haga cambio de datos no solicitados, pero igual dará los errores sin modificar los datos.

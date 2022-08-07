@@ -65,8 +65,6 @@ public class paymentWindow extends javax.swing.JDialog{
             for(int i=0;i<dtm.getRowCount();i++){
                 int n1=Integer.parseInt(dtm.getValueAt(i,5).toString());
                 res+=n1;
-                
-                //resultado=res;
             }
             jLabel4.setText(String.valueOf(res));
         }catch(NumberFormatException e){
@@ -89,14 +87,10 @@ public class paymentWindow extends javax.swing.JDialog{
         cancelButton.addActionListener((a)->{
             while(state==false){
                 int i=JOptionPane.showConfirmDialog(null,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                switch(i){
-                    case 0:{
-                        setVisible(false);
-                        dispose();
-                        break;
-                    }
+                if(i==0){
+                    setVisible(false);
+                    dispose();
                 }
-                break;
             }
             if(state==true){
                 setVisible(false);

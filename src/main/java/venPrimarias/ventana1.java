@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
+import java.awt.event.KeyAdapter;
 import venSecundarias.paymentWindow;
 //java
 import java.sql.ResultSet;
@@ -80,12 +81,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
             }
             
-            txtCodigo.setText("");
-            txtProd.setText("");
-            txtMarca.setText("");
-            txtPrecio.setText("");
-            txtCant.setText("");
-            txtTotal.setText("");
+            cleanFields();
         });
         
         backButton.addActionListener((a)->{
@@ -96,16 +92,17 @@ public final class ventana1 extends javax.swing.JFrame{
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
-            txtCodigo.setText("");
-            txtProd.setText("");
-            txtMarca.setText("");
-            txtPrecio.setText("");
-            txtCant.setText("");
-            txtTotal.setText("");
+            cleanFields();
         });
         
         jButton2.addActionListener((a)->{
-            dtm.removeRow(jTable1.getSelectedRow());
+            try{
+                dtm.removeRow(jTable1.getSelectedRow());
+            }catch(ArrayIndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'datosBuscar()'");
+                new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"datosBuscar-AIOOBE",e.fillInStackTrace());
+            }
         });
         
         mkPaidButton.addActionListener((a)->{
@@ -122,6 +119,95 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"botones.mkPaid-0",x.fillInStackTrace());
             }
         });
+        
+        txtCodigo.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    try{
+                        PreparedStatement ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        ResultSet rs=ps.executeQuery();
+                        if(rs.next()){
+                            if(rs.getInt("cantidad")==0){
+                                if(rs.getString("stock").equals("Agotado")){
+                                    JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                    System.out.println("no guarda");
+                                    new logger(Level.CONFIG).staticLogger("No guarda en ventana1");
+                                }else{
+                                    JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                    new datos().actualizarDatosAlmacen("set stock='Agotado' where codigo_prod='"+txtCodigo.getText()+"';");
+                                    new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
+                                }
+                            }else{
+                                txtProd.setText(rs.getString("nombre_prod"));
+                                txtMarca.setText(rs.getString("marca"));
+                                txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                            new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCodigo)'");
+                        }
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCodigo)'");
+                        new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"botones.txtCodigo-14",e.fillInStackTrace());
+                    }
+                }
+            }
+        });
+        
+        txtCant.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    try{
+                        PreparedStatement ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        ResultSet rs=ps.executeQuery();
+                        if(rs.next()){
+                            if(Integer.parseInt(txtCant.getText())>=rs.getInt("cantidad")&&Integer.parseInt(txtCant.getText())>rs.getInt("cantidad")||Integer.parseInt(txtCant.getText())==rs.getInt("cantidad")&&rs.getInt("cantidad")>=1){
+                                if(Integer.parseInt(txtCant.getText())>rs.getInt("cantidad")){
+                                    JOptionPane.showMessageDialog(null,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
+                                    new logger(Level.SEVERE).staticLogger("Error 14: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                }else{
+                                    calc();
+                                    JOptionPane.showMessageDialog(null,"No hay mucho stock de este producto.\nSi realizas la venta, te quedarás sin stock de este producto.","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                    new logger(Level.WARNING).staticLogger("Error 14: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                }
+                            }else{
+                                calc();
+                            }
+                        }
+                    }catch(SQLException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                        new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"botones.txtCant-14",e.fillInStackTrace());
+                    }
+                }
+            }
+        });
+    }
+    
+    protected void calc(){
+        try{
+            int n1=Integer.parseInt(txtCant.getText());
+            int n2=Integer.parseInt(txtPrecio.getText());
+            int res=n2*n1;
+
+            txtTotal.setText(String.valueOf(res));
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'calc()'");
+            new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"calc-32",e.fillInStackTrace());
+        }
+    }
+    
+    protected void cleanFields(){
+        txtCodigo.setText("");
+        txtProd.setText("");
+        txtMarca.setText("");
+        txtPrecio.setText("");
+        txtCant.setText("");
+        txtTotal.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -163,7 +249,6 @@ public final class ventana1 extends javax.swing.JFrame{
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
-                txtCodigoKeyPressed2(evt);
             }
         });
 
@@ -196,7 +281,6 @@ public final class ventana1 extends javax.swing.JFrame{
         txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantKeyPressed(evt);
-                txtCantKeyPressed2(evt);
             }
         });
 
@@ -403,43 +487,7 @@ public final class ventana1 extends javax.swing.JFrame{
             evt.consume();
         }
     }//GEN-LAST:event_txtTotalKeyPressed
-    
-    private void txtCodigoKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed2
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            try{
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+txtCodigo.getText()+";");
-                ResultSet rs=ps.executeQuery();
-                if(rs.next()){
-                    txtProd.setText(rs.getString("nombre_prod"));
-                    txtMarca.setText(rs.getString("marca"));
-                    txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
-                }else{
-                    JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodigoKeyPressed2()'");
-                }
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCodigoKeyPressed2()'");
-                new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"txtCodigoKeyPressed2-14",e.fillInStackTrace());
-            }
-        }
-    }//GEN-LAST:event_txtCodigoKeyPressed2
-    
-    private void txtCantKeyPressed2(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed2
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            try{
-                int n1=Integer.parseInt(txtCant.getText());
-                int n2=Integer.parseInt(txtPrecio.getText());
-                int res=n2*n1;
-                txtTotal.setText(String.valueOf(res));
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'txtCantKeyPressed2()'");
-                new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"txtCantKeyPressed2-32",e.fillInStackTrace());
-            }
-        }
-    }//GEN-LAST:event_txtCantKeyPressed2
-    
+            
     public static void main(String[] args){
         new ventana1().setVisible(true);
     }

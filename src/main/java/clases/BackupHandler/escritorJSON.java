@@ -38,6 +38,7 @@ public class escritorJSON{
     public void writeDataWorkerJson(int codigoEmpleado){
         try{
             ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
+            ResultSet rs2=new datos().getConnection().prepareStatement("select * from conteo where codigo_emp='"+codigoEmpleado+"';").executeQuery();
             rs=ps.executeQuery();
             while(rs.next()){
                 new File(userdir+"/data/databackup/Empleados/"+rs.getString("nombre_emp")+"-"+rs.getInt("codigo_emp")).mkdir();

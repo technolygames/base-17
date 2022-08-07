@@ -65,13 +65,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(addButton)'");
             }
             
-            txtCodProd.setText("");
-            txtCodLote.setText("");
-            txtCodProv.setText("");
-            txtProd.setText("");
-            txtMarca.setText("");
-            txtCant.setText("");
-            txtPU.setText("");
+            cleanFields();
         });
         
         backButton.addActionListener((a)->{
@@ -82,13 +76,7 @@ public final class ventana2 extends javax.swing.JFrame{
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
-            txtCodProd.setText("");
-            txtCodLote.setText("");
-            txtCodProv.setText("");
-            txtProd.setText("");
-            txtMarca.setText("");
-            txtCant.setText("");
-            txtPU.setText("");
+            cleanFields();
         });
         
         updateDataButton.addActionListener((a)->{
@@ -121,6 +109,16 @@ public final class ventana2 extends javax.swing.JFrame{
                 new logger(Level.SEVERE).exceptionLogger(ventana2.class.getName(),"botones.svdt-0",x.fillInStackTrace());
             }
         });
+    }
+    
+    protected void cleanFields(){
+        txtCodProd.setText("");
+        txtCodLote.setText("");
+        txtCodProv.setText("");
+        txtProd.setText("");
+        txtMarca.setText("");
+        txtCant.setText("");
+        txtPU.setText("");
     }
     
     @SuppressWarnings("unchecked")
