@@ -63,17 +63,15 @@ public class guiMediaHandler{
                 image=p.getProperty("imagen_respaldo");
             }
             
-            ImageIcon im=new ImageIcon(image);
-            Icon l=new ImageIcon(im.getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT));
-            etiqueta.setIcon(l);
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-1IO",s.fillInStackTrace());
-        }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-2IO",d.fillInStackTrace());
+            etiqueta.setIcon(new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT)));
+        }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
+            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-1IO",e.fillInStackTrace());
+        }catch(IOException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
+            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-2IO",x.fillInStackTrace());
         }
     }
     
@@ -114,9 +112,9 @@ public class guiMediaHandler{
      */
     public void LookAndFeel(Component componente){
         try{
-            Properties style=new Properties();
-            style.load(new FileInputStream(userdir+"/data/config/config.properties"));
-            UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
+            p=new Properties();
+            p.load(new FileInputStream(userdir+"/data/config/config.properties"));
+            UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);

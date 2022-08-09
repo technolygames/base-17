@@ -39,7 +39,7 @@ public class datos{
     /**
      * Conexión a la base de datos.
      * 
-     * @return Regresa la conexión a la base de datos.
+     * @return conexión a la base de datos.
      */
     public Connection getConnection(){
         p=new Properties();

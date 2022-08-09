@@ -24,7 +24,7 @@ import java.util.logging.Level;
  * @author erick
  */
 public class resourceDownload{
-    protected boolean estado;
+    protected boolean estado=false;
     protected String userdir=dirs.userdir;
     
     protected File f;
@@ -52,7 +52,11 @@ public class resourceDownload{
             s.bind(sa);
             s.connect(sa);
             
-            estado=s.isConnected();
+            if(s.isConnected()==true){
+                estado=true;
+            }else{
+                estado=false;
+            }
         }catch(UnknownHostException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'");
@@ -74,10 +78,6 @@ public class resourceDownload{
     public void downloadLibs(String validar,String link){
         f=new File(userdir+"/data/libs/test/"+validar);
         try{
-            if(!f.exists()){
-                f.createNewFile();
-            }
-            
             if(f.exists()&&f.length()==0){
                 u=new URL(link);
                 uc=u.openConnection();
@@ -86,6 +86,8 @@ public class resourceDownload{
                 os=new FileOutputStream(userdir+"/data/libs/test/"+validar);
                 
                 new Thread(new thread(is,os)).start();
+            }else{
+                f.createNewFile();
             }
             
             is.close();

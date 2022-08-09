@@ -22,8 +22,8 @@ public class databaseConfig extends javax.swing.JPanel{
         configIn();
     }
     
-    protected Properties p;
     protected File f;
+    protected Properties p;
     
     protected String userdir=dirs.userdir;
     
@@ -71,10 +71,10 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.setProperty("ip",jTextField4.getText());
                 p.setProperty("port", jTextField5.getText());
                 
+                p.store(new FileOutputStream(userdir+"/data/config/databaseInfo.properties"),"DatabaseConfig");
+                
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
-                
-                p.store(new FileOutputStream(userdir+"/data/config/databaseInfo.properties"),"Configuración de la base de datos");
             }else{
                 f.createNewFile();
             }

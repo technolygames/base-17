@@ -5,8 +5,8 @@ import clases.logger;
 //java
 import javax.swing.JOptionPane;
 //extension larga
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public final class calcWindow extends javax.swing.JDialog{

@@ -21,7 +21,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import javax.swing.Icon;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -49,7 +48,6 @@ public final class proper1 extends javax.swing.JFrame{
         pack();
     }
     
-    protected ImageIcon ii;
     protected File f1;
     protected Properties p;
     protected InputStream is;
@@ -192,9 +190,9 @@ public final class proper1 extends javax.swing.JFrame{
                 p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
                 
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivo JPG","jpg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivo JPEG","jpeg"));
+                for(FileNameExtensionFilter filtro:new FileNameExtensionFilter[]{new FileNameExtensionFilter("Archivo PNG","png"),new FileNameExtensionFilter("Archivo JPG","jpg"),new FileNameExtensionFilter("Archivo JPEG","jpeg")}){
+                    jfc.setFileFilter(filtro);
+                }
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
@@ -372,9 +370,7 @@ public final class proper1 extends javax.swing.JFrame{
     }
     
     protected void imageLoader(String label,String image){
-        ii=new ImageIcon(image);
-        Icon l=new ImageIcon(ii.getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT));
-        jLabel3.setIcon(l);
+        jLabel3.setIcon(new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT)));
         jLabel5.setText(null);
         jLabel5.setText(label);
     }
@@ -578,7 +574,7 @@ public final class proper1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private static javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

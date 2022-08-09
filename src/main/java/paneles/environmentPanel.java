@@ -2,7 +2,6 @@ package paneles;
 //clases
 import clases.dirs;
 import clases.logger;
-import java.awt.Frame;
 import venPrimarias.start;
 //java
 import java.io.File;
@@ -15,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
-import venPrimarias.adminTools;
 
 public class environmentPanel extends javax.swing.JPanel{
     public environmentPanel(){
@@ -52,41 +50,34 @@ public class environmentPanel extends javax.swing.JPanel{
             setVisible(false);
         });
         
-        jButton1.addActionListener((a)->{
+        storeButton.addActionListener((a)->{
             configOut();
-            for(Frame f:Frame.getFrames()){
-                f.validate();
-            }
         });
         
-        jButton2.addActionListener((a)->{
+        selDirButton.addActionListener((a)->{
             try{
                 p=new Properties();
                 p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
                 JFileChooser chooser=new JFileChooser(p.getProperty("lastdirectory_envvar"));
                 
-                if(p.getProperty("lastdirectory_envvar").equals("")){
-                    chooser.setCurrentDirectory(new File("."));
-                }
-                
                 chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                chooser.setDialogTitle("Seleccionar directorio");
                 
-                while(JFileChooser.APPROVE_OPTION==chooser.showOpenDialog(null)){
+                if(JFileChooser.APPROVE_OPTION==chooser.showOpenDialog(null)){
                     f=chooser.getSelectedFile();
-                    jTextField1.setText(f.getPath());
+                    jTextField1.setText(f.getPath().concat("\\"));
                     
-                    p.setProperty("lastdirectory_envvar",f.getParent());
+                    p.setProperty("lastdirectory_envvar",f.getPath());
                     p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
-                    break;
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(jButton2)'");
-                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.button2-1IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
+                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-1IO",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(jButton2)'");
-                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.button2-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
+                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-0",x.fillInStackTrace());
             }
         });
     }
@@ -120,19 +111,19 @@ public class environmentPanel extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        storeButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        selDirButton = new javax.swing.JButton();
 
-        jButton1.setText("Guardar datos");
+        storeButton.setText("Guardar datos");
 
         closeButton.setText("Cerrar panel");
 
         jLabel1.setText("MySQL local:");
 
-        jButton2.setText("Buscar");
+        selDirButton.setText("Buscar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -142,7 +133,7 @@ public class environmentPanel extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(storeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -151,7 +142,7 @@ public class environmentPanel extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(selDirButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,19 +152,19 @@ public class environmentPanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(selDirButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(storeButton)
                     .addComponent(closeButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton selDirButton;
+    private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables
 }

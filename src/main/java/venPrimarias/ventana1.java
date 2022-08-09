@@ -3,7 +3,6 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
-import java.awt.event.KeyAdapter;
 import venSecundarias.paymentWindow;
 //java
 import java.sql.ResultSet;
@@ -12,6 +11,7 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 //extension larga
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 

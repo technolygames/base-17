@@ -31,8 +31,16 @@ public class paymentWindow extends javax.swing.JDialog{
     
     protected DefaultTableModel dtm;
     
+    protected String nombre;
+    protected String marca;
+    
+    protected int codigo_prod;
+    protected int codigo_emp;
     protected int resultado;
+    protected int cantidad;
+    protected int precio;
     public static int result;
+    protected int total;
     
     protected boolean state=false;
     
@@ -126,13 +134,13 @@ public class paymentWindow extends javax.swing.JDialog{
                         Cash
                         */
                         for(int i=0;i<dtm.getRowCount();i++){
-                            int codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                            int codigo_emp=Integer.parseInt(jLabel2.getText());
-                            String nombre=dtm.getValueAt(i,1).toString();
-                            String marca=dtm.getValueAt(i,2).toString();
-                            int cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
-                            int precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
-                            int total=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                            codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
+                            codigo_emp=Integer.parseInt(jLabel4.getText());
+                            nombre=dtm.getValueAt(i,1).toString();
+                            marca=dtm.getValueAt(i,2).toString();
+                            cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
+                            precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                            total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                             
                             new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
                             new datos().actualizarDatosAlmacen("set cantidad=cantidad-'"+cantidad+"' where codigo_prod='"+codigo_prod+"';");
@@ -153,15 +161,15 @@ public class paymentWindow extends javax.swing.JDialog{
                         Card
                         */
                         for(int i=0;i<dtm.getRowCount();i++){
-                            int codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                            int codigo_emp=Integer.parseInt(jLabel2.getText());
-                            String nombre_prod=dtm.getValueAt(i,1).toString();
-                            String marca_prod=dtm.getValueAt(i,2).toString();
-                            int cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
-                            int precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
-                            int total=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                            codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
+                            codigo_emp=Integer.parseInt(jLabel4.getText());
+                            nombre=dtm.getValueAt(i,1).toString();
+                            marca=dtm.getValueAt(i,2).toString();
+                            cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
+                            precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                            total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                             
-                            new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre_prod,marca_prod,cantidad,precio,total);
+                            new datos().insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
                             new datos().actualizarDatosAlmacen("set cantidad=cantidad-'"+cantidad+"' where codigo_prod='"+codigo_prod+"';");
                         }
                         /*

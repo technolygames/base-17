@@ -2,6 +2,7 @@ package venPrimarias;
 //clases
 import clases.dirs;
 import clases.guiMediaHandler;
+import clases.logger;
 import paneles.databaseConfig;
 import paneles.databaseExport;
 import paneles.databaseImport;
@@ -14,7 +15,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import paneles.environmentPanel;
 
 public class adminTools extends javax.swing.JFrame{
@@ -31,7 +34,7 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }
     
-    public void settings(){
+    protected void settings(){
         JMenuItem[] items={jMenuItem5,jMenuItem6};
         try{
             Properties p=new Properties();
@@ -47,7 +50,13 @@ public class adminTools extends javax.swing.JFrame{
                 }
             }
         }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-2IO",x.fillInStackTrace());
         }
     }
     

@@ -40,8 +40,9 @@ public final class start extends javax.swing.JFrame{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    public static String nameUser;
     public static int userID;
+    
+    public static String nameUser;
     public static String role;
     
     protected final void settings(){

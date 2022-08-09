@@ -6,22 +6,29 @@ import venPrimarias.start;
 public class main{
     protected static String userdir=dirs.userdir;
     public static void main(String[] args){
+        String[] dirs={
+            userdir+"/data/config",
+            userdir+"/data/databackup",
+            userdir+"/data/databackup/Empleados",
+            userdir+"/data/databackup/Proveedores",
+            userdir+"/data/databackup/Socios",
+            userdir+"/data/generic/Jasper",
+            userdir+"/data/generic/tickets",
+            userdir+"/data/libs",
+            userdir+"/data/logs/exceptions",
+            userdir+"/data/logs/static",
+            userdir+"/data/media",
+            userdir+"/data/media/forms",
+            userdir+"/data/media/forms/copy/",
+            userdir+"/data/media/icon",
+            userdir+"/data/media/icon/copy/",
+            userdir+"/data/media/secondary"
+        };
+        
+        for(String dir:dirs){
+            new dirs().makeDir(dir);
+        }
+        
         new start().setVisible(true);
-        new dirs().makeDir(userdir+"/data/config");
-        new dirs().makeDir(userdir+"/data/databackup");
-        new dirs().makeDir(userdir+"/data/databackup/Empleados");
-        new dirs().makeDir(userdir+"/data/databackup/Proveedores");
-        new dirs().makeDir(userdir+"/data/databackup/Socios");
-        new dirs().makeDir(userdir+"/data/generic/Jasper");
-        new dirs().makeDir(userdir+"/data/generic/tickets");
-        new dirs().makeDir(userdir+"/data/libs");
-        new dirs().makeDir(userdir+"/data/logs/exceptions");
-        new dirs().makeDir(userdir+"/data/logs/static");
-        new dirs().makeDir(userdir+"/data/media");
-        new dirs().makeDir(userdir+"/data/media/forms");
-        new dirs().makeDir(userdir+"/data/media/forms/copy/");
-        new dirs().makeDir(userdir+"/data/media/icon");
-        new dirs().makeDir(userdir+"/data/media/icon/copy/");
-        new dirs().makeDir(userdir+"/data/media/secondary");
     }
 }
