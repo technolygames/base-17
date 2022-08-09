@@ -18,7 +18,7 @@ A program made in Java 17 to manage a grocery. Features:
 - Execution threads
 
 To start programming, everything is on "src" folder. In root path there is database, libraries, configuration files and visual media.<br>
-There is a Java 11 version of this program. If you want to watch it, follow this [link](https://github.com/technolygames/base-17).
+There is a Java 11 version of this program. If you want to watch it, follow this [link](https://github.com/technolygames/base-11).
 
 Installation:
 
@@ -45,7 +45,7 @@ Programa hecho en Java 17 para administrar una tienda de abarrotes. Característ
 - Hilos de ejecución
 
 Para poder programar, todo el código está en la carpeta "src". En la carpeta raíz del proyecto, están la base de datos, librerias (pom.xml), archivos de configuración y medios visuales.<br>
-Hay una versión en Java 11. Si deseas verlo, clic en el siguiente [link](https://github.com/technolygames/base-17).
+Hay una versión en Java 11. Si deseas verlo, clic en el siguiente [link](https://github.com/technolygames/base-11).
 
 Instalación:
 
