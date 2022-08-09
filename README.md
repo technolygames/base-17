@@ -17,11 +17,11 @@ A java program to manage a grocery. Features:
 - Exception handling
 - Execution threads
 
-To start programming, everything is on "src" folder. Database, windows, classes and media
+To start programming, everything is on "src" folder. In root path there is database, libraries, configuration files and visual media.
 
 Installation:
 
-- To use without any troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp). It's needed to the correct execution of the program. Database can be found on the following path: "src/main/resources/data/database/MySQL", called as tienda.sql.
+- To use without any troubles or errors, it'll need to use a database manager like MySQL or MariaDB (xampp). It's needed to the correct execution of the program. Database can be found on the following path: "data/database/MySQL", called as tienda.sql.
 - After of this, you'll need to replace "config.properties" by "preconfig.properties", renaming it as the previous deleted file. I recommend you to copy "preconfig.properties" instead of using the same file.
 - In case if you have a MySQL database server previously configurated and completed database import step, you'll need configurate on "Configurar BD" ("DB Config") panel inside in the window called "Herramientas de administrador" ("Administrator Tools") the server connection.
 
@@ -43,10 +43,10 @@ Programa hecho en Java para administrar una tienda de abarrotes. Sus caracterís
 - Gestión de errores
 - Hilos de ejecución
 
-Para poder programar, todo el código está en la carpeta "src". Ahí está la base de datos, ventanas, clases, librerias y medios visuales.
+Para poder programar, todo el código está en la carpeta "src". En la carpeta raíz del proyecto, están la base de datos, librerias (pom.xml), archivos de configuración y medios visuales.
 
 Instalación:
 
-- Para poder usar sin problemas o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp). Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en "src/main/resources/data/database/MySQL", llamado como tienda.sql.
+- Para poder usar sin problemas o errores, se debe utilizar el gestor de base de datos MySQL o MariaDB (xampp). Es necesario para el correcto funcionamiento del programa. La base de datos se encuentra en "data/database/MySQL", llamado como tienda.sql.
 - Después, debes cambiar el archivo "config.properties" por "preconfig.properties", renombrándolo como el archivo eliminado.
 - En caso de que tengas un servidor de base de datos de MySQL ya configurado y hayas completado el paso de la importación de la base de datos, debes configurar, en el panel de "Configurar BD" en Herramientas de administrador, la conexión al servidor.
