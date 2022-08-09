@@ -1,6 +1,6 @@
 # base16
 (EN)
-A java program to manage a grocery. Features:
+A program made in Java 17 to manage a grocery. Features:
 - Can store data from a graphical table to database table
 - Employee, partners and providers data storage
 - Employee, partners and providers image storage if it is need to make physical IDs
@@ -11,13 +11,14 @@ A java program to manage a grocery. Features:
 * Customable window icon
 * Customable frame image
 * Switchable name
-- in case of update, download files from internet
+- In case of update, download files from internet
 - Import/export database
 - JSON backup handler
 - Exception handling
 - Execution threads
 
-To start programming, everything is on "src" folder. In root path there is database, libraries, configuration files and visual media.
+To start programming, everything is on "src" folder. In root path there is database, libraries, configuration files and visual media.<br>
+There is a Java 11 version of this program. If you want to watch it, follow this [link](https://github.com/technolygames/base-17).
 
 Installation:
 
@@ -26,7 +27,7 @@ Installation:
 - In case if you have a MySQL database server previously configurated and completed database import step, you'll need configurate on "Configurar BD" ("DB Config") panel inside in the window called "Herramientas de administrador" ("Administrator Tools") the server connection.
 
 (ES)
-Programa hecho en Java para administrar una tienda de abarrotes. Sus características:
+Programa hecho en Java 17 para administrar una tienda de abarrotes. Características:
 - Poder guardar, desde una tabla, datos a una base de datos
 - Almacena datos de empleados, socios y proveedores
 - Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
@@ -43,7 +44,8 @@ Programa hecho en Java para administrar una tienda de abarrotes. Sus caracterís
 - Gestión de errores
 - Hilos de ejecución
 
-Para poder programar, todo el código está en la carpeta "src". En la carpeta raíz del proyecto, están la base de datos, librerias (pom.xml), archivos de configuración y medios visuales.
+Para poder programar, todo el código está en la carpeta "src". En la carpeta raíz del proyecto, están la base de datos, librerias (pom.xml), archivos de configuración y medios visuales.<br>
+Hay una versión en Java 11. Si deseas verlo, clic en el siguiente [link](https://github.com/technolygames/base-17).
 
 Instalación:
 
