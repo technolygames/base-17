@@ -4,16 +4,18 @@ import clases.datos;
 import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
+import clases.mvc.mvcForm2;
 import menus.menuDatosVentana2;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -109,17 +111,22 @@ public class formulario2 extends javax.swing.JFrame{
         storeButton.addActionListener((a)->{
             try{
                 if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextArea1.getText().equals("")){
-                    int codigo=Integer.parseInt(jTextField1.getText());
-                    String nombre=jTextField2.getText();
-                    String apellidop=jTextField3.getText();
-                    String apellidom=jTextField4.getText();
-                    String tipo=jComboBox1.getSelectedItem().toString();
-                    String correo=jTextField5.getText();
-                    String rfc=jTextField6.getText();
-                    String datos=jTextArea1.getText();
-                    InputStream foto=new FileInputStream(direccion);
+                    List<mvcForm2> lista=new ArrayList<>();
+                    mvcForm2 modelo=new mvcForm2();
                     
-                    new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,correo,rfc,datos,foto);
+                    modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
+                    modelo.setNombre(jTextField2.getText());
+                    modelo.setApellidoPaterno(jTextField3.getText());
+                    modelo.setApellidoMaterno(jTextField4.getText());
+                    modelo.setTipo(jComboBox1.getSelectedItem().toString());
+                    modelo.setCorreo(jTextField5.getText());
+                    modelo.setRfc(jTextField6.getText());
+                    modelo.setDatos(jTextArea1.getText());
+                    modelo.setImagen(new FileInputStream(direccion));
+                    
+                    lista.add(modelo);
+                    
+                    new datos().insertarDatosSocio(lista);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");

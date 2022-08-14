@@ -7,7 +7,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 //extension larga
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 
 public class partDataRestore extends javax.swing.JPanel{
     public partDataRestore(){
@@ -23,7 +22,7 @@ public class partDataRestore extends javax.swing.JPanel{
             setVisible(false);
         });
         searchButton.addActionListener((a)->{
-            filechooser=new JFileChooser(dirs.userdir+"/data/databackup/Empleados");
+            filechooser=new JFileChooser(dirs.userdir+"/data/databackup/Socios");
             filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
             if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){

@@ -26,7 +26,9 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         jTextField1.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent a){
-                deleteData();
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    deleteData();
+                }
             }
         });
     }

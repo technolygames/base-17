@@ -5,6 +5,7 @@ import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import venPrimarias.start;
+import venPrimarias.ltshWorkers;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -41,7 +42,6 @@ public class dataWindow1 extends javax.swing.JDialog{
     protected PreparedStatement ps;
     
     protected void settings(){
-        genLabel.setVisible(false);
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jTextArea2.setLineWrap(true);
@@ -49,9 +49,8 @@ public class dataWindow1 extends javax.swing.JDialog{
     }
     
     protected final void datosMostrar(){
-        String etiqueta=genLabel.getText();
         try{
-            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp="+etiqueta+";");
+            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp="+ltshWorkers.code+";");
             rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
@@ -148,7 +147,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         etiFoto = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         storeImgButton = new javax.swing.JButton();
-        genLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         etiExp = new javax.swing.JLabel();
@@ -197,8 +195,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         backButton.setText("Regresar");
 
         storeImgButton.setText("Guardar imagen");
-
-        genLabel.setText("99876");
 
         jLabel12.setText("Fecha de ingreso:");
 
@@ -303,10 +299,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(genLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -344,8 +339,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                             .addComponent(etiEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)))
+                            .addComponent(etiSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -356,9 +350,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(genLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(etiFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -459,7 +451,6 @@ public class dataWindow1 extends javax.swing.JDialog{
     private javax.swing.JLabel etiNombre;
     private javax.swing.JLabel etiPuesto;
     private javax.swing.JLabel etiSesion;
-    public static javax.swing.JLabel genLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

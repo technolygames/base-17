@@ -35,10 +35,9 @@
                       <Component id="backButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="etiFoto" alignment="0" pref="120" max="32767" attributes="0"/>
-                          <Component id="genLabel" max="32767" attributes="0"/>
+                          <Component id="etiFoto" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -80,7 +79,6 @@
                           <Component id="etiIngreso" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                           <Component id="etiSesion" min="-2" pref="140" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -96,8 +94,6 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="etiFoto" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="genLabel" min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -223,14 +219,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar imagen"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="genLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="99876"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>

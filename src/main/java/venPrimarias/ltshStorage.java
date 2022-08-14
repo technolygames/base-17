@@ -4,7 +4,9 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 //librerías
-import net.proteanit.sql.DbUtils;
+import clases.dbUtils;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +27,6 @@ public class ltshStorage extends javax.swing.JFrame{
         botones();
         datosMostrar();
         
-        setSize(1000,600);
         setLocationRelativeTo(null);
         setTitle("Almacén");
         pack();
@@ -45,16 +46,36 @@ public class ltshStorage extends javax.swing.JFrame{
         
         refreshButton.addActionListener((a)->{
             datosMostrar();
+            txtBuscar.setText("");
         });
         
         searchButton.addActionListener((a)->{
-            datosBuscar();
+            if(!txtBuscar.getText().equals("")){
+                datosBuscar();
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'botones(searchButton)'");
+            }
+        });
+        
+        txtBuscar.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    if(!txtBuscar.getText().equals("")){
+                        datosBuscar();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'botones(txtBuscar)'");
+                    }
+                }
+            }
         });
     }
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        sorter=new TableRowSorter<>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from almacen;");
             rs=ps.executeQuery();
@@ -78,7 +99,7 @@ public class ltshStorage extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
@@ -89,12 +110,12 @@ public class ltshStorage extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código de producto especificado.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -108,12 +129,12 @@ public class ltshStorage extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código de lote especificado.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -127,12 +148,12 @@ public class ltshStorage extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código de proveedor especificado.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -146,12 +167,12 @@ public class ltshStorage extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre de producto especificado.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -161,16 +182,29 @@ public class ltshStorage extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from almacen where marca='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
-                    if(rs.next()){
+                    while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dtm);
+                    
+                    ps.close();
+                    rs.close();
+                    break;
+                case 5:
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where stock='"+txtBuscar.getText()+"';");
+                    rs=ps.executeQuery();
+                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
+                    while(rs.next()){
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio_unitario"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
+                    }
+                    jTable1.setRowSorter(sorter);
+                    jTable1.getRowSorter().toggleSortOrder(0);
+                    jTable1.getTableHeader().setReorderingAllowed(false);
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -230,7 +264,7 @@ public class ltshStorage extends javax.swing.JFrame{
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel3.setText("Almacén");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del producto", "Código del lote", "Código del proveedor", "Nombre del producto", "Marca" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del producto", "Código del lote", "Código del proveedor", "Nombre del producto", "Marca", "Stock" }));
 
         searchButton.setText("Buscar");
 
@@ -253,7 +287,7 @@ public class ltshStorage extends javax.swing.JFrame{
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -272,7 +306,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backButton)

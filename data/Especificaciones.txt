@@ -3,6 +3,8 @@ General:
 -Para primer uso y en caso de presentarse varios errores, se debe configurar en la ventana de "Configuraciones" (Ventana principal>Opciones>Ajustes) o renombrar el archivo "preconfig.properties" (src/data/config/preconfig.properties) para reemplazar el archivo "config.properties" de la misma carpeta. Hay un problema con las direcciones cuando se ejecutan en otra máquina.
 -Para mejor comprensión de los errores del programa, vea el archivo en texto plano "Lista de errores".
 -En el slider para visualizar las imágenes utilizadas como ícono e imagen de ventanas, debes presionar el botón de las flechas apuntando a la derecha.
+Tablas para visualizar datos:
+-Al buscar datos expecíficos, se podrá activar un botón para ver los datos mejor detallados en una ventana a parte. El primer resultado siempre será con el que se podrá ver la ventana secundaria.
 Formulario:
 -Para introducir una imagen en formulario 1, 2 y 3, selecciona alguno de los formatos disponibles.
 -Para pedir una factura/reporte, la persona debe otorgar un correo electrónico y rfc. Puede o no afiliarse al negocio.

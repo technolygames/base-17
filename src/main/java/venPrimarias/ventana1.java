@@ -29,6 +29,9 @@ public final class ventana1 extends javax.swing.JFrame{
         pack();
     }
     
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
     public static DefaultTableModel dtm;
     
     public static int codigo_emp;
@@ -125,17 +128,16 @@ public final class ventana1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        PreparedStatement ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
-                        ResultSet rs=ps.executeQuery();
+                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        rs=ps.executeQuery();
                         if(rs.next()){
                             if(rs.getInt("cantidad")==0){
                                 if(rs.getString("stock").equals("Agotado")){
                                     JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    System.out.println("no guarda");
                                     new logger(Level.CONFIG).staticLogger("No guarda en ventana1");
                                 }else{
                                     JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    new datos().actualizarDatosAlmacen("set stock='Agotado' where codigo_prod='"+txtCodigo.getText()+"';");
+                                    new datos().actualizarDatosAlmacen("set stock='Agotado' where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
                                     new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
                                 }
                             }else{
@@ -161,11 +163,13 @@ public final class ventana1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        PreparedStatement ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
-                        ResultSet rs=ps.executeQuery();
+                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        rs=ps.executeQuery();
                         if(rs.next()){
-                            if(Integer.parseInt(txtCant.getText())>=rs.getInt("cantidad")&&Integer.parseInt(txtCant.getText())>rs.getInt("cantidad")||Integer.parseInt(txtCant.getText())==rs.getInt("cantidad")&&rs.getInt("cantidad")>=1){
-                                if(Integer.parseInt(txtCant.getText())>rs.getInt("cantidad")){
+                            int txtCantidad=Integer.parseInt(txtCant.getText());
+                            int cantidad=rs.getInt("cantidad");
+                            if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
+                                if(txtCantidad>cantidad){
                                     JOptionPane.showMessageDialog(null,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
                                     new logger(Level.SEVERE).staticLogger("Error 14: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
                                 }else{

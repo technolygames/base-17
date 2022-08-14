@@ -38,7 +38,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="1" pref="538" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" pref="988" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="refreshButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -62,7 +62,7 @@
                   <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="292" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="532" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="backButton" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -110,12 +110,13 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="6">
             <StringItem index="0" value="C&#xf3;digo del producto"/>
             <StringItem index="1" value="C&#xf3;digo del lote"/>
             <StringItem index="2" value="C&#xf3;digo del proveedor"/>
             <StringItem index="3" value="Nombre del producto"/>
             <StringItem index="4" value="Marca"/>
+            <StringItem index="5" value="Stock"/>
           </StringArray>
         </Property>
       </Properties>

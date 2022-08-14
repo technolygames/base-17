@@ -2,6 +2,8 @@ package clases.BackupHandler;
 //clases
 import clases.datos;
 import clases.logger;
+import clases.mvc.mvcForm1;
+import clases.mvc.mvcForm2;
 //librerías
 import com.google.gson.stream.JsonReader;
 //java
@@ -13,6 +15,8 @@ import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase encargada de leer los archivos creados para copia de seguridad.
@@ -22,23 +26,6 @@ import java.nio.charset.StandardCharsets;
 public class lectorJSON{
     protected JsonReader jsonr;
     
-    protected String password;
-    protected int codigoEmpleado;
-    protected String nombreEmpleado;
-    protected String apellidoPaternoEmpleado;
-    protected String apellidoMaternoEmpleado;
-    protected String curp;
-    protected String domicilio;
-    protected String puesto;
-    protected int experiencia;
-    protected String gradoEstudios;
-    protected int contacto1;
-    protected String fechaNacimiento;
-    protected int edad;
-    protected String estado;
-    protected String datosExtra1;
-    protected String foto1;
-    protected int anular;
     protected int numeroVentas;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
@@ -48,68 +35,38 @@ public class lectorJSON{
     public void readDataWorkerJson(String dir){
         try{
             jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
+            List<mvcForm1> lista=new ArrayList<>();
+            mvcForm1 modelo=new mvcForm1();
+            
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
                 switch(name){
-                    case "password":
-                        password=jsonr.nextString();
-                        break;
-                    case "codigo_emp":
-                        codigoEmpleado=jsonr.nextInt();
-                        break;
-                    case "nombre_emp":
-                        nombreEmpleado=jsonr.nextString();
-                        break;
-                    case "apellidop_emp":
-                        apellidoPaternoEmpleado=jsonr.nextString();
-                        break;
-                    case "apellidom_emp":
-                        apellidoMaternoEmpleado=jsonr.nextString();
-                        break;
-                    case "curp":
-                        curp=jsonr.nextString();
-                        break;
-                    case "domicilio":
-                        domicilio=jsonr.nextString();
-                        break;
-                    case "puesto":
-                        puesto=jsonr.nextString();
-                        break;
-                    case "experiencia":
-                        experiencia=jsonr.nextInt();
-                        break;
-                    case "grado_estudios":
-                        gradoEstudios=jsonr.nextString();
-                        break;
-                    case "contacto":
-                        contacto1=jsonr.nextInt();
-                        break;
-                    case "fecha_nacimiento":
-                        fechaNacimiento=jsonr.nextString();
-                        break;
-                    case "edad":
-                        edad=jsonr.nextInt();
-                        break;
-                    case "estado":
-                        estado=jsonr.nextString();
-                        break;
-                    case "datos_extra":
-                        datosExtra1=jsonr.nextString();
-                        break;
-                    case "imagen":
-                        foto1=jsonr.nextString();
-                        break;
-                    case "datos":
-                        leerDatosSecundarios(jsonr);
-                        break;
-                    default:
-                        jsonr.skipValue();
-                        break;
+                    case "password" -> modelo.setPassword(jsonr.nextString());
+                    case "codigo_emp" -> modelo.setCodigo(jsonr.nextInt());
+                    case "nombre_emp" -> modelo.setNombre(jsonr.nextString());
+                    case "apellidop_emp" -> modelo.setApellidoMaterno(jsonr.nextString());
+                    case "apellidom_emp" -> modelo.setApellidoMaterno(jsonr.nextString());
+                    case "curp" -> modelo.setCurp(jsonr.nextString());
+                    case "domicilio" -> modelo.setDomicilio(jsonr.nextString());
+                    case "puesto" -> modelo.setPuesto(jsonr.nextString());
+                    case "experiencia" -> modelo.setExperiencia(jsonr.nextInt());
+                    case "grado_estudios" -> modelo.setGradoEstudios(jsonr.nextString());
+                    case "contacto" -> modelo.setContacto(jsonr.nextInt());
+                    case "fecha_nacimiento" -> modelo.setFechaNacimiento(jsonr.nextString());
+                    case "edad" -> modelo.setEdad(jsonr.nextInt());
+                    case "estado" -> modelo.setEstado(jsonr.nextString());
+                    case "datos_extra" -> modelo.setDatosExtra(jsonr.nextString());
+                    case "imagen" -> modelo.setImagen(new FileInputStream(jsonr.nextString()));
+                    case "datos" -> leerDatosSecundarios(jsonr);
+                    default -> jsonr.skipValue();
                 }
             }
-            new datos().insertarDatosEmpleado(password,codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,curp,domicilio,puesto,experiencia,gradoEstudios,contacto1,fechaNacimiento,edad,estado,datosExtra1,new FileInputStream(foto1));
-            new datos().insertarDatosConteo(codigoEmpleado,nombreEmpleado,apellidoPaternoEmpleado,apellidoMaternoEmpleado,numeroVentas);
+            
+            lista.add(modelo);
+            
+            new datos().insertarDatosEmpleado(lista);
+            new datos().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
             jsonr.endObject();
             
             jsonr.close();
@@ -157,16 +114,6 @@ public class lectorJSON{
         }
     }
     
-    protected int codigoSocio;
-    
-    protected String nombreSocio;
-    protected String apellidoPaternoSocio;
-    protected String apellidoMaternoSocio;
-    protected String tipoSocio;
-    protected String correo;
-    protected String rfc;
-    protected String datosExtra2;
-    protected String foto2;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de socios, para volver a almacenar los datos en la base de datos.
      * 
@@ -175,42 +122,27 @@ public class lectorJSON{
     public void readDataPartnerJson(String dir){
         try{
             jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
+            List<mvcForm2> lista=new ArrayList<>();
+            mvcForm2 modelo=new mvcForm2();
+            
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
                 switch(name){
-                    case "codigo_part":
-                        codigoSocio=jsonr.nextInt();
-                        break;
-                    case "nombre_part":
-                        nombreSocio=jsonr.nextString();
-                        break;
-                    case "apellidop_part":
-                        apellidoPaternoSocio=jsonr.nextString();
-                        break;
-                    case "apellidom_part":
-                        apellidoMaternoSocio=jsonr.nextString();
-                        break;
-                    case "tipo_socio":
-                        tipoSocio=jsonr.nextString();
-                        break;
-                    case "correo":
-                        correo=jsonr.nextString();
-                        break;
-                    case "rfc":
-                        rfc=jsonr.nextString();
-                        break;
-                    case "datos_extra":
-                        datosExtra2=jsonr.nextString();
-                        break;
-                    case "imagen":
-                        foto2=jsonr.nextString();
-                        break;
-                    default:
-                        break;
+                    case "codigo_part" -> modelo.setCodigo(jsonr.nextInt());
+                    case "nombre_part" -> modelo.setNombre(jsonr.nextString());
+                    case "apellidop_part" -> modelo.setApellidoPaterno(jsonr.nextString());
+                    case "apellidom_part" -> modelo.setApellidoMaterno(jsonr.nextString());
+                    case "tipo_socio" -> modelo.setTipo(jsonr.nextString());
+                    case "correo" -> modelo.setCorreo(jsonr.nextString());
+                    case "rfc" -> modelo.setRfc(jsonr.nextString());
+                    case "datos_extra" -> modelo.setDatos(jsonr.nextString());
+                    case "imagen" -> modelo.setImagen(new FileInputStream(jsonr.nextString()));
+                    default -> jsonr.skipValue();
                 }
             }
-            new datos().insertarDatosSocio(codigoSocio,nombreSocio,apellidoPaternoSocio,apellidoMaternoSocio,tipoSocio,correo,rfc,datosExtra2,new FileInputStream(foto2));
+            lista.add(modelo);
+            new datos().insertarDatosSocio(lista);
             jsonr.endObject();
             
             jsonr.close();
@@ -248,29 +180,14 @@ public class lectorJSON{
             while(jsonr.hasNext()){
                 String name=jsonr.nextName();
                 switch(name){
-                    case "codigo_prov":
-                        codigoProveedor=jsonr.nextInt();
-                        break;
-                    case "nombre_prov":
-                        nombreProveedor=jsonr.nextString();
-                        break;
-                    case "apellidop_prov":
-                        apellidoPaternoProveedor=jsonr.nextString();
-                        break;
-                    case "apellidom_prov":
-                        apellidoMaternoProveedor=jsonr.nextString();
-                        break;
-                    case "empresa":
-                        empresa=jsonr.nextString();
-                        break;
-                    case "contacto":
-                        contacto2=jsonr.nextInt();
-                        break;
-                    case "imagen":
-                        foto3=jsonr.nextString();
-                        break;
-                    default:
-                        break;
+                    case "codigo_prov" -> codigoProveedor=jsonr.nextInt();
+                    case "nombre_prov" -> nombreProveedor=jsonr.nextString();
+                    case "apellidop_prov" -> apellidoPaternoProveedor=jsonr.nextString();
+                    case "apellidom_prov" -> apellidoMaternoProveedor=jsonr.nextString();
+                    case "empresa" -> empresa=jsonr.nextString();
+                    case "contacto" -> contacto2=jsonr.nextInt();
+                    case "imagen" -> foto3=jsonr.nextString();
+                    default -> jsonr.skipValue();
                 }
             }
             new datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto2,new FileInputStream(foto3));

@@ -1,16 +1,17 @@
 package venPrimarias;
 //clases
+import clases.placeHolder;
 import clases.datos;
 import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
+import clases.mvc.mvcForm1;
 import menus.menuDatosVentana1;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -28,6 +29,8 @@ import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
@@ -51,11 +54,10 @@ public class formulario1 extends javax.swing.JFrame{
     protected String direccion;
     
     protected void settings(){
-        txtNombre.setToolTipText("Primer y/o segundo nombre");
-        txtExp.setToolTipText("En años");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        placeHolders();
     }
     
     protected final void botones(){
@@ -126,29 +128,35 @@ public class formulario1 extends javax.swing.JFrame{
             picLabel.setIcon(null);
             picLabel.setText("Foto");
             jTextArea1.setText("");
+            placeHolders();
         });
         
         storeButton.addActionListener((a)->{
             try{
                 if(!txtPassword.getPassword().equals("")||!txtCodigo.getText().equals("")||!txtNombre.getText().equals("")||!txtAP.getText().equals("")||!txtAM.getText().equals("")||!txtDom.getText().equals("")||!txtExp.getText().equals("")||!txtEstudios.getText().equals("")||!txtContacto.getText().equals("")||!txtEdad.getText().equals("")||!jTextArea1.getText().equals("")){
-                    String password=String.valueOf(txtPassword.getPassword());
-                    int codigo_emp=Integer.parseInt(txtCodigo.getText());
-                    String nombre_emp=txtNombre.getText();
-                    String apellidop_emp=txtAP.getText();
-                    String apellidom_emp=txtAM.getText();
-                    String curp=txtCURP.getText();
-                    String domicilio=txtDom.getText();
-                    String puesto=jComboBox1.getSelectedItem().toString();
-                    int experiencia=Integer.parseInt(txtExp.getText());
-                    String grado_estudios=txtEstudios.getText();
-                    int contacto=Integer.parseInt(txtContacto.getText());
-                    String fechaNacimiento=new Date(jDateChooser1.getDate().getTime()).toString();
-                    int edad=Integer.parseInt(txtEdad.getText());
-                    String estado=jComboBox2.getSelectedItem().toString();
-                    String datos_extra=jTextArea1.getText();
-                    InputStream foto=new FileInputStream(direccion);
+                    List<mvcForm1> datos=new ArrayList<>();
+                    mvcForm1 modelo=new mvcForm1();
                     
-                    new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,curp,domicilio,puesto,experiencia,grado_estudios,contacto,fechaNacimiento,edad,estado,datos_extra,foto);
+                    modelo.setPassword(String.valueOf(txtPassword.getPassword()));
+                    modelo.setCodigo(Integer.parseInt(txtCodigo.getText()));
+                    modelo.setNombre(txtNombre.getText());
+                    modelo.setApellidoPaterno(txtAP.getText());
+                    modelo.setApellidoMaterno(txtAM.getText());
+                    modelo.setCurp(txtCURP.getText());
+                    modelo.setDomicilio(txtDom.getText());
+                    modelo.setPuesto(jComboBox1.getSelectedItem().toString());
+                    modelo.setExperiencia(Integer.parseInt(txtExp.getText()));
+                    modelo.setGradoEstudios(txtEstudios.getText());
+                    modelo.setContacto(Integer.parseInt(txtContacto.getText()));
+                    modelo.setFechaNacimiento(new Date(jDateChooser1.getDate().getTime()).toString());
+                    modelo.setEdad(Integer.parseInt(txtEdad.getText()));
+                    modelo.setEstado(jComboBox2.getSelectedItem().toString());
+                    modelo.setDatosExtra(jTextArea1.getText());
+                    modelo.setImagen(new FileInputStream(direccion));
+                    
+                    datos.add(modelo);
+                    
+                    new datos().insertarDatosEmpleado(datos);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'");
@@ -186,6 +194,11 @@ public class formulario1 extends javax.swing.JFrame{
                 }
             }
         });
+    }
+    
+    protected void placeHolders(){
+        new placeHolder(txtNombre,"Primer y/o segundo nombre").inicialize();
+        new placeHolder(txtExp,"En años").inicialize();
     }
     
     @SuppressWarnings("unchecked")

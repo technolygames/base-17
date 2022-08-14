@@ -4,7 +4,9 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 //librerías
-import net.proteanit.sql.DbUtils;
+import clases.dbUtils;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +27,6 @@ public class ltshProduct extends javax.swing.JFrame{
         botones();
         datosMostrar();
         
-        setSize(950,550);
         setLocationRelativeTo(null);
         setTitle("Ventas");
         pack();
@@ -45,16 +46,36 @@ public class ltshProduct extends javax.swing.JFrame{
         
         refreshButton.addActionListener((a)->{
             datosMostrar();
+            txtBuscar.setText("");
         });
         
         searchButton.addActionListener((a)->{
-            datosBuscar();
+            if(!txtBuscar.getText().equals("")){
+                datosBuscar();
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'botones(searchButton)'");
+            }
+        });
+        
+        txtBuscar.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    if(!txtBuscar.getText().equals("")){
+                        datosBuscar();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'botones(txtBuscar)'");
+                    }
+                }
+            }
         });
     }
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        sorter=new TableRowSorter<>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from productos;");
             rs=ps.executeQuery();
@@ -78,23 +99,20 @@ public class ltshProduct extends javax.swing.JFrame{
     
     protected final void datosBuscar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
                     ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    if(rs.next()){
+                    while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -104,16 +122,13 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where codigo_emp='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    if(rs.next()){
+                    while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -123,16 +138,13 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    if(rs.next()){
+                    while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -142,16 +154,13 @@ public class ltshProduct extends javax.swing.JFrame{
                     ps=new datos().getConnection().prepareStatement("select * from productos where marca='"+txtBuscar.getText()+"';");
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
-                    if(rs.next()){
+                    while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -225,7 +234,7 @@ public class ltshProduct extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 938, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(refreshButton)
@@ -251,7 +260,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)

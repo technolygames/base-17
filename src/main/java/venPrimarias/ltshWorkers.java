@@ -1,10 +1,10 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
-//librerías
-import net.proteanit.sql.DbUtils;
+import venTerciarias.dataWindow1;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -24,8 +26,8 @@ public class ltshWorkers extends javax.swing.JFrame{
         
         botones();
         datosMostrar();
+        settings();
         
-        setSize(1200,700);
         setLocationRelativeTo(null);
         setTitle("Empleados");
         pack();
@@ -37,6 +39,12 @@ public class ltshWorkers extends javax.swing.JFrame{
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
     
+    public static int code;
+    
+    protected void settings(){
+        mostrarBoton(false);
+    }
+    
     protected final void botones(){
         dtm=new DefaultTableModel();
         backButton.addActionListener((a)->{
@@ -44,18 +52,67 @@ public class ltshWorkers extends javax.swing.JFrame{
             dispose();
         });
         
+        jButton2.addActionListener((a)->{
+            code=Integer.parseInt(dtm.getValueAt(0,1).toString());
+            new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
+        });
+        
         refreshButton.addActionListener((a)->{
             datosMostrar();
+            mostrarBoton(false);
         });
         
         searchButton.addActionListener((a)->{
-            datosBuscar();
+            if(!txtBuscar.getText().equals("")){
+                datosBuscar();
+                mostrarBoton(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'botones(searchButton)'");
+            }
+        });
+        
+        txtBuscar.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    if(!txtBuscar.getText().equals("")){
+                        datosBuscar();
+                        mostrarBoton(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                        new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'botones(txtBuscar)'");
+                    }
+                }
+            }
         });
     }
     
+    protected void mostrarBoton(boolean flag){
+        if(flag==true){
+            jButton2.setVisible(true);
+        }if(flag==false){
+            jButton2.setVisible(false);
+            txtBuscar.setText("");
+        }
+    }
+    
     protected final void datosMostrar(){
-        dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
+        
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
+        
+        sorter=new TableRowSorter<>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from empleados;");
             rs=ps.executeQuery();
@@ -86,8 +143,21 @@ public class ltshWorkers extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
+        
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
+        
+        sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
@@ -98,12 +168,12 @@ public class ltshWorkers extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -117,12 +187,12 @@ public class ltshWorkers extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -136,12 +206,12 @@ public class ltshWorkers extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido paterno especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -155,12 +225,12 @@ public class ltshWorkers extends javax.swing.JFrame{
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido materno especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -199,6 +269,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -224,8 +295,10 @@ public class ltshWorkers extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setEnabled(false);
+        jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
+
+        jButton2.setText("Ver datos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +307,7 @@ public class ltshWorkers extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -244,6 +317,8 @@ public class ltshWorkers extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
@@ -259,11 +334,12 @@ public class ltshWorkers extends javax.swing.JFrame{
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
-                    .addComponent(refreshButton))
+                    .addComponent(refreshButton)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -277,6 +353,7 @@ public class ltshWorkers extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

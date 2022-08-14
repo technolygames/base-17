@@ -1,5 +1,7 @@
 package clases;
 //clases
+import clases.mvc.mvcForm1;
+import clases.mvc.mvcForm2;
 import venPrimarias.start;
 //java
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.List;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
@@ -151,47 +154,33 @@ public class datos{
     /**
      * Guarda los datos de la ventana de empleados en la base de datos.
      * 
-     * @param password Contraseña asiganada para que el empleado pueda acceder al programa.
-     * @param codigoEmpleado Código de identificación del empleado.
-     * @param nombreEmpleado Nombre(s) del empleado.
-     * @param apellidoPaternoEmpleado Apellido paterno del empleado.
-     * @param apellidoMaternoEmpleado Apellido materno del empleado.
-     * @param curp Clave única de registro de población del empleado.
-     * @param domicilio Domicilio del empleado.
-     * @param puesto Puesto del empleado.
-     * @param experiencia Experiencia (en años) del empleado; en caso de no tener, escribir "Nulo".
-     * @param gradoEstudios Grado actual de estudios del empleado.
-     * @param contacto Número telefónico del empleado.
-     * @param fechaNacimiento Fecha de nacimiento del empleado.
-     * @param edad Edad actual del empleado; en caso de cumplir años, este deberá de ser actualizado.
-     * @param estado Estado actual en el negocio.
-     * @param datosExtra Datos extras que el CV del empleado se quieran agregar.
-     * @param foto Foto del empleado.
+     * @param datos que serán almacenados del empleado en la base de datos.
      */
-    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String curp,String domicilio,String puesto,int experiencia,String gradoEstudios,int contacto,String fechaNacimiento,int edad,String estado,String datosExtra,InputStream foto){
+    public void insertarDatosEmpleado(List<mvcForm1> datos){
         try{
             ps=getConnection().prepareStatement("insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,curp,domicilio,puesto,experiencia,grado_estudios,contacto,fecha_nacimiento,edad,estado,datos_extra,foto,fecha_registro,fecha_sesion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
-            ps.setString(1,password);
-            ps.setInt(2,codigoEmpleado);
-            ps.setString(3,nombreEmpleado);
-            ps.setString(4,apellidoPaternoEmpleado);
-            ps.setString(5,apellidoMaternoEmpleado);
-            ps.setString(6,curp);
-            ps.setString(7,domicilio);
-            ps.setString(8,puesto);
-            ps.setInt(9,experiencia);
-            ps.setString(10,gradoEstudios);
-            ps.setInt(11,contacto);
-            ps.setString(12,fechaNacimiento);
-            ps.setInt(13,edad);
-            ps.setString(14,estado);
-            ps.setString(15,datosExtra);
-            ps.setBlob(16,foto);
+            ps.setString(1,datos.get(0).getPassword());
+            ps.setInt(2,datos.get(0).getCodigo());
+            ps.setString(3,datos.get(0).getNombre());
+            ps.setString(4,datos.get(0).getApellidoPaterno());
+            ps.setString(5,datos.get(0).getApellidoMaterno());
+            ps.setString(6,datos.get(0).getCurp());
+            ps.setString(7,datos.get(0).getDomicilio());
+            ps.setString(8,datos.get(0).getPuesto());
+            ps.setInt(9,datos.get(0).getExperiencia());
+            ps.setString(10,datos.get(0).getGradoEstudios());
+            ps.setInt(11,datos.get(0).getContacto());
+            ps.setString(12,datos.get(0).getFechaNacimiento());
+            ps.setInt(13,datos.get(0).getEdad());
+            ps.setString(14,datos.get(0).getEstado());
+            ps.setString(15,datos.get(0).getDatosExtra());
+            ps.setBlob(16,datos.get(0).getImagen());
             ps.execute();
             
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
+            datos.clear();
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
@@ -203,33 +192,26 @@ public class datos{
     /**
      * Guarda los datos de la ventana de socios en la base de datos.
      * 
-     * @param codigoSocio Código de identificación del socio.
-     * @param nombreSocio Nombre(s) del socio.
-     * @param apellidoPaternoSocio Apellido paterno del socio.
-     * @param apellidoMaternoSocio Apellido materno del socio.
-     * @param tipoSocio Tipo de afiliación.
-     * @param correo Correo de contacto del empleado.
-     * @param rfc RFC para tramitar factura.
-     * @param datosExtra Datos extra que se quieran agregar como descripción del socio.
-     * @param foto Foto del socio para identificarlo.
+     * @param datos que serán almacenados del socio en la base de datos.
      */
-    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidoPaternoSocio,String apellidoMaternoSocio,String tipoSocio,String correo,String rfc,String datosExtra,InputStream foto){
+    public void insertarDatosSocio(List<mvcForm2> datos){
         try{
             ps=getConnection().prepareStatement("insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,correo,rfc,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,?,?,now(),now());");
-            ps.setInt(1,codigoSocio);
-            ps.setString(2,nombreSocio);
-            ps.setString(3,apellidoPaternoSocio);
-            ps.setString(4,apellidoMaternoSocio);
-            ps.setString(5,tipoSocio);
-            ps.setString(6,correo);
-            ps.setString(7,rfc);
-            ps.setString(8,datosExtra);
-            ps.setBinaryStream(9,foto);
+            ps.setInt(1,datos.get(0).getCodigo());
+            ps.setString(2,datos.get(0).getNombre());
+            ps.setString(3,datos.get(0).getApellidoPaterno());
+            ps.setString(4,datos.get(0).getApellidoMaterno());
+            ps.setString(5,datos.get(0).getTipo());
+            ps.setString(6,datos.get(0).getCorreo());
+            ps.setString(7,datos.get(0).getRfc());
+            ps.setString(8,datos.get(0).getDatos());
+            ps.setBinaryStream(9,datos.get(0).getImagen());
             ps.execute();
             
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
+            datos.clear();
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);

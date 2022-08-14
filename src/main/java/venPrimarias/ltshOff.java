@@ -23,7 +23,6 @@ public class ltshOff extends javax.swing.JFrame{
         botones();
         datosMostrar();
         
-        setSize(1100,600);
         setLocationRelativeTo(null);
         setTitle("Descuentos");
         pack();
@@ -48,7 +47,7 @@ public class ltshOff extends javax.swing.JFrame{
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
-        sorter=new TableRowSorter<TableModel>(dtm);
+        sorter=new TableRowSorter<>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
@@ -65,8 +64,8 @@ public class ltshOff extends javax.swing.JFrame{
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosMostrar-16",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'datosMostrar()'");
+            new logger(Level.SEVERE).exceptionLogger(ltshOff.class.getName(),"datosMostrar-16",e.fillInStackTrace());
         }
     }
     
@@ -111,7 +110,7 @@ public class ltshOff extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -127,7 +126,7 @@ public class ltshOff extends javax.swing.JFrame{
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
