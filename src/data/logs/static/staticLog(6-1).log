@@ -1522,3 +1522,7 @@ nov. 22, 2021 6:04:33 P. M. clases.logger logStaticSaver
 WARNING: Error 18: no se escribió usuario y/o contraseña en 'venTerciarias.valVentanas.validacionVentana1.botones(valButton)'
 nov. 22, 2021 6:04:33 P. M. clases.logger logStaticSaver
 WARNING: Error 18: no se escribió usuario y/o contraseña en 'venTerciarias.valVentanas.validacionVentana1.botones(valButton)'
+dic. 07, 2021 2:13:21 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed en 'run()'
+dic. 07, 2021 2:15:03 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed en 'run()'

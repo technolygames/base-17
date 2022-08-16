@@ -191,15 +191,14 @@ public final class proper1 extends javax.swing.JFrame{
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
                 
-                int ñ=jfc.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION==ñ){
+                int n=jfc.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION==n){
                     try{
                         f=jfc.getSelectedFile();
                         icono=f.getPath();
                         nombreArchivo2=f.getName();
                         
                         p.setProperty("lastdirectory_icon",f.getParent());
-                        p.setProperty("filter_icon",String.valueOf(jfc.getFileFilter()));
                         p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
@@ -215,10 +214,10 @@ public final class proper1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
                 new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-1IO",x.fillInStackTrace());
-            }catch(IOException ñ){
-                JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 2IO: "+ñ.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
-                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-2IO",ñ.fillInStackTrace());
+            }catch(IOException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+n.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-2IO",n.fillInStackTrace());
             }
         });
         

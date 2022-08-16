@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import venSecundarias.modDatosVentana1;
 
 public class modDatosPanel1 extends javax.swing.JPanel{
     public modDatosPanel1(){
@@ -22,27 +21,27 @@ public class modDatosPanel1 extends javax.swing.JPanel{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+k.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-28",k.fillInStackTrace());
         }catch(FileNotFoundException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-1IO",y.fillInStackTrace());
         }catch(IOException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-1IO",s.fillInStackTrace());
         }
         
@@ -50,25 +49,38 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        
+        closeButton.addActionListener((a)->{
+            setVisible(false);
+        });
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        closeButton = new javax.swing.JButton();
+
+        closeButton.setText("Cerrar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(closeButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(272, Short.MAX_VALUE)
+                .addComponent(closeButton)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     // End of variables declaration//GEN-END:variables
 }

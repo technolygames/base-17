@@ -1,20 +1,30 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
 import clases.logger;
 import menus.menuDatosVentana3;
-
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.logging.Level;
+import javax.swing.Icon;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+//con extensión larga
+import java.util.logging.Level;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class formulario3 extends javax.swing.JFrame{
     public formulario3(){
@@ -26,28 +36,32 @@ public class formulario3 extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'formulario3()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'formulario3()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-IAE",ñ.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
+            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'formulario3()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-28",y.fillInStackTrace());
-        }catch(FileNotFoundException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-1IO",k.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'formulario3()'",Level.WARNING);
-            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-2IO",s.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
+            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
+            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'formulario3()'",Level.WARNING);
+            new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"formulario3-2IO",d.fillInStackTrace());
         }
         
         botones();
@@ -59,6 +73,9 @@ public class formulario3 extends javax.swing.JFrame{
     
     protected Image retValue;
     protected Properties p;
+    protected JFileChooser jfc;
+    
+    protected String direccion;
     
     @Override
     public Image getIconImage(){
@@ -69,11 +86,11 @@ public class formulario3 extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"geticonImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
@@ -85,24 +102,68 @@ public class formulario3 extends javax.swing.JFrame{
             dispose();
         });
         
-        cleanButton.addActionListener((ae)->{
+        jMenuItem1.addActionListener((ae)->{
+            new menuDatosVentana3().setVisible(true);
+        });
+        
+        miInsImage.addActionListener((ae)->{
+            try{
+                p=new Properties();
+                p.load(new FileInputStream("src/data/config/filechooserd.properties"));
+                jfc=new JFileChooser(p.getProperty("lastdirectory_form3"));
+                
+                File f=jfc.getCurrentDirectory();
+                
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
+                
+                jfc.setCurrentDirectory(f);
+                
+                int n=jfc.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION==n){
+                    try{
+                        f=jfc.getSelectedFile();
+                        direccion=f.getPath();
+                        
+                        ImageIcon ii=new ImageIcon(f.toString());
+                        Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
+                        picLabel.setText(null);
+                        picLabel.setIcon(i);
+                        
+                        p.setProperty("lastdirectory_form3",f.getParent());
+                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                        new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.miInsImage-24",e.fillInStackTrace());
+                    }
+                }
+            }catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.miInsImage-40",e.fillInStackTrace());
+            }catch(FileNotFoundException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.miInsImage-1IO",x.fillInStackTrace());
+            }catch(IOException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.miInsImage-2IO",n.fillInStackTrace());
+            }
+        });
+        
+        miWebcam.addActionListener((ae)->{
+            
+        });
+        
+        miClearFields.addActionListener((ae)->{
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
             jTextField5.setText("");
-        });
-        
-        jMenuItem1.addActionListener((ae)->{
-            new menuDatosVentana3(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
-        jMenuItem2.addActionListener((ae)->{
-            
-        });
-        
-        jMenuItem3.addActionListener((ae)->{
-            
         });
         
         svdtButton.addActionListener((ae)->{
@@ -132,14 +193,14 @@ public class formulario3 extends javax.swing.JFrame{
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         svdtButton = new javax.swing.JButton();
-        cleanButton = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        miInsImage = new javax.swing.JMenuItem();
+        miWebcam = new javax.swing.JMenuItem();
+        miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
@@ -148,7 +209,7 @@ public class formulario3 extends javax.swing.JFrame{
 
         jLabel1.setText("Código del proveedor:");
 
-        jLabel2.setText("Nombre(s) del proveedor:");
+        jLabel2.setText("Nombre(s):");
 
         jLabel3.setText("Apellido paterno:");
 
@@ -157,8 +218,6 @@ public class formulario3 extends javax.swing.JFrame{
         jLabel5.setText("Empresa:");
 
         svdtButton.setText("Guardar datos");
-
-        cleanButton.setText("Limpiar campos");
 
         picLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         picLabel.setText("Foto");
@@ -173,11 +232,14 @@ public class formulario3 extends javax.swing.JFrame{
 
         jMenu2.setText("Opciones");
 
-        jMenuItem2.setText("Insertar imagen");
-        jMenu2.add(jMenuItem2);
+        miInsImage.setText("Insertar imagen");
+        jMenu2.add(miInsImage);
 
-        jMenuItem3.setText("Webcam");
-        jMenu2.add(jMenuItem3);
+        miWebcam.setText("Webcam");
+        jMenu2.add(miWebcam);
+
+        miClearFields.setText("Limpiar campos");
+        jMenu2.add(miClearFields);
 
         jMenuBar1.add(jMenu2);
 
@@ -209,13 +271,11 @@ public class formulario3 extends javax.swing.JFrame{
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(svdtButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cleanButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)
                         .addGap(10, 10, 10))))
@@ -234,11 +294,11 @@ public class formulario3 extends javax.swing.JFrame{
                             .addComponent(jLabel2)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -246,11 +306,10 @@ public class formulario3 extends javax.swing.JFrame{
                             .addComponent(jLabel5)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
-                    .addComponent(svdtButton)
-                    .addComponent(cleanButton))
+                    .addComponent(svdtButton))
                 .addContainerGap())
         );
 
@@ -263,7 +322,6 @@ public class formulario3 extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton cleanButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -273,13 +331,14 @@ public class formulario3 extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JMenuItem miClearFields;
+    private javax.swing.JMenuItem miInsImage;
+    private javax.swing.JMenuItem miWebcam;
     public static javax.swing.JLabel picLabel;
     private javax.swing.JButton svdtButton;
     // End of variables declaration//GEN-END:variables

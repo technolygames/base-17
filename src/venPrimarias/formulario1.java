@@ -1,16 +1,21 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
 import clases.logger;
-import venSecundarias.webcam;
 import menus.menuDatosVentana1;
-
+//genéricos
+import com.placeholder.PlaceHolder;
+import java.awt.HeadlessException;
+//java
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Properties;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,11 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import com.placeholder.PlaceHolder;
-import java.io.InputStream;
+//con extensión larga
 import java.util.logging.Level;
-
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class formulario1 extends javax.swing.JFrame{
@@ -36,41 +38,40 @@ public final class formulario1 extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
             new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
             new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'formulario1()'",Level.WARNING);
-            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-IAE",ñ.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
             new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-28",y.fillInStackTrace());
-        }catch(FileNotFoundException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'formulario1()'",Level.WARNING);
-            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-1IO",k.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'formulario1()'",Level.WARNING);
-            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-2IO",s.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-2IO",d.fillInStackTrace());
         }
         
         botones();
-        propiedadesVentana();
+        settings();
         
         setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Formulario 1");
-        
-        picLabel.setVisible(true);
-        insimgButton.setVisible(true);
-        
-        new PlaceHolder(txtNombre,"Primer y/o segundo nombre").inicializar();
     }
     
     protected datos cn;
@@ -82,8 +83,6 @@ public final class formulario1 extends javax.swing.JFrame{
     
     protected String direccion;
     
-    protected int ftr;
-    
     @Override
     public Image getIconImage(){
         p=new Properties();
@@ -93,14 +92,22 @@ public final class formulario1 extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected void settings(){
+        picLabel.setVisible(true);
+        insimgButton.setVisible(true);
+        
+        new PlaceHolder(txtNombre,"Primer y/o segundo nombre").inicializar();
+        txtNombre.setToolTipText("Primer y/o segundo nombre");
     }
     
     protected final void botones(){
@@ -123,68 +130,93 @@ public final class formulario1 extends javax.swing.JFrame{
         });
         
         insimgButton.addActionListener((ae)->{
-            jfc=new JFileChooser();
-            
-            FileNameExtensionFilter fnef=new FileNameExtensionFilter("Archivos JPG","jpg");
-            FileNameExtensionFilter fnef2=new FileNameExtensionFilter("Archivos JPEG","jpeg");
-            FileNameExtensionFilter fnef3=new FileNameExtensionFilter("Archivos PNG","png");
-            
-            jfc.setFileFilter(fnef);
-            jfc.setFileFilter(fnef2);
-            jfc.setFileFilter(fnef3);
-            
-            jfc.setCurrentDirectory(f);
-            
-            ftr=jfc.showOpenDialog(null);
-            if(JFileChooser.APPROVE_OPTION==ftr){
-                f=jfc.getSelectedFile();
-                direccion=f.getPath();
+            try{
+                p=new Properties();
+                p.load(new FileInputStream("src/data/config/filechooserd.properties"));
+                jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
                 
-                ImageIcon ii=new ImageIcon(f.toString());
-                Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-                picLabel.setText(null);
-                picLabel.setIcon(i);
+                File f=jfc.getCurrentDirectory();
+                
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
+                
+                jfc.setCurrentDirectory(f);
+                
+                int n=jfc.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION==n){
+                    try{
+                        f=jfc.getSelectedFile();
+                        direccion=f.getPath();
+                        
+                        ImageIcon ii=new ImageIcon(f.toString());
+                        Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
+                        picLabel.setText(null);
+                        picLabel.setIcon(i);
+                        
+                        p.setProperty("lastdirectory_form1",f.getParent());
+                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'",Level.WARNING);
+                        new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.insimg-24",e.fillInStackTrace());
+                    }
+                }
+            }catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.insimg-40",e.fillInStackTrace());
+            }catch(FileNotFoundException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.insimg-1IO",x.fillInStackTrace());
+            }catch(IOException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.insimg-2IO",n.fillInStackTrace());
             }
         });
         
-        svdtButton.addActionListener((ae)->{
-            try{
-                String password=String.valueOf(txtContraseña.getPassword());
-                int codigo_emp=Integer.parseInt(txtCodigo.getText());
-                String nombre_emp=txtNombre.getText();
-                String apellidop_emp=txtAP.getText();
-                String apellidom_emp=txtAM.getText();
-                String puesto=jComboBox1.getSelectedItem().toString();
-                String experiencia=txtExp.getText();
-                String grado_estudios=txtEstudios.getText();
-                int edad=Integer.parseInt(txtEdad.getText());
-                String datos_extra=jTextArea1.getText();
-                InputStream is=new FileInputStream(direccion);
-                
-                new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,is);
-            }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 18: "+e.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-18",e.fillInStackTrace());
-            }catch(ArrayIndexOutOfBoundsException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error AIOOBE: "+x.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-AIOOBE",x.fillInStackTrace());
-            }catch(NullPointerException ñ){
-                JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 0: "+ñ.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-0",ñ.fillInStackTrace());
-            }catch(FileNotFoundException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'botones(svdt)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-1IO",k.fillInStackTrace());
-            }
-        });
-    }
-    
-    protected final void propiedadesVentana(){
         jMenuItem1.addActionListener((ae)->{
             new menuDatosVentana1().setVisible(true);
+        });
+        
+        storeButton.addActionListener((ae)->{
+            try{
+                if(txtContraseña.getPassword().equals("")&&txtCodigo.getText().equals("")&&txtNombre.getText().equals("")&&txtAP.getText().equals("")&&txtAM.getText().equals("")&&txtExp.getText().equals("")&&txtEstudios.getText().equals("")&&txtEdad.getText().equals("")&&jTextArea1.getText().equals("")){
+                    String password=String.valueOf(txtContraseña.getPassword());
+                    int codigo_emp=Integer.parseInt(txtCodigo.getText());
+                    String nombre_emp=txtNombre.getText();
+                    String apellidop_emp=txtAP.getText();
+                    String apellidom_emp=txtAM.getText();
+                    String puesto=jComboBox1.getSelectedItem().toString();
+                    String experiencia=txtExp.getText();
+                    String grado_estudios=txtEstudios.getText();
+                    int edad=Integer.parseInt(txtEdad.getText());
+                    String datos_extra=jTextArea1.getText();
+                    InputStream is=new FileInputStream(direccion);
+                    
+                    new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,is);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Prueba","Prueba",JOptionPane.WARNING_MESSAGE);
+                }
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-18",e.fillInStackTrace());
+            }catch(ArrayIndexOutOfBoundsException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error AIOOBE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-AIOOBE",x.fillInStackTrace());
+            }catch(NullPointerException ñ){
+                JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 0: "+ñ.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-0",ñ.fillInStackTrace());
+            }catch(FileNotFoundException k){
+                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+k.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-1IO",k.fillInStackTrace());
+            }
         });
     }
     
@@ -194,7 +226,7 @@ public final class formulario1 extends javax.swing.JFrame{
 
         jPanelWebCam1 = new JPanelWebCam.JPanelWebCam();
         backButton = new javax.swing.JButton();
-        svdtButton = new javax.swing.JButton();
+        storeButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtAP = new javax.swing.JTextField();
@@ -217,9 +249,12 @@ public final class formulario1 extends javax.swing.JFrame{
         jLabel9 = new javax.swing.JLabel();
         txtContraseña = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -240,9 +275,9 @@ public final class formulario1 extends javax.swing.JFrame{
 
         backButton.setText("Regresar");
 
-        svdtButton.setText("Guardar datos");
+        storeButton.setText("Guardar datos");
 
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("Nombre(s):");
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -312,11 +347,15 @@ public final class formulario1 extends javax.swing.JFrame{
 
         jLabel10.setText("Datos extra:");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+
+        jButton1.setText("Webcam");
+
+        jLabel11.setText("Contacto:");
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+        jScrollPane2.setViewportView(jTextArea1);
 
         jMenu1.setText("Datos");
 
@@ -332,52 +371,53 @@ public final class formulario1 extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtEstatus)
-                        .addGap(129, 129, 129))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(57, 57, 57)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel10)
                             .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(insimgButton)
-                                    .addComponent(cleanButton)))
-                            .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(svdtButton)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtEdad, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEstudios, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtExp, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE)
+                                .addComponent(txtAM, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtAP, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cleanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(insimgButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtEstatus)
+                                .addGap(129, 129, 129))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(storeButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backButton)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -391,52 +431,59 @@ public final class formulario1 extends javax.swing.JFrame{
                             .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtCodigo))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(storeButton)
+                            .addComponent(backButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtEstatus))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(insimgButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cleanButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(svdtButton)
-                    .addComponent(backButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEstatus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -499,9 +546,11 @@ public final class formulario1 extends javax.swing.JFrame{
     private javax.swing.JButton backButton;
     private javax.swing.JButton cleanButton;
     private javax.swing.JButton insimgButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -514,10 +563,11 @@ public final class formulario1 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private JPanelWebCam.JPanelWebCam jPanelWebCam1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     public static javax.swing.JLabel picLabel;
-    private javax.swing.JButton svdtButton;
+    private javax.swing.JButton storeButton;
     private javax.swing.JTextField txtAM;
     private javax.swing.JTextField txtAP;
     private javax.swing.JTextField txtCodigo;

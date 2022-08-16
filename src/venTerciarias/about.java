@@ -1,15 +1,21 @@
 package venTerciarias;
 
+import clases.datos;
 import clases.logger;
 import java.awt.Image;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.awt.Desktop;
+import java.io.BufferedWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import javax.swing.UIManager;
@@ -53,6 +59,7 @@ public final class about extends javax.swing.JDialog{
         }
         
         etiquetas();
+        dueño();
         
         setLocationRelativeTo(null);
         setTitle("Acerca del programa");
@@ -81,7 +88,32 @@ public final class about extends javax.swing.JDialog{
     }
     
     protected void dueño(){
-        
+        p=new Properties();
+        try{
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where puesto='dueño' or puesto='programador';");
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                p.setProperty("prop",rs.getString("nombre_emp")+" "+rs.getString("apellidop_emp")+" "+rs.getString("apellidom_emp"));
+            }
+            //esta madre sirve para guardar datos en un archivo
+            p.setProperty("version","1.2.2.100");
+            p.setProperty("estable","1.0.0.0");
+            p.setProperty("inicio","27/09/2019");
+            p.setProperty("fin","unknown");
+            p.setProperty("dev","TechnolyGames");
+            p.setProperty("pub","TechnolyGames");
+            p.setProperty("fpub","unknown");
+            p.setProperty("jdk","16.0.1");
+            p.setProperty("jre","16.0.1");
+            p.setProperty("devon","Java y MySQL");
+            p.setProperty("website","https://technolygames.blogspot.mx/");
+            
+            p.store(new BufferedWriter(new FileWriter("src/data/config/acerca.properties")),"about");
+        }catch(SQLException e){
+            System.out.println(e);
+        }catch(IOException x){
+            System.out.println(x);
+        }
     }
     
     protected void etiquetas(){

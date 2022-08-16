@@ -69,6 +69,11 @@ public class datos{
         return cn;
     }
     
+    /**
+     * Método para hacer queries aleatorios
+     * 
+     * @param query La sentencia o petición a realizar
+     */
     public void miscQueries(String query){
         String mainQuery=query;
         try{

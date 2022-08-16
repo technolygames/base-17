@@ -15,8 +15,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
-import venPrimarias.ventana2;
-import venSecundarias.modDatosVentana1;
 
 public class menuDatosVentana1 extends javax.swing.JFrame{
     public menuDatosVentana1(){
@@ -88,14 +86,14 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         miDelData.addActionListener((e)->{
             delDatosPanel1 ddp1=new delDatosPanel1();
             ddp1.setVisible(true);
-            menuDatosVentana1.this.setLayout(new BorderLayout());
+            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana1.this.getContentPane().add(ddp1,BorderLayout.CENTER);
         });
         
         miModData.addActionListener((e)->{
             modDatosPanel1 mdp1=new modDatosPanel1();
             mdp1.setVisible(true);
-            menuDatosVentana1.this.setLayout(new BorderLayout());
+            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana1.this.getContentPane().add(mdp1,BorderLayout.CENTER);
         });
     }
@@ -115,7 +113,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
 
         backButton.setText("Regresar");
 
-        jMenu1.setText("Opciones");
+        jMenu1.setText("Ventana");
 
         miDelData.setText("Eliminar datos");
         jMenu1.add(miDelData);

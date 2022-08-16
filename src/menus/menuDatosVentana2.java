@@ -1,6 +1,7 @@
 package menus;
 
 import clases.logger;
+import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
@@ -12,12 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import venSecundarias.delDatosVentana2;
-import venSecundarias.modDatosVentana2;
+import paneles.delDatosPanel2;
 
-public class menuDatosVentana2 extends javax.swing.JDialog{
-    public menuDatosVentana2(java.awt.Frame parent,boolean modal){
-        super(parent,modal);
+public class menuDatosVentana2 extends javax.swing.JFrame{
+    public menuDatosVentana2(){
         initComponents();
         try{
             Properties style=new Properties();
@@ -52,6 +51,7 @@ public class menuDatosVentana2 extends javax.swing.JDialog{
         
         botones();
         
+        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
     }
@@ -83,12 +83,11 @@ public class menuDatosVentana2 extends javax.swing.JDialog{
             dispose();
         });
         
-        delDataButton.addActionListener((ae)->{
-            new delDatosVentana2(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
-        modDataButton.addActionListener((ae)->{
-            new modDatosVentana2(new javax.swing.JFrame(),true).setVisible(true);
+        miDelData.addActionListener((a)->{
+           delDatosPanel2 ddp2=new delDatosPanel2(); 
+           ddp2.setVisible(true);
+           menuDatosVentana2.this.setLayout(new BorderLayout());
+           menuDatosVentana2.this.getContentPane().add(ddp2,BorderLayout.CENTER);
         });
     }
     
@@ -97,43 +96,41 @@ public class menuDatosVentana2 extends javax.swing.JDialog{
     private void initComponents() {
 
         backButton = new javax.swing.JButton();
-        modDataButton = new javax.swing.JButton();
-        delDataButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miDelData = new javax.swing.JMenuItem();
+        miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
 
         backButton.setText("Regresar");
 
-        modDataButton.setText("Modificar Datos");
+        jMenu1.setText("Ventana");
 
-        delDataButton.setText("Eliminar Datos");
+        miDelData.setText("Eliminar datos");
+        jMenu1.add(miDelData);
+
+        miModData.setText("Cambiar datos");
+        jMenu1.add(miModData);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 103, Short.MAX_VALUE)
-                        .addComponent(backButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modDataButton)
-                            .addComponent(delDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(349, Short.MAX_VALUE)
+                .addComponent(backButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(modDataButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(delDataButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addContainerGap(269, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -142,12 +139,14 @@ public class menuDatosVentana2 extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new menuDatosVentana2(new javax.swing.JFrame(),true).setVisible(true);
+        new menuDatosVentana2().setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton delDataButton;
-    private javax.swing.JButton modDataButton;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem miDelData;
+    private javax.swing.JMenuItem miModData;
     // End of variables declaration//GEN-END:variables
 }

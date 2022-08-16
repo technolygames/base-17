@@ -1,20 +1,28 @@
 package venPrimarias;
-
+//clases
 import clases.datos;
 import clases.logger;
-
+import java.awt.HeadlessException;
+import menus.menuDatosVentana2;
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.Properties;
 import java.util.logging.Level;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-import menus.menuDatosVentana2;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
@@ -26,28 +34,32 @@ public class formulario2 extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'formulario2()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
             new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'formulario2()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
             new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'formulario2()'",Level.WARNING);
-            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-IAE",ñ.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
+            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'formulario2()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
             new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-28",y.fillInStackTrace());
-        }catch(FileNotFoundException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'formulario2()'",Level.WARNING);
-            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-28",k.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'formulario2()'",Level.WARNING);
-            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-2IO",s.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
+            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
+            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'formulario2()'",Level.WARNING);
+            new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"formulario2-2IO",d.fillInStackTrace());
         }
          
         botones();
@@ -59,6 +71,9 @@ public class formulario2 extends javax.swing.JFrame{
     
     protected Image retValue;
     protected Properties p;
+    protected JFileChooser jfc;
+    
+    protected String direccion;
     
     public Image getImageIcon(){
         p=new Properties();
@@ -68,14 +83,18 @@ public class formulario2 extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected void settings(){
+        
     }
     
     protected final void botones(){
@@ -84,31 +103,80 @@ public class formulario2 extends javax.swing.JFrame{
             dispose();
         });
         
-        cleanButton.addActionListener((ae)->{
+        jMenuItem1.addActionListener((ae)->{
+            new menuDatosVentana2().setVisible(true);
+        });
+        
+        miClearFields.addActionListener((a)->{
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
             jTextArea1.setText("");
         });
         
-        jMenuItem1.addActionListener((ae)->{
-            new menuDatosVentana2(new javax.swing.JFrame(),true).setVisible(true);
+        miInsImage.addActionListener((a)->{
+            try{
+                p=new Properties();
+                p.load(new FileInputStream("src/data/config/filechooserd.properties"));
+                jfc=new JFileChooser(p.getProperty("lastdirectory_form2"));
+                
+                File f=jfc.getCurrentDirectory();
+                
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
+                
+                jfc.setCurrentDirectory(f);
+                
+                int n=jfc.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION==n){
+                    try{
+                        f=jfc.getSelectedFile();
+                        direccion=f.getPath();
+                        
+                        ImageIcon ii=new ImageIcon(f.toString());
+                        Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
+                        picLabel.setText(null);
+                        picLabel.setIcon(i);
+                        
+                        p.setProperty("lastdirectory_form2",f.getParent());
+                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                        new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-24",e.fillInStackTrace());
+                    }
+                }
+            }catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-40",e.fillInStackTrace());
+            }catch(FileNotFoundException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-1IO",x.fillInStackTrace());
+            }catch(IOException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-2IO",n.fillInStackTrace());
+            }
         });
         
         storeButton.addActionListener((ae)->{
-           int codigo=Integer.parseInt(jTextField1.getText());
-           String nombre=jTextField2.getText();
-           String apellidop=jTextField3.getText();
-           String apellidom=jTextField4.getText();
-           String tipo=jComboBox1.getSelectedItem().toString();
-           String datos=jTextArea1.getText();
-           
-           new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos);
+            if(!jTextField1.getText().equals("")&&jTextField2.getText().equals("")&&jTextField3.getText().equals("")&&jTextField4.getText().equals("")&&jTextArea1.getText().equals("")){
+                int codigo=Integer.parseInt(jTextField1.getText());
+                String nombre=jTextField2.getText();
+                String apellidop=jTextField3.getText();
+                String apellidom=jTextField4.getText();
+                String tipo=jComboBox1.getSelectedItem().toString();
+                String datos=jTextArea1.getText();
+                
+                new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos);
+            }else{
+                JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+            }
         });
-    }
-    
-    protected final void propiedadesVentana(){
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -129,15 +197,16 @@ public class formulario2 extends javax.swing.JFrame{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
-        insert2Button = new javax.swing.JButton();
-        insertButton = new javax.swing.JButton();
-        cleanButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         picLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        miInsImage = new javax.swing.JMenuItem();
+        miWebcam = new javax.swing.JMenuItem();
+        miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getImageIcon());
@@ -146,7 +215,7 @@ public class formulario2 extends javax.swing.JFrame{
 
         jLabel1.setText("Código del socio:");
 
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("Nombre(s):");
 
         jLabel3.setText("Apellido paterno:");
 
@@ -162,12 +231,6 @@ public class formulario2 extends javax.swing.JFrame{
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        insert2Button.setText("Webcam");
-
-        insertButton.setText("Insertar imagen");
-
-        cleanButton.setText("Limpiar campos");
-
         jLabel7.setText("Apellido materno:");
 
         picLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -181,6 +244,19 @@ public class formulario2 extends javax.swing.JFrame{
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Opciones");
+
+        miInsImage.setText("Insertar imagen");
+        jMenu2.add(miInsImage);
+
+        miWebcam.setText("Webcam");
+        jMenu2.add(miWebcam);
+
+        miClearFields.setText("Limpiar campos");
+        jMenu2.add(miClearFields);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,13 +269,7 @@ public class formulario2 extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(storeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(backButton))
-                            .addComponent(insertButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cleanButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(insert2Button, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -210,18 +280,14 @@ public class formulario2 extends javax.swing.JFrame{
                             .addComponent(jLabel7))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                                .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -246,25 +312,15 @@ public class formulario2 extends javax.swing.JFrame{
                             .addComponent(jLabel7)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(insertButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cleanButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(insert2Button)
-                                .addGap(28, 28, 28))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))))
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(storeButton))
@@ -280,9 +336,6 @@ public class formulario2 extends javax.swing.JFrame{
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton cleanButton;
-    private javax.swing.JButton insert2Button;
-    private javax.swing.JButton insertButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -291,6 +344,7 @@ public class formulario2 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -300,6 +354,9 @@ public class formulario2 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JMenuItem miClearFields;
+    private javax.swing.JMenuItem miInsImage;
+    private javax.swing.JMenuItem miWebcam;
     public static javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables
