@@ -2,14 +2,11 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.logger;
-import java.awt.Graphics2D;
 import menus.menuDatosVentana2;
-import venSecundarias.webcam2;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.HeadlessException;
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +16,6 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -71,9 +67,9 @@ public class formulario2 extends javax.swing.JFrame{
         botones();
         settings();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Formulario 2");
+        setResizable(false);
     }
     
     protected Image retValue;
@@ -134,8 +130,6 @@ public class formulario2 extends javax.swing.JFrame{
                 File f=jfc.getCurrentDirectory();
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
                 
                 jfc.setCurrentDirectory(f);
                 
@@ -173,10 +167,6 @@ public class formulario2 extends javax.swing.JFrame{
             }
         });
         
-        miWebcam.addActionListener((a)->{
-            new webcam2(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
         storeButton.addActionListener((ae)->{
             try{
                 if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextArea1.getText().equals("")){
@@ -186,14 +176,12 @@ public class formulario2 extends javax.swing.JFrame{
                     String apellidom=jTextField4.getText();
                     String tipo=jComboBox1.getSelectedItem().toString();
                     String datos=jTextArea1.getText();
-                    String webcam=webcam2.direccion;
-                    direccion=webcam;
                     InputStream foto=new FileInputStream(direccion);
                     
                     new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos,foto);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 }
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
@@ -237,7 +225,6 @@ public class formulario2 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         miInsImage = new javax.swing.JMenuItem();
-        miWebcam = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -280,9 +267,6 @@ public class formulario2 extends javax.swing.JFrame{
 
         miInsImage.setText("Insertar imagen");
         jMenu2.add(miInsImage);
-
-        miWebcam.setText("Webcam");
-        jMenu2.add(miWebcam);
 
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
@@ -388,7 +372,6 @@ public class formulario2 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField4;
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
-    private javax.swing.JMenuItem miWebcam;
     public static javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables

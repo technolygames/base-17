@@ -24,8 +24,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
 
-public final class ltshData extends javax.swing.JFrame{
-    public ltshData(){
+public final class ltshStorage extends javax.swing.JFrame{
+    public ltshStorage(){
         initComponents();
         try{
             Properties style=new Properties();
@@ -34,41 +34,41 @@ public final class ltshData extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-CNFE",e.fillInStackTrace());
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-IE",x.fillInStackTrace());
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-IE",x.fillInStackTrace());
         }catch(IllegalAccessException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-IAE",n.fillInStackTrace());
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-28",y.fillInStackTrace());
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-0",k.fillInStackTrace());
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-1IO",s.fillInStackTrace());
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"ltshData-2IO",d.fillInStackTrace());
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'ltshData()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"ltshData-2IO",d.fillInStackTrace());
         }
         
-        datosMostrar();
         botones();
+        datosMostrar();
         
         setSize(1000,600);
-        setResizable(false);
-        setTitle("Almacén");
         setLocationRelativeTo(null);
+        setTitle("Almacén");
+        setResizable(false);
     }
     
     protected ResultSet rs;
@@ -89,12 +89,12 @@ public final class ltshData extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -120,9 +120,9 @@ public final class ltshData extends javax.swing.JFrame{
         try{
             ps=new datos().getConnection().prepareStatement("select * from almacen;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -134,8 +134,8 @@ public final class ltshData extends javax.swing.JFrame{
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"datosBuscar-16",e.fillInStackTrace());
+            new logger().logStaticSaver("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-16",e.fillInStackTrace());
         }
     }
     
@@ -146,11 +146,11 @@ public final class ltshData extends javax.swing.JFrame{
             String id=txtBuscar.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_alm="+id+";");
+                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -162,11 +162,11 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==1){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
+                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote="+id+";");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -180,9 +180,9 @@ public final class ltshData extends javax.swing.JFrame{
             if(i==2){
                 ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+id+";");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -196,9 +196,9 @@ public final class ltshData extends javax.swing.JFrame{
             if(i==3){
                 ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+id+"';");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -210,27 +210,11 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==4){
-                ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prov='"+id+"';");
-                rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
-                while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
-                }
-                jTable1.setRowSorter(sorter);
-                jTable1.getRowSorter().toggleSortOrder(0);
-                jTable1.getTableHeader().setReorderingAllowed(false);
-                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                jTable1.setModel(dtm);
-                
-                ps.close();
-                rs.close();
-            }
-            if(i==5){
                 ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+id+"';");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Stock","Fecha de ingreso"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_lote"),rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("marca"),rs.getInt("cantidad"),rs.getString("stock"),rs.getDate("fecha_ingreso")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -243,20 +227,20 @@ public final class ltshData extends javax.swing.JFrame{
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"datosBuscar-14",e.fillInStackTrace());
+            new logger().logStaticSaver("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-14",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
         }catch(ArrayIndexOutOfBoundsException p){
             JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error Prueba: "+p.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"datosBuscar-Prueba",p.fillInStackTrace());
+            new logger().logStaticSaver("Error Prueba: "+p.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-Prueba",p.fillInStackTrace());
         }catch(IndexOutOfBoundsException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+ltshData.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshData.class.getName(),Level.WARNING,"datosBuscar-32",n.fillInStackTrace());
+            new logger().logStaticSaver("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshStorage.class.getName(),Level.WARNING,"datosBuscar-32",n.fillInStackTrace());
         }
     }
     
@@ -294,7 +278,7 @@ public final class ltshData extends javax.swing.JFrame{
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel3.setText("Almacén");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código de almacén", "Código del producto", "Código del proveedor", "Nombre del producto", "Nombre del proveedor", "Marca" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código del producto", "Código del lote", "Código del proveedor", "Nombre del producto", "Marca" }));
 
         searchButton.setText("Buscar");
 
@@ -353,7 +337,7 @@ public final class ltshData extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new ltshData().setVisible(true);
+        new ltshStorage().setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

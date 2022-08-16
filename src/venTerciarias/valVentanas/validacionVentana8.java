@@ -62,6 +62,7 @@ public class validacionVentana8 extends javax.swing.JDialog{
         
         setLocationRelativeTo(null);
         setTitle("Validación");
+        setResizable(false);
     }
     
     protected Image retValue;

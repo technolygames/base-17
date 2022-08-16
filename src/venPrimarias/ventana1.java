@@ -2,6 +2,7 @@ package venPrimarias;
 
 import clases.datos;
 import clases.logger;
+import clases.tickets.datosTicket;
 import venSecundarias.calcWindow;
 
 import java.io.IOException;
@@ -70,9 +71,9 @@ public final class ventana1 extends javax.swing.JFrame{
         botones();
         settings();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Productos");
+        setResizable(false);
     }
     
     protected datos d;
@@ -113,7 +114,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void settings(){
         p=new Properties();
-        dtm=(DefaultTableModel)jTable1.getModel();
+        dtm=new DefaultTableModel();
         try{
             p.load(new FileInputStream("src/data/config/config.properties"));
             Image i=ImageIO.read(new FileInputStream(p.getProperty("imagenes")));
@@ -142,12 +143,13 @@ public final class ventana1 extends javax.swing.JFrame{
         });
         
         dtm.setRowCount(0);
+        jTable1.setModel(dtm);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setEnabled(false);
     }
     
     protected final void botones(){
-        dtm=(DefaultTableModel)jTable1.getModel();
+        dtm=new DefaultTableModel();
         
         addButton.addActionListener((ae)->{
             if(!txtCodigo.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
@@ -160,7 +162,8 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtTotal.getText()
                 });
             }else{
-                System.out.println("escribe, no seas culo");
+                JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'",Level.WARNING);
             }
             
             txtCodigo.setText("");
@@ -238,7 +241,7 @@ public final class ventana1 extends javax.swing.JFrame{
         
         mkPaidButton.addActionListener((a)->{
             try{
-                for(int i=0;i<(dtm.getRowCount()-0);i++){
+                for(int i=0;i<dtm.getRowCount();i++){
                     codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
                     nombre_prod=dtm.getValueAt(i,1).toString();
                     marca_prod=dtm.getValueAt(i,2).toString();
@@ -246,12 +249,9 @@ public final class ventana1 extends javax.swing.JFrame{
                     precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
                     total=Integer.parseInt(dtm.getValueAt(i,5).toString());
                     
-                    System.out.println(total);
+                    new datos().insertarDatosProducto(codigo_prod,nombre_prod,marca_prod,cantidad,precio,total);
                 }
-                
-                System.out.println(dtm.getRowCount());
-                
-                new datos().insertarDatosProducto(codigo_prod,nombre_prod,marca_prod,cantidad,precio,total);
+                JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                 payment();
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
@@ -266,7 +266,7 @@ public final class ventana1 extends javax.swing.JFrame{
     }
     
     protected void payment(){
-        
+        datosTicket dt=new datosTicket();
     }
     
     @SuppressWarnings("unchecked")
@@ -296,14 +296,6 @@ public final class ventana1 extends javax.swing.JFrame{
         addButton = new javax.swing.JButton();
         mkPaidButton = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
 
@@ -365,7 +357,7 @@ public final class ventana1 extends javax.swing.JFrame{
 
         calcButton.setText("Calcular");
 
-        cleanButton.setText("Limpiar");
+        cleanButton.setText("Limpiar campos");
 
         genrepButton.setText("Generar factura");
 
@@ -388,31 +380,6 @@ public final class ventana1 extends javax.swing.JFrame{
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jMenu1.setText("Acciones");
-
-        jMenuItem1.setText("Realizar pago");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Generar factura");
-        jMenu1.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Ventana");
-
-        jMenuItem3.setText("Calcular");
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Añadir campos");
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText("Limpiar tabla");
-        jMenu2.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -432,7 +399,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addComponent(calcButton)
                                 .addGap(149, 149, 149)
                                 .addComponent(addButton)
-                                .addGap(27, 27, 27)
+                                .addGap(18, 18, 18)
                                 .addComponent(cleanButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -458,7 +425,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(picLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -496,9 +463,9 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
                     .addComponent(calcButton)
@@ -578,14 +545,6 @@ public final class ventana1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JTable jTable1;
     protected javax.swing.JButton mkPaidButton;

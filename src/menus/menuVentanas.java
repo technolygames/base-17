@@ -4,7 +4,7 @@ import clases.logger;
 import clases.win10Notification;
 import venPrimarias.proper1;
 import venPrimarias.ventana1;
-import venPrimarias.ltshData;
+import venPrimarias.ltshStorage;
 import venPrimarias.ventana2;
 import venPrimarias.ltshProduct;
 import venTerciarias.about;
@@ -77,9 +77,9 @@ public final class menuVentanas extends javax.swing.JFrame{
         botones();
         settings();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Ventana principal");
+        setResizable(false);
     }
     
     protected Image retValue;
@@ -162,7 +162,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         ltstButton.addActionListener((ae)->{
-            new ltshData().setVisible(true);
+            new ltshStorage().setVisible(true);
         });
         
         ltshButton.addActionListener((ae)->{

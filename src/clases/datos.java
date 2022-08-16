@@ -33,9 +33,9 @@ public class datos{
     protected String contraseña;
     
     /**
-     * Conexión a la base de datos
+     * Conexión a la base de datos.
      * 
-     * @return Regresa la conexión a la base de datos
+     * @return Regresa la conexión a la base de datos.
      */
     public Connection getConnection(){
         p=new Properties();
@@ -87,7 +87,6 @@ public class datos{
             s=getConnection().createStatement();
             s.addBatch(ins1_query);
             s.executeBatch();
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             s.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
@@ -99,22 +98,21 @@ public class datos{
     /**
      * Guarda los datos de la ventana de almacén en la base de datos.
      * 
-     * @param codigoAlmacen Código de identificación del almacén.
-     * @param codigoProducto Código de identificación del producto que se almacenará.
+     * @param codigoProducto Código de identificación del almacén.
+     * @param codigoLote Código de identificación del lote de productos que se almacenará.
      * @param codigoProveedor Código de identificación del proveedor de los productos.
      * @param nombreProducto Nombre del producto a almacenar.
-     * @param nombreProveedor Nombre del proveedor (persona, no empresa).
-     * @param marcaProducto Marca del producto que será almacenado.
+     * @param marca Marca del producto que será almacenado.
      * @param cantidad Cantidad que es entraga y almacenada.
      * @param stock Disponibilidad del producto.
      */
-    public void insertarDatosAlmacen(int codigoAlmacen,int codigoProducto,int codigoProveedor,String nombreProducto,String nombreProveedor,String marcaProducto,int cantidad,String stock){
-        String ins2_query="insert into almacen values('"+codigoAlmacen+"','"+codigoProducto+"','"+codigoProveedor+"','"+nombreProducto+"','"+nombreProveedor+"','"+marcaProducto+"','"+cantidad+"','"+stock+"',now());";
+    public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,String stock){
+        String ins2_query="insert into almacen values('"+codigoProducto+"','"+codigoLote+"','"+codigoProveedor+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+stock+"',now())";
         try{
-            ps=getConnection().prepareStatement(ins2_query);
-            ps.execute();
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            ps.close();
+            s=getConnection()./*prepareStatement(ins2_query)*/createStatement();
+            s.addBatch(ins2_query);
+            s.executeBatch();
+            s.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosAlmacen()'",Level.WARNING);

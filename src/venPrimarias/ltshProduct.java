@@ -62,13 +62,13 @@ public final class ltshProduct extends javax.swing.JFrame{
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-2IO",s.fillInStackTrace());
         }
         
-        datosMostrar();
         botones();
+        datosMostrar();
         
         setSize(700,500);
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Productos vendidos");
+        setResizable(false);
     }
     
     protected ResultSet rs;

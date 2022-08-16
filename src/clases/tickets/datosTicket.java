@@ -1,20 +1,20 @@
 package clases.tickets;
 
 import clases.logger;
-import clases.win10Notification;
 
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.text.NumberFormat;//still in use, but commented
-import java.text.DecimalFormat;//still in use, but commented
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;//still in use, but commented
+import java.util.Locale;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
 import java.util.logging.Level;
+import javax.swing.JTable;
 
 /**
  * Clase encargada de imprimir el ticket de compra.
@@ -45,7 +45,7 @@ public class datosTicket{
      * @param precio: Precio unitario del producto.
      * @param cantidad: Cantidad total del producto.
      */
-    public void imprimirTicket(int codigoProducto,String nombreProducto,int precio,int cantidad){
+    public void imprimirTicket(JTable tabla,int codigoProducto,String nombreProducto,int precio,int cantidad){
         try{
             Date date=new Date();
             Properties p=new Properties();
@@ -62,7 +62,7 @@ public class datosTicket{
             ticket.addCabecera(ticket.darEspacio());
             ticket.addSubcabecera(ticket.dibujarLinea(40));
             ticket.addSubcabecera(ticket.darEspacio());
-            ticket.addSubcabecera("Ticket Factura No:'003-000011'");
+            ticket.addSubcabecera("Ticket No.:'"+(Math.random()*10000)+"'");
             ticket.addSubcabecera(ticket.darEspacio());
             ticket.addSubcabecera("-"+fecha.format(date)+"-"+hora.format(date));
             ticket.addSubcabecera(ticket.darEspacio());
@@ -74,23 +74,23 @@ public class datosTicket{
             ticket.addSubcabecera(ticket.darEspacio());
             ticket.addSubcabecera(ticket.dibujarLinea(40));
             ticket.addSubcabecera(ticket.darEspacio());
-            /*for(int y=0;y<jTable1.getRowCount();y++){
+            for(int y=0;y<tabla.getRowCount();y++){
                 //cantidad de decimales
                 NumberFormat nf=NumberFormat.getNumberInstance(Locale.ENGLISH);
                 DecimalFormat form=(DecimalFormat) nf;
                 form.applyPattern("#,###.00");
                 //cantidad
-                String cantidad=jTable1.getValueAt(y,0).toString();
-                if(cantidad.length()<4){
-                    int cant=4-cantidad.length();
+                String cantidad2=tabla.getValueAt(y,0).toString();
+                if(cantidad2.length()<4){
+                    int cant=4-cantidad2.length();
                     String can="";
                     for(int f=0;f<cant;f++){
                         can+=" ";
                     }
-                    cantidad+=can;
+                    cantidad2+=can;
                 }
                 //items
-                String item=jTable1.getValueAt(y,1).toString();
+                String item=tabla.getValueAt(y,1).toString();
                 if(item.length()>17){
                     item=item.substring(0,16)+".";
                 }else{
@@ -102,19 +102,19 @@ public class datosTicket{
                     item+=comple;
                 }
                 //precio
-                String precio=jTable1.getValueAt(y,2).toString();
-                double pre1=Double.parseDouble(precio);
-                precio=form.format(pre1);
-                if(precio.length()<8){
-                    int p=8-precio.length();
+                String precio2=tabla.getValueAt(y,2).toString();
+                double pre1=Double.parseDouble(precio2);
+                precio2=form.format(pre1);
+                if(precio2.length()<8){
+                    int precio3=8-precio2.length();
                     String pre="";
-                    for(int y1=0;y1<p;y1++){
+                    for(int y1=0;y1<precio3;y1++){
                         pre+=" ";
                     }
-                    precio=pre+precio;
+                    precio2=pre+precio2;
                 }
                 //total
-                String total=jTable1.getValueAt(y,3).toString();
+                String total=tabla.getValueAt(y,3).toString();
                 total=form.format(Double.parseDouble(total));
                 if(total.length()<8){
                     int t=8-total.length();
@@ -125,16 +125,16 @@ public class datosTicket{
                     total=tota+total;
                 }
                 //agrego los items al detalle
-                ticket.addItem(String.valueOf(cantidad),item,String.valueOf(precio));
-                //ticket.AddItem("","","",ticket.DarEspacio());
+                ticket.addItem(String.valueOf(cantidad2),item,String.valueOf(precio2));
+                ticket.addItem("","","");
             }
-            ticket.addItem(ticket.dibujarLinea(40),"","","");*/
+            ticket.addItem("","","");
             ticket.addTotal("Total: ",String.valueOf(total));
             ticket.addTotal("IGV: ",ticket.darEspacio());
             ticket.addTotal("Paga con: ",metodoPago);
             ticket.addTotal("Cambio: ",String.valueOf(cambio));
             ticket.addPieLinea(ticket.darEspacio());
-            ticket.addPieLinea("Gracias por su preferencia");
+            ticket.addPieLinea("Gracias por su preferencia.");
             ticket.imprimirDocumento("",true);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE_T1",JOptionPane.WARNING_MESSAGE);

@@ -63,11 +63,12 @@ public final class about extends javax.swing.JDialog{
         }
         
         etiquetas();
-        dueño();
         
         setLocationRelativeTo(null);
         setTitle("Acerca del programa");
-        setSize(325,325);
+        setResizable(false);
+        
+        websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     
     protected Image retValue;
@@ -91,47 +92,11 @@ public final class about extends javax.swing.JDialog{
         return retValue;
     }
     
-    protected void dueño(){
+    protected void etiquetas(){
         p=new Properties();
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where puesto='dueño' or puesto='programador';");
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                p.setProperty("prop",rs.getString("nombre_emp")+" "+rs.getString("apellidop_emp")+" "+rs.getString("apellidom_emp"));
-            }
-            //esta madre sirve para guardar datos en un archivo
-            p.setProperty("version","1.2.2.100");
-            p.setProperty("estable","1.0.0.0");
-            p.setProperty("inicio","27/09/2019");
-            p.setProperty("fin","unknown");
-            p.setProperty("dev","TechnolyGames");
-            p.setProperty("pub","TechnolyGames");
-            p.setProperty("fpub","unknown");
-            p.setProperty("jdk","16.0.1");
-            p.setProperty("jre","16.0.1");
-            p.setProperty("devon","Java y MySQL");
-            p.setProperty("website","https://technolygames.blogspot.mx/");
-            
-            p.store(new BufferedWriter(new FileWriter("src/data/config/acerca.properties")),"about");
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'dueño()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-Prueba",e.fillInStackTrace());
-        }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'dueño()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-1IO",x.fillInStackTrace());
-        }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'dueño()'",Level.WARNING);
-            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-2IO",n.fillInStackTrace());
-        }
-    }
-    
-    protected void etiquetas(){
-        try{
-            Properties p=new Properties();
             p.load(new FileInputStream("src/data/config/acerca.properties"));
+            
             versionLabel.setText(p.getProperty("version"));
             estableLabel.setText(p.getProperty("estable"));
             inicioLabel.setText(p.getProperty("inicio"));
@@ -143,6 +108,7 @@ public final class about extends javax.swing.JDialog{
             jreLabel.setText(p.getProperty("jre"));
             devonLabel.setText(p.getProperty("devon"));
             propLabel.setText(p.getProperty("prop"));
+            websiteLabel.setText(p.getProperty("website"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'etiquetas()'",Level.WARNING);
@@ -193,53 +159,53 @@ public final class about extends javax.swing.JDialog{
 
         jLabel1.setText("Versión:");
 
-        versionLabel.setText("1.2.1.2020");
+        versionLabel.setText("jLabel1");
 
         jLabel3.setText("Desarrolladora:");
 
-        devLabel.setText("TechnolyGames");
+        devLabel.setText("jLabel5");
 
         jLabel5.setText("Publicadora:");
 
-        pubLabel.setText("TechnolyGames");
+        pubLabel.setText("jLabel6");
 
         jLabel9.setText("Fecha de publicación:");
 
-        fpubLabel.setText("Editar hasta que lo lance");
+        fpubLabel.setText("jLabel7");
 
         jLabel11.setText("Versión de JDK:");
 
-        jdkLabel.setText("1.8.0_111");
+        jdkLabel.setText("jLabel8");
 
         jLabel13.setText("Versión de JRE:");
 
-        jreLabel.setText("1.8.0_241");
+        jreLabel.setText("jLabel9");
 
         jLabel15.setText("Desarrollado en:");
 
-        devonLabel.setText("Java y SQL");
+        devonLabel.setText("jLabel10");
 
         jLabel17.setText("Última versión estable:");
 
-        estableLabel.setText("1.0.0.2019");
+        estableLabel.setText("jLabel2");
 
         jLabel19.setText("Fin del desarrollo:");
 
-        finLabel.setText("En desarrollo");
+        finLabel.setText("jLabel4");
 
         jLabel21.setText("Propietario da la versión:");
 
-        propLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        propLabel.setText("jLabel11");
 
         jLabel24.setText("Gracias por adquirirlo");
 
         jLabel25.setText("Inicio del desarrollo:");
 
-        inicioLabel.setText("27/09/2019");
+        inicioLabel.setText("jLabel3");
 
         jLabel8.setText("Página del desarrollador:");
 
-        websiteLabel.setText("technolygames.blogspot.mx");
+        websiteLabel.setText("jLabel12");
         websiteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 websiteLabelMouseClicked(evt);
@@ -250,6 +216,10 @@ public final class about extends javax.swing.JDialog{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel23)
+                .addGap(306, 306, 306))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,26 +236,25 @@ public final class about extends javax.swing.JDialog{
                             .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(finLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(devLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pubLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fpubLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdkLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jreLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(devonLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(propLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(websiteLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(versionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(estableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inicioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(estableLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(versionLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel23)
+                            .addComponent(finLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(devLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pubLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fpubLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdkLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(devonLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(propLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(websiteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel24)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,25 +296,21 @@ public final class about extends javax.swing.JDialog{
                     .addComponent(jLabel13)
                     .addComponent(jreLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(devonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel21))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(devonLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(propLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(websiteLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel23))
         );
 
         pack();
@@ -356,11 +321,10 @@ public final class about extends javax.swing.JDialog{
     }
     
     private void websiteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteLabelMouseClicked
+        p=new Properties();
         try{
-            Properties p=new Properties();
             p.load(new FileInputStream("src/data/config/acerca.properties"));
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
-            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 31",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 31: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'jLabel27MouseClicked()'",Level.WARNING);

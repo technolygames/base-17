@@ -2,20 +2,26 @@ package venPrimarias;
 
 import clases.datos;
 import clases.logger;
+import java.awt.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.logging.Level;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -23,6 +29,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import venTerciarias.dataWindow1;
 
 public final class ltshWorkers extends javax.swing.JFrame{
@@ -63,15 +70,14 @@ public final class ltshWorkers extends javax.swing.JFrame{
             new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-2IO",d.fillInStackTrace());
         }
         
+        botones();
         datosMostrar();
-        boton();
+        settings();
         
         setSize(1200,700);
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Empleados");
-        
-        wdataButton.setVisible(false);
+        setResizable(false);
     }
     
     protected ResultSet rs;
@@ -102,7 +108,11 @@ public final class ltshWorkers extends javax.swing.JFrame{
         return retValue;
     }
     
-    protected final void boton(){
+    protected void settings(){
+        wdataButton.setVisible(false);
+    }
+    
+    protected final void botones(){
         backButton.addActionListener((ae)->{
             setVisible(false);
             dispose();
@@ -272,7 +282,15 @@ public final class ltshWorkers extends javax.swing.JFrame{
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 

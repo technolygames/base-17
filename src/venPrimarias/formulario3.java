@@ -3,7 +3,6 @@ package venPrimarias;
 import clases.datos;
 import clases.logger;
 import menus.menuDatosVentana3;
-import venSecundarias.webcam3;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -66,11 +65,10 @@ public class formulario3 extends javax.swing.JFrame{
         }
         
         botones();
-        settings();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Formulario 3");
+        setResizable(false);
     }
     
     protected Image retValue;
@@ -96,10 +94,6 @@ public class formulario3 extends javax.swing.JFrame{
             new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
-    }
-    
-    protected void settings(){
-        
     }
     
     protected final void botones(){
@@ -128,8 +122,6 @@ public class formulario3 extends javax.swing.JFrame{
                 File f=jfc.getCurrentDirectory();
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
                 
                 jfc.setCurrentDirectory(f);
                 
@@ -171,33 +163,34 @@ public class formulario3 extends javax.swing.JFrame{
             new menuDatosVentana3().setVisible(true);
         });
         
-        miWebcam.addActionListener((ae)->{
-            new webcam3(new javax.swing.JFrame(),true).setVisible(true);
-        });
-        
         svdtButton.addActionListener((ae)->{
             try{
-                int codigo=Integer.parseInt(jTextField1.getText());
-                String nombre=jTextField2.getText();
-                String apellidop=jTextField3.getText();
-                String apellidom=jTextField4.getText();
-                String empresa=jTextField5.getText();
-                int contacto=Integer.parseInt(jTextField6.getText());
-                InputStream foto=new FileInputStream(direccion);
-                
-                new datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextField5.getText().equals("")||!jTextField6.getText().equals("")){
+                    int codigo=Integer.parseInt(jTextField1.getText());
+                    String nombre=jTextField2.getText();
+                    String apellidop=jTextField3.getText();
+                    String apellidom=jTextField4.getText();
+                    String empresa=jTextField5.getText();
+                    int contacto=Integer.parseInt(jTextField6.getText());
+                    InputStream foto=new FileInputStream(direccion);
+                    
+                    new datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
+                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                }
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-1IO",e.fillInStackTrace());
             }catch(IOException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-2IO",x.fillInStackTrace());
+                new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-2IO",x.fillInStackTrace());
             }catch(NullPointerException n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
+                new logger().logStaticSaver("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.svdt-0",n.fillInStackTrace());
             }
         });
     }
@@ -226,7 +219,6 @@ public class formulario3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         miInsImage = new javax.swing.JMenuItem();
-        miWebcam = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -263,9 +255,6 @@ public class formulario3 extends javax.swing.JFrame{
 
         miInsImage.setText("Insertar imagen");
         jMenu2.add(miInsImage);
-
-        miWebcam.setText("Webcam");
-        jMenu2.add(miWebcam);
 
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
@@ -318,7 +307,7 @@ public class formulario3 extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -375,7 +364,6 @@ public class formulario3 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
-    private javax.swing.JMenuItem miWebcam;
     public static javax.swing.JLabel picLabel;
     private javax.swing.JButton svdtButton;
     // End of variables declaration//GEN-END:variables

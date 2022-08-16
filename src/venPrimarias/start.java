@@ -1,6 +1,5 @@
 package venPrimarias;
 
-import clases.controlador.controlador;
 import clases.datos;
 import clases.logger;
 import clases.win10Notification;
@@ -66,9 +65,9 @@ public final class start extends javax.swing.JFrame{
         botones();
         settings();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Inicio");
+        setResizable(false);
     }
     
     protected datos d;
@@ -135,7 +134,6 @@ public final class start extends javax.swing.JFrame{
         loginButton.addActionListener((ae)->{
             try{
                 login();
-                /*ingresarPrueba();*/
             }catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'botones(loginButton)'",Level.WARNING);
@@ -143,21 +141,6 @@ public final class start extends javax.swing.JFrame{
             }
         });
     }
-    
-    /*protected final void ingresarPrueba(){
-        String usuario=txtUsuario.getText();
-        String contra=String.valueOf(txtContraseña.getPassword());
-        
-        if(usuario.equals("metatest")&&contra.equals("0123")){
-            new loadWindow(new javax.swing.JFrame(),true).setVisible(true);
-            dispose();
-            new win10Notification().trayNotify("Inicio de sesión","Se ha iniciado sesión como metausuario",MessageType.WARNING);
-            new logger().logStaticSaver("ATENCIÓN: Se ha iniciado como metausuario. Tiene privilegios elevados como los de un desarrollador",Level.SEVERE);
-        }else{
-            JOptionPane.showMessageDialog(null,"Se ingresaron datos erróneos","Error 9",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Inicio de sesión como metausuario no realizado",Level.FINE);
-        }
-    }*/
     
     protected final void login(){
         String usuario=txtUsuario.getText();

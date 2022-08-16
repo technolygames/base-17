@@ -3,7 +3,6 @@ package venPrimarias;
 import clases.datos;
 import clases.logger;
 import menus.menuDatosVentana1;
-import venSecundarias.webcam1;
 
 import com.placeholder.PlaceHolder;
 
@@ -71,9 +70,9 @@ public class formulario1 extends javax.swing.JFrame{
         settings();
         
         setSize(510,520);
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Formulario 1");
+        setResizable(false);
     }
     
     protected datos cn;
@@ -132,8 +131,6 @@ public class formulario1 extends javax.swing.JFrame{
                 File f=jfc.getCurrentDirectory();
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPEG","jpeg"));
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos PNG","png"));
                 
                 jfc.setCurrentDirectory(f);
                 
@@ -169,10 +166,6 @@ public class formulario1 extends javax.swing.JFrame{
                 new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'",Level.WARNING);
                 new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.insimg-2IO",n.fillInStackTrace());
             }
-        });
-        
-        jMenuItem3.addActionListener((a)->{
-            new webcam1(new javax.swing.JFrame(),true).setVisible(true);
         });
         
         miClearFields.addActionListener((a)->{
@@ -213,7 +206,8 @@ public class formulario1 extends javax.swing.JFrame{
                     
                     new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto);
                 }else{
-                    JOptionPane.showMessageDialog(null,"Prueba","Prueba",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
@@ -278,9 +272,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        miClearFields = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        miClearFields = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
@@ -358,22 +350,15 @@ public class formulario1 extends javax.swing.JFrame{
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Imágenes");
+        jMenu2.setText("Opciones");
 
         jMenuItem2.setText("Insertar imagen");
         jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Webcam");
-        jMenu2.add(jMenuItem3);
+        miClearFields.setText("Limpiar campos");
+        jMenu2.add(miClearFields);
 
         jMenuBar1.add(jMenu2);
-
-        miClearFields.setText("Ventana");
-
-        jMenuItem4.setText("Limpiar campos");
-        miClearFields.add(jMenuItem4);
-
-        jMenuBar1.add(miClearFields);
 
         setJMenuBar(jMenuBar1);
 
@@ -562,11 +547,9 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JMenu miClearFields;
+    private javax.swing.JMenuItem miClearFields;
     public static javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     private javax.swing.JTextField txtAM;

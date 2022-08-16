@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -62,11 +61,12 @@ public class dataWindow3 extends javax.swing.JDialog{
             new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"dataWindow3-2IO",d.fillInStackTrace());
         }
         
-        datosMostrar();
         botones();
+        datosMostrar();
         
         setLocationRelativeTo(null);
         setTitle("Datos del proveedor");
+        setResizable(false);
     }
     
     protected datos d;
@@ -130,11 +130,7 @@ public class dataWindow3 extends javax.swing.JDialog{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
             new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"datosMostrar-0",x.fillInStackTrace());
-        }/*catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
-            new logger().exceptionLogger(dataWindow1.class.getName(),Level.WARNING,"datosMostrar-2IO",n.fillInStackTrace());
-        }*/
+        }
     }
     
     protected final void botones(){
@@ -167,13 +163,21 @@ public class dataWindow3 extends javax.swing.JDialog{
                 fos.close();
                 fos.flush();
             }catch(SQLException e){
-                e.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 10",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 10: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
+                new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"botones.storeImg-10",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                x.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
+                new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"botones.storeImg-10",x.fillInStackTrace());
             }catch(IOException n){
-                n.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
+                new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"botones.storeImg-10",n.fillInStackTrace());
             }catch(NullPointerException y){
-                y.fillInStackTrace();
+                JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error o: "+y.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'",Level.WARNING);
+                new logger().exceptionLogger(dataWindow3.class.getName(),Level.WARNING,"botones.storeImg-10",y.fillInStackTrace());
             }
         });
     }

@@ -68,9 +68,11 @@ public final class loadWindow extends javax.swing.JFrame{
         load();
         
         setLocationRelativeTo(null);
+        setResizable(false);
     }
     
     protected Timer t;
+    protected Taskbar tb;
     
     protected File f;
     protected Image retValue;
@@ -105,7 +107,7 @@ public final class loadWindow extends javax.swing.JFrame{
     }
     
     protected final void load(){
-        Taskbar tb=Taskbar.getTaskbar();
+        tb=Taskbar.getTaskbar();
         p=new Properties();
         
         try{
@@ -125,7 +127,7 @@ public final class loadWindow extends javax.swing.JFrame{
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
                 jProgressBar1.setMaximum(46);
                 tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
-                tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
+                tb.setWindowProgressValue(loadWindow.this,100);
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 switch(jProgressBar1.getValue()){
                     case 0:

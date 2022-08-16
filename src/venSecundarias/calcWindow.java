@@ -55,12 +55,12 @@ public final class calcWindow extends javax.swing.JDialog{
             new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"calcWindow-2IO",d.fillInStackTrace());
         }
         
-        win=new ventana1();
-        String res=Integer.toString(win.resultado);
-        txtTotal.setText(res);
+        botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Calculadora");
+        setResizable(false);
     }
     
     protected ventana1 win;
@@ -84,6 +84,11 @@ public final class calcWindow extends javax.swing.JDialog{
             new logger().exceptionLogger(calcWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected void settings(){
+        String res=Integer.toString(ventana1.resultado);
+        txtTotal.setText(res);
     }
     
     protected final void botones(){

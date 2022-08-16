@@ -56,9 +56,9 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         
         botones();
         
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
+        setResizable(false);
     }
     
     protected Image retValue;

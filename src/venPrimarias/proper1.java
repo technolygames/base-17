@@ -70,17 +70,14 @@ public final class proper1 extends javax.swing.JFrame{
             new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-2IO",d.fillInStackTrace());
         }
         
-        configIn();
         botones();
+        configIn();
         combo1();
+        settings();
         
-        setResizable(true);
         setLocationRelativeTo(null);
         setTitle("Configuración");
-        
-        jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
-        expButton.setEnabled(false);
-        impButton.setEnabled(false);
+        setResizable(false);
     }
     
     protected datos d;
@@ -117,6 +114,12 @@ public final class proper1 extends javax.swing.JFrame{
             new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected void settings(){
+        jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
+        expButton.setEnabled(false);
+        impButton.setEnabled(false);
     }
     
     protected final void configIn(){

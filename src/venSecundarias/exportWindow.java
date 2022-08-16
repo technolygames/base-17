@@ -63,6 +63,7 @@ public class exportWindow extends javax.swing.JDialog{
         
         setLocationRelativeTo(null);
         setTitle("Exportar");
+        setResizable(false);
     }
     
     protected File f;
@@ -109,7 +110,7 @@ public class exportWindow extends javax.swing.JDialog{
         String nombrebdExportada=based+(int)Math.random()+".sql";
         
         try{
-            Process pr=Runtime.getRuntime().exec("c:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
+            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
             
             is=pr.getInputStream();
             os=new FileOutputStream(new File("src/data/database/MySQL/"+nombrebdExportada));

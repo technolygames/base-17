@@ -61,6 +61,7 @@ public class databaseWindow extends javax.swing.JDialog{
         
         setLocationRelativeTo(null);
         setTitle("Crear base de datos");
+        setResizable(false);
     }
     
     protected datos d;

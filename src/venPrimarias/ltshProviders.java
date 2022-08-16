@@ -60,13 +60,13 @@ public class ltshProviders extends javax.swing.JFrame{
             new logger().exceptionLogger(ltshProviders.class.getName(),Level.WARNING,"ltshProviders-2IO",d.fillInStackTrace());
         }
         
-        datosMostrar();
         botones();
+        datosMostrar();
         
         setSize(950,500);
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Productos vendidos");
+        setResizable(false);
     }
     
     protected ResultSet rs;

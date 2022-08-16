@@ -7629,3 +7629,39 @@ mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
 WARNING: No se puede descargar las librerías
 mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
 WARNING: No se puede descargar las librerías
+mar. 15, 2022 8:19:23 P. M. clases.logger logStaticSaver
+WARNING: Error 11: Cannot add or update a child row: a foreign key constraint fails (`tienda`.`almacen`, CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`codigo_prov`) REFERENCES `proveedor` (`codigo_prov`)).
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosAlmacen()'
+mar. 15, 2022 8:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "En Existencia".
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "En Existencia".
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:23:34 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "En Existencia".
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:24:47 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "En Existencia".
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:24:47 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "En Existencia".
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:26:55 P. M. clases.logger logStaticSaver
+WARNING: Error 0: Cannot invoke "java.sql.PreparedStatement.close()" because "this.ps" is null.
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'botones(svdtButton)'
+mar. 15, 2022 8:34:08 P. M. clases.logger logStaticSaver
+WARNING: Error 11: Cannot add or update a child row: a foreign key constraint fails (`tienda`.`almacen`, CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`codigo_prov`) REFERENCES `proveedor` (`codigo_prov`)).
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosAlmacen()'
+mar. 17, 2022 4:34:10 P. M. clases.logger logStaticSaver
+WARNING: Error 11: Duplicate entry '12346' for key 'PRIMARY'.
+Ocurrió en la clase 'clases.datos', en el método 'insertarDatosAlmacen()'
+mar. 17, 2022 4:35:02 P. M. clases.logger logStaticSaver
+WARNING: Let 2: se ingresaron números en un campo equivocado.
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'txtProdKeyPressed()'
+mar. 17, 2022 4:35:02 P. M. clases.logger logStaticSaver
+WARNING: Let 2: se ingresaron números en un campo equivocado.
+Ocurrió en la clase 'venPrimarias.ventana2', en el método 'txtProdKeyPressed()'
+mar. 17, 2022 7:27:33 P. M. clases.logger logStaticSaver
+WARNING: Error 16: Column 'nombre_prov' not found..
+Ocurrió en la clase 'venPrimarias.ltshStorage', en el método 'datosBuscar()'

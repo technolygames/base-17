@@ -67,9 +67,9 @@ public class ltshPartners extends javax.swing.JFrame{
         datosMostrar();
         
         setSize(1100,600);
-        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Socios");
+        setResizable(false);
     }
     
     protected ResultSet rs;

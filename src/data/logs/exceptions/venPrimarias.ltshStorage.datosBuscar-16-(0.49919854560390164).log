@@ -1,0 +1,7 @@
+mar. 17, 2022 7:27:33 P. M. clases.logger exceptionLogger
+WARNING: datosBuscar-16
+java.sql.SQLException: Column 'nombre_prov' not found.
+	at venPrimarias.ltshStorage.datosMostrar(ltshStorage.java:138)
+	at venPrimarias.ltshStorage.<init>(ltshStorage.java:66)
+	at venPrimarias.ltshStorage.main(ltshStorage.java:340)
+

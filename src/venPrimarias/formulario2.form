@@ -32,11 +32,6 @@
                 <Property name="text" type="java.lang.String" value="Insertar imagen"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miWebcam">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Webcam"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miClearFields">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpiar campos"/>
