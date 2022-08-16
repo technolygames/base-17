@@ -1,5 +1,6 @@
 package clases;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ public class logger{
     
     static{
         try{
-        fh=new FileHandler("src/data/logs/static/staticLog("+(int)(Math.random()*10000)+").log",0,1,true);
+            fh=new FileHandler("src/data/logs/static/staticLog("+(int)(Math.random()*10000)+").log",0,1,true);
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
         }catch(IOException x){

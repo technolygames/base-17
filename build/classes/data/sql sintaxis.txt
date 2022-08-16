@@ -1,0 +1,1 @@
+set password='"+password+"',nombre_emp='"+nombreEmpleado+"',apellidop_emp='"+apellidoPaternoEmpleado+"',apellidom_emp='"+apellidoMaternoEmpleado+"',puesto='"+puesto+"',experiencia='"+experiencia+"',grado_estudios='"+gradoEstudios+"',edad='"+edad+"' where codigo_emp='"+codigoEmpleado+"';
