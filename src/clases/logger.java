@@ -64,10 +64,10 @@ public class logger{
             fh2.close();
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error SE: "+e.getMessage()+" en 'exceptionLogger()'",Level.WARNING);
+            new logger().logStaticSaver("Error SE: "+e.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IOE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error SE: "+x.getMessage()+" en 'exceptionLogger()'",Level.WARNING);
+            new logger().logStaticSaver("Error SE: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'",Level.WARNING);
         }
     }
 }

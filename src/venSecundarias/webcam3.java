@@ -38,22 +38,26 @@ public class webcam3 extends javax.swing.JDialog{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
             new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
-            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
-            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-28",k.fillInStackTrace());
-        }catch(FileNotFoundException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+d.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
-            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-1IO",d.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
-            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-2IO",s.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
+            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
+            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
+            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
+            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+webcam3.class.getName()+"', en el método 'webcam3()'",Level.WARNING);
+            new logger().exceptionLogger(webcam3.class.getName(),Level.WARNING,"webcam3-2IO",d.fillInStackTrace());
         }
         
         botones();

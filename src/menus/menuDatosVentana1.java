@@ -26,28 +26,32 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
             new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
             new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-28",k.fillInStackTrace());
-        }catch(FileNotFoundException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-1IO",y.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'menuDatosVentana1()'",Level.WARNING);
-            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-2IO",s.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
+            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
+            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
+            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
+            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'menuDatosVentana1()'",Level.WARNING);
+            new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"menuDatosVentana1-2IO",d.fillInStackTrace());
         }
         
         botones();
@@ -69,11 +73,11 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+menuDatosVentana1.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(menuDatosVentana1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;

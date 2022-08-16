@@ -37,31 +37,31 @@ public final class loadWindow extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'loadWindow()'",Level.WARNING);
-            new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-IAE",ñ.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
+            new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+k.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-0",k.fillInStackTrace());
         }catch(FileNotFoundException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-1IO",s.fillInStackTrace());
         }catch(IOException d){
             JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+" en 'loadWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'loadWindow()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"loadWindow-2IO",d.fillInStackTrace());
         }
         
@@ -97,11 +97,11 @@ public final class loadWindow extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
@@ -110,17 +110,19 @@ public final class loadWindow extends javax.swing.JFrame{
     protected final void load(){
         Taskbar tb=Taskbar.getTaskbar();
         p=new Properties();
+        
         try{
             p.load(new FileInputStream("src/data/config/libs.properties"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'load()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'load()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"load-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'load()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+loadWindow.class.getName()+"', en el método 'load()'",Level.WARNING);
             new logger().exceptionLogger(loadWindow.class.getName(),Level.WARNING,"load-2IO",x.fillInStackTrace());
         }
+        
         ActionListener al=(ActionEvent ae)->{
             if(jProgressBar1.getValue()<100&&Taskbar.isTaskbarSupported()){
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
@@ -263,7 +265,6 @@ public final class loadWindow extends javax.swing.JFrame{
         t=new Timer(100,al);
         t.start();
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

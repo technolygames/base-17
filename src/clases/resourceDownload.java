@@ -47,15 +47,15 @@ public class resourceDownload{
                 fos.close();
             }catch(MalformedURLException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 1I: "+e.getMessage()+" en 'downloadLibs()'",Level.WARNING);
+                new logger().logStaticSaver("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
                 new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"downloadLibs-1I",e.fillInStackTrace());
             }catch(FileNotFoundException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'downloadLibs()'",Level.WARNING);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
                 new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"downloadLibs-1IO",x.fillInStackTrace());
             }catch(IOException k){
                 JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 2IO: "+k.getMessage()+" en 'downloadLibs()'",Level.WARNING);
+                new logger().logStaticSaver("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
                 new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"downloadLibs-2IO",k.fillInStackTrace());
             }
         }

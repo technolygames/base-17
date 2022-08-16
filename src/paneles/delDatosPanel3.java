@@ -22,28 +22,32 @@ public class delDatosPanel3 extends javax.swing.JPanel{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
             new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-28",k.fillInStackTrace());
-        }catch(FileNotFoundException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-1IO",y.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" delDatosPanel3()'",Level.WARNING);
-            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-2IO",s.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'delDatosPanel3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"delDatosPanel3-2IO",d.fillInStackTrace());
         }
         
         botones();
@@ -62,11 +66,11 @@ public class delDatosPanel3 extends javax.swing.JPanel{
                     new datos().eliminarDatosProveedor(codigo);
                 }else{
                     JOptionPane.showMessageDialog(null,"Escribe el número de identificación da eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger().logStaticSaver("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en '"+delDatosPanel3.class.getName()+" botones(deleteButton)'",Level.WARNING);
+                    new logger().logStaticSaver("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
                 }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+" botones(deleteButton)'",Level.WARNING);
+                new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'",Level.WARNING);
                 new logger().exceptionLogger(delDatosPanel3.class.getName(),Level.WARNING,"botones.delete-Prueba",e.fillInStackTrace());
             }
         });

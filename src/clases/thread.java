@@ -43,7 +43,7 @@ public class thread extends Thread{
             os.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 26H: "+e.getMessage()+" en 'run()'",Level.WARNING);
+            new logger().logStaticSaver("Error 26H: "+e.getMessage()+"\nOcurrió en la clase '"+thread.class.getName()+"', en el método 'run()'",Level.WARNING);
             new logger().exceptionLogger(thread.class.getName(),Level.WARNING,"run-26H",e.fillInStackTrace());
         }
     }

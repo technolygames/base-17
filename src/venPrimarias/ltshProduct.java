@@ -34,27 +34,31 @@ public final class ltshProduct extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'ltshProduct()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'ltshProduct()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'ltshProduct()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-IAE",ñ.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
+            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-IAE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException j){
             JOptionPane.showMessageDialog(null,"Error:\n"+j.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+j.getMessage()+" en 'ltshProduct()'",Level.WARNING);
+            new logger().logStaticSaver("Error 28: "+j.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-28",j.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
+            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-0",k.fillInStackTrace());
         }catch(FileNotFoundException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'ltshProduct()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-1IO",k.fillInStackTrace());
         }catch(IOException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'ltshProduct()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'ltshProduct()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"ltshProduct-2IO",s.fillInStackTrace());
         }
         
@@ -85,11 +89,11 @@ public final class ltshProduct extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
@@ -130,7 +134,7 @@ public final class ltshProduct extends javax.swing.JFrame{
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 16: "+e.getMessage()+" en 'datosMostrar()'",Level.WARNING);
+            new logger().logStaticSaver("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosMostrar()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosMostrar-16",e.fillInStackTrace());
         }
     }
@@ -191,20 +195,20 @@ public final class ltshProduct extends javax.swing.JFrame{
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 16: "+e.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().logStaticSaver("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-16",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
         }catch(ArrayIndexOutOfBoundsException p){
             JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error AIOOBE: "+p.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().logStaticSaver("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
             new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-AIOOBE",p.fillInStackTrace());
-        }catch(IndexOutOfBoundsException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 32: "+ñ.getMessage()+" en 'datosBuscar()'",Level.WARNING);
-            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-32",ñ.fillInStackTrace());
+        }catch(IndexOutOfBoundsException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshProduct.class.getName(),Level.WARNING,"datosBuscar-32",n.fillInStackTrace());
         }
     }
     

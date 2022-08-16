@@ -42,19 +42,19 @@ public class win10Notification{
             }
         }catch(AWTException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 24: "+e.getMessage()+" en 'trayNotify()'",Level.WARNING);
+            new logger().logStaticSaver("Error 24: "+e.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
             new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-24",e.fillInStackTrace());
         }catch(UnsupportedOperationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 25",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 25: "+x.getMessage()+" en 'trayNotify()'",Level.WARNING);
+            new logger().logStaticSaver("Error 25: "+x.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
             new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-25",x.fillInStackTrace());
         }catch(FileNotFoundException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+ñ.getMessage()+" en 'trayNotify()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+ñ.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
             new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-1IO",ñ.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+k.getMessage()+" en 'trayNotify()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+win10Notification.class.getName()+"', en el método 'trayNotify()'",Level.WARNING);
             new logger().exceptionLogger(win10Notification.class.getName(),Level.WARNING,"trayNotify-2IO",k.fillInStackTrace());
         }
     }

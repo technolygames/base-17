@@ -31,28 +31,32 @@ public class exportWindow extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'exportWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
             new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'exportWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
             new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'exportWindow()'",Level.WARNING);
-            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'exportWindow()'",Level.WARNING);
-            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-28",k.fillInStackTrace());
-        }catch(FileNotFoundException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'exportWindow()'",Level.WARNING);
-            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-1IO",y.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'exportWindow()'",Level.WARNING);
-            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-2IO",s.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'exportWindow()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"exportWindow-2IO",d.fillInStackTrace());
         }
         
         botones();
@@ -77,8 +81,12 @@ public class exportWindow extends javax.swing.JDialog{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -101,12 +109,12 @@ public class exportWindow extends javax.swing.JDialog{
         String nombrebdExportada=based+".sql";
         
         try{
-            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqldump -u "+nombreUsuario+" -p "+passUsuario+" "+based);
+            Process pr=Runtime.getRuntime().exec("c:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
             
             is=pr.getInputStream();
-            os=new FileOutputStream("src/data/database/MySQL/"+nombrebdExportada);
+            os=new FileOutputStream(new File("src/data/database/MySQL/"+nombrebdExportada));
             
-            new thread(is,os).start();
+            new thread(is,os).run();
             
             JOptionPane.showMessageDialog(null,"Se ha exportado la base de datos correctamente","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             
@@ -115,11 +123,11 @@ public class exportWindow extends javax.swing.JDialog{
             is.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 8",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 8: "+e.getMessage()+" en 'copia()'",Level.WARNING);
+            new logger().logStaticSaver("Error 8: "+e.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'copia()'",Level.WARNING);
             new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"copia-8",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'copia()'",Level.WARNING);
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+exportWindow.class.getName()+"', en el método 'copia()'",Level.WARNING);
             new logger().exceptionLogger(exportWindow.class.getName(),Level.WARNING,"copia-0",x.fillInStackTrace());
         }
     }
@@ -182,7 +190,7 @@ public class exportWindow extends javax.swing.JDialog{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

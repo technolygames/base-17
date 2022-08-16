@@ -26,28 +26,32 @@ public class modDatosPanel1 extends javax.swing.JPanel{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-28",k.fillInStackTrace());
-        }catch(FileNotFoundException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
-            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-1IO",y.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" modDatosPanel1()'",Level.WARNING);
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'modDatosPanel1()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"modDatosPanel1-1IO",d.fillInStackTrace());
         }
         
         settings();
@@ -117,7 +121,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbContra)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContra)'",Level.WARNING);
                         }
                     });
                 }
@@ -189,7 +193,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbNombre)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbNombre)'",Level.WARNING);
                         }
                     });
                 }
@@ -261,7 +265,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbAP)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAP)'",Level.WARNING);
                         }
                     });
                 }
@@ -333,7 +337,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbAM)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbAM)'",Level.WARNING);
                         }
                     });
                 }
@@ -472,7 +476,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbExp)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbExp)'",Level.WARNING);
                         }
                     });
                 }
@@ -544,7 +548,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbGE)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbGE)'",Level.WARNING);
                         }
                     });
                 }
@@ -616,7 +620,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbContacto)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbContacto)'",Level.WARNING);
                         }
                     });
                 }
@@ -688,7 +692,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             consulta();
                         }else{
                             JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
-                            new logger().logStaticSaver("Error 11: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbEdad)'",Level.WARNING);
+                            new logger().logStaticSaver("Error 11: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbEdad)'",Level.WARNING);
                         }
                     });
                 }
@@ -807,17 +811,17 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 etiEstado.setText(rs.getString("estado"));
             }else{
                 JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" consulta()'",Level.WARNING);
+                new logger().logStaticSaver("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'",Level.WARNING);
             }
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" consulta()'",Level.WARNING);
+            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'",Level.WARNING);
             new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
         }
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

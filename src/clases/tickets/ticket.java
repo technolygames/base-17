@@ -51,7 +51,7 @@ public class ticket{
             fw.write(ESC_CUT_PAPER);
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T2",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IOE_T2: "+e.getMessage()+" en 'setFormato()'",Level.WARNING);
+            new logger().logStaticSaver("Error IOE_T2: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'setFormato()'",Level.WARNING);
             new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"setFormato",e.fillInStackTrace());
         }
     }
@@ -104,7 +104,7 @@ public class ticket{
             imp.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T1.1",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IOE_T1.1: "+e.getMessage()+" en 'imprimirDocumento()'",Level.WARNING);
+            new logger().logStaticSaver("Error IOE_T1.1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
             new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento",e.fillInStackTrace());
         }finally{
             cabezaLineas.removeAll(cabezaLineas);

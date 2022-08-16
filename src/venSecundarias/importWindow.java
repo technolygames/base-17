@@ -33,28 +33,32 @@ public class importWindow extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-IE",x.fillInStackTrace());
-        }catch(IllegalAccessException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'importWindow()'",Level.WARNING);
-            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-IAE",ñ.fillInStackTrace());
-        }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'importWindow()'",Level.WARNING);
-            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-28",k.fillInStackTrace());
-        }catch(FileNotFoundException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'importWindow()'",Level.WARNING);
-            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-1IO",y.fillInStackTrace());
-        }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'importWindow()'",Level.WARNING);
-            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-2IO",s.fillInStackTrace());
+        }catch(IllegalAccessException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-IAE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-28",y.fillInStackTrace());
+        }catch(NullPointerException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-2IO",d.fillInStackTrace());
         }
         
         botones();
@@ -79,11 +83,11 @@ public class importWindow extends javax.swing.JDialog{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'getIconImage()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
@@ -113,7 +117,7 @@ public class importWindow extends javax.swing.JDialog{
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'botones(fileButton)'",Level.WARNING);
+                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'botones(fileButton)'",Level.WARNING);
                 new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"botones.file-1IO",e.fillInStackTrace());
             }
         });
@@ -129,12 +133,12 @@ public class importWindow extends javax.swing.JDialog{
         String based=jTextField3.getText();
         
         try{
-            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysql -u "+nombreUsuario+" -p "+passUsuario+" "+based);
+            Process pr=Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysql.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);
             
             os=pr.getOutputStream();
             is=new FileInputStream(direccion);
             
-            new thread(is,os).start();
+            new thread(is,os).run();
             
             JOptionPane.showMessageDialog(null,"Se ha importado la base de datos correctamente","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             
@@ -143,11 +147,11 @@ public class importWindow extends javax.swing.JDialog{
             is.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 7: "+e.getMessage()+" en 'restaurar()'",Level.WARNING);
+            new logger().logStaticSaver("Error 7: "+e.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'restaurar()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"restaurar-7",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'restaurar()'",Level.WARNING);
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+importWindow.class.getName()+"', en el método 'restaurar()'",Level.WARNING);
             new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"restaurar-0",x.fillInStackTrace());
         }
     }
@@ -207,7 +211,7 @@ public class importWindow extends javax.swing.JDialog{
                                     .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                     .addComponent(jPasswordField1)
                                     .addComponent(fileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 80, Short.MAX_VALUE))
+                        .addGap(0, 79, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(importButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,7 +229,7 @@ public class importWindow extends javax.swing.JDialog{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
