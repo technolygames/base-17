@@ -1,0 +1,8 @@
+oct. 29, 2021 9:01:51 P. M. clases.logger exceptionLogger
+WARNING: getIconImage-1IO
+java.io.FileNotFoundException: C:\Users\erick\Desktop\Base-jdk16\base\data\config\config.properties (El sistema no puede encontrar la ruta especificada)
+	at venSecundarias.loadWindow.getIconImage(loadWindow.java:101)
+	at venSecundarias.loadWindow.initComponents(loadWindow.java:277)
+	at venSecundarias.loadWindow.<init>(loadWindow.java:32)
+	at venSecundarias.loadWindow.main(loadWindow.java:318)
+

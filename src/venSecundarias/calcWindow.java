@@ -38,7 +38,7 @@ public final class calcWindow extends javax.swing.JDialog{
         }
         
         win=new ventana();
-        String res=Integer.toString(ventana.resultado);
+        String res=Integer.toString(win.resultado);
         txtTotal.setText(res);
         
         setLocationRelativeTo(null);

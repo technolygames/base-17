@@ -40,22 +40,34 @@ public final class proper1 extends javax.swing.JFrame{
             style.load(new FileInputStream("src/data/config/config.properties"));
             UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(this);
-        }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en '"+proper1.class.getName()+"'", Level.WARNING);
-        }catch(ClassNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+x.getMessage()+" en '"+proper1.class.getName()+"'", Level.WARNING);
-        }catch(InstantiationException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-        }catch(IllegalAccessException j){
-            JOptionPane.showMessageDialog(null,"Error:\n"+j.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-        }catch(UnsupportedLookAndFeelException t){
-            JOptionPane.showMessageDialog(null,"Error:\n"+t.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+        }catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-CNFE",e.fillInStackTrace());
+        }catch(InstantiationException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-IE",x.fillInStackTrace());
+        }catch(IllegalAccessException ñ){
+            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"proper1-IAE",ñ.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"proper1-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-        }catch(IOException c){
-            JOptionPane.showMessageDialog(null,"Error:\n"+c.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-0",k.fillInStackTrace());
+        }catch(FileNotFoundException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+s.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-1IO",s.fillInStackTrace());
+        }catch(IOException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+d.getMessage()+" en 'proper1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"proper1-2IO",d.fillInStackTrace());
         }
         
         configIn();
@@ -81,7 +93,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected InputStream is;
     protected OutputStream os;
     protected JFileChooser jfc;
-    protected logger l;
     
     protected String icono;
     protected String nombre;
@@ -99,17 +110,18 @@ public final class proper1 extends javax.swing.JFrame{
     @Override
     public Image getIconImage(){
         p=new Properties();
-        l=new logger();
         try{
             p.load(new FileInputStream("src/data/config/config.properties"));
             retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            l.logStaticSaver("Error 1IO: "+e.getMessage()+" en '"+getIconImage().getClass().getName()+"'", Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            l.logStaticSaver("Error 2IO: "+x.getMessage()+" en '"+getIconImage().getClass().getName()+"'", Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -140,12 +152,20 @@ public final class proper1 extends javax.swing.JFrame{
             i.flush();
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 32: "+e.getMessage()+" en 'configIn()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-32",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'configIn()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-1IO",x.fillInStackTrace());
         }catch(IOException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+ñ.getMessage()+" en 'configIn()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-2IO",ñ.fillInStackTrace());
         }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Erro 0",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+k.getMessage()+" en 'configIn()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configIn-0",k.fillInStackTrace());
         }
     }
     
@@ -185,16 +205,24 @@ public final class proper1 extends javax.swing.JFrame{
                         p.setProperty("lastdirectory_icon",f.getParent());
                         p.setProperty("filter_icon",String.valueOf(jfc.getFileFilter()));
                         p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
-                    }catch(IOException ex){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+ex.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 24: "+e.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
+                        new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-24",e.fillInStackTrace());
                     }
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 40: "+e.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-1IO",x.fillInStackTrace());
             }catch(IOException ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+ñ.getMessage()+" en 'botones(iconButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.icon-2IO",ñ.fillInStackTrace());
             }
         });
         
@@ -223,19 +251,29 @@ public final class proper1 extends javax.swing.JFrame{
                         i.flush();
                         
                         p.setProperty("lastdirectory_image",f.getParent());
-                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
+                        p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFil eChooserDirection");
                     }catch(FileNotFoundException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'botones(imgButton)'",Level.WARNING);
+                        new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-1IO",e.fillInStackTrace());
                     }catch(IOException x){
                         JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);
+                        new logger().logStaticSaver("Error 24: "+x.getMessage()+" en 'botones(imgButton)'",Level.WARNING);
+                        new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-24",x.fillInStackTrace());
                     }
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 40: "+e.getMessage()+" en 'botones(imgButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'botones(imgButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-1IO",x.fillInStackTrace());
             }catch(IOException ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+ñ.getMessage()+" en 'botones(imgButton)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.img-2IO",ñ.fillInStackTrace());
             }
         });
         
@@ -250,12 +288,20 @@ public final class proper1 extends javax.swing.JFrame{
                 SwingUtilities.updateComponentTreeUI(this);
             }catch(ClassNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'botones(jComboBox2)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.combo2-CNFE",e.fillInStackTrace());
             }catch(IllegalAccessException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error IAE: "+x.getMessage()+" en 'botones(jComboBox2)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.combo2-IAE",x.fillInStackTrace());
             }catch(InstantiationException ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error IE: "+ñ.getMessage()+" en 'botones(jComboBox2)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.combo2-IE",ñ.fillInStackTrace());
             }catch(UnsupportedLookAndFeelException k){
                 JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'botones(jComboBox2)'",Level.WARNING);
+                new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"botones.combo2-28",k.fillInStackTrace());
             }
         });
         
@@ -271,11 +317,17 @@ public final class proper1 extends javax.swing.JFrame{
                 jComboBox2.addItem(lafi1.getClassName());
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 34",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error NFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error NFE: "+e.getMessage()+" en 'combo1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"combo1-NFE",e.fillInStackTrace());
         }catch(IllegalArgumentException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 34",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 34: "+x.getMessage()+" en 'combo1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"combo1-34",x.fillInStackTrace());
         }catch(NullPointerException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+ñ.getMessage()+" en 'combo1()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"combo1-0",ñ.fillInStackTrace());
         }
     }
     
@@ -334,12 +386,20 @@ public final class proper1 extends javax.swing.JFrame{
             }
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 27",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 27: "+e.getMessage()+" en 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-27",e.fillInStackTrace());
         }catch(NumberFormatException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32H",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 32H: "+x.getMessage()+" en 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-32H",x.fillInStackTrace());
         }catch(NullPointerException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+ñ.getMessage()+" en 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-0",ñ.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 26H: "+k.getMessage()+" en 'configOut()'",Level.WARNING);
+            new logger().exceptionLogger(proper1.class.getName(),Level.WARNING,"configOut-27h",k.fillInStackTrace());
         }
     }
     

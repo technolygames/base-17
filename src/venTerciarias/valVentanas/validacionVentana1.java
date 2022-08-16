@@ -16,8 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+import venPrimarias.start;
 
 public class validacionVentana1 extends javax.swing.JDialog{
+    String nomval;
     public validacionVentana1(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
@@ -41,7 +43,9 @@ public class validacionVentana1 extends javax.swing.JDialog{
         }
         
         botones();
-        
+        start s=new start();
+        nomval=s.nombreVal;
+        jTextField1.setText(nomval);
         setLocationRelativeTo(null);
         setTitle("Validación");
     }
@@ -79,7 +83,7 @@ public class validacionVentana1 extends javax.swing.JDialog{
                 PreparedStatement ps=new datos().getConnection().prepareStatement(consulta);
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
-                    if(rs.getString("puesto").equals("Dueño")||rs.getString("puesto").equals("Programador")||rs.getString("puesto").equals("Desarrollador")){
+                    if(nomval.equals("Dueño")||nomval.equals("Programador")||nomval.equals("Desarrollador")){
                         new formulario2().setVisible(true);
                         dispose();
                     }else if(rs.getString("puesto").equals("Empleado")){

@@ -159,9 +159,11 @@ public final class formulario1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 23",JOptionPane.WARNING_MESSAGE);
             }catch(NullPointerException ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                ñ.fillInStackTrace();
             }catch(FileNotFoundException k){
                 JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage());
-                new logger().exceptionLogger("formulario1",Level.WARNING,"botones",k.fillInStackTrace());            }
+                new logger().exceptionLogger("formulario1",Level.WARNING,"botones",k.fillInStackTrace());
+            }
         });
     }
     

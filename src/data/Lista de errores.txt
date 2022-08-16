@@ -44,6 +44,7 @@ Error 36NM: las traducciones no pudieron ser guardadas en el archivo de configur
 Error 37: el programa no encontró el driver de conexión a la base de datos
 Error 38: error de validación; solo roles específicos son aceptados
 Error 39: no se puede descargar las librerías (.jar)
+Error 40: la ventana no puede ser iniciada correctamente
 
 
 -Exclusivo para desarrollador

@@ -36,7 +36,6 @@ public class thread extends Thread{
             buffer=new byte[1024];
             while((leido=is.read(buffer))>0){
                 os.write(buffer,0,leido);
-                new logger().logStaticSaver("Se está usando el hilo en 'run()'",Level.WARNING);
             }
             
             is.close();
@@ -45,6 +44,7 @@ public class thread extends Thread{
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 26H",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 26H: "+e.getMessage()+" en 'run()'",Level.WARNING);
+            new logger().exceptionLogger(thread.class.getName(),Level.WARNING,"run-26H",e.fillInStackTrace());
         }
     }
 }

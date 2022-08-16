@@ -52,6 +52,7 @@ public class ticket{
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T2",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error IOE_T2: "+e.getMessage()+" en 'setFormato()'",Level.WARNING);
+            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"setFormato",e.fillInStackTrace());
         }
     }
     
@@ -65,7 +66,7 @@ public class ticket{
     
     public static void imprimirDocumento(String impresora,boolean abrir){
         try{
-            FileWriter imp = new FileWriter(impresora);
+            FileWriter imp=new FileWriter(impresora);
             char[] cortarPapel=new char[]{0x1B,'m'};
             char abrirGaveta[]={(char)27,(char)112,(char)0,(char)10,(char)100};
             
@@ -92,7 +93,6 @@ public class ticket{
             
             if(abrir){
                 imp.write(abrirGaveta);
-                new logger().logStaticSaver("Se abrió la gaveta",Level.INFO);
             }
             
             cabezaLineas.clear();
@@ -105,7 +105,8 @@ public class ticket{
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T1.1",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error IOE_T1.1: "+e.getMessage()+" en 'imprimirDocumento()'",Level.WARNING);
-            
+            new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento",e.fillInStackTrace());
+        }finally{
             cabezaLineas.removeAll(cabezaLineas);
             subcabezaLineas.removeAll(subcabezaLineas);
             items.removeAll(items);

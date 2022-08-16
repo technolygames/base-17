@@ -19,9 +19,9 @@ public class logger{
         try{
         fh=new FileHandler("src/data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -38,7 +38,8 @@ public class logger{
             logger.addHandler(fh);
             logger.log(level,message);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
+            new logger().exceptionLogger(logger.class.getName(),Level.WARNING,"logStaticSaver-SE",e.fillInStackTrace());
         }
     }
     
@@ -53,7 +54,7 @@ public class logger{
     public void exceptionLogger(String className,Level level,String methodName,Throwable exception){
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
-            fh2=new FileHandler("src/data/logs/exceptions/"+className+".log");
+            fh2=new FileHandler("src/data/logs/exceptions/"+className+"."+methodName+"("+Math.random()+").log");
             fh2.setFormatter(new SimpleFormatter());
             logger.addHandler(fh2);
             logger.log(level,methodName,exception);
@@ -61,9 +62,11 @@ public class logger{
             fh2.flush();
             fh2.close();
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error SE: "+e.getMessage()+" en 'exceptionLogger()'",Level.WARNING);
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IOE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error SE: "+x.getMessage()+" en 'exceptionLogger()'",Level.WARNING);
         }
     }
 }

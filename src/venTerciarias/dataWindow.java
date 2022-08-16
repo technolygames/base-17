@@ -85,7 +85,7 @@ public class dataWindow extends javax.swing.JDialog{
                 etiNombre.setText(rs.getString("nombre_emp"));
                 etiApellidoP.setText(rs.getString("apellidop_emp"));
                 etiApellidoM.setText(rs.getString("apellidom_emp"));
-                etiPuesto.setText(rs.getString("rol"));
+                etiPuesto.setText(rs.getString("puesto"));
                 etiExp.setText(rs.getString("experiencia"));
                 etiEstudios.setText(rs.getString("grado_estudios"));
                 etiEdad.setText(String.valueOf(rs.getInt("edad")));

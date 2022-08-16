@@ -31,7 +31,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="540" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="refreshButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -62,7 +65,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="288" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="backButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="backButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -124,6 +130,11 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBuscar">
+    </Component>
+    <Component class="javax.swing.JButton" name="refreshButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Recargar"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

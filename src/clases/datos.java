@@ -49,23 +49,22 @@ public class datos{
             
             Class.forName(controlador);
             cn=DriverManager.getConnection("jdbc:mysql://"+ip+":"+puerto+"/"+bd+"",usuario,contraseña);
-            new logger().logStaticSaver("Hay conexión a la base de datos",Level.INFO);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 10",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 10: "+e.getMessage()+"\nen 'getConnection()'",Level.WARNING);
-            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"getConnection",e.fillInStackTrace());
+            new logger().logStaticSaver("Error 10: "+e.getMessage()+" en 'getConnection()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"getConnection-10",e.fillInStackTrace());
         }catch(ClassNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 37",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 37: "+x.getMessage()+" en 'getConnection()'",Level.WARNING);
-            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"getConnection",x.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"getConnection-37",x.fillInStackTrace());
         }catch(FileNotFoundException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 1IO: "+ñ.getMessage()+" en 'getConnection()'",Level.WARNING);
-            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"getConnection",ñ.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"getConnection-1IO",ñ.fillInStackTrace());
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 2IO: "+k.getMessage()+" en 'getConnection()'",Level.WARNING);
-            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"getConnection",k.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"getConnection-2IO",k.fillInStackTrace());
         }
         return cn;
     }
@@ -85,12 +84,11 @@ public class datos{
             ps=getConnection().prepareStatement(ins1_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 1: Se han guardado correctamente los datos en la base de datos en 'insertarDatosProdducto()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+" en 'insertarDatosProducto()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"insertarDatosProducto()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosProducto-11",e.fillInStackTrace());
         }
     }
     
@@ -112,12 +110,11 @@ public class datos{
             ps=getConnection().prepareStatement(ins2_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 1: Se han guardado correctamente los datos en la base de datos de 'insertarDatosAlmacen()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+" en 'insertarDatosAlmacen()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"insertarDatosAlmacen()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosAlmacen-11",e.fillInStackTrace());
         }
     }
     
@@ -136,7 +133,7 @@ public class datos{
      * @param datosExtra Datos extras que el CV del empleado se quieran agregar.
      */
     public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String puesto,String experiencia,String gradoEstudios,int edad,String datosExtra,InputStream foto){
-        String ins3_query="insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,rol,experiencia,grado_estudios,edad,datos_extra,foto) values(?,?,?,?,?,?,?,?,?,?,?);";
+        String ins3_query="insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,foto) values(?,?,?,?,?,?,?,?,?,?,?);";
         try{
             ps=getConnection().prepareStatement(ins3_query);
             ps.setString(1,password);
@@ -150,19 +147,14 @@ public class datos{
             ps.setInt(9,edad);
             ps.setString(10,datosExtra);
             ps.setBlob(11,foto);
-            boolean state=ps.execute();
-            if(state==false){
-                System.out.println("no se envió");
-            }else{
-                System.out.println("se envió");
-            }
+            ps.execute();
+            
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 1: Se han guardado correctamente los datos en la base de datos en 'insertarDatosEmpleado()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+" en 'insertarDatosEmpleado()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"insertarDatosEmpleado()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosEmpleado-11",e.fillInStackTrace());
         }
     }
     
@@ -182,12 +174,11 @@ public class datos{
             ps=getConnection().prepareStatement(ins4_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 1: Se han guardado correctamente los datos en la base de datos en 'insertarDatosSocio()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+" en 'insertarDatosSocio()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"insertarDatosSocio()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosSocio-11",e.fillInStackTrace());
         }
     }
     
@@ -206,12 +197,11 @@ public class datos{
             ps=getConnection().prepareStatement(ins5_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 1: Se han guardado correctamente los datos en la base de datos en 'insertarDatosProveedor()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+" en 'insertarDatosProveedor()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"insertarDatosProveedor()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"insertarDatosProveedor-11",e.fillInStackTrace());
         }
     }
     
@@ -224,6 +214,8 @@ public class datos{
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 12: "+e.getMessage()+" en 'actualizarDatosEmpleado()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"actualizarDatosEmpleado-12",e.fillInStackTrace());
         }
     }
     
@@ -236,6 +228,8 @@ public class datos{
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 12: "+e.getMessage()+" en 'actualizarDatosSocio()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"actualizarDatosSocio-12",e.fillInStackTrace());
         }
     }
     
@@ -251,12 +245,11 @@ public class datos{
             ps=getConnection().prepareStatement(del1_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 3: Se han eliminado correctamente los datos de la base de datos en 'eliminarDatosEmpleado()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 13: "+e.getMessage()+" en 'eliminarDatosEmpleado()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"eliminarDatosEmpleado()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.SEVERE,"eliminarDatosEmpleado-13",e.fillInStackTrace());
         }
     }
     
@@ -272,12 +265,11 @@ public class datos{
             ps=getConnection().prepareStatement(del2_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 3: Se han guardado correctamente los datos de la base de datos en 'eliminarDatosSocio()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 13: "+e.getMessage()+" en 'eliminarDatosSocio()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"eliminarDatosSocio()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"eliminarDatosSocio-13",e.fillInStackTrace());
         }
     }
     
@@ -293,12 +285,11 @@ public class datos{
             ps=getConnection().prepareStatement(del3_query);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger().logStaticSaver("Rel 3: Se han guardado correctamente los datos de la base de datos en 'eliminarDatosProveedor()'",Level.INFO);
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 13: "+e.getMessage()+" en 'eliminarDatosProveedor()'",Level.WARNING);
-            new logger().exceptionLogger("datos",Level.SEVERE,"eliminarDatosProveedor()",e.fillInStackTrace());
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"eliminarDatosProveedor-13",e.fillInStackTrace());
         }
     }
 }

@@ -1,6 +1,7 @@
 package venPrimarias;
 
 import clases.datos;
+import clases.logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
@@ -33,16 +35,28 @@ public final class ltshWorkers extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error ULAFE",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error ULAFE: "+y.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-ULAFE",y.fillInStackTrace());
         }catch(FileNotFoundException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error FNFE",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-1IO",k.fillInStackTrace());
         }catch(IOException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error IOE",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'ltshWorkers()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"ltshWorkers-2IO",s.fillInStackTrace());
         }
         
         datosMostrar();
@@ -72,10 +86,33 @@ public final class ltshWorkers extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected final void boton(){
+        backButton.addActionListener((ae)->{
+            setVisible(false);
+            dispose();
+        });
+        
+        searchButton.addActionListener((ae)->{
+            datosBuscar();
+        });
+        
+        wdataButton.addActionListener((ae)->{
+            new dataWindow(new javax.swing.JFrame(),true).setVisible(true);
+        });
+        
+        refreshButton.addActionListener((e)->{
+            datosMostrar();
+        });
     }
     
     protected final void datosMostrar(){
@@ -96,26 +133,17 @@ public final class ltshWorkers extends javax.swing.JFrame{
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 16: "+e.getMessage()+" en 'datosMostrar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosMostrar-16",e.fillInStackTrace());
         }catch(NumberFormatException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 15: "+x.getMessage()+" en 'datosMostrar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosMostrar-15",x.fillInStackTrace());
         }catch(NullPointerException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+ñ.getMessage()+" en 'datosMostrar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosMostrar-0",ñ.fillInStackTrace());
         }
-    }
-    
-    protected final void boton(){
-        backButton.addActionListener((ae)->{
-            setVisible(false);
-            dispose();
-        });
-        
-        searchButton.addActionListener((ae)->{
-            datosBuscar();
-        });
-        
-        wdataButton.addActionListener((ae)->{
-            new dataWindow(new javax.swing.JFrame(),true).setVisible(true);
-        });
     }
     
     protected final void datosBuscar(){
@@ -254,12 +282,20 @@ public final class ltshWorkers extends javax.swing.JFrame{
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 16: "+e.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-16",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-        }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
-        }catch(IndexOutOfBoundsException ñ){
-            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-0",x.fillInStackTrace());
+        }catch(ArrayIndexOutOfBoundsException ñ){
+            JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error Prueba: "+ñ.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-Prueba",ñ.fillInStackTrace());
+        }catch(IndexOutOfBoundsException p){
+            JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error 32",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 32: "+p.getMessage()+" en 'datosBuscar()'",Level.WARNING);
+            new logger().exceptionLogger(ltshWorkers.class.getName(),Level.WARNING,"datosBuscar-32",p.fillInStackTrace());
         }
     }
     
@@ -276,6 +312,7 @@ public final class ltshWorkers extends javax.swing.JFrame{
         wdataButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         backButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -307,6 +344,8 @@ public final class ltshWorkers extends javax.swing.JFrame{
 
         backButton.setText("Regresar");
 
+        refreshButton.setText("Recargar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,6 +364,8 @@ public final class ltshWorkers extends javax.swing.JFrame{
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(wdataButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)))
                 .addContainerGap())
@@ -343,7 +384,8 @@ public final class ltshWorkers extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(wdataButton)
-                    .addComponent(backButton))
+                    .addComponent(backButton)
+                    .addComponent(refreshButton))
                 .addContainerGap())
         );
 
@@ -361,6 +403,7 @@ public final class ltshWorkers extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JButton wdataButton;

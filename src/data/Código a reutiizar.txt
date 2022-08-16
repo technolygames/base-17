@@ -1,0 +1,2 @@
+new logger().logStaticSaver("Error : "+e.getMessage()+" en '()'",Level.WARNING);
+new logger().exceptionLogger(.class.getName(),Level.WARNING,"",e.fillInStackTrace());
