@@ -1,0 +1,1 @@
+select*from productos where codigo_prod=$P{codigo_prod};

@@ -1,0 +1,16 @@
+General:
+-Es necesario tener un sistema operativo que soporte las notificaciones (e.g. Windows 10).
+-Para primer uso y en caso de presentarse varios errores, se debe configurar en la ventana de "Configuraciones" (Ventana principal>Opciones>Ajustes) o renombrar el archivo "preconfig.properties" (src/data/config/preconfig.properties) para reemplazar el archivo "config.properties" de la misma carpeta. Hay un problema con las direcciones cuando se ejecutan en otra máquina.
+-Para mejor comprensión de los errores del programa, vea el archivo en texto plano "Lista de errores".
+-En el slider para visualizar las imágenes utilizadas como ícono e imagen de ventanas, debes presionar el botón de las flechas apuntando a la derecha.
+Tablas para visualizar datos:
+-Al buscar datos expecíficos, se podrá activar un botón para ver los datos mejor detallados en una ventana a parte. El primer resultado siempre será con el que se podrá ver la ventana secundaria.
+Formulario:
+-Para introducir una imagen en formulario 1, 2 y 3, selecciona alguno de los formatos disponibles.
+-Para pedir una factura/reporte, la persona debe otorgar un correo electrónico y rfc. Puede o no afiliarse al negocio.
+-Si va a afiliar un socio nuevo, es necesario pedir el rfc y un correo electrónico.
+-Al crear un descuento, no se debe borrar el punto que hay por defecto. En caso de que no esté, favor de escribir al inicio de la cantidad del descuento el punto para que sea decimal (por ejemplo: .15); nunca escribir el símbolo de porcentaje.
+-Al tratar de eliminar el registro de un empleado que no ha iniciado sesión en el programa haciendo copia de seguridad, mejor elimina los datos completos porque el programa lanzará un error 0 porque no existen datos de ese usuario en la tabla de conteo.
+Informe de errores:
+-En caso de que aparezca la ventana emergente con código de error "0" o "Prueba", por favor de hacernos llegar, con muestra en una screenshot (captura de pantalla), del error, cómo lo produjo, fecha y hora en la que apareció el error.
+-Hay un bug en los paneles de modificación de datos. Todas las veces va a dar error. Se "arregló" poniendo contrapesos para que no haga cambio de datos no solicitados, pero igual dará los errores sin modificar los datos.
