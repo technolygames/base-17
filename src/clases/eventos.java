@@ -3,7 +3,7 @@ package clases;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class events extends KeyAdapter{
+public class eventos extends KeyAdapter{
     static boolean w,s,up,down,escape;
     
     @Override

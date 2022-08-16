@@ -29,8 +29,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperFillManager;
 
-public final class ventana extends javax.swing.JFrame{
-    public ventana(){
+public final class ventana1 extends javax.swing.JFrame{
+    public ventana1(){
         initComponents();
         try{
             Properties style=new Properties();
@@ -39,28 +39,28 @@ public final class ventana extends javax.swing.JFrame{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-CNFE",e.fillInStackTrace());
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-IE",x.fillInStackTrace());
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-IAE",ñ.fillInStackTrace());
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-28",y.fillInStackTrace());
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-28",y.fillInStackTrace());
         }catch(FileNotFoundException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-1IO",k.fillInStackTrace());
+            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-1IO",k.fillInStackTrace());
         }catch(IOException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'ventana()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"ventana-2IO",s.fillInStackTrace());
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'ventana1()'",Level.WARNING);
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"ventana1-2IO",s.fillInStackTrace());
         }
         
         tabla();
@@ -99,11 +99,11 @@ public final class ventana extends javax.swing.JFrame{
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -121,11 +121,11 @@ public final class ventana extends javax.swing.JFrame{
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Erron:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'settings()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"settings-2IO",x.fillInStackTrace());
         }
     }
     
@@ -169,7 +169,7 @@ public final class ventana extends javax.swing.JFrame{
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 18: "+e.getMessage()+" en 'botones(calcButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.calc-18",e.fillInStackTrace());
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.calc-18",e.fillInStackTrace());
             }
         });
         
@@ -199,19 +199,19 @@ public final class ventana extends javax.swing.JFrame{
             }catch(JRException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 17",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 17: "+e.getMessage()+" en 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.genrep-17",e.fillInStackTrace());
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-17",e.fillInStackTrace());
             }catch(ExceptionInInitializerError x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error EIIE",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error EIIE: "+x.getMessage()+" en 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.genrep-EIIE",x.fillInStackTrace());
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-EIIE",x.fillInStackTrace());
             }catch(NoClassDefFoundError ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error NCDFE",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error NCDFE: "+ñ.getMessage()+" en 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.genrep-NCDFE",ñ.fillInStackTrace());
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-NCDFE",ñ.fillInStackTrace());
             }catch(SQLException k){
                 JOptionPane.showMessageDialog(null,"Error:\n"+d,"Error Prueba",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error Prueba: "+k.getMessage()+" en 'botones(genrepButton)'",Level.WARNING);
-                new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.genrep-Prueba",k.fillInStackTrace());
+                new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.genrep-Prueba",k.fillInStackTrace());
             }
         });
     }
@@ -234,11 +234,11 @@ public final class ventana extends javax.swing.JFrame{
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 18: "+e.getMessage()+" en 'botones(stdtButton)'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.stdt-18",e.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.stdt-18",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'botones(stdtButton)'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"botones.stdt-0",x.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.stdt-0",x.fillInStackTrace());
         }
     }
     
@@ -283,6 +283,14 @@ public final class ventana extends javax.swing.JFrame{
         addButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
 
@@ -366,6 +374,31 @@ public final class ventana extends javax.swing.JFrame{
         jButton2.setText("Realizar pago");
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jMenu1.setText("Acciones");
+
+        jMenuItem1.setText("Realizar pago");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Generar factura");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Ventana");
+
+        jMenuItem3.setText("Calcular");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Añadir campos");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("Limpiar tabla");
+        jMenu2.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -507,7 +540,7 @@ public final class ventana extends javax.swing.JFrame{
     }//GEN-LAST:event_txtTotalKeyPressed
     
     public static void main(String[] args){
-        new ventana().setVisible(true);
+        new ventana1().setVisible(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -525,6 +558,14 @@ public final class ventana extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JTable jTable1;
     protected javax.swing.JLabel picLabel;

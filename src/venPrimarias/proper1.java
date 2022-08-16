@@ -51,11 +51,11 @@ public final class proper1 extends javax.swing.JFrame{
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'proper1()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"proper1-IAE",ñ.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"proper1-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'proper1()'",Level.WARNING);
-            new logger().exceptionLogger(ventana.class.getName(),Level.WARNING,"proper1-28",y.fillInStackTrace());
+            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"proper1-28",y.fillInStackTrace());
         }catch(NullPointerException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 0: "+k.getMessage()+" en 'proper1()'",Level.WARNING);
@@ -102,10 +102,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected String direccion2;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
-    
-    protected int leido;
-    
-    protected byte[] buffer;
     
     @Override
     public Image getIconImage(){

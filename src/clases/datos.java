@@ -68,6 +68,18 @@ public class datos{
         }
         return cn;
     }
+    
+    public void miscQueries(String query){
+        String mainQuery=query;
+        try{
+            ps=getConnection().prepareStatement(mainQuery);
+            ps.execute();
+            ps.close();
+        }catch(SQLException e){
+            
+        }
+    }
+    
     /**
      * Guarda los datos de la ventana de productos en la base de datos.
      * 
@@ -219,8 +231,8 @@ public class datos{
         }
     }
     
-    public void actualizarDatosSocio(){
-        String up2_query="";
+    public void actualizarDatosSocio(String query){
+        String up2_query=query;
         try{
             ps=getConnection().prepareStatement(up2_query);
             ps.execute();

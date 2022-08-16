@@ -1,7 +1,7 @@
 package venSecundarias;
 
+import clases.logger;
 import clases.thread;
-import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedWriter;
@@ -14,9 +14,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Properties;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import java.util.logging.Level;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.JOptionPane;
@@ -35,16 +33,28 @@ public class importWindow extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-        }catch(IOException v){
-            JOptionPane.showMessageDialog(null,"Error:\n"+v.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-28",k.fillInStackTrace());
+        }catch(FileNotFoundException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-1IO",y.fillInStackTrace());
+        }catch(IOException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'importWindow()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"importWindow-2IO",s.fillInStackTrace());
         }
         
         botones();
@@ -69,8 +79,12 @@ public class importWindow extends javax.swing.JDialog{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -98,7 +112,9 @@ public class importWindow extends javax.swing.JDialog{
                     p.store(new BufferedWriter(new FileWriter("src/data/config/filechooserd.properties")),"JFileChooserDirection");
                 }
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 8",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'botones(fileButton)'",Level.WARNING);
+                new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"botones.file-1IO",e.fillInStackTrace());
             }
         });
         
@@ -127,8 +143,12 @@ public class importWindow extends javax.swing.JDialog{
             is.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 7: "+e.getMessage()+" en 'restaurar()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"restaurar-7",e.fillInStackTrace());
         }catch(NullPointerException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 0: "+x.getMessage()+" en 'restaurar()'",Level.WARNING);
+            new logger().exceptionLogger(importWindow.class.getName(),Level.WARNING,"restaurar-0",x.fillInStackTrace());
         }
     }
     

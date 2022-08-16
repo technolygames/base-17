@@ -1,6 +1,7 @@
 package clases;
 
 import java.io.IOException;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ public class logger{
     
     static{
         try{
-        fh=new FileHandler("src/data/logs/static/staticLog.log",0,1,true);
+        fh=new FileHandler("src/data/logs/static/staticLog("+Calendar.DAY_OF_YEAR+"-"+Calendar.YEAR+").log",0,1,true);
         }catch(SecurityException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
         }catch(IOException x){
@@ -54,7 +55,7 @@ public class logger{
     public void exceptionLogger(String className,Level level,String methodName,Throwable exception){
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
-            fh2=new FileHandler("src/data/logs/exceptions/"+className+"."+methodName+"("+Math.random()+").log");
+            fh2=new FileHandler("src/data/logs/exceptions/"+className+"."+methodName+"-("+Math.random()+").log");
             fh2.setFormatter(new SimpleFormatter());
             logger.addHandler(fh2);
             logger.log(level,methodName,exception);

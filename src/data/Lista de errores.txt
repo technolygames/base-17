@@ -45,6 +45,7 @@ Error 37: el programa no encontró el driver de conexión a la base de datos
 Error 38: error de validación; solo roles específicos son aceptados
 Error 39: no se puede descargar las librerías (.jar)
 Error 40: la ventana no puede ser iniciada correctamente
+Error 41: error al pasar la imagen de la ventana de webcam al formulario
 
 
 -Exclusivo para desarrollador
@@ -61,7 +62,7 @@ _T2: error al dar formato al ticket
 _H1: error al momento de ejecutar el hilo
 
 -Errores de Entrada/Salida
-Error 1IO: error al encontrar el/los archivos
+Error 1IO: error al encontrar el/los archivo(s)
 Error 2IO: error de flujo de datos
 
 -Errores de conexión a internet

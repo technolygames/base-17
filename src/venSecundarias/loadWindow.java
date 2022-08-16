@@ -2,7 +2,7 @@ package venSecundarias;
 
 import clases.logger;
 import clases.resourceDownload;
-import menuVentanas.menuVentanas;
+import menus.menuVentanas;
 
 import java.awt.Image;
 import java.awt.Cursor;

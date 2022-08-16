@@ -3,7 +3,7 @@ package venPrimarias;
 import clases.datos;
 import clases.logger;
 import venSecundarias.webcam;
-import menuVentanas.menuDatosVentana1;
+import menus.menuDatosVentana1;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,27 +32,32 @@ public final class formulario1 extends javax.swing.JFrame{
         try{
             Properties style=new Properties();
             style.load(new FileInputStream("src/data/config/config.properties"));
-            new logger().logStaticSaver("Se cargó los datos de la apariencia de formulario1",Level.INFO);
             UIManager.setLookAndFeel(style.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en formulario1",Level.WARNING);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en formulario1",Level.WARNING);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en formulario1",Level.WARNING);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error ULAFE",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error ULAFE: "+y.getMessage()+" en formulario1",Level.WARNING);
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+y.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-28",y.fillInStackTrace());
         }catch(FileNotFoundException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en formulario1",Level.WARNING);
+            new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-1IO",k.fillInStackTrace());
         }catch(IOException s){
             JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en formulario1",Level.WARNING);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'formulario1()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"formulario1-2IO",s.fillInStackTrace());
         }
         
         botones();
@@ -88,8 +93,12 @@ public final class formulario1 extends javax.swing.JFrame{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -154,22 +163,28 @@ public final class formulario1 extends javax.swing.JFrame{
                 
                 new datos().insertarDatosEmpleado(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,is);
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 20H",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 18: "+e.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-18",e.fillInStackTrace());
             }catch(ArrayIndexOutOfBoundsException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 23",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error AIOOBE: "+x.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-AIOOBE",x.fillInStackTrace());
             }catch(NullPointerException ñ){
                 JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                ñ.fillInStackTrace();
+                new logger().logStaticSaver("Error 0: "+ñ.getMessage()+" en 'botones(svdtButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-0",ñ.fillInStackTrace());
             }catch(FileNotFoundException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage());
-                new logger().exceptionLogger("formulario1",Level.WARNING,"botones",k.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+k.getMessage()+" en 'botones(svdt)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.svdt-1IO",k.fillInStackTrace());
             }
         });
     }
     
     protected final void propiedadesVentana(){
         jMenuItem1.addActionListener((ae)->{
-            new menuDatosVentana1(new javax.swing.JFrame(),true).setVisible(true);
+            new menuDatosVentana1().setVisible(true);
         });
     }
     

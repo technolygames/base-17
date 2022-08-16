@@ -1,5 +1,6 @@
 package venPrimarias;
 
+import clases.controlador.controlador;
 import clases.datos;
 import clases.logger;
 import clases.win10Notification;
@@ -166,7 +167,8 @@ public final class start extends javax.swing.JFrame{
                 new loadWindow().setVisible(true);
                 dispose();
                 new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+rs.getString("nombre_emp"),MessageType.INFO);
-                nombreVal=rs.getString("puesto");
+                new controlador().setUser(rs.getString("nombre_emp"));
+                new controlador().setPuesto(rs.getString("puesto"));
             }
             
             ps.close();

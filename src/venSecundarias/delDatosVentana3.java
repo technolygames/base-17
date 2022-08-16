@@ -1,12 +1,14 @@
 package venSecundarias;
 
 import clases.datos;
+import clases.logger;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -23,22 +25,34 @@ public class delDatosVentana3 extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-        }catch(IOException v){
-            JOptionPane.showMessageDialog(null,"Error:\n"+v.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-28",k.fillInStackTrace());
+        }catch(FileNotFoundException y){
+            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+y.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-1IO",y.fillInStackTrace());
+        }catch(IOException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'delDatosVentana3()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"delDatosVentana3-2IO",s.fillInStackTrace());
         }
         
         botones();
         
         setLocationRelativeTo(null);
-        setTitle("Menú de Datos");
+        setTitle("Eliminar Datos");
     }
     
     protected Image retValue;
@@ -52,8 +66,12 @@ public class delDatosVentana3 extends javax.swing.JDialog{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -71,6 +89,8 @@ public class delDatosVentana3 extends javax.swing.JDialog{
                 new datos().eliminarDatosProveedor(codigo);
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error Prueba: "+e.getMessage()+" en 'botones(deleteButton)'",Level.WARNING);
+                new logger().exceptionLogger(delDatosVentana3.class.getName(),Level.WARNING,"botones.delete-Prueba",e.fillInStackTrace());
             }
         });
     }

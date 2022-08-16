@@ -1,11 +1,14 @@
 package venSecundarias;
 
+import clases.logger;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.logging.Level;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -26,16 +29,28 @@ public final class webcam extends javax.swing.JDialog{
             SwingUtilities.updateComponentTreeUI(this);
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error CNFE: "+e.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-CNFE",e.fillInStackTrace());
         }catch(InstantiationException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IE: "+x.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-IE",x.fillInStackTrace());
         }catch(IllegalAccessException ñ){
             JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error IAE",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error IAE: "+ñ.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-IAE",ñ.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.WARNING_MESSAGE);
-        }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-        }catch(IOException v){
-            JOptionPane.showMessageDialog(null,"Error:\n"+v.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 28: "+k.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-28",k.fillInStackTrace());
+        }catch(FileNotFoundException d){
+            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+d.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-1IO",d.fillInStackTrace());
+        }catch(IOException s){
+            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+s.getMessage()+" en 'webcam()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"webcam-2IO",s.fillInStackTrace());
         }
         
         botones();
@@ -57,8 +72,12 @@ public final class webcam extends javax.swing.JDialog{
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
+            new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
     }
@@ -74,8 +93,10 @@ public final class webcam extends javax.swing.JDialog{
                 ImageIcon ii=new ImageIcon(jWebcam1.getImage());
                 Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
                 picLabel.setIcon(i);
-            }catch(NullPointerException t){
-                JOptionPane.showMessageDialog(null,"Error:\n"+t.getMessage(),"Error 22",JOptionPane.WARNING_MESSAGE);
+            }catch(NullPointerException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 41",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 41: "+e.getMessage()+" en 'botones(picButton)'",Level.WARNING);
+                new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"botones.pic-41",e.fillInStackTrace());
             }
         });
     }
