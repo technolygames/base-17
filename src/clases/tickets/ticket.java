@@ -64,13 +64,17 @@ public class ticket{
         return (char)27+"m";
     }
     
-    public static void imprimirDocumento(String impresora,boolean abrir){
+    /**
+     * Imprime el ticket por medio de la ticketera
+     * 
+     * @param impresora Ticketera a la que se imprimirÃ¡ el documento
+     */
+    public static void imprimirDocumento(String impresora){
         try{
             FileWriter imp=new FileWriter(impresora);
             char[] cortarPapel=new char[]{0x1B,'m'};
-            char abrirGaveta[]={(char)27,(char)112,(char)0,(char)10,(char)100};
             
-            for(int cabecera=0; cabecera<cabezaLineas.size(); cabecera++){
+            for(int cabecera=0;cabecera<cabezaLineas.size();cabecera++){
                 imp.write(cabezaLineas.get(cabecera));
             }
             for(int subcabecera=0;subcabecera<subcabezaLineas.size();subcabecera++){
@@ -91,10 +95,6 @@ public class ticket{
             
             imp.write(cortarPapel);
             
-            if(abrir){
-                imp.write(abrirGaveta);
-            }
-            
             cabezaLineas.clear();
             subcabezaLineas.clear();
             items.clear();
@@ -104,7 +104,7 @@ public class ticket{
             imp.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T1.1",JOptionPane.WARNING_MESSAGE);
-            new logger().logStaticSaver("Error IOE_T1.1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'",Level.WARNING);
+            new logger().logStaticSaver("Error IOE_T1.1: "+e.getMessage()+"\nOcurriÃ³ en la clase '"+ticket.class.getName()+"', en el mÃ©todo 'imprimirDocumento()'",Level.WARNING);
             new logger().exceptionLogger(ticket.class.getName(),Level.WARNING,"imprimirDocumento",e.fillInStackTrace());
         }finally{
             cabezaLineas.removeAll(cabezaLineas);

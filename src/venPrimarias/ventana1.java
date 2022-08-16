@@ -29,6 +29,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperFillManager;
+import venTerciarias.dataWindow4;
 
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
@@ -181,16 +182,18 @@ public final class ventana1 extends javax.swing.JFrame{
         
         calcButton.addActionListener((ae)->{
             try{
-                int n1=Integer.parseInt(txtCant.getText());
-                int n2=Integer.parseInt(txtPrecio.getText());
-                resultado=n2*n1;
-                String res=Integer.toString(resultado);
-                
-                txtTotal.setText(res);
+                int n1=0;
+                int res=0;
+                for(int i=0;i<dtm.getRowCount();i++){
+                    n1=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                    res+=n1;
+                    
+                    resultado=res;
+                }
                 
                 calcWindow clw=new calcWindow(new javax.swing.JFrame(),true);
                 clw.setVisible(true);
-                calcWindow.txtTotal.setText(res);
+                calcWindow.txtTotal.setText(String.valueOf(resultado));
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
@@ -252,7 +255,6 @@ public final class ventana1 extends javax.swing.JFrame{
                     new datos().insertarDatosProducto(codigo_prod,nombre_prod,marca_prod,cantidad,precio,total);
                 }
                 JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-                payment();
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'",Level.WARNING);
@@ -263,10 +265,6 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"botones.mkPaid-0",x.fillInStackTrace());
             }
         });
-    }
-    
-    protected void payment(){
-        datosTicket dt=new datosTicket();
     }
     
     @SuppressWarnings("unchecked")

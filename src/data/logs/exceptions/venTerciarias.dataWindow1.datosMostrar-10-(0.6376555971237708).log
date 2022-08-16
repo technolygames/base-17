@@ -1,7 +1,0 @@
-mar. 05, 2022 4:59:10 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-10
-java.sql.SQLSyntaxErrorException: Unknown column 'codigo_emp' in 'where clause'
-	at venTerciarias.dataWindow1.datosMostrar(dataWindow1.java:138)
-	at venTerciarias.dataWindow1.<init>(dataWindow1.java:67)
-	at venTerciarias.dataWindow1.main(dataWindow1.java:437)
-

@@ -58,7 +58,7 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        f=new File("src/data/libs/"+validar);
+        /*f=new File("src/data/libs/"+validar);
         try{
             if(!f.exists()){
                 u=new URL(link);
@@ -87,6 +87,6 @@ public class resourceDownload{
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'",Level.WARNING);
             new logger().exceptionLogger(resourceDownload.class.getName(),Level.WARNING,"downloadLibs-2IO",k.fillInStackTrace());
-        }
+        }*/
     }
 }

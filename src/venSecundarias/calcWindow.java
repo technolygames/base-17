@@ -56,12 +56,13 @@ public final class calcWindow extends javax.swing.JDialog{
         }
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Calculadora");
         setResizable(false);
     }
+    
+    public static int cambio;
     
     protected ventana1 win;
     
@@ -86,11 +87,6 @@ public final class calcWindow extends javax.swing.JDialog{
         return retValue;
     }
     
-    protected void settings(){
-        String res=Integer.toString(ventana1.resultado);
-        txtTotal.setText(res);
-    }
-    
     protected final void botones(){
         backButton.addActionListener((ae)->{
             setVisible(false);
@@ -106,6 +102,7 @@ public final class calcWindow extends javax.swing.JDialog{
                 String res=Integer.toString(Math.abs(resultado));
                 
                 txtCambio.setText(res);
+                cambio=Integer.parseInt(txtCambio.getText());
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 18: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'",Level.WARNING);
@@ -199,8 +196,8 @@ public final class calcWindow extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public static javax.swing.JTextField txtCambio;
-    public static javax.swing.JTextField txtDinIng;
+    protected javax.swing.JTextField txtCambio;
+    protected javax.swing.JTextField txtDinIng;
     public static javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

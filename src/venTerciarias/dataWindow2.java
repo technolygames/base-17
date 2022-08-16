@@ -147,7 +147,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
-                File f=new File("src/data/media/dataImage/socios/"+Math.random()+".jpg");
+                File f=new File("src/data/media/dataImage/socios/"+(int)(Math.random()*100000)+".jpg");
                 File f2=new File("src/data/media/dataImage/socios");
                 
                 if(!f2.exists()){

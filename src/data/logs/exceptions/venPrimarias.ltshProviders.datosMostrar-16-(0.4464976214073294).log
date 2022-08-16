@@ -1,7 +1,0 @@
-feb. 16, 2022 5:44:48 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-16
-java.sql.SQLException: Column 'codigo_pro' not found.
-	at venPrimarias.ltshProviders.datosMostrar(ltshProviders.java:126)
-	at venPrimarias.ltshProviders.<init>(ltshProviders.java:59)
-	at venPrimarias.ltshProviders.main(ltshProviders.java:289)
-

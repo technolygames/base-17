@@ -1,7 +1,0 @@
-mar. 09, 2022 5:00:25 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-10
-java.sql.SQLException: Column 'fecha_registro' not found.
-	at venTerciarias.dataWindow2.datosMostrar(dataWindow2.java:122)
-	at venTerciarias.dataWindow2.<init>(dataWindow2.java:26)
-	at venTerciarias.dataWindow2.main(dataWindow2.java:312)
-

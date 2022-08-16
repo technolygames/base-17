@@ -1,7 +1,0 @@
-mar. 12, 2022 10:42:48 P. M. clases.logger exceptionLogger
-WARNING: datosMostrar-16
-java.sql.SQLException: Column 'contacto' not found.
-	at venPrimarias.ltshWorkers.datosMostrar(ltshWorkers.java:144)
-	at venPrimarias.ltshWorkers.<init>(ltshWorkers.java:66)
-	at venPrimarias.ltshWorkers.main(ltshWorkers.java:339)
-

@@ -156,9 +156,12 @@ public final class start extends javax.swing.JFrame{
             if(rs.next()){
                 new loadWindow().setVisible(true);
                 dispose();
-                new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+rs.getString("nombre_emp"),MessageType.INFO);
                 nameUser=rs.getString("nombre_emp");
                 userID=rs.getInt("codigo_emp");
+                new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'",Level.WARNING);
             }
             
             ps.close();

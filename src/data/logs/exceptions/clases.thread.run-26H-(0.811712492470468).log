@@ -1,5 +1,0 @@
-mar. 09, 2022 3:08:58 P. M. clases.logger exceptionLogger
-WARNING: run-26H
-java.io.IOException: Stream Closed
-	at clases.thread.run(thread.java:48)
-

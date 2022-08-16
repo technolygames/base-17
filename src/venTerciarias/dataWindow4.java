@@ -71,6 +71,8 @@ public class dataWindow4 extends javax.swing.JDialog{
         setResizable(false);
     }
     
+    public static String empleado;
+    
     protected datos d;
     
     protected ResultSet rs;
@@ -128,6 +130,9 @@ public class dataWindow4 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
                 
+                String nombreCompleto=etiNombre.getText()+" "+etiApellidoP+" "+etiApellidoM;
+                empleado=nombreCompleto;
+                
                 byte[] imagen=rs.getBytes("foto");
                 
                 Image i=Toolkit.getDefaultToolkit().createImage(imagen);
@@ -158,7 +163,7 @@ public class dataWindow4 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+etiCodigo.getText()+"';");
-                File f=new File("src/data/media/dataImage/empleados/perfil/"+Math.random()+".jpg");
+                File f=new File("src/data/media/dataImage/empleados/perfil/"+(int)(Math.random()*100000)+".jpg");
                 File f2=new File("src/data/media/dataImage/empleados/perfil");
                 
                 if(!f2.exists()){
