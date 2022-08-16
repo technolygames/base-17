@@ -71,6 +71,8 @@ public class webcam2 extends javax.swing.JDialog{
     protected Image retValue;
     protected Properties p;
     
+    public static String direccion="src/data/media/webcam/"+Math.random()+".jpg";
+    
     public Image getIconImage(){
         p=new Properties();
         try{
@@ -99,7 +101,7 @@ public class webcam2 extends javax.swing.JDialog{
             try{
                 ImageIcon ii=new ImageIcon(jWebcam1.getImage());
                 Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
-                ImageIO.write((RenderedImage)jWebcam1.getImage(),"jpg",new File("src/data/media/webcam/"+Math.random()+".jpg"));
+                ImageIO.write((RenderedImage)jWebcam1.getImage(),"jpg",new File(direccion));
                 picLabel.setIcon(i);
             }catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 41",JOptionPane.WARNING_MESSAGE);
@@ -166,6 +168,8 @@ public class webcam2 extends javax.swing.JDialog{
                     .addComponent(picButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jWebcam1.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

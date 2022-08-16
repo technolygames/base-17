@@ -85,6 +85,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -95,6 +96,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -109,6 +111,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -130,6 +133,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -144,6 +148,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -157,6 +162,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -167,6 +173,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -181,6 +188,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -202,6 +210,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -216,6 +225,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -229,6 +239,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbNombre.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -239,6 +250,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -253,6 +265,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(false);
                 txtNombre.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -274,6 +287,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbNombre.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -288,6 +302,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(true);
                 txtNombre.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -301,6 +316,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setSelected(false);
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -311,6 +327,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(false);
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -325,6 +342,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(false);
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -346,6 +364,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContra.setEnabled(true);
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -360,6 +379,84 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtContra.setEditable(true);
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
+                txtDom.setEditable(true);
+                txtExp.setEditable(true);
+                txtGE.setEditable(true);
+                txtContacto.setEditable(true);
+                txtEdad.setEditable(true);
+            }
+        });
+        
+        cbDomicilio.addActionListener((a)->{
+            if(cbDomicilio.isSelected()==true){
+                //selected
+                cbContra.setSelected(false);
+                cbNombre.setSelected(false);
+                cbAP.setSelected(false);
+                cbAM.setSelected(false);
+                cbPuesto.setSelected(false);
+                cbExp.setSelected(false);
+                cbGE.setSelected(false);
+                cbContacto.setSelected(false);
+                cbEdad.setSelected(false);
+                cbEstado.setSelected(false);
+                //enabled
+                cbContra.setEnabled(false);
+                cbNombre.setEnabled(false);
+                cbAP.setEnabled(false);
+                cbAM.setEnabled(false);
+                cbPuesto.setEnabled(false);
+                cbExp.setEnabled(false);
+                cbGE.setEnabled(false);
+                cbContacto.setEnabled(false);
+                cbEdad.setEnabled(false);
+                cbEstado.setEnabled(false);
+                //combo
+                jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
+                //textfields
+                txtSearch.setEditable(false);
+                txtContra.setEditable(false);
+                txtNombre.setEditable(false);
+                txtAP.setEditable(false);
+                txtAM.setEditable(false);
+                txtExp.setEditable(false);
+                txtGE.setEditable(false);
+                txtContacto.setEditable(false);
+                txtEdad.setEditable(false);
+                //función
+                if(cbDomicilio.isSelected()==true){
+                    jButton1.addActionListener((b)->{
+                        if(!txtDom.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set domicilio='"+txtDom.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el domicilio nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el domicilio a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'botones(cbDom)'",Level.WARNING);
+                        }
+                    });
+                }
+            }else if(cbDomicilio.isSelected()==false){
+                //enabled
+                cbContra.setEnabled(true);
+                cbNombre.setEnabled(true);
+                cbAP.setEnabled(true);
+                cbAM.setEnabled(true);
+                cbPuesto.setEnabled(true);
+                cbExp.setEnabled(true);
+                cbGE.setEnabled(true);
+                cbContacto.setEnabled(true);
+                cbEdad.setEnabled(true);
+                cbEstado.setEnabled(true);
+                //combo
+                jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
+                //textfields
+                txtSearch.setEditable(true);
+                txtContra.setEditable(true);
+                txtNombre.setEditable(true);
+                txtAP.setEditable(true);
+                txtAM.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -374,6 +471,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
@@ -384,6 +482,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
@@ -397,6 +496,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -414,6 +514,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
@@ -427,6 +528,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -441,6 +543,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbGE.setSelected(false);
                 cbContacto.setSelected(false);
@@ -451,6 +554,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbGE.setEnabled(false);
                 cbContacto.setEnabled(false);
@@ -465,6 +569,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
@@ -486,6 +591,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbGE.setEnabled(true);
                 cbContacto.setEnabled(true);
@@ -500,6 +606,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
@@ -513,6 +620,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbContacto.setSelected(false);
@@ -523,6 +631,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbContacto.setEnabled(false);
@@ -537,6 +646,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
@@ -558,6 +668,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbContacto.setEnabled(true);
@@ -572,6 +683,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
@@ -585,6 +697,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -595,6 +708,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -609,6 +723,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtEdad.setEditable(false);
@@ -630,6 +745,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -644,6 +760,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtEdad.setEditable(true);
@@ -657,6 +774,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -667,6 +785,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -681,6 +800,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -702,6 +822,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -716,6 +837,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -729,6 +851,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setSelected(false);
                 cbAP.setSelected(false);
                 cbAM.setSelected(false);
+                cbDomicilio.setSelected(false);
                 cbPuesto.setSelected(false);
                 cbExp.setSelected(false);
                 cbGE.setSelected(false);
@@ -739,6 +862,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(false);
                 cbAP.setEnabled(false);
                 cbAM.setEnabled(false);
+                cbDomicilio.setEnabled(false);
                 cbPuesto.setEnabled(false);
                 cbExp.setEnabled(false);
                 cbGE.setEnabled(false);
@@ -752,6 +876,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(false);
                 txtAP.setEditable(false);
                 txtAM.setEditable(false);
+                txtDom.setEditable(false);
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
@@ -769,6 +894,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbNombre.setEnabled(true);
                 cbAP.setEnabled(true);
                 cbAM.setEnabled(true);
+                cbDomicilio.setEnabled(true);
                 cbPuesto.setEnabled(true);
                 cbExp.setEnabled(true);
                 cbGE.setEnabled(true);
@@ -782,6 +908,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtNombre.setEditable(true);
                 txtAP.setEditable(true);
                 txtAM.setEditable(true);
+                txtDom.setEditable(true);
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
@@ -796,13 +923,14 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            ps=new datos().getConnection().prepareStatement("select password,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado from empleados where codigo_emp='"+txtSearch.getText()+"';");
+            ps=new datos().getConnection().prepareStatement("select password,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado from empleados where codigo_emp='"+txtSearch.getText()+"';");
             rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
                 etiNombre.setText(rs.getString("nombre_emp"));
                 etiAP.setText(rs.getString("apellidop_emp"));
                 etiAM.setText(rs.getString("apellidom_emp"));
+                etiDom.setText(rs.getString("domicilio"));
                 etiPuesto.setText(rs.getString("puesto"));
                 etiExp.setText(rs.getString("experiencia"));
                 etiGE.setText(rs.getString("grado_estudios"));
@@ -861,6 +989,9 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         etiEstado = new javax.swing.JLabel();
         cbEstado = new javax.swing.JCheckBox();
         jComboBox2 = new javax.swing.JComboBox<>();
+        etiDom = new javax.swing.JLabel();
+        cbDomicilio = new javax.swing.JCheckBox();
+        txtDom = new javax.swing.JTextField();
 
         closeButton.setText("Cerrar");
 
@@ -892,6 +1023,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
 
+        etiDom.setText("Domicilio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -904,7 +1037,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchButton))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(closeButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(etiDom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(etiEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(etiEdad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(etiContacto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -938,10 +1076,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtAM))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbExp, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbGE, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cbExp, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbGE, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -954,11 +1093,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeButton)))
+                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbDomicilio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDom)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -970,67 +1109,61 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(etiContra)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiNombre)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiAP)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiAM)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiPuesto)
-                        .addGap(9, 9, 9)
-                        .addComponent(etiExp)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiGE)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiContacto)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiEdad)
-                        .addGap(12, 12, 12)
-                        .addComponent(etiEstado))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbContra))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbNombre, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbAP, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbAM))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbPuesto, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbExp)
-                            .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbGE)
-                            .addComponent(txtGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbContacto)
-                            .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEdad)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbEstado)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbContra)
+                    .addComponent(etiContra))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbNombre)
+                    .addComponent(etiNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAP)
+                    .addComponent(etiAP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAM)
+                    .addComponent(etiAM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(etiDom)
+                        .addComponent(cbDomicilio))
+                    .addComponent(txtDom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPuesto)
+                    .addComponent(etiPuesto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbExp)
+                    .addComponent(txtExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiExp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbGE)
+                    .addComponent(txtGE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiGE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbContacto)
+                    .addComponent(txtContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiContacto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbEdad)
+                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiEdad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etiEstado)
+                    .addComponent(cbEstado)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
                     .addComponent(jButton1))
@@ -1043,6 +1176,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JCheckBox cbAP;
     private javax.swing.JCheckBox cbContacto;
     private javax.swing.JCheckBox cbContra;
+    private javax.swing.JCheckBox cbDomicilio;
     private javax.swing.JCheckBox cbEdad;
     private javax.swing.JCheckBox cbEstado;
     private javax.swing.JCheckBox cbExp;
@@ -1054,6 +1188,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JLabel etiAP;
     private javax.swing.JLabel etiContacto;
     private javax.swing.JLabel etiContra;
+    private javax.swing.JLabel etiDom;
     private javax.swing.JLabel etiEdad;
     private javax.swing.JLabel etiEstado;
     private javax.swing.JLabel etiExp;
@@ -1068,6 +1203,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JTextField txtAP;
     private javax.swing.JTextField txtContacto;
     private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtDom;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtExp;
     private javax.swing.JTextField txtGE;

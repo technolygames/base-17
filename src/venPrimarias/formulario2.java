@@ -2,20 +2,24 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.logger;
+import java.awt.Graphics2D;
 import menus.menuDatosVentana2;
 import venSecundarias.webcam2;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.HeadlessException;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -174,18 +178,32 @@ public class formulario2 extends javax.swing.JFrame{
         });
         
         storeButton.addActionListener((ae)->{
-            if(!jTextField1.getText().equals("")&&jTextField2.getText().equals("")&&jTextField3.getText().equals("")&&jTextField4.getText().equals("")&&jTextArea1.getText().equals("")){
-                int codigo=Integer.parseInt(jTextField1.getText());
-                String nombre=jTextField2.getText();
-                String apellidop=jTextField3.getText();
-                String apellidom=jTextField4.getText();
-                String tipo=jComboBox1.getSelectedItem().toString();
-                String datos=jTextArea1.getText();
-                
-                new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos);
-            }else{
-                JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+            try{
+                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextArea1.getText().equals("")){
+                    int codigo=Integer.parseInt(jTextField1.getText());
+                    String nombre=jTextField2.getText();
+                    String apellidop=jTextField3.getText();
+                    String apellidom=jTextField4.getText();
+                    String tipo=jComboBox1.getSelectedItem().toString();
+                    String datos=jTextArea1.getText();
+                    String webcam=webcam2.direccion;
+                    direccion=webcam;
+                    
+                    /*File file=new File("src/data/media/dataImage/"+Math.random()+".jpg");
+                    BufferedImage bi=new BufferedImage(picLabel.getWidth(),picLabel.getHeight(),BufferedImage.TYPE_INT_RGB);
+                    Graphics2D g2d=bi.createGraphics();
+                    picLabel.print(g2d);
+                    ImageIO.write(bi, "jpg",file);*/
+                    
+                    InputStream foto=new FileInputStream(direccion);
+                    
+                    new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos,foto);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
+                    new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                }
+            }catch(IOException e){
+                e.fillInStackTrace();
             }
         });
     }

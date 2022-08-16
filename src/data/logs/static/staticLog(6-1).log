@@ -4771,3 +4771,23 @@ mar. 03, 2022 5:22:10 P. M. clases.logger logStaticSaver
 WARNING: No se puede descargar las librerías
 mar. 03, 2022 5:22:10 P. M. clases.logger logStaticSaver
 WARNING: No se puede descargar las librerías
+mar. 04, 2022 3:07:00 P. M. clases.logger logStaticSaver
+WARNING: Let 1: se ingresaron letras en un campo equivocado.
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'txtCodigoKeyPressed()'
+mar. 05, 2022 4:54:40 P. M. clases.logger logStaticSaver
+WARNING: Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase 'venPrimarias.formulario2', en el método 'botones(storeButton)'
+mar. 09, 2022 3:06:54 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed
+Ocurrió en la clase 'clases.thread', en el método 'run()'
+mar. 09, 2022 3:08:58 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed
+Ocurrió en la clase 'clases.thread', en el método 'run()'
+mar. 09, 2022 3:09:20 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed
+Ocurrió en la clase 'clases.thread', en el método 'run()'
+mar. 09, 2022 3:09:20 P. M. clases.logger logStaticSaver
+WARNING: Error 26H: Stream Closed
+Ocurrió en la clase 'clases.thread', en el método 'run()'
+mar. 09, 2022 5:00:25 P. M. clases.logger logStaticSaver
+WARNING: Error 10: Column 'fecha_registro' not found..
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'

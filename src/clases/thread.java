@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +32,7 @@ public class thread extends Thread{
         int leido;
         byte[] buffer;
         try{
-            buffer=new byte[1024];
+            buffer=new byte[2048];
             while((leido=is.read(buffer))>0){
                 os.write(buffer,0,leido);
             }

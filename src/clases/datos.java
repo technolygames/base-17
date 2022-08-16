@@ -127,28 +127,33 @@ public class datos{
      * @param nombreEmpleado Nombre(s) del empleado.
      * @param apellidoPaternoEmpleado Apellido paterno del empleado.
      * @param apellidoMaternoEmpleado Apellido materno del empleado.
+     * @param domicilio Domicilio del empleado.
      * @param puesto Puesto del empleado.
      * @param experiencia Experiencia (en años) del empleado; en caso de no tener, escribir "Nulo".
      * @param gradoEstudios Grado actual de estudios del empleado.
+     * @param contacto Número telefónico del empleado.
      * @param edad Edad actual del empleado; en caso de cumplir años, este deberá de ser actualizado.
+     * @param estado Estado actual en el negocio.
      * @param datosExtra Datos extras que el CV del empleado se quieran agregar.
+     * @param foto Foto del empleado.
      */
-    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra,InputStream foto){
+    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String domicilio,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra,InputStream foto){
         try{
-            ps=getConnection().prepareStatement("insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto,fecha_registro,fecha_sesion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
+            ps=getConnection().prepareStatement("insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,domicilio,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto,fecha_registro,fecha_sesion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
             ps.setString(1,password);
             ps.setInt(2,codigoEmpleado);
             ps.setString(3,nombreEmpleado);
             ps.setString(4,apellidoPaternoEmpleado);
             ps.setString(5,apellidoMaternoEmpleado);
-            ps.setString(6,puesto);
-            ps.setString(7,experiencia);
-            ps.setString(8,gradoEstudios);
-            ps.setInt(9,contacto);
-            ps.setInt(10,edad);
-            ps.setString(11,estado);
-            ps.setString(12,datosExtra);
-            ps.setBlob(13,foto);
+            ps.setString(6,domicilio);
+            ps.setString(7,puesto);
+            ps.setString(8,experiencia);
+            ps.setString(9,gradoEstudios);
+            ps.setInt(10,contacto);
+            ps.setInt(11,edad);
+            ps.setString(12,estado);
+            ps.setString(13,datosExtra);
+            ps.setBlob(14,foto);
             ps.executeUpdate("update empleados set fecha_registro=now(), fecha_sesion=now() where codigo_emp='"+codigoEmpleado+"';");
             ps.execute();
             
@@ -170,11 +175,19 @@ public class datos{
      * @param apellidomSocio Apellido materno del socio.
      * @param tipoSocio Tipo de afiliación.
      * @param datosExtra Datos extra que se quieran agregar como descripción del socio.
+     * @param foto Foto del socio para identificarlo.
      */
-    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidopSocio,String apellidomSocio,String tipoSocio,String datosExtra){
-        String ins4_query="insert into socios values('"+codigoSocio+"','"+nombreSocio+"','"+apellidopSocio+"','"+apellidomSocio+"','"+tipoSocio+"','"+datosExtra+"',null,now(),now());";
+    public void insertarDatosSocio(int codigoSocio,String nombreSocio,String apellidopSocio,String apellidomSocio,String tipoSocio,String datosExtra,InputStream foto){
+        String ins4_query="insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins4_query);
+            ps.setInt(1,codigoSocio);
+            ps.setString(2,nombreSocio);
+            ps.setString(3,apellidopSocio);
+            ps.setString(4,apellidomSocio);
+            ps.setString(5,tipoSocio);
+            ps.setString(6,datosExtra);
+            ps.setBinaryStream(7,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             ps.close();

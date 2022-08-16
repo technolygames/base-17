@@ -73,15 +73,12 @@ public final class proper1 extends javax.swing.JFrame{
         configIn();
         botones();
         combo1();
-        combo2();
         
         setResizable(true);
         setLocationRelativeTo(null);
         setTitle("Configuración");
         
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
-        
-        jComboBox1.setEnabled(false);
         expButton.setEnabled(false);
         impButton.setEnabled(false);
     }
@@ -98,7 +95,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected String icono;
     protected String nombre;
     protected String diseños;
-    protected String lenguaje;
     protected String direccion;
     protected String direccion2;
     protected String nombreArchivo1;
@@ -131,11 +127,14 @@ public final class proper1 extends javax.swing.JFrame{
             direccion=p.getProperty("imagenes");
             icono=p.getProperty("icono");
             diseños=p.getProperty("look_and_feel");
-            lenguaje=p.getProperty("lenguaje");
             nombre=p.getProperty("nombre");
             
             if(!new File(direccion).exists()){
                 direccion=p.getProperty("imagen_respaldo");
+            }
+            
+            if(!new File(icono).exists()){
+                icono=p.getProperty("icono_respaldo");
             }
             
             Image i=ImageIO.read(new FileInputStream(direccion));
@@ -144,7 +143,6 @@ public final class proper1 extends javax.swing.JFrame{
             jLabel3.setIcon(l);
             jTextField1.setText(nombre);
             jComboBox2.getModel().setSelectedItem(diseños);
-            jComboBox1.getModel().setSelectedItem(lenguaje);
             
             i.flush();
         }catch(NumberFormatException e){
@@ -273,10 +271,6 @@ public final class proper1 extends javax.swing.JFrame{
             }
         });
         
-        jComboBox1.addActionListener((ActionEvent ae)->{
-            lenguaje=jComboBox1.getSelectedItem().toString();
-        });
-        
         jComboBox2.addActionListener((ae)->{
             try{
                 diseños=jComboBox2.getSelectedItem().toString();
@@ -327,52 +321,30 @@ public final class proper1 extends javax.swing.JFrame{
         }
     }
     
-    protected final void combo2(){
-        int combo=jComboBox1.getSelectedIndex();
-        p=new Properties();
-        if(combo==0){
-            try{
-                p.load(new FileInputStream("src/data/lang/español.properties"));
-            }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            }catch(IOException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            }
-        }
-        if(combo==1){
-            try{
-                p.load(new FileInputStream("src/data/lang/english.properties"));
-            }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
-            }catch(IOException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
-            }
-        }
-    }
-    
     protected final void configOut(){
         p=new Properties();
         f=new File("src/data/config/config.properties");
-        String dato="src/data/media/copy/label/";
+        String dato1="src/data/media/copy/label/";
+        String dato2="src/data/media/copy/icon/";
         try{
             if(f.exists()){
                 p.setProperty("imagenes",direccion);
                 
                 is=new FileInputStream(direccion);
-                os=new FileOutputStream(dato+nombreArchivo1);
+                os=new FileOutputStream(dato1+nombreArchivo1);
                 
-                new thread(is,os).start();
+                new thread(is,os).run();
                 
-                p.setProperty("imagen_respaldo",dato+nombreArchivo1);
-                p.setProperty("lenguaje",String.valueOf(lenguaje.getBytes("utf-8")));
+                p.setProperty("imagen_respaldo",dato1+nombreArchivo1);
                 p.setProperty("look_and_feel",diseños);
                 p.setProperty("icono",icono);
+                p.setProperty("icono_respaldo",dato2+nombreArchivo2);
                 p.setProperty("nombre",jTextField1.getText());
                 
                 is=new FileInputStream(icono);
                 os=new FileOutputStream("src/data/media/copy/icon/"+nombreArchivo2);
                 
-                new thread(is,os).start();
+                new thread(is,os).run();
                 
                 p.store(new BufferedWriter(new FileWriter("src/data/config/config.properties")),"config1");
                 
@@ -403,8 +375,6 @@ public final class proper1 extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         imgButton = new javax.swing.JButton();
         schButton = new javax.swing.JButton();
@@ -423,10 +393,6 @@ public final class proper1 extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
-
-        jLabel1.setText("Idioma:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "Inglés" }));
 
         jLabel2.setText("Imagen:");
 
@@ -472,30 +438,25 @@ public final class proper1 extends javax.swing.JFrame{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(impButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(expButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(iconButton))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(impButton)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(expButton))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(iconButton))))
-                                .addGap(0, 213, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)))
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -510,10 +471,6 @@ public final class proper1 extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -531,11 +488,11 @@ public final class proper1 extends javax.swing.JFrame{
                             .addComponent(jLabel7)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgButton)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -557,9 +514,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected javax.swing.JButton iconButton;
     protected javax.swing.JButton imgButton;
     protected javax.swing.JButton impButton;
-    protected javax.swing.JComboBox<String> jComboBox1;
     protected javax.swing.JComboBox<String> jComboBox2;
-    protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JLabel jLabel3;
     protected javax.swing.JLabel jLabel4;
