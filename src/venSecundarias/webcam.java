@@ -4,11 +4,15 @@ import clases.logger;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -92,11 +96,14 @@ public final class webcam extends javax.swing.JDialog{
             try{
                 ImageIcon ii=new ImageIcon(jWebcam1.getImage());
                 Icon i=new ImageIcon(ii.getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT));
+                ImageIO.write((RenderedImage)jWebcam1.getImage(),"jpg",new File("C:\\Users\\erick\\Desktop\\Nueva carpeta\\"+Math.random()+".jpg"));
                 picLabel.setIcon(i);
             }catch(NullPointerException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 41",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 41: "+e.getMessage()+" en 'botones(picButton)'",Level.WARNING);
                 new logger().exceptionLogger(webcam.class.getName(),Level.WARNING,"botones.pic-41",e.fillInStackTrace());
+            } catch (IOException ex) {
+                System.out.println(ex);
             }
         });
     }

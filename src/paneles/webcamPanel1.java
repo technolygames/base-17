@@ -8,7 +8,7 @@ public class webcamPanel1 extends javax.swing.JPanel{
     
     protected final void botones(){
         closeButton.setToolTipText("Cierra la subventana actual "+webcamPanel1.class.getName());
-        jPanelWebCam1.setToolTipText("Presiona click izquierdo 1 vez dentro del recuadro para encender la cámara.\n Presiona 1 vez click derecho dentro del recuadro para apagar la cámara");
+        jPanelWebCam1.setToolTipText("Presiona click izquierdo 1 vez dentro del recuadro para encender la cámara.\nPresiona 1 vez click derecho dentro del recuadro para apagar la cámara");
         closeButton.addActionListener((e)->{
             setVisible(false);
         });

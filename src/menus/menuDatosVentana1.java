@@ -53,6 +53,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         
         botones();
         
+        setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
     }
@@ -143,14 +144,14 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(349, Short.MAX_VALUE)
+                .addContainerGap(399, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addContainerGap(319, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );

@@ -106,17 +106,18 @@ public class ltshProviders extends javax.swing.JFrame{
         DefaultTableModel dtm=new DefaultTableModel();
         RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,fecha_ingreso,fecha_uentrega from proveedor;");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,fecha_ingreso,fecha_uentrega from proveedor;");
             ResultSet rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Fecha de registro","Fecha de última entrega"});
+            dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDate(6),rs.getDate(7)});
+                dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
             jTable1.getModel();
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -133,44 +134,92 @@ public class ltshProviders extends javax.swing.JFrame{
             String id=jTextField1.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                String query1="select * from productos where codigo_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query1);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where codigo_prov='"+id+"';");
                 ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==1){
-                String query2="select * from productos where nombre_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query2);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where nombre_prov='"+id+"';");
                 ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==2){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidop_prov='"+id+"';");
+                ResultSet rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                while(rs.next()){
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                }
+                jTable1.setRowSorter(sorter);
+                jTable1.getRowSorter().toggleSortOrder(0);
+                jTable1.getTableHeader().setReorderingAllowed(false);
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                jTable1.setModel(dtm);
+                
+                ps.close();
+                rs.close();
+            }
+            if(i==3){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidom_prov='"+id+"';");
+                ResultSet rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                while(rs.next()){
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                }
+                jTable1.setRowSorter(sorter);
+                jTable1.getRowSorter().toggleSortOrder(0);
+                jTable1.getTableHeader().setReorderingAllowed(false);
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                jTable1.setModel(dtm);
+                
+                ps.close();
+                rs.close();
+            }
+            if(i==4){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where empresa='"+id+"';");
+                ResultSet rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
+                while(rs.next()){
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                }
+                jTable1.setRowSorter(sorter);
+                jTable1.getRowSorter().toggleSortOrder(0);
+                jTable1.getTableHeader().setReorderingAllowed(false);
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                jTable1.setModel(dtm);
+                
+                ps.close();
+                rs.close();
+            }
+            if(i==5){
                 String query3="select * from productos where marca_prod='"+id+"';";
                 PreparedStatement ps=new datos().getConnection().prepareStatement(query3);
                 ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
+                    dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
@@ -218,7 +267,7 @@ public class ltshProviders extends javax.swing.JFrame{
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Proveedores");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno", "Empresa", "Contacto" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,7 +280,6 @@ public class ltshProviders extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setCellSelectionEnabled(false);
         jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 

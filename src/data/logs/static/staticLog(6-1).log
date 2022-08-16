@@ -1526,3 +1526,24 @@ dic. 07, 2021 2:13:21 P. M. clases.logger logStaticSaver
 WARNING: Error 26H: Stream Closed en 'run()'
 dic. 07, 2021 2:15:03 P. M. clases.logger logStaticSaver
 WARNING: Error 26H: Stream Closed en 'run()'
+ene. 30, 2022 12:33:55 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "".
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+ene. 30, 2022 12:34:01 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "".
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+ene. 30, 2022 12:34:01 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "".
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+ene. 31, 2022 4:56:34 P. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "".
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+feb. 08, 2022 1:44:54 A. M. clases.logger logStaticSaver
+WARNING: Error 18: For input string: "".
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+feb. 09, 2022 9:03:31 P. M. clases.logger logStaticSaver
+WARNING: Error 41: Cannot invoke "javax.swing.JLabel.getWidth()" because "venPrimarias.formulario1.picLabel" is null en 'botones(picButton)'
+feb. 16, 2022 5:44:48 P. M. clases.logger logStaticSaver
+WARNING: Error 16: Column 'codigo_pro' not found. en 'datosMostrar()'
+feb. 16, 2022 5:45:30 P. M. clases.logger logStaticSaver
+WARNING: Error 16: Unsupported conversion from LONG to java.sql.Date en 'datosMostrar()'

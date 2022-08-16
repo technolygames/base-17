@@ -1,17 +1,17 @@
 package clases;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.time.Instant;
 import java.util.Properties;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
+
+import java.util.logging.Level;
 
 /**
  * Clase intermedia entre el gestor de base de datos y el programa.
@@ -67,22 +67,6 @@ public class datos{
             new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"getConnection-2IO",k.fillInStackTrace());
         }
         return cn;
-    }
-    
-    /**
-     * Método para hacer queries aleatorios
-     * 
-     * @param query La sentencia o petición a realizar
-     */
-    public void miscQueries(String query){
-        String mainQuery=query;
-        try{
-            ps=getConnection().prepareStatement(mainQuery);
-            ps.execute();
-            ps.close();
-        }catch(SQLException e){
-            
-        }
     }
     
     /**
@@ -207,9 +191,10 @@ public class datos{
      * @param apellidoPaternoProvedor Apellido paterno del proveedor.
      * @param apellidoMaternoProveedor Apellido materno del proveedor.
      * @param empresa Empresa procedencia del proveedor.
+     * @param contacto Número de contacto del proveedor.
      */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa){
-        String ins5_query="insert into proveedor value('"+codigoProveedor+"','"+nombreProveedor+"','"+apellidoPaternoProvedor+"','"+apellidoMaternoProveedor+"','"+empresa+"',null,now(),now());";
+    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa,int contacto){
+        String ins5_query="insert into proveedor value('"+codigoProveedor+"','"+nombreProveedor+"','"+apellidoPaternoProvedor+"','"+apellidoMaternoProveedor+"','"+empresa+"','"+contacto+"',null,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins5_query);
             ps.execute();
@@ -222,8 +207,16 @@ public class datos{
         }
     }
     
-    public void actualizarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String puesto,String experiencia,String gradoEstudios,int edad){
-        String up1_query="update empleados set password='"+password+"',nombre_emp='"+nombreEmpleado+"',apellidop_emp='"+apellidoPaternoEmpleado+"',apellidom_emp='"+apellidoMaternoEmpleado+"',puesto='"+puesto+"',experiencia='"+experiencia+"',grado_estudios='"+gradoEstudios+"',edad='"+edad+"' where codigo_emp='"+codigoEmpleado+"';";
+    /**
+     * Actualiza los datos de la tabla de empleados.
+     * Esta es específica para empleados. No usar como universal.
+     * 
+     * Para que se pueda usar esta clase, se debe usar la sintaxis que estará en la documentación del programa
+     * 
+     * @param consulta datos que serán modificados
+     */
+    public void actualizarDatosEmpleado(String consulta){
+        String up1_query="update empleados "+consulta;
         try{
             ps=getConnection().prepareStatement(up1_query);
             ps.executeUpdate();
@@ -236,8 +229,16 @@ public class datos{
         }
     }
     
-    public void actualizarDatosSocio(String query){
-        String up2_query=query;
+    /**
+     * Actualiza los datos de la tabla de socios.
+     * Esta es específica para socios. No usar como universal.
+     * 
+     * Para que se pueda usar esta clase, se debe usar la sintaxis que estará en la documentación del programa
+     * 
+     * @param consulta datos que serán modificados
+     */
+    public void actualizarDatosSocio(String consulta){
+        String up2_query="update socios "+consulta;
         try{
             ps=getConnection().prepareStatement(up2_query);
             ps.execute();
@@ -247,6 +248,20 @@ public class datos{
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 12: "+e.getMessage()+" en 'actualizarDatosSocio()'",Level.WARNING);
             new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"actualizarDatosSocio-12",e.fillInStackTrace());
+        }
+    }
+    
+    public void actualizarDatosProveedor(String consulta){
+        String up2_query="update proveedor "+consulta;
+        try{
+            ps=getConnection().prepareStatement(up2_query);
+            ps.execute();
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 12: "+e.getMessage()+" en 'actualizarDatosSocio()'",Level.WARNING);
+            new logger().exceptionLogger(datos.class.getName(),Level.WARNING,"actualizarDatosProveedor-12",e.fillInStackTrace());
         }
     }
     

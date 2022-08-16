@@ -89,6 +89,21 @@ public final class ltshData extends javax.swing.JFrame{
         return retValue;
     }
     
+    protected final void botones(){
+        backButton.addActionListener((ae)->{
+            setVisible(false);
+            dispose();
+        });
+        
+        refreshButton.addActionListener((a)->{
+            datosMostrar();
+        });
+        
+        searchButton.addActionListener((ae)->{
+            datosBuscar();
+        });
+    }
+    
     protected final void datosMostrar(){
         DefaultTableModel dtm=new DefaultTableModel();
         RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
@@ -104,6 +119,7 @@ public final class ltshData extends javax.swing.JFrame{
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
             jTable1.getModel();
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -113,17 +129,6 @@ public final class ltshData extends javax.swing.JFrame{
         }
     }
     
-    protected final void botones(){
-        backButton.addActionListener((ae)->{
-            setVisible(false);
-            dispose();
-        });
-        
-        searchButton.addActionListener((ae)->{
-            datosBuscar();
-        });
-    }
-    
     protected final void datosBuscar(){
         DefaultTableModel dtm=new DefaultTableModel();
         RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
@@ -131,8 +136,7 @@ public final class ltshData extends javax.swing.JFrame{
             String id=txtBuscar.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                String query1="select * from almacen where codigo_alm="+id+";";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query1);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_alm="+id+";");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -143,12 +147,12 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==1){
-                String query2="select * from almacen where codigo_prod="+id+";";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query2);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -159,12 +163,12 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==2){
-                String query3="select * from almacen where codigo_prov="+id+";";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query3);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+id+";");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -175,12 +179,12 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==3){
-                String query4="select * from almacen where nombre_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query4);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+id+"';");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -191,12 +195,12 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==4){
-                String query5="select * from almacen where nombre_prov='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query5);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prov='"+id+"';");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -207,12 +211,12 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==5){
-                String query6="select * from almacen where marca_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query6);
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+id+"';");
                 ResultSet rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
@@ -223,6 +227,7 @@ public final class ltshData extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
@@ -257,6 +262,7 @@ public final class ltshData extends javax.swing.JFrame{
         txtBuscar = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
@@ -284,6 +290,8 @@ public final class ltshData extends javax.swing.JFrame{
 
         backButton.setText("Regresar");
 
+        refreshButton.setText("Recargar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -301,7 +309,8 @@ public final class ltshData extends javax.swing.JFrame{
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(refreshButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(103, 103, 103)
                         .addComponent(backButton)))
@@ -324,7 +333,9 @@ public final class ltshData extends javax.swing.JFrame{
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(backButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(refreshButton, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
 
@@ -342,6 +353,7 @@ public final class ltshData extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables

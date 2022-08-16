@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import paneles.delDatosPanel2;
+import paneles.modDatosPanel2;
 
 public class menuDatosVentana2 extends javax.swing.JFrame{
     public menuDatosVentana2(){
@@ -88,6 +89,13 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
            ddp2.setVisible(true);
            menuDatosVentana2.this.setLayout(new BorderLayout());
            menuDatosVentana2.this.getContentPane().add(ddp2,BorderLayout.CENTER);
+        });
+        
+        miModData.addActionListener((a)->{
+            modDatosPanel2 mdp2=new modDatosPanel2();
+            mdp2.setVisible(true);
+            menuDatosVentana2.this.setLayout(new BorderLayout());
+            menuDatosVentana2.this.getContentPane().add(mdp2,BorderLayout.CENTER);
         });
     }
     

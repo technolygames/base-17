@@ -340,7 +340,7 @@ public final class ltshWorkers extends javax.swing.JFrame{
 
         wdataButton.setText("Ver datos");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido Paterno", "Apellido Materno", "Puesto", "Experiencia", "Grado de Estudios", "Edad" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Apellido paterno", "Apellido materno", "Puesto", "Experiencia", "Grado de estudios", "Edad" }));
 
         backButton.setText("Regresar");
 
