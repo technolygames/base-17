@@ -15,7 +15,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
-import paneles.webcamPanel1;
 
 public class menuDatosVentana1 extends javax.swing.JFrame{
     public menuDatosVentana1(){
@@ -61,6 +60,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     protected Image retValue;
     protected Properties p;
     
+    @Override
     public Image getIconImage(){
         p=new Properties();
         try{
@@ -99,13 +99,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana1.this.getContentPane().add(mdp1,BorderLayout.CENTER);
         });
-        
-        miWebcam.addActionListener((e)->{
-            webcamPanel1 wcmp1=new webcamPanel1();
-            wcmp1.setVisible(true);
-            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(wcmp1,BorderLayout.CENTER);
-        });
     }
     
     @SuppressWarnings("unchecked")
@@ -117,7 +110,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         jMenu1 = new javax.swing.JMenu();
         miDelData = new javax.swing.JMenuItem();
         miModData = new javax.swing.JMenuItem();
-        miWebcam = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImage());
@@ -131,9 +123,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
 
         miModData.setText("Cambiar datos");
         jMenu1.add(miModData);
-
-        miWebcam.setText("Webcam");
-        jMenu1.add(miWebcam);
 
         jMenuBar1.add(jMenu1);
 
@@ -169,6 +158,5 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem miDelData;
     private javax.swing.JMenuItem miModData;
-    private javax.swing.JMenuItem miWebcam;
     // End of variables declaration//GEN-END:variables
 }

@@ -99,6 +99,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtNombre.setEditable(false);
@@ -108,12 +109,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbContra.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtContra.getPassword().equals("")){
+                            new datos().actualizarDatosEmpleado("set password='"+String.valueOf(txtContra.getPassword())+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba la contraseña nueva","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió la contraseña a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbContra)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbContra.isSelected()==false){
@@ -129,6 +134,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtNombre.setEditable(true);
@@ -138,7 +144,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -166,6 +171,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -175,12 +181,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
-                if(cbContra.isSelected()==true){
+                if(cbNombre.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtNombre.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set nombre_emp='"+txtNombre.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombre(s) nuevo(s)","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el(loa) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbNombre)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbNombre.isSelected()==false){
@@ -196,6 +206,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -205,7 +216,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -233,6 +243,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -242,12 +253,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbAP.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtAP.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set apellidop_amp='"+txtAP.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el nuevo apellido","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbAP)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbAP.isSelected()==false){
@@ -263,6 +278,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -272,7 +288,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -300,6 +315,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -309,12 +325,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbAM.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtAM.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set apellidom_emp='"+txtAM.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbAM)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbAM.isSelected()==false){
@@ -330,6 +350,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -339,7 +360,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -365,6 +385,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(false);
                 cbEdad.setEnabled(false);
                 cbEstado.setEnabled(false);
+                //combobox
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -375,7 +397,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbPuesto.isSelected()==true){
                     jButton1.addActionListener((b)->{
@@ -394,6 +415,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbContacto.setEnabled(true);
                 cbEdad.setEnabled(true);
                 cbEstado.setEnabled(true);
+                //combobox
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -404,7 +427,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -432,6 +454,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -441,12 +464,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbExp.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtExp.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set experiencia='"+txtExp.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba la experiencia a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió los años de experiencia a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbExp)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbExp.isSelected()==false){
@@ -462,6 +489,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -471,7 +499,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -499,6 +526,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -508,12 +536,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(false);
                 txtContacto.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbGE.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtGE.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set grado_estudios='"+txtGE.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el grado de estudios a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el grado de estudios a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbGE)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbGE.isSelected()==false){
@@ -529,6 +561,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -538,7 +571,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(true);
                 txtContacto.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -566,6 +598,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -575,12 +608,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtEdad.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbContacto.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!cbContacto.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set contacto='"+txtContacto.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto nuevo","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbContacto)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbContacto.isSelected()==false){
@@ -596,6 +633,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -605,7 +643,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtEdad.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -633,6 +670,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(false);
                 //combo
                 jComboBox1.setEnabled(false);
+                jComboBox2.setEnabled(false);
                 //textfields
                 txtSearch.setEditable(false);
                 txtContra.setEditable(false);
@@ -642,12 +680,16 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(false);
                 txtGE.setEditable(false);
                 txtContacto.setEditable(false);
-                txtEstado.setEditable(false);
                 //función
                 if(cbEdad.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!txtEdad.getText().equals("")){
+                            new datos().actualizarDatosEmpleado("set edad='"+txtEdad.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba la edad a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió la edad a cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" botones(cbEdad)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(cbEdad.isSelected()==false){
@@ -663,6 +705,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 cbEstado.setEnabled(true);
                 //combo
                 jComboBox1.setEnabled(true);
+                jComboBox2.setEnabled(true);
                 //textfields
                 txtSearch.setEditable(true);
                 txtContra.setEditable(true);
@@ -672,7 +715,6 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtExp.setEditable(true);
                 txtGE.setEditable(true);
                 txtContacto.setEditable(true);
-                txtEstado.setEditable(true);
             }
         });
         
@@ -713,7 +755,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //función
                 if(cbEstado.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosEmpleado("set estado='"+txtEstado.getText()+"' where codigo_emp='"+txtSearch.getText()+"';");
+                        new datos().actualizarDatosEmpleado("set estado='"+jComboBox2.getSelectedItem().toString()+"' where codigo_emp='"+txtSearch.getText()+"';");
                         consulta();
                     });
                 }
@@ -764,12 +806,15 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 etiEdad.setText(String.valueOf(rs.getInt("edad")));
                 etiEstado.setText(rs.getString("estado"));
             }else{
-                JOptionPane.showMessageDialog(null,"No existen los datos","Error",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+" consulta()'",Level.WARNING);
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+" consulta()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel1.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
         }
     }
     
@@ -811,7 +856,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         txtEdad = new javax.swing.JTextField();
         etiEstado = new javax.swing.JLabel();
         cbEstado = new javax.swing.JCheckBox();
-        txtEstado = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         closeButton.setText("Cerrar");
 
@@ -841,6 +886,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         etiEstado.setText("Estado");
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -869,7 +916,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEstado))
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbContra)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -978,11 +1025,11 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbEstado)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(closeButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -1011,13 +1058,13 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     private javax.swing.JLabel etiPuesto;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField txtAM;
     private javax.swing.JTextField txtAP;
     private javax.swing.JTextField txtContacto;
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtExp;
     private javax.swing.JTextField txtGE;
     private javax.swing.JTextField txtNombre;

@@ -47,6 +47,8 @@ public class ventana3 extends javax.swing.JFrame{
             new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"ventana3-2IO",s.fillInStackTrace());
         }
         
+        botones();
+        
         setResizable(false);
         setLocationRelativeTo(null);
         setTitle("Descuentos y promociones");
@@ -65,13 +67,17 @@ public class ventana3 extends javax.swing.JFrame{
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
+            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"getIconImage-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'getIconImage()'",Level.WARNING);
-            new logger().exceptionLogger(ventana1.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
+            new logger().exceptionLogger(ventana3.class.getName(),Level.WARNING,"getIconImage-2IO",x.fillInStackTrace());
         }
         return retValue;
+    }
+    
+    protected final void botones(){
+        
     }
     
     @SuppressWarnings("unchecked")

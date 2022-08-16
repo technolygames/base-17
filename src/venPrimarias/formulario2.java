@@ -2,11 +2,12 @@ package venPrimarias;
 //clases
 import clases.datos;
 import clases.logger;
-import java.awt.HeadlessException;
 import menus.menuDatosVentana2;
+import venSecundarias.webcam2;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.HeadlessException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario2 extends javax.swing.JFrame{
@@ -113,7 +115,10 @@ public class formulario2 extends javax.swing.JFrame{
             jTextField1.setText("");
             jTextField2.setText("");
             jTextField3.setText("");
+            jTextField4.setText("");
             jTextArea1.setText("");
+            picLabel.setIcon(null);
+            picLabel.setText("Foto");
         });
         
         miInsImage.addActionListener((a)->{
@@ -162,6 +167,10 @@ public class formulario2 extends javax.swing.JFrame{
                 new logger().logStaticSaver("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'",Level.WARNING);
                 new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.miInsImage-2IO",n.fillInStackTrace());
             }
+        });
+        
+        miWebcam.addActionListener((a)->{
+            new webcam2(new javax.swing.JFrame(),true).setVisible(true);
         });
         
         storeButton.addActionListener((ae)->{

@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.datos;
 import clases.logger;
 import menus.menuDatosVentana3;
+import venSecundarias.webcam3;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -24,7 +25,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 //con extensión larga
 import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 
 public class formulario3 extends javax.swing.JFrame{
     public formulario3(){
@@ -107,8 +107,15 @@ public class formulario3 extends javax.swing.JFrame{
             dispose();
         });
         
-        jMenuItem1.addActionListener((ae)->{
-            new menuDatosVentana3().setVisible(true);
+        miClearFields.addActionListener((ae)->{
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            picLabel.setIcon(null);
+            picLabel.setText("Foto");
         });
         
         miInsImage.addActionListener((ae)->{
@@ -159,17 +166,12 @@ public class formulario3 extends javax.swing.JFrame{
             }
         });
         
-        miWebcam.addActionListener((ae)->{
-            
+        jMenuItem1.addActionListener((ae)->{
+            new menuDatosVentana3().setVisible(true);
         });
         
-        miClearFields.addActionListener((ae)->{
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
+        miWebcam.addActionListener((ae)->{
+            new webcam3(new javax.swing.JFrame(),true).setVisible(true);
         });
         
         svdtButton.addActionListener((ae)->{

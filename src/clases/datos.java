@@ -133,8 +133,8 @@ public class datos{
      * @param edad Edad actual del empleado; en caso de cumplir años, este deberá de ser actualizado.
      * @param datosExtra Datos extras que el CV del empleado se quieran agregar.
      */
-    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String puesto,String experiencia,String gradoEstudios,int edad,String datosExtra,InputStream foto){
-        String ins3_query="insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,foto) values(?,?,?,?,?,?,?,?,?,?,?);";
+    public void insertarDatosEmpleado(String password,int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,String puesto,String experiencia,String gradoEstudios,int contacto,int edad,String estado,String datosExtra,InputStream foto){
+        String ins3_query="insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,foto) values(?,?,?,?,?,?,?,?,?,?,?,?,?);";
         try{
             ps=getConnection().prepareStatement(ins3_query);
             ps.setString(1,password);
@@ -145,9 +145,11 @@ public class datos{
             ps.setString(6,puesto);
             ps.setString(7,experiencia);
             ps.setString(8,gradoEstudios);
-            ps.setInt(9,edad);
-            ps.setString(10,datosExtra);
-            ps.setBlob(11,foto);
+            ps.setInt(9,contacto);
+            ps.setInt(10,edad);
+            ps.setString(11,estado);
+            ps.setString(12,datosExtra);
+            ps.setBlob(13,foto);
             ps.execute();
             
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);

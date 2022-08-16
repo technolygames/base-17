@@ -110,9 +110,17 @@ public final class about extends javax.swing.JDialog{
             
             p.store(new BufferedWriter(new FileWriter("src/data/config/acerca.properties")),"about");
         }catch(SQLException e){
-            System.out.println(e);
-        }catch(IOException x){
-            System.out.println(x);
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+" en 'dueño()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-Prueba",e.fillInStackTrace());
+        }catch(FileNotFoundException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+x.getMessage()+" en 'dueño()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-1IO",x.fillInStackTrace());
+        }catch(IOException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+n.getMessage()+" en 'dueño()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"dueño-2IO",n.fillInStackTrace());
         }
     }
     
@@ -132,7 +140,13 @@ public final class about extends javax.swing.JDialog{
             devonLabel.setText(p.getProperty("devon"));
             propLabel.setText(p.getProperty("prop"));
         }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 1IO: "+e.getMessage()+" en 'etiquetas()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiqueta-1IO",e.fillInStackTrace());
         }catch(IOException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error 2IO: "+x.getMessage()+" en 'etiquetas()'",Level.WARNING);
+            new logger().exceptionLogger(about.class.getName(),Level.WARNING,"etiquetas-2IO",x.fillInStackTrace());
         }
     }
     

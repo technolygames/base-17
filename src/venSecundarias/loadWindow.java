@@ -250,7 +250,7 @@ public final class loadWindow extends javax.swing.JFrame{
                         new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("PlaceHolder.jar"));
                         break;
                     default:
-                        new logger().logStaticSaver("No se puede descargar las librerías de internet",Level.WARNING);
+                        new logger().logStaticSaver("No se puede descargar las librerías",Level.WARNING);
                         tb.setWindowProgressState(loadWindow.this,Taskbar.State.ERROR);
                 }
             }else{

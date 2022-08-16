@@ -60,6 +60,7 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
     protected Image retValue;
     protected Properties p;
     
+    @Override
     public Image getIconImage(){
         p=new Properties();
         try{

@@ -9,6 +9,10 @@ import venPrimarias.ltshProduct;
 import venTerciarias.about;
 import venTerciarias.valVentanas.validacionVentana1;
 import venTerciarias.valVentanas.validacionVentana2;
+import venTerciarias.valVentanas.validacionVentana3;
+import venTerciarias.valVentanas.validacionVentana4;
+import venTerciarias.valVentanas.validacionVentana5;
+import venTerciarias.valVentanas.validacionVentana6;
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -26,10 +30,6 @@ import javax.imageio.ImageIO;
 
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
-import venTerciarias.valVentanas.validacionVentana3;
-import venTerciarias.valVentanas.validacionVentana4;
-import venTerciarias.valVentanas.validacionVentana5;
-import venTerciarias.valVentanas.validacionVentana6;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -249,27 +249,23 @@ public final class menuVentanas extends javax.swing.JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ltstButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltwkButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltpsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltprvButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ltshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ltpsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ltprvButton))
-                    .addComponent(ltwkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ltstButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ltshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(closeButton)
-                        .addGap(0, 177, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(form3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(form1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(storeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(form2Button))))
+                    .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closeButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(form3Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(form1Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(storeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(form2Button))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -281,28 +277,28 @@ public final class menuVentanas extends javax.swing.JFrame{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(form3Button)
+                                .addComponent(ltprvButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(form2Button)
+                                .addComponent(ltpsButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(form1Button)))
-                        .addGap(18, 18, 18)
-                        .addComponent(storeButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(productButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ltprvButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(ltpsButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(ltwkButton)
+                                .addComponent(ltwkButton)))
                         .addGap(18, 18, 18)
                         .addComponent(ltstButton)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ltshButton)
-                            .addComponent(closeButton))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                            .addComponent(closeButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(form3Button)
+                        .addGap(18, 18, 18)
+                        .addComponent(form2Button)
+                        .addGap(18, 18, 18)
+                        .addComponent(form1Button)
+                        .addGap(18, 18, 18)
+                        .addComponent(storeButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(productButton)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();

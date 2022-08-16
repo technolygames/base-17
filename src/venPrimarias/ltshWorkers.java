@@ -70,12 +70,14 @@ public final class ltshWorkers extends javax.swing.JFrame{
         wdataButton.setVisible(false);
     }
     
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
+    protected DefaultTableModel dtm;
+    protected RowSorter<TableModel> sorter;
+    
     protected Image retValue;
     protected Properties p;
-    
-    protected int w;
-    
-    protected String id;
     
     @Override
     public Image getIconImage(){
@@ -116,19 +118,20 @@ public final class ltshWorkers extends javax.swing.JFrame{
     }
     
     protected final void datosMostrar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados;");
-            ResultSet rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+            ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados;");
+            rs=ps.executeQuery();
+            dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -147,136 +150,136 @@ public final class ltshWorkers extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
-            id=txtBuscar.getText();
+            String id=txtBuscar.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                String query1="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where codigo_emp='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query1);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where codigo_emp='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==1){
-                String query2="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where nombre_emp='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query2);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where nombre_emp='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==2){
-                String query3="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where apellidop_emp='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query3);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where apellidop_emp='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==3){
-                String query4="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where apellidom_emp='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query4);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where apellidom_emp='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==4){
-                String query5="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where puesto='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query5);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where puesto='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==5){
-                String query6="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where experiencia='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query6);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where experiencia='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==6){
-                String query7="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where grado_estudios='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query7);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where where grado_estudios='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }
             if(i==7){
-                String query8="select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,edad,datos_extra,fecha_registro,fecha_sesion from empleados where edad='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query8);
-                ResultSet rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
+                ps=new datos().getConnection().prepareStatement("select password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,puesto,experiencia,grado_estudios,contacto,edad,estado,datos_extra,fecha_registro,fecha_sesion from empleados where edad='"+id+"';");
+                rs=ps.executeQuery();
+                dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Datos extra","Fecha de registro","Fecha de sesión"});
                 while(rs.next()){
-                    dtm.addRow(new Object[]{rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getDate(11),rs.getDate(12)});
+                    dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("datos_extra"),rs.getDate("fecha_registro"),rs.getDate("fecha_sesion")});
                 }
                 jTable1.setRowSorter(sorter);
                 jTable1.getRowSorter().toggleSortOrder(0);
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }

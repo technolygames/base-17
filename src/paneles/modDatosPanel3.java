@@ -90,8 +90,13 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox1.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jTextField1.getText().equals("")){
+                            new datos().actualizarDatosProveedor("set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el(los) nombres(s) a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el(los) nombre(s) a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" botones(jCheckBox1)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(jCheckBox1.isSelected()==false){
@@ -130,8 +135,13 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox2.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jTextField2.getText().equals("")){
+                            new datos().actualizarDatosProveedor("set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido paterno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido paterno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" botones(jCheckBox2)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(jCheckBox2.isSelected()==false){
@@ -170,8 +180,13 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox3.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jTextField3.getText().equals("")){
+                            new datos().actualizarDatosProveedor("set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el apellido materno a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el apellido materno a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" botones(jCheckBox3)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(jCheckBox3.isSelected()==false){
@@ -210,8 +225,13 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox4.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jTextField4.getText().equals("")){
+                            new datos().actualizarDatosProveedor("set empresa='"+jTextField4.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba la empresa a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió la empresa a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" botones(jCheckBox4)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(jCheckBox4.isSelected()==false){
@@ -250,8 +270,13 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 //función
                 if(jCheckBox5.isSelected()==true){
                     jButton1.addActionListener((b)->{
-                        new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
-                        consulta();
+                        if(!jTextField5.getText().equals("")){
+                            new datos().actualizarDatosProveedor("set contacto='"+jTextField5.getText()+"' where codigo_prov='"+txtSearch.getText()+"';");
+                            consulta();
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: escriba el contacto a cambiar","Error 11",JOptionPane.WARNING_MESSAGE);
+                            new logger().logStaticSaver("Error 11: no se escribió el número telefónico a cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" botones(jCheckBox5)'",Level.WARNING);
+                        }
                     });
                 }
             }else if(jCheckBox5.isSelected()==false){
@@ -285,12 +310,15 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                 jLabel4.setText(rs.getString("empresa"));
                 jLabel5.setText(rs.getString("contacto"));
             }else{
-                JOptionPane.showMessageDialog(null,"No existen los datos","Error",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+" consulta()'",Level.WARNING);
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error Prueba (consulta)",JOptionPane.WARNING_MESSAGE);
+            new logger().logStaticSaver("Error Prueba: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel3.class.getName()+" consulta()'",Level.WARNING);
+            new logger().exceptionLogger(modDatosPanel3.class.getName(),Level.WARNING,"consulta-Prueba",e.fillInStackTrace());
         }
     }
     
@@ -413,7 +441,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             .addComponent(jCheckBox5)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
                     .addComponent(jButton1))
                 .addContainerGap())

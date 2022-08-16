@@ -67,6 +67,12 @@ public final class ltshProduct extends javax.swing.JFrame{
         setTitle("Productos vendidos");
     }
     
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
+    protected DefaultTableModel dtm;
+    protected RowSorter<TableModel> sorter;
+    
     protected Image retValue;
     protected Properties p;
     
@@ -105,11 +111,11 @@ public final class ltshProduct extends javax.swing.JFrame{
     }
     
     protected final void datosMostrar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from productos;");
-            ResultSet rs=ps.executeQuery();
+            ps=new datos().getConnection().prepareStatement("select * from productos;");
+            rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
@@ -119,6 +125,7 @@ public final class ltshProduct extends javax.swing.JFrame{
             jTable1.getTableHeader().setReorderingAllowed(false);
             jTable1.setModel(dtm);
             jTable1.getModel();
+            
             ps.close();
             rs.close();
         }catch(SQLException e){
@@ -129,15 +136,14 @@ public final class ltshProduct extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
             String id=txtBuscar.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                String query1="select * from productos where codigo_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query1);
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
@@ -152,9 +158,8 @@ public final class ltshProduct extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==1){
-                String query2="select * from productos where nombre_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query2);
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
@@ -169,9 +174,8 @@ public final class ltshProduct extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==2){
-                String query3="select * from productos where marca_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query3);
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from productos where marca_prod='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});

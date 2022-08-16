@@ -67,6 +67,12 @@ public final class ltshData extends javax.swing.JFrame{
         setLocationRelativeTo(null);
     }
     
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
+    protected DefaultTableModel dtm;
+    protected RowSorter<TableModel> sorter;
+    
     protected Image retValue;
     protected Properties p;
     
@@ -105,11 +111,11 @@ public final class ltshData extends javax.swing.JFrame{
     }
     
     protected final void datosMostrar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen;");
-            ResultSet rs=ps.executeQuery();
+            ps=new datos().getConnection().prepareStatement("select * from almacen;");
+            rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -130,14 +136,14 @@ public final class ltshData extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
             String id=txtBuscar.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_alm="+id+";");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_alm="+id+";");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -152,8 +158,8 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==1){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+id+";");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -168,8 +174,8 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==2){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+id+";");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+id+";");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -184,8 +190,8 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==3){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -200,8 +206,8 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==4){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prov='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prov='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});
@@ -216,8 +222,8 @@ public final class ltshData extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==5){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select * from almacen where marca_prod='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código de almacén","Código del producto","Código del proveedor","Nombre del producto","Nombre del proveedor","Marca","Stock","Fecha de ingreso"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)});

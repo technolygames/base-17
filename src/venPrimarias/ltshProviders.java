@@ -65,6 +65,12 @@ public class ltshProviders extends javax.swing.JFrame{
         setTitle("Productos vendidos");
     }
     
+    protected ResultSet rs;
+    protected PreparedStatement ps;
+    
+    protected DefaultTableModel dtm;
+    protected RowSorter<TableModel> sorter;
+    
     protected Image retValue;
     protected Properties p;
     
@@ -103,11 +109,11 @@ public class ltshProviders extends javax.swing.JFrame{
     }
     
     protected final void datosMostrar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,fecha_ingreso,fecha_uentrega from proveedor;");
-            ResultSet rs=ps.executeQuery();
+            ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,fecha_ingreso,fecha_uentrega from proveedor;");
+            rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -128,14 +134,14 @@ public class ltshProviders extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        DefaultTableModel dtm=new DefaultTableModel();
-        RowSorter<TableModel> sorter=new TableRowSorter<>(dtm);
+        dtm=new DefaultTableModel();
+        sorter=new TableRowSorter<>(dtm);
         try{
             String id=jTextField1.getText();
             int i=jComboBox1.getSelectedIndex();
             if(i==0){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where codigo_prov='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where codigo_prov='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -150,8 +156,8 @@ public class ltshProviders extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==1){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where nombre_prov='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where nombre_prov='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -166,8 +172,8 @@ public class ltshProviders extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==2){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidop_prov='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidop_prov='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -182,8 +188,8 @@ public class ltshProviders extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==3){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidom_prov='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where apellidom_prov='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -198,8 +204,8 @@ public class ltshProviders extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==4){
-                PreparedStatement ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where empresa='"+id+"';");
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where empresa='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -214,9 +220,8 @@ public class ltshProviders extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==5){
-                String query3="select * from productos where marca_prod='"+id+"';";
-                PreparedStatement ps=new datos().getConnection().prepareStatement(query3);
-                ResultSet rs=ps.executeQuery();
+                ps=new datos().getConnection().prepareStatement("select codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto from proveedor where contacto='"+id+"';");
+                rs=ps.executeQuery();
                 dtm.setColumnIdentifiers(new Object[]{"Código del proveedor","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
@@ -226,6 +231,7 @@ public class ltshProviders extends javax.swing.JFrame{
                 jTable1.getTableHeader().setReorderingAllowed(false);
                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                 jTable1.setModel(dtm);
+                
                 ps.close();
                 rs.close();
             }

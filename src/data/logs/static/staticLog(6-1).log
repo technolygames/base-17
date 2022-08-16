@@ -1547,3 +1547,19 @@ feb. 16, 2022 5:44:48 P. M. clases.logger logStaticSaver
 WARNING: Error 16: Column 'codigo_pro' not found. en 'datosMostrar()'
 feb. 16, 2022 5:45:30 P. M. clases.logger logStaticSaver
 WARNING: Error 16: Unsupported conversion from LONG to java.sql.Date en 'datosMostrar()'
+feb. 17, 2022 6:37:04 P. M. clases.logger logStaticSaver
+WARNING: Error 0: null.
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+feb. 17, 2022 6:37:43 P. M. clases.logger logStaticSaver
+WARNING: Error 0: null.
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+feb. 17, 2022 6:37:43 P. M. clases.logger logStaticSaver
+WARNING: Error 0: null.
+Ocurrió en la clase 'venPrimarias.formulario1', en el método 'botones(storeButton)'
+feb. 23, 2022 5:17:33 P. M. clases.logger logStaticSaver
+WARNING: Error 41: Cannot invoke "javax.swing.JLabel.getWidth()" because "venPrimarias.formulario3.picLabel" is null.
+Ocurrió en la clase 'venSecundarias.webcam3', en el método 'botones(picButton)'
+feb. 23, 2022 6:37:13 P. M. clases.logger logStaticSaver
+WARNING: Error 10: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server. en 'getConnection()'
