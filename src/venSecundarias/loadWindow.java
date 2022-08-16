@@ -88,12 +88,9 @@ public final class loadWindow extends javax.swing.JFrame{
     @Override
     public Image getIconImage(){
         p=new Properties();
-        String direccion=System.getProperty("user.dir").toString();
         try{
-            p.load(new FileInputStream(direccion+"/src/data/config/config.properties"));
+            p.load(new FileInputStream("src/data/config/config.properties"));
             retValue=Toolkit.getDefaultToolkit().getImage(p.getProperty("icono"));
-            System.out.println(direccion);
-            
             retValue.flush();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
@@ -124,9 +121,9 @@ public final class loadWindow extends javax.swing.JFrame{
         }
         
         ActionListener al=(ActionEvent ae)->{
-            if(jProgressBar1.getValue()<100&&Taskbar.isTaskbarSupported()){
+            if(jProgressBar1.getValue()<46&&Taskbar.isTaskbarSupported()){
                 jProgressBar1.setValue(jProgressBar1.getValue()+2);
-                jProgressBar1.setMaximum(100);
+                jProgressBar1.setMaximum(46);
                 tb.setWindowProgressState(loadWindow.this,Taskbar.State.NORMAL);
                 tb.setWindowProgressValue(loadWindow.this,jProgressBar1.getValue());
                 setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -134,122 +131,122 @@ public final class loadWindow extends javax.swing.JFrame{
                     case 0:
                         jLabel2.setText(null);
                         jLabel2.setText("bridj-0.6.2.jar");
-                        new resourceDownload().downloadLibs("bridj-0.6.2.jar",p.getProperty("bridj-0.6.2.jar"));
+                        //new resourceDownload().downloadLibs("bridj-0.6.2.jar",p.getProperty("bridj-0.6.2.jar"));
                         break;
                     case 2:
                         jLabel2.setText(null);
                         jLabel2.setText("commons-beanutils-1.8.2.jar");
-                        new resourceDownload().downloadLibs("commons-beanutils-1.8.2.jar",p.getProperty("commons-beanutils-1.8.2.jar"));
+                        //new resourceDownload().downloadLibs("commons-beanutils-1.8.2.jar",p.getProperty("commons-beanutils-1.8.2.jar"));
                         break;
                     case 4:
                         jLabel2.setText(null);
                         jLabel2.setText("commons-collections-20040616.jar");
-                        new resourceDownload().downloadLibs("commons-collections-20040616.jar",p.getProperty("commons-collections-20040616.jar"));
+                        //new resourceDownload().downloadLibs("commons-collections-20040616.jar",p.getProperty("commons-collections-20040616.jar"));
                         break;
                     case 6:
                         jLabel2.setText(null);
                         jLabel2.setText("commons-dbutils-1.7.jar");
-                        new resourceDownload().downloadLibs("commons-dbutils-1.7.jar",p.getProperty("commons-dbutils-1.7.jar"));
+                        //new resourceDownload().downloadLibs("commons-dbutils-1.7.jar",p.getProperty("commons-dbutils-1.7.jar"));
                         break;
                     case 8:
                         jLabel2.setText(null);
                         jLabel2.setText("commons-digester-2.1.jar");
-                        new resourceDownload().downloadLibs("commons-digester-2.1.jar",p.getProperty("commons-digester-2.1.jar"));
+                        //new resourceDownload().downloadLibs("commons-digester-2.1.jar",p.getProperty("commons-digester-2.1.jar"));
                         break;
                     case 10:
                         jLabel2.setText(null);
                         jLabel2.setText("commons-logging-1.2.1.1.jar");
-                        new resourceDownload().downloadLibs("commons-logging-1.2.1.1.jar",p.getProperty("commons-logging-1.2.1.1.jar"));
+                        //new resourceDownload().downloadLibs("commons-logging-1.2.1.1.jar",p.getProperty("commons-logging-1.2.1.1.jar"));
                         break;
                     case 12:
                         jLabel2.setText(null);
                         jLabel2.setText("dms-19.3.0.0.jar");
-                        new resourceDownload().downloadLibs("dms-19.3.0.0.jar",p.getProperty("dms-19.3.0.0.jar"));
+                        //new resourceDownload().downloadLibs("dms-19.3.0.0.jar",p.getProperty("dms-19.3.0.0.jar"));
                         break;
                     case 14:
                         jLabel2.setText(null);
                         jLabel2.setText("groovy-all-2.4.5.jar");
-                        new resourceDownload().downloadLibs("groovy-all-2.4.5.jar",p.getProperty("groovy-all-2.4.5.jar"));
+                        //new resourceDownload().downloadLibs("groovy-all-2.4.5.jar",p.getProperty("groovy-all-2.4.5.jar"));
                         break;
                     case 16:
                         jLabel2.setText(null);
                         jLabel2.setText("iText-2.1.7.jar");
-                        new resourceDownload().downloadLibs("iText-2.1.7.jar",p.getProperty("iText-2.1.7.jar"));
+                        //new resourceDownload().downloadLibs("iText-2.1.7.jar",p.getProperty("iText-2.1.7.jar"));
                         break;
                     case 18:
                         jLabel2.setText(null);
                         jLabel2.setText("itext-pdfa-5.5.4.jar");
-                        new resourceDownload().downloadLibs("itext-pdfa-5.5.4.jar",p.getProperty("itext-pdfa-5.5.4.jar"));
+                        //new resourceDownload().downloadLibs("itext-pdfa-5.5.4.jar",p.getProperty("itext-pdfa-5.5.4.jar"));
                         break;
                     case 20:
                         jLabel2.setText(null);
                         jLabel2.setText("itextpdf-5.5.4.jar");
-                        new resourceDownload().downloadLibs("itextpdf-5.5.4.jar",p.getProperty("itextpdf-5.5.4.jar"));
+                        //new resourceDownload().downloadLibs("itextpdf-5.5.4.jar",p.getProperty("itextpdf-5.5.4.jar"));
                         break;
                     case 22:
                         jLabel2.setText(null);
                         jLabel2.setText("jasperreports-4.7.1.jar");
-                        new resourceDownload().downloadLibs("jasperreports-4.7.1.jar",p.getProperty("jasperreports-4.7.1.jar"));
+                        //new resourceDownload().downloadLibs("jasperreports-4.7.1.jar",p.getProperty("jasperreports-4.7.1.jar"));
                         break;
                     case 24:
                         jLabel2.setText(null);
                         jLabel2.setText("jasperreports-6.0.0.jar");
-                        new resourceDownload().downloadLibs("jasperreports-6.0.0.jar",p.getProperty("jasperreports-6.0.0.jar"));
+                        //new resourceDownload().downloadLibs("jasperreports-6.0.0.jar",p.getProperty("jasperreports-6.0.0.jar"));
                         break;
                     case 26:
                         jLabel2.setText(null);
                         jLabel2.setText("jasperreports-javaflow-4.7.1.jar");
-                        new resourceDownload().downloadLibs("jasperreports-javaflow-4.7.1.jar",p.getProperty("jasperreports-javaflow-4.7.1.jar"));
+                        //new resourceDownload().downloadLibs("jasperreports-javaflow-4.7.1.jar",p.getProperty("jasperreports-javaflow-4.7.1.jar"));
                         break;
                     case 28:
                         jLabel2.setText(null);
                         jLabel2.setText("JPanelWebCam.jar");
-                        new resourceDownload().downloadLibs("JPanelWebCam.jar",p.getProperty("JPanelWebCam.jar"));
+                        //new resourceDownload().downloadLibs("JPanelWebCam.jar",p.getProperty("JPanelWebCam.jar"));
                         break;
                     case 30:
                         jLabel2.setText(null);
                         jLabel2.setText("mysql-connector-java-8.0.17.jar");
-                        new resourceDownload().downloadLibs("mysql-connector-java-8.0.17.jar",p.getProperty("mysql-connector-java-8.0.17.jar"));
+                        //new resourceDownload().downloadLibs("mysql-connector-java-8.0.17.jar",p.getProperty("mysql-connector-java-8.0.17.jar"));
                         break;
                     case 32:
                         jLabel2.setText(null);
                         jLabel2.setText("oclc-dbutils-1.0.20080317.jar");
-                        new resourceDownload().downloadLibs("oclc-dbutils-1.0.20080317.jar",p.getProperty("oclc-dbutils-1.0.20080317.jar"));
+                        //new resourceDownload().downloadLibs("oclc-dbutils-1.0.20080317.jar",p.getProperty("oclc-dbutils-1.0.20080317.jar"));
                         break;
                     case 34:
                         jLabel2.setText(null);
                         jLabel2.setText("ojdbc6_g.jar");
-                        new resourceDownload().downloadLibs("ojdbc6_g.jar",p.getProperty("ojdbc6_g.jar"));
+                        //new resourceDownload().downloadLibs("ojdbc6_g.jar",p.getProperty("ojdbc6_g.jar"));
                         break;
                     case 36:
                         jLabel2.setText(null);
                         jLabel2.setText("poi-3.5-FINAL.jar");
-                        new resourceDownload().downloadLibs("poi-3.5-FINAL.jar",p.getProperty("poi-3.5-FINAL.jar"));
+                        //new resourceDownload().downloadLibs("poi-3.5-FINAL.jar",p.getProperty("poi-3.5-FINAL.jar"));
                         break;
                     case 38:
                         jLabel2.setText(null);
                         jLabel2.setText("rs2xml.jar");
-                        new resourceDownload().downloadLibs("rs2xml.jar",p.getProperty("rs2xml.jar"));
+                        //new resourceDownload().downloadLibs("rs2xml.jar",p.getProperty("rs2xml.jar"));
                         break;
                     case 40:
                         jLabel2.setText(null);
                         jLabel2.setText("slf4j-api-1.7.2.jar");
-                        new resourceDownload().downloadLibs("slf4j-api-1.7.2.jar",p.getProperty("slf4j-api-1.7.2.jar"));
+                        //new resourceDownload().downloadLibs("slf4j-api-1.7.2.jar",p.getProperty("slf4j-api-1.7.2.jar"));
                         break;
                     case 42:
                         jLabel2.setText(null);
                         jLabel2.setText("slf4j-simple-1.6.1.jar");
-                        new resourceDownload().downloadLibs("slf4j-simple-1.6.1.jar",p.getProperty("slf4j-simple-1.6.1.jar"));
+                        //new resourceDownload().downloadLibs("slf4j-simple-1.6.1.jar",p.getProperty("slf4j-simple-1.6.1.jar"));
                         break;
                     case 44:
                         jLabel2.setText(null);
                         jLabel2.setText("webcam-capture-0.3.10.jar");
-                        new resourceDownload().downloadLibs("webcam-capture-0.3.10.jar",p.getProperty("webcam-capture-0.3.10.jar"));
+                        //new resourceDownload().downloadLibs("webcam-capture-0.3.10.jar",p.getProperty("webcam-capture-0.3.10.jar"));
                         break;
                     case 46:
                         jLabel2.setText(null);
                         jLabel2.setText("PlaceHolder.jar");
-                        new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("PlaceHolder.jar"));
+                        //new resourceDownload().downloadLibs("PlaceHolder.jar",p.getProperty("PlaceHolder.jar"));
                         break;
                     default:
                         new logger().logStaticSaver("No se puede descargar las librerías",Level.WARNING);

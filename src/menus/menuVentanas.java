@@ -1,6 +1,7 @@
 package menus;
 
 import clases.logger;
+import clases.win10Notification;
 import venPrimarias.proper1;
 import venPrimarias.ventana1;
 import venPrimarias.ltshData;
@@ -16,6 +17,7 @@ import venTerciarias.valVentanas.validacionVentana6;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.TrayIcon;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,6 +33,7 @@ import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import venPrimarias.start;
+import venTerciarias.dataWindow4;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -173,6 +176,10 @@ public final class menuVentanas extends javax.swing.JFrame{
     }
     
     protected final void menu(){
+        aboutButton.addActionListener((ActionEvent ae)->{
+            new about(new javax.swing.JFrame(),true).setVisible(true);
+        });
+        
         properButton.addActionListener((ActionEvent ae)->{
             try{
                 new proper1().setVisible(true);
@@ -183,8 +190,14 @@ public final class menuVentanas extends javax.swing.JFrame{
             }
         });
         
-        aboutButton.addActionListener((ActionEvent ae)->{
-            new about(new javax.swing.JFrame(),true).setVisible(true);
+        jMenuItem2.addActionListener((a)->{
+            new dataWindow4(new javax.swing.JFrame(),true).setVisible(true);
+        });
+        
+        jMenuItem3.addActionListener((a)->{
+            new start().setVisible(true);
+            new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),TrayIcon.MessageType.INFO);
+            dispose();
         });
     }
     

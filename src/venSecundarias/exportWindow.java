@@ -106,7 +106,7 @@ public class exportWindow extends javax.swing.JDialog{
         String nombreUsuario=jTextField1.getText();
         String passUsuario=jPasswordField1.getPassword().toString();
         String based=jTextField3.getText();
-        String nombrebdExportada=based+".sql";
+        String nombrebdExportada=based+(int)Math.random()+".sql";
         
         try{
             Process pr=Runtime.getRuntime().exec("c:\\xampp\\mysql\\bin\\mysqldump.exe -u "+nombreUsuario+" -p "+passUsuario+" "+based);

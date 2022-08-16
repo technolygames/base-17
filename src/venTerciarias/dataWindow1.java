@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -106,7 +105,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         d=new datos();
         String id=genLabel.getText();
         try{
-            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp=12345;");
+            ps=d.getConnection().prepareStatement("select * from empleados where codigo_emp=12346;");
             rs=ps.executeQuery();
             while(rs.next()){
                 etiContra.setText(rs.getString("password"));
@@ -159,7 +158,13 @@ public class dataWindow1 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+etiCodigo.getText()+"';");
-                File f=new File("src/data/media/dataImage/empleados/"+Math.random()+".jpg");
+                File f=new File("src/data/media/dataImage/empleados/"+(int)(Math.random()*100000)+".jpg");
+                File f2=new File("src/data/media/dataImage/empleados");
+                
+                if(!f2.exists()){
+                    f2.mkdir();
+                }
+                
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;
                 Blob blob;
@@ -178,6 +183,8 @@ public class dataWindow1 extends javax.swing.JDialog{
                 x.fillInStackTrace();
             }catch(IOException n){
                 n.fillInStackTrace();
+            }catch(NullPointerException y){
+                y.fillInStackTrace();
             }
         });
     }

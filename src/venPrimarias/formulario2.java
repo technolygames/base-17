@@ -188,13 +188,6 @@ public class formulario2 extends javax.swing.JFrame{
                     String datos=jTextArea1.getText();
                     String webcam=webcam2.direccion;
                     direccion=webcam;
-                    
-                    /*File file=new File("src/data/media/dataImage/"+Math.random()+".jpg");
-                    BufferedImage bi=new BufferedImage(picLabel.getWidth(),picLabel.getHeight(),BufferedImage.TYPE_INT_RGB);
-                    Graphics2D g2d=bi.createGraphics();
-                    picLabel.print(g2d);
-                    ImageIO.write(bi, "jpg",file);*/
-                    
                     InputStream foto=new FileInputStream(direccion);
                     
                     new datos().insertarDatosSocio(codigo,nombre,apellidop,apellidom,tipo,datos,foto);
@@ -202,8 +195,18 @@ public class formulario2 extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger().logStaticSaver("Error 18: no se escribieron o faltan datos en los campos. Ocurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 }
-            }catch(IOException e){
-                e.fillInStackTrace();
+            }catch(FileNotFoundException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+            }catch(IOException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-2IO",x.fillInStackTrace());
+            }catch(NullPointerException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario2.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
             }
         });
     }

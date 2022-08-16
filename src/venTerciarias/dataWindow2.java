@@ -148,6 +148,12 @@ public class dataWindow2 extends javax.swing.JDialog{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
                 File f=new File("src/data/media/dataImage/socios/"+Math.random()+".jpg");
+                File f2=new File("src/data/media/dataImage/socios");
+                
+                if(!f2.exists()){
+                    f2.mkdir();
+                }
+                
                 FileOutputStream fos=new FileOutputStream(f);
                 byte[] bytes;
                 Blob blob;
@@ -157,6 +163,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     bytes=blob.getBytes(1,(int)blob.length());
                     fos.write(bytes);
                 }
+                
                 ps.close();
                 fos.close();
                 fos.flush();
@@ -166,6 +173,8 @@ public class dataWindow2 extends javax.swing.JDialog{
                 x.fillInStackTrace();
             }catch(IOException n){
                 n.fillInStackTrace();
+            }catch(NullPointerException y){
+                y.fillInStackTrace();
             }
         });
     }

@@ -1,0 +1,7 @@
+mar. 11, 2022 4:33:51 P. M. clases.logger exceptionLogger
+WARNING: datosMostrar-0
+java.lang.NullPointerException: Cannot invoke "java.awt.Image.getProperty(String, java.awt.image.ImageObserver)" because "image" is null
+	at venTerciarias.dataWindow3.datosMostrar(dataWindow3.java:148)
+	at venTerciarias.dataWindow3.<init>(dataWindow3.java:65)
+	at venTerciarias.dataWindow3.main(dataWindow3.java:366)
+

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +40,7 @@ public class win10Notification{
                 ti.setImageAutoSize(true);
                 ti.displayMessage(notification,message,mt);
                 ti.setToolTip(p.getProperty("nombre"));
+                st.remove(ti);
             }
         }catch(AWTException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.WARNING_MESSAGE);

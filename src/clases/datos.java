@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 public class datos{
     protected Connection cn;
     protected PreparedStatement ps;
+    protected Statement s;
     
     protected Properties p;
     
@@ -74,18 +76,19 @@ public class datos{
      * 
      * @param codigoProducto Código de identificación del producto.
      * @param nombreProducto Nombre del producto.
-     * @param marcaProducto Marca del producto.
+     * @param marca Marca del producto.
      * @param cantidad Cantidad comprada de los productos.
      * @param precio Precio de cada uno de los productos.
      * @param total Precio total al que se vendieron los prodcutos.
      */
-    public void insertarDatosProducto(int codigoProducto,String nombreProducto,String marcaProducto,int cantidad,int precio,int total){
-        String ins1_query="insert into productos values('"+codigoProducto+"','"+nombreProducto+"','"+marcaProducto+"','"+cantidad+"','"+precio+"','"+total+"',now());";
+    public void insertarDatosProducto(int codigoProducto,String nombreProducto,String marca,int cantidad,int precio,int total){
+        String ins1_query="insert into productos(codigo_prod,nombre_prod,marca,cantidad,precio,total,fecha_compra) values('"+codigoProducto+"','"+nombreProducto+"','"+marca+"','"+cantidad+"','"+precio+"','"+total+"',now())";
         try{
-            ps=getConnection().prepareStatement(ins1_query);
-            ps.execute();
+            s=getConnection().createStatement();
+            s.addBatch(ins1_query);
+            s.executeBatch();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            ps.close();
+            s.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.WARNING_MESSAGE);
             new logger().logStaticSaver("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProducto()'",Level.WARNING);
@@ -207,11 +210,19 @@ public class datos{
      * @param apellidoMaternoProveedor Apellido materno del proveedor.
      * @param empresa Empresa procedencia del proveedor.
      * @param contacto Número de contacto del proveedor.
+     * @param foto Foto del proveedor para identificarlo.
      */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa,int contacto){
-        String ins5_query="insert into proveedor value('"+codigoProveedor+"','"+nombreProveedor+"','"+apellidoPaternoProvedor+"','"+apellidoMaternoProveedor+"','"+empresa+"','"+contacto+"',null,now(),now());";
+    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProvedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
+        String ins5_query="insert into(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,fecha_ingreso,fecha_uentrega) proveedor value(?,?,?,?,?,?,?,now(),now());";
         try{
             ps=getConnection().prepareStatement(ins5_query);
+            ps.setInt(1,codigoProveedor);
+            ps.setString(2,nombreProveedor);
+            ps.setString(3,apellidoPaternoProvedor);
+            ps.setString(4,apellidoMaternoProveedor);
+            ps.setString(5,empresa);
+            ps.setInt(6,contacto);
+            ps.setBinaryStream(7,foto);
             ps.execute();
             JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             ps.close();

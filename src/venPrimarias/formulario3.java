@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Properties;
 import javax.swing.Icon;
 import javax.swing.UIManager;
@@ -69,7 +70,7 @@ public class formulario3 extends javax.swing.JFrame{
         
         setResizable(false);
         setLocationRelativeTo(null);
-        setTitle("Formulario 1");
+        setTitle("Formulario 3");
     }
     
     protected Image retValue;
@@ -175,14 +176,29 @@ public class formulario3 extends javax.swing.JFrame{
         });
         
         svdtButton.addActionListener((ae)->{
-            int codigo=Integer.parseInt(jTextField1.getText());
-            String nombre=jTextField2.getText();
-            String apellidop=jTextField3.getText();
-            String apellidom=jTextField4.getText();
-            String empresa=jTextField5.getText();
-            int contacto=Integer.parseInt(jTextField6.getText());
-            
-            new datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto);
+            try{
+                int codigo=Integer.parseInt(jTextField1.getText());
+                String nombre=jTextField2.getText();
+                String apellidop=jTextField3.getText();
+                String apellidom=jTextField4.getText();
+                String empresa=jTextField5.getText();
+                int contacto=Integer.parseInt(jTextField6.getText());
+                InputStream foto=new FileInputStream(direccion);
+                
+                new datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+            }catch(FileNotFoundException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-1IO",e.fillInStackTrace());
+            }catch(IOException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-2IO",x.fillInStackTrace());
+            }catch(NullPointerException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario3.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
+            }
         });
     }
     
@@ -313,7 +329,7 @@ public class formulario3 extends javax.swing.JFrame{
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,9 +338,9 @@ public class formulario3 extends javax.swing.JFrame{
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)

@@ -223,14 +223,18 @@ public class formulario1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error AIOOBE",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error AIOOBE: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-AIOOBE",x.fillInStackTrace());
-            }catch(NullPointerException ñ){
-                JOptionPane.showMessageDialog(null,"Error:\n"+ñ.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
-                new logger().logStaticSaver("Error 0: "+ñ.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
-                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-0",ñ.fillInStackTrace());
+            }catch(NullPointerException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-0",n.fillInStackTrace());
             }catch(FileNotFoundException k){
                 JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 1IO",JOptionPane.WARNING_MESSAGE);
                 new logger().logStaticSaver("Error 1IO: "+k.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
                 new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-1IO",k.fillInStackTrace());
+            }catch(IOException d){
+                JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.WARNING_MESSAGE);
+                new logger().logStaticSaver("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'",Level.WARNING);
+                new logger().exceptionLogger(formulario1.class.getName(),Level.WARNING,"botones.store-2IO",d.fillInStackTrace());
             }
         });
     }

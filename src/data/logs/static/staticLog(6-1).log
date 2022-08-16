@@ -4791,3 +4791,2841 @@ Ocurrió en la clase 'clases.thread', en el método 'run()'
 mar. 09, 2022 5:00:25 P. M. clases.logger logStaticSaver
 WARNING: Error 10: Column 'fecha_registro' not found..
 Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+mar. 11, 2022 4:33:51 P. M. clases.logger logStaticSaver
+WARNING: Error 0: Cannot invoke "java.awt.Image.getProperty(String, java.awt.image.ImageObserver)" because "image" is null.
+Ocurrió en la clase 'venTerciarias.dataWindow1', en el método 'datosMostrar()'
+mar. 12, 2022 9:20:43 P. M. clases.logger logStaticSaver
+WARNING: Let 1: se ingresaron letras en un campo equivocado.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'txtCantKeyPressed()'
+mar. 12, 2022 9:42:30 P. M. clases.logger logStaticSaver
+WARNING: Let 2: se ingresaron números en un campo equivocado.
+Ocurrió en la clase 'venPrimarias.ventana1', en el método 'txtMarcaKeyPressed()'
+mar. 12, 2022 10:38:12 P. M. clases.logger logStaticSaver
+WARNING: Error 16: Unknown column 'marca_prod' in 'where clause'.
+Ocurrió en la clase 'venPrimarias.ltshProduct', en el método 'datosBuscar()'
+mar. 12, 2022 11:19:58 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:19:59 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:19:59 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:00 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:00 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:00 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:04 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:04 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:04 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:04 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:05 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:05 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:05 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:05 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:05 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:06 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:07 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:08 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:11 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:12 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:13 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:14 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:16 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:17 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:18 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:20 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:21 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:22 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:23 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:24 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: Error 2IO: El sistema no puede encontrar la ruta especificada
+Ocurrió en la clase 'clases.resourceDownload', en el método 'downloadLibs()'
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:26 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:27 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:28 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías
+mar. 12, 2022 11:20:29 P. M. clases.logger logStaticSaver
+WARNING: No se puede descargar las librerías

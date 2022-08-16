@@ -39,7 +39,7 @@
                   <Component id="jScrollPane1" pref="540" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="153" max="32767" attributes="0"/>
+                      <EmptySpace pref="156" max="32767" attributes="0"/>
                       <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtBuscar" min="-2" pref="123" max="-2" attributes="0"/>
@@ -127,15 +127,11 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
+          <StringArray count="4">
             <StringItem index="0" value="C&#xf3;digo"/>
             <StringItem index="1" value="Nombre"/>
             <StringItem index="2" value="Apellido paterno"/>
             <StringItem index="3" value="Apellido materno"/>
-            <StringItem index="4" value="Puesto"/>
-            <StringItem index="5" value="Experiencia"/>
-            <StringItem index="6" value="Grado de estudios"/>
-            <StringItem index="7" value="Edad"/>
           </StringArray>
         </Property>
       </Properties>

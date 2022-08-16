@@ -82,6 +82,7 @@ public final class start extends javax.swing.JFrame{
     public String nombreVal;
     
     public static String nameUser;
+    public static int userID;
     
     @Override
     public Image getIconImage(){
@@ -174,6 +175,7 @@ public final class start extends javax.swing.JFrame{
                 dispose();
                 new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+rs.getString("nombre_emp"),MessageType.INFO);
                 nameUser=rs.getString("nombre_emp");
+                userID=rs.getInt("codigo_emp");
             }
             
             ps.close();

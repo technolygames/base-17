@@ -120,7 +120,7 @@ public final class ltshProduct extends javax.swing.JFrame{
         try{
             ps=new datos().getConnection().prepareStatement("select * from productos;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
             }
@@ -148,7 +148,7 @@ public final class ltshProduct extends javax.swing.JFrame{
             if(i==0){
                 ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod='"+id+"';");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
                 }
@@ -164,7 +164,7 @@ public final class ltshProduct extends javax.swing.JFrame{
             if(i==1){
                 ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod='"+id+"';");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
                 }
@@ -178,9 +178,9 @@ public final class ltshProduct extends javax.swing.JFrame{
                 rs.close();
             }
             if(i==2){
-                ps=new datos().getConnection().prepareStatement("select * from productos where marca_prod='"+id+"';");
+                ps=new datos().getConnection().prepareStatement("select * from productos where marca='"+id+"';");
                 rs=ps.executeQuery();
-                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca del producto","Cantidad","Precio","Ganancia","Fecha de compra"});
+                dtm.setColumnIdentifiers(new Object[]{"Código del producto","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                 while(rs.next()){
                     dtm.addRow(new Object[]{rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getDate(7)});
                 }

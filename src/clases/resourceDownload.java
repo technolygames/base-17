@@ -9,7 +9,9 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,14 +38,15 @@ public class resourceDownload{
     public boolean checkConnection(String url,int puerto){
         try{
             s=new Socket(url,puerto);
-            
             if(s.isConnected()==true){
-                JOptionPane.showMessageDialog(null,"sis");
+                sis=true;
             }else{
-                JOptionPane.showConfirmDialog(null, "non");
+                sis=false;
             }
-        }catch(Exception e){
+        }catch(UnknownHostException e){
             e.fillInStackTrace();
+        }catch(IOException x){
+            x.fillInStackTrace();
         }
         return sis;
     }
@@ -55,9 +58,9 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        f=new File("src/data/libs/testLibs/"+validar);
+        f=new File("src/data/libs/"+validar);
         try{
-            if(f.exists()){
+            if(!f.exists()){
                 u=new URL(link);
                 uc=u.openConnection();
                 
