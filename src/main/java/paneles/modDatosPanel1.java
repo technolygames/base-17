@@ -3,12 +3,12 @@ package paneles;
 import clases.datos;
 import clases.logger;
 //java
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import java.sql.Date;
 //extension larga
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;

@@ -81,9 +81,9 @@ public class escritorJSON{
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
             new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-ISE",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-15",x.fillInStackTrace());
         }catch(SQLException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
@@ -136,9 +136,9 @@ public class escritorJSON{
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
             new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-ISE",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-15",x.fillInStackTrace());
         }catch(SQLException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
@@ -184,9 +184,9 @@ public class escritorJSON{
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
             new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-2IO",e.fillInStackTrace());
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error ISE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error ISE: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-ISE",x.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-15",x.fillInStackTrace());
         }catch(SQLException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");

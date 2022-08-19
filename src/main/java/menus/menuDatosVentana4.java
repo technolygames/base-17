@@ -12,6 +12,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
+        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");

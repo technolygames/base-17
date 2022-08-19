@@ -101,7 +101,7 @@ public class formulario3 extends javax.swing.JFrame{
             }
         });
         
-        svdtButton.addActionListener((a)->{
+        storeButton.addActionListener((a)->{
             try{
                 if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextField5.getText().equals("")||!jTextField6.getText().equals("")){
                     int codigo=Integer.parseInt(jTextField1.getText());
@@ -115,16 +115,16 @@ public class formulario3 extends javax.swing.JFrame{
                     new datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
                 }else{
                     JOptionPane.showMessageDialog(null,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'");
+                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");
                 }
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario3.class.getName(),"botones.svdt-1IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario3.class.getName(),"botones.store-1IO",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(svdtButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario3.class.getName(),"botones.svdt-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario3.class.getName(),"botones.store-0",x.fillInStackTrace());
             }catch(NumberFormatException n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");
@@ -148,7 +148,7 @@ public class formulario3 extends javax.swing.JFrame{
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        svdtButton = new javax.swing.JButton();
+        storeButton = new javax.swing.JButton();
         picLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -204,7 +204,7 @@ public class formulario3 extends javax.swing.JFrame{
             }
         });
 
-        svdtButton.setText("Guardar datos");
+        storeButton.setText("Guardar datos");
 
         picLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         picLabel.setText("Foto");
@@ -245,7 +245,7 @@ public class formulario3 extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(svdtButton)
+                        .addComponent(storeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)
                         .addGap(10, 10, 10))
@@ -257,7 +257,7 @@ public class formulario3 extends javax.swing.JFrame{
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(jTextField1)
@@ -302,7 +302,7 @@ public class formulario3 extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
-                    .addComponent(svdtButton))
+                    .addComponent(storeButton))
                 .addContainerGap())
         );
 
@@ -382,6 +382,6 @@ public class formulario3 extends javax.swing.JFrame{
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
     private javax.swing.JLabel picLabel;
-    private javax.swing.JButton svdtButton;
+    private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -99,6 +99,7 @@ public class paymentWindow extends javax.swing.JDialog{
                     setVisible(false);
                     dispose();
                 }
+                break;
             }
             if(state==true){
                 setVisible(false);
@@ -171,7 +172,7 @@ public class paymentWindow extends javax.swing.JDialog{
         var datos=new datos();
         for(int i=0;i<dtm.getRowCount();i++){
             codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-            codigo_emp=Integer.parseInt(jLabel4.getText());
+            codigo_emp=Integer.parseInt(jLabel2.getText());
             nombre=dtm.getValueAt(i,1).toString();
             marca=dtm.getValueAt(i,2).toString();
             cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());

@@ -1,12 +1,9 @@
 package venPrimarias;
 //clases
 import clases.datos;
+import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
-//librerías
-import clases.dbUtils;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +11,8 @@ import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
 import javax.swing.JOptionPane;
 //extension larga
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;

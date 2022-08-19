@@ -60,8 +60,8 @@ public final class calcWindow extends javax.swing.JDialog{
             paymentWindow.jLabel6.setText(txtCambio.getText());
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'botones(calcButton)'");
-            new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"botones.calc-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
+            new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"calculate-32",e.fillInStackTrace());
         }
     }
     

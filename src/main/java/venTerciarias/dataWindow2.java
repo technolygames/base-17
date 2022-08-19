@@ -92,15 +92,17 @@ public class dataWindow2 extends javax.swing.JDialog{
         storeImgButton.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
+                rs=ps.executeQuery();
+                
                 File f=new File(dirs.userdir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                for(int i=0;f.exists();i++){
+                    f=new File(dirs.userdir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                }
                 
                 FileOutputStream fos=new FileOutputStream(f);
-                byte[] bytes;
-                Blob blob;
-                rs=ps.executeQuery();
                 while(rs.next()){
-                    blob=rs.getBlob("foto");
-                    bytes=blob.getBytes(1,(int)blob.length());
+                    Blob blob=rs.getBlob("foto");
+                    byte[] bytes=blob.getBytes(1,(int)blob.length());
                     fos.write(bytes);
                     break;
                 }

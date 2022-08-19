@@ -46,10 +46,10 @@ public class datosTicket{
             Date date=new Date();
             Properties p=new Properties();
             
-            SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
-            SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
+            SimpleDateFormat fecha=new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat hora=new SimpleDateFormat("hh.mm.ss aa");
             
-            ticket ticket=new ticket(userdir+"/data/generic/tickets/ticket-("+fecha.format(date)+" "+hora.format(date)+").txt",flag);
+            ticket ticket=new ticket(userdir+"/data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
             
             p.load(new FileReader(userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
             
@@ -136,9 +136,9 @@ public class datosTicket{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-18",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
+            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-32",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
@@ -252,9 +252,9 @@ public class datosTicket{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 18",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 18: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-18",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
+            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-32",e.fillInStackTrace());
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");

@@ -71,9 +71,9 @@ public class environmentPanel extends javax.swing.JPanel{
                     p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
-                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-1IO",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
+                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-2IO",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");

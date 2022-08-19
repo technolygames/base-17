@@ -5,9 +5,10 @@ import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread;
 import clases.validation;
+//librerías
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.Frame;
 //java
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
@@ -30,6 +31,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class proper1 extends javax.swing.JFrame{
@@ -71,12 +73,16 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
         jTextField2.setVisible(false);
         jTextField3.setVisible(false);
+        
+        JTextField[] tf={jTextField4,jTextField5};
         if(start.role.equals("Dueño")||start.role.equals("Programador")||start.role.equals("Desarrollador")){
-            jTextField4.setEnabled(true);
-            jTextField5.setEnabled(true);
+            for(JTextField textfield:tf){
+                textfield.setEnabled(true);
+            }
         }else{
-            jTextField4.setEnabled(false);
-            jTextField5.setEnabled(false);
+            for(JTextField textfield:tf){
+                textfield.setEnabled(false);
+            }
         }
     }
     
@@ -164,9 +170,9 @@ public final class proper1 extends javax.swing.JFrame{
                         p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                     }catch(IOException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
-                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-24",e.fillInStackTrace());
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
+                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-2IO",e.fillInStackTrace());
                     }
                 }
             }catch(HeadlessException e){
@@ -206,9 +212,9 @@ public final class proper1 extends javax.swing.JFrame{
                         p.setProperty("lastdirectory_image",f2.getParent());
                         p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                     }catch(IOException x){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 24: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
-                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-24",x.fillInStackTrace());
+                        JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
+                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-2IO",x.fillInStackTrace());
                     }
                 }
             }catch(HeadlessException e){

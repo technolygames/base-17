@@ -76,11 +76,7 @@ public class ticket{
             
             abrirGaveta(imp,gaveta);
             
-            cabezaLineas.clear();
-            subcabezaLineas.clear();
-            items.clear();
-            totales.clear();
-            lineasPie.clear();
+            remove();
             
             imp.flush();
             imp.close();
@@ -88,21 +84,26 @@ public class ticket{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error PE_T1",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error PE_T1: "+x.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
             new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-PE_T1",x.fillInStackTrace());
+            remove();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO_H1",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
             new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-1IO_H1",e.fillInStackTrace());
+            remove();
         }catch(IllegalStateException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
             new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-15",n.fillInStackTrace());
-        }finally{
-            cabezaLineas.removeAll(cabezaLineas);
-            subcabezaLineas.removeAll(subcabezaLineas);
-            items.removeAll(items);
-            totales.removeAll(totales);
-            lineasPie.removeAll(lineasPie);
+            remove();
         }
+    }
+    
+    protected void remove(){
+        cabezaLineas.clear();
+        subcabezaLineas.clear();
+        items.clear();
+        totales.clear();
+        lineasPie.clear();
     }
     
     public static void addCabecera(String linea){

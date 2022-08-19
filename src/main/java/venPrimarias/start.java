@@ -59,7 +59,7 @@ public final class start extends javax.swing.JFrame{
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"getIconImage-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-2IO",x.fillInStackTrace());
         }
     }
     

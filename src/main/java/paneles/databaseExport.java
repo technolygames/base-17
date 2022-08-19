@@ -59,14 +59,14 @@ public class databaseExport extends javax.swing.JPanel{
                 new Thread(new thread(pr.getInputStream(),os)).start();
                 
                 JOptionPane.showMessageDialog(null,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'botones(exportButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 os.flush();
                 os.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 8E",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 8E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"exportDatabase-8E",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'");
+                new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"exportDatabase-2IO",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'");

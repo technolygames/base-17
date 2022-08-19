@@ -18,6 +18,8 @@ import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.time.Period;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,8 +31,6 @@ import java.util.logging.Level;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
@@ -70,45 +70,6 @@ public class formulario1 extends javax.swing.JFrame{
             new menuDatosVentana1().setVisible(true);
         });
         
-        jMenuItem2.addActionListener((a)->{
-            try{
-                p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
-                jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
-                
-                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
-                
-                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
-                    try{
-                        File f=jfc.getSelectedFile();
-                        direccion=f.getPath();
-                        
-                        picLabel.setText(null);
-                        picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
-                        
-                        p.setProperty("lastdirectory_form1",f.getParent());
-                        p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
-                    }catch(IOException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'");
-                        new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.insimg-24",e.fillInStackTrace());
-                    }
-                }
-            }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.insimg-40",e.fillInStackTrace());
-            }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.insimg-1IO",x.fillInStackTrace());
-            }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(insimgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.insimg-2IO",n.fillInStackTrace());
-            }
-        });
-        
         jMenuItem3.addActionListener((a)->{
             picLabel.setIcon(null);
             picLabel.setText("Foto");
@@ -129,6 +90,45 @@ public class formulario1 extends javax.swing.JFrame{
             picLabel.setText("Foto");
             jTextArea1.setText("");
             placeHolders();
+        });
+        
+        miInsImage.addActionListener((a)->{
+            try{
+                p=new Properties();
+                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
+                
+                jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
+                
+                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
+                    try{
+                        File f=jfc.getSelectedFile();
+                        direccion=f.getPath();
+                        
+                        picLabel.setText(null);
+                        picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                        
+                        p.setProperty("lastdirectory_form1",f.getParent());
+                        p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                    }catch(IOException e){
+                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
+                        new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
+                        new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-24",e.fillInStackTrace());
+                    }
+                }
+            }catch(HeadlessException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-40",e.fillInStackTrace());
+            }catch(FileNotFoundException x){
+                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-1IO",x.fillInStackTrace());
+            }catch(IOException n){
+                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
+                new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-2IO",n.fillInStackTrace());
+            }
         });
         
         storeButton.addActionListener((a)->{
@@ -243,7 +243,7 @@ public class formulario1 extends javax.swing.JFrame{
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        miInsImage = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -353,8 +353,8 @@ public class formulario1 extends javax.swing.JFrame{
 
         jMenu2.setText("Opciones");
 
-        jMenuItem2.setText("Insertar imagen");
-        jMenu2.add(jMenuItem2);
+        miInsImage.setText("Insertar imagen");
+        jMenu2.add(miInsImage);
 
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
@@ -391,7 +391,7 @@ public class formulario1 extends javax.swing.JFrame{
                                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -586,11 +586,11 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem miClearFields;
+    private javax.swing.JMenuItem miInsImage;
     private javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     private javax.swing.JTextField txtAM;

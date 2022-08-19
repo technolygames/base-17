@@ -350,6 +350,37 @@ public class datos{
     }
     
     /**
+     * Actualiza la imagen de un registro.<br>
+     * Este método es universal.<br>
+     * Se debe escribir en la consulta en qué tabla se modificará la imagen y el identificador del registro a cambiar.<br>
+     * Las tablas que tienen campos aptos para guardar una imagen son:
+     * <ul>
+     * <li>Empleados</li>
+     * <li>Proveedor</li>
+     * <li>Socios</li>
+     * </ul>
+     * Las demás existentes no son aptas. Favor de no intentar hacerlo.
+     * 
+     * @param tabla a la que pertenece el campo de imagen a cambiar.
+     * @param campo de identificación del registro a cambiar la imagen.
+     * @param usuario al que se le cambiará la imagen. Este es el registro, no el campo.
+     * @param imagen a cambiar o subir.<br>
+     */
+    public void actualizarFotoPerfil(String tabla,String campo,int usuario,InputStream imagen){
+        try{
+            ps=getConnection().prepareStatement("update "+tabla+" set foto=? where "+campo+"="+usuario+";");
+            ps.setBinaryStream(1,imagen);
+            ps.executeUpdate();
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatos()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatos-12",e.fillInStackTrace());
+        }
+    }
+    
+    /**
      * Elimina datos específicos de la tabla productos.<br>
      * Prácticamente son todos los productos que ha vendido el empleado al que se le eliminaron los datos de la base de datos.
      * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.

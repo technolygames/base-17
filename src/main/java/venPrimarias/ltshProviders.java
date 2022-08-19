@@ -4,16 +4,22 @@ import clases.datos;
 import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
+import java.awt.event.ActionEvent;
 import venTerciarias.dataWindow3;
 //java
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.RowSorter;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JOptionPane;
+import javax.swing.AbstractAction;
 //extension larga
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -26,6 +32,7 @@ public class ltshProviders extends javax.swing.JFrame{
         
         botones();
         datosMostrar();
+        popup();
         settings();
         
         setLocationRelativeTo(null);
@@ -38,6 +45,7 @@ public class ltshProviders extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
+    protected JPopupMenu popupMenu;
     
     public static int code;
     
@@ -85,6 +93,39 @@ public class ltshProviders extends javax.swing.JFrame{
                 }
             }
         });
+        
+        jTable1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent a){
+                int row=jTable1.rowAtPoint(a.getPoint());
+                if(row>=0&&row<jTable1.getRowCount()){
+                    jTable1.setRowSelectionInterval(row,row);
+                }else{
+                    jTable1.clearSelection();
+                }
+                showPopup(a);
+            }
+        });
+    }
+    
+    protected void popup(){
+        popupMenu=new JPopupMenu();
+        
+        JMenuItem mi=new JMenuItem(new AbstractAction("Ver datos"){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                code=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+                new dataWindow3(new javax.swing.JFrame(),true).setVisible(true);
+            }
+        });
+        
+        popupMenu.add(mi);
+    }
+    
+    protected void showPopup(MouseEvent a){
+        if(a.isPopupTrigger()){
+            popupMenu.show(a.getComponent(),a.getX(),a.getY());
+        }
     }
     
     protected void mostrarBoton(boolean flag){

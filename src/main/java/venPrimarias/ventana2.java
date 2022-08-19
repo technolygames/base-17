@@ -3,11 +3,17 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import menus.menuDatosVentana4;
 //java
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
+import javax.swing.AbstractAction;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
 public final class ventana2 extends javax.swing.JFrame{
@@ -17,6 +23,7 @@ public final class ventana2 extends javax.swing.JFrame{
         new guiMediaHandler(ventana2.class.getName()).FormImage(picLabel);
         
         botones();
+        popup();
         settings();
         
         setLocationRelativeTo(null);
@@ -25,9 +32,16 @@ public final class ventana2 extends javax.swing.JFrame{
     }
     
     protected DefaultTableModel dtm;
+    protected JPopupMenu popupMenu;
     
     protected final void settings(){
-        dtm=new DefaultTableModel();
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
         
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
@@ -41,9 +55,15 @@ public final class ventana2 extends javax.swing.JFrame{
         });
         dtm.setRowCount(0);
         
-        jTable1.setModel(dtm);
-        jTable1.getTableHeader().setReorderingAllowed(false);
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
+        
         jTable1.setEnabled(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.setModel(dtm);
     }
     
     protected final void botones(){
@@ -109,6 +129,71 @@ public final class ventana2 extends javax.swing.JFrame{
                 new logger(Level.SEVERE).exceptionLogger(ventana2.class.getName(),"botones.svdt-0",x.fillInStackTrace());
             }
         });
+        
+        jTable1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent a){
+                int row=jTable1.rowAtPoint(a.getPoint());
+                if(row>=0&&row<jTable1.getRowCount()){
+                    jTable1.setRowSelectionInterval(row,row);
+                }else{
+                    jTable1.clearSelection();
+                }
+                showPopup(a);
+            }
+        });
+    }
+    
+    protected void popup(){
+        popupMenu=new JPopupMenu();
+        
+        JMenuItem mi1=new JMenuItem(new AbstractAction("Editar fila"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                try{
+                    int row=jTable1.getSelectedRow();
+                    txtCodProd.setText(jTable1.getValueAt(row,0).toString());
+                    txtCodLote.setText(jTable1.getValueAt(row,1).toString());
+                    txtCodProv.setText(jTable1.getValueAt(row,2).toString());
+                    txtProd.setText(jTable1.getValueAt(row,3).toString());
+                    txtMarca.setText(jTable1.getValueAt(row,4).toString());
+                    txtCant.setText(jTable1.getValueAt(row,5).toString());
+                    txtPU.setText(jTable1.getValueAt(row,6).toString());
+                    jComboBox1.getModel().setSelectedItem(jTable1.getValueAt(row,7).toString());
+                    dtm.removeRow(row);
+                }catch(ArrayIndexOutOfBoundsException e){
+                    JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+                    new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'popup()'");
+                    new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"popup-AIOOBE",e.fillInStackTrace());
+                }
+            }
+        });
+        
+        JMenuItem mi2=new JMenuItem(new AbstractAction("Eliminar fila"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                removeRow();
+            }
+        });
+        
+        popupMenu.add(mi1);
+        popupMenu.add(mi2);
+    }
+    
+    protected void showPopup(MouseEvent evt){
+        if(evt.isPopupTrigger()){
+            popupMenu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
+    }
+    
+    protected void removeRow(){
+        try{
+            dtm.removeRow(jTable1.getSelectedRow());
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");
+            new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"removeRow-AIOOBE",e.fillInStackTrace());
+        }
     }
     
     protected void cleanFields(){
@@ -216,6 +301,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
 
         addButton.setText("Añadir campos");
@@ -290,12 +376,12 @@ public final class ventana2 extends javax.swing.JFrame{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(svdtButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cleanButton)
-                        .addGap(213, 213, 213)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addButton)
+                        .addGap(113, 113, 113)
                         .addComponent(updateDataButton)
-                        .addGap(18, 18, 18)
+                        .addGap(32, 32, 32)
                         .addComponent(backButton)))
                 .addContainerGap())
         );

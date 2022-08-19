@@ -31,13 +31,13 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-           menuDatosVentana2.this.setLayout(new BorderLayout());
+           menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
            menuDatosVentana2.this.getContentPane().add(new delDatosPanel2(),BorderLayout.CENTER);
            menuDatosVentana2.this.pack();
         });
         
         miModData.addActionListener((a)->{
-            menuDatosVentana2.this.setLayout(new BorderLayout());
+            menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana2.this.getContentPane().add(new modDatosPanel2(),BorderLayout.CENTER);
             menuDatosVentana2.this.pack();
         });

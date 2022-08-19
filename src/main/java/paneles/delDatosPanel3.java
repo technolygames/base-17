@@ -54,12 +54,12 @@ public class delDatosPanel3 extends javax.swing.JPanel{
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Escribe el número de identificación da eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar. Ocurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'");
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar.\nOcurrió en la clase '"+delDatosPanel3.class.getName()+"', en el método 'deleteData()'");
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'botones(deleteButton)'");
-            new logger(Level.SEVERE).exceptionLogger(delDatosPanel3.class.getName(),"botones.delete-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'deleteData()'");
+            new logger(Level.SEVERE).exceptionLogger(delDatosPanel3.class.getName(),"deleteData-32",e.fillInStackTrace());
         }
     }
     

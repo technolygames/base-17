@@ -109,10 +109,6 @@ public final class menuVentanas extends javax.swing.JFrame{
             new about(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        properButton.addActionListener((a)->{
-            new proper1().setVisible(true);
-        });
-        
         jMenuItem2.addActionListener((a)->{
             new dataWindow4(new javax.swing.JFrame(),true).setVisible(true);
         });
@@ -122,6 +118,10 @@ public final class menuVentanas extends javax.swing.JFrame{
             new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),TrayIcon.MessageType.INFO);
             new logger(Level.SEVERE).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(jMenuItem2)'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
             dispose();
+        });
+        
+        properButton.addActionListener((a)->{
+            new proper1().setVisible(true);
         });
     }
     

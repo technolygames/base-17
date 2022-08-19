@@ -8,10 +8,16 @@ import venSecundarias.paymentWindow;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JOptionPane;
+import javax.swing.AbstractAction;
 //extension larga
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +28,7 @@ public final class ventana1 extends javax.swing.JFrame{
         new guiMediaHandler(ventana1.class.getName()).FormImage(picLabel);
         
         botones();
+        popup();
         settings();
         
         setLocationRelativeTo(null);
@@ -33,6 +40,7 @@ public final class ventana1 extends javax.swing.JFrame{
     protected PreparedStatement ps;
     
     public static DefaultTableModel dtm;
+    protected JPopupMenu popupMenu;
     
     public static int codigo_emp;
     
@@ -46,6 +54,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 return false;
             }
         };
+        
         dtm.setRowCount(0);
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
@@ -62,7 +71,6 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         }
         
-        jTable1.setEnabled(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(dtm);
     }
@@ -99,13 +107,7 @@ public final class ventana1 extends javax.swing.JFrame{
         });
         
         jButton2.addActionListener((a)->{
-            try{
-                dtm.removeRow(jTable1.getSelectedRow());
-            }catch(ArrayIndexOutOfBoundsException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'datosBuscar()'");
-                new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"datosBuscar-AIOOBE",e.fillInStackTrace());
-            }
+            removeRow();
         });
         
         mkPaidButton.addActionListener((a)->{
@@ -189,6 +191,69 @@ public final class ventana1 extends javax.swing.JFrame{
                 }
             }
         });
+        
+        jTable1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent a){
+                int row=jTable1.rowAtPoint(a.getPoint());
+                if(row>=0&&row<jTable1.getRowCount()){
+                    jTable1.setRowSelectionInterval(row,row);
+                }else{
+                    jTable1.clearSelection();
+                }
+                showPopup(a);
+            }
+        });
+    }
+    
+    protected void popup(){
+        popupMenu=new JPopupMenu();
+        
+        JMenuItem mi1=new JMenuItem(new AbstractAction("Editar fila"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                try{
+                    int row=jTable1.getSelectedRow();
+                    txtCodigo.setText(jTable1.getValueAt(row,0).toString());
+                    txtProd.setText(jTable1.getValueAt(row,1).toString());
+                    txtMarca.setText(jTable1.getValueAt(row,2).toString());
+                    txtCant.setText(jTable1.getValueAt(row,3).toString());
+                    txtPrecio.setText(jTable1.getValueAt(row,4).toString());
+                    txtTotal.setText(jTable1.getValueAt(row,5).toString());
+                    dtm.removeRow(row);
+                }catch(ArrayIndexOutOfBoundsException e){
+                    JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+                    new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'popup()'");
+                    new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"popup-AIOOBE",e.fillInStackTrace());
+                }
+            }
+        });
+        
+        JMenuItem mi2=new JMenuItem(new AbstractAction("Eliminar fila"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                removeRow();
+            }
+        });
+        
+        popupMenu.add(mi1);
+        popupMenu.add(mi2);
+    }
+    
+    protected void showPopup(MouseEvent evt){
+        if(evt.isPopupTrigger()){
+            popupMenu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
+    }
+    
+    protected void removeRow(){
+        try{
+            dtm.removeRow(jTable1.getSelectedRow());
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");
+            new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"removeRow-AIOOBE",e.fillInStackTrace());
+        }
     }
     
     protected void calc(){

@@ -7,8 +7,8 @@ import venPrimarias.start;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //con extensión larga
@@ -40,17 +40,16 @@ public class databaseConfig extends javax.swing.JPanel{
             jTextField5.setText(p.getProperty("port"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"loadConfig-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configIn()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configIn-1IO",e.fillInStackTrace());
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'loadConfig()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"loadConfig-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configIn()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configIn-2IO",x.fillInStackTrace());
         }
     }
     
     protected final void botones(){
-        p=new Properties();
         closeButton.addActionListener((a)->{
             setVisible(false);
         });
@@ -74,7 +73,7 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.store(new FileOutputStream(userdir+"/data/config/databaseInfo.properties"),"DatabaseConfig");
                 
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'botones(storeButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
             }else{
                 f.createNewFile();
             }

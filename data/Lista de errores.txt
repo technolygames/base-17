@@ -47,9 +47,7 @@ Rel 3E: se exportó correctamente la base de datos
 Error 4E: no pudo iniciar la clase JRStyledTextParser
 Error 5E: no se pudo crear la base de datos
 Error 6E: las consultas hacen demasiadas conexiones
-Error 7E: no se pudo importar la base de datos
-Error 8E: no se pudo exportar la base de datos
-Error 9E: error o evento producido en consola
+Error 7E: error o evento producido en consola
 
 -Errores especiales
 _T1: error al imprimir ticket

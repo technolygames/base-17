@@ -69,11 +69,11 @@ public class escritorFoto{
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-10",x.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-1IO",x.fillInStackTrace());
         }catch(IOException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-10",n.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-2IO",n.fillInStackTrace());
         }catch(NullPointerException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
@@ -116,11 +116,11 @@ public class escritorFoto{
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-10",x.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-1IO",x.fillInStackTrace());
         }catch(IOException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-10",n.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-2IO",n.fillInStackTrace());
         }catch(NullPointerException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
@@ -163,11 +163,11 @@ public class escritorFoto{
         }catch(FileNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-10",x.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-1IO",x.fillInStackTrace());
         }catch(IOException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-10",n.fillInStackTrace());
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-2IO",n.fillInStackTrace());
         }catch(NullPointerException y){
             JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");

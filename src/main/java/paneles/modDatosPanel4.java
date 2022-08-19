@@ -2,6 +2,7 @@ package paneles;
 //clases
 import clases.datos;
 import clases.logger;
+import venPrimarias.start;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,6 @@ import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
-import venPrimarias.start;
 
 public class modDatosPanel4 extends javax.swing.JPanel{
     public modDatosPanel4(){
@@ -248,6 +248,9 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 jLabel3.setText(String.valueOf(rs.getInt("cantidad")));
                 jLabel4.setText(String.valueOf(rs.getInt("precio_unitario")));
                 jLabel5.setText(rs.getString("stock"));
+            }else{
+                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel4.class.getName()+"', en el método 'consulta()'");
             }
             ps.close();
             rs.close();

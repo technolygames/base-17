@@ -62,9 +62,9 @@ public class databaseImport extends javax.swing.JPanel{
                     p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(fileButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.file-1IO",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(fileButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.file-2IO",e.fillInStackTrace());
             }
         });
         
@@ -97,9 +97,9 @@ public class databaseImport extends javax.swing.JPanel{
                 
                 is.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 7E",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 7E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-7E",e.fillInStackTrace());
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
+                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-2IO",e.fillInStackTrace());
             }catch(NullPointerException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
