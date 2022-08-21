@@ -1,6 +1,7 @@
 package menus;
 //clases
 import clases.guiMediaHandler;
+import paneles.modPicPanel2;
 import paneles.delDatosPanel2;
 import paneles.modDatosPanel2;
 //java
@@ -31,14 +32,20 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-           menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
-           menuDatosVentana2.this.getContentPane().add(new delDatosPanel2(),BorderLayout.CENTER);
-           menuDatosVentana2.this.pack();
+            menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
+            menuDatosVentana2.this.getContentPane().add(new delDatosPanel2(),BorderLayout.CENTER);
+            menuDatosVentana2.this.pack();
         });
         
         miModData.addActionListener((a)->{
             menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
             menuDatosVentana2.this.getContentPane().add(new modDatosPanel2(),BorderLayout.CENTER);
+            menuDatosVentana2.this.pack();
+        });
+        
+        miModPic.addActionListener((a)->{
+            menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
+            menuDatosVentana2.this.getContentPane().add(new modPicPanel2(),BorderLayout.CENTER);
             menuDatosVentana2.this.pack();
         });
     }
@@ -52,6 +59,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         jMenu1 = new javax.swing.JMenu();
         miDelData = new javax.swing.JMenuItem();
         miModData = new javax.swing.JMenuItem();
+        miModPic = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(menuDatosVentana2.class.getName()).getIconImage());
@@ -65,6 +73,9 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
 
         miModData.setText("Cambiar datos");
         jMenu1.add(miModData);
+
+        miModPic.setText("Cambiar foto");
+        jMenu1.add(miModPic);
 
         jMenuBar1.add(jMenu1);
 
@@ -100,5 +111,6 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem miDelData;
     private javax.swing.JMenuItem miModData;
+    private javax.swing.JMenuItem miModPic;
     // End of variables declaration//GEN-END:variables
 }

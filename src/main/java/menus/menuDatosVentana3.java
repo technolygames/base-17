@@ -1,6 +1,7 @@
 package menus;
 //clases
 import clases.guiMediaHandler;
+import paneles.modPicPanel3;
 import paneles.delDatosPanel3;
 import paneles.modDatosPanel3;
 //java
@@ -41,6 +42,12 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
             menuDatosVentana3.this.getContentPane().add(new modDatosPanel3(),BorderLayout.CENTER);
             menuDatosVentana3.this.pack();
         });
+        
+        miModPic.addActionListener((a)->{
+            menuDatosVentana3.this.getContentPane().setLayout(new BorderLayout());
+            menuDatosVentana3.this.getContentPane().add(new modPicPanel3(),BorderLayout.CENTER);
+            menuDatosVentana3.this.pack();
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -52,6 +59,7 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         jMenu1 = new javax.swing.JMenu();
         miDelData = new javax.swing.JMenuItem();
         miModData = new javax.swing.JMenuItem();
+        miModPic = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(menuDatosVentana3.class.getName()).getIconImage());
@@ -65,6 +73,9 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
 
         miModData.setText("Cambiar datos");
         jMenu1.add(miModData);
+
+        miModPic.setText("Cambiar foto");
+        jMenu1.add(miModPic);
 
         jMenuBar1.add(jMenu1);
 
@@ -100,5 +111,6 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem miDelData;
     private javax.swing.JMenuItem miModData;
+    private javax.swing.JMenuItem miModPic;
     // End of variables declaration//GEN-END:variables
 }

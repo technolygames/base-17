@@ -19,6 +19,11 @@
                 <Property name="text" type="java.lang.String" value="Cambiar datos"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miModPic">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cambiar foto"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
