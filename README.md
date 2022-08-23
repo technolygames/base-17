@@ -1,4 +1,4 @@
-# base16
+# base17
 (EN)
 A program made in Java 17 to manage a grocery. Features:
 - Can store data from a graphical table to database table
