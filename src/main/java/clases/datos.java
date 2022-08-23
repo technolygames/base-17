@@ -372,6 +372,9 @@ public class datos{
             ps.setBinaryStream(1,imagen);
             ps.executeUpdate();
             
+            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
