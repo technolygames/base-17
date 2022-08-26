@@ -4,6 +4,8 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 //java
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -12,7 +14,6 @@ public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
         new guiMediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
-        new guiMediaHandler(ventana3.class.getName()).FormImage(picLabel);
         
         botones();
         settings();
@@ -28,6 +29,7 @@ public class ventana3 extends javax.swing.JFrame{
         jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){

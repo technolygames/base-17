@@ -41,6 +41,8 @@ public class dataWindow2 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
+    protected String dir=dirs.userdir;
+    
     protected void settings(){
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
@@ -94,9 +96,9 @@ public class dataWindow2 extends javax.swing.JDialog{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
                 rs=ps.executeQuery();
                 
-                File f=new File(dirs.userdir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File(dir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File(dirs.userdir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File(dir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
                 }
                 
                 FileOutputStream fos=new FileOutputStream(f);

@@ -5,27 +5,28 @@ import clases.guiMediaHandler;
 import clases.logger;
 import venSecundarias.paymentWindow;
 //java
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
-import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
         initComponents();
         new guiMediaHandler(ventana1.class.getName()).LookAndFeel(ventana1.this);
-        new guiMediaHandler(ventana1.class.getName()).FormImage(picLabel);
         
         botones();
         popup();
@@ -46,6 +47,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void settings(){
         txtCodEmp.setText(String.valueOf(start.userID));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
         
         dtm=new DefaultTableModel(){
             @Override

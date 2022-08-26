@@ -3,24 +3,25 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import menus.menuDatosVentana4;
 //java
-import javax.swing.JOptionPane;
-//extension larga
-import java.util.logging.Level;
-import javax.swing.AbstractAction;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JOptionPane;
+import javax.swing.AbstractAction;
+//extension larga
+import java.util.logging.Level;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import javax.swing.table.DefaultTableModel;
 
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
         initComponents();
         new guiMediaHandler(ventana2.class.getName()).LookAndFeel(ventana2.this);
-        new guiMediaHandler(ventana2.class.getName()).FormImage(picLabel);
         
         botones();
         popup();
@@ -35,6 +36,8 @@ public final class ventana2 extends javax.swing.JFrame{
     protected JPopupMenu popupMenu;
     
     protected final void settings(){
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){

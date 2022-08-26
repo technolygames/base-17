@@ -7,6 +7,7 @@ import clases.logger;
 import clases.win10Notification;
 import venSecundarias.loadWindow;
 //java
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -14,19 +15,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
-import java.awt.TrayIcon.MessageType;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.TrayIcon.MessageType;
 import java.nio.charset.StandardCharsets;
 
 public final class start extends javax.swing.JFrame{
     public start(){
         initComponents();
         new guiMediaHandler(start.class.getName()).LookAndFeel(start.this);
-        new guiMediaHandler(start.class.getName()).FormImage(picLabel);
         
         botones();
         settings();
@@ -61,6 +62,7 @@ public final class start extends javax.swing.JFrame{
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-2IO",x.fillInStackTrace());
         }
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){

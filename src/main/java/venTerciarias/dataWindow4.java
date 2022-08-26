@@ -40,8 +40,10 @@ public class dataWindow4 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    public static String empleado;
     public static int codigo;
+    
+    public static String empleado;
+    protected String dir=dirs.userdir;
     
     protected void settings(){
         jTextArea1.setLineWrap(true);
@@ -104,9 +106,9 @@ public class dataWindow4 extends javax.swing.JDialog{
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+etiCodigo.getText()+"';");
                 rs=ps.executeQuery();
                 
-                File f=new File(dirs.userdir+"/data/media/dataImage/Empleados/Perfil/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File(dir+"/data/media/dataImage/Empleados/Perfil/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File(dirs.userdir+"/data/media/dataImage/Empleados/Perfil/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File(dir+"/data/media/dataImage/Empleados/Perfil/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
                 }
                 
                 FileOutputStream fos=new FileOutputStream(f);

@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
-import javax.swing.JLabel;
 import javax.swing.UIManager;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -44,15 +42,14 @@ public class guiMediaHandler{
     protected String image;
     protected String userdir=dirs.userdir;
     
-    protected Image retValue;
     protected Properties p;
     
     /**
      * Muestra en la ventana la imagen que fue seleccionada en la ventana de configuración.
      * 
-     * @param etiqueta en la que se mostrará la imagen especificada.
+     * @return la imagen que se mostrará en el formulario o ventanas.
      */
-    public void FormImage(JLabel etiqueta){
+    public Image getFormImage(){
         p=new Properties();
         try{
             p.load(new FileInputStream(userdir+"/data/config/config.properties"));
@@ -60,17 +57,23 @@ public class guiMediaHandler{
             
             if(!new File(image).exists()){
                 image=p.getProperty("imagen_respaldo");
+                if(!new File(image).exists()){
+                    p.load(new FileInputStream(userdir+"/data/config/preconfig.properties"));
+                    image=p.getProperty("imagenes");
+                }
             }
             
-            etiqueta.setIcon(new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(etiqueta.getWidth(),etiqueta.getHeight(),Image.SCALE_DEFAULT)));
+            return Toolkit.getDefaultToolkit().getImage(image);
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
             new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-1IO",e.fillInStackTrace());
+            return null;
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
             new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-2IO",x.fillInStackTrace());
+            return null;
         }
     }
     
@@ -88,6 +91,10 @@ public class guiMediaHandler{
             
             if(!new File(icon).exists()){
                 icon=p.getProperty("icono_respaldo");
+                if(!new File(icon).exists()){
+                    p.load(new FileInputStream(userdir+"/data/config/preconfig.properties"));
+                    icon=p.getProperty("icono");
+                }
             }
             
             return Toolkit.getDefaultToolkit().getImage(icon);

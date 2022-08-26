@@ -1,9 +1,12 @@
 package paneles;
-
+//clases
 import clases.datos;
 import clases.dirs;
 import clases.logger;
-
+//librerías
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
+//java
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.HeadlessException;
@@ -20,12 +23,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
-
+//extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamResolution;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class modPicPanel3 extends javax.swing.JPanel{
@@ -57,7 +58,7 @@ public class modPicPanel3 extends javax.swing.JPanel{
             try{
                 Webcam webcam=Webcam.getDefault();
                 webcam.setViewSize(WebcamResolution.VGA.getSize());
-                 
+                
                 webcam.open();
                 direccion=userdir+"/data/media/webcam/"+nombre+"-"+codigo+".jpg";
                 ImageIO.write(webcam.getImage(),"JPG",new File(direccion));

@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.UIManager;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
@@ -31,7 +32,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class proper1 extends javax.swing.JFrame{

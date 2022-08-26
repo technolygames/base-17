@@ -30,7 +30,6 @@ public class dataWindow3 extends javax.swing.JDialog{
         
         botones();
         datosMostrar();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Datos del proveedor");
@@ -41,8 +40,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected void settings(){
-    }
+    protected String dir=dirs.userdir;
     
     protected final void datosMostrar(){
         try{
@@ -90,9 +88,9 @@ public class dataWindow3 extends javax.swing.JDialog{
                 ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+etiCodigo.getText()+"';");
                 rs=ps.executeQuery();
                 
-                File f=new File(dirs.userdir+"/data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File(dir+"/data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File(dirs.userdir+"/data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File(dir+"/data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
                 }
                 
                 FileOutputStream fos=new FileOutputStream(f);
