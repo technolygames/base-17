@@ -44,8 +44,8 @@ public class ltshProduct extends javax.swing.JFrame{
         });
         
         refreshButton.addActionListener((a)->{
+            textField("");
             datosMostrar();
-            txtBuscar.setText("");
         });
         
         searchButton.addActionListener((a)->{
@@ -68,6 +68,14 @@ public class ltshProduct extends javax.swing.JFrame{
                         new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'botones(txtBuscar)'");
                     }
                 }
+            }
+        });
+        
+        jComboBox1.addActionListener((a)->{
+            int i=jComboBox1.getSelectedIndex();
+            if(i>=0&&i<4){
+                textField("");
+                datosMostrar();
             }
         });
     }
@@ -102,7 +110,8 @@ public class ltshProduct extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
@@ -118,7 +127,8 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_emp=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
@@ -134,7 +144,8 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
@@ -150,7 +161,8 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where marca='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from productos where marca=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
@@ -183,6 +195,10 @@ public class ltshProduct extends javax.swing.JFrame{
             new logger(Level.SEVERE).staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
             new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-IOOBE",n.fillInStackTrace());
         }
+    }
+    
+    protected void textField(String text){
+        txtBuscar.setText(text);
     }
     
     @SuppressWarnings("unchecked")

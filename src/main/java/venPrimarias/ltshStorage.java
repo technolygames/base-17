@@ -4,15 +4,24 @@ import clases.datos;
 import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
+import menus.menuDatosVentana4;
+import paneles.delDatosPanel4;
+import paneles.modDatosPanel4;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JOptionPane;
+import javax.swing.AbstractAction;
 //extension larga
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +34,7 @@ public class ltshStorage extends javax.swing.JFrame{
         
         botones();
         datosMostrar();
+        popup();
         
         setLocationRelativeTo(null);
         setTitle("Almacén");
@@ -34,6 +44,7 @@ public class ltshStorage extends javax.swing.JFrame{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
+    protected JPopupMenu popupMenu;
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
     
@@ -44,8 +55,8 @@ public class ltshStorage extends javax.swing.JFrame{
         });
         
         refreshButton.addActionListener((a)->{
+            textField("");
             datosMostrar();
-            txtBuscar.setText("");
         });
         
         searchButton.addActionListener((a)->{
@@ -70,10 +81,44 @@ public class ltshStorage extends javax.swing.JFrame{
                 }
             }
         });
+        
+        jTable1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent a){
+                int row=jTable1.rowAtPoint(a.getPoint());
+                if(row>=0&&row<jTable1.getRowCount()){
+                    jTable1.setRowSelectionInterval(row,row);
+                }else{
+                    jTable1.clearSelection();
+                }
+                showPopup(a);
+            }
+        });
+        
+        jComboBox1.addActionListener((a)->{
+            int i=jComboBox1.getSelectedIndex();
+            if(i>=0&&i<6){
+                textField("");
+                datosMostrar();
+            }
+        });
     }
     
     protected final void datosMostrar(){
-        dtm=new DefaultTableModel();
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
+        
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
+        
         sorter=new TableRowSorter<>(dtm);
         try{
             ps=new datos().getConnection().prepareStatement("select * from almacen;");
@@ -97,12 +142,26 @@ public class ltshStorage extends javax.swing.JFrame{
     }
     
     protected final void datosBuscar(){
-        dtm=new DefaultTableModel();
+        dtm=new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                //all cells false
+                return false;
+            }
+        };
+        
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
+            }
+        }
+        
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod="+txtBuscar.getText()+";");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     if(rs.next()){
@@ -121,7 +180,8 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote="+txtBuscar.getText()+";");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_lote=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     if(rs.next()){
@@ -140,7 +200,8 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov="+txtBuscar.getText()+";");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prov=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     if(rs.next()){
@@ -159,7 +220,8 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where nombre_prod=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     if(rs.next()){
@@ -178,7 +240,8 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 4:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where marca='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where marca=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     while(rs.next()){
@@ -194,7 +257,8 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 5:
-                    ps=new datos().getConnection().prepareStatement("select * from almacen where stock='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from almacen where stock=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del lote","Código del proveedor","Nombre del producto","Marca","Cantidad","Precio unitario","Stock","Fecha de ingreso"});
                     while(rs.next()){
@@ -229,6 +293,37 @@ public class ltshStorage extends javax.swing.JFrame{
         }
     }
     
+    protected void popup(){
+        popupMenu=new JPopupMenu();
+        
+        JMenuItem mi1=new JMenuItem(new AbstractAction("Modificar datos"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana4(new modDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+            }
+        });
+        
+        JMenuItem mi2=new JMenuItem(new AbstractAction("Eliminar datos"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana4(new delDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+            }
+        });
+        
+        popupMenu.add(mi1);
+        popupMenu.add(mi2);
+    }
+    
+    protected void showPopup(MouseEvent a){
+        if(a.isPopupTrigger()){
+            popupMenu.show(a.getComponent(),a.getX(),a.getY());
+        }
+    }
+    
+    protected void textField(String text){
+        txtBuscar.setText(text);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -257,7 +352,7 @@ public class ltshStorage extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setEnabled(false);
+        jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N

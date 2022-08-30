@@ -44,7 +44,8 @@ public class dataWindow3 extends javax.swing.JDialog{
     
     protected final void datosMostrar(){
         try{
-            ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov="+ltshProviders.code+";");
+            ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps.setInt(1,ltshProviders.code);
             rs=ps.executeQuery();
             if(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_prov")));
@@ -85,7 +86,8 @@ public class dataWindow3 extends javax.swing.JDialog{
         
         storeImgButton.addActionListener((a)->{
             try{
-                ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov='"+etiCodigo.getText()+"';");
+                ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
+                ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
                 rs=ps.executeQuery();
                 
                 File f=new File(dir+"/data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");

@@ -91,7 +91,10 @@ public final class start extends javax.swing.JFrame{
         
         try{
             if(!txtUsuario.getText().equals("")||!txtPassword.getPassword().equals("")){
-                ps=new datos().getConnection().prepareStatement("select * from empleados where password='"+pass+"' and nombre_emp='"+user+"' or curp='"+user+"';");
+                ps=new datos().getConnection().prepareStatement("select * from empleados where password=? and nombre_emp=? or curp=?;");
+                ps.setString(1,pass);
+                ps.setString(2,user);
+                ps.setString(3,user);
                 new datos().actualizarDatos("empleados set fecha_sesion=now() where password='"+pass+"' and nombre_emp='"+user+"' or curp='"+user+"';");
                 rs=ps.executeQuery();
                 if(rs.next()){

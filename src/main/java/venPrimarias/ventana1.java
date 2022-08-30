@@ -132,7 +132,8 @@ public final class ventana1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
                             if(rs.getInt("cantidad")==0){
@@ -167,7 +168,8 @@ public final class ventana1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                        ps=new datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
                             int txtCantidad=Integer.parseInt(txtCant.getText());

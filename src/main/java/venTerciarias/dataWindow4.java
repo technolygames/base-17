@@ -54,7 +54,8 @@ public class dataWindow4 extends javax.swing.JDialog{
     
     protected final void datosMostrar(){
         try{
-            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp='"+start.userID+"';");
+            ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+            ps.setInt(1,start.userID);
             rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
@@ -103,7 +104,8 @@ public class dataWindow4 extends javax.swing.JDialog{
         
         storeImgButton.addActionListener((a)->{
             try{
-                ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp='"+etiCodigo.getText()+"';");
+                ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
+                ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
                 rs=ps.executeQuery();
                 
                 File f=new File(dir+"/data/media/dataImage/Empleados/Perfil/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");

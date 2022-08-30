@@ -5,6 +5,7 @@ import paneles.modPicPanel2;
 import paneles.delDatosPanel2;
 import paneles.modDatosPanel2;
 //java
+import java.awt.Component;
 import java.awt.BorderLayout;
 
 public class menuDatosVentana2 extends javax.swing.JFrame{
@@ -14,6 +15,23 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         
         botones();
         settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    public menuDatosVentana2(Component panel){
+        initComponents();
+        new guiMediaHandler(menuDatosVentana2.class.getName()).LookAndFeel(menuDatosVentana2.this);
+        
+        botones();
+        settings();
+        
+        menuDatosVentana2.this.getContentPane().setLayout(new BorderLayout());
+        menuDatosVentana2.this.getContentPane().add(panel,BorderLayout.CENTER);
+        menuDatosVentana2.this.pack();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");

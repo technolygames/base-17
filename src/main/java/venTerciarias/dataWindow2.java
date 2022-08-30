@@ -50,7 +50,8 @@ public class dataWindow2 extends javax.swing.JDialog{
     
     protected final void datosMostrar(){
         try{
-            ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part="+ltshPartners.code+";");
+            ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            ps.setInt(1,ltshPartners.code);
             rs=ps.executeQuery();
             if(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_part")));
@@ -93,7 +94,8 @@ public class dataWindow2 extends javax.swing.JDialog{
         
         storeImgButton.addActionListener((a)->{
             try{
-                ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part='"+etiCodigo.getText()+"';");
+                ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
+                ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
                 rs=ps.executeQuery();
                 
                 File f=new File(dir+"/data/media/dataImage/Socios/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");

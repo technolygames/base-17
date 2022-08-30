@@ -17,6 +17,14 @@ public class delDatosPanel1 extends javax.swing.JPanel{
         botones();
     }
     
+    public delDatosPanel1(int code){
+        initComponents();
+        
+        jTextField1.setText(String.valueOf(code));
+        
+        botones();
+    }
+    
     protected final void botones(){
         closeButton.addActionListener((e)->{
             setVisible(false);

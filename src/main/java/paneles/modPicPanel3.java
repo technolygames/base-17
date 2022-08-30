@@ -73,13 +73,13 @@ public class modPicPanel3 extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            datosMostrar();
+            datosBuscar();
         });
         
         updateButton.addActionListener((a)->{
             try{
                 new datos().actualizarFotoPerfil("proveedor","codigo_prov",Integer.parseInt(txtSearch.getText()),new FileInputStream(direccion));
-                datosMostrar();
+                datosBuscar();
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel3.class.getName()+"', en el método 'botones(updateButton)'");
@@ -91,7 +91,7 @@ public class modPicPanel3 extends javax.swing.JPanel{
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    datosMostrar();
+                    datosBuscar();
                 }
             }
         });
@@ -146,9 +146,10 @@ public class modPicPanel3 extends javax.swing.JPanel{
         }
     }
     
-    protected void datosMostrar(){
+    protected void datosBuscar(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov="+Integer.parseInt(txtSearch.getText())+";");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps.setInt(1,Integer.parseInt(txtSearch.getText()));
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 codigo=rs.getInt("codigo_prov");

@@ -4,7 +4,9 @@ import clases.datos;
 import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
-import java.awt.event.ActionEvent;
+import menus.menuDatosVentana1;
+import paneles.delDatosPanel1;
+import paneles.modDatosPanel1;
 import venTerciarias.dataWindow1;
 //java
 import java.sql.ResultSet;
@@ -12,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
 import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
@@ -19,6 +22,7 @@ import javax.swing.AbstractAction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
@@ -65,6 +69,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         });
         
         refreshButton.addActionListener((a)->{
+            textField("");
             datosMostrar();
             mostrarBoton(false);
         });
@@ -106,35 +111,15 @@ public class ltshWorkers extends javax.swing.JFrame{
                 showPopup(a);
             }
         });
-    }
-    
-    protected void mostrarBoton(boolean flag){
-        if(flag==true){
-            jButton2.setVisible(true);
-        }if(flag==false){
-            jButton2.setVisible(false);
-            txtBuscar.setText("");
-        }
-    }
-    
-    protected void popup(){
-        popupMenu=new JPopupMenu();
         
-        JMenuItem mi=new JMenuItem(new AbstractAction("Ver datos"){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                code=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
-                new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
+        jComboBox1.addActionListener((a)->{
+            int i=jComboBox1.getSelectedIndex();
+            if(i>=0&&i<4){
+                textField("");
+                datosMostrar();
+                mostrarBoton(false);
             }
         });
-        
-        popupMenu.add(mi);
-    }
-    
-    protected void showPopup(MouseEvent a){
-        if(a.isPopupTrigger()){
-            popupMenu.show(a.getComponent(),a.getX(),a.getY());
-        }
     }
     
     protected final void datosMostrar(){
@@ -201,7 +186,8 @@ public class ltshWorkers extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
@@ -220,7 +206,8 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where nombre_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where nombre_emp=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
@@ -239,7 +226,8 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidop_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidop_emp=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
@@ -258,7 +246,8 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidom_emp='"+txtBuscar.getText()+"';");
+                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidom_emp=?;");
+                    ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
                     if(rs.next()){
@@ -293,6 +282,56 @@ public class ltshWorkers extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null,"Error:\n"+p.getMessage(),"Error IOOBE",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error IOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
             new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosBuscar-IOOBE",p.fillInStackTrace());
+        }
+    }
+    
+    protected void popup(){
+        popupMenu=new JPopupMenu();
+        
+        JMenuItem mi1=new JMenuItem(new AbstractAction("Ver datos"){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                code=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString());
+                new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
+            }
+        });
+        
+        JMenuItem mi2=new JMenuItem(new AbstractAction("Modificar datos"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana1(new modDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()))).setVisible(true);
+            }
+        });
+        
+        JMenuItem mi3=new JMenuItem(new AbstractAction("Eliminar datos"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana1(new delDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()))).setVisible(true);
+            }
+        });
+        
+        popupMenu.add(mi1);
+        popupMenu.add(new JSeparator());
+        popupMenu.add(mi2);
+        popupMenu.add(mi3);
+    }
+    
+    protected void showPopup(MouseEvent a){
+        if(a.isPopupTrigger()){
+            popupMenu.show(a.getComponent(),a.getX(),a.getY());
+        }
+    }
+    
+    protected void textField(String text){
+        txtBuscar.setText(text);
+    }
+    
+    protected void mostrarBoton(boolean flag){
+        if(flag==true){
+            jButton2.setVisible(true);
+        }if(flag==false){
+            jButton2.setVisible(false);
+            txtBuscar.setText("");
         }
     }
     

@@ -1,15 +1,25 @@
 package paneles;
-
+//clases
 import clases.datos;
 import clases.logger;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.logging.Level;
+//java
 import javax.swing.JOptionPane;
+//extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
+import java.util.logging.Level;
 
 public class delDatosPanel4 extends javax.swing.JPanel{
     public delDatosPanel4(){
         initComponents();
+        
+        botones();
+    }
+    
+    public delDatosPanel4(int code){
+        initComponents();
+        
+        jTextField1.setText(String.valueOf(code));
         
         botones();
     }

@@ -22,6 +22,16 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         settings();
     }
     
+    public modDatosPanel4(int code){
+        initComponents();
+        
+        consulta(code);
+        txtSearch.setText(String.valueOf(code));
+        
+        botones();
+        settings();
+    }
+    
     protected void settings(){
         jLabel1.setToolTipText("Nombre del producto");
         jLabel2.setToolTipText("Marca");
@@ -57,7 +67,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox1)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                                 
-                                consulta();
+                                consulta(Integer.parseInt(txtSearch.getText()));
                                 break;
                             }
                         }
@@ -94,7 +104,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox2)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                                 
-                                consulta();
+                                consulta(Integer.parseInt(txtSearch.getText()));
                                 break;
                             }
                         }
@@ -131,7 +141,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox3)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                                 
-                                consulta();
+                                consulta(Integer.parseInt(txtSearch.getText()));
                                 break;
                             }
                         }
@@ -168,7 +178,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox4)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                                 
-                                consulta();
+                                consulta(Integer.parseInt(txtSearch.getText()));
                                 break;
                             }
                         }
@@ -206,7 +216,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'botones(jCheckBox5)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                                 
-                                consulta();
+                                consulta(Integer.parseInt(txtSearch.getText()));
                                 break;
                             }
                         }
@@ -225,22 +235,23 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            consulta();
+            consulta(Integer.parseInt(txtSearch.getText()));
         });
         
         txtSearch.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    consulta();
+                    consulta(Integer.parseInt(txtSearch.getText()));
                 }
             }
         });
     }
     
-    protected void consulta(){
+    protected void consulta(int codigo){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod='"+Integer.parseInt(txtSearch.getText())+"';");
+            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+            ps.setInt(1,codigo);
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_prod"));
