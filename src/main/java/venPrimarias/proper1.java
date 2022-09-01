@@ -3,7 +3,7 @@ package venPrimarias;
 import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
-import clases.thread;
+import clases.thread1;
 import clases.validation;
 //librerías
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -330,7 +330,7 @@ public final class proper1 extends javax.swing.JFrame{
                 is=new FileInputStream(imagenes);
                 os=new FileOutputStream(dato1+nombreArchivo1);
                 
-                new Thread(new thread(is,os)).start();
+                new Thread(new thread1(is,os)).start();
                 
                 p.setProperty("imagen_respaldo",dato1+nombreArchivo1);
                 p.setProperty("look_and_feel",design);
@@ -343,7 +343,7 @@ public final class proper1 extends javax.swing.JFrame{
                 is=new FileInputStream(icono);
                 os=new FileOutputStream(dato2+nombreArchivo2);
                 
-                new Thread(new thread(is,os)).start();
+                new Thread(new thread1(is,os)).start();
                 
                 p.store(new BufferedWriter(new FileWriter(userdir+"/data/config/config.properties",StandardCharsets.UTF_8)),"config1");
                 

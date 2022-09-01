@@ -142,7 +142,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                     new logger(Level.CONFIG).staticLogger("No guarda en ventana1");
                                 }else{
                                     JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    new datos().actualizarDatos("almacen set stock='Agotado' where codigo_prod="+Integer.parseInt(txtCodigo.getText())+";");
+                                    new datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
                                     new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
                                 }
                             }else{

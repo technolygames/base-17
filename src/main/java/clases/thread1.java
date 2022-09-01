@@ -8,13 +8,13 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 
 /**
- * Clase encargada del flujo de datos.<br>
- * Se encarga de usar un hilo (Thread) para que exista un flujo de datos.<br>
- * Este hilo es usado para leer/escribir el contenido de un archivo para crearlo en una dirección especificada.
+ * Clase encargada del flujo de datos. 
+ * Este hilo se encarga de que exista un flujo de datos y crear un archivo a partir de ese flujo. 
+ * Es usado para leer/escribir el contenido de un archivo para crearlo en una dirección especificada.
  * 
  * @author erick
  */
-public class thread implements Runnable{
+public class thread1 implements Runnable{
     protected InputStream is;
     protected OutputStream os;
     
@@ -24,7 +24,7 @@ public class thread implements Runnable{
      * @param is: flujo de entrada del archivo a leer.
      * @param os: flujo de salida del archivo a escribir.
      */
-    public thread(InputStream is,OutputStream os){
+    public thread1(InputStream is,OutputStream os){
         this.os=os;
         this.is=is;
     }
@@ -35,9 +35,8 @@ public class thread implements Runnable{
     @Override
     public void run(){
         int leido;
-        byte[] buffer;
         try{
-            buffer=new byte[2048];
+            byte[] buffer=new byte[2048];
             while((leido=is.read(buffer))>0){
                 os.write(buffer,0,leido);
             }
@@ -47,8 +46,8 @@ public class thread implements Runnable{
             os.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+"\nOcurrió en la clase '"+thread.class.getName()+"', en el método 'run()'");
-            new logger(Level.SEVERE).exceptionLogger(thread.class.getName(),"run-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+"\nOcurrió en la clase '"+thread1.class.getName()+"', en el método 'run()'");
+            new logger(Level.SEVERE).exceptionLogger(thread1.class.getName(),"run-2IO",e.fillInStackTrace());
         }
     }
 }

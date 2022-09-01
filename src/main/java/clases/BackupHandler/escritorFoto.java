@@ -3,13 +3,11 @@ package clases.BackupHandler;
 import clases.datos;
 import clases.dirs;
 import clases.logger;
+import clases.thread2;
 import venPrimarias.start;
 //java
-import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.io.OutputStream;
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -32,8 +30,6 @@ public class escritorFoto{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected OutputStream os;
-    
     /**
      * Almacena la foto de perfil del empleado en una carpeta designada.
      * 
@@ -46,22 +42,12 @@ public class escritorFoto{
             
             dir1=userdir+"\\data\\databackup\\Empleados\\"+nombreEmpleado+"-"+codigoEmpleado+"\\"+nombreEmpleado+"-"+codigoEmpleado+".jpg";
             
-            os=new FileOutputStream(dir1);
-            byte[] bytes;
-            Blob blob;
             rs=ps.executeQuery();
-            while(rs.next()){
-                blob=rs.getBlob("foto");
-                bytes=blob.getBytes(1,(int)blob.length());
-                os.write(bytes);
-                break;
-            }
+            new Thread(new thread2(rs,new FileOutputStream(dir1))).start();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
             ps.close();
-            os.flush();
-            os.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
@@ -70,14 +56,10 @@ public class escritorFoto{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
             new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-1IO",x.fillInStackTrace());
-        }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-2IO",n.fillInStackTrace());
-        }catch(NullPointerException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-0",y.fillInStackTrace());
+        }catch(NullPointerException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicWorker()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicWorker-0",n.fillInStackTrace());
         }
     }
     
@@ -93,22 +75,12 @@ public class escritorFoto{
             
             dir3=userdir+"\\data\\databackup\\Proveedores\\"+nombreProveedor+"-"+codigoProveedor+"\\"+nombreProveedor+"-"+codigoProveedor+".jpg";
             
-            os=new FileOutputStream(dir3);
-            byte[] bytes;
-            Blob blob;
             rs=ps.executeQuery();
-            while(rs.next()){
-                blob=rs.getBlob("foto");
-                bytes=blob.getBytes(1,(int)blob.length());
-                os.write(bytes);
-                break;
-            }
+            new Thread(new thread2(rs,new FileOutputStream(dir3))).start();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
             ps.close();
-            os.flush();
-            os.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
@@ -117,14 +89,10 @@ public class escritorFoto{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
             new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-1IO",x.fillInStackTrace());
-        }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-2IO",n.fillInStackTrace());
-        }catch(NullPointerException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-0",y.fillInStackTrace());
+        }catch(NullPointerException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicProvider()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicProvider-0",n.fillInStackTrace());
         }
     }
     
@@ -140,22 +108,12 @@ public class escritorFoto{
             
             dir2=userdir+"\\data\\databackup\\Socios\\"+nombreSocio+"-"+codigoSocio+"\\"+nombreSocio+"-"+codigoSocio+".jpg";
             
-            os=new FileOutputStream(dir2);
-            byte[] bytes;
-            Blob blob;
             rs=ps.executeQuery();
-            while(rs.next()){
-                blob=rs.getBlob("foto");
-                bytes=blob.getBytes(1,(int)blob.length());
-                os.write(bytes);
-                break;
-            }
+            new Thread(new thread2(rs,new FileOutputStream(dir2))).start();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
             ps.close();
-            os.flush();
-            os.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
@@ -164,14 +122,10 @@ public class escritorFoto{
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
             new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-1IO",x.fillInStackTrace());
-        }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-2IO",n.fillInStackTrace());
-        }catch(NullPointerException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+y.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-0",y.fillInStackTrace());
+        }catch(NullPointerException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'storePicPartner()'");
+            new logger(Level.SEVERE).exceptionLogger(escritorFoto.class.getName(),"storePicPartner-0",n.fillInStackTrace());
         }
     }
 }

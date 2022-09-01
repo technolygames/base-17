@@ -24,8 +24,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     public modDatosPanel3(int code){
         initComponents();
         
-        consulta(code);
         txtSearch.setText(String.valueOf(code));
+        consulta();
         
         botones();
         settings();
@@ -61,8 +61,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
                             while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true&&jTextField1.isEnabled()==true){
-                                datos.actualizarDatos("proveedor set nombre_prov='"+jTextField1.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
-                                consulta(Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosString("proveedor","nombre_prov","codigo_prov",jTextField1.getText(),Integer.parseInt(txtSearch.getText()));
+                                consulta();
                                 break;
                             }
                         }
@@ -94,8 +94,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
                             while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true&&jTextField2.isEnabled()==true){
-                                datos.actualizarDatos("proveedor set apellidop_prov='"+jTextField2.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
-                                consulta(Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosString("proveedor","apellidop_prov","codigo_prov",jTextField2.getText(),Integer.parseInt(txtSearch.getText()));
+                                consulta();
                                 break;
                             }
                         }
@@ -127,8 +127,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
-                                datos.actualizarDatos("proveedor set apellidom_prov='"+jTextField3.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
-                                consulta(Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosString("proveedor","apellidom_prov","codigo_prov",jTextField3.getText(),Integer.parseInt(txtSearch.getText()));
+                                consulta();
                                 break;
                             }
                         }
@@ -160,8 +160,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
-                                datos.actualizarDatos("proveedor set empresa='"+jTextField4.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
-                                consulta(Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosString("proveedor","empresa","codigo_prov",jTextField4.getText(),Integer.parseInt(txtSearch.getText()));
+                                consulta();
                                 break;
                             }
                         }
@@ -193,8 +193,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
-                                datos.actualizarDatos("proveedor set contacto='"+jTextField5.getText()+"' where codigo_prov='"+Integer.parseInt(txtSearch.getText())+"';");
-                                consulta(Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("proveedor","contacto","codigo_prov",Integer.parseInt(jTextField5.getText()),Integer.parseInt(txtSearch.getText()));
+                                consulta();
                                 break;
                             }
                         }
@@ -212,23 +212,23 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            consulta(Integer.parseInt(txtSearch.getText()));
+            consulta();
         });
         
         txtSearch.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    consulta(Integer.parseInt(txtSearch.getText()));
+                    consulta();
                 }
             }
         });
     }
     
-    protected void consulta(int codigo){
+    protected void consulta(){
         try{
             PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
-            ps.setInt(1,codigo);
+            ps.setInt(1,Integer.parseInt(txtSearch.getText()));
             ResultSet rs=ps.executeQuery();
             if(rs.next()){
                 jLabel1.setText(rs.getString("nombre_prov"));

@@ -10,12 +10,12 @@ import venSecundarias.loadWindow;
 import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -41,7 +41,6 @@ public final class start extends javax.swing.JFrame{
     protected Properties p;
     
     protected ResultSet rs;
-    protected PreparedStatement ps;
     
     public static int userID;
     
@@ -85,18 +84,20 @@ public final class start extends javax.swing.JFrame{
         });
     }
     
-    protected final void login(){
+    JTextField campos;
+    protected void login(){
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());
+        var datos=new datos();
+        
+        for(JTextField tf:new JTextField[]{txtUsuario,txtPassword}){
+            campos=tf;
+        }
         
         try{
-            if(!txtUsuario.getText().equals("")||!txtPassword.getPassword().equals("")){
-                ps=new datos().getConnection().prepareStatement("select * from empleados where password=? and nombre_emp=? or curp=?;");
-                ps.setString(1,pass);
-                ps.setString(2,user);
-                ps.setString(3,user);
-                new datos().actualizarDatos("empleados set fecha_sesion=now() where password='"+pass+"' and nombre_emp='"+user+"' or curp='"+user+"';");
-                rs=ps.executeQuery();
+            if(!campos.getText().equals("")){
+                datos.actualizarDatosLogin(pass,user);
+                rs=datos.login(pass,user);
                 if(rs.next()){
                     new loadWindow().setVisible(true);
                     dispose();
@@ -104,7 +105,7 @@ public final class start extends javax.swing.JFrame{
                     userID=rs.getInt("codigo_emp");
                     role=rs.getString("puesto");
                     
-                    new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                    datos.insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                     
                     new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
                     new logger(Level.INFO).staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID);
@@ -112,8 +113,6 @@ public final class start extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
                 }
-                
-                ps.close();
                 rs.close();
             }else{
                 JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);

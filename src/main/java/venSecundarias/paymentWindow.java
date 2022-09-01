@@ -180,9 +180,9 @@ public class paymentWindow extends javax.swing.JDialog{
             total=Integer.parseInt(dtm.getValueAt(i,5).toString());
             
             datos.insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
-            datos.actualizarDatos("almacen set cantidad=cantidad-'"+cantidad+"' where codigo_prod='"+codigo_prod+"';");
+            datos.actualizarDatosAlmacen(cantidad,codigo_prod);
         }
-        datos.actualizarDatos("conteo set no_ventas=no_ventas+1 where codigo_emp='"+Integer.parseInt(jLabel2.getText())+"' and fecha_sesion='"+new SimpleDateFormat("yyyy-MM-dd").format(new Date())+"';");
+        datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
         new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));

@@ -33,11 +33,13 @@ public class escritorJSON{
     /**
      * Se encarga de crear archivos JSON como copia de seguridad de la tabla empleados.
      * 
-     * @param codigoEmpleado Código de identificación del empleado.
+     * @param codigoEmpleado a crear copia de seguridad.
      */
     public void writeDataWorkerJson(int codigoEmpleado){
         try{
-            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp='"+codigoEmpleado+"' and conteo.codigo_emp='"+codigoEmpleado+"';");
+            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
+            ps.setInt(1,codigoEmpleado);
+            ps.setInt(2,codigoEmpleado);
             rs=ps.executeQuery();
             while(rs.next()){
                 int codigo=rs.getInt("codigo_emp");
@@ -98,11 +100,12 @@ public class escritorJSON{
     /**
      * Se encarga de crear archivos JSON como copia de seguridad de la tabla socios.
      * 
-     * @param codigoSocio Código de identificación del socio.
+     * @param codigoSocio a crear copia de seguridad.
      */
     public void writeDataPartnerJson(int codigoSocio){
         try{
-            ps=new datos().getConnection().prepareStatement("select*from socios where codigo_part='"+codigoSocio+"'");
+            ps=new datos().getConnection().prepareStatement("select*from socios where codigo_part=?;");
+            ps.setInt(1,codigoSocio);
             rs=ps.executeQuery();
             while(rs.next()){
                 int codigo=rs.getInt("codigo_part");
@@ -149,11 +152,12 @@ public class escritorJSON{
     /**
      * Se encarga de crear archivos JSON como copia de seguridad de la tabla proveedor.
      * 
-     * @param codigoProveedor Código de identificación del proveedor.
+     * @param codigoProveedor a crear copia de seguridad.
      */
     public void writeDataProviderJson(int codigoProveedor){
         try{
-            ps=new datos().getConnection().prepareStatement("select*from proveedor where codigo_prov='"+codigoProveedor+"';");
+            ps=new datos().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
+            ps.setInt(1,codigoProveedor);
             rs=ps.executeQuery();
             while(rs.next()){
                 int codigo=rs.getInt("codigo_prov");

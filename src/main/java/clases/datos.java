@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -25,7 +27,6 @@ import java.util.logging.Level;
  * @author erick
  */
 public class datos{
-    protected Connection cn;
     protected PreparedStatement ps;
     
     protected Properties p;
@@ -55,25 +56,28 @@ public class datos{
             user=p.getProperty("user");
             
             Class.forName(driver);
-            cn=DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
+            return DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 10",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 10: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-10",e.fillInStackTrace());
+            return null;
         }catch(ClassNotFoundException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 37",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 37: "+x.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-37",x.fillInStackTrace());
+            return null;
         }catch(FileNotFoundException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+n.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-1IO",n.fillInStackTrace());
+            return null;
         }catch(IOException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-2IO",k.fillInStackTrace());
+            return null;
         }
-        return cn;
     }
     
     /**
@@ -362,42 +366,155 @@ public class datos{
     }
     
     /**
-     * Actualiza registros en la base de datos.<br>
-     * Este método es universal.<br>
-     * Se debe escribir en la consulta en qué tabla se modificarán esos registros, la columna a la que pertenecen y el identificador del registro a cambiar.
+     * Verifica si los datos para loggear son correctos.
      * 
-     * @param consulta para cambiar los datos especificados.
+     * @param password del usuario que iniciará sesión.
+     * @param user1 usuario que iniciará sesión.
      */
-    public void actualizarDatos(String consulta){
+    public ResultSet login(String password,String user1){
         try{
-            ps=getConnection().prepareStatement("update "+consulta);
-            ps.executeUpdate();
+            ps=getConnection().prepareStatement("select * from empleados where password=? and nombre_emp=? or curp=?;");
+            ps.setString(1,password);
+            ps.setString(2,user1);
+            ps.setString(3,user1);
             
-            ps.close();
+            return ps.executeQuery();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatos()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatos-12",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'login()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"login-9",e.fillInStackTrace());
+            return null;
+        }
+    }
+    
+    /**
+     * Actualiza datos al iniciar sesión en el programa. 
+     * Este método no es universal y se debe usar en casos muy específicos.
+     * 
+     * @param password del usuario loggeado.
+     * @param user1 usuario loggeado.
+     */
+    public void actualizarDatosLogin(String password,String user1){
+        try{
+            ps=getConnection().prepareStatement("update empleados set fecha_sesion=now() where password=? and nombre_emp=? or curp=?;");
+            ps.setString(1,password);
+            ps.setString(2,user1);
+            ps.setString(3,user1);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosLogin()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosLogin-9",e.fillInStackTrace());
+        }
+    }
+    
+    public void actualizarDatosAlmacen(int cantidad,int codigo){
+        try{
+            ps=getConnection().prepareCall("update almacen set cantidad=cantidad-? where codigo_prod=?;");
+            ps.setInt(1,cantidad);
+            ps.setInt(2,codigo);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosAlmacen-9",e.fillInStackTrace());
+        }
+    }
+    
+    public void actualizarDatosConteoVentas(int codigo,String fecha){
+        try{
+            ps=getConnection().prepareStatement("update conteo set no_ventas=no_ventas+1 where codigo_emp=? and fecha_sesion=?;");
+            ps.setInt(1,codigo);
+            ps.setString(2,fecha);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-9",e.fillInStackTrace());
         }
     }
     
     /**
      * Actualiza registros en la base de datos.<br>
-     * Este método es universal.<br>
-     * Se debe escribir en la consulta en qué tabla se modificarán esos registros, la columna a la que pertenecen y el identificador del registro a cambiar.
+     * Este método es específico para cadena de texto.
      * 
-     * @param consulta para cambiar los datos especificados.
+     * @param tabla a cambiar registros.
+     * @param campo1 del registro a cambiar.
+     * @param campo2 de identificación.
+     * @param datos a cambiar (nuevos datos).
+     * @param codigo de identificación del registro.
      */
-    public void actualizarDatos(String tabla,String campo1,String campo2,String dato1,int codigo){
+    public void actualizarDatosString(String tabla,String campo1,String campo2,String datos,int codigo){
         try{
             ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+            ps.setString(1,datos);
+            ps.setInt(2,codigo);
             ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatos()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatos-12",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosString()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosString-12",e.fillInStackTrace());
+        }
+    }
+    
+    /**
+     * Actualiza registros en la base de datos.<br>
+     * Este método es específico para enteros (números).
+     * 
+     * @param tabla a cambiar registros.
+     * @param campo1 del registro a cambiar.
+     * @param campo2 de identificación.
+     * @param datos a cambiar (nuevos datos).
+     * @param codigo de identificación del registro.
+     */
+    public void actualizarDatosInteger(String tabla,String campo1,String campo2,int datos,int codigo){
+        try{
+            ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+            ps.setInt(1,datos);
+            ps.setInt(2,codigo);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosInteger-12",e.fillInStackTrace());
+        }
+    }
+    
+    /**
+     * Actualiza registros en la base de datos.<br>
+     * Este método es específico para fechas.
+     * 
+     * @param tabla a cambiar registros.
+     * @param campo1 del registro a cambiar.
+     * @param campo2 de identificación.
+     * @param fecha a cambiar (nuevos datos).
+     * @param codigo de identificación del registro.
+     */
+    public void actualizarDatosDate(String tabla,String campo1,String campo2,Date fecha,int codigo){
+        try{
+            ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+            ps.setDate(1,fecha);
+            ps.setInt(2,codigo);
+            ps.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosDate()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosDate-12",e.fillInStackTrace());
         }
     }
     
@@ -431,8 +548,8 @@ public class datos{
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatos()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatos-12",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarFotoPerfil()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarFotoPerfil-12",e.fillInStackTrace());
         }
     }
     
