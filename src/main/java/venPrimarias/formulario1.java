@@ -2,7 +2,6 @@ package venPrimarias;
 //clases
 import clases.placeHolder;
 import clases.datos;
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.mvc.mvcForm1;
@@ -25,12 +24,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
@@ -50,7 +49,6 @@ public class formulario1 extends javax.swing.JFrame{
     protected Properties p;
     protected JFileChooser jfc;
     
-    protected String userdir=dirs.userdir;
     protected String direccion;
     
     protected void settings(){
@@ -95,7 +93,7 @@ public class formulario1 extends javax.swing.JFrame{
         miInsImage.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                p.load(new FileInputStream("data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
@@ -109,7 +107,7 @@ public class formulario1 extends javax.swing.JFrame{
                         picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                         
                         p.setProperty("lastdirectory_form1",f.getParent());
-                        p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
@@ -269,54 +267,62 @@ public class formulario1 extends javax.swing.JFrame{
         jLabel11.setText("Datos extra:");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
             }
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
             }
         });
 
         txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAPKeyPressed(evt);
             }
         });
 
         txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAMKeyPressed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
-
         txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExpKeyPressed(evt);
             }
         });
 
         txtEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEstudiosKeyPressed(evt);
             }
         });
 
         txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtContactoKeyPressed(evt);
             }
         });
 
         txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEdadKeyPressed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);

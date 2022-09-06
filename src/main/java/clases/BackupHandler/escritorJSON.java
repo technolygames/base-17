@@ -1,7 +1,6 @@
 package clases.BackupHandler;
 //clases
 import clases.datos;
-import clases.dirs;
 import clases.logger;
 //librerías
 import com.google.gson.stream.JsonWriter;
@@ -24,8 +23,6 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class escritorJSON{
-    protected String userdir=dirs.userdir;
-    
     protected JsonWriter jsonw;
     protected PreparedStatement ps;
     protected ResultSet rs;
@@ -45,8 +42,8 @@ public class escritorJSON{
                 int codigo=rs.getInt("codigo_emp");
                 String nombre=rs.getString("nombre_emp");
                 
-                new File(userdir+"/data/databackup/Empleados/"+nombre+"-"+codigo).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Empleados/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
+                new File("data/databackup/Empleados/"+nombre+"-"+codigo).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Empleados/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicWorker(codigo,nombre);
                 
                 jsonw.beginObject();
@@ -111,8 +108,8 @@ public class escritorJSON{
                 int codigo=rs.getInt("codigo_part");
                 String nombre=rs.getString("nombre_part");
                 
-                new File(userdir+"/data/databackup/Socios/"+nombre+"-"+codigo).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Socios/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
+                new File("data/databackup/Socios/"+nombre+"-"+codigo).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Socios/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicPartner(codigo,nombre);
                 
                 jsonw.beginObject();
@@ -163,8 +160,8 @@ public class escritorJSON{
                 int codigo=rs.getInt("codigo_prov");
                 String nombre=rs.getString("nombre_prov");
                 
-                new File(userdir+"/data/databackup/Proveedores/"+nombre+"-"+codigo).mkdir();
-                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(userdir+"/data/databackup/Proveedores/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
+                new File("data/databackup/Proveedores/"+nombre+"-"+codigo).mkdir();
+                jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Proveedores/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
                 new escritorFoto().storePicProvider(codigo,nombre);
                 
                 jsonw.beginObject();

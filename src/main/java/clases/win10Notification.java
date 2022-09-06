@@ -34,7 +34,7 @@ public class win10Notification{
         try{
             if(SystemTray.isSupported()){
                 p=new Properties();
-                p.load(new FileInputStream(dirs.userdir+"/data/config/config.properties"));
+                p.load(new FileInputStream("data/config/config.properties"));
                 TrayIcon ti=new TrayIcon(Toolkit.getDefaultToolkit().getImage(p.getProperty("icono")));
                 st.add(ti);
                 ti.setImageAutoSize(true);

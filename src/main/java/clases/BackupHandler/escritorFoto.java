@@ -43,7 +43,7 @@ public class escritorFoto{
             dir1=userdir+"\\data\\databackup\\Empleados\\"+nombreEmpleado+"-"+codigoEmpleado+"\\"+nombreEmpleado+"-"+codigoEmpleado+".jpg";
             
             rs=ps.executeQuery();
-            new Thread(new thread2(rs,new FileOutputStream(dir1))).start();
+            new thread2(rs,new FileOutputStream(dir1)).run();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
@@ -76,7 +76,7 @@ public class escritorFoto{
             dir3=userdir+"\\data\\databackup\\Proveedores\\"+nombreProveedor+"-"+codigoProveedor+"\\"+nombreProveedor+"-"+codigoProveedor+".jpg";
             
             rs=ps.executeQuery();
-            new Thread(new thread2(rs,new FileOutputStream(dir3))).start();
+            new thread2(rs,new FileOutputStream(dir3)).run();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             
@@ -109,7 +109,7 @@ public class escritorFoto{
             dir2=userdir+"\\data\\databackup\\Socios\\"+nombreSocio+"-"+codigoSocio+"\\"+nombreSocio+"-"+codigoSocio+".jpg";
             
             rs=ps.executeQuery();
-            new Thread(new thread2(rs,new FileOutputStream(dir2))).start();
+            new thread2(rs,new FileOutputStream(dir2)).run();
             
             new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+escritorFoto.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             

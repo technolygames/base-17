@@ -18,6 +18,7 @@ import java.util.logging.Level;
  */
 public class thread2 implements Runnable{
     protected ResultSet resultado;
+    protected Blob blob;
     protected OutputStream os;
     
     /**
@@ -38,11 +39,15 @@ public class thread2 implements Runnable{
     public void run(){
         try{
             while(resultado.next()){
-                Blob blob=resultado.getBlob("foto");
+                blob=resultado.getBlob("foto");
                 byte[] bytes=blob.getBytes(1,(int)blob.length());
                 os.write(bytes);
                 break;
             }
+            
+            blob.free();
+            os.flush();
+            os.close();
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+thread2.class.getName()+"', en el método 'run()'");

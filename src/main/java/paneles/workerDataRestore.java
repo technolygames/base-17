@@ -1,7 +1,6 @@
 package paneles;
 //clases
 import clases.BackupHandler.lectorJSON;
-import clases.dirs;
 //java
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -23,7 +22,7 @@ public class workerDataRestore extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            filechooser=new JFileChooser(dirs.userdir+"/data/databackup/Empleados");
+            filechooser=new JFileChooser("data/databackup/Empleados");
             filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
             if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){

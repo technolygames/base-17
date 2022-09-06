@@ -598,6 +598,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtNombre.setEnabled(false);
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
             }
@@ -609,6 +610,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtAP.setEnabled(false);
         txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAPKeyPressed(evt);
             }
@@ -616,6 +618,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtAM.setEnabled(false);
         txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAMKeyPressed(evt);
             }
@@ -626,6 +629,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtExp.setEnabled(false);
         txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExpKeyPressed(evt);
             }
@@ -639,6 +643,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtGE.setEnabled(false);
         txtGE.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtGEKeyPressed(evt);
             }
@@ -648,6 +653,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtContacto.setEnabled(false);
         txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtContactoKeyPressed(evt);
             }
@@ -657,6 +663,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
 
         txtEdad.setEnabled(false);
         txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEdadKeyPressed(evt);
             }

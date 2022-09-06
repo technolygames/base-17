@@ -1,7 +1,6 @@
 package paneles;
 //clases
 import clases.datos;
-import clases.dirs;
 import clases.logger;
 //librerías
 import com.github.sarxos.webcam.Webcam;
@@ -41,7 +40,6 @@ public class modPicPanel1 extends javax.swing.JPanel{
     
     protected int codigo;
     
-    protected String userdir=dirs.userdir;
     protected String direccion;
     protected String nombre;
     
@@ -60,7 +58,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
                 webcam.setViewSize(WebcamResolution.VGA.getSize());
                 
                 webcam.open();
-                direccion=userdir+"/data/media/webcam/"+nombre+"-"+codigo+".jpg";
+                direccion="data/media/webcam/"+nombre+"-"+codigo+".jpg";
                 ImageIO.write(webcam.getImage(),"JPG",new File(direccion));
                 picLabel.setText(null);
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(direccion)).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
@@ -73,13 +71,13 @@ public class modPicPanel1 extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            datosBuscar();
+            consulta();
         });
         
         updateButton.addActionListener((a)->{
             try{
                 new datos().actualizarFotoPerfil("empleados","codigo_emp",Integer.parseInt(txtSearch.getText()),new FileInputStream(direccion));
-                datosBuscar();
+                consulta();
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel1.class.getName()+"', en el método 'botones(updateButton)'");
@@ -91,7 +89,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    datosBuscar();
+                    consulta();
                 }
             }
         });
@@ -102,7 +100,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
             case 0:{
                 try{
                     p=new Properties();
-                    p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                    p.load(new FileInputStream("data/config/filechooserd.properties"));
                     jfc=new JFileChooser(p.getProperty("lastdirectory_pic1"));
                     
                     jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
@@ -116,7 +114,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
                             picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                             
                             p.setProperty("lastdirectory_pic1",f.getParent());
-                            p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                            p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                         }catch(IOException e){
                             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                             new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel1.class.getName()+"', en el método 'combo1()'");
@@ -146,7 +144,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
         }
     }
     
-    protected void datosBuscar(){
+    protected void consulta(){
         try{
             PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
             ps.setInt(1,Integer.parseInt(txtSearch.getText()));

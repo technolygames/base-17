@@ -43,7 +43,7 @@ public class dataWindow1 extends javax.swing.JDialog{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected String dir=dirs.userdir;
+    protected String userdir=dirs.userdir;
     
     protected void settings(){
         jTextArea1.setLineWrap(true);
@@ -109,9 +109,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                 ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
                 rs=ps.executeQuery();
                 
-                File f=new File(dir+"/data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File("data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File(dir+"/data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File("data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
                 }
                 
                 new thread2(rs,new FileOutputStream(f)).run();

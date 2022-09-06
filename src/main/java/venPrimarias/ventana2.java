@@ -263,6 +263,18 @@ public final class ventana2 extends javax.swing.JFrame{
             }
         });
 
+        txtCodLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodLoteKeyPressed(evt);
+            }
+        });
+
+        txtCodProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodProvKeyPressed(evt);
+            }
+        });
+
         txtProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProdKeyPressed(evt);
@@ -275,21 +287,21 @@ public final class ventana2 extends javax.swing.JFrame{
             }
         });
 
-        txtCodLote.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodLoteKeyPressed(evt);
+                txtCantKeyPressed(evt);
+            }
+        });
+
+        txtPU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPUKeyPressed(evt);
             }
         });
 
         jLabel2.setText("Código del lote:");
 
         jLabel4.setText("Código del proveedor:");
-
-        txtCodProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodProvKeyPressed(evt);
-            }
-        });
 
         cleanButton.setText("Limpiar campos");
 
@@ -311,21 +323,9 @@ public final class ventana2 extends javax.swing.JFrame{
 
         jLabel1.setText("Cantidad:");
 
-        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantKeyPressed(evt);
-            }
-        });
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En Existencia", "Agotado" }));
 
         jLabel3.setText("Precio unitario:");
-
-        txtPU.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPUKeyPressed(evt);
-            }
-        });
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

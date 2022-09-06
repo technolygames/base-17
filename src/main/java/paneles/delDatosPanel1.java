@@ -45,6 +45,8 @@ public class delDatosPanel1 extends javax.swing.JPanel{
     }
     
     protected void deleteData(){
+        var datos=new datos();
+        
         try{
             if(!jTextField1.getText().equals("")){
                 int codigo=Integer.parseInt(jTextField1.getText());
@@ -52,15 +54,15 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                 switch(opcion){
                     case 0:{
                         new escritorJSON().writeDataWorkerJson(codigo);
-                        new datos().eliminarDatosProductos(codigo);
-                        new datos().eliminarDatosConteo(codigo); 
-                        new datos().eliminarDatosEmpleado(codigo);
+                        datos.eliminarDatosProductos(codigo);
+                        datos.eliminarDatosConteo(codigo); 
+                        datos.eliminarDatosEmpleado(codigo);
                         break;
                     }
                     case 1:{
-                        new datos().eliminarDatosProductos(codigo);
-                        new datos().eliminarDatosConteo(codigo);
-                        new datos().eliminarDatosEmpleado(codigo);
+                        datos.eliminarDatosProductos(codigo);
+                        datos.eliminarDatosConteo(codigo);
+                        datos.eliminarDatosEmpleado(codigo);
                         break;
                     }
                 }
@@ -89,6 +91,7 @@ public class delDatosPanel1 extends javax.swing.JPanel{
         jLabel1.setText("Código del empleado:");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }

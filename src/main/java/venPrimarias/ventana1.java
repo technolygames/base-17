@@ -320,20 +320,51 @@ public final class ventana1 extends javax.swing.JFrame{
         jLabel2.setText("Código del producto:");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
             }
         });
 
+        txtCodEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodEmpKeyPressed(evt);
+            }
+        });
+
         txtProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProdKeyPressed(evt);
             }
         });
 
         txtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMarcaKeyPressed(evt);
+            }
+        });
+
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantKeyPressed(evt);
+            }
+        });
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyPressed(evt);
+            }
+        });
+
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTotalKeyPressed(evt);
             }
         });
 
@@ -345,28 +376,10 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jLabel6.setText("Cantidad:");
 
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyPressed(evt);
-            }
-        });
-
-        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantKeyPressed(evt);
-            }
-        });
-
         backButton.setText("Regresar");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel8.setText("Productos");
-
-        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTotalKeyPressed(evt);
-            }
-        });
 
         jLabel9.setText("Total:");
 
@@ -395,12 +408,6 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2.setText("Eliminar fila");
 
         jLabel1.setText("Código del empleado:");
-
-        txtCodEmp.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodEmpKeyPressed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -1,7 +1,6 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana3;
@@ -38,7 +37,6 @@ public class formulario3 extends javax.swing.JFrame{
     protected Properties p;
     protected JFileChooser jfc;
     
-    protected String userdir=dirs.userdir;
     protected String direccion;
     
     protected final void botones(){
@@ -65,7 +63,7 @@ public class formulario3 extends javax.swing.JFrame{
         miInsImage.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                p.load(new FileInputStream("data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form3"));
                 
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
@@ -79,7 +77,7 @@ public class formulario3 extends javax.swing.JFrame{
                         picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                         
                         p.setProperty("lastdirectory_form3",f.getParent());
-                        p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                     }catch(IOException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'");
@@ -175,32 +173,44 @@ public class formulario3 extends javax.swing.JFrame{
         jLabel5.setText("Empresa:");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
         });
 
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
         });
 
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField3KeyPressed(evt);
             }
         });
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
             }
         });
 
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField5KeyPressed(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField6KeyPressed(evt);
             }
         });
 
@@ -211,12 +221,6 @@ public class formulario3 extends javax.swing.JFrame{
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("Contacto:");
-
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField6KeyPressed(evt);
-            }
-        });
 
         jMenu1.setText("Datos");
 

@@ -1,6 +1,5 @@
 package venTerciarias;
 //clases
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 //java
@@ -35,8 +34,6 @@ public final class about extends javax.swing.JDialog{
     
     protected Properties p;
     
-    protected String userdir=dirs.userdir;
-    
     protected void settings(){
         websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
@@ -44,7 +41,7 @@ public final class about extends javax.swing.JDialog{
     protected void etiquetas(){
         p=new Properties();
         try{
-            p.load(new FileReader(userdir+"/data/config/acerca.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader("data/config/acerca.properties",StandardCharsets.UTF_8));
             
             versionLabel.setText(p.getProperty("version"));
             estableLabel.setText(p.getProperty("estable"));
@@ -149,6 +146,7 @@ public final class about extends javax.swing.JDialog{
 
         websiteLabel.setText("jLabel11");
         websiteLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 websiteLabelMouseClicked(evt);
             }
@@ -257,8 +255,8 @@ public final class about extends javax.swing.JDialog{
     private void websiteLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteLabelMouseClicked
         p=new Properties();
         try{
-            p.load(new FileInputStream(userdir+"/data/config/acerca.properties"));
-            Desktop.getDesktop().browse(new URI(p.getProperty("website")));
+            p.load(new FileInputStream("data/config/acerca.properties"));
+            Desktop.getDesktop(). browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");

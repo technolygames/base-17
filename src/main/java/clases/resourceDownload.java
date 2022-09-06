@@ -25,7 +25,6 @@ import java.util.logging.Level;
  */
 public class resourceDownload{
     protected boolean estado=false;
-    protected String userdir=dirs.userdir;
     
     protected File f;
     protected InputStream is;
@@ -76,14 +75,14 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
-        f=new File(userdir+"/data/libs/test/"+validar);
+        f=new File("data/libs/test/"+validar);
         try{
             if(f.exists()&&f.length()==0){
                 u=new URL(link);
                 uc=u.openConnection();
                 
                 is=uc.getInputStream();
-                os=new FileOutputStream(userdir+"/data/libs/test/"+validar);
+                os=new FileOutputStream("data/libs/test/"+validar);
                 
                 new Thread(new thread1(is,os)).start();
             }else{

@@ -40,7 +40,6 @@ public class guiMediaHandler{
     
     protected String icon;
     protected String image;
-    protected String userdir=dirs.userdir;
     
     protected Properties p;
     
@@ -52,13 +51,13 @@ public class guiMediaHandler{
     public Image getFormImage(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(userdir+"/data/config/config.properties"));
+            p.load(new FileInputStream("data/config/config.properties"));
             image=p.getProperty("imagenes");
             
             if(!new File(image).exists()){
                 image=p.getProperty("imagen_respaldo");
                 if(!new File(image).exists()){
-                    p.load(new FileInputStream(userdir+"/data/config/preconfig.properties"));
+                    p.load(new FileInputStream("data/config/preconfig.properties"));
                     image=p.getProperty("imagenes");
                 }
             }
@@ -86,13 +85,13 @@ public class guiMediaHandler{
     public Image getIconImage(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(userdir+"/data/config/config.properties"));
+            p.load(new FileInputStream("data/config/config.properties"));
             icon=p.getProperty("icono");
             
             if(!new File(icon).exists()){
                 icon=p.getProperty("icono_respaldo");
                 if(!new File(icon).exists()){
-                    p.load(new FileInputStream(userdir+"/data/config/preconfig.properties"));
+                    p.load(new FileInputStream("data/config/preconfig.properties"));
                     icon=p.getProperty("icono");
                 }
             }
@@ -119,7 +118,7 @@ public class guiMediaHandler{
     public void LookAndFeel(Component componente){
         try{
             p=new Properties();
-            p.load(new FileInputStream(userdir+"/data/config/config.properties"));
+            p.load(new FileInputStream("data/config/config.properties"));
             UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){

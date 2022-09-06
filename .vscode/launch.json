@@ -1,0 +1,226 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Este archivo podrá hacer uso de cada uno de los métodos main en ventanas (JFrame) en el programa.
+    // This file would use each main method on each frame in the program.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch main",
+            "request": "launch",
+            "mainClass": "main.main",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch menuDatosVentana1",
+            "request": "launch",
+            "mainClass": "menus.menuDatosVentana1",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch menuDatosVentana2",
+            "request": "launch",
+            "mainClass": "menus.menuDatosVentana2",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch menuDatosVentana3",
+            "request": "launch",
+            "mainClass": "menus.menuDatosVentana3",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch menuDatosVentana4",
+            "request": "launch",
+            "mainClass": "menus.menuDatosVentana4",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch menuVentanas",
+            "request": "launch",
+            "mainClass": "menus.menuVentanas",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch adminTools",
+            "request": "launch",
+            "mainClass": "venPrimarias.adminTools",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch formulario1",
+            "request": "launch",
+            "mainClass": "venPrimarias.formulario1",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch formulario2",
+            "request": "launch",
+            "mainClass": "venPrimarias.formulario2",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch formulario3",
+            "request": "launch",
+            "mainClass": "venPrimarias.formulario3",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshOff",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshOff",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshPartners",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshPartners",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshProduct",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshProduct",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshProviders",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshProviders",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshStorage",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshStorage",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ltshWorkers",
+            "request": "launch",
+            "mainClass": "venPrimarias.ltshWorkers",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch proper1",
+            "request": "launch",
+            "mainClass": "venPrimarias.proper1",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch start",
+            "request": "launch",
+            "mainClass": "venPrimarias.start",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ventana1",
+            "request": "launch",
+            "mainClass": "venPrimarias.ventana1",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ventana2",
+            "request": "launch",
+            "mainClass": "venPrimarias.ventana2",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch ventana3",
+            "request": "launch",
+            "mainClass": "venPrimarias.ventana3",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch calcWindow",
+            "request": "launch",
+            "mainClass": "venSecundarias.calcWindow",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch loadWindow",
+            "request": "launch",
+            "mainClass": "venSecundarias.loadWindow",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch paymentWindow",
+            "request": "launch",
+            "mainClass": "venSecundarias.paymentWindow",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch about",
+            "request": "launch",
+            "mainClass": "venTerciarias.about",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch dataWindow1",
+            "request": "launch",
+            "mainClass": "venTerciarias.dataWindow1",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch dataWindow2",
+            "request": "launch",
+            "mainClass": "venTerciarias.dataWindow2",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch dataWindow3",
+            "request": "launch",
+            "mainClass": "venTerciarias.dataWindow3",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch dataWindow4",
+            "request": "launch",
+            "mainClass": "venTerciarias.dataWindow4",
+            "projectName": "base1-17"
+        },
+        {
+            "type": "java",
+            "name": "Launch databaseWindow",
+            "request": "launch",
+            "mainClass": "venTerciarias.databaseWindow",
+            "projectName": "base1-17"
+        }
+    ]
+}

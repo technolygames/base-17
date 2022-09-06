@@ -1,16 +1,17 @@
 package paneles;
 //clases
-import clases.dirs;
 import clases.logger;
 import clases.thread1;
 import clases.thread3;
 import venPrimarias.start;
 //java
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
@@ -21,12 +22,33 @@ public class databaseExport extends javax.swing.JPanel{
         initComponents();
         
         botones();
+        settings();
     }
     
+    protected Properties p;
     protected InputStream is;
     protected OutputStream os;
     
-    protected String userdir=dirs.userdir;
+    protected String host;
+    
+    protected void settings(){
+        try{
+            p=new Properties();
+            p.load(new FileInputStream("data/config/databaseInfo.properties"));
+            jTextField1.setText(p.getProperty("user"));
+            jPasswordField1.setText(p.getProperty("pass"));
+            jTextField3.setText(p.getProperty("database"));
+            host=p.getProperty("ip");
+        }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"settings-1IO",e.fillInStackTrace());
+        }catch(IOException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"settings-2IO",x.fillInStackTrace());
+        }
+    }
     
     protected final void botones(){
         closeButton.addActionListener((a)->{
@@ -43,20 +65,23 @@ public class databaseExport extends javax.swing.JPanel{
             String user=jTextField1.getText();
             String pass=jPasswordField1.getPassword().toString();
             String db=jTextField3.getText();
-            String exportedDb=db+(int)(Math.random()*1000)+".sql";
-            String dir=userdir+"/data/database/MySQL/"+exportedDb;
             
             try{
-                Properties p=new Properties();
-                Properties env=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
-                env.load(new FileInputStream(userdir+"/data/config/env.properties"));
-                Process pr=Runtime.getRuntime().exec("cmd /c "+env.getProperty("local_mysql")+"mysqldump.exe -u "+user+" -p "+db+">"+dir+" --password="+pass+" -h "+p.getProperty("ip"));
-                new Thread(new thread3(pr.getErrorStream())).start();
+                p=new Properties();
+                p.load(new FileInputStream("data/config/env.properties"));
                 
-                os=new FileOutputStream(dir);
+                File f=new File("data/database/MySQL/"+db+".sql");
+                for(int i=0;f.exists();i++){
+                    f=new File("data/database/MySQL/"+db+"-("+i+").sql");
+                }
                 
-                new Thread(new thread1(pr.getInputStream(),os)).start();
+                Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user+" --database="+db+">"+f.getPath()+" --password="+pass+" --host="+host);
+                new thread3(pr.getErrorStream()).run();
+                
+                is=pr.getInputStream();
+                os=new FileOutputStream(f);
+                
+                new Thread(new thread1(is,os)).start();
                 
                 JOptionPane.showMessageDialog(null,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));

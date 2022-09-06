@@ -1,7 +1,6 @@
 package venPrimarias;
 //clases
 import clases.datos;
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.win10Notification;
@@ -40,6 +39,8 @@ public final class start extends javax.swing.JFrame{
     
     protected Properties p;
     
+    protected JTextField campos;
+    
     protected ResultSet rs;
     
     public static int userID;
@@ -50,7 +51,7 @@ public final class start extends javax.swing.JFrame{
     protected final void settings(){
         p=new Properties();
         try{
-            p.load(new FileReader(dirs.userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             nameLabel.setText(p.getProperty("nombre"));
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
@@ -84,7 +85,6 @@ public final class start extends javax.swing.JFrame{
         });
     }
     
-    JTextField campos;
     protected void login(){
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());

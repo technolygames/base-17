@@ -45,6 +45,8 @@ public class delDatosPanel2 extends javax.swing.JPanel{
     }
     
     protected void deleteData(){
+        var datos=new datos();
+        
         try{
             if(!jTextField1.getText().equals("")){
                 int codigo=Integer.parseInt(jTextField1.getText());
@@ -52,11 +54,11 @@ public class delDatosPanel2 extends javax.swing.JPanel{
                 switch(opcion){
                     case 0:{
                         new escritorJSON().writeDataPartnerJson(codigo);
-                        new datos().eliminarDatosSocio(codigo);
+                        datos.eliminarDatosSocio(codigo);
                         break;
                     }
                     case 1:{
-                        new datos().eliminarDatosSocio(codigo);
+                        datos.eliminarDatosSocio(codigo);
                         break;
                     }
                 }
@@ -87,6 +89,7 @@ public class delDatosPanel2 extends javax.swing.JPanel{
         deleteButton.setText("Eliminar datos");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }

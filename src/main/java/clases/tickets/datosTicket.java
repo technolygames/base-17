@@ -49,9 +49,9 @@ public class datosTicket{
             SimpleDateFormat fecha=new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh.mm.ss aa");
             
-            ticket ticket=new ticket(userdir+"/data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
+            ticket ticket=new ticket("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
             
-            p.load(new FileReader(userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
             ticket.addCabecera(p.getProperty("nombre"));
             ticket.addCabecera(ticket.darEspacio());
@@ -163,12 +163,12 @@ public class datosTicket{
         try{
             Date date=new Date();
             Properties p=new Properties();
-            ticket ticket=new ticket(userdir+"/data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
+            ticket ticket=new ticket("data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
             
             SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
             
-            p.load(new FileReader(userdir+"/data/config/config.properties",StandardCharsets.UTF_8));
+            p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
             ticket.addCabecera(p.getProperty("nombre"));
             ticket.addCabecera(ticket.darEspacio());

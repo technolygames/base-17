@@ -1,6 +1,5 @@
 package paneles;
 //clases
-import clases.dirs;
 import clases.logger;
 import clases.thread1;
 import clases.thread3;
@@ -11,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Properties;
 import javax.swing.JOptionPane;
@@ -30,10 +30,26 @@ public class databaseImport extends javax.swing.JPanel{
     protected Properties p;
     protected InputStream is;
     
-    protected String userdir=dirs.userdir;
+    protected String host;
     
     protected void settings(){
         jTextField3.setText(databaseWindow.nombredb);
+        
+        try{
+            p=new Properties();
+            p.load(new FileInputStream("data/config/databaseInfo.properties"));
+            jTextField1.setText(p.getProperty("user"));
+            jPasswordField1.setText("pass");
+            host=p.getProperty("ip");
+        }catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"settings-1IO",e.fillInStackTrace());
+        }catch(IOException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'settings()'");
+            new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"settings-2IO",x.fillInStackTrace());
+        }
     }
     
     protected final void botones(){
@@ -48,7 +64,7 @@ public class databaseImport extends javax.swing.JPanel{
         fileButton.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                p.load(new FileInputStream("data/config/filechooserd.properties"));
                 JFileChooser chooser=new JFileChooser(p.getProperty("lastdirectory_database_import"));
                 
                 chooser.setFileFilter(new FileNameExtensionFilter("Archivo SQL","sql"));
@@ -59,7 +75,7 @@ public class databaseImport extends javax.swing.JPanel{
                     jTextField2.setText(f.getPath());
                     
                     p.setProperty("lastdirectory_database_import",f.getParent());
-                    p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                    p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
@@ -81,11 +97,10 @@ public class databaseImport extends javax.swing.JPanel{
             String dbDir=jTextField2.getText();
             
             try{
-                Properties env=new Properties();
                 p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/databaseInfo.properties"));
-                p.load(new FileInputStream(userdir+"/data/config/env.properties"));
-                Process pr=Runtime.getRuntime().exec("cmd /c "+env.getProperty("local_mysql")+"mysql.exe -u "+user+" -p "+db+"<"+dbDir+" --password="+pass+" -h "+p.getProperty("ip"));
+                p.load(new FileInputStream("data/config/env.properties"));
+                
+                Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysql.exe --user="+user+" -p "+db+"<"+dbDir+" --password="+pass+" --host="+host);
                 new Thread(new thread3(pr.getErrorStream())).start();
                 
                 is=new FileInputStream(dbDir);
