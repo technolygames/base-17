@@ -39,7 +39,7 @@ public class datos{
     protected String user;
     
     /**
-     * Conexión a la base de datos.
+     * Método para conectar a la base de datos.
      * 
      * @return conexión a la base de datos.
      */

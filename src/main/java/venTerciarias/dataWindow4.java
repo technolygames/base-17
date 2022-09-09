@@ -1,7 +1,6 @@
 package venTerciarias;
 //clases
 import clases.datos;
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread2;
@@ -10,10 +9,8 @@ import venPrimarias.start;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
