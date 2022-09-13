@@ -305,7 +305,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
                             while(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
-                                datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(txtExp.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(txtExp.getText()),Integer.parseInt(txtSearch.getText()),true);
                                 consulta();
                                 break;
                             }
@@ -371,7 +371,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
                             while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
-                                datos.actualizarDatosInteger("empleados","contacto","codigo_emp",Integer.parseInt(txtContacto.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("empleados","contacto","codigo_emp",Integer.parseInt(txtContacto.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
                             }
@@ -437,7 +437,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
                             while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
-                                datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
                             }

@@ -179,7 +179,7 @@ public class datos{
      */
     public void insertarDatosEmpleado(List<mvcForm1> datos){
         try{
-            ps=getConnection().prepareStatement("insert into empleados(password,codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,curp,domicilio,puesto,experiencia,grado_estudios,contacto,fecha_nacimiento,edad,estado,datos_extra,foto,fecha_registro,fecha_sesion) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
+            ps=getConnection().prepareStatement("insert into empleados values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
             ps.setString(1,datos.get(0).getPassword());
             ps.setInt(2,datos.get(0).getCodigo());
             ps.setString(3,datos.get(0).getNombre());
@@ -211,13 +211,47 @@ public class datos{
     }
     
     /**
+     * Guarda los datos de la ventana de proveedor en la base de datos.
+     * 
+     * @param codigoProveedor Código de identificación del proveedor.
+     * @param nombreProveedor Nombre(s) del proveedor.
+     * @param apellidoPaternoProveedor Apellido paterno del proveedor.
+     * @param apellidoMaternoProveedor Apellido materno del proveedor.
+     * @param empresa Empresa procedencia del proveedor.
+     * @param contacto Número de contacto del proveedor.
+     * @param foto Foto del proveedor para identificarlo.
+     */
+    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
+        try{
+            ps=getConnection().prepareStatement("insert into proveedor value(?,?,?,?,?,?,?,now(),now());");
+            ps.setInt(1,codigoProveedor);
+            ps.setString(2,nombreProveedor);
+            ps.setString(3,apellidoPaternoProveedor);
+            ps.setString(4,apellidoMaternoProveedor);
+            ps.setString(5,empresa);
+            ps.setInt(6,contacto);
+            ps.setBinaryStream(7,foto);
+            ps.execute();
+            
+            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            
+            ps.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosProveedor-11",e.fillInStackTrace());
+        }
+    }
+    
+    /**
      * Guarda los datos de la ventana de socios en la base de datos.
      * 
      * @param datos que serán almacenados del socio en la base de datos.
      */
     public void insertarDatosSocio(List<mvcForm2> datos){
         try{
-            ps=getConnection().prepareStatement("insert into socios(codigo_part,nombre_part,apellidop_part,apellidom_part,tipo_socio,correo,rfc,datos_extra,foto,fecha_ingreso,fecha_ucompra) values(?,?,?,?,?,?,?,?,?,now(),now());");
+            ps=getConnection().prepareStatement("insert into socios values(?,?,?,?,?,?,?,?,?,now(),now());");
             ps.setInt(1,datos.get(0).getCodigo());
             ps.setString(2,datos.get(0).getNombre());
             ps.setString(3,datos.get(0).getApellidoPaterno());
@@ -238,40 +272,6 @@ public class datos{
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'");
             new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosSocio-11",e.fillInStackTrace());
-        }
-    }
-    
-    /**
-     * Guarda los datos de la ventana de proveedor en la base de datos.
-     * 
-     * @param codigoProveedor Código de identificación del proveedor.
-     * @param nombreProveedor Nombre(s) del proveedor.
-     * @param apellidoPaternoProveedor Apellido paterno del proveedor.
-     * @param apellidoMaternoProveedor Apellido materno del proveedor.
-     * @param empresa Empresa procedencia del proveedor.
-     * @param contacto Número de contacto del proveedor.
-     * @param foto Foto del proveedor para identificarlo.
-     */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
-        try{
-            ps=getConnection().prepareStatement("insert into proveedor(codigo_prov,nombre_prov,apellidop_prov,apellidom_prov,empresa,contacto,foto,fecha_ingreso,fecha_uentrega) value(?,?,?,?,?,?,?,now(),now());");
-            ps.setInt(1,codigoProveedor);
-            ps.setString(2,nombreProveedor);
-            ps.setString(3,apellidoPaternoProveedor);
-            ps.setString(4,apellidoMaternoProveedor);
-            ps.setString(5,empresa);
-            ps.setInt(6,contacto);
-            ps.setBinaryStream(7,foto);
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosProveedor-11",e.fillInStackTrace());
         }
     }
     
@@ -370,6 +370,8 @@ public class datos{
      * 
      * @param password del usuario que iniciará sesión.
      * @param user1 usuario que iniciará sesión.
+     * 
+     * @return el resultado de la consulta.
      */
     public ResultSet login(String password,String user1){
         try{
@@ -471,16 +473,21 @@ public class datos{
      * @param campo2 de identificación.
      * @param datos a cambiar (nuevos datos).
      * @param codigo de identificación del registro.
+     * @param flag para mostrar la notificación de confirmación
      */
-    public void actualizarDatosInteger(String tabla,String campo1,String campo2,int datos,int codigo){
+    public void actualizarDatosInteger(String tabla,String campo1,String campo2,int datos,int codigo,boolean flag){
         try{
             ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
             ps.setInt(1,datos);
             ps.setInt(2,codigo);
             ps.executeUpdate();
             
-            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            if(flag==true){
+                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            }else{
+                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            }
             
             ps.close();
         }catch(SQLException e){

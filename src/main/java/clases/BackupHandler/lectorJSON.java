@@ -9,8 +9,8 @@ import com.google.gson.stream.JsonReader;
 //java
 import java.io.IOException;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;
@@ -35,14 +35,13 @@ public class lectorJSON{
      */
     public void readDataWorkerJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
             List<mvcForm1> lista=new ArrayList<>();
             mvcForm1 modelo=new mvcForm1();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
-                String name=jsonr.nextName();
-                switch(name){
+                switch(jsonr.nextName()){
                     case "password" -> modelo.setPassword(jsonr.nextString());
                     case "codigo_emp" -> modelo.setCodigo(jsonr.nextInt());
                     case "nombre_emp" -> modelo.setNombre(jsonr.nextString());
@@ -122,14 +121,13 @@ public class lectorJSON{
      */
     public void readDataPartnerJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
             List<mvcForm2> lista=new ArrayList<>();
             mvcForm2 modelo=new mvcForm2();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
-                String name=jsonr.nextName();
-                switch(name){
+                switch(jsonr.nextName()){
                     case "codigo_part" -> modelo.setCodigo(jsonr.nextInt());
                     case "nombre_part" -> modelo.setNombre(jsonr.nextString());
                     case "apellidop_part" -> modelo.setApellidoPaterno(jsonr.nextString());
@@ -176,11 +174,10 @@ public class lectorJSON{
      */
     public void readDataProviderJson(String dir){
         try{
-            jsonr=new JsonReader(new InputStreamReader(new FileInputStream(dir),StandardCharsets.UTF_8));
+            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
             jsonr.beginObject();
             while(jsonr.hasNext()){
-                String name=jsonr.nextName();
-                switch(name){
+                switch(jsonr.nextName()){
                     case "codigo_prov" -> codigoProveedor=jsonr.nextInt();
                     case "nombre_prov" -> nombreProveedor=jsonr.nextString();
                     case "apellidop_prov" -> apellidoPaternoProveedor=jsonr.nextString();

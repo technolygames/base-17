@@ -7,12 +7,16 @@ import clases.win10Notification;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.time.Period;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
@@ -22,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.TrayIcon.MessageType;
 import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
 
 public final class start extends javax.swing.JFrame{
     public start(){
@@ -41,6 +46,7 @@ public final class start extends javax.swing.JFrame{
     
     protected JTextField campos;
     
+    protected Date fecha;
     protected ResultSet rs;
     
     public static int userID;
@@ -104,6 +110,19 @@ public final class start extends javax.swing.JFrame{
                     nameUser=rs.getString("nombre_emp");
                     userID=rs.getInt("codigo_emp");
                     role=rs.getString("puesto");
+                    
+                    fecha=rs.getDate("fecha_nacimiento");
+                    int edad1=rs.getInt("edad");
+                    String edad2=String.valueOf(Period.between(LocalDate.parse(fecha.toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
+                    
+                    if(!edad2.equals(String.valueOf(edad1))){
+                        System.out.println("no es igual");
+                        datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),userID,false);
+                    }else{
+                        System.out.println("es igual");
+                        System.out.println(fecha.toString());
+                        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                    }
                     
                     datos.insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                     

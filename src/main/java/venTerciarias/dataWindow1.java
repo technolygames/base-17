@@ -1,6 +1,6 @@
 package venTerciarias;
 //clases
-//import clases.BackupHandler.escritorJSON;
+import clases.BackupHandler.escritorJSON;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
@@ -71,7 +71,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
                 
-                //new escritorJSON().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
+                new escritorJSON().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{

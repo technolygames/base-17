@@ -127,7 +127,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
                             while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true&&jTextField3.isEnabled()==true){
-                                datos.actualizarDatosInteger("almacen","cantidad","codigo_prod",Integer.parseInt(jTextField3.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("almacen","cantidad","codigo_prod",Integer.parseInt(jTextField3.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
                             }
@@ -160,7 +160,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
                             while(!jTextField4.getText().equals("")&&jCheckBox4.isSelected()==true&&jTextField4.isEnabled()==true){
-                                datos.actualizarDatosInteger("almacen","precio_unitario","codigo_prod",Integer.parseInt(jTextField4.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("almacen","precio_unitario","codigo_prod",Integer.parseInt(jTextField4.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
                             }

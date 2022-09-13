@@ -4,10 +4,13 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana3;
+//librerías
+import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -19,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //con extensión larga
 import java.util.logging.Level;
+import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario3 extends javax.swing.JFrame{
@@ -49,6 +53,11 @@ public class formulario3 extends javax.swing.JFrame{
             new menuDatosVentana3().setVisible(true);
         });
         
+        jMenuItem2.addActionListener((a)->{
+            picLabel.setIcon(null);
+            picLabel.setText("Foto");
+        });
+        
         miClearFields.addActionListener((a)->{
             jTextField1.setText("");
             jTextField2.setText("");
@@ -73,8 +82,7 @@ public class formulario3 extends javax.swing.JFrame{
                         File f=jfc.getSelectedFile();
                         direccion=f.getPath();
                         
-                        picLabel.setText(null);
-                        picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                        showImage(direccion);
                         
                         p.setProperty("lastdirectory_form3",f.getParent());
                         p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -96,6 +104,17 @@ public class formulario3 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(miInsImage)'");
                 new logger(Level.SEVERE).exceptionLogger(formulario3.class.getName(),"botones.miInsImage-2IO",n.fillInStackTrace());
+            }
+        });
+        
+        miLoadJson.addActionListener((a)->{
+            jfc=new JFileChooser("data/databackup/Proveedores");
+            
+            jfc.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
+            
+            if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
+                File f=jfc.getSelectedFile();
+                loadFromJson(f.getPath());
             }
         });
         
@@ -131,6 +150,35 @@ public class formulario3 extends javax.swing.JFrame{
         });
     }
     
+    protected void loadFromJson(String path){
+        try{
+            JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
+            jsonr.beginObject();
+            while(jsonr.hasNext()){
+                switch(jsonr.nextName()){
+                    case "codigo_prov"->jTextField1.setText(String.valueOf(jsonr.nextInt()));
+                    case "nombre_prov"->jTextField2.setText(jsonr.nextString());
+                    case "apellidop_prov"->jTextField3.setText(jsonr.nextString());
+                    case "apellidom_prov"->jTextField4.setText(jsonr.nextString());
+                    case "empresa"->jTextField5.setText(jsonr.nextString());
+                    case "contacto"->jTextField6.setText(String.valueOf(jsonr.nextInt()));
+                    case "imagen"->direccion=jsonr.nextString();
+                    default->jsonr.skipValue();
+                }      
+            }
+            showImage(direccion);
+            jsonr.endObject();
+            jsonr.close();
+        }catch(IOException e){
+            new logger(Level.CONFIG).staticLogger(e.getMessage());
+        }
+    }
+    
+    protected void showImage(String path){
+        picLabel.setText(null);
+        picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,6 +204,8 @@ public class formulario3 extends javax.swing.JFrame{
         jMenu2 = new javax.swing.JMenu();
         miInsImage = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(formulario3.class.getName()).getIconImage());
@@ -173,44 +223,32 @@ public class formulario3 extends javax.swing.JFrame{
         jLabel5.setText("Empresa:");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
         });
 
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
         });
 
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField3KeyPressed(evt);
             }
         });
 
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
             }
         });
 
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField5KeyPressed(evt);
-            }
-        });
-
-        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField6KeyPressed(evt);
             }
         });
 
@@ -221,6 +259,12 @@ public class formulario3 extends javax.swing.JFrame{
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel6.setText("Contacto:");
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField6KeyPressed(evt);
+            }
+        });
 
         jMenu1.setText("Datos");
 
@@ -236,6 +280,12 @@ public class formulario3 extends javax.swing.JFrame{
 
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
+
+        jMenuItem2.setText("Limpiar foto");
+        jMenu2.add(jMenuItem2);
+
+        miLoadJson.setText("Cargar JSON");
+        jMenu2.add(miLoadJson);
 
         jMenuBar1.add(jMenu2);
 
@@ -377,6 +427,7 @@ public class formulario3 extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -385,6 +436,7 @@ public class formulario3 extends javax.swing.JFrame{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
+    private javax.swing.JMenuItem miLoadJson;
     private javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     // End of variables declaration//GEN-END:variables

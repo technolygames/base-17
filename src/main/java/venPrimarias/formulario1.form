@@ -31,9 +31,14 @@
                 <Property name="text" type="java.lang.String" value="Limpiar campos"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpiar foto"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miLoadJson">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cargar JSON"/>
               </Properties>
             </MenuItem>
           </SubComponents>

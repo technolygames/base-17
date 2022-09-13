@@ -6,10 +6,13 @@ import clases.guiMediaHandler;
 import clases.logger;
 import clases.mvc.mvcForm1;
 import menus.menuDatosVentana1;
+//librerías
+import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
 import java.awt.HeadlessException;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -27,6 +30,7 @@ import javax.swing.JFileChooser;
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -68,7 +72,7 @@ public class formulario1 extends javax.swing.JFrame{
             new menuDatosVentana1().setVisible(true);
         });
         
-        jMenuItem3.addActionListener((a)->{
+        jMenuItem2.addActionListener((a)->{
             picLabel.setIcon(null);
             picLabel.setText("Foto");
         });
@@ -103,8 +107,7 @@ public class formulario1 extends javax.swing.JFrame{
                         File f=jfc.getSelectedFile();
                         direccion=f.getPath();
                         
-                        picLabel.setText(null);
-                        picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                        showImage(direccion);
                         
                         p.setProperty("lastdirectory_form1",f.getParent());
                         p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -126,6 +129,17 @@ public class formulario1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
                 new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-2IO",n.fillInStackTrace());
+            }
+        });
+        
+        miLoadJson.addActionListener((a)->{
+            jfc=new JFileChooser("data/databackup/Empleados");
+            
+            jfc.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
+            
+            if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
+                File f=jfc.getSelectedFile();
+                loadFromJson(f.getPath());
             }
         });
         
@@ -183,7 +197,7 @@ public class formulario1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(new Date(jDateChooser1.getDate().getTime()).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
+                        calcAge();
                     }catch(DateTimeParseException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
                         new logger(Level.SEVERE).staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtFNKeyPressed()'");
@@ -194,9 +208,52 @@ public class formulario1 extends javax.swing.JFrame{
         });
     }
     
+    protected void loadFromJson(String path){
+        try{
+            JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
+            jsonr.beginObject();
+            while(jsonr.hasNext()){
+                switch(jsonr.nextName()){
+                    case "password"->txtPassword.setText(jsonr.nextString());
+                    case "codigo_emp"->txtCodigo.setText(String.valueOf(jsonr.nextInt()));
+                    case "nombre_emp"->txtNombre.setText(jsonr.nextString());
+                    case "apellidop_emp"->txtAP.setText(jsonr.nextString());
+                    case "apellidom_emp"->txtAM.setText(jsonr.nextString());
+                    case "curp"->txtCURP.setText(jsonr.nextString());
+                    case "domicilio"->txtDom.setText(jsonr.nextString());
+                    case "puesto"->jComboBox1.getModel().setSelectedItem(jsonr.nextString());
+                    case "experiencia"->txtExp.setText(String.valueOf(jsonr.nextInt()));
+                    case "grado_estudios"->txtEstudios.setText(jsonr.nextString());
+                    case "contacto"->txtContacto.setText(String.valueOf(jsonr.nextInt()));
+                    case "fecha_nacimiento"->jDateChooser1.setDate(Date.valueOf(jsonr.nextString()));
+                    case "edad"->txtEdad.setText(String.valueOf(jsonr.nextInt()));
+                    case "estado"->jComboBox2.getModel().setSelectedItem(jsonr.nextString());
+                    case "datos_extra"->jTextArea1.setText(jsonr.nextString());
+                    case "imagen"->direccion=jsonr.nextString();
+                    default->jsonr.skipValue();
+                }
+            }
+            showImage(direccion);
+            calcAge();
+            jsonr.endObject();
+            jsonr.close();
+        }catch(IOException e){
+            new logger(Level.CONFIG).staticLogger(e.getMessage());
+        }
+    }
+    
     protected void placeHolders(){
         new placeHolder(txtNombre,"Primer y/o segundo nombre").inicialize();
         new placeHolder(txtExp,"En años").inicialize();
+    }
+    
+    protected void showImage(String path){
+        picLabel.setText(null);
+        picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+    }
+    
+    protected void calcAge(){
+        txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(new Date(jDateChooser1.getDate().getTime()).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
     }
     
     @SuppressWarnings("unchecked")
@@ -243,7 +300,8 @@ public class formulario1 extends javax.swing.JFrame{
         jMenu2 = new javax.swing.JMenu();
         miInsImage = new javax.swing.JMenuItem();
         miClearFields = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(formulario1.class.getName()).getIconImage());
@@ -267,62 +325,54 @@ public class formulario1 extends javax.swing.JFrame{
         jLabel11.setText("Datos extra:");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
             }
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);
             }
         });
 
         txtAP.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAPKeyPressed(evt);
             }
         });
 
         txtAM.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAMKeyPressed(evt);
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
+
         txtExp.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtExpKeyPressed(evt);
             }
         });
 
         txtEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEstudiosKeyPressed(evt);
             }
         });
 
         txtContacto.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtContactoKeyPressed(evt);
             }
         });
 
         txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtEdadKeyPressed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado", "Programador", "Desarrollador", "Dueño" }));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -365,8 +415,11 @@ public class formulario1 extends javax.swing.JFrame{
         miClearFields.setText("Limpiar campos");
         jMenu2.add(miClearFields);
 
-        jMenuItem3.setText("Limpiar foto");
-        jMenu2.add(jMenuItem3);
+        jMenuItem2.setText("Limpiar foto");
+        jMenu2.add(jMenuItem2);
+
+        miLoadJson.setText("Cargar JSON");
+        jMenu2.add(miLoadJson);
 
         jMenuBar1.add(jMenu2);
 
@@ -592,11 +645,12 @@ public class formulario1 extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem miClearFields;
     private javax.swing.JMenuItem miInsImage;
+    private javax.swing.JMenuItem miLoadJson;
     private javax.swing.JLabel picLabel;
     private javax.swing.JButton storeButton;
     private javax.swing.JTextField txtAM;

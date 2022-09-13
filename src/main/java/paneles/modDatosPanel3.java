@@ -193,7 +193,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     updateButton.addActionListener((b)->{
                         if(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
                             while(!jTextField5.getText().equals("")&&jCheckBox5.isSelected()==true&&jTextField5.isEnabled()==true){
-                                datos.actualizarDatosInteger("proveedor","contacto","codigo_prov",Integer.parseInt(jTextField5.getText()),Integer.parseInt(txtSearch.getText()));
+                                datos.actualizarDatosInteger("proveedor","contacto","codigo_prov",Integer.parseInt(jTextField5.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
                             }
