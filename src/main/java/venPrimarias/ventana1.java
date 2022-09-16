@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
 //extension larga
@@ -42,6 +43,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     public static DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
+    protected JTextField tf;
     
     public static int codigo_emp;
     
@@ -57,7 +59,6 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         };
         
-        dtm.setRowCount(0);
         dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
             "Nombre del producto",
@@ -79,8 +80,13 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
+        
+        for(JTextField campos:new JTextField[]{txtCodigo,txtProd,txtMarca,txtPrecio,txtCant,txtTotal}){
+            tf=campos;
+        }
+        
         addButton.addActionListener((a)->{
-            if(!txtCodigo.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtPrecio.getText().equals("")||!txtCant.getText().equals("")||!txtTotal.getText().equals("")){
+            if(!tf.getText().equals("")){
                 dtm.addRow(new Object[]{
                     txtCodigo.getText(),
                     txtProd.getText(),
@@ -89,12 +95,11 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtPrecio.getText(),
                     txtTotal.getText()
                 });
+                cleanFields();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
             }
-            
-            cleanFields();
         });
         
         backButton.addActionListener((a)->{
@@ -114,8 +119,13 @@ public final class ventana1 extends javax.swing.JFrame{
         
         mkPaidButton.addActionListener((a)->{
             try{
-                codigo_emp=Integer.parseInt(txtCodEmp.getText());
-                new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
+                if(jTable1.getRowCount()!=0){
+                    codigo_emp=Integer.parseInt(txtCodEmp.getText());
+                    new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error:\nNo se ingresaron los datos de los campos a la tabla","Error 18",JOptionPane.WARNING_MESSAGE);
+                    new logger(Level.WARNING).staticLogger("Error 18: No se ingresaron los datos de los campos a la tabla.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'");
+                }
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(mkPaidButton)'");
@@ -136,19 +146,24 @@ public final class ventana1 extends javax.swing.JFrame{
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
-                            if(rs.getInt("cantidad")==0){
-                                if(rs.getString("stock").equals("Agotado")){
-                                    JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    new logger(Level.CONFIG).staticLogger("No guarda en ventana1");
+                            if(!txtCodigo.getText().equals("")){
+                                if(rs.getInt("cantidad")==0){
+                                    if(rs.getString("stock").equals("Agotado")){
+                                        JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                        new logger(Level.CONFIG).staticLogger("No guarda en ventana1, pero da el aviso");
+                                    }else{
+                                        JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                        new datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
+                                        new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
+                                    }
                                 }else{
-                                    JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    new datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
-                                    new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
+                                    txtProd.setText(rs.getString("nombre_prod"));
+                                    txtMarca.setText(rs.getString("marca"));
+                                    txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
                                 }
                             }else{
-                                txtProd.setText(rs.getString("nombre_prod"));
-                                txtMarca.setText(rs.getString("marca"));
-                                txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
+                                JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                                new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
                             }
                         }else{
                             JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
@@ -172,19 +187,24 @@ public final class ventana1 extends javax.swing.JFrame{
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
-                            int txtCantidad=Integer.parseInt(txtCant.getText());
-                            int cantidad=rs.getInt("cantidad");
-                            if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
-                                if(txtCantidad>cantidad){
-                                    JOptionPane.showMessageDialog(null,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
-                                    new logger(Level.SEVERE).staticLogger("Error 14: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                            if(!txtCant.getText().equals("")){
+                                int txtCantidad=Integer.parseInt(txtCant.getText());
+                                int cantidad=rs.getInt("cantidad");
+                                if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
+                                    if(txtCantidad>cantidad){
+                                        JOptionPane.showMessageDialog(null,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
+                                        new logger(Level.SEVERE).staticLogger("Error 14: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                    }else{
+                                        calc();
+                                        JOptionPane.showMessageDialog(null,"No hay mucho stock de este producto.\nSi realizas la venta, te quedarás sin stock de este producto.","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                        new logger(Level.WARNING).staticLogger("Error 14: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                    }
                                 }else{
                                     calc();
-                                    JOptionPane.showMessageDialog(null,"No hay mucho stock de este producto.\nSi realizas la venta, te quedarás sin stock de este producto.","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                    new logger(Level.WARNING).staticLogger("Error 14: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
                                 }
                             }else{
-                                calc();
+                                JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                                new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
                             }
                         }
                     }catch(SQLException e){
@@ -192,6 +212,9 @@ public final class ventana1 extends javax.swing.JFrame{
                         new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
                         new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"botones.txtCant-14",e.fillInStackTrace());
                     }
+                }
+                if(a.getKeyCode()==KeyEvent.VK_BACK_SPACE){
+                    txtTotal.setText("");
                 }
             }
         });
@@ -320,51 +343,20 @@ public final class ventana1 extends javax.swing.JFrame{
         jLabel2.setText("Código del producto:");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
             }
         });
 
-        txtCodEmp.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodEmpKeyPressed(evt);
-            }
-        });
-
         txtProd.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProdKeyPressed(evt);
             }
         });
 
         txtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMarcaKeyPressed(evt);
-            }
-        });
-
-        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantKeyPressed(evt);
-            }
-        });
-
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyPressed(evt);
-            }
-        });
-
-        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTotalKeyPressed(evt);
             }
         });
 
@@ -376,10 +368,28 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jLabel6.setText("Cantidad:");
 
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyPressed(evt);
+            }
+        });
+
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantKeyPressed(evt);
+            }
+        });
+
         backButton.setText("Regresar");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel8.setText("Productos");
+
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTotalKeyPressed(evt);
+            }
+        });
 
         jLabel9.setText("Total:");
 
@@ -387,10 +397,7 @@ public final class ventana1 extends javax.swing.JFrame{
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -398,6 +405,7 @@ public final class ventana1 extends javax.swing.JFrame{
         ));
         jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         addButton.setText("Añadir campos");
 
@@ -408,6 +416,12 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton2.setText("Eliminar fila");
 
         jLabel1.setText("Código del empleado:");
+
+        txtCodEmp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodEmpKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

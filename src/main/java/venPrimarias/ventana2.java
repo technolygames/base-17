@@ -9,6 +9,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
 //extension larga
@@ -34,6 +35,7 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
+    protected JTextField tf;
     
     protected final void settings(){
         picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
@@ -56,7 +58,6 @@ public final class ventana2 extends javax.swing.JFrame{
             "Precio unitario",
             "Stock"
         });
-        dtm.setRowCount(0);
         
         for(int i=0;i<dtm.getRowCount();i++){
             for(int j=0;j<dtm.getColumnCount();j++){
@@ -71,8 +72,13 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected final void botones(){
         dtm=new DefaultTableModel();
+        
+        for(JTextField campos:new JTextField[]{txtCodProd,txtCodLote,txtCodProv,txtProd,txtMarca,txtCant,txtPU}){
+            tf=campos;
+        }
+        
         addButton.addActionListener((a)->{
-            if(!txtCodProd.getText().equals("")||!txtCodLote.getText().equals("")||!txtCodProv.getText().equals("")||!txtProd.getText().equals("")||!txtMarca.getText().equals("")||!txtCant.getText().equals("")||!txtPU.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
+            if(!tf.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
                 dtm.addRow(new Object[]{
                     txtCodProd.getText(),
                     txtCodLote.getText(),
@@ -83,12 +89,11 @@ public final class ventana2 extends javax.swing.JFrame{
                     txtPU.getText(),
                     jComboBox1.getSelectedItem()
                 });
+                cleanFields();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(addButton)'");
             }
-            
-            cleanFields();
         });
         
         backButton.addActionListener((a)->{
@@ -108,20 +113,25 @@ public final class ventana2 extends javax.swing.JFrame{
         
         svdtButton.addActionListener((a)->{
             try{
-                for(int i=0;i<dtm.getRowCount();i++){
-                    int codigoProducto=Integer.parseInt(dtm.getValueAt(i,0).toString());
-                    int codigoLote=Integer.parseInt(dtm.getValueAt(i,1).toString());
-                    int codigoProveedor=Integer.parseInt(dtm.getValueAt(i,2).toString());
-                    String nombreProducto=dtm.getValueAt(i,3).toString();
-                    String marca=dtm.getValueAt(i,4).toString();
-                    int cantidad=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                    int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
-                    String stock=dtm.getValueAt(i,7).toString();
-                    
-                    new datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
+                if(jTable1.getRowCount()!=0){
+                    for(int i=0;i<dtm.getRowCount();i++){
+                        int codigoProducto=Integer.parseInt(dtm.getValueAt(i,0).toString());
+                        int codigoLote=Integer.parseInt(dtm.getValueAt(i,1).toString());
+                        int codigoProveedor=Integer.parseInt(dtm.getValueAt(i,2).toString());
+                        String nombreProducto=dtm.getValueAt(i,3).toString();
+                        String marca=dtm.getValueAt(i,4).toString();
+                        int cantidad=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                        int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
+                        String stock=dtm.getValueAt(i,7).toString();
+                        
+                        new datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
+                    }
+                    JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+                    new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error:\nNo se ingresaron los datos de los campos a la tabla","Error 18",JOptionPane.WARNING_MESSAGE);
+                    new logger(Level.WARNING).staticLogger("Error 18: No se ingresaron los datos de los campos a la tabla.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'");
                 }
-                JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'");
@@ -263,18 +273,6 @@ public final class ventana2 extends javax.swing.JFrame{
             }
         });
 
-        txtCodLote.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodLoteKeyPressed(evt);
-            }
-        });
-
-        txtCodProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodProvKeyPressed(evt);
-            }
-        });
-
         txtProd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtProdKeyPressed(evt);
@@ -287,15 +285,9 @@ public final class ventana2 extends javax.swing.JFrame{
             }
         });
 
-        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodLote.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantKeyPressed(evt);
-            }
-        });
-
-        txtPU.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPUKeyPressed(evt);
+                txtCodLoteKeyPressed(evt);
             }
         });
 
@@ -303,14 +295,17 @@ public final class ventana2 extends javax.swing.JFrame{
 
         jLabel4.setText("Código del proveedor:");
 
+        txtCodProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodProvKeyPressed(evt);
+            }
+        });
+
         cleanButton.setText("Limpiar campos");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -318,14 +313,27 @@ public final class ventana2 extends javax.swing.JFrame{
         ));
         jTable1.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         addButton.setText("Añadir campos");
 
         jLabel1.setText("Cantidad:");
 
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantKeyPressed(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En Existencia", "Agotado" }));
 
         jLabel3.setText("Precio unitario:");
+
+        txtPU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPUKeyPressed(evt);
+            }
+        });
 
         picLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

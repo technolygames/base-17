@@ -9,10 +9,14 @@ import venPrimarias.ventana1;
 //java
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import javax.swing.table.DefaultTableModel;
 
 public class paymentWindow extends javax.swing.JDialog{
@@ -68,26 +72,29 @@ public class paymentWindow extends javax.swing.JDialog{
             });
         }
         
-        jLabel2.setText(String.valueOf(ventana1.codigo_emp));
-        try{
-            int res=0;
-            for(int i=0;i<dtm.getRowCount();i++){
-                int n1=Integer.parseInt(dtm.getValueAt(i,5).toString());
-                res+=n1;
-            }
-            jLabel4.setText(String.valueOf(res));
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"settings-32",e.fillInStackTrace());
-        }
+        calc1();
         
         jTable1.setEnabled(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(dtm);
+        jTextField1.setEnabled(false);
     }
     
     protected final void botones(){
+        cbAddCoupon.addActionListener((a)->{
+            if(cbAddCoupon.isSelected()==true){
+                jTextField1.setEnabled(true);
+                if(!jTextField1.getText().equals("")){
+                    calc2();
+                }else{
+                    //do nothing
+                }
+            }else if(cbAddCoupon.isSelected()==false){
+                jTextField1.setEnabled(false);
+                calc1();
+            }
+        });
+        
         calcButton.addActionListener((a)->{
             result=Integer.parseInt(jLabel4.getText());
             new calcWindow(new javax.swing.JFrame(),true).setVisible(true);
@@ -103,6 +110,15 @@ public class paymentWindow extends javax.swing.JDialog{
             }else{
                 setVisible(false);
                 dispose();
+            }
+        });
+        
+        jTextField1.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent a){
+                if(a.getKeyCode()==KeyEvent.VK_ENTER){
+                    calc2();
+                }
             }
         });
         
@@ -135,7 +151,7 @@ public class paymentWindow extends javax.swing.JDialog{
                         Efectivo
                         Cash
                         */
-                        readTable();
+                        confirmPurchase();
                         windowState();
                         
                         ticket.imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),Integer.parseInt(jLabel6.getText()),true);
@@ -146,7 +162,7 @@ public class paymentWindow extends javax.swing.JDialog{
                         Tarjeta
                         Card
                         */
-                        readTable();
+                        confirmPurchase();
                         windowState();
                         /*
                         Aquí deberá ir el código para que se pague con tarjeta
@@ -166,6 +182,49 @@ public class paymentWindow extends javax.swing.JDialog{
                 new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"botones.mkPaid-0",x.fillInStackTrace());
             }
         });
+    }
+    
+    protected void calc1(){
+        jLabel2.setText(String.valueOf(ventana1.codigo_emp));
+        try{
+            int res=0;
+            for(int i=0;i<dtm.getRowCount();i++){
+                int n1=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                res+=n1;
+            }
+            jLabel4.setText(String.valueOf(res));
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc1()'");
+            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc1-32",e.fillInStackTrace());
+        }
+    }
+    
+    protected void calc2(){
+        try{
+            ResultSet rs=new datos().buscarDatosPromo(jTextField1.getText());
+            if(rs.next()){
+                var cal=Integer.parseInt(jLabel4.getText())*rs.getFloat("descuento");
+                var cal2=Integer.parseInt(jLabel4.getText())-cal;
+                jLabel4.setText(String.valueOf(Math.round(cal2)));
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe correctamente el código de descuento","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 14: no existe el registro en la base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc2()'");
+            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc2-14",e.fillInStackTrace());
+        }
+    }
+    
+    protected void confirmPurchase(){
+        if(!jTextField1.getText().equals("")){
+            readTable();
+            new datos().actualizarDatosUsoPromo(jTextField1.getText(),new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        }else{
+            readTable();
+        }
     }
     
     protected void readTable(){
@@ -211,6 +270,8 @@ public class paymentWindow extends javax.swing.JDialog{
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         calcButton = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        cbAddCoupon = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(paymentWindow.class.getName()).getIconImage());
@@ -254,6 +315,8 @@ public class paymentWindow extends javax.swing.JDialog{
 
         calcButton.setText("Calcular");
 
+        cbAddCoupon.setText("Agregar cupón");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,13 +332,17 @@ public class paymentWindow extends javax.swing.JDialog{
                         .addComponent(cancelButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(cbAddCoupon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -307,13 +374,16 @@ public class paymentWindow extends javax.swing.JDialog{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel3)))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel5))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbAddCoupon)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
@@ -332,6 +402,7 @@ public class paymentWindow extends javax.swing.JDialog{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calcButton;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox cbAddCoupon;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -343,6 +414,7 @@ public class paymentWindow extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton mkPaidButton;
     // End of variables declaration//GEN-END:variables
 }

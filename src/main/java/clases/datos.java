@@ -389,6 +389,17 @@ public class datos{
         }
     }
     
+    public ResultSet buscarDatosPromo(String idPromo){
+        try{
+            ps=getConnection().prepareStatement("select * from promociones where id_prom=?;");
+            ps.setString(1,idPromo);
+            
+            return ps.executeQuery();
+        }catch(SQLException e){
+            return null;
+        }
+    }
+    
     /**
      * Actualiza datos al iniciar sesión en el programa. 
      * Este método no es universal y se debe usar en casos muy específicos.
@@ -427,6 +438,19 @@ public class datos{
         try{
             ps=getConnection().prepareStatement("update conteo set no_ventas=no_ventas+1 where codigo_emp=? and fecha_sesion=?;");
             ps.setInt(1,codigo);
+            ps.setString(2,fecha);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-9",e.fillInStackTrace());
+        }
+    }
+    
+    public void actualizarDatosUsoPromo(String codigo,String fecha){
+        try{
+            ps=getConnection().prepareStatement("update promociones set no_usos=no_usos+1 where id_prom=? and inicio=?;");
+            ps.setString(1,codigo);
             ps.setString(2,fecha);
             ps.executeUpdate();
         }catch(SQLException e){

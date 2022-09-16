@@ -120,8 +120,6 @@ public final class start extends javax.swing.JFrame{
                         datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),userID,false);
                     }else{
                         System.out.println("es igual");
-                        System.out.println(fecha.toString());
-                        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
                     }
                     
                     datos.insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));

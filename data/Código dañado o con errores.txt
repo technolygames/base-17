@@ -389,4 +389,14 @@ System.getProperty("user.dir")+
             new logger().logStaticSaver("Inicio de sesión como metausuario no realizado",Level.FINE);
         }
     }*/
-    
+    /*List<String> yfl=Files.readAllLines(Paths.get("./data/logs/static/staticLog.log"),StandardCharsets.UTF_8);
+                    String collect=yfl.stream().filter(StringUtils::isNotBlank).collect(Collectors.joining("\n"));
+                    jTextArea1.setText(collect);*/
+                    /*Scanner sc=new Scanner(br);
+                    while(sc.hasNext()){
+                        String nil=sc.nextLine();
+                        lineScanner=new Scanner(nil);
+                        while(lineScanner.hasNext()){
+                            jTextArea1.setText(lineScanner.nextLine());
+                        }
+                    }*/
