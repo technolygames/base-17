@@ -221,7 +221,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void confirmPurchase(){
         if(!jTextField1.getText().equals("")){
             readTable();
-            new datos().actualizarDatosUsoPromo(jTextField1.getText(),new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+            new datos().actualizarDatosUsoPromo(jTextField1.getText());
         }else{
             readTable();
         }

@@ -389,6 +389,13 @@ public class datos{
         }
     }
     
+    /**
+     * Busca los datos de la promoción en la base de datos.
+     * 
+     * @param idPromo a buscar. Puede ser String o Integer.
+     * 
+     * @return los datos requeridos.
+     */
     public ResultSet buscarDatosPromo(String idPromo){
         try{
             ps=getConnection().prepareStatement("select * from promociones where id_prom=?;");
@@ -396,6 +403,9 @@ public class datos{
             
             return ps.executeQuery();
         }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'buscarDatosPromo()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"buscarDatosPromo-14",e.fillInStackTrace());
             return null;
         }
     }
@@ -415,12 +425,18 @@ public class datos{
             ps.setString(3,user1);
             ps.executeUpdate();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosLogin()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosLogin-9",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosLogin()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosLogin-12",e.fillInStackTrace());
         }
     }
     
+    /**
+     * Actualiza la cantidad del producto que hay en stock (en almacén).
+     * 
+     * @param cantidad del producto que se vendió.
+     * @param codigo de identificación del producto vendido.
+     */
     public void actualizarDatosAlmacen(int cantidad,int codigo){
         try{
             ps=getConnection().prepareCall("update almacen set cantidad=cantidad-? where codigo_prod=?;");
@@ -428,12 +444,19 @@ public class datos{
             ps.setInt(2,codigo);
             ps.executeUpdate();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosAlmacen-9",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosAlmacen-12",e.fillInStackTrace());
         }
     }
     
+    /**
+     * Actualiza el historial de ventas del empleado de ese día.
+     * No actualiza los registros de otros días.
+     * 
+     * @param codigo de identificación del empleado.
+     * @param fecha de inicio de sesión del empleado.
+     */
     public void actualizarDatosConteoVentas(int codigo,String fecha){
         try{
             ps=getConnection().prepareStatement("update conteo set no_ventas=no_ventas+1 where codigo_emp=? and fecha_sesion=?;");
@@ -441,22 +464,26 @@ public class datos{
             ps.setString(2,fecha);
             ps.executeUpdate();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-9",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-12",e.fillInStackTrace());
         }
     }
     
-    public void actualizarDatosUsoPromo(String codigo,String fecha){
+    /**
+     * Actualiza la cantidad de usos del código promocional.
+     * 
+     * @param codigo promocional a usar.
+     */
+    public void actualizarDatosUsoPromo(String codigo){
         try{
-            ps=getConnection().prepareStatement("update promociones set no_usos=no_usos+1 where id_prom=? and inicio=?;");
+            ps=getConnection().prepareStatement("update promociones set no_usos=no_usos+1 where id_prom=?;");
             ps.setString(1,codigo);
-            ps.setString(2,fecha);
             ps.executeUpdate();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-9",e.fillInStackTrace());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosUsoPromo()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosUsoPromo-12",e.fillInStackTrace());
         }
     }
     
