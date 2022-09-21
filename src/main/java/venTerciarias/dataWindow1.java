@@ -1,10 +1,10 @@
 package venTerciarias;
 //clases
-import clases.BackupHandler.escritorJSON;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread2;
+import paneles.countPanel;
 import venPrimarias.start;
 import venPrimarias.ltshWorkers;
 //java
@@ -71,7 +71,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
                 etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
                 
-                new escritorJSON().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
+                //new escritorJSON().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
@@ -98,7 +98,7 @@ public class dataWindow1 extends javax.swing.JDialog{
             dispose();
         });
         
-        storeImgButton.addActionListener((a)->{
+        miStorePic.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
                 ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
@@ -111,22 +111,26 @@ public class dataWindow1 extends javax.swing.JDialog{
                 
                 new thread2(rs,new FileOutputStream(f)).run();
                 
-                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del empleado.\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 ps.close();
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.storeImg-14",e.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.miStorePic-14",e.fillInStackTrace());
             }catch(FileNotFoundException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.storeImg-10",x.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.miStorePic-10",x.fillInStackTrace());
             }catch(NullPointerException n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.storeImg-0",n.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"botones.miStorePic-0",n.fillInStackTrace());
             }
+        });
+        
+        miWatchCount.addActionListener((a)->{
+            new countViewer(new javax.swing.JFrame(),true,new countPanel(Integer.parseInt(etiCodigo.getText()))).setVisible(true);
         });
     }
     
@@ -137,7 +141,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         jLabel1 = new javax.swing.JLabel();
         etiFoto = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        storeImgButton = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         etiExp = new javax.swing.JLabel();
@@ -174,6 +177,10 @@ public class dataWindow1 extends javax.swing.JDialog{
         etiCURP = new javax.swing.JLabel();
         etiFN = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miStorePic = new javax.swing.JMenuItem();
+        miWatchCount = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(dataWindow1.class.getName()).getIconImage());
@@ -184,8 +191,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         etiFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         backButton.setText("Regresar");
-
-        storeImgButton.setText("Guardar imagen");
 
         jLabel12.setText("Fecha de ingreso:");
 
@@ -278,6 +283,18 @@ public class dataWindow1 extends javax.swing.JDialog{
 
         jLabel18.setText("Fecha de nacimiento:");
 
+        jMenu1.setText("Acciones");
+
+        miStorePic.setText("Guardar imagen");
+        jMenu1.add(miStorePic);
+
+        miWatchCount.setText("Ver conteo");
+        jMenu1.add(miWatchCount);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,8 +303,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(storeImgButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                        .addGap(0, 433, Short.MAX_VALUE)
                         .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,9 +427,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                             .addComponent(jLabel13)
                             .addComponent(etiSesion))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton)
-                    .addComponent(storeImgButton))
+                .addComponent(backButton)
                 .addContainerGap())
         );
 
@@ -460,10 +474,13 @@ public class dataWindow1 extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton storeImgButton;
+    private javax.swing.JMenuItem miStorePic;
+    private javax.swing.JMenuItem miWatchCount;
     // End of variables declaration//GEN-END:variables
 }

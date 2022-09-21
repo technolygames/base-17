@@ -28,3 +28,7 @@ new laf().LookAndFeel(validacionVentana9.this,validacionVentana9.class.getName()
 
 ERROR_MESSAGE
 SEVERE
+
+EventQueue.invokeLater(()->{
+            new countWorkerWindow(new countPanel()).setVisible(true);
+        });

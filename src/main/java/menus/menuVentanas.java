@@ -27,6 +27,7 @@ import javax.swing.ImageIcon;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
+import javax.swing.JOptionPane;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -101,8 +102,19 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         closeButton.addActionListener((a)->{
-            System.exit(0);
-            dispose();
+            int i=JOptionPane.showConfirmDialog(null,"¿Deseas cerrar el programa?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
+            switch(i){
+                case 0:
+                    new logger(Level.OFF).staticLogger("Programa cerrado");
+                    System.exit(0);
+                    dispose();
+                    break;
+                case 1:
+                    logout();
+                    break;
+                default:
+                    break;
+            }
         });
     }
     
@@ -116,15 +128,19 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         jMenuItem3.addActionListener((a)->{
-            new start().setVisible(true);
-            new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
-            new logger(Level.SEVERE).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'menu(jMenuItem2)'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
-            dispose();
+            logout();
         });
         
         properButton.addActionListener((a)->{
             new proper1().setVisible(true);
         });
+    }
+    
+    protected void logout(){
+        new start().setVisible(true);
+        new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
+        new logger(Level.SEVERE).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'logout()'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
+        dispose();
     }
     
     @SuppressWarnings("unchecked")

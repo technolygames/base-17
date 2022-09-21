@@ -1,0 +1,21 @@
+{
+   "password": "1234567",
+   "codigo_emp": 54321,
+   "nombre_emp": "Pruebas",
+   "apellidop_emp": "Prueba",
+   "apellidom_emp": "Prueba",
+   "curp": "PRBA190910HDFKRTP2",
+   "domicilio": "calle falsa 123, springfield",
+   "puesto": "Dueño",
+   "experiencia": 1,
+   "grado_estudios": "Bachillerato",
+   "contacto": 123456789,
+   "fecha_nacimiento": "2019-09-10",
+   "edad": 3,
+   "estado": "Activo",
+   "datos_extra": "datos extra de prueba",
+   "imagen": "C:\\Users\\erick\\Documents\\NetBeansProjects\\base-17\\data\\databackup\\Empleados\\Pruebas-54321\\Pruebas-54321.jpg",
+   "datos": {
+      "no_ventas": 0
+   }
+}

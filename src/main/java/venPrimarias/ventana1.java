@@ -275,7 +275,11 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected void removeRow(){
         try{
-            dtm.removeRow(jTable1.getSelectedRow());
+            if(jTable1.isRowSelected(jTable1.getRowCount())==true){
+                dtm.removeRow(jTable1.getSelectedRow());
+            }else{
+                new logger(Level.INFO).staticLogger("no hay nada seleccionado");
+            }
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");

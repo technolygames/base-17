@@ -4,6 +4,7 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.win10Notification;
+import java.awt.EventQueue;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
@@ -16,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.time.Period;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.TrayIcon.MessageType;
 import java.nio.charset.StandardCharsets;
+import java.sql.PreparedStatement;
 import java.time.format.DateTimeFormatter;
 
 public final class start extends javax.swing.JFrame{
@@ -111,18 +112,31 @@ public final class start extends javax.swing.JFrame{
                     userID=rs.getInt("codigo_emp");
                     role=rs.getString("puesto");
                     
-                    fecha=rs.getDate("fecha_nacimiento");
-                    int edad1=rs.getInt("edad");
-                    String edad2=String.valueOf(Period.between(LocalDate.parse(fecha.toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
-                    
-                    if(!edad2.equals(String.valueOf(edad1))){
-                        System.out.println("no es igual");
-                        datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),userID,false);
-                    }else{
-                        System.out.println("es igual");
+                    /*revisar la edad del empleado*/{
+                        fecha=rs.getDate("fecha_nacimiento");
+                        int edad1=rs.getInt("edad");
+                        String edad2=String.valueOf(Period.between(LocalDate.parse(fecha.toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
+                        
+                        if(!edad2.equals(String.valueOf(edad1))){
+                            new logger(Level.INFO).staticLogger("no es igual");
+                            datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),userID,false);
+                        }else{
+                            new logger(Level.INFO).staticLogger("es igual");
+                        }
                     }
                     
-                    datos.insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                    /*revisar registros en conteo*/{
+                        PreparedStatement ps=new datos().getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
+                        ps.setInt(1,userID);
+                        ps.setString(2,LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                        ResultSet rs2=ps.executeQuery();
+                        if(rs2.next()){
+                            new logger(Level.INFO).staticLogger("1; si hay");
+                        }else{
+                            new logger(Level.INFO).staticLogger("2; no hay");
+                            new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                        }
+                    }
                     
                     new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
                     new logger(Level.INFO).staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID);
@@ -232,7 +246,9 @@ public final class start extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new start().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new start().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

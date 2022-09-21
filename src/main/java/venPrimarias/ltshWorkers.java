@@ -265,6 +265,8 @@ public class ltshWorkers extends javax.swing.JFrame{
                     ps.close();
                     rs.close();
                     break;
+                default:
+                    break;
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);

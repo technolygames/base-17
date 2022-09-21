@@ -1,6 +1,5 @@
 package venTerciarias;
 //clases
-import clases.BackupHandler.escritorJSON;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
@@ -62,7 +61,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                 etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
                 etiUCompra.setText(String.valueOf(rs.getDate("fecha_ucompra")));
                 
-                new escritorJSON().writeDataPartnerJson(Integer.parseInt(etiCodigo.getText()));
+                //new escritorJSON().writeDataPartnerJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
@@ -89,7 +88,11 @@ public class dataWindow2 extends javax.swing.JDialog{
             dispose();
         });
         
-        storeImgButton.addActionListener((a)->{
+        miCreateInvoice.addActionListener((a)->{
+            
+        });
+        
+        miStorePic.addActionListener((a)->{
             try{
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
                 ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
@@ -102,21 +105,21 @@ public class dataWindow2 extends javax.swing.JDialog{
                 
                 new thread2(rs,new FileOutputStream(f)).run();
                 
-                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 ps.close();
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-14",e.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.miStorePic-14",e.fillInStackTrace());
             }catch(FileNotFoundException x){
                 JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-10",x.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.miStorePic-10",x.fillInStackTrace());
             }catch(NullPointerException n){
                 JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.storeImg-0",n.fillInStackTrace());
+                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'");
+                new logger(Level.SEVERE).exceptionLogger(dataWindow2.class.getName(),"botones.miStorePic-0",n.fillInStackTrace());
             }
         });
     }
@@ -150,6 +153,10 @@ public class dataWindow2 extends javax.swing.JDialog{
         jLabel10 = new javax.swing.JLabel();
         etiRFC = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        miStorePic = new javax.swing.JMenuItem();
+        miCreateInvoice = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(dataWindow2.class.getName()).getIconImage());
@@ -215,6 +222,18 @@ public class dataWindow2 extends javax.swing.JDialog{
         etiRFC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel11.setText("RFC:");
+
+        jMenu1.setText("Acciones");
+
+        miStorePic.setText("Guardar imagen");
+        jMenu1.add(miStorePic);
+
+        miCreateInvoice.setText("Crear factura");
+        jMenu1.add(miCreateInvoice);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -345,8 +364,12 @@ public class dataWindow2 extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JMenuItem miCreateInvoice;
+    private javax.swing.JMenuItem miStorePic;
     private javax.swing.JButton storeImgButton;
     // End of variables declaration//GEN-END:variables
 }

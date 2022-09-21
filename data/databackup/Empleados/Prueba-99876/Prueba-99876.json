@@ -1,0 +1,21 @@
+{
+   "password": "12345",
+   "codigo_emp": 99876,
+   "nombre_emp": "Prueba",
+   "apellidop_emp": "Prueba",
+   "apellidom_emp": "Prueba",
+   "curp": "PRBA190910HDFKRTP1",
+   "domicilio": "calle falsa 123, springfield",
+   "puesto": "Programador",
+   "experiencia": 1,
+   "grado_estudios": "Bachillerato",
+   "contacto": 123456789,
+   "fecha_nacimiento": "2019-09-10",
+   "edad": 3,
+   "estado": "Activo",
+   "datos_extra": "datos extra de prueba",
+   "imagen": "C:\\Users\\erick\\Documents\\NetBeansProjects\\base-17\\data\\databackup\\Empleados\\Prueba-99876\\Prueba-99876.jpg",
+   "datos": {
+      "no_ventas": 12
+   }
+}

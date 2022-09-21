@@ -5,10 +5,12 @@ import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.awt.Image;
+import java.sql.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
+import javax.swing.JTextField;
 
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
@@ -24,6 +26,8 @@ public class ventana3 extends javax.swing.JFrame{
         setResizable(false);
         pack();
     }
+    
+    protected JTextField tf;
     
     protected void settings(){
         jTextField3.setText(".");
@@ -47,15 +51,19 @@ public class ventana3 extends javax.swing.JFrame{
             jDateChooser2.setDate(null);
         });
         
+        for(JTextField campos:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField3}){
+            tf=campos;
+        }
+        
         svdtButton.addActionListener((a)->{
             try{
-                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextArea1.getText().equals("")||!jTextField3.getText().equals(".")||!jTextField3.getText().equals("")){
+                if(!tf.getText().equals("")||!jTextArea1.getText().equals("")){
                     String codigo=jTextField1.getText();
                     String nombre=jTextField2.getText();
                     String datos=jTextArea1.getText();
                     float descuento=Float.parseFloat(jTextField3.getText());
-                    java.sql.Date inicio=new java.sql.Date(jDateChooser1.getDate().getTime());
-                    java.sql.Date fin=new java.sql.Date(jDateChooser2.getDate().getTime());
+                    Date inicio=new Date(jDateChooser1.getDate().getTime());
+                    Date fin=new Date(jDateChooser2.getDate().getTime());
                     
                     new datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
