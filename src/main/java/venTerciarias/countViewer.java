@@ -1,9 +1,10 @@
 package venTerciarias;
 
 import clases.guiMediaHandler;
-import java.awt.BorderLayout;
-import java.awt.Component;
 import paneles.countPanel;
+
+import java.awt.Component;
+import java.awt.BorderLayout;
 
 public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal){

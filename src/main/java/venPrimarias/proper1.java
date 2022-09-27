@@ -7,6 +7,7 @@ import clases.thread1;
 import clases.validation;
 //librerías
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 //java
 import java.awt.Frame;
 import java.awt.Image;
@@ -75,7 +76,7 @@ public final class proper1 extends javax.swing.JFrame{
         jTextField3.setVisible(false);
         
         JTextField[] tf={jTextField4,jTextField5};
-        if(start.role.equals("Dueño")||start.role.equals("Programador")||start.role.equals("Desarrollador")){
+        if(new validation(start.role,proper1.class.getName()).isAccessible()==true){
             for(JTextField textfield:tf){
                 textfield.setEnabled(true);
             }
@@ -296,6 +297,7 @@ public final class proper1 extends javax.swing.JFrame{
         Here goes look and feel to be install
         */
         UIManager.installLookAndFeel(new FlatDarkLaf().getName(),new FlatDarkLaf().getClass().getName());
+        UIManager.installLookAndFeel(new FlatLightLaf().getName(),new FlatLightLaf().getClass().getName());
     }
     
     protected final void combo(){

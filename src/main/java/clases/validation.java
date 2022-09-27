@@ -31,6 +31,11 @@ public class validation{
         this.clase=clase;
     }
     
+    public validation(String role,String clase){
+        this.puesto=role;
+        this.clase=clase;
+    }
+    
     /**
      * Método encargado de validar los datos cuando se crea la instancia de esta clase.
      * Roles permitidos:
@@ -48,6 +53,14 @@ public class validation{
         }else{
             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Error 38: usuario sin privilegios.\nOcurrió en la clase '"+validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario sin privilegios: "+String.valueOf(start.userID));
+        }
+    }
+    
+    public boolean isAccessible(){
+        if(puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador")){
+            return true;
+        }else{
+            return false;
         }
     }
 }

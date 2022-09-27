@@ -37,10 +37,29 @@ public class dataWindow1 extends javax.swing.JDialog{
         pack();
     }
     
+    protected int codigo;
+    
+    public dataWindow1(java.awt.Frame parent,boolean modal,int code){
+        super(parent,modal);
+        initComponents();
+        new guiMediaHandler(dataWindow1.class.getName()).LookAndFeel(dataWindow1.this);
+        
+        this.codigo=code;
+        
+        botones();
+        datosMostrar();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Datos del empleado");
+        setResizable(false);
+        pack();
+    }
+    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    protected void settings(){
+    protected final void settings(){
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jTextArea2.setLineWrap(true);
@@ -50,7 +69,7 @@ public class dataWindow1 extends javax.swing.JDialog{
     protected final void datosMostrar(){
         try{
             ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
-            ps.setInt(1,ltshWorkers.code);
+            ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
                 etiContra.setText(rs.getString("password"));
@@ -100,13 +119,16 @@ public class dataWindow1 extends javax.swing.JDialog{
         
         miStorePic.addActionListener((a)->{
             try{
+                int codigo=Integer.parseInt(etiCodigo.getText());
+                String nombre=etiNombre.getText();
+                
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
-                ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
+                ps.setInt(1,codigo);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File("data/media/dataImage/Empleados/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo+"-("+i+").jpg");
                 }
                 
                 new thread2(rs,new FileOutputStream(f)).run();

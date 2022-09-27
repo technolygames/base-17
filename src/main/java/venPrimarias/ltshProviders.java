@@ -51,9 +51,7 @@ public class ltshProviders extends javax.swing.JFrame{
     protected RowSorter<TableModel> sorter;
     protected JPopupMenu popupMenu;
     
-    public static int code;
-    
-    protected void settings(){
+    protected final void settings(){
         mostrarBoton(false);
     }
     
@@ -64,37 +62,22 @@ public class ltshProviders extends javax.swing.JFrame{
         });
         
         jButton1.addActionListener((a)->{
-            code=Integer.parseInt(dtm.getValueAt(0,0).toString());
-            new dataWindow3(new javax.swing.JFrame(),true).setVisible(true);
+            new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString())).setVisible(true);
         });
         
         refreshButton.addActionListener((a)->{
-            textField("");
-            datosMostrar();
-            mostrarBoton(false);
+            searchAndClear();
         });
         
         searchButton.addActionListener((a)->{
-            if(!txtBuscar.getText().equals("")){
-                datosBuscar();
-                mostrarBoton(true);
-            }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'botones(searchButton)'");
-            }
+            searchData();
         });
         
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    if(!txtBuscar.getText().equals("")){
-                        datosBuscar();
-                        mostrarBoton(true);
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'botones(txtBuscar)'");
-                    }
+                    searchData();
                 }
             }
         });
@@ -115,11 +98,28 @@ public class ltshProviders extends javax.swing.JFrame{
         jComboBox1.addActionListener((a)->{
             int i=jComboBox1.getSelectedIndex();
             if(i>=0&&i<6){
-                textField("");
-                datosMostrar();
-                mostrarBoton(false);
+                searchAndClear();
             }
         });
+    }
+    
+    //NO USAR PARA BUSCAR DATOS
+    //Este método se encarga de limpiar el cuadro de búsqueda y la tabla, también de esconder el botón de ver datos detallados
+    protected void searchAndClear(){
+        textField("");
+        datosMostrar();
+        mostrarBoton(false);
+    }
+    
+    //Este es para buscar datos en concreto
+    protected void searchData(){
+        if(!txtBuscar.getText().equals("")){
+            datosBuscar();
+            mostrarBoton(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'botones(searchButton)'");
+        }
     }
     
     protected final void datosMostrar(){
@@ -279,7 +279,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     break;
                 case 5:
                     ps=new datos().getConnection().prepareStatement("select * from proveedor where contacto=?;");
-                    ps.setInt(1, Integer.parseInt(txtBuscar.getText()));
+                    ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
@@ -325,8 +325,7 @@ public class ltshProviders extends javax.swing.JFrame{
         JMenuItem mi1=new JMenuItem(new AbstractAction("Ver datos"){
             @Override
             public void actionPerformed(ActionEvent e){
-                code=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
-                new dataWindow3(new javax.swing.JFrame(),true).setVisible(true);
+                new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
             }
         });
         
@@ -356,17 +355,17 @@ public class ltshProviders extends javax.swing.JFrame{
         }
     }
     
-    protected void textField(String text){
-        txtBuscar.setText(text);
-    }
-    
     protected void mostrarBoton(boolean flag){
         if(flag==true){
             jButton1.setVisible(true);
         }if(flag==false){
             jButton1.setVisible(false);
-            txtBuscar.setText("");
+            textField("");
         }
+    }
+    
+    protected void textField(String text){
+        txtBuscar.setText(text);
     }
     
     @SuppressWarnings("unchecked")

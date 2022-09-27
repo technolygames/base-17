@@ -7,10 +7,10 @@ import clases.logger;
 import java.awt.Image;
 import java.sql.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
-import javax.swing.JTextField;
 
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
@@ -115,15 +115,7 @@ public class ventana3 extends javax.swing.JFrame{
 
         jLabel1.setText("Código promocional:");
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
-            }
-        });
-
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
@@ -225,15 +217,7 @@ public class ventana3 extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField1KeyPressed()'");
-            evt.consume();
-        }
-    }//GEN-LAST:event_jTextField1KeyPressed
-    
+        
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
             JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);

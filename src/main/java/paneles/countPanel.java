@@ -2,15 +2,17 @@ package paneles;
 
 import clases.datos;
 import clases.logger;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
+import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.table.DefaultTableModel;
 
 public class countPanel extends javax.swing.JPanel{
     public countPanel(){

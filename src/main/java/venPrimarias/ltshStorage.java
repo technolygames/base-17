@@ -55,29 +55,18 @@ public class ltshStorage extends javax.swing.JFrame{
         });
         
         refreshButton.addActionListener((a)->{
-            textField("");
-            datosMostrar();
+            searchAndClear();
         });
         
         searchButton.addActionListener((a)->{
-            if(!txtBuscar.getText().equals("")){
-                datosBuscar();
-            }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'botones(searchButton)'");
-            }
+            searchData();
         });
         
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    if(!txtBuscar.getText().equals("")){
-                        datosBuscar();
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'botones(txtBuscar)'");
-                    }
+                    searchData();
                 }
             }
         });
@@ -98,10 +87,26 @@ public class ltshStorage extends javax.swing.JFrame{
         jComboBox1.addActionListener((a)->{
             int i=jComboBox1.getSelectedIndex();
             if(i>=0&&i<6){
-                textField("");
-                datosMostrar();
+                searchAndClear();
             }
         });
+    }
+    
+    //NO USAR PARA BUSCAR DATOS
+    //Este método se encarga de limpiar el cuadro de búsqueda y la tabla, también de esconder el botón de ver datos detallados
+    protected void searchAndClear(){
+        textField("");
+        datosMostrar();
+    }
+    
+    //Este es para buscar datos en concreto
+    protected void searchData(){
+        if(!txtBuscar.getText().equals("")){
+            datosBuscar();
+        }else{
+            JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+            new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshStorage.class.getName()+"', en el método 'botones(searchButton)'");
+        }
     }
     
     protected final void datosMostrar(){

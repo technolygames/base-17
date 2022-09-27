@@ -35,13 +35,31 @@ public class dataWindow3 extends javax.swing.JDialog{
         pack();
     }
     
+    protected int codigo;
+    
+    public dataWindow3(java.awt.Frame parent,boolean modal,int code){
+        super(parent, modal);
+        initComponents();
+        new guiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        
+        this.codigo=code;
+        
+        botones();
+        datosMostrar();
+        
+        setLocationRelativeTo(null);
+        setTitle("Datos del proveedor");
+        setResizable(false);
+        pack();
+    }
+    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
     protected final void datosMostrar(){
         try{
             ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
-            ps.setInt(1,ltshProviders.code);
+            ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
                 etiCodigo.setText(String.valueOf(rs.getInt("codigo_prov")));
@@ -82,13 +100,16 @@ public class dataWindow3 extends javax.swing.JDialog{
         
         storeImgButton.addActionListener((a)->{
             try{
+                int codigo=Integer.parseInt(etiCodigo.getText());
+                String nombre=etiNombre.getText();
+                
                 ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
-                ps.setInt(1,Integer.parseInt(etiCodigo.getText()));
+                ps.setInt(1,codigo);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+".jpg");
+                File f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File("data/media/dataImage/Proveedor/"+etiNombre.getText()+"-"+etiCodigo.getText()+"-("+i+").jpg");
+                    f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo+"-("+i+").jpg");
                 }
                 
                 new thread2(rs,new FileOutputStream(f)).run();
