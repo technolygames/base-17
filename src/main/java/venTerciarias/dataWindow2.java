@@ -77,8 +77,8 @@ public class dataWindow2 extends javax.swing.JDialog{
                 etiCorreo.setText(rs.getString("correo"));
                 etiRFC.setText(rs.getString("rfc"));
                 jTextArea1.setText(rs.getString("datos_extra"));
-                etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
-                etiUCompra.setText(String.valueOf(rs.getDate("fecha_ucompra")));
+                etiIngreso.setText(rs.getString("fecha_ingreso"));
+                etiUCompra.setText(rs.getString("fecha_ucompra"));
                 
                 //new escritorJSON().writeDataPartnerJson(Integer.parseInt(etiCodigo.getText()));
                 

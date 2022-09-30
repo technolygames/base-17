@@ -72,14 +72,17 @@ public final class proper1 extends javax.swing.JFrame{
     protected String nombreArchivo1;
     protected String nombreArchivo2;
     
-    protected void settings(){
+    protected String rol=start.role;
+    
+    protected final void settings(){
         imageLoader("Ventanas",jTextField2.getText());
         jLabel8.setText("Advertencia: la imagen y el ícono no son lo mismo. Asegúrate que hayas cambiado ambos, en caso de que lo hayas hecho");
         jTextField2.setVisible(false);
         jTextField3.setVisible(false);
         
         JTextField[] tf={jTextField4,jTextField5};
-        if(new validation(start.role,proper1.class.getName()).isAccessible()){
+        
+        if(new validation(rol,proper1.class.getName()).isAccessible()){
             for(JTextField textfield:tf){
                 textfield.setEnabled(true);
             }
@@ -281,7 +284,7 @@ public final class proper1 extends javax.swing.JFrame{
         });
         
         toolsButton.addActionListener((a)->{
-            new validation(new adminTools(),start.role,adminTools.class.getName()).toRestrictedForm();
+            new validation(new adminTools(),rol,adminTools.class.getName()).toRestrictedForm();
         });
     }
     
@@ -415,7 +418,7 @@ public final class proper1 extends javax.swing.JFrame{
         }
         
         if(!campos.getText().isEmpty()){
-           schButton.setEnabled(true);
+            schButton.setEnabled(true);
         }else{
             schButton.setEnabled(false);
             schButton.setToolTipText("No deben haber campos vacíos");

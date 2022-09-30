@@ -144,7 +144,7 @@ public class ltshProviders extends javax.swing.JFrame{
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -184,7 +184,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código especificado.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");
@@ -204,7 +204,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre especificado.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");
@@ -224,7 +224,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido paterno especificado.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");
@@ -244,7 +244,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido materno especificado.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");
@@ -264,7 +264,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con la empresa especificada.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");
@@ -284,7 +284,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_uentrega")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el contacto especificado.\nOcurrió en la clase '"+ltshProviders.class.getName()+"', en el método 'datosBuscar()'");

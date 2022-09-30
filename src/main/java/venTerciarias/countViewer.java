@@ -62,7 +62,7 @@ public class countViewer extends javax.swing.JDialog{
     
     public static void main(String args[]){
         EventQueue.invokeLater(()->{
-            new countViewer(new javax.swing.JFrame(),true,new countPanel()).setVisible(true);
+            new countViewer(new javax.swing.JFrame(),true,new countPanel(654321)).setVisible(true);
         });
     }
     

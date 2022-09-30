@@ -144,7 +144,7 @@ public class ltshPartners extends javax.swing.JFrame{
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
+                dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -184,7 +184,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
@@ -204,7 +204,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
@@ -224,7 +224,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido paterno especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
@@ -244,7 +244,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getDate("fecha_ingreso"),rs.getDate("fecha_ucompra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
                         JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                         new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido materno especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");

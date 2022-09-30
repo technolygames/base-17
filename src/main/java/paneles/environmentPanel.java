@@ -28,12 +28,15 @@ public class environmentPanel extends javax.swing.JPanel{
     
     protected String userdir=dirs.userdir;
     
-    protected void configIn(){
+    protected String direccion;
+    
+    protected final void configIn(){
         p=new Properties();
         try{
             p.load(new FileInputStream(userdir+"/data/config/env.properties"));
             
-            jTextField1.setText(p.getProperty("local_mysql"));
+            direccion=p.getProperty("local_mysql");
+            jTextField1.setText(direccion);
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configIn()'");
@@ -47,7 +50,15 @@ public class environmentPanel extends javax.swing.JPanel{
     
     protected final void botones(){
         closeButton.addActionListener((a)->{
-            setVisible(false);
+            if(!jTextField1.getText().equals(direccion)){
+                switch(JOptionPane.showConfirmDialog(null,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
+                    case 0:
+                        setVisible(false);
+                        break;
+                }
+            }else{
+                setVisible(false);
+            }
         });
         
         storeButton.addActionListener((a)->{

@@ -31,7 +31,7 @@ public class databaseExport extends javax.swing.JPanel{
     
     protected String host;
     
-    protected void settings(){
+    protected final void settings(){
         try{
             p=new Properties();
             p.load(new FileInputStream("data/config/databaseInfo.properties"));
@@ -75,7 +75,7 @@ public class databaseExport extends javax.swing.JPanel{
                     f=new File("data/database/MySQL/"+db+"-("+i+").sql");
                 }
                 
-                Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user+" --database="+db+">"+f.getPath()+" --password="+pass+" --host="+host);
+                Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user+" -p "+db+">"+f.getPath()+" --password="+pass+" --host="+host);
                 new thread3(pr.getErrorStream()).run();
                 
                 is=pr.getInputStream();

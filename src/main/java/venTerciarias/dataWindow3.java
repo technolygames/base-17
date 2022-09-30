@@ -67,9 +67,9 @@ public class dataWindow3 extends javax.swing.JDialog{
                 etiApellidoP.setText(rs.getString("apellidop_prov"));
                 etiApellidoM.setText(rs.getString("apellidom_prov"));
                 etiEmpresa.setText(rs.getString("empresa"));
-                etiContacto.setText(rs.getString("contacto"));
-                etiIngreso.setText(String.valueOf(rs.getDate("fecha_ingreso")));
-                etiUEntrega.setText(String.valueOf(rs.getDate("fecha_uentrega")));
+                etiContacto.setText(String.valueOf(rs.getInt("contacto")));
+                etiIngreso.setText(rs.getString("fecha_ingreso"));
+                etiUEntrega.setText(rs.getString("fecha_uentrega"));
                 
                 //new escritorJSON().writeDataProviderJson(Integer.parseInt(etiCodigo.getText()));
                 

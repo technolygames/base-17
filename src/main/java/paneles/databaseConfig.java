@@ -24,7 +24,7 @@ public class databaseConfig extends javax.swing.JPanel{
     protected File f;
     protected Properties p;
     
-    protected void configIn(){
+    protected final void configIn(){
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/databaseInfo.properties"));

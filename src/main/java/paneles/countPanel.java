@@ -37,7 +37,7 @@ public class countPanel extends javax.swing.JPanel{
     protected DefaultTableModel dtm;
     protected RowSorter<TableModel> sorter;
     
-    protected void datosMostrar(){
+    protected final void datosMostrar(){
         try{
             if(codigo!=0){
                 ps=new datos().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
@@ -59,9 +59,9 @@ public class countPanel extends javax.swing.JPanel{
     protected void loadData(ResultSet rs) throws SQLException{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
-        dtm.setColumnIdentifiers(new Object[]{"Número de ventas","Fecha de las ventas"});
+        dtm.setColumnIdentifiers(new Object[]{"Número de ventas","Fecha de sesión"});
         while(rs.next()){
-            dtm.addRow(new Object[]{rs.getInt("no_ventas"),rs.getDate("fecha_sesion")});
+            dtm.addRow(new Object[]{rs.getInt("no_ventas"),rs.getString("fecha_sesion")});
         }
         jTable1.setRowSorter(sorter);
         jTable1.getRowSorter().toggleSortOrder(0);

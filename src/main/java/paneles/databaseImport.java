@@ -32,7 +32,7 @@ public class databaseImport extends javax.swing.JPanel{
     
     protected String host;
     
-    protected void settings(){
+    protected final void settings(){
         jTextField3.setText(databaseWindow.nombredb);
         
         try{

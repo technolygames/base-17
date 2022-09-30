@@ -54,7 +54,7 @@ public class ltshOff extends javax.swing.JFrame{
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getString("id_prom"),rs.getString("nombre_prom"),rs.getString("datos_prom"),rs.getFloat("descuento"),rs.getDate("inicio"),rs.getInt("no_usos"),rs.getDate("fin")});
+                dtm.addRow(new Object[]{rs.getString("id_prom"),rs.getString("nombre_prom"),rs.getString("datos_prom"),rs.getFloat("descuento"),rs.getString("inicio"),rs.getInt("no_usos"),rs.getString("fin")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);

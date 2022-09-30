@@ -91,12 +91,12 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiExp.setText(rs.getString("experiencia"));
                 etiEstudios.setText(rs.getString("grado_estudios"));
                 etiContacto.setText(rs.getString("contacto"));
-                etiFN.setText(String.valueOf(rs.getDate("fecha_nacimiento")));
+                etiFN.setText(rs.getString("fecha_nacimiento"));
                 etiEdad.setText(String.valueOf(rs.getInt("edad")));
                 etiEstado.setText(rs.getString("estado"));
                 jTextArea2.setText(rs.getString("datos_extra"));
-                etiIngreso.setText(String.valueOf(rs.getDate("fecha_registro")));
-                etiSesion.setText(String.valueOf(rs.getDate("fecha_sesion")));
+                etiIngreso.setText(rs.getString("fecha_registro"));
+                etiSesion.setText(rs.getString("fecha_sesion"));
                 
                 //new escritorJSON().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
                 

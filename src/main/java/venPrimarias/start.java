@@ -8,7 +8,6 @@ import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -47,7 +46,6 @@ public final class start extends javax.swing.JFrame{
     
     protected JTextField campos;
     
-    protected Date fecha;
     protected ResultSet rs;
     protected PreparedStatement ps;
     
@@ -114,9 +112,9 @@ public final class start extends javax.swing.JFrame{
                     role=rs.getString("puesto");
                     
                     /*revisar la edad del empleado*/{
-                        fecha=rs.getDate("fecha_nacimiento");
+                        String fn=rs.getString("fecha_nacimiento");
                         int edad1=rs.getInt("edad");
-                        String edad2=String.valueOf(Period.between(LocalDate.parse(fecha.toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
+                        String edad2=String.valueOf(Period.between(LocalDate.parse(fn,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
                         
                         if(!edad2.equals(String.valueOf(edad1))){
                             new logger(Level.INFO).staticLogger("no es igual");
@@ -132,10 +130,10 @@ public final class start extends javax.swing.JFrame{
                         ps.setString(2,LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
                         ResultSet rs2=ps.executeQuery();
                         if(!rs2.next()){
-                            new logger(Level.INFO).staticLogger("2; no hay");
+                            new logger(Level.INFO).staticLogger("1; no hay");
                             new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
-                            new logger(Level.INFO).staticLogger("1; si hay");
+                            new logger(Level.INFO).staticLogger("2; si hay");
                         }
                     }
                     

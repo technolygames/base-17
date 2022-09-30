@@ -94,7 +94,7 @@ public class ltshProduct extends javax.swing.JFrame{
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
             }
             jTable1.setRowSorter(sorter);
             jTable1.getRowSorter().toggleSortOrder(0);
@@ -121,7 +121,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -138,7 +138,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -155,7 +155,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
@@ -172,7 +172,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getDate("fecha_compra")});
+                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
