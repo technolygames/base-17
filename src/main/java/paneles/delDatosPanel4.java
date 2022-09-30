@@ -24,6 +24,19 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         botones();
     }
     
+    public delDatosPanel4(int code,boolean flag){
+        initComponents();
+        
+        if(!flag){
+            closeButton.setEnabled(false);
+            closeButton.setToolTipText("No puedes cerrar el panel");
+        }
+        
+        jTextField1.setText(String.valueOf(code));
+        
+        botones();
+    }
+    
     protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
@@ -45,7 +58,7 @@ public class delDatosPanel4 extends javax.swing.JPanel{
     
     protected void deleteData(){
         try{
-            if(!jTextField1.getText().equals("")){
+            if(!jTextField1.getText().isEmpty()){
                 var texto=Integer.parseInt(jTextField1.getText());
                 new datos().eliminarDatosAlmacen(texto);
             }else{

@@ -5,6 +5,7 @@ import menus.menuVentanas;
 //java
 import java.awt.Cursor;
 import java.awt.Taskbar;
+import java.awt.EventQueue;
 import javax.swing.Timer;
 
 public final class loadWindow extends javax.swing.JFrame{
@@ -152,7 +153,9 @@ public final class loadWindow extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new loadWindow().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new loadWindow().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

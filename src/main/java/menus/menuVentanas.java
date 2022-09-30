@@ -4,6 +4,7 @@ import clases.guiMediaHandler;
 import clases.logger;
 import clases.validation;
 import clases.win10Notification;
+import java.awt.EventQueue;
 import venPrimarias.formulario1;
 import venPrimarias.formulario2;
 import venPrimarias.formulario3;
@@ -294,7 +295,9 @@ public final class menuVentanas extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new menuVentanas().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new menuVentanas().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

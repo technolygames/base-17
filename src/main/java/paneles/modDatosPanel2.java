@@ -31,7 +31,22 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         settings();
     }
     
-    protected void settings(){
+    public modDatosPanel2(int code,boolean flag){
+        initComponents();
+        
+        if(!flag){
+            closeButton.setEnabled(false);
+            closeButton.setToolTipText("No puedes cerrar el panel");
+        }
+        
+        txtSearch.setText(String.valueOf(code));
+        consulta();
+        
+        botones();
+        settings();
+    }
+    
+    protected final void settings(){
         jLabel1.setToolTipText("Nombre(s)");
         jLabel2.setToolTipText("Apellido paterno");
         jLabel3.setToolTipText("Apellido materno");
@@ -49,7 +64,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox1.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5,jCheckBox6};
-            if(jCheckBox1.isSelected()==true){
+            if(jCheckBox1.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -58,10 +73,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 jTextField1.setEnabled(true);
                 //función
-                if(jCheckBox1.isSelected()==true){
+                if(jCheckBox1.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
-                            while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()==true){
+                        if(!jTextField1.getText().isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
+                            while(!jTextField1.getText().isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
                                 datos.actualizarDatosString("socios","nombre_part","codigo_part",jTextField1.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -69,7 +84,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox1.isSelected()==false){
+            }else if(!jCheckBox1.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -82,7 +97,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox2.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5,jCheckBox6};
-            if(jCheckBox2.isSelected()==true){
+            if(jCheckBox2.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -91,10 +106,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 jTextField2.setEnabled(true);
                 //función
-                if(jCheckBox2.isSelected()==true){
+                if(jCheckBox2.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
-                            while(!jTextField2.getText().equals("")&&jCheckBox2.isSelected()==true){
+                        if(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
+                            while(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
                                 datos.actualizarDatosString("socios","apellidop_part","codigo_part",jTextField2.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -102,7 +117,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox2.isSelected()==false){
+            }else if(!jCheckBox2.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -115,7 +130,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox3.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5,jCheckBox6};
-            if(jCheckBox3.isSelected()==true){
+            if(jCheckBox3.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -124,10 +139,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 jTextField3.setEnabled(true);
                 //función
-                if(jCheckBox3.isSelected()==true){
+                if(jCheckBox3.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
-                            while(!jTextField3.getText().equals("")&&jCheckBox3.isSelected()==true){
+                        if(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
+                            while(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
                                 datos.actualizarDatosString("socios","apellidom_part","codigo_part",jTextField3.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -135,7 +150,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox3.isSelected()==false){
+            }else if(!jCheckBox3.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -148,7 +163,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox4.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5,jCheckBox6};
-            if(jCheckBox4.isSelected()==true){
+            if(jCheckBox4.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -158,10 +173,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 //función
-                if(jCheckBox4.isSelected()==true){
+                if(jCheckBox4.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
-                            while(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()==true){
+                        if(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()&&jComboBox1.isEnabled()){
+                            while(!jComboBox1.getModel().getSelectedItem().equals(jLabel4.getText())&&jCheckBox4.isSelected()&&jComboBox1.isEnabled()){
                                 datos.actualizarDatosString("socios","tipo_socio","codigo_part",jComboBox1.getSelectedItem().toString(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -169,7 +184,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox4.isSelected()==false){
+            }else if(!jCheckBox4.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -183,7 +198,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox5.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox6};
-            if(jCheckBox5.isSelected()==true){
+            if(jCheckBox5.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -192,10 +207,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 jTextField4.setEnabled(true);
                 //función
-                if(jCheckBox5.isSelected()==true){
+                if(jCheckBox5.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
-                            while(!jTextField4.getText().equals("")&&jCheckBox5.isSelected()==true){
+                        if(!jTextField4.getText().isEmpty()&&jCheckBox5.isSelected()&&jTextField4.isEnabled()){
+                            while(!jTextField4.getText().isEmpty()&&jCheckBox5.isSelected()&&jTextField4.isEnabled()){
                                 datos.actualizarDatosString("socios","correo","codigo_part",jTextField4.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -203,7 +218,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox5.isSelected()==false){
+            }else if(!jCheckBox5.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -216,7 +231,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         jCheckBox6.addActionListener((a)->{
             JCheckBox[] checkboxes={jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
-            if(jCheckBox6.isSelected()==true){
+            if(jCheckBox6.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -225,10 +240,10 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 jTextField5.setEnabled(true);
                 //función
-                if(jCheckBox6.isSelected()==true){
+                if(jCheckBox6.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
-                            while(!jTextField5.getText().equals("")&&jCheckBox6.isSelected()==true){
+                        if(!jTextField5.getText().isEmpty()&&jCheckBox6.isSelected()&&jTextField5.isEnabled()){
+                            while(!jTextField5.getText().isEmpty()&&jCheckBox6.isSelected()&&jTextField5.isEnabled()){
                                 datos.actualizarDatosString("socios","rfc","codigo_part",jTextField5.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -236,7 +251,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(jCheckBox6.isSelected()==false){
+            }else if(!jCheckBox6.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -263,22 +278,27 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
-            ps.setInt(1,Integer.parseInt(txtSearch.getText()));
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                jLabel1.setText(rs.getString("nombre_part"));
-                jLabel2.setText(rs.getString("apellidop_part"));
-                jLabel3.setText(rs.getString("apellidom_part"));
-                jLabel4.setText(rs.getString("tipo_socio"));
-                jLabel5.setText(rs.getString("correo"));
-                jLabel6.setText(rs.getString("rfc"));
+            if(!txtSearch.getText().isEmpty()){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                ps.setInt(1,Integer.parseInt(txtSearch.getText()));
+                ResultSet rs=ps.executeQuery();
+                if(rs.next()){
+                    jLabel1.setText(rs.getString("nombre_part"));
+                    jLabel2.setText(rs.getString("apellidop_part"));
+                    jLabel3.setText(rs.getString("apellidom_part"));
+                    jLabel4.setText(rs.getString("tipo_socio"));
+                    jLabel5.setText(rs.getString("correo"));
+                    jLabel6.setText(rs.getString("rfc"));
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");
+                }
+                ps.close();
+                rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");
             }
-            ps.close();
-            rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel2.class.getName()+"', en el método 'consulta()'");

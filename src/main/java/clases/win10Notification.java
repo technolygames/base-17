@@ -32,7 +32,7 @@ public class win10Notification{
     public void trayNotify(String notification,String message,MessageType messageType){
         SystemTray st=SystemTray.getSystemTray();
         try{
-            if(SystemTray.isSupported()){
+            while(SystemTray.isSupported()){
                 p=new Properties();
                 p.load(new FileInputStream("data/config/config.properties"));
                 TrayIcon ti=new TrayIcon(Toolkit.getDefaultToolkit().getImage(p.getProperty("icono")));
@@ -41,6 +41,7 @@ public class win10Notification{
                 ti.displayMessage(notification,message,messageType);
                 ti.setToolTip(p.getProperty("nombre"));
                 st.remove(ti);
+                break;
             }
         }catch(AWTException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);

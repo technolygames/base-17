@@ -4,6 +4,7 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.tickets.datosTicket;
+import java.awt.EventQueue;
 import venPrimarias.start;
 import venPrimarias.ventana1;
 //java
@@ -47,9 +48,9 @@ public class paymentWindow extends javax.swing.JDialog{
     public static int result;
     protected int total;
     
-    protected boolean state=false;
+    protected boolean estado=false;
     
-    protected void settings(){
+    protected final void settings(){
         dtm=new DefaultTableModel();
         dtm.setRowCount(0);
         dtm.setColumnIdentifiers(new Object[]{
@@ -82,14 +83,14 @@ public class paymentWindow extends javax.swing.JDialog{
     
     protected final void botones(){
         cbAddCoupon.addActionListener((a)->{
-            if(cbAddCoupon.isSelected()==true){
+            if(cbAddCoupon.isSelected()){
                 jTextField1.setEnabled(true);
                 if(!jTextField1.getText().equals("")){
                     calc2();
                 }else{
                     //do nothing
                 }
-            }else if(cbAddCoupon.isSelected()==false){
+            }else if(!cbAddCoupon.isSelected()){
                 jTextField1.setEnabled(false);
                 calc1();
             }
@@ -101,7 +102,7 @@ public class paymentWindow extends javax.swing.JDialog{
         });
         
         cancelButton.addActionListener((a)->{
-            if(state==false){
+            if(estado){
                 int i=JOptionPane.showConfirmDialog(null,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(i==0){
                     setVisible(false);
@@ -219,7 +220,7 @@ public class paymentWindow extends javax.swing.JDialog{
     }
     
     protected void confirmPurchase(){
-        if(!jTextField1.getText().equals("")){
+        if(!jTextField1.getText().isEmpty()){
             readTable();
             new datos().actualizarDatosUsoPromo(jTextField1.getText());
         }else{
@@ -248,7 +249,7 @@ public class paymentWindow extends javax.swing.JDialog{
     }
     
     protected void windowState(){
-        state=true;
+        estado=true;
         cancelButton.setText("Regresar");
     }
     
@@ -396,7 +397,9 @@ public class paymentWindow extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

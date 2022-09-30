@@ -31,6 +31,12 @@ public class validation{
         this.clase=clase;
     }
     
+    /**
+     * Inicializa la instancia para mandar los datos solicitados y validarlos.
+     * 
+     * @param role del empleado para verificar si tiene o no permisos.
+     * @param clase que es la misma que la ventana que se abrirá ak validar correctamente los datos.
+     */
     public validation(String role,String clase){
         this.puesto=role;
         this.clase=clase;
@@ -56,6 +62,11 @@ public class validation{
         }
     }
     
+    /**
+     * Verifica si es posible ver si cierta característica es visible para el puesto que fue asignado al usuario logeado.
+     * 
+     * @return si es posible ver o acceder a la característica 
+     */
     public boolean isAccessible(){
         if(puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador")){
             return true;

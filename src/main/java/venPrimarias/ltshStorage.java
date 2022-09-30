@@ -8,6 +8,7 @@ import menus.menuDatosVentana4;
 import paneles.delDatosPanel4;
 import paneles.modDatosPanel4;
 //java
+import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -101,7 +102,7 @@ public class ltshStorage extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
-        if(!txtBuscar.getText().equals("")){
+        if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
         }else{
             JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
@@ -146,7 +147,7 @@ public class ltshStorage extends javax.swing.JFrame{
         }
     }
     
-    protected final void datosBuscar(){
+    protected void datosBuscar(){
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -300,20 +301,20 @@ public class ltshStorage extends javax.swing.JFrame{
         }
     }
     
-    protected void popup(){
+    protected final void popup(){
         popupMenu=new JPopupMenu();
         
         JMenuItem mi1=new JMenuItem(new AbstractAction("Modificar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana4(new modDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+                new menuDatosVentana4(new modDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
             }
         });
         
         JMenuItem mi2=new JMenuItem(new AbstractAction("Eliminar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana4(new delDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+                new menuDatosVentana4(new delDatosPanel4(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
             }
         });
         
@@ -420,7 +421,9 @@ public class ltshStorage extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new ltshStorage().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ltshStorage().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

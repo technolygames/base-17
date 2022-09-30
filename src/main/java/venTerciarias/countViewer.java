@@ -5,6 +5,7 @@ import paneles.countPanel;
 
 import java.awt.Component;
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
 public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal){
@@ -23,14 +24,20 @@ public class countViewer extends javax.swing.JDialog{
         initComponents();
         new guiMediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
         
-        countViewer.this.getContentPane().setLayout(new BorderLayout());
-        countViewer.this.getContentPane().add(panel,BorderLayout.CENTER);
-        countViewer.this.pack();
+        openPanel(panel);
         
         setLocationRelativeTo(null);
         setTitle("Conteo de ventas");
         setResizable(false);
         pack();
+    }
+    
+    protected final void openPanel(Component panel){
+        EventQueue.invokeLater(()->{
+            countViewer.this.getContentPane().setLayout(new BorderLayout());
+            countViewer.this.getContentPane().add(panel,BorderLayout.CENTER);
+            countViewer.this.pack();
+        });
     }
     
     @SuppressWarnings("unchecked")
@@ -54,7 +61,9 @@ public class countViewer extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new countViewer(new javax.swing.JFrame(),true,new countPanel()).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new countViewer(new javax.swing.JFrame(),true,new countPanel()).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

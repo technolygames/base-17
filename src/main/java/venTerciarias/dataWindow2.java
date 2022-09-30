@@ -5,10 +5,10 @@ import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread2;
 import venPrimarias.start;
-import venPrimarias.ltshPartners;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -113,16 +113,16 @@ public class dataWindow2 extends javax.swing.JDialog{
         
         miStorePic.addActionListener((a)->{
             try{
-                int codigo=Integer.parseInt(etiCodigo.getText());
+                int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
                 ps=new datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
-                ps.setInt(1,codigo);
+                ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo+".jpg");
+                File f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo1+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo+"-("+i+").jpg");
+                    f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
                 new thread2(rs,new FileOutputStream(f)).run();
@@ -360,7 +360,9 @@ public class dataWindow2 extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new dataWindow2(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new dataWindow2(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

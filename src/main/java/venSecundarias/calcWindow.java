@@ -3,11 +3,12 @@ package venSecundarias;
 import clases.guiMediaHandler;
 import clases.logger;
 //java
+import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
 
 public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
@@ -24,7 +25,7 @@ public final class calcWindow extends javax.swing.JDialog{
         pack();
     }
     
-    protected void settings(){
+    protected final void settings(){
         txtTotal.setText(String.valueOf(paymentWindow.result));
     }
     
@@ -50,14 +51,19 @@ public final class calcWindow extends javax.swing.JDialog{
     
     protected void calculate(){
         try{
-            int n1=Integer.parseInt(txtTotal.getText());
-            int n2=Integer.parseInt(txtDinIng.getText());
-            int resultado=n1-n2;
-            
-            String res=Integer.toString(Math.abs(resultado));
-            
-            txtCambio.setText(res);
-            paymentWindow.jLabel6.setText(txtCambio.getText());
+            if(!txtDinIng.getText().isEmpty()){
+                int n1=Integer.parseInt(txtTotal.getText());
+                int n2=Integer.parseInt(txtDinIng.getText());
+                var resultado=n1-n2;
+                
+                String res=Integer.toString(Math.abs(resultado));
+                
+                txtCambio.setText(res);
+                paymentWindow.jLabel6.setText(txtCambio.getText());
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
+            }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
@@ -140,7 +146,9 @@ public final class calcWindow extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new calcWindow(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new calcWindow(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

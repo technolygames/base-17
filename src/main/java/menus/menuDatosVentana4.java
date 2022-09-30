@@ -5,6 +5,7 @@ import paneles.delDatosPanel4;
 import paneles.modDatosPanel4;
 //java
 import java.awt.Component;
+import java.awt.EventQueue;
 import java.awt.BorderLayout;
 
 public class menuDatosVentana4 extends javax.swing.JFrame{
@@ -21,16 +22,16 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         pack();
     }
     
-    public menuDatosVentana4(Component panel){
+    protected int codigo;
+    
+    public menuDatosVentana4(int code){
         initComponents();
         new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
         
-        menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
-        menuDatosVentana4.this.getContentPane().add(panel,BorderLayout.CENTER);
-        menuDatosVentana4.this.pack();
+        this.codigo=code;
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -38,7 +39,43 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         pack();
     }
     
-    protected void settings(){
+    public menuDatosVentana4(Component panel,int code){
+        initComponents();
+        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        
+        botones();
+        settings();
+        
+        this.codigo=code;
+        
+        openPanel(panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    public menuDatosVentana4(Component panel,boolean flag){
+        initComponents();
+        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        
+        botones();
+        settings();
+        
+        if(!flag){
+            jMenu1.setVisible(false);
+        }
+        
+        openPanel(panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    protected final void settings(){
         backButton.setToolTipText("Regresar al formulario");
     }
     
@@ -49,14 +86,26 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-            menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana4.this.getContentPane().add(new delDatosPanel4(),BorderLayout.CENTER);
-            menuDatosVentana4.this.pack();
+            if(codigo!=0){
+                openPanel(new delDatosPanel4(codigo));
+            }else{
+                openPanel(new delDatosPanel4());
+            }
         });
         
         miModData.addActionListener((a)->{
+            if(codigo!=0){
+                openPanel(new modDatosPanel4(codigo));
+            }else{
+                openPanel(new modDatosPanel4());
+            }
+        });
+    }
+    
+    protected void openPanel(Component panel){
+        EventQueue.invokeLater(()->{
             menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana4.this.getContentPane().add(new modDatosPanel4(),BorderLayout.CENTER);
+            menuDatosVentana4.this.getContentPane().add(panel,BorderLayout.CENTER);
             menuDatosVentana4.this.pack();
         });
     }
@@ -109,7 +158,9 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new menuDatosVentana4().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new menuDatosVentana4().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

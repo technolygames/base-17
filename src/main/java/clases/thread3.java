@@ -34,10 +34,8 @@ public class thread3 implements Runnable{
         try{
             byte[] buffer=new byte[1024];
             while((leido=is.read(buffer))>0){
-                String texto1=new String(buffer,0,leido);
-                byte[] texto2=texto1.getBytes();
-                String texto3=new String(texto2,StandardCharsets.UTF_8);
-                JOptionPane.showMessageDialog(null,"Error:\n"+texto3,"Error 7E",JOptionPane.ERROR_MESSAGE);
+                String texto=new String(buffer,0,leido);
+                JOptionPane.showMessageDialog(null,"Error:\n"+texto,"Error 7E",JOptionPane.ERROR_MESSAGE);
             }
             
             is.close();

@@ -5,6 +5,7 @@ import clases.guiMediaHandler;
 import clases.logger;
 //java
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.sql.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -27,9 +28,9 @@ public class ventana3 extends javax.swing.JFrame{
         pack();
     }
     
-    protected JTextField tf;
+    protected JTextField campos;
     
-    protected void settings(){
+    protected final void settings(){
         jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
@@ -37,27 +38,25 @@ public class ventana3 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
+        for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3}){
+            campos=tf;
+        }
+        
         backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
         });
         
         jMenuItem1.addActionListener((a)->{
-            jTextField1.setText("");
-            jTextField2.setText("");
+            campos.setText("");
             jTextArea1.setText("");
-            jTextField3.setText("");
             jDateChooser1.setDate(null);
             jDateChooser2.setDate(null);
         });
         
-        for(JTextField campos:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField3}){
-            tf=campos;
-        }
-        
         svdtButton.addActionListener((a)->{
             try{
-                if(!tf.getText().equals("")||!jTextArea1.getText().equals("")){
+                if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()){
                     String codigo=jTextField1.getText();
                     String nombre=jTextField2.getText();
                     String datos=jTextArea1.getText();
@@ -227,7 +226,9 @@ public class ventana3 extends javax.swing.JFrame{
     }//GEN-LAST:event_jTextField2KeyPressed
     
     public static void main(String args[]){
-        new ventana3().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ventana3().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

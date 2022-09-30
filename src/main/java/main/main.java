@@ -2,33 +2,36 @@ package main;
 //clases
 import clases.dirs;
 import venPrimarias.start;
+//java
+import java.awt.EventQueue;
 
 public class main{
-    protected static String userdir=dirs.userdir;
     public static void main(String[] args){
         String[] dirs={
-            userdir+"/data/config",
-            userdir+"/data/databackup",
-            userdir+"/data/databackup/Empleados",
-            userdir+"/data/databackup/Proveedores",
-            userdir+"/data/databackup/Socios",
-            userdir+"/data/generic/Jasper",
-            userdir+"/data/generic/tickets",
-            userdir+"/data/libs",
-            userdir+"/data/logs/exceptions",
-            userdir+"/data/logs/static",
-            userdir+"/data/media",
-            userdir+"/data/media/forms",
-            userdir+"/data/media/forms/copy/",
-            userdir+"/data/media/icon",
-            userdir+"/data/media/icon/copy/",
-            userdir+"/data/media/secondary"
+            "data/config",
+            "data/databackup",
+            "data/databackup/Empleados",
+            "data/databackup/Proveedores",
+            "data/databackup/Socios",
+            "data/generic/Jasper",
+            "data/generic/tickets",
+            "data/libs",
+            "data/logs/exceptions",
+            "data/logs/static",
+            "data/media",
+            "data/media/forms",
+            "data/media/forms/copy/",
+            "data/media/icon",
+            "data/media/icon/copy/",
+            "data/media/secondary"
         };
         
         for(String dir:dirs){
             new dirs().makeDir(dir);
         }
         
-        new start().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new start().setVisible(true);
+        });
     }
 }

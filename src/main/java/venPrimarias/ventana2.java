@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
+import java.awt.EventQueue;
 import menus.menuDatosVentana4;
 //java
 import java.awt.Image;
@@ -35,7 +36,7 @@ public final class ventana2 extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
-    protected JTextField tf;
+    protected JTextField campos;
     
     protected final void settings(){
         picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
@@ -73,12 +74,11 @@ public final class ventana2 extends javax.swing.JFrame{
     protected final void botones(){
         dtm=new DefaultTableModel();
         
-        for(JTextField campos:new JTextField[]{txtCodProd,txtCodLote,txtCodProv,txtProd,txtMarca,txtCant,txtPU}){
-            tf=campos;
-        }
-        
         addButton.addActionListener((a)->{
-            if(!tf.getText().equals("")||!jComboBox1.getSelectedItem().equals("En Existencia")){
+            for(JTextField tf:new JTextField[]{txtCodProd,txtCodLote,txtCodProv,txtProd,txtMarca,txtCant,txtPU}){
+                campos=tf;
+            }
+            if(!campos.getText().isEmpty()||!jComboBox1.getSelectedItem().equals("En Existencia")){
                 dtm.addRow(new Object[]{
                     txtCodProd.getText(),
                     txtCodLote.getText(),
@@ -89,7 +89,7 @@ public final class ventana2 extends javax.swing.JFrame{
                     txtPU.getText(),
                     jComboBox1.getSelectedItem()
                 });
-                cleanFields();
+                clearFields();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(addButton)'");
@@ -104,7 +104,7 @@ public final class ventana2 extends javax.swing.JFrame{
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
-            cleanFields();
+            clearFields();
         });
         
         updateDataButton.addActionListener((a)->{
@@ -157,7 +157,7 @@ public final class ventana2 extends javax.swing.JFrame{
         });
     }
     
-    protected void popup(){
+    protected final void popup(){
         popupMenu=new JPopupMenu();
         
         JMenuItem mi1=new JMenuItem(new AbstractAction("Editar fila"){
@@ -199,9 +199,15 @@ public final class ventana2 extends javax.swing.JFrame{
         }
     }
     
+    protected void clearFields(){
+        for(JTextField tf:new JTextField[]{txtCodProd,txtCodLote,txtCodProv,txtProd,txtMarca,txtCant,txtPU}){
+            tf.setText("");
+        }
+    }
+    
     protected void removeRow(){
         try{
-            if(jTable1.isRowSelected(jTable1.getRowCount())==true){
+            if(jTable1.isRowSelected(jTable1.getRowCount())){
                 dtm.removeRow(jTable1.getSelectedRow());
             }else{
                 new logger(Level.INFO).staticLogger("no hay nada seleccionado");
@@ -211,16 +217,6 @@ public final class ventana2 extends javax.swing.JFrame{
             new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");
             new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"removeRow-AIOOBE",e.fillInStackTrace());
         }
-    }
-    
-    protected void cleanFields(){
-        txtCodProd.setText("");
-        txtCodLote.setText("");
-        txtCodProv.setText("");
-        txtProd.setText("");
-        txtMarca.setText("");
-        txtCant.setText("");
-        txtPU.setText("");
     }
     
     @SuppressWarnings("unchecked")
@@ -513,7 +509,9 @@ public final class ventana2 extends javax.swing.JFrame{
     }//GEN-LAST:event_txtPUKeyPressed
     
     public static void main(String[] args){
-        new ventana2().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ventana2().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

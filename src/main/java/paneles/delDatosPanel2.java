@@ -25,6 +25,19 @@ public class delDatosPanel2 extends javax.swing.JPanel{
         botones();
     }
     
+    public delDatosPanel2(int code,boolean flag){
+        initComponents();
+        
+        if(!flag){
+            closeButton.setEnabled(false);
+            closeButton.setToolTipText("No puedes cerrar el panel");
+        }
+        
+        jTextField1.setText(String.valueOf(code));
+        
+        botones();
+    }
+    
     protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
@@ -48,9 +61,9 @@ public class delDatosPanel2 extends javax.swing.JPanel{
         var datos=new datos();
         
         try{
-            if(!jTextField1.getText().equals("")){
+            if(!jTextField1.getText().isEmpty()){
                 int codigo=Integer.parseInt(jTextField1.getText());
-                int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
                 switch(opcion){
                     case 0:{
                         new escritorJSON().writeDataPartnerJson(codigo);
@@ -61,6 +74,8 @@ public class delDatosPanel2 extends javax.swing.JPanel{
                         datos.eliminarDatosSocio(codigo);
                         break;
                     }
+                    default:
+                        break;
                 }
             }else{
                 JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);

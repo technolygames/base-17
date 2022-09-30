@@ -8,6 +8,7 @@ import menus.menuDatosVentana3;
 import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileReader;
@@ -18,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //con extensión larga
@@ -39,11 +41,16 @@ public class formulario3 extends javax.swing.JFrame{
     }
     
     protected Properties p;
+    protected JTextField campos;
     protected JFileChooser jfc;
     
     protected String direccion;
     
     protected final void botones(){
+        for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField4,jTextField5,jTextField6}){
+            campos=tf;
+        }
+        
         backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
@@ -54,19 +61,12 @@ public class formulario3 extends javax.swing.JFrame{
         });
         
         jMenuItem2.addActionListener((a)->{
-            picLabel.setIcon(null);
-            picLabel.setText("Foto");
+            clearImage();
         });
         
         miClearFields.addActionListener((a)->{
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            picLabel.setIcon(null);
-            picLabel.setText("Foto");
+            campos.setText("");
+            clearImage();
         });
         
         miInsImage.addActionListener((a)->{
@@ -120,7 +120,7 @@ public class formulario3 extends javax.swing.JFrame{
         
         storeButton.addActionListener((a)->{
             try{
-                if(!jTextField1.getText().equals("")||!jTextField2.getText().equals("")||!jTextField3.getText().equals("")||!jTextField4.getText().equals("")||!jTextField5.getText().equals("")||!jTextField6.getText().equals("")){
+                if(!campos.getText().isEmpty()||picLabel.getIcon()!=null){
                     int codigo=Integer.parseInt(jTextField1.getText());
                     String nombre=jTextField2.getText();
                     String apellidop=jTextField3.getText();
@@ -172,6 +172,11 @@ public class formulario3 extends javax.swing.JFrame{
         }catch(IOException e){
             new logger(Level.CONFIG).staticLogger(e.getMessage());
         }
+    }
+    
+    protected void clearImage(){
+        picLabel.setIcon(null);
+        picLabel.setText("Foto");
     }
     
     protected void showImage(String path){
@@ -412,7 +417,9 @@ public class formulario3 extends javax.swing.JFrame{
     }//GEN-LAST:event_jTextField6KeyPressed
     
     public static void main(String args[]){
-        new formulario3().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new formulario3().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

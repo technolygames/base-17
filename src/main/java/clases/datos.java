@@ -329,8 +329,8 @@ public class datos{
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo-11",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo1()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo1-11",e.fillInStackTrace());
         }
     }
     
@@ -360,8 +360,8 @@ public class datos{
             ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo-11",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo2()'");
+            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo2-11",e.fillInStackTrace());
         }
     }
     
@@ -443,6 +443,8 @@ public class datos{
             ps.setInt(1,cantidad);
             ps.setInt(2,codigo);
             ps.executeUpdate();
+            
+            ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
@@ -463,6 +465,8 @@ public class datos{
             ps.setInt(1,codigo);
             ps.setString(2,fecha);
             ps.executeUpdate();
+            
+            ps.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");

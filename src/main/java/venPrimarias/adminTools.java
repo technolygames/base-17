@@ -1,6 +1,5 @@
 package venPrimarias;
 //clases
-import clases.dirs;
 import clases.guiMediaHandler;
 import clases.logger;
 import paneles.databaseConfig;
@@ -11,6 +10,8 @@ import paneles.provDataRestore;
 import paneles.environmentPanel;
 import paneles.workerDataRestore;
 //java
+import java.awt.Component;
+import java.awt.EventQueue;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -39,8 +40,8 @@ public class adminTools extends javax.swing.JFrame{
         JMenuItem[] items={jMenuItem5,jMenuItem6};
         try{
             Properties p=new Properties();
-            p.load(new FileInputStream(dirs.userdir+"/data/config/env.properties"));
-            if(p.getProperty("local_mysql").equals("")){
+            p.load(new FileInputStream("data/config/env.properties"));
+            if(p.getProperty("local_mysql").isEmpty()){
                 for(JMenuItem c:items){
                     c.setEnabled(false);
                     c.setToolTipText("Para activar estas funciones, establece la dirección de MySQL en la sección de Sistema>Variables");
@@ -68,44 +69,38 @@ public class adminTools extends javax.swing.JFrame{
         });
         
         jMenuItem1.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new databaseConfig(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new databaseConfig());
         });
         
         jMenuItem2.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new workerDataRestore(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new workerDataRestore());
         });
         
         jMenuItem3.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new partDataRestore(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new partDataRestore());
         });
         
         jMenuItem4.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new provDataRestore(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new provDataRestore());
         });
         
         jMenuItem5.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new databaseImport(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new databaseImport());
         });
         
         jMenuItem6.addActionListener((a)->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new databaseExport(),BorderLayout.CENTER);
-            this.pack();
+            openPanel(new databaseExport());
         });
         
         jMenuItem7.addActionListener((a)->{
+            openPanel(new environmentPanel());
+        });
+    }
+    
+    protected void openPanel(Component panel){
+        EventQueue.invokeLater(()->{
             this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(new environmentPanel(),BorderLayout.CENTER);
+            this.getContentPane().add(panel,BorderLayout.CENTER);
             this.pack();
         });
     }
@@ -188,7 +183,9 @@ public class adminTools extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new adminTools().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new adminTools().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

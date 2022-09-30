@@ -9,6 +9,7 @@ import paneles.delDatosPanel2;
 import paneles.modDatosPanel2;
 import venTerciarias.dataWindow2;
 //java
+import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -113,7 +114,7 @@ public class ltshPartners extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
-        if(!txtBuscar.getText().equals("")){
+        if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
             mostrarBoton(true);
         }else{
@@ -159,7 +160,7 @@ public class ltshPartners extends javax.swing.JFrame{
         }
     }
     
-    protected final void datosBuscar(){
+    protected void datosBuscar(){
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -279,7 +280,7 @@ public class ltshPartners extends javax.swing.JFrame{
         }
     }
     
-    protected void popup(){
+    protected final void popup(){
         popupMenu=new JPopupMenu();
         
         JMenuItem mi1=new JMenuItem(new AbstractAction("Ver datos"){
@@ -292,18 +293,27 @@ public class ltshPartners extends javax.swing.JFrame{
         JMenuItem mi2=new JMenuItem(new AbstractAction("Modificar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana2(new modDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+                new menuDatosVentana2(new modDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
             }
         });
         
         JMenuItem mi3=new JMenuItem(new AbstractAction("Eliminar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana2(new delDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))).setVisible(true);
+                new menuDatosVentana2(new delDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
+            }
+        });
+        
+        JMenuItem mi4=new JMenuItem(new AbstractAction("Menú"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
             }
         });
         
         popupMenu.add(mi1);
+        popupMenu.add(new JSeparator());
+        popupMenu.add(mi4);
         popupMenu.add(new JSeparator());
         popupMenu.add(mi2);
         popupMenu.add(mi3);
@@ -419,7 +429,9 @@ public class ltshPartners extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new ltshPartners().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ltshPartners().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -32,7 +32,22 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         botones();
     }
     
-    protected void settings(){
+    public modDatosPanel1(int code,boolean flag){
+        initComponents();
+        
+        if(!flag){
+            closeButton.setEnabled(false);
+            closeButton.setToolTipText("No puedes cerrar el panel");
+        }
+        
+        txtSearch.setText(String.valueOf(code));
+        consulta();
+        
+        settings();
+        botones();
+    }
+    
+    protected final void settings(){
         etiContra.setToolTipText("Contraseña");
         etiNombre.setToolTipText("Nombre(s)");
         etiAP.setToolTipText("Apellido paterno");
@@ -59,7 +74,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbContra.addActionListener((a)->{
             JCheckBox[] checkboxes={cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbContra.isSelected()==true){
+            if(cbContra.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -68,10 +83,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtContra.setEnabled(true);
                 //función
-                if(cbContra.isSelected()==true){
+                if(cbContra.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
-                            while(!txtContra.getPassword().equals("")&&cbContra.isSelected()==true&&txtContra.isEnabled()==true){
+                        if(!txtContra.getPassword().toString().isEmpty()&&cbContra.isSelected()&&txtContra.isEnabled()){
+                            while(!txtContra.getPassword().toString().isEmpty()&&cbContra.isSelected()&&txtContra.isEnabled()){
                                 datos.actualizarDatosString("empleados","password","codigo_emp",txtContra.getPassword().toString(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -79,7 +94,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbContra.isSelected()==false){
+            }else if(!cbContra.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -92,7 +107,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbNombre.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbNombre.isSelected()==true){
+            if(cbNombre.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -101,10 +116,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtNombre.setEnabled(true);
                 //función
-                if(cbNombre.isSelected()==true){
+                if(cbNombre.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
-                            while(!txtNombre.getText().equals("")&&cbNombre.isSelected()==true&&txtNombre.isEnabled()==true){
+                        if(!txtNombre.getText().isEmpty()&&cbNombre.isSelected()&&txtNombre.isEnabled()){
+                            while(!txtNombre.getText().isEmpty()&&cbNombre.isSelected()&&txtNombre.isEnabled()){
                                 datos.actualizarDatosString("empleados","nombre_emp","codigo_emp",txtNombre.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -112,7 +127,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbNombre.isSelected()==false){
+            }else if(!cbNombre.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -125,7 +140,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbAP.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbAP.isSelected()==true){
+            if(cbAP.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -134,10 +149,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtAP.setEnabled(true);
                 //función
-                if(cbAP.isSelected()==true){
+                if(cbAP.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
-                            while(!txtAP.getText().equals("")&&cbAP.isSelected()==true&&txtAP.isEnabled()==true){
+                        if(!txtAP.getText().isEmpty()&&cbAP.isSelected()&&txtAP.isEnabled()){
+                            while(!txtAP.getText().isEmpty()&&cbAP.isSelected()&&txtAP.isEnabled()){
                                 datos.actualizarDatosString("empleados","apellidop_emp","codigo_emp",txtAP.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -145,7 +160,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbAP.isSelected()==false){
+            }else if(!cbAP.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -158,7 +173,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbAM.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbAM.isSelected()==true){
+            if(cbAM.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -167,10 +182,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtAM.setEnabled(true);
                 //función
-                if(cbAM.isSelected()==true){
+                if(cbAM.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
-                            while(!txtAM.getText().equals("")&&cbAM.isSelected()==true&&txtAM.isEnabled()==true){
+                        if(!txtAM.getText().isEmpty()&&cbAM.isSelected()&&txtAM.isEnabled()){
+                            while(!txtAM.getText().isEmpty()&&cbAM.isSelected()&&txtAM.isEnabled()){
                                 datos.actualizarDatosString("empleados","apellidom_emp","codigo_emp",txtAM.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -178,7 +193,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbAM.isSelected()==false){
+            }else if(!cbAM.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -191,7 +206,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbCURP.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbCURP.isSelected()==true){
+            if(cbCURP.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -200,10 +215,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtCURP.setEnabled(true);
                 //función
-                if(cbCURP.isSelected()==true){
+                if(cbCURP.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
-                            while(!txtCURP.getText().equals("")&&cbCURP.isSelected()==true&&txtCURP.isEnabled()==true){
+                        if(!txtCURP.getText().isEmpty()&&cbCURP.isSelected()&&txtCURP.isEnabled()){
+                            while(!txtCURP.getText().isEmpty()&&cbCURP.isSelected()&&txtCURP.isEnabled()){
                                 datos.actualizarDatosString("empleados","curp","codigo_emp",txtCURP.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -211,7 +226,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbCURP.isSelected()==false){
+            }else if(!cbCURP.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -224,7 +239,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbDomicilio.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbDomicilio.isSelected()==true){
+            if(cbDomicilio.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -233,10 +248,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtDom.setEnabled(true);
                 //función
-                if(cbDomicilio.isSelected()==true){
+                if(cbDomicilio.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
-                            while(!txtDom.getText().equals("")&&cbDomicilio.isSelected()==true&&txtDom.isEnabled()==true){
+                        if(!txtDom.getText().isEmpty()&&cbDomicilio.isSelected()&&txtDom.isEnabled()){
+                            while(!txtDom.getText().isEmpty()&&cbDomicilio.isSelected()&&txtDom.isEnabled()){
                                 datos.actualizarDatosString("empleados","domicilio","codigo_emp",txtDom.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -244,7 +259,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbDomicilio.isSelected()==false){
+            }else if(!cbDomicilio.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -257,7 +272,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbPuesto.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbExp,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbPuesto.isSelected()==true){
+            if(cbPuesto.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -267,10 +282,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 //función
-                if(cbPuesto.isSelected()==true){
+                if(cbPuesto.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
-                            while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()==true&&jComboBox1.isEnabled()==true){
+                        if(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()&&jComboBox1.isEnabled()){
+                            while(!jComboBox1.getModel().getSelectedItem().equals(etiPuesto.getText())&&cbPuesto.isSelected()&&jComboBox1.isEnabled()){
                                 datos.actualizarDatosString("empleados","puesto","codigo_emp",jComboBox1.getSelectedItem().toString(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -278,7 +293,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbPuesto.isSelected()==false){
+            }else if(!cbPuesto.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -292,7 +307,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbExp.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbGE,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbExp.isSelected()==true){
+            if(cbExp.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -301,10 +316,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtExp.setEnabled(true);
                 //función
-                if(cbExp.isSelected()==true){
+                if(cbExp.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
-                            while(!txtExp.getText().equals("")&&cbExp.isSelected()==true&&txtExp.isEnabled()==true){
+                        if(!txtExp.getText().isEmpty()&&cbExp.isSelected()&&txtExp.isEnabled()){
+                            while(!txtExp.getText().isEmpty()&&cbExp.isSelected()&&txtExp.isEnabled()){
                                 datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(txtExp.getText()),Integer.parseInt(txtSearch.getText()),true);
                                 consulta();
                                 break;
@@ -312,7 +327,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbExp.isSelected()==false){
+            }else if(!cbExp.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -325,7 +340,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbGE.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbContacto,cbFN,cbEdad,cbEstado};
-            if(cbGE.isSelected()==true){
+            if(cbGE.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -334,10 +349,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtGE.setEnabled(true);
                 //función
-                if(cbGE.isSelected()==true){
+                if(cbGE.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
-                            while(!txtGE.getText().equals("")&&cbGE.isSelected()==true&&txtGE.isEnabled()==true){
+                        if(!txtGE.getText().isEmpty()&&cbGE.isSelected()&&txtGE.isEnabled()){
+                            while(!txtGE.getText().isEmpty()&&cbGE.isSelected()&&txtGE.isEnabled()){
                                 datos.actualizarDatosString("empleados","grado_estudios","codigo_emp",txtGE.getText(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -345,7 +360,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbGE.isSelected()==false){
+            }else if(!cbGE.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -358,7 +373,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbContacto.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbFN,cbEdad,cbEstado};
-            if(cbContacto.isSelected()==true){
+            if(cbContacto.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -367,10 +382,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtContacto.setEnabled(true);
                 //función
-                if(cbContacto.isSelected()==true){
+                if(cbContacto.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
-                            while(!txtContacto.getText().equals("")&&cbContacto.isSelected()==true&&txtContacto.isEnabled()==true){
+                        if(!txtContacto.getText().isEmpty()&&cbContacto.isSelected()&&txtContacto.isEnabled()){
+                            while(!txtContacto.getText().isEmpty()&&cbContacto.isSelected()&&txtContacto.isEnabled()){
                                 datos.actualizarDatosInteger("empleados","contacto","codigo_emp",Integer.parseInt(txtContacto.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
@@ -378,7 +393,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbContacto.isSelected()==false){
+            }else if(!cbContacto.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -391,7 +406,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbFN.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbEdad,cbEstado};
-            if(cbFN.isSelected()==true){
+            if(cbFN.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -400,10 +415,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 dcFN.setEnabled(true);
                 //función
-                if(cbFN.isSelected()==true){
+                if(cbFN.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
-                            while(!dcFN.getDate().equals("")&&cbFN.isSelected()==true&&dcFN.isEnabled()==true){
+                        if(!dcFN.getDate().equals("")&&cbFN.isSelected()&&dcFN.isEnabled()){
+                            while(!dcFN.getDate().equals("")&&cbFN.isSelected()&&dcFN.isEnabled()){
                                 datos.actualizarDatosDate("empleados","fecha_nacimiento","codigo_emp",new Date(dcFN.getDate().getTime()),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -411,7 +426,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbFN.isSelected()==false){
+            }else if(!cbFN.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -424,7 +439,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbEdad.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEstado};
-            if(cbEdad.isSelected()==true){
+            if(cbEdad.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -433,10 +448,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 txtSearch.setEnabled(false);
                 txtEdad.setEnabled(true);
                 //función
-                if(cbEdad.isSelected()==true){
+                if(cbEdad.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
-                            while(!txtEdad.getText().equals("")&&cbEdad.isSelected()==true&&txtEdad.isEnabled()==true){
+                        if(!txtEdad.getText().isEmpty()&&cbEdad.isSelected()&&txtEdad.isEnabled()){
+                            while(!txtEdad.getText().isEmpty()&&cbEdad.isSelected()&&txtEdad.isEnabled()){
                                 datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(txtEdad.getText()),Integer.parseInt(txtSearch.getText()), true);
                                 consulta();
                                 break;
@@ -444,7 +459,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbEdad.isSelected()==false){
+            }else if(!cbEdad.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -457,7 +472,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         
         cbEstado.addActionListener((a)->{
             JCheckBox[] checkboxes={cbContra,cbNombre,cbAP,cbAM,cbCURP,cbDomicilio,cbPuesto,cbExp,cbGE,cbContacto,cbFN,cbEdad};
-            if(cbEstado.isSelected()==true){
+            if(cbEstado.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(false);
                     c.setSelected(false);
@@ -467,10 +482,10 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                 //textfields
                 txtSearch.setEnabled(false);
                 //función
-                if(cbEstado.isSelected()==true){
+                if(cbEstado.isSelected()){
                     updateButton.addActionListener((b)->{
-                        if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
-                            while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()==true&&jComboBox2.isEnabled()==true){
+                        if(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()&&jComboBox2.isEnabled()){
+                            while(!jComboBox2.getModel().getSelectedItem().equals(etiEstado.getText())&&cbEstado.isSelected()&&jComboBox2.isEnabled()){
                                 datos.actualizarDatosString("empleados","estado","codigo_emp",jComboBox2.getSelectedItem().toString(),Integer.parseInt(txtSearch.getText()));
                                 consulta();
                                 break;
@@ -478,7 +493,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     });
                 }
-            }else if(cbEstado.isSelected()==false){
+            }else if(!cbEstado.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
@@ -506,29 +521,34 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     
     protected void consulta(){
         try{
-            PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
-            ps.setInt(1,Integer.parseInt(txtSearch.getText()));
-            ResultSet rs=ps.executeQuery();
-            if(rs.next()){
-                etiContra.setText(rs.getString("password"));
-                etiNombre.setText(rs.getString("nombre_emp"));
-                etiAP.setText(rs.getString("apellidop_emp"));
-                etiAM.setText(rs.getString("apellidom_emp"));
-                etiDom.setText(rs.getString("domicilio"));
-                etiPuesto.setText(rs.getString("puesto"));
-                etiExp.setText(rs.getString("experiencia"));
-                etiGE.setText(rs.getString("grado_estudios"));
-                etiContacto.setText(String.valueOf(rs.getInt("contacto")));
-                etiFN.setText(rs.getDate("fecha_nacimiento").toString());
-                etiEdad.setText(String.valueOf(rs.getInt("edad")));
-                etiEstado.setText(rs.getString("estado"));
+            if(!txtSearch.getText().isEmpty()){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                ps.setInt(1,Integer.parseInt(txtSearch.getText()));
+                ResultSet rs=ps.executeQuery();
+                if(rs.next()){
+                    etiContra.setText(rs.getString("password"));
+                    etiNombre.setText(rs.getString("nombre_emp"));
+                    etiAP.setText(rs.getString("apellidop_emp"));
+                    etiAM.setText(rs.getString("apellidom_emp"));
+                    etiDom.setText(rs.getString("domicilio"));
+                    etiPuesto.setText(rs.getString("puesto"));
+                    etiExp.setText(rs.getString("experiencia"));
+                    etiGE.setText(rs.getString("grado_estudios"));
+                    etiContacto.setText(String.valueOf(rs.getInt("contacto")));
+                    etiFN.setText(rs.getDate("fecha_nacimiento").toString());
+                    etiEdad.setText(String.valueOf(rs.getInt("edad")));
+                    etiEstado.setText(rs.getString("estado"));
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'");
+                }
+                
+                ps.close();
+                rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'");
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'");
             }
-            
-            ps.close();
-            rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel1.class.getName()+"', en el método 'consulta()'");

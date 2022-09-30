@@ -6,6 +6,7 @@ import clases.logger;
 import venSecundarias.paymentWindow;
 //java
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -43,7 +44,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     public static DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
-    protected JTextField tf;
+    protected JTextField campos;
     
     public static int codigo_emp;
     
@@ -81,12 +82,11 @@ public final class ventana1 extends javax.swing.JFrame{
     protected final void botones(){
         dtm=new DefaultTableModel();
         
-        for(JTextField campos:new JTextField[]{txtCodigo,txtProd,txtMarca,txtPrecio,txtCant,txtTotal}){
-            tf=campos;
-        }
-        
         addButton.addActionListener((a)->{
-            if(!tf.getText().equals("")){
+            for(JTextField tf:new JTextField[]{txtCodigo,txtProd,txtMarca,txtPrecio,txtCant,txtTotal}){
+                campos=tf;
+            }
+            if(!campos.getText().isEmpty()){
                 dtm.addRow(new Object[]{
                     txtCodigo.getText(),
                     txtProd.getText(),
@@ -95,7 +95,7 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtPrecio.getText(),
                     txtTotal.getText()
                 });
-                cleanFields();
+                clearFields();
             }else{
                 JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
@@ -110,7 +110,7 @@ public final class ventana1 extends javax.swing.JFrame{
         cleanButton.addActionListener((a)->{
             dtm.setRowCount(0);
             
-            cleanFields();
+            clearFields();
         });
         
         jButton2.addActionListener((a)->{
@@ -146,7 +146,7 @@ public final class ventana1 extends javax.swing.JFrame{
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
-                            if(!txtCodigo.getText().equals("")){
+                            if(!txtCodigo.getText().isEmpty()){
                                 if(rs.getInt("cantidad")==0){
                                     if(rs.getString("stock").equals("Agotado")){
                                         JOptionPane.showMessageDialog(null,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
@@ -187,7 +187,7 @@ public final class ventana1 extends javax.swing.JFrame{
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
-                            if(!txtCant.getText().equals("")){
+                            if(!txtCant.getText().isEmpty()){
                                 int txtCantidad=Integer.parseInt(txtCant.getText());
                                 int cantidad=rs.getInt("cantidad");
                                 if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
@@ -233,7 +233,7 @@ public final class ventana1 extends javax.swing.JFrame{
         });
     }
     
-    protected void popup(){
+    protected final void popup(){
         popupMenu=new JPopupMenu();
         
         JMenuItem mi1=new JMenuItem(new AbstractAction("Editar fila"){
@@ -273,20 +273,6 @@ public final class ventana1 extends javax.swing.JFrame{
         }
     }
     
-    protected void removeRow(){
-        try{
-            if(jTable1.isRowSelected(jTable1.getRowCount())==true){
-                dtm.removeRow(jTable1.getSelectedRow());
-            }else{
-                new logger(Level.INFO).staticLogger("no hay nada seleccionado");
-            }
-        }catch(ArrayIndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");
-            new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"removeRow-AIOOBE",e.fillInStackTrace());
-        }
-    }
-    
     protected void calc(){
         try{
             int n1=Integer.parseInt(txtCant.getText());
@@ -301,13 +287,24 @@ public final class ventana1 extends javax.swing.JFrame{
         }
     }
     
-    protected void cleanFields(){
-        txtCodigo.setText("");
-        txtProd.setText("");
-        txtMarca.setText("");
-        txtPrecio.setText("");
-        txtCant.setText("");
-        txtTotal.setText("");
+    protected void clearFields(){
+        for(JTextField tf:new JTextField[]{txtCodigo,txtProd,txtMarca,txtPrecio,txtCant,txtTotal}){
+            tf.setText("");
+        }
+    }
+    
+    protected void removeRow(){
+        try{
+            if(jTable1.isRowSelected(jTable1.getRowCount())){
+                dtm.removeRow(jTable1.getSelectedRow());
+            }else{
+                new logger(Level.INFO).staticLogger("no hay nada seleccionado");
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+e.getMessage()+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'removeRow()'");
+            new logger(Level.SEVERE).exceptionLogger(ventana1.class.getName(),"removeRow-AIOOBE",e.fillInStackTrace());
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -587,7 +584,9 @@ public final class ventana1 extends javax.swing.JFrame{
     }//GEN-LAST:event_txtTotalKeyPressed
             
     public static void main(String[] args){
-        new ventana1().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ventana1().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

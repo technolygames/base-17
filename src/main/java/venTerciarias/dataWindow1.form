@@ -14,9 +14,14 @@
                 <Property name="text" type="java.lang.String" value="Guardar imagen"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="miWatchCount">
+            <MenuItem class="javax.swing.JMenuItem" name="miCountViewer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver conteo"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miModData">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar datos"/>
               </Properties>
             </MenuItem>
           </SubComponents>

@@ -51,21 +51,18 @@ public class resourceDownload{
             s.bind(sa);
             s.connect(sa);
             
-            if(s.isConnected()==true){
-                estado=true;
-            }else{
-                estado=false;
-            }
+            return s.isConnected();
         }catch(UnknownHostException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'");
             new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"checkConnection-1I",e.fillInStackTrace());
+            return false;
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'");
             new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"checkConnection-1IO",x.fillInStackTrace());
+            return false;
         }
-        return estado;
     }
     
     /**

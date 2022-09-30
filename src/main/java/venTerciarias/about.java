@@ -5,6 +5,7 @@ import clases.logger;
 //java
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.EventQueue;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.io.FileReader;
@@ -34,11 +35,11 @@ public final class about extends javax.swing.JDialog{
     
     protected Properties p;
     
-    protected void settings(){
+    protected final void settings(){
         websiteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     
-    protected void etiquetas(){
+    protected final void etiquetas(){
         p=new Properties();
         try{
             p.load(new FileReader("data/config/acerca.properties",StandardCharsets.UTF_8));
@@ -256,7 +257,7 @@ public final class about extends javax.swing.JDialog{
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/acerca.properties"));
-            Desktop.getDesktop(). browse(new URI(p.getProperty("website")));
+            Desktop.getDesktop().browse(new URI(p.getProperty("website")));
         }catch(URISyntaxException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+".\nOcurrió en la clase '"+about.class.getName()+"', en el método 'websiteLabelMouseClicked()'");
@@ -277,7 +278,9 @@ public final class about extends javax.swing.JDialog{
     }//GEN-LAST:event_websiteLabelMouseClicked
     
     public static void main(String[] args){
-        new about(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new about(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

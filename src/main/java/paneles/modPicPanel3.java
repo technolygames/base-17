@@ -35,6 +35,15 @@ public class modPicPanel3 extends javax.swing.JPanel{
         botones();
     }
     
+    public modPicPanel3(int code){
+        initComponents();
+        
+        txtSearch.setText(String.valueOf(code));
+        consulta2();
+        
+        botones();
+    }
+    
     protected Properties p;
     protected JFileChooser jfc;
     
@@ -71,13 +80,13 @@ public class modPicPanel3 extends javax.swing.JPanel{
         });
         
         searchButton.addActionListener((a)->{
-            consulta();
+            consulta1();
         });
         
         updateButton.addActionListener((a)->{
             try{
                 new datos().actualizarFotoPerfil("proveedor","codigo_prov",Integer.parseInt(txtSearch.getText()),new FileInputStream(direccion));
-                consulta();
+                consulta1();
             }catch(FileNotFoundException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel3.class.getName()+"', en el método 'botones(updateButton)'");
@@ -89,7 +98,7 @@ public class modPicPanel3 extends javax.swing.JPanel{
             @Override
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
-                    consulta();
+                    consulta1();
                 }
             }
         });
@@ -144,7 +153,35 @@ public class modPicPanel3 extends javax.swing.JPanel{
         }
     }
     
-    protected void consulta(){
+    protected void consulta1(){
+        try{
+            if(!txtSearch.getText().isEmpty()){
+                PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+                ps.setInt(1,Integer.parseInt(txtSearch.getText()));
+                ResultSet rs=ps.executeQuery();
+                if(rs.next()){
+                    codigo=rs.getInt("codigo_prov");
+                    nombre=rs.getString("nombre_prov");
+                    picLabel.setText(null);
+                    picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                }else{
+                    JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
+                }
+                ps.close();
+                rs.close();
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
+            new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"consulta1-14",e.fillInStackTrace());
+        }
+    }
+    
+    protected void consulta2(){
         try{
             PreparedStatement ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
             ps.setInt(1,Integer.parseInt(txtSearch.getText()));
@@ -152,12 +189,18 @@ public class modPicPanel3 extends javax.swing.JPanel{
             if(rs.next()){
                 codigo=rs.getInt("codigo_prov");
                 nombre=rs.getString("nombre_prov");
-                picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                picLabel.setText(null);
+                picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(229,229,Image.SCALE_DEFAULT)));
+            }else{
+                JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
             }
+            ps.close();
+            rs.close();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel3.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(modPicPanel3.class.getName(),"datosMostrar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
+            new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"consulta1-14",e.fillInStackTrace());
         }
     }
     
@@ -221,13 +264,12 @@ public class modPicPanel3 extends javax.swing.JPanel{
                             .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(picLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                        .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(takePicButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(takePicButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(closeButton)
                     .addComponent(updateButton))

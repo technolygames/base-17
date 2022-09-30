@@ -4,13 +4,14 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.win10Notification;
-import java.awt.EventQueue;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -26,7 +27,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.TrayIcon.MessageType;
 import java.nio.charset.StandardCharsets;
-import java.sql.PreparedStatement;
 import java.time.format.DateTimeFormatter;
 
 public final class start extends javax.swing.JFrame{
@@ -49,6 +49,7 @@ public final class start extends javax.swing.JFrame{
     
     protected Date fecha;
     protected ResultSet rs;
+    protected PreparedStatement ps;
     
     public static int userID;
     
@@ -102,7 +103,7 @@ public final class start extends javax.swing.JFrame{
         }
         
         try{
-            if(!campos.getText().equals("")){
+            if(!campos.getText().isEmpty()){
                 datos.actualizarDatosLogin(pass,user);
                 rs=datos.login(pass,user);
                 if(rs.next()){
@@ -126,15 +127,15 @@ public final class start extends javax.swing.JFrame{
                     }
                     
                     /*revisar registros en conteo*/{
-                        PreparedStatement ps=new datos().getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
+                        ps=datos.getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
                         ps.setInt(1,userID);
                         ps.setString(2,LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
                         ResultSet rs2=ps.executeQuery();
-                        if(rs2.next()){
-                            new logger(Level.INFO).staticLogger("1; si hay");
-                        }else{
+                        if(!rs2.next()){
                             new logger(Level.INFO).staticLogger("2; no hay");
                             new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                        }else{
+                            new logger(Level.INFO).staticLogger("1; si hay");
                         }
                     }
                     
@@ -144,6 +145,8 @@ public final class start extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
                 }
+                
+                ps.close();
                 rs.close();
             }else{
                 JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);

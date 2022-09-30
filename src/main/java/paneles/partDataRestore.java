@@ -5,21 +5,29 @@ import clases.BackupHandler.lectorJSON;
 import java.io.File;
 import javax.swing.JFileChooser;
 //extension larga
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class partDataRestore extends javax.swing.JPanel{
     public partDataRestore(){
         initComponents();
         
-        botones(); 
+        botones();
+        settings();
     }
     
     protected JFileChooser filechooser;
+    
+    protected final void settings(){
+        loadDataButton.setEnabled(false);
+    }
     
     protected final void botones(){
         closeButton.addActionListener((a)->{
             setVisible(false);
         });
+        
         searchButton.addActionListener((a)->{
             filechooser=new JFileChooser("data/databackup/Socios");
             filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
@@ -27,12 +35,29 @@ public class partDataRestore extends javax.swing.JPanel{
             if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){
                 File f=filechooser.getSelectedFile();
                 jTextField1.setText(f.toString());
+                
+                unlockLoadButton();
+            }
+        });
+        
+        jTextField1.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased(KeyEvent a){
+                unlockLoadButton();
             }
         });
         
         loadDataButton.addActionListener((a)->{
             new lectorJSON().readDataPartnerJson(jTextField1.getText());
         });
+    }
+    
+    protected void unlockLoadButton(){
+        if(!jTextField1.getText().isEmpty()){
+            loadDataButton.setEnabled(true);
+        }else{
+            loadDataButton.setEnabled(false);
+        }
     }
     
     @SuppressWarnings("unchecked")

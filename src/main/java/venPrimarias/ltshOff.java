@@ -4,6 +4,7 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 //java
+import java.awt.EventQueue;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -138,7 +139,9 @@ public class ltshOff extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new ltshOff().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ltshOff().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

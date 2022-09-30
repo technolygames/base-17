@@ -3,6 +3,8 @@ package venTerciarias;
 import clases.datos;
 import clases.guiMediaHandler;
 import paneles.databaseImport;
+//java
+import java.awt.EventQueue;
 
 public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
@@ -85,7 +87,9 @@ public class databaseWindow extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new databaseWindow(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new databaseWindow(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

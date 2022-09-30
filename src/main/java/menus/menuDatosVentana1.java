@@ -6,6 +6,7 @@ import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
 //java
 import java.awt.Component;
+import java.awt.EventQueue;
 import java.awt.BorderLayout;
 
 public class menuDatosVentana1 extends javax.swing.JFrame{
@@ -22,16 +23,16 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         pack();
     }
     
-    public menuDatosVentana1(Component panel){
+    protected int codigo;
+    
+    public menuDatosVentana1(int code){
         initComponents();
         new guiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
         
-        menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-        menuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
-        menuDatosVentana1.this.pack();
+        this.codigo=code;
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -39,7 +40,43 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         pack();
     }
     
-    protected void settings(){
+    public menuDatosVentana1(Component panel,int code){
+        initComponents();
+        new guiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        
+        botones();
+        settings();
+        
+        this.codigo=code;
+        
+        openPanel(panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    public menuDatosVentana1(Component panel,boolean flag){
+        initComponents();
+        new guiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        
+        botones();
+        settings();
+        
+        if(!flag){
+            jMenu1.setVisible(false);
+        }
+        
+        openPanel(panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    protected final void settings(){
         backButton.setToolTipText("Regresar al formulario");
     }
     
@@ -50,20 +87,34 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         });
         
         miDelData.addActionListener((a)->{
-            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(new delDatosPanel1(),BorderLayout.CENTER);
-            menuDatosVentana1.this.pack();
+            if(codigo!=0){
+                openPanel(new delDatosPanel1(codigo));
+            }else{
+                openPanel(new delDatosPanel1());
+            }
         });
          
         miModData.addActionListener((a)->{
-            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(new modDatosPanel1(),BorderLayout.CENTER);
-            menuDatosVentana1.this.pack();
+            if(codigo!=0){
+                openPanel(new modDatosPanel1(codigo));
+            }else{
+                openPanel(new modDatosPanel1());
+            }
         });
         
         miModPic.addActionListener((a)->{
+            if(codigo!=0){
+                openPanel(new modPicPanel1(codigo));
+            }else{
+                openPanel(new modPicPanel1());
+            }
+        });
+    }
+    
+    protected void openPanel(Component panel){
+        EventQueue.invokeLater(()->{
             menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(new modPicPanel1(),BorderLayout.CENTER);
+            menuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
             menuDatosVentana1.this.pack();
         });
     }
@@ -120,7 +171,9 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String args[]){
-        new menuDatosVentana1().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new menuDatosVentana1().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

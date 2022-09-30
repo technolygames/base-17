@@ -9,6 +9,7 @@ import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
 import venTerciarias.dataWindow1;
 //java
+import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -113,7 +114,7 @@ public class ltshWorkers extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
-        if(!txtBuscar.getText().equals("")){
+        if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
             mostrarBoton(true);
         }else{
@@ -167,7 +168,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         }
     }
     
-    protected final void datosBuscar(){
+    protected void datosBuscar(){
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -300,18 +301,27 @@ public class ltshWorkers extends javax.swing.JFrame{
         JMenuItem mi2=new JMenuItem(new AbstractAction("Modificar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana1(new modDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()))).setVisible(true);
+                new menuDatosVentana1(new modDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()),false),false).setVisible(true);
             }
         });
         
         JMenuItem mi3=new JMenuItem(new AbstractAction("Eliminar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana1(new delDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()))).setVisible(true);
+                new menuDatosVentana1(new delDatosPanel1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString()),false),false).setVisible(true);
+            }
+        });
+        
+        JMenuItem mi4=new JMenuItem(new AbstractAction("Menú"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                new menuDatosVentana1(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),1).toString())).setVisible(true);
             }
         });
         
         popupMenu.add(mi1);
+        popupMenu.add(new JSeparator());
+        popupMenu.add(mi4);
         popupMenu.add(new JSeparator());
         popupMenu.add(mi2);
         popupMenu.add(mi3);
@@ -427,7 +437,9 @@ public class ltshWorkers extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new ltshWorkers().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ltshWorkers().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

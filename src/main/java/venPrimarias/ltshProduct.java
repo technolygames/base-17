@@ -5,6 +5,7 @@ import clases.dbUtils;
 import clases.guiMediaHandler;
 import clases.logger;
 //java
+import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -77,7 +78,7 @@ public class ltshProduct extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
-        if(!txtBuscar.getText().equals("")){
+        if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
         }else{
             JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
@@ -109,7 +110,7 @@ public class ltshProduct extends javax.swing.JFrame{
         }
     }
     
-    protected final void datosBuscar(){
+    protected void datosBuscar(){
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
@@ -293,7 +294,9 @@ public class ltshProduct extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new ltshProduct().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new ltshProduct().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

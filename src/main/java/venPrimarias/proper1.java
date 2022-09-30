@@ -11,7 +11,9 @@ import com.formdev.flatlaf.FlatLightLaf;
 //java
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.awt.HeadlessException;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -56,6 +58,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected InputStream is;
     protected OutputStream os;
     protected JFileChooser jfc;
+    protected JTextField campos;
     
     protected int i;
     
@@ -76,7 +79,7 @@ public final class proper1 extends javax.swing.JFrame{
         jTextField3.setVisible(false);
         
         JTextField[] tf={jTextField4,jTextField5};
-        if(new validation(start.role,proper1.class.getName()).isAccessible()==true){
+        if(new validation(start.role,proper1.class.getName()).isAccessible()){
             for(JTextField textfield:tf){
                 textfield.setEnabled(true);
             }
@@ -93,36 +96,30 @@ public final class proper1 extends javax.swing.JFrame{
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
             imagenes=p.getProperty("imagenes");
-            File f2=new File(imagenes);
-            nombreArchivo1=f2.getName();
-            
-            icono=p.getProperty("icono");
-            File f3=new File(icono);
-            nombreArchivo2=f3.getName();
-            
-            design=p.getProperty("look_and_feel");
-            nombre=p.getProperty("nombre");
-            ruc=p.getProperty("ruc");
-            tlf=p.getProperty("tlf");
-            
+            jTextField2.setText(imagenes);
             if(!new File(imagenes).exists()){
                 imagenes=p.getProperty("imagen_respaldo");
-                File k=new File(imagenes);
-                nombreArchivo1=k.getName();
+                jTextField2.setText(imagenes);
             }
             
+            icono=p.getProperty("icono");
+            jTextField3.setText(icono);
             if(!new File(icono).exists()){
                 icono=p.getProperty("icono_respaldo");
-                File k=new File(icono);
-                nombreArchivo2=k.getName();
+                jTextField3.setText(icono);
             }
             
-            jTextField1.setText(nombre);
-            jTextField2.setText(imagenes);
-            jTextField3.setText(icono);
-            jTextField4.setText(ruc);
-            jTextField5.setText(tlf);
+            design=p.getProperty("look_and_feel");
             jComboBox1.getModel().setSelectedItem(design);
+            
+            nombre=p.getProperty("nombre");
+            jTextField1.setText(nombre);
+            
+            ruc=p.getProperty("ruc");
+            jTextField4.setText(ruc);
+            
+            tlf=p.getProperty("tlf");
+            jTextField5.setText(tlf);
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'");
@@ -145,9 +142,47 @@ public final class proper1 extends javax.swing.JFrame{
     protected final void botones(){
         p=new Properties();
         
+        ActionListener ae1=(a)->{
+            if(a.getSource()==rightButton){
+                if(i!=-1){
+                    imageLoader("Ventanas",jTextField2.getText());
+                    rightButton.setEnabled(false);
+                    leftButton.setEnabled(true);
+                    i=i+1;
+                }
+            }
+        };
+        
+        ActionListener ae2=(a)->{
+            if(a.getSource()==leftButton){
+                if(i!=0){
+                    imageLoader("Icono",jTextField3.getText());
+                    rightButton.setEnabled(true);
+                    leftButton.setEnabled(false);
+                    i=i-1;
+                }
+            }
+        };
+        
         backButton.addActionListener((a)->{
-            setVisible(false);
-            dispose();
+            if(!jComboBox1.getSelectedItem().equals(design)||
+                    !jTextField2.getText().equals(imagenes)||
+                    !jTextField3.getText().equals(icono)||
+                    !jTextField1.getText().equals(nombre)||
+                    !jTextField4.getText().equals(ruc)||
+                    !jTextField5.getText().equals(tlf)){
+                switch(JOptionPane.showConfirmDialog(null,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
+                    case 0:
+                        setVisible(false);
+                        dispose();
+                        laf(design);
+                        break;
+                }
+            }else{
+                System.out.println("no hay cambios");
+                setVisible(false);
+                dispose();
+            }
         });
         
         
@@ -162,11 +197,11 @@ public final class proper1 extends javax.swing.JFrame{
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
                         File f3=jfc.getSelectedFile();
-                        icono=f3.getPath();
-                        nombreArchivo2=f3.getName();
                         
-                        jTextField3.setText(icono);
+                        jTextField3.setText(f3.getPath());
                         imageLoader("Icono",jTextField3.getText());
+                        
+                        leftButton.addActionListener(ae1);
                         
                         p.setProperty("lastdirectory_icon",f3.getParent());
                         p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -204,11 +239,11 @@ public final class proper1 extends javax.swing.JFrame{
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     try{
                         File f2=jfc.getSelectedFile();
-                        imagenes=f2.getPath();
-                        nombreArchivo1=f2.getName();
                         
-                        jTextField2.setText(imagenes);
+                        jTextField2.setText(f2.getPath());
                         imageLoader("Ventanas",jTextField2.getText());
+                        
+                        rightButton.addActionListener(ae1);
                         
                         p.setProperty("lastdirectory_image",f2.getParent());
                         p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -234,53 +269,12 @@ public final class proper1 extends javax.swing.JFrame{
         });
         
         jComboBox1.addActionListener((a)->{
-            try{
-                design=jComboBox1.getSelectedItem().toString();
-                UIManager.setLookAndFeel(design);
-                for(Frame frame:Frame.getFrames()){
-                    SwingUtilities.updateComponentTreeUI(frame);
-                    frame.pack();
-                }
-            }catch(ClassNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-                new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-CNFE",e.fillInStackTrace());
-            }catch(IllegalAccessException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error IAE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-                new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IAE",x.fillInStackTrace());
-            }catch(InstantiationException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error IE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-                new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IE",n.fillInStackTrace());
-            }catch(UnsupportedLookAndFeelException k){
-                JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-                new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-28",k.fillInStackTrace());
-            }
+            laf(jComboBox1.getSelectedItem().toString());
         });
         
-        leftButton.addActionListener((a)->{
-            if(a.getSource()==leftButton){
-                if(i!=0){
-                    imageLoader("Icono",jTextField3.getText());
-                    rightButton.setEnabled(true);
-                    leftButton.setEnabled(false);
-                    i=i-1;
-                }
-            }
-        });
+        leftButton.addActionListener(ae2);
         
-        rightButton.addActionListener((a)->{
-            if(a.getSource()==rightButton){
-                if(i!=-1){
-                    imageLoader("Ventanas",jTextField2.getText());
-                    rightButton.setEnabled(false);
-                    leftButton.setEnabled(true);
-                    i=i+1;
-                }
-            }
-        });
+        rightButton.addActionListener(ae1);
         
         schButton.addActionListener((a)->{
             configOut();
@@ -289,6 +283,32 @@ public final class proper1 extends javax.swing.JFrame{
         toolsButton.addActionListener((a)->{
             new validation(new adminTools(),start.role,adminTools.class.getName()).toRestrictedForm();
         });
+    }
+    
+    protected void laf(String laf){
+        try{
+            UIManager.setLookAndFeel(laf);
+            for(Frame frame:Frame.getFrames()){
+                SwingUtilities.updateComponentTreeUI(frame);
+                frame.pack();
+            }
+        }catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-CNFE",e.fillInStackTrace());
+        }catch(IllegalAccessException x){
+            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error IAE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IAE",x.fillInStackTrace());
+        }catch(InstantiationException n){
+            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error IE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IE",n.fillInStackTrace());
+        }catch(UnsupportedLookAndFeelException k){
+            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-28",k.fillInStackTrace());
+        }
     }
     
     static{
@@ -327,30 +347,36 @@ public final class proper1 extends javax.swing.JFrame{
         String dato2=userdir+"\\data\\media\\icon\\copy\\";
         try{
             if(f1.exists()){
-                p.setProperty("imagenes",imagenes);
-                
-                is=new FileInputStream(imagenes);
-                os=new FileOutputStream(dato1+nombreArchivo1);
-                
+                File image=new File(jTextField2.getText());
+                String dirImg=image.getPath();
+                String nameImg=image.getName();
+                p.setProperty("imagenes",dirImg);
+                p.setProperty("imagen_respaldo",dato1+nameImg);
+                is=new FileInputStream(dirImg);
+                os=new FileOutputStream(dato1+nameImg);
                 new Thread(new thread1(is,os)).start();
                 
-                p.setProperty("imagen_respaldo",dato1+nombreArchivo1);
-                p.setProperty("look_and_feel",design);
-                p.setProperty("icono",icono);
-                p.setProperty("icono_respaldo",dato2+nombreArchivo2);
+                p.setProperty("look_and_feel",jComboBox1.getSelectedItem().toString());
+                
+                File icon=new File(jTextField3.getText());
+                String dirIcon=icon.getPath();
+                String nameIcon=icon.getName();
+                p.setProperty("icono",dirIcon);
+                p.setProperty("icono_respaldo",dato2+nameIcon);
+                is=new FileInputStream(dirIcon);
+                os=new FileOutputStream(dato2+nameIcon);
+                new Thread(new thread1(is,os)).start();
+                
                 p.setProperty("nombre",jTextField1.getText());
                 p.setProperty("ruc",jTextField4.getText());
                 p.setProperty("tlf",jTextField5.getText());
-                
-                is=new FileInputStream(icono);
-                os=new FileOutputStream(dato2+nombreArchivo2);
-                
-                new Thread(new thread1(is,os)).start();
                 
                 p.store(new BufferedWriter(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8)),"config1");
                 
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                
+                configIn();
                 
                 is.close();
                 os.flush();
@@ -381,6 +407,19 @@ public final class proper1 extends javax.swing.JFrame{
         jLabel3.setIcon(new ImageIcon(new ImageIcon(image).getImage().getScaledInstance(jLabel3.getWidth(),jLabel3.getHeight(),Image.SCALE_DEFAULT)));
         jLabel5.setText(null);
         jLabel5.setText(label);
+    }
+    
+    protected void isEmpty(){
+        for(JTextField tf:new JTextField[]{jTextField1,jTextField4,jTextField5}){
+            campos=tf;
+        }
+        
+        if(!campos.getText().isEmpty()){
+           schButton.setEnabled(true);
+        }else{
+            schButton.setEnabled(false);
+            schButton.setToolTipText("No deben haber campos vacíos");
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -571,7 +610,9 @@ public final class proper1 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new proper1().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new proper1().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -582,7 +623,7 @@ public final class proper1 extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private static javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

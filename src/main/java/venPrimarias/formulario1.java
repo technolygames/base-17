@@ -10,6 +10,7 @@ import menus.menuDatosVentana1;
 import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
+import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileReader;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
@@ -52,10 +54,11 @@ public class formulario1 extends javax.swing.JFrame{
     
     protected Properties p;
     protected JFileChooser jfc;
+    protected JTextField campos;
     
     protected String direccion;
     
-    protected void settings(){
+    protected final void settings(){
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
         jDateChooser1.setDateFormatString("yyyy-MM-dd");
@@ -63,6 +66,10 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
+        for(JTextField tf:new JTextField[]{txtPassword,txtCodigo,txtNombre,txtAP,txtAM,txtDom,txtExp,txtEstudios,txtContacto,txtEdad}){
+            campos=tf;
+        }
+        
         backButton.addActionListener((a)->{
             setVisible(false);
             dispose();
@@ -73,24 +80,13 @@ public class formulario1 extends javax.swing.JFrame{
         });
         
         jMenuItem2.addActionListener((a)->{
-            picLabel.setIcon(null);
-            picLabel.setText("Foto");
+            clearImage();
         });
         
         miClearFields.addActionListener((a)->{
-            txtPassword.setText("");
-            txtCodigo.setText("");
-            txtNombre.setText("");
-            txtAP.setText("");
-            txtAM.setText("");
-            txtDom.setText("");
-            txtExp.setText("");
-            txtEstudios.setText("");
-            txtContacto.setText("");
-            txtEdad.setText("");
-            picLabel.setIcon(null);
-            picLabel.setText("Foto");
+            campos.setText("");
             jTextArea1.setText("");
+            clearImage();
             placeHolders();
         });
         
@@ -145,7 +141,7 @@ public class formulario1 extends javax.swing.JFrame{
         
         storeButton.addActionListener((a)->{
             try{
-                if(!txtPassword.getPassword().equals("")||!txtCodigo.getText().equals("")||!txtNombre.getText().equals("")||!txtAP.getText().equals("")||!txtAM.getText().equals("")||!txtDom.getText().equals("")||!txtExp.getText().equals("")||!txtEstudios.getText().equals("")||!txtContacto.getText().equals("")||!txtEdad.getText().equals("")||!jTextArea1.getText().equals("")){
+                if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
                     List<mvcForm1> datos=new ArrayList<>();
                     mvcForm1 modelo=new mvcForm1();
                     
@@ -242,6 +238,15 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }
     
+    protected void calcAge(){
+        txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(new Date(jDateChooser1.getDate().getTime()).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
+    }
+    
+    protected void clearImage(){
+        picLabel.setIcon(null);
+        picLabel.setText("Foto");
+    }
+    
     protected void placeHolders(){
         new placeHolder(txtNombre,"Primer y/o segundo nombre").inicialize();
         new placeHolder(txtExp,"En años").inicialize();
@@ -250,10 +255,6 @@ public class formulario1 extends javax.swing.JFrame{
     protected void showImage(String path){
         picLabel.setText(null);
         picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
-    }
-    
-    protected void calcAge(){
-        txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(new Date(jDateChooser1.getDate().getTime()).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
     }
     
     @SuppressWarnings("unchecked")
@@ -618,7 +619,9 @@ public class formulario1 extends javax.swing.JFrame{
     }//GEN-LAST:event_txtEdadKeyPressed
     
     public static void main(String args[]){
-        new formulario1().setVisible(true);
+        EventQueue.invokeLater(()->{
+            new formulario1().setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

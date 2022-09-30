@@ -4,12 +4,14 @@ import clases.datos;
 import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread2;
+import clases.validation;
 import paneles.countPanel;
 import venPrimarias.start;
-import venPrimarias.ltshWorkers;
+import menus.menuDatosVentana1;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -64,6 +66,12 @@ public class dataWindow1 extends javax.swing.JDialog{
         jTextArea1.setWrapStyleWord(true);
         jTextArea2.setLineWrap(true);
         jTextArea2.setWrapStyleWord(true);
+        
+        miModData.setVisible(false);
+        
+        if(new validation(etiPuesto.getText(),dataWindow1.class.getName()).isAccessible()&&codigo!=0){
+            miModData.setVisible(true);
+        }
     }
     
     protected final void datosMostrar(){
@@ -119,16 +127,16 @@ public class dataWindow1 extends javax.swing.JDialog{
         
         miStorePic.addActionListener((a)->{
             try{
-                int codigo=Integer.parseInt(etiCodigo.getText());
+                int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
                 ps=new datos().getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
-                ps.setInt(1,codigo);
+                ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo+".jpg");
+                File f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo1+".jpg");
                 for(int i=0;f.exists();i++){
-                    f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo+"-("+i+").jpg");
+                    f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
                 new thread2(rs,new FileOutputStream(f)).run();
@@ -151,8 +159,12 @@ public class dataWindow1 extends javax.swing.JDialog{
             }
         });
         
-        miWatchCount.addActionListener((a)->{
+        miCountViewer.addActionListener((a)->{
             new countViewer(new javax.swing.JFrame(),true,new countPanel(Integer.parseInt(etiCodigo.getText()))).setVisible(true);
+        });
+        
+        miModData.addActionListener((a)->{
+            new menuDatosVentana1(Integer.parseInt(etiCodigo.getText())).setVisible(true);
         });
     }
     
@@ -202,7 +214,8 @@ public class dataWindow1 extends javax.swing.JDialog{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miStorePic = new javax.swing.JMenuItem();
-        miWatchCount = new javax.swing.JMenuItem();
+        miCountViewer = new javax.swing.JMenuItem();
+        miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new guiMediaHandler(dataWindow1.class.getName()).getIconImage());
@@ -310,8 +323,11 @@ public class dataWindow1 extends javax.swing.JDialog{
         miStorePic.setText("Guardar imagen");
         jMenu1.add(miStorePic);
 
-        miWatchCount.setText("Ver conteo");
-        jMenu1.add(miWatchCount);
+        miCountViewer.setText("Ver conteo");
+        jMenu1.add(miCountViewer);
+
+        miModData.setText("Modificar datos");
+        jMenu1.add(miModData);
 
         jMenuBar1.add(jMenu1);
 
@@ -457,7 +473,9 @@ public class dataWindow1 extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
+        EventQueue.invokeLater(()->{
+            new dataWindow1(new javax.swing.JFrame(),true).setVisible(true);
+        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -502,7 +520,8 @@ public class dataWindow1 extends javax.swing.JDialog{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JMenuItem miCountViewer;
+    private javax.swing.JMenuItem miModData;
     private javax.swing.JMenuItem miStorePic;
-    private javax.swing.JMenuItem miWatchCount;
     // End of variables declaration//GEN-END:variables
 }
