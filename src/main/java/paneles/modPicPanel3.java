@@ -112,6 +112,8 @@ public class modPicPanel3 extends javax.swing.JPanel{
                     p.load(new FileInputStream("data/config/filechooserd.properties"));
                     jfc=new JFileChooser(p.getProperty("lastdirectory_pic3"));
                     
+                    jfc.setMultiSelectionEnabled(false);
+                    jfc.setAcceptAllFileFilterUsed(false);
                     jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
                     
                     if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){

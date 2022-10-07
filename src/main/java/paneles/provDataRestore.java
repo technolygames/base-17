@@ -30,6 +30,9 @@ public class provDataRestore extends javax.swing.JPanel{
         
         searchButton.addActionListener((a)->{
             filechooser=new JFileChooser("data/databackup/Proveedores");
+            
+            filechooser.setMultiSelectionEnabled(false);
+            filechooser.setAcceptAllFileFilterUsed(false);
             filechooser.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
             if(JFileChooser.APPROVE_OPTION==filechooser.showOpenDialog(null)){

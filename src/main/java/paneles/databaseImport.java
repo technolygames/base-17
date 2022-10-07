@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class databaseImport extends javax.swing.JPanel{
@@ -67,7 +68,9 @@ public class databaseImport extends javax.swing.JPanel{
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
                 JFileChooser chooser=new JFileChooser(p.getProperty("lastdirectory_database_import"));
                 
+                chooser.setMultiSelectionEnabled(false);
                 chooser.setFileFilter(new FileNameExtensionFilter("Archivo SQL","sql"));
+                chooser.setAcceptAllFileFilterUsed(false);
                 
                 if(JFileChooser.APPROVE_OPTION==chooser.showOpenDialog(null)){
                     File f=chooser.getSelectedFile();

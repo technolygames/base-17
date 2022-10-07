@@ -5,6 +5,7 @@ import clases.guiMediaHandler;
 import clases.logger;
 import clases.thread1;
 import clases.validation;
+import menus.menuVentanas;
 //librerías
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -13,14 +14,12 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
@@ -145,28 +144,6 @@ public final class proper1 extends javax.swing.JFrame{
     protected final void botones(){
         p=new Properties();
         
-        ActionListener ae1=(a)->{
-            if(a.getSource()==rightButton){
-                if(i!=-1){
-                    imageLoader("Ventanas",jTextField2.getText());
-                    rightButton.setEnabled(false);
-                    leftButton.setEnabled(true);
-                    i=i+1;
-                }
-            }
-        };
-        
-        ActionListener ae2=(a)->{
-            if(a.getSource()==leftButton){
-                if(i!=0){
-                    imageLoader("Icono",jTextField3.getText());
-                    rightButton.setEnabled(true);
-                    leftButton.setEnabled(false);
-                    i=i-1;
-                }
-            }
-        };
-        
         backButton.addActionListener((a)->{
             if(!jComboBox1.getSelectedItem().equals(design)||
                     !jTextField2.getText().equals(imagenes)||
@@ -182,7 +159,7 @@ public final class proper1 extends javax.swing.JFrame{
                         break;
                 }
             }else{
-                System.out.println("no hay cambios");
+                new logger(Level.INFO).staticLogger("No hay cambios");
                 setVisible(false);
                 dispose();
             }
@@ -195,24 +172,20 @@ public final class proper1 extends javax.swing.JFrame{
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_icon"));
                 
+                jfc.setMultiSelectionEnabled(false);
+                jfc.setAcceptAllFileFilterUsed(false);
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivo PNG","png"));
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
-                    try{
-                        File f3=jfc.getSelectedFile();
-                        
-                        jTextField3.setText(f3.getPath());
-                        imageLoader("Icono",jTextField3.getText());
-                        
-                        leftButton.addActionListener(ae1);
-                        
-                        p.setProperty("lastdirectory_icon",f3.getParent());
-                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
-                    }catch(IOException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
-                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-2IO",e.fillInStackTrace());
-                    }
+                    File f3=jfc.getSelectedFile();
+                    
+                    jTextField3.setText(f3.getPath());
+                    imageLoader("Icono",jTextField3.getText());
+                    
+                    setIconImage(new guiMediaHandler(proper1.class.getName()).getIconImage(jTextField3.getText()));
+                    
+                    p.setProperty("lastdirectory_icon",f3.getParent());
+                    p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
@@ -235,26 +208,20 @@ public final class proper1 extends javax.swing.JFrame{
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_image"));
                 
+                jfc.setMultiSelectionEnabled(false);
+                jfc.setAcceptAllFileFilterUsed(false);
                 for(FileNameExtensionFilter filtro:new FileNameExtensionFilter[]{new FileNameExtensionFilter("Archivo PNG","png"),new FileNameExtensionFilter("Archivo JPG","jpg"),new FileNameExtensionFilter("Archivo JPEG","jpeg")}){
                     jfc.setFileFilter(filtro);
                 }
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
-                    try{
-                        File f2=jfc.getSelectedFile();
-                        
-                        jTextField2.setText(f2.getPath());
-                        imageLoader("Ventanas",jTextField2.getText());
-                        
-                        rightButton.addActionListener(ae1);
-                        
-                        p.setProperty("lastdirectory_image",f2.getParent());
-                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
-                    }catch(IOException x){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
-                        new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-2IO",x.fillInStackTrace());
-                    }
+                    File f2=jfc.getSelectedFile();
+                    
+                    jTextField2.setText(f2.getPath());
+                    imageLoader("Ventanas",jTextField2.getText());
+                    
+                    p.setProperty("lastdirectory_image",f2.getParent());
+                    p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
@@ -275,9 +242,27 @@ public final class proper1 extends javax.swing.JFrame{
             laf(jComboBox1.getSelectedItem().toString());
         });
         
-        leftButton.addActionListener(ae2);
+        leftButton.addActionListener((a)->{
+            if(a.getSource()==leftButton){
+                if(i!=0){
+                    i=i-1;
+                    imageLoader("Icono",jTextField3.getText());
+                    rightButton.setEnabled(true);
+                    leftButton.setEnabled(false);
+                }
+            }
+        });
         
-        rightButton.addActionListener(ae1);
+        rightButton.addActionListener((a)->{
+            if(a.getSource()==rightButton){
+                if(i!=-1){
+                    i=i+1;
+                    imageLoader("Ventanas",jTextField2.getText());
+                    rightButton.setEnabled(false);
+                    leftButton.setEnabled(true);
+                }
+            }
+        });
         
         schButton.addActionListener((a)->{
             configOut();
@@ -297,20 +282,20 @@ public final class proper1 extends javax.swing.JFrame{
             }
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-CNFE",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-CNFE",e.fillInStackTrace());
         }catch(IllegalAccessException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IAE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IAE",x.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error IAE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-IAE",x.fillInStackTrace());
         }catch(InstantiationException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-IE",n.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error IE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-IE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
             JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(jComboBox2)'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.combo2-28",k.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-28",k.fillInStackTrace());
         }
     }
     
@@ -330,16 +315,16 @@ public final class proper1 extends javax.swing.JFrame{
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo1()'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo1-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-32",e.fillInStackTrace());
         }catch(IllegalArgumentException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 34",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 34: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo1()'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo1-34",x.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 34: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-34",x.fillInStackTrace());
         }catch(NullPointerException n){
             JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo1()'");
-            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo1-0",n.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
+            new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-0",n.fillInStackTrace());
         }
     }
     
@@ -370,11 +355,17 @@ public final class proper1 extends javax.swing.JFrame{
                 os=new FileOutputStream(dato2+nameIcon);
                 new Thread(new thread1(is,os)).start();
                 
+                menuVentanas.picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(proper1.class.getName()).getFormImage(jTextField2.getText())).getImage().getScaledInstance(menuVentanas.picLabel.getWidth(),menuVentanas.picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                
+                for(Frame frames:Frame.getFrames()){
+                    frames.setIconImage(new guiMediaHandler(proper1.class.getName()).getIconImage(jTextField3.getText()));
+                }
+                
                 p.setProperty("nombre",jTextField1.getText());
                 p.setProperty("ruc",jTextField4.getText());
                 p.setProperty("tlf",jTextField5.getText());
                 
-                p.store(new BufferedWriter(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8)),"config1");
+                p.store(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8),"config1");
                 
                 JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));

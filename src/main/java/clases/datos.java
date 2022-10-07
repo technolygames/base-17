@@ -537,7 +537,7 @@ public class datos{
             ps.setInt(2,codigo);
             ps.executeUpdate();
             
-            if(flag==true){
+            if(flag){
                 JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
             }else{

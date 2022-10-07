@@ -3,6 +3,7 @@ package clases;
 import venPrimarias.start;
 //java
 import java.awt.Frame;
+import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -54,7 +55,9 @@ public class validation{
      */
     public void toRestrictedForm(){
         if(puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador")){
-            ventana.setVisible(true);
+            EventQueue.invokeLater(()->{
+                ventana.setVisible(true);
+            });
             new logger(Level.INFO).staticLogger("Rel 5: validación correcta a '"+clase+"'.\nOcurrió en la clase '"+validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }else{
             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);

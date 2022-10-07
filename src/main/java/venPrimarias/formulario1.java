@@ -96,22 +96,19 @@ public class formulario1 extends javax.swing.JFrame{
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
                 jfc=new JFileChooser(p.getProperty("lastdirectory_form1"));
                 
+                jfc.setMultiSelectionEnabled(false);
+                jfc.setAcceptAllFileFilterUsed(false);
                 jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
                 
-                if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
-                    try{
-                        File f=jfc.getSelectedFile();
-                        direccion=f.getPath();
-                        
-                        showImage(direccion);
-                        
-                        p.setProperty("lastdirectory_form1",f.getParent());
-                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
-                    }catch(IOException e){
-                        JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(miInsImage)'");
-                        new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.miInsImage-24",e.fillInStackTrace());
-                    }
+                while(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
+                    File f=jfc.getSelectedFile();
+                    direccion=f.getPath();
+                    
+                    showImage(direccion);
+                    
+                    p.setProperty("lastdirectory_form1",f.getParent());
+                    p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
+                    break;
                 }
             }catch(HeadlessException e){
                 JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
@@ -131,6 +128,8 @@ public class formulario1 extends javax.swing.JFrame{
         miLoadJson.addActionListener((a)->{
             jfc=new JFileChooser("data/databackup/Empleados");
             
+            jfc.setMultiSelectionEnabled(false);
+            jfc.setAcceptAllFileFilterUsed(false);
             jfc.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
             if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
@@ -196,8 +195,8 @@ public class formulario1 extends javax.swing.JFrame{
                         calcAge();
                     }catch(DateTimeParseException e){
                         JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'txtFNKeyPressed()'");
-                        new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"txtFNKeyPressed-0",e.fillInStackTrace());
+                        new logger(Level.SEVERE).staticLogger("Error 0: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(txtEdad)'");
+                        new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"botones.txtEdad-0",e.fillInStackTrace());
                     }
                 }
             }
@@ -231,10 +230,13 @@ public class formulario1 extends javax.swing.JFrame{
             }
             showImage(direccion);
             calcAge();
+            
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            new logger(Level.CONFIG).staticLogger(e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'loadFromJson()'");
+            new logger(Level.SEVERE).exceptionLogger(formulario1.class.getName(),"loadFromJson-2IO",e.fillInStackTrace());
         }
     }
     

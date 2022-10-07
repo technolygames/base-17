@@ -65,19 +65,23 @@ public class guiMediaHandler{
             return Toolkit.getDefaultToolkit().getImage(image);
         }catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getFormImage()'");
+            new logger(Level.SEVERE).exceptionLogger(clase,"getFormImage-1IO",e.fillInStackTrace());
             return null;
         }catch(IOException x){
             JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'FormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"FormImage-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getFormImage()'");
+            new logger(Level.SEVERE).exceptionLogger(clase,"getFormImage-2IO",x.fillInStackTrace());
             return null;
         }
     }
     
+    public Image getFormImage(String image1){
+        return Toolkit.getDefaultToolkit().getImage(image1);
+    }
+    
     /**
-     * Obtiene el ícono que está destinado a usarse en las ventanas.<br>
+     * Carga, desde un archivo .properties, el ícono destinado a usarse en las ventanas.<br>
      * Aparece en la esquina superior izquierda de la ventana.
      * 
      * @return la imagen a usar.
@@ -108,6 +112,19 @@ public class guiMediaHandler{
             new logger(Level.SEVERE).exceptionLogger(clase,"getIconImage-2IO",x.fillInStackTrace());
             return null;
         }
+    }
+    
+    /**
+     * Obtiene el ícono destinado a usarse en las ventanas.<br>
+     * Aparece en la esquina superior izquierda de la ventana.
+     * Este método es usado para actualizar la imagen de las ventanas mientras el programa está en ejecución.
+     * 
+     * @param icon1 Icono a mostrar y actualizar
+     * 
+     * @return la imagen a usar.
+     */
+    public Image getIconImage(String icon1){
+        return Toolkit.getDefaultToolkit().getImage(icon1);
     }
     
     /**
