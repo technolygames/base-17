@@ -123,19 +123,19 @@ public final class proper1 extends javax.swing.JFrame{
             tlf=p.getProperty("tlf");
             jTextField5.setText(tlf);
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configIn-32",e.fillInStackTrace());
         }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configIn-1IO",x.fillInStackTrace());
         }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configIn-2IO",n.fillInStackTrace());
         }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configIn-0",k.fillInStackTrace());
         }
@@ -151,7 +151,7 @@ public final class proper1 extends javax.swing.JFrame{
                     !jTextField1.getText().equals(nombre)||
                     !jTextField4.getText().equals(ruc)||
                     !jTextField5.getText().equals(tlf)){
-                switch(JOptionPane.showConfirmDialog(null,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
+                switch(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
                     case 0:
                         setVisible(false);
                         dispose();
@@ -188,15 +188,15 @@ public final class proper1 extends javax.swing.JFrame{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-1IO",x.fillInStackTrace());
             }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(iconButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.icon-2IO",n.fillInStackTrace());
             }
@@ -224,15 +224,15 @@ public final class proper1 extends javax.swing.JFrame{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-40",e.fillInStackTrace());
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-1IO",x.fillInStackTrace());
             }catch(IOException n){
-                JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'botones(imgButton)'");
                 new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"botones.img-2IO",n.fillInStackTrace());
             }
@@ -281,19 +281,19 @@ public final class proper1 extends javax.swing.JFrame{
                 frame.pack();
             }
         }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-CNFE",e.fillInStackTrace());
         }catch(IllegalAccessException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error IAE: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-IAE",x.fillInStackTrace());
         }catch(InstantiationException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error IE: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-IE",n.fillInStackTrace());
         }catch(UnsupportedLookAndFeelException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+k.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 28: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'laf()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"laf-28",k.fillInStackTrace());
         }
@@ -314,15 +314,15 @@ public final class proper1 extends javax.swing.JFrame{
                 jComboBox1.addItem(lafi.getClassName());
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-32",e.fillInStackTrace());
         }catch(IllegalArgumentException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 34",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 34",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 34: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-34",x.fillInStackTrace());
         }catch(NullPointerException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'combo()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"combo-0",n.fillInStackTrace());
         }
@@ -367,7 +367,7 @@ public final class proper1 extends javax.swing.JFrame{
                 
                 p.store(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8),"config1");
                 
-                JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
                 
                 configIn();
@@ -379,19 +379,19 @@ public final class proper1 extends javax.swing.JFrame{
                 f1.createNewFile();
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configOut-1IO",e.fillInStackTrace());
         }catch(NumberFormatException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configOut-32",x.fillInStackTrace());
         }catch(NullPointerException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configOut-0",n.fillInStackTrace());
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(proper1.class.getName(),"configOut-2IO",k.fillInStackTrace());
         }

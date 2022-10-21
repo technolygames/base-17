@@ -30,7 +30,6 @@ public class delDatosPanel3 extends javax.swing.JPanel{
         
         if(!flag){
             closeButton.setEnabled(false);
-            closeButton.setToolTipText("No puedes cerrar el panel");
         }
         
         jTextField1.setText(String.valueOf(code));
@@ -63,8 +62,7 @@ public class delDatosPanel3 extends javax.swing.JPanel{
         try{
             if(!jTextField1.getText().isEmpty()){
                 int codigo=Integer.parseInt(jTextField1.getText());
-                int opcion=JOptionPane.showConfirmDialog(null,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
-                switch(opcion){
+                switch(JOptionPane.showConfirmDialog(this,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE)){
                     case 0:{
                         new escritorJSON().writeDataProviderJson(codigo);
                         datos.eliminarDatosProveedor(codigo);
@@ -78,11 +76,11 @@ public class delDatosPanel3 extends javax.swing.JPanel{
                         break;
                 }
             }else{
-                JOptionPane.showMessageDialog(null,"Escribe el número de identificación da eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Escribe el número de identificación da eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar.\nOcurrió en la clase '"+delDatosPanel3.class.getName()+"', en el método 'deleteData()'");
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en '"+delDatosPanel3.class.getName()+"', en el método 'deleteData()'");
             new logger(Level.SEVERE).exceptionLogger(delDatosPanel3.class.getName(),"deleteData-32",e.fillInStackTrace());
         }
@@ -104,7 +102,6 @@ public class delDatosPanel3 extends javax.swing.JPanel{
         jLabel1.setText("Código del proveedor:");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }

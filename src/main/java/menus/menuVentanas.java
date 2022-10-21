@@ -105,7 +105,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         });
         
         closeButton.addActionListener((a)->{
-            switch(JOptionPane.showConfirmDialog(null,"¿Deseas cerrar el programa?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)){
+            switch(JOptionPane.showConfirmDialog(this,"¿Deseas cerrar el programa?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)){
                 case 0:
                     new logger(Level.OFF).staticLogger("Programa cerrado");
                     System.exit(0);

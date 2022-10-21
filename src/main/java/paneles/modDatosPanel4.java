@@ -2,6 +2,7 @@ package paneles;
 //clases
 import clases.datos;
 import clases.logger;
+import clases.placeHolder;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,20 +15,29 @@ import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public class modDatosPanel4 extends javax.swing.JPanel{
+    protected int user;
+    protected boolean estado;
+    
     public modDatosPanel4(){
         initComponents();
         
+        estado=true;
+        
         botones();
+        enabledComponents(true,estado);
         settings();
     }
     
     public modDatosPanel4(int code){
         initComponents();
         
-        txtSearch.setText(String.valueOf(code));
-        consulta();
+        this.user=code;
+        txtSearch.setText(String.valueOf(user));
+        estado=false;
         
         botones();
+        consulta();
+        enabledComponents(false,estado);
         settings();
     }
     
@@ -36,22 +46,20 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         
         if(!flag){
             closeButton.setEnabled(false);
-            closeButton.setToolTipText("No puedes cerrar el panel");
         }
         
-        txtSearch.setText(String.valueOf(code));
-        consulta();
+        this.user=code;
+        txtSearch.setText(String.valueOf(user));
+        estado=false;
         
         botones();
+        consulta();
+        enabledComponents(false,estado);
         settings();
     }
     
     protected final void settings(){
-        jLabel1.setToolTipText("Nombre del producto");
-        jLabel2.setToolTipText("Marca");
-        jLabel3.setToolTipText("Cantidad");
-        jLabel4.setToolTipText("Precio unitario");
-        jLabel5.setToolTipText("Stock");
+        placeHolders();
     }
     
     protected final void botones(){
@@ -69,28 +77,27 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField1.setEnabled(true);
                 //función
-                if(jCheckBox1.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField1.getText().isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                            while(!jTextField1.getText().isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                                datos.actualizarDatosString("almacen","nombre_prod","codigo_prod",jTextField1.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf1=jTextField1.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf1.isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
+                        datos.actualizarDatosString("almacen","nombre_prod","codigo_prod",tf1,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox1.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField1.setEnabled(false);
                 jTextField1.setText("");
+                placeHolders();
             }
         });
         
@@ -102,28 +109,27 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField2.setEnabled(true);
                 //función
-                if(jCheckBox2.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                            while(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                                datos.actualizarDatosString("almacen","marca","codigo_prod",jTextField2.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf2=jTextField2.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf2.isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
+                        datos.actualizarDatosString("almacen","marca","codigo_prod",tf2,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox2.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField2.setEnabled(false);
                 jTextField2.setText("");
+                placeHolders();
             }
         });
         
@@ -135,28 +141,27 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField3.setEnabled(true);
                 //función
-                if(jCheckBox3.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
-                            while(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
-                                datos.actualizarDatosInteger("almacen","cantidad","codigo_prod",Integer.parseInt(jTextField3.getText()),Integer.parseInt(txtSearch.getText()), true);
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    int tf3=Integer.parseInt(jTextField3.getText());
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(tf3!=0&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
+                        datos.actualizarDatosInteger("almacen","cantidad","codigo_prod",tf3,user,true);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox3.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField3.setEnabled(false);
                 jTextField3.setText("");
+                placeHolders();
             }
         });
         
@@ -168,28 +173,27 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField4.setEnabled(true);
                 //función
-                if(jCheckBox4.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField4.getText().isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
-                            while(!jTextField4.getText().isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
-                                datos.actualizarDatosInteger("almacen","precio_unitario","codigo_prod",Integer.parseInt(jTextField4.getText()),Integer.parseInt(txtSearch.getText()), true);
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    int tf4=Integer.parseInt(jTextField4.getText());
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(tf4!=0&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
+                        datos.actualizarDatosInteger("almacen","precio_unitario","codigo_prod",tf4,user,true);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox4.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField4.setEnabled(false);
                 jTextField4.setText("");
+                placeHolders();
             }
         });
         
@@ -203,19 +207,17 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 //combo
                 jComboBox1.setEnabled(true);
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 //función
-                if(jCheckBox5.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jComboBox1.getModel().getSelectedItem().equals(jLabel5.getText())&&jCheckBox5.isSelected()&&jComboBox1.isEnabled()){
-                            while(!jComboBox1.getModel().getSelectedItem().equals(jLabel5.getText())&&jCheckBox5.isSelected()&&jComboBox1.isEnabled()){
-                                datos.actualizarDatosString("almacen","stock","codigo_prod",jComboBox1.getSelectedItem().toString(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String combo=jComboBox1.getModel().getSelectedItem().toString();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!combo.equals(jLabel5.getText())&&jCheckBox5.isSelected()&&jComboBox1.isEnabled()){
+                        datos.actualizarDatosString("almacen","stock","codigo_prod",combo,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox5.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
@@ -224,7 +226,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 jComboBox1.setEnabled(false);
                 jComboBox1.getModel().setSelectedItem("En Existencia");
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
             }
         });
         
@@ -255,20 +257,37 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                     jLabel4.setText(String.valueOf(rs.getInt("precio_unitario")));
                     jLabel5.setText(rs.getString("stock"));
                 }else{
-                    JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel4.class.getName()+"', en el método 'consulta()'");
                 }
                 ps.close();
                 rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'consulta()'");
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel4.class.getName()+"', en el método 'consulta()'");
             new logger(Level.SEVERE).exceptionLogger(modDatosPanel4.class.getName(),"consulta-14",e.fillInStackTrace());
         }
+    }
+    
+    protected void enabledComponents(boolean flag1,boolean flag2){
+        if(flag2){
+            txtSearch.setEnabled(flag1);
+            searchButton.setEnabled(flag1);
+        }if(!flag2){
+            txtSearch.setEnabled(false);
+            searchButton.setEnabled(false);
+        }
+    }
+    
+    protected void placeHolders(){
+        new placeHolder(jTextField1,"Nombre del producto").inicialize();
+        new placeHolder(jTextField2,"Marca").inicialize();
+        new placeHolder(jTextField3,"Cantidad").inicialize();
+        new placeHolder(jTextField4,"Precio unitario").inicialize();
     }
     
     @SuppressWarnings("unchecked")
@@ -313,7 +332,6 @@ public class modDatosPanel4 extends javax.swing.JPanel{
 
         jTextField1.setEnabled(false);
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
@@ -321,7 +339,6 @@ public class modDatosPanel4 extends javax.swing.JPanel{
 
         jTextField2.setEnabled(false);
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
@@ -329,7 +346,6 @@ public class modDatosPanel4 extends javax.swing.JPanel{
 
         jTextField3.setEnabled(false);
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField3KeyPressed(evt);
             }
@@ -337,7 +353,6 @@ public class modDatosPanel4 extends javax.swing.JPanel{
 
         jTextField4.setEnabled(false);
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
             }
@@ -354,42 +369,35 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(closeButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox5)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox3)
+                            .addComponent(jCheckBox4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -399,36 +407,37 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jCheckBox1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox1))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jCheckBox4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton)
                     .addComponent(closeButton))
@@ -438,7 +447,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
@@ -446,7 +455,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'jTextField2KeyPressed()'");
             evt.consume();
         }
@@ -454,7 +463,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'jTextField3KeyPressed()'");
             evt.consume();
         }
@@ -462,7 +471,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel4.class.getName()+"', en el método 'jTextField4KeyPressed()'");
             evt.consume();
         }

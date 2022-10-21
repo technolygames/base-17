@@ -50,7 +50,7 @@ public class countPanel extends javax.swing.JPanel{
                 loadData(rs);
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+countPanel.class.getName()+"', en el método 'datosMostrar()'");
             new logger(Level.SEVERE).exceptionLogger(countPanel.class.getName(),"datosMostrar-14",e.fillInStackTrace());
         }

@@ -103,7 +103,7 @@ public class paymentWindow extends javax.swing.JDialog{
         
         cancelButton.addActionListener((a)->{
             if(estado){
-                int i=JOptionPane.showConfirmDialog(null,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                int i=JOptionPane.showConfirmDialog(this,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(i==0){
                     setVisible(false);
                     dispose();
@@ -174,11 +174,11 @@ public class paymentWindow extends javax.swing.JDialog{
                     }
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'");
                 new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"botones.mkPaid-32",e.fillInStackTrace());
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'");
                 new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"botones.mkPaid-0",x.fillInStackTrace());
             }
@@ -195,7 +195,7 @@ public class paymentWindow extends javax.swing.JDialog{
             }
             jLabel4.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc1()'");
             new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc1-32",e.fillInStackTrace());
         }
@@ -209,11 +209,11 @@ public class paymentWindow extends javax.swing.JDialog{
                 var cal2=Integer.parseInt(jLabel4.getText())-cal;
                 jLabel4.setText(String.valueOf(Math.round(cal2)));
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe correctamente el código de descuento","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nEscribe correctamente el código de descuento","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 14: no existe el registro en la base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc2()'");
             new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc2-14",e.fillInStackTrace());
         }
@@ -244,7 +244,7 @@ public class paymentWindow extends javax.swing.JDialog{
         }
         datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
-        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
         new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
     }
     

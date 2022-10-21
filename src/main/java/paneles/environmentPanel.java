@@ -38,11 +38,11 @@ public class environmentPanel extends javax.swing.JPanel{
             direccion=p.getProperty("local_mysql");
             jTextField1.setText(direccion);
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configIn-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configIn()'");
             new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configIn-2IO",x.fillInStackTrace());
         }
@@ -51,7 +51,7 @@ public class environmentPanel extends javax.swing.JPanel{
     protected final void botones(){
         closeButton.addActionListener((a)->{
             if(!jTextField1.getText().equals(direccion)){
-                switch(JOptionPane.showConfirmDialog(null,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
+                switch(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
                     case 0:
                         setVisible(false);
                         break;
@@ -102,17 +102,17 @@ public class environmentPanel extends javax.swing.JPanel{
                 
                 p.store(new FileOutputStream(userdir+"/data/config/env.properties"),"EnvironmentVariables");
                 
-                JOptionPane.showMessageDialog(null,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
             }else{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configOut-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'");
             new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configOut-2IO",x.fillInStackTrace());
         }

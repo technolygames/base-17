@@ -76,7 +76,6 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     }
     
     protected final void settings(){
-        backButton.setToolTipText("Regresar al formulario");
     }
     
     protected final void botones(){

@@ -61,11 +61,11 @@ public final class calcWindow extends javax.swing.JDialog{
                 txtCambio.setText(res);
                 paymentWindow.jLabel6.setText(txtCambio.getText());
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
             new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"calculate-32",e.fillInStackTrace());
         }

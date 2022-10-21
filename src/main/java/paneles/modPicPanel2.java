@@ -39,6 +39,8 @@ public class modPicPanel2 extends javax.swing.JPanel{
         initComponents();
         
         txtSearch.setText(String.valueOf(code));
+        txtSearch.setEnabled(false);
+        searchButton.setEnabled(false);
         
         botones();
         consulta2();
@@ -73,7 +75,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(direccion)).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 webcam.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'botones(takePicButton)'");
                 new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"botones.takePic-2IO",e.fillInStackTrace());
             }
@@ -85,10 +87,10 @@ public class modPicPanel2 extends javax.swing.JPanel{
         
         updateButton.addActionListener((a)->{
             try{
-                new datos().actualizarFotoPerfil("socios","codigo_part",Integer.parseInt(txtSearch.getText()),new FileInputStream(direccion));
+                new datos().actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
                 consulta1();
             }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                 new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'botones(updateButton)'");
                 new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"botones.update-1IO",e.fillInStackTrace());
             }
@@ -117,31 +119,25 @@ public class modPicPanel2 extends javax.swing.JPanel{
                     jfc.setFileFilter(new FileNameExtensionFilter("Archivos JPG","jpg"));
                     
                     if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
-                        try{
-                            File f=jfc.getSelectedFile();
-                            direccion=f.getPath();
-                            
-                            picLabel.setText(null);
-                            picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
-                            
-                            p.setProperty("lastdirectory_pic2",f.getParent());
-                            p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
-                        }catch(IOException e){
-                            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 24",JOptionPane.ERROR_MESSAGE);
-                            new logger(Level.SEVERE).staticLogger("Error 24: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'combo1()'");
-                            new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"combo1-24",e.fillInStackTrace());
-                        }
+                        File f=jfc.getSelectedFile();
+                        direccion=f.getPath();
+                        
+                        picLabel.setText(null);
+                        picLabel.setIcon(new ImageIcon(new ImageIcon(direccion).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                        
+                        p.setProperty("lastdirectory_pic2",f.getParent());
+                        p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                     }
                 }catch(HeadlessException e){
-                    JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
                     new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'combo1()'");
                     new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"combo1-40",e.fillInStackTrace());
                 }catch(FileNotFoundException x){
-                    JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
                     new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'combo1()'");
                     new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"combo1-1IO",x.fillInStackTrace());
                 }catch(IOException n){
-                    JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
                     new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'combo1()'");
                     new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"combo1-2IO",n.fillInStackTrace());
                 }
@@ -167,23 +163,23 @@ public class modPicPanel2 extends javax.swing.JPanel{
                     picLabel.setText(null);
                     picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 }else{
-                    JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
                 }
                 ps.close();
                 rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
             new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"consulta1-14",e.fillInStackTrace());
         }
     }
     
-    protected void consulta2(){
+    protected final void consulta2(){
         try{
             PreparedStatement ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,Integer.parseInt(txtSearch.getText()));
@@ -194,13 +190,13 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 picLabel.setText(null);
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(229,229,Image.SCALE_DEFAULT)));
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+modPicPanel2.class.getName()+"', en el método 'consulta1()'");
             new logger(Level.SEVERE).exceptionLogger(modPicPanel2.class.getName(),"consulta1-14",e.fillInStackTrace());
         }

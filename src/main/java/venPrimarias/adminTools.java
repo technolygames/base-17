@@ -36,7 +36,7 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }
     
-    protected void settings(){
+    protected final void settings(){
         JMenuItem[] items={jMenuItem5,jMenuItem6};
         try{
             Properties p=new Properties();
@@ -44,7 +44,6 @@ public class adminTools extends javax.swing.JFrame{
             if(p.getProperty("local_mysql").isEmpty()){
                 for(JMenuItem c:items){
                     c.setEnabled(false);
-                    c.setToolTipText("Para activar estas funciones, establece la dirección de MySQL en la sección de Sistema>Variables");
                 }
             }else{
                 for(JMenuItem c:items){
@@ -52,11 +51,11 @@ public class adminTools extends javax.swing.JFrame{
                 }
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-2IO",x.fillInStackTrace());
         }

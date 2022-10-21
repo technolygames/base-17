@@ -60,11 +60,11 @@ public final class start extends javax.swing.JFrame{
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             nameLabel.setText(p.getProperty("nombre"));
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-1IO",e.fillInStackTrace());
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
             new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-2IO",x.fillInStackTrace());
         }
@@ -124,6 +124,18 @@ public final class start extends javax.swing.JFrame{
                         }
                     }
                     
+                    /*revisar los años de servicio en ese negocio*/{
+                        String fi=rs.getString("fecha_registro");
+                        int exp=rs.getInt("experiencia");
+                        String as=String.valueOf(Period.between(LocalDate.parse(fi,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
+                        if(!as.equals(String.valueOf(exp))){
+                            new logger(Level.INFO).staticLogger("no es igual");
+                            datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(as),userID,false);
+                        }else{
+                            new logger(Level.INFO).staticLogger("es igual");
+                        }
+                    }
+                    
                     /*revisar registros en conteo*/{
                         ps=datos.getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
                         ps.setInt(1,userID);
@@ -140,22 +152,22 @@ public final class start extends javax.swing.JFrame{
                     new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
                     new logger(Level.INFO).staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID);
                 }else{
-                    JOptionPane.showMessageDialog(null,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+start.class.getName()+"', en el método 'login()'");
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
             new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"login-9",e.fillInStackTrace());
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
             new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"login-0",x.fillInStackTrace());
         }

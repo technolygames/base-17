@@ -29,7 +29,6 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         
         if(!flag){
             closeButton.setEnabled(false);
-            closeButton.setToolTipText("No puedes cerrar el panel");
         }
         
         jTextField1.setText(String.valueOf(code));
@@ -62,11 +61,11 @@ public class delDatosPanel4 extends javax.swing.JPanel{
                 var texto=Integer.parseInt(jTextField1.getText());
                 new datos().eliminarDatosAlmacen(texto);
             }else{
-                JOptionPane.showMessageDialog(null,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del producto en almacén a eliminar.\nOcurrió en la clase '"+delDatosPanel4.class.getName()+"', en el método 'deleteData()'");
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel4.class.getName()+"', en el método 'deleteData()'");
             new logger(Level.SEVERE).exceptionLogger(delDatosPanel4.class.getName(),"deleteData-32",e.fillInStackTrace());
         }
@@ -129,7 +128,7 @@ public class delDatosPanel4 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+delDatosPanel4.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }

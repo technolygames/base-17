@@ -372,21 +372,16 @@ public class datos{
      * @param user1 usuario que iniciará sesión.
      * 
      * @return el resultado de la consulta.
+     * 
+     * @throws SQLException en caso de que el gestor detecte algún problema en el ingreso del registro.
      */
-    public ResultSet login(String password,String user1){
-        try{
-            ps=getConnection().prepareStatement("select * from empleados where password=? and nombre_emp=? or curp=?;");
-            ps.setString(1,password);
-            ps.setString(2,user1);
-            ps.setString(3,user1);
-            
-            return ps.executeQuery();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'login()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"login-9",e.fillInStackTrace());
-            return null;
-        }
+    public ResultSet login(String password,String user1) throws SQLException{
+        ps=getConnection().prepareStatement("select * from empleados where password=? and nombre_emp=? or curp=?;");
+        ps.setString(1,password);
+        ps.setString(2,user1);
+        ps.setString(3,user1);
+        
+        return ps.executeQuery();
     }
     
     /**
@@ -395,19 +390,14 @@ public class datos{
      * @param idPromo a buscar. Puede ser String o Integer.
      * 
      * @return los datos requeridos.
+     * 
+     * @throws SQLException en caso de que el gestor detecte algún problema en la búsqueda del registro.
      */
-    public ResultSet buscarDatosPromo(String idPromo){
-        try{
-            ps=getConnection().prepareStatement("select * from promociones where id_prom=?;");
-            ps.setString(1,idPromo);
-            
-            return ps.executeQuery();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'buscarDatosPromo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"buscarDatosPromo-14",e.fillInStackTrace());
-            return null;
-        }
+    public ResultSet buscarDatosPromo(String idPromo) throws SQLException{
+        ps=getConnection().prepareStatement("select * from promociones where id_prom=?;");
+        ps.setString(1,idPromo);
+        
+        return ps.executeQuery();
     }
     
     /**
@@ -597,7 +587,7 @@ public class datos{
      * @param usuario al que se le cambiará la imagen. Este es el registro, no el campo.
      * @param imagen a cambiar o subir.<br>
      */
-    public void actualizarFotoPerfil(String tabla,String campo,int usuario,InputStream imagen){
+    public void actualizarFotoPerfil(String tabla,String campo,InputStream imagen,int usuario){
         try{
             ps=getConnection().prepareStatement("update "+tabla+" set foto=? where "+campo+"=?;");
             ps.setBinaryStream(1,imagen);

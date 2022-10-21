@@ -2,6 +2,7 @@ package paneles;
 //clases
 import clases.datos;
 import clases.logger;
+import clases.placeHolder;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,9 @@ import java.awt.event.KeyAdapter;
 import java.util.logging.Level;
 
 public class modDatosPanel3 extends javax.swing.JPanel{
+    protected int user;
+    protected boolean estado;
+    
     public modDatosPanel3(){
         initComponents();
         
@@ -24,6 +28,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     public modDatosPanel3(int code){
         initComponents();
         
+        this.user=code;
         txtSearch.setText(String.valueOf(code));
         consulta();
         
@@ -36,22 +41,18 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         
         if(!flag){
             closeButton.setEnabled(false);
-            closeButton.setToolTipText("No puedes cerrar el panel");
         }
         
-        txtSearch.setText(String.valueOf(code));
+        this.user=code;
+        txtSearch.setText(String.valueOf(user));
         consulta();
         
         botones();
         settings();
     }
     
-    protected void settings(){
-        jLabel1.setToolTipText("Nombre(s)");
-        jLabel2.setToolTipText("Apellido paterno");
-        jLabel3.setToolTipText("Apellido materno");
-        jLabel4.setToolTipText("Empresa");
-        jLabel5.setToolTipText("Contacto");
+    protected final void settings(){
+        placeHolders();
     }
     
     protected final void botones(){
@@ -69,28 +70,27 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField1.setEnabled(true);
                 //función
-                if(jCheckBox1.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                            while(!jTextField1.getText().equals("")&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                                datos.actualizarDatosString("proveedor","nombre_prov","codigo_prov",jTextField1.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf1=jTextField1.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf1.equals("")&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
+                        datos.actualizarDatosString("proveedor","nombre_prov","codigo_prov",tf1,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox1.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField1.setEnabled(false);
                 jTextField1.setText("");
+                placeHolders();
             }
         });
         
@@ -102,28 +102,27 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField2.setEnabled(true);
                 //función
-                if(jCheckBox2.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                            while(!jTextField2.getText().isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                                datos.actualizarDatosString("proveedor","apellidop_prov","codigo_prov",jTextField2.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf2=jTextField2.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf2.isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
+                        datos.actualizarDatosString("proveedor","apellidop_prov","codigo_prov",tf2,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox2.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField2.setEnabled(false);
                 jTextField2.setText("");
+                placeHolders();
             }
         });
         
@@ -135,28 +134,27 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField3.setEnabled(true);
                 //función
-                if(jCheckBox3.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
-                            while(!jTextField3.getText().isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
-                                datos.actualizarDatosString("proveedor","apellidom_prov","codigo_prov",jTextField3.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf3=jTextField3.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf3.isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
+                        datos.actualizarDatosString("proveedor","apellidom_prov","codigo_prov",tf3,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox3.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField3.setEnabled(false);
                 jTextField3.setText("");
+                placeHolders();
             }
         });
         
@@ -168,28 +166,27 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField4.setEnabled(true);
                 //función
-                if(jCheckBox4.isSelected()==true){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField4.getText().isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
-                            while(!jTextField4.getText().isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
-                                datos.actualizarDatosString("proveedor","empresa","codigo_prov",jTextField4.getText(),Integer.parseInt(txtSearch.getText()));
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    String tf4=jTextField4.getText();
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(!tf4.isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
+                        datos.actualizarDatosString("proveedor","empresa","codigo_prov",tf4,user);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox4.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField4.setEnabled(false);
                 jTextField4.setText("");
+                placeHolders();
             }
         });
         
@@ -201,28 +198,27 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     c.setSelected(false);
                 }
                 //textfields
-                txtSearch.setEnabled(false);
+                enabledComponents(false,estado);
                 jTextField5.setEnabled(true);
                 //función
-                if(jCheckBox5.isSelected()){
-                    updateButton.addActionListener((b)->{
-                        if(!jTextField5.getText().isEmpty()&&jCheckBox5.isSelected()&&jTextField5.isEnabled()){
-                            while(!jTextField5.getText().isEmpty()&&jCheckBox5.isSelected()&&jTextField5.isEnabled()){
-                                datos.actualizarDatosInteger("proveedor","contacto","codigo_prov",Integer.parseInt(jTextField5.getText()),Integer.parseInt(txtSearch.getText()), true);
-                                consulta();
-                                break;
-                            }
-                        }
-                    });
-                }
+                updateButton.addActionListener((b)->{
+                    int tf5=Integer.parseInt(jTextField5.getText());
+                    user=Integer.parseInt(txtSearch.getText());
+                    while(tf5!=0&&jCheckBox5.isSelected()&&jTextField5.isEnabled()){
+                        datos.actualizarDatosInteger("proveedor","contacto","codigo_prov",tf5,user,true);
+                        consulta();
+                        break;
+                    }
+                });
             }else if(!jCheckBox5.isSelected()){
                 for(JCheckBox c:checkboxes){
                     c.setEnabled(true);
                 }
                 //textfields
-                txtSearch.setEnabled(true);
+                enabledComponents(true,estado);
                 jTextField5.setEnabled(false);
                 jTextField5.setText("");
+                placeHolders();
             }
         });
         
@@ -253,20 +249,39 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     jLabel4.setText(rs.getString("empresa"));
                     jLabel5.setText(rs.getString("contacto"));
                 }else{
-                    JOptionPane.showMessageDialog(null,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'consulta()'");
                 }
                 ps.close();
                 rs.close();
             }else{
-                JOptionPane.showMessageDialog(null,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'consulta()'");
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
             new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en '"+modDatosPanel3.class.getName()+"', en el método 'consulta()'");
             new logger(Level.SEVERE).exceptionLogger(modDatosPanel3.class.getName(),"consulta-14",e.fillInStackTrace());
         }
+    }
+    
+    protected void enabledComponents(boolean flag1,boolean flag2){
+        if(flag2){
+            txtSearch.setEnabled(flag1);
+            searchButton.setEnabled(flag1);
+        }
+        if(!flag2){
+            txtSearch.setEnabled(false);
+            searchButton.setEnabled(false);
+        }
+    }
+    
+    protected void placeHolders(){
+        new placeHolder(jTextField1,"Nombre(s)").inicialize();
+        new placeHolder(jTextField2,"Apellido paterno").inicialize();
+        new placeHolder(jTextField3,"Apellido materno").inicialize();
+        new placeHolder(jTextField4,"Empresa").inicialize();
+        new placeHolder(jTextField5,"Contacto").inicialize();
     }
     
     @SuppressWarnings("unchecked")
@@ -309,7 +324,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
 
         jTextField1.setEnabled(false);
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
             }
@@ -317,7 +331,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
 
         jTextField2.setEnabled(false);
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
@@ -325,7 +338,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
 
         jTextField3.setEnabled(false);
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField3KeyPressed(evt);
             }
@@ -333,7 +345,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
 
         jTextField4.setEnabled(false);
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
             }
@@ -341,7 +352,6 @@ public class modDatosPanel3 extends javax.swing.JPanel{
 
         jTextField5.setEnabled(false);
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField5KeyPressed(evt);
             }
@@ -425,7 +435,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel5)
                         .addComponent(jCheckBox5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
                     .addComponent(updateButton))
@@ -435,7 +445,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'jTextField1KeyPressed()'");
             evt.consume();
         }
@@ -443,7 +453,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'jTextField2KeyPressed()'");
             evt.consume();
         }
@@ -451,7 +461,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'jTextField3KeyPressed()'");
             evt.consume();
         }
@@ -459,7 +469,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'jTextField4KeyPressed()'");
             evt.consume();
         }
@@ -467,7 +477,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(null,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
             new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+modDatosPanel3.class.getName()+"', en el método 'jTextField5KeyPressed()'");
             evt.consume();
         }
