@@ -14,14 +14,14 @@ import java.awt.event.FocusAdapter;
  * @author unknown
  */
 public class placeHolder{
-    JTextField textField;
-    JTextArea textArea;
-    Color holderColor;
-    Color singleColor;
-    String text;
-    boolean italic;
-    String font;
-    int size;
+    protected JTextField textField;
+    protected JTextArea textArea;
+    protected Color holderColor;
+    protected Color singleColor;
+    protected String text;
+    protected boolean italic;
+    protected String font;
+    protected int size;
 
     public placeHolder(final JTextArea textArea,final String text){
         this.inicialize();

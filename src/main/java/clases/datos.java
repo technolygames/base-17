@@ -85,21 +85,16 @@ public class datos{
      * Advertencia: no usar en otras clases.
      * 
      * @param nombre Nombre de la base de datos.
+     * @throws SQLException si el gestor gestor detecta un problema, lanza este error.
      */
-    public void crearBD(String nombre){
-        try{
-            ps=getConnection().prepareStatement("create database "+nombre+";");
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 5E",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 5E: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"crearBD-5E",e.fillInStackTrace());
-        }
+    public void crearBD(String nombre) throws SQLException{
+        ps=getConnection().prepareStatement("create database "+nombre+";");
+        ps.execute();
+        
+        JOptionPane.showMessageDialog(null,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -112,28 +107,24 @@ public class datos{
      * @param cantidad Cantidad comprada de los productos.
      * @param precio Precio de cada uno de los productos.
      * @param total Precio total al que se vendieron los prodcutos.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosProducto(int codigoProducto,int codigoEmpleado,String nombreProducto,String marca,int cantidad,int precio,int total){
-        try{
-            ps=getConnection().prepareStatement("insert into productos values(?,?,?,?,?,?,?,now())");
-            
-            ps.setInt(1,codigoProducto);
-            ps.setInt(2,codigoEmpleado);
-            ps.setString(3,nombreProducto);
-            ps.setString(4,marca);
-            ps.setInt(5,cantidad);
-            ps.setInt(6,precio);
-            ps.setInt(7,total);
-            ps.addBatch();
-            
-            ps.executeBatch();
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProducto()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosProducto-11",e.fillInStackTrace());
-        }
+    public void insertarDatosProducto(int codigoProducto,int codigoEmpleado,String nombreProducto,String marca,int cantidad,int precio,int total) throws SQLException{
+        ps=getConnection().prepareStatement("insert into productos values(?,?,?,?,?,?,?,now())");
+        
+        ps.setInt(1,codigoProducto);
+        ps.setInt(2,codigoEmpleado);
+        ps.setString(3,nombreProducto);
+        ps.setString(4,marca);
+        ps.setInt(5,cantidad);
+        ps.setInt(6,precio);
+        ps.setInt(7,total);
+        ps.addBatch();
+        
+        ps.executeBatch();
+        
+        ps.close();
     }
     
     /**

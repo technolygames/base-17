@@ -229,23 +229,29 @@ public class paymentWindow extends javax.swing.JDialog{
     }
     
     protected void readTable(){
-        var datos=new datos();
-        for(int i=0;i<dtm.getRowCount();i++){
-            codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-            codigo_emp=Integer.parseInt(jLabel2.getText());
-            nombre=dtm.getValueAt(i,1).toString();
-            marca=dtm.getValueAt(i,2).toString();
-            cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
-            precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
-            total=Integer.parseInt(dtm.getValueAt(i,5).toString());
+        try{
+            var datos=new datos();
+            for(int i=0;i<dtm.getRowCount();i++){
+                codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
+                codigo_emp=Integer.parseInt(jLabel2.getText());
+                nombre=dtm.getValueAt(i,1).toString();
+                marca=dtm.getValueAt(i,2).toString();
+                cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
+                precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
+                total=Integer.parseInt(dtm.getValueAt(i,5).toString());
+                
+                datos.insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
+                datos.actualizarDatosAlmacen(cantidad,codigo_prod);
+            }
+            datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             
-            datos.insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
-            datos.actualizarDatosAlmacen(cantidad,codigo_prod);
+            JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'");
+            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"readTable-11",e.fillInStackTrace());
         }
-        datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-        
-        JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
     }
     
     protected void windowState(){

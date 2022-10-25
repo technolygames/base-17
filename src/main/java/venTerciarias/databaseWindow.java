@@ -2,9 +2,13 @@ package venTerciarias;
 //clases
 import clases.datos;
 import clases.guiMediaHandler;
+import clases.logger;
 import paneles.databaseImport;
 //java
 import java.awt.EventQueue;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
@@ -29,8 +33,14 @@ public class databaseWindow extends javax.swing.JDialog{
         });
         
         createButton.addActionListener((a)->{
-            new datos().crearBD(jTextField1.getText());
-            databaseImport.jTextField3.setText(jTextField1.getText());
+            try{
+                new datos().crearBD(jTextField1.getText());
+                databaseImport.jTextField3.setText(jTextField1.getText());
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 5E",JOptionPane.ERROR_MESSAGE);
+                new logger(Level.SEVERE).staticLogger("Error 5E: "+e.getMessage()+".\nOcurrió en la clase '"+databaseWindow.class.getName()+"', en el método 'botones(createButton)'");
+                new logger(Level.SEVERE).exceptionLogger(databaseWindow.class.getName(),"botones.create-5E",e.fillInStackTrace());
+            }
         });
     }
     

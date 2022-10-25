@@ -41,8 +41,8 @@ public class thread1 implements Runnable{
                 os.write(buffer,0,leido);
             }
             
-            is.close();
             os.flush();
+            is.close();
             os.close();
         }catch(IOException e){
             JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);

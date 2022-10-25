@@ -2,7 +2,6 @@ package clases;
 //java
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;

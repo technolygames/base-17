@@ -1,6 +1,5 @@
 package paneles;
 //clases
-import clases.dirs;
 import clases.logger;
 import venPrimarias.start;
 //java
@@ -26,14 +25,12 @@ public class environmentPanel extends javax.swing.JPanel{
     protected Properties p;
     protected File f;
     
-    protected String userdir=dirs.userdir;
-    
     protected String direccion;
     
     protected final void configIn(){
         p=new Properties();
         try{
-            p.load(new FileInputStream(userdir+"/data/config/env.properties"));
+            p.load(new FileInputStream("data/config/env.properties"));
             
             direccion=p.getProperty("local_mysql");
             jTextField1.setText(direccion);
@@ -68,7 +65,7 @@ public class environmentPanel extends javax.swing.JPanel{
         selDirButton.addActionListener((a)->{
             try{
                 p=new Properties();
-                p.load(new FileInputStream(userdir+"/data/config/filechooserd.properties"));
+                p.load(new FileInputStream("data/config/filechooserd.properties"));
                 JFileChooser chooser=new JFileChooser(p.getProperty("lastdirectory_envvar"));
                 
                 chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -79,7 +76,7 @@ public class environmentPanel extends javax.swing.JPanel{
                     jTextField1.setText(f.getPath().concat("\\"));
                     
                     p.setProperty("lastdirectory_envvar",f.getPath());
-                    p.store(new FileOutputStream(userdir+"/data/config/filechooserd.properties"),"JFileChooserDirection");
+                    p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
                 JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
@@ -95,12 +92,12 @@ public class environmentPanel extends javax.swing.JPanel{
     
     protected void configOut(){
         p=new Properties();
-        f=new File(userdir+"/data/config/env.properties");
+        f=new File("data/config/env.properties");
         try{
             if(f.exists()){
                 p.setProperty("local_mysql",jTextField1.getText());
                 
-                p.store(new FileOutputStream(userdir+"/data/config/env.properties"),"EnvironmentVariables");
+                p.store(new FileOutputStream("data/config/env.properties"),"EnvironmentVariables");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
