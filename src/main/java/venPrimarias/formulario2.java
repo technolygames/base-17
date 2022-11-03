@@ -1,9 +1,9 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
-import clases.mvc.mvcForm2;
+import clases.mvc.MvcForm2;
 import menus.menuDatosVentana2;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -32,7 +33,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
         initComponents();
-        new guiMediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
+        new GuiMediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
          
         botones();
         settings();
@@ -48,6 +49,7 @@ public class formulario2 extends javax.swing.JFrame{
     protected JFileChooser jfc;
     
     protected String direccion;
+    protected String methodName;
     
     protected final void settings(){
         jTextArea1.setLineWrap(true);
@@ -59,26 +61,27 @@ public class formulario2 extends javax.swing.JFrame{
             campos=tf;
         }
         
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((a)->{
-            new menuDatosVentana2().setVisible(true);
-        });
+        jMenuItem1.addActionListener(a->
+            new menuDatosVentana2().setVisible(true)
+        );
         
-        jMenuItem2.addActionListener((a)->{
-            clearImage();
-        });
+        jMenuItem2.addActionListener(a->
+            clearImage()
+        );
         
-        miClearFields.addActionListener((a)->{
+        miClearFields.addActionListener(a->{
             campos.setText("");
             jTextArea1.setText("");
             clearImage();
         });
         
-        miInsImage.addActionListener((a)->{
+        miInsImage.addActionListener(a->{
+            methodName="botones.miInsImage";
             try{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
@@ -97,22 +100,17 @@ public class formulario2 extends javax.swing.JFrame{
                     p.setProperty("lastdirectory_form2",f.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
+                p.clear();
             }catch(HeadlessException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 40",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 40: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-40",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario2.class.getName(),methodName,"40");
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-1IO",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario2.class.getName(),methodName,"1IO");
             }catch(IOException n){
-                JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(miInsImage)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.miInsImage-2IO",n.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario2.class.getName(),methodName,"2IO");
             }
         });
         
-        miLoadJson.addActionListener((a)->{
+        miLoadJson.addActionListener(a->{
             jfc=new JFileChooser("data/databackup/Socios");
             
             jfc.setMultiSelectionEnabled(false);
@@ -125,11 +123,12 @@ public class formulario2 extends javax.swing.JFrame{
             }
         });
         
-        storeButton.addActionListener((a)->{
+        storeButton.addActionListener(a->{
+            methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<mvcForm2> lista=new ArrayList<>();
-                    mvcForm2 modelo=new mvcForm2();
+                    List<MvcForm2> lista=new ArrayList<>();
+                    MvcForm2 modelo=new MvcForm2();
                     
                     modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
                     modelo.setNombre(jTextField2.getText());
@@ -143,23 +142,19 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     lista.add(modelo);
                     
-                    new datos().insertarDatosSocio(lista);
+                    new Datos().insertarDatosSocio(lista);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
                 }
             }catch(FileNotFoundException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-1IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario2.class.getName(),methodName,"1IO");
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario2.class.getName(),methodName,"0");
             }catch(NumberFormatException n){
-                JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+n.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
-                new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"botones.store-32",n.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario2.class.getName(),methodName,"32");
+            }catch(SQLException s){
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,s,formulario2.class.getName(),methodName,"11");
             }
         });
     }
@@ -237,7 +232,7 @@ public class formulario2 extends javax.swing.JFrame{
         miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(formulario2.class.getName()).getIconImage());
+        setIconImage(new clases.GuiMediaHandler(formulario2.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -325,33 +320,35 @@ public class formulario2 extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(storeButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel1)
+                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel7)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField5)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(114, 114, 114))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(storeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -361,38 +358,37 @@ public class formulario2 extends javax.swing.JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton)
@@ -405,40 +401,36 @@ public class formulario2 extends javax.swing.JFrame{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField1KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario2.class.getName(),"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField2KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField3KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField3KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'jTextField4KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField4KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new formulario2().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new formulario2().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

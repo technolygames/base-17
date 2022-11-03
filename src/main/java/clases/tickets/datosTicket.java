@@ -1,6 +1,6 @@
 package clases.tickets;
 //clases
-import clases.dirs;
+import clases.Dirs;
 import clases.logger;
 //java
 import java.io.FileReader;
@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
 import javax.swing.JTable;
-import javax.swing.JOptionPane;
 //extension larga
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
@@ -24,17 +23,18 @@ import java.util.logging.Level;
  * 
  * @author unknown
  */
-public class datosTicket{
+public class DatosTicket{
     //protected String total;
     protected String precio;
     protected String cantidad;
     protected String items;
-    protected String userdir=dirs.userdir;
+    protected String userdir=Dirs.userdir;
+    protected String methodName;
     
     /**
-     * Método encargado de imprimir el ticket con método de pago con efectivo.
+     * Método encargado de imprimir el Ticket con método de pago con efectivo.
      * 
-     * @param tabla que obtendrá los datos para el ticket.
+     * @param tabla que obtendrá los datos para el Ticket.
      * @param empleado que atendió en la venta.
      * @param total0 Precio total de los productos.
      * @param pago Método de pago utilizado al comprar.
@@ -42,6 +42,7 @@ public class datosTicket{
      * @param flag para abrir o dejar cerrada la gaveta de efectivo.
      */
     public void imprimirTicket(JTable tabla,String empleado,int total0,String pago,int cambio,boolean flag){
+        methodName="imprimirTicket1";
         try{
             Date date=new Date();
             Properties p=new Properties();
@@ -49,7 +50,7 @@ public class datosTicket{
             SimpleDateFormat fecha=new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh.mm.ss aa");
             
-            ticket ticket=new ticket("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
+            Ticket ticket=new Ticket("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
             
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
@@ -136,34 +137,29 @@ public class datosTicket{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket.class.getName(),methodName,"32");
         }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-1IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket.class.getName(),methodName,"1IO");
         }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-2IO",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket.class.getName(),methodName,"2IO");
         }
     }
     
     /**
-     * Método encargado de imprimir el ticket con método de pago con tarjeta.
+     * Método encargado de imprimir el Ticket con método de pago con tarjeta.
      * 
-     * @param tabla que obtendrá los datos para el ticket.
+     * @param tabla que obtendrá los datos para el Ticket.
      * @param empleado que atendió en la venta.
      * @param total0 Precio total de los productos.
      * @param pago Método de pago utilizado al comprar.
      * @param flag para abrir o dejar cerrada la gaveta de efectivo.
      */
     public void imprimirTicket(JTable tabla,String empleado,int total0,String pago,boolean flag){
+        methodName="imprimirTicket";
         try{
             Date date=new Date();
             Properties p=new Properties();
-            ticket ticket=new ticket("data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
+            Ticket ticket=new Ticket("data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
             
             SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
@@ -252,17 +248,11 @@ public class datosTicket{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket.class.getName(),methodName,"32");
         }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-1IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket.class.getName(),methodName,"1IO");
         }catch(IOException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+n.getMessage()+"\nOcurrió en la clase '"+datosTicket.class.getName()+"', en el método 'imprimirTicket()'");
-            new logger(Level.SEVERE).exceptionLogger(datosTicket.class.getName(),"imprimirTicket-2IO",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket.class.getName(),methodName,"2IO");
         }
     }
 }

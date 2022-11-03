@@ -1,14 +1,15 @@
 package paneles;
 //clases
-import clases.datos;
+import clases.Datos;
 import clases.logger;
-import clases.BackupHandler.escritorJSON;
+import clases.backuphandler.EscritorJson;
 //java
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
 
 public class delDatosPanel2 extends javax.swing.JPanel{
     public delDatosPanel2(){
@@ -57,14 +58,15 @@ public class delDatosPanel2 extends javax.swing.JPanel{
     }
     
     protected void deleteData(){
-        var datos=new datos();
+        String methodName="deleteData";
+        var datos=new Datos();
         
         try{
             if(!jTextField1.getText().isEmpty()){
                 int codigo=Integer.parseInt(jTextField1.getText());
                 switch(JOptionPane.showConfirmDialog(this,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE)){
                     case 0:{
-                        new escritorJSON().writeDataPartnerJson(codigo);
+                        new EscritorJson().writeDataPartnerJson(codigo);
                         datos.eliminarDatosSocio(codigo);
                         break;
                     }
@@ -80,9 +82,9 @@ public class delDatosPanel2 extends javax.swing.JPanel{
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar.\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'deleteData()'");
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'deleteData()'");
-            new logger(Level.SEVERE).exceptionLogger(delDatosPanel2.class.getName(),"deleteData-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,delDatosPanel2.class.getName(),methodName,"32");
+        }catch(SQLException x){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,delDatosPanel2.class.getName(),methodName,"13");
         }
     }
     

@@ -24,7 +24,10 @@ public class databaseConfig extends javax.swing.JPanel{
     protected File f;
     protected Properties p;
     
+    protected String methodName;
+    
     protected final void configIn(){
+        methodName="configIn";
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/databaseInfo.properties"));
@@ -36,13 +39,9 @@ public class databaseConfig extends javax.swing.JPanel{
             jTextField4.setText(p.getProperty("ip"));
             jTextField5.setText(p.getProperty("port"));
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configIn()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configIn-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseConfig.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configIn()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configIn-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseConfig.class.getName(),methodName,"2IO");
         }
     }
     
@@ -57,6 +56,7 @@ public class databaseConfig extends javax.swing.JPanel{
     }
     
     protected void configOut(){
+        methodName="configOut";
         f=new File("data/config/databaseInfo.properties");
         try{
             if(f.exists()){
@@ -75,21 +75,13 @@ public class databaseConfig extends javax.swing.JPanel{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseConfig.class.getName(),methodName,"1IO");
         }catch(NumberFormatException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+x.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-32",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseConfig.class.getName(),methodName,"32");
         }catch(NullPointerException n){
-            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-0",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,databaseConfig.class.getName(),methodName,"0");
         }catch(IOException s){
-            JOptionPane.showMessageDialog(this,"Error:\n"+s.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+s.getMessage()+".\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseConfig.class.getName(),"configOut-2IO",s.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,databaseConfig.class.getName(),methodName,"2IO");
         }
     }
     

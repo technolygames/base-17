@@ -1,6 +1,6 @@
-package clases.BackupHandler;
+package clases.backuphandler;
 //clases
-import clases.datos;
+import clases.Datos;
 import clases.logger;
 //librerías
 import com.google.gson.stream.JsonWriter;
@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
@@ -22,10 +21,12 @@ import java.nio.charset.StandardCharsets;
  * 
  * @author erick
  */
-public class escritorJSON{
+public class EscritorJson{
     protected JsonWriter jsonw;
     protected PreparedStatement ps;
     protected ResultSet rs;
+    
+    protected String methodName;
     
     /**
      * Se encarga de crear archivos JSON como copia de seguridad de la tabla empleados.
@@ -33,8 +34,9 @@ public class escritorJSON{
      * @param codigoEmpleado a crear copia de seguridad.
      */
     public void writeDataWorkerJson(int codigoEmpleado){
+        methodName="writeDataWorkerJson";
         try{
-            ps=new datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
+            ps=new Datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
             ps.setInt(1,codigoEmpleado);
             ps.setInt(2,codigoEmpleado);
             rs=ps.executeQuery();
@@ -44,7 +46,7 @@ public class escritorJSON{
                 
                 new File("data/databackup/Empleados/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Empleados/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new escritorFoto().storePicWorker(codigo,nombre);
+                new EscritorFoto().storePicWorker(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -63,7 +65,7 @@ public class escritorJSON{
                 jsonw.name("edad").value(rs.getInt("edad"));
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(escritorFoto.dir1);
+                jsonw.name("imagen").value(EscritorFoto.dir1);
                 jsonw.name("datos").beginObject();
                 jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
                 jsonw.endObject();
@@ -76,21 +78,13 @@ public class escritorJSON{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-15",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-14",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }catch(NullPointerException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+s.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataWorkerJson-0",s.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,EscritorJson.class.getName(),methodName,"0");
         }
     }
     
@@ -100,8 +94,9 @@ public class escritorJSON{
      * @param codigoSocio a crear copia de seguridad.
      */
     public void writeDataPartnerJson(int codigoSocio){
+        methodName="writeDataPartnerJson";
         try{
-            ps=new datos().getConnection().prepareStatement("select*from socios where codigo_part=?;");
+            ps=new Datos().getConnection().prepareStatement("select*from socios where codigo_part=?;");
             ps.setInt(1,codigoSocio);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -110,7 +105,7 @@ public class escritorJSON{
                 
                 new File("data/databackup/Socios/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Socios/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new escritorFoto().storePicPartner(codigo,nombre);
+                new EscritorFoto().storePicPartner(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -122,7 +117,7 @@ public class escritorJSON{
                 jsonw.name("correo").value(rs.getString("correo"));
                 jsonw.name("rfc").value(rs.getString("rfc"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(escritorFoto.dir2);
+                jsonw.name("imagen").value(EscritorFoto.dir2);
                 jsonw.endObject();
                 break;
             }
@@ -132,17 +127,11 @@ public class escritorJSON{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-15",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataPartnerJson-14",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }
     }
     
@@ -152,8 +141,9 @@ public class escritorJSON{
      * @param codigoProveedor a crear copia de seguridad.
      */
     public void writeDataProviderJson(int codigoProveedor){
+        methodName="writeDataProviderJson";
         try{
-            ps=new datos().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
+            ps=new Datos().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
             ps.setInt(1,codigoProveedor);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -162,7 +152,7 @@ public class escritorJSON{
                 
                 new File("data/databackup/Proveedores/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Proveedores/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new escritorFoto().storePicProvider(codigo,nombre);
+                new EscritorFoto().storePicProvider(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -172,7 +162,7 @@ public class escritorJSON{
                 jsonw.name("apellidom_prov").value(rs.getString("apellidom_prov"));
                 jsonw.name("empresa").value(rs.getString("empresa"));
                 jsonw.name("contacto").value(rs.getInt("contacto"));
-                jsonw.name("imagen").value(escritorFoto.dir3);
+                jsonw.name("imagen").value(EscritorFoto.dir3);
                 jsonw.endObject();
             }
             
@@ -181,17 +171,11 @@ public class escritorJSON{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-15",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+n.getMessage()+".\nOcurrió en la clase '"+escritorJSON.class.getName()+"', en el método 'writeDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(escritorJSON.class.getName(),"writeDataProviderJson-14",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }
     }
 }

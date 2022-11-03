@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
 //java
 import java.awt.EventQueue;
@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.RowSorter;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        new guiMediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
+        new GuiMediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
         
         botones();
         datosMostrar();
@@ -36,21 +35,21 @@ public class ltshOff extends javax.swing.JFrame{
     protected RowSorter<TableModel> sorter;
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        refreshButton.addActionListener((a)->{
-            datosMostrar();
-        });
+        refreshButton.addActionListener(a->
+            datosMostrar()
+        );
     }
     
     protected final void datosMostrar(){
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select * from promociones;");
+            ps=new Datos().getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"});
             while(rs.next()){
@@ -64,9 +63,7 @@ public class ltshOff extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshOff.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshOff.class.getName(),"datosMostrar-16",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshOff.class.getName(),"datosMostrar","16");
         }
     }
     
@@ -81,7 +78,7 @@ public class ltshOff extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(ltshOff.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(ltshOff.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Descuentos");
@@ -138,10 +135,10 @@ public class ltshOff extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new ltshOff().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new ltshOff().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

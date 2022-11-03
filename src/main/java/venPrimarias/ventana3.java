@@ -1,22 +1,22 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.sql.Date;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
-        new guiMediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
+        new GuiMediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
         
         botones();
         settings();
@@ -28,13 +28,15 @@ public class ventana3 extends javax.swing.JFrame{
         pack();
     }
     
+    protected String methodName;
+    
     protected JTextField campos;
     
     protected final void settings(){
         jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
@@ -42,19 +44,20 @@ public class ventana3 extends javax.swing.JFrame{
             campos=tf;
         }
         
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((a)->{
+        jMenuItem1.addActionListener(a->{
             campos.setText("");
             jTextArea1.setText("");
             jDateChooser1.setDate(null);
             jDateChooser2.setDate(null);
         });
         
-        svdtButton.addActionListener((a)->{
+        svdtButton.addActionListener(a->{
+            methodName="botones.svdt";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()){
                     String codigo=jTextField1.getText();
@@ -64,19 +67,16 @@ public class ventana3 extends javax.swing.JFrame{
                     Date inicio=new Date(jDateChooser1.getDate().getTime());
                     Date fin=new Date(jDateChooser2.getDate().getTime());
                     
-                    new datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
+                    new Datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
-                    JOptionPane.showMessageDialog(this,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
+                    new logger(Level.WARNING).storeAndViewError18(this,ventana3.class.getName(),methodName);
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
-                new logger(Level.SEVERE).exceptionLogger(ventana3.class.getName(),"botones.svdt-32",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana3.class.getName(),methodName,"32");
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'botones(svdtButton)'");
-                new logger(Level.SEVERE).exceptionLogger(ventana3.class.getName(),"botones.svdt-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ventana3.class.getName(),methodName,"0");
+            }catch(SQLException n){
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ventana3.class.getName(),methodName,"11");
             }
         });
     }
@@ -106,7 +106,7 @@ public class ventana3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(ventana3.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(ventana3.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -219,16 +219,15 @@ public class ventana3 extends javax.swing.JFrame{
         
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+ventana3.class.getName()+"', en el método 'jTextField2KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana3.class.getName(),"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new ventana3().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new ventana3().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

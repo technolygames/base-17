@@ -1,10 +1,9 @@
 package venSecundarias;
 //clases
-import clases.guiMediaHandler;
+import clases.GuiMediaHandler;
 import clases.logger;
 //java
 import java.awt.EventQueue;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
@@ -14,7 +13,7 @@ public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new guiMediaHandler(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
+        new GuiMediaHandler(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
         
         botones();
         settings();
@@ -30,14 +29,14 @@ public final class calcWindow extends javax.swing.JDialog{
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        calButton.addActionListener((a)->{
-            calculate();
-        });
+        calButton.addActionListener(a->
+            calculate()
+        );
         
         txtDinIng.addKeyListener(new KeyAdapter(){
             @Override
@@ -50,6 +49,8 @@ public final class calcWindow extends javax.swing.JDialog{
     }
     
     protected void calculate(){
+        String methodName="calculate";
+        
         try{
             if(!txtDinIng.getText().isEmpty()){
                 int n1=Integer.parseInt(txtTotal.getText());
@@ -61,13 +62,10 @@ public final class calcWindow extends javax.swing.JDialog{
                 txtCambio.setText(res);
                 paymentWindow.jLabel6.setText(txtCambio.getText());
             }else{
-                JOptionPane.showMessageDialog(this,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
+                new logger(Level.WARNING).storeAndViewError18(this,calcWindow.class.getName(),methodName);
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+calcWindow.class.getName()+"', en el método 'calculate()'");
-            new logger(Level.SEVERE).exceptionLogger(calcWindow.class.getName(),"calculate-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,calcWindow.class.getName(),methodName,"32");
         }
     }
     
@@ -85,7 +83,7 @@ public final class calcWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(calcWindow.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(calcWindow.class.getName()).getIconImage());
 
         jLabel1.setText("Total:");
 
@@ -146,9 +144,9 @@ public final class calcWindow extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new calcWindow(new javax.swing.JFrame(),true).setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new calcWindow(new javax.swing.JFrame(),true).setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

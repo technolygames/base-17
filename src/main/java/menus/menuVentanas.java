@@ -1,9 +1,9 @@
 package menus;
 //clases
-import clases.guiMediaHandler;
+import clases.GuiMediaHandler;
 import clases.logger;
-import clases.validation;
-import clases.win10Notification;
+import clases.Validation;
+import clases.DisplayNotification;
 import java.awt.EventQueue;
 import venPrimarias.formulario1;
 import venPrimarias.formulario2;
@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
         initComponents();
-        new guiMediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
+        new GuiMediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
         
         menu();
         botones();
@@ -52,59 +52,59 @@ public final class menuVentanas extends javax.swing.JFrame{
     protected final void settings(){
         String nombre=start.nameUser;
         jMenuItem2.setText(nombre);
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
-        offButton.addActionListener((a)->{
-            new ventana3().setVisible(true);
-        });
+        offButton.addActionListener(a->
+            new ventana3().setVisible(true)
+        );
         
-        productButton.addActionListener((a)->{
-            new ventana1().setVisible(true);
-        });
+        productButton.addActionListener(a->
+            new ventana1().setVisible(true)
+        );
         
-        storeButton.addActionListener((a)->{
-            new ventana2().setVisible(true);
-        });
+        storeButton.addActionListener(a->
+            new ventana2().setVisible(true)
+        );
         
-        form1Button.addActionListener((a)->{
-            new validation(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm();
-        });
+        form1Button.addActionListener(a->
+            new Validation(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
+        );
         
-        form2Button.addActionListener((a)->{
-            new validation(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm();
-        });
+        form2Button.addActionListener(a->
+            new Validation(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
+        );
         
-        form3Button.addActionListener((a)->{
-            new validation(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm();
-        });
+        form3Button.addActionListener(a->
+            new Validation(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
+        );
         
-        ltprvButton.addActionListener((a)->{
-            new validation(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm();
-        });
+        ltprvButton.addActionListener(a->
+            new Validation(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
+        );
         
-        ltpsButton.addActionListener((a)->{
-            new validation(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm();
-        });
+        ltpsButton.addActionListener(a->
+            new Validation(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
+        );
         
-        ltwkButton.addActionListener((a)->{
-            new validation(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm();
-        });
+        ltwkButton.addActionListener(a->
+            new Validation(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
+        );
         
-        ltstButton.addActionListener((a)->{
-            new ltshStorage().setVisible(true);
-        });
+        ltstButton.addActionListener(a->
+            new ltshStorage().setVisible(true)
+        );
         
-        ltshButton.addActionListener((a)->{
-            new ltshProduct().setVisible(true);
-        });
+        ltshButton.addActionListener(a->
+            new ltshProduct().setVisible(true)
+        );
         
-        ltoffButton.addActionListener((a)->{
-            new ltshOff().setVisible(true);
-        });
+        ltoffButton.addActionListener(a->
+            new ltshOff().setVisible(true)
+        );
         
-        closeButton.addActionListener((a)->{
+        closeButton.addActionListener(a->{
             switch(JOptionPane.showConfirmDialog(this,"¿Deseas cerrar el programa?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)){
                 case 0:
                     new logger(Level.OFF).staticLogger("Programa cerrado");
@@ -121,26 +121,26 @@ public final class menuVentanas extends javax.swing.JFrame{
     }
     
     protected final void menu(){
-        aboutButton.addActionListener((a)->{
-            new about(new javax.swing.JFrame(),true).setVisible(true);
-        });
+        aboutButton.addActionListener(a->
+            new about(new javax.swing.JFrame(),true).setVisible(true)
+        );
         
-        jMenuItem2.addActionListener((a)->{
-            new dataWindow1(new javax.swing.JFrame(),true,start.userID).setVisible(true);
-        });
+        jMenuItem2.addActionListener(a->
+            new dataWindow1(new javax.swing.JFrame(),true,start.userID).setVisible(true)
+        );
         
-        jMenuItem3.addActionListener((a)->{
-            logout();
-        });
+        jMenuItem3.addActionListener(a->
+            logout()
+        );
         
-        properButton.addActionListener((a)->{
-            new proper1().setVisible(true);
-        });
+        properButton.addActionListener(a->
+            new proper1().setVisible(true)
+        );
     }
     
     protected void logout(){
         new start().setVisible(true);
-        new win10Notification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
+        new DisplayNotification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
         new logger(Level.INFO).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'logout()'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
         dispose();
     }
@@ -175,7 +175,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new guiMediaHandler(menuVentanas.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(menuVentanas.class.getName()).getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 
@@ -292,9 +292,9 @@ public final class menuVentanas extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new menuVentanas().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new menuVentanas().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,14 +1,13 @@
 package paneles;
-
-import clases.datos;
+//clases
+import clases.Datos;
 import clases.logger;
-
+//java
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
-import javax.swing.JOptionPane;
-
+//extension larga
 import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -40,19 +39,17 @@ public class countPanel extends javax.swing.JPanel{
     protected final void datosMostrar(){
         try{
             if(codigo!=0){
-                ps=new datos().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
+                ps=new Datos().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
                 ps.setInt(1,codigo);
                 rs=ps.executeQuery();
                 loadData(rs);
             }else{
-                ps=new datos().getConnection().prepareStatement("select * from conteo;");
+                ps=new Datos().getConnection().prepareStatement("select * from conteo;");
                 rs=ps.executeQuery();
                 loadData(rs);
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+countPanel.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(countPanel.class.getName(),"datosMostrar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,countPanel.class.getName(),"datosMostrar","14");
         }
     }
     

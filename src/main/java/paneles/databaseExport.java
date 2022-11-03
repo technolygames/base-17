@@ -1,10 +1,9 @@
 package paneles;
 //clases
-import clases.dirs;
+import clases.Dirs;
 import clases.logger;
-import clases.thread1;
-import clases.thread3;
-import java.io.BufferedInputStream;
+import clases.Thread1;
+import clases.Thread3;
 import venPrimarias.start;
 //java
 import java.io.File;
@@ -13,8 +12,6 @@ import java.io.OutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
@@ -36,7 +33,10 @@ public class databaseExport extends javax.swing.JPanel{
     protected String pass;
     protected String user;
     
+    protected String methodName;
+    
     protected final void settings(){
+        methodName="settings";
         try{
             p=new Properties();
             p.load(new FileInputStream("data/config/databaseInfo.properties"));
@@ -49,14 +49,12 @@ public class databaseExport extends javax.swing.JPanel{
             jTextField1.setText(user);
             jPasswordField1.setText(pass);
             jTextField3.setText(database);
+            
+            p.clear();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"settings-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseExport.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"settings-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseExport.class.getName(),methodName,"2IO");
         }
     }
     
@@ -71,6 +69,7 @@ public class databaseExport extends javax.swing.JPanel{
     }
     
     protected void exportDatabase(){
+        methodName="exportDatabase";
         new Thread(()->{
             String user1=jTextField1.getText();
             String pass2=String.valueOf(jPasswordField1.getPassword());
@@ -80,7 +79,7 @@ public class databaseExport extends javax.swing.JPanel{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/env.properties"));
                 
-                String userdir=dirs.userdir;
+                String userdir=Dirs.userdir;
                 
                 File f=new File(userdir+"\\data\\database\\MySQL\\"+db+".sql");
                 for(int i=1;f.exists();i++){
@@ -90,11 +89,11 @@ public class databaseExport extends javax.swing.JPanel{
                 String path=f.getPath();
                 
                 Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user1+" -p "+db+" --result-file="+path+" --password="+pass2+" --host="+host+" --hex-blob --dump-date --compress");
-                new Thread(new thread3(pr.getErrorStream())).start();
+                new Thread(new Thread3(pr.getErrorStream())).start();
                 
                 os=new FileOutputStream(path);
                 
-                new Thread(new thread1(pr.getInputStream(),os)).start();
+                new Thread(new Thread1(pr.getInputStream(),os)).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
@@ -102,13 +101,9 @@ public class databaseExport extends javax.swing.JPanel{
                 os.flush();
                 os.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"exportDatabase-2IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseExport.class.getName(),methodName,"2IO");
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseExport.class.getName(),"exportDatabase-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseExport.class.getName(),methodName,"0");
             }
         }).start();
     }

@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.dbUtils;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.DbUtils;
+import clases.GuiMediaHandler;
 import clases.logger;
 //java
 import java.awt.EventQueue;
@@ -10,11 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.RowSorter;
-import javax.swing.JOptionPane;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProduct extends javax.swing.JFrame{
     public ltshProduct(){
         initComponents();
-        new guiMediaHandler(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
+        new GuiMediaHandler(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
         
         botones();
         datosMostrar();
@@ -32,6 +31,9 @@ public class ltshProduct extends javax.swing.JFrame{
         pack();
     }
     
+    protected Object[] header;
+    protected String methodName;
+    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
@@ -39,18 +41,18 @@ public class ltshProduct extends javax.swing.JFrame{
     protected RowSorter<TableModel> sorter;
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        refreshButton.addActionListener((a)->{
-            searchAndClear();
-        });
+        refreshButton.addActionListener(a->
+            searchAndClear()
+        );
         
-        searchButton.addActionListener((a)->{
-            searchData();
-        });
+        searchButton.addActionListener(a->
+            searchData()
+        );
         
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
@@ -61,7 +63,7 @@ public class ltshProduct extends javax.swing.JFrame{
             }
         });
         
-        jComboBox1.addActionListener((a)->{
+        jComboBox1.addActionListener(a->{
             int i=jComboBox1.getSelectedIndex();
             if(i>=0&&i<4){
                 searchAndClear();
@@ -78,21 +80,24 @@ public class ltshProduct extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
+        methodName="searchData";
         if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
         }else{
-            JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'botones(searchButton)'");
+            new logger(Level.WARNING).storeAndViewError18(this,ltshProduct.class.getName(),methodName);
         }
     }
     
     protected final void datosMostrar(){
+        methodName="datosMostrar";
+        header=new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"};
+        
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select * from productos;");
+            ps=new Datos().getConnection().prepareStatement("select * from productos;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+            dtm.setColumnIdentifiers(header);
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
             }
@@ -104,104 +109,98 @@ public class ltshProduct extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosMostrar-16",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProduct.class.getName(),methodName,"16");
         }
     }
     
     protected void datosBuscar(){
+        methodName="datosBuscar";
+        header=new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"};
+        
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
-                case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_prod=?;");
+                case 0->{
+                    ps=new Datos().getConnection().prepareStatement("select * from productos where codigo_prod=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+                    dtm.setColumnIdentifiers(header);
                     while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where codigo_emp=?;");
+                }
+                case 1->{
+                    ps=new Datos().getConnection().prepareStatement("select * from productos where codigo_emp=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+                    dtm.setColumnIdentifiers(header);
                     while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where nombre_prod=?;");
+                }
+                case 2->{
+                    ps=new Datos().getConnection().prepareStatement("select * from productos where nombre_prod=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+                    dtm.setColumnIdentifiers(header);
                     while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from productos where marca=?;");
+                }
+                case 3->{
+                    ps=new Datos().getConnection().prepareStatement("select * from productos where marca=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"});
+                    dtm.setColumnIdentifiers(header);
                     while(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
+                }
+                default->{
                     break;
-                default:
-                    break;
+                }
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProduct.class.getName(),methodName,"14");
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-0",x.fillInStackTrace());
-        }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(this,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-AIOOBE",p.fillInStackTrace());
-        }catch(IndexOutOfBoundsException n){
-            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error IOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshProduct.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshProduct.class.getName(),"datosBuscar-IOOBE",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshProduct.class.getName(),methodName,"0");
+        }catch(ArrayIndexOutOfBoundsException n){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshProduct.class.getName(),methodName,"AIOOBE");
+        }catch(IndexOutOfBoundsException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,ltshProduct.class.getName(),methodName,"IOOBE");
         }
     }
     
@@ -223,7 +222,7 @@ public class ltshProduct extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(ltshProduct.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(ltshProduct.class.getName()).getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -294,9 +293,9 @@ public class ltshProduct extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new ltshProduct().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new ltshProduct().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

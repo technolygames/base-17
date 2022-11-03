@@ -1,9 +1,9 @@
 package venTerciarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
-import clases.thread2;
+import clases.Thread2;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -16,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 
@@ -24,7 +23,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new guiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new GuiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
         
         botones();
         datosMostrar();
@@ -40,7 +39,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal,int code){
         super(parent, modal);
         initComponents();
-        new guiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new GuiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
         
         this.codigo=code;
         
@@ -53,12 +52,16 @@ public class dataWindow3 extends javax.swing.JDialog{
         pack();
     }
     
+    protected String methodName;
+    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
     protected final void datosMostrar(){
+        methodName="datosMostrar";
+        
         try{
-            ps=new datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -75,35 +78,31 @@ public class dataWindow3 extends javax.swing.JDialog{
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
-                JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con los datos escritos.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'datosMostrar()'");
+                new logger(Level.WARNING).storeAndViewError14(this,dataWindow3.class.getName(),methodName);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"datosMostrar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,dataWindow3.class.getName(),methodName,"14");
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow1.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(dataWindow1.class.getName(),"datosMostrar-0",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,dataWindow3.class.getName(),methodName,"0");
         }
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        storeImgButton.addActionListener((a)->{
+        storeImgButton.addActionListener(a->{
+            methodName="botones.storeImg";
             try{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
+                ps=new Datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -112,23 +111,17 @@ public class dataWindow3 extends javax.swing.JDialog{
                     f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
-                new thread2(rs,new FileOutputStream(f)).run();
+                new Thread2(rs,new FileOutputStream(f)).run();
                 
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 ps.close();
             }catch(SQLException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow3.class.getName(),"botones.storeImg-14",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,dataWindow3.class.getName(),methodName,"14");
             }catch(FileNotFoundException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow3.class.getName(),"botones.storeImg-10",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,dataWindow3.class.getName(),methodName,"1IO");
             }catch(NullPointerException n){
-                JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'");
-                new logger(Level.SEVERE).exceptionLogger(dataWindow3.class.getName(),"botones.storeImg-0",n.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,dataWindow3.class.getName(),methodName,"0");
             }
         });
     }
@@ -159,7 +152,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(dataWindow3.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(dataWindow3.class.getName()).getIconImage());
 
         storeImgButton.setText("Guardar imagen");
 
@@ -301,10 +294,10 @@ public class dataWindow3 extends javax.swing.JDialog{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new dataWindow3(new javax.swing.JFrame(),true).setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new dataWindow3(new javax.swing.JFrame(),true).setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

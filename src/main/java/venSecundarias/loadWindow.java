@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.guiMediaHandler;
+import clases.GuiMediaHandler;
 import menus.menuVentanas;
 //java
 import java.awt.Cursor;
@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
         initComponents();
-        new guiMediaHandler(loadWindow.class.getName()).LookAndFeel(loadWindow.this);
+        new GuiMediaHandler(loadWindow.class.getName()).LookAndFeel(loadWindow.this);
         
         load();
         
@@ -24,7 +24,7 @@ public final class loadWindow extends javax.swing.JFrame{
     
     protected final void load(){
         Taskbar tb=Taskbar.getTaskbar();
-        t=new Timer(100,(a)->{
+        t=new Timer(100,a->{
             if(jProgressBar1.getValue()<100){
                 if(Taskbar.isTaskbarSupported()){
                     int valor=jProgressBar1.getValue();
@@ -114,7 +114,7 @@ public final class loadWindow extends javax.swing.JFrame{
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(loadWindow.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(loadWindow.class.getName()).getIconImage());
         setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -153,9 +153,9 @@ public final class loadWindow extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new loadWindow().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new loadWindow().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

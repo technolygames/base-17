@@ -1,13 +1,14 @@
 package paneles;
 //clases
-import clases.datos;
+import clases.Datos;
 import clases.logger;
 //java
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.util.logging.Level;
 
 public class delDatosPanel4 extends javax.swing.JPanel{
     public delDatosPanel4(){
@@ -56,18 +57,19 @@ public class delDatosPanel4 extends javax.swing.JPanel{
     }
     
     protected void deleteData(){
+        String methodName="deleteData";
         try{
             if(!jTextField1.getText().isEmpty()){
                 var texto=Integer.parseInt(jTextField1.getText());
-                new datos().eliminarDatosAlmacen(texto);
+                new Datos().eliminarDatosAlmacen(texto);
             }else{
                 JOptionPane.showMessageDialog(this,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
                 new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del producto en almacén a eliminar.\nOcurrió en la clase '"+delDatosPanel4.class.getName()+"', en el método 'deleteData()'");
             }
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+delDatosPanel4.class.getName()+"', en el método 'deleteData()'");
-            new logger(Level.SEVERE).exceptionLogger(delDatosPanel4.class.getName(),"deleteData-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,delDatosPanel4.class.getName(),methodName,"32");
+        }catch(SQLException x){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,delDatosPanel4.class.getName(),methodName,"13");
         }
     }
     

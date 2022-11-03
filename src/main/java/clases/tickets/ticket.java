@@ -12,17 +12,16 @@ import javax.print.DocPrintJob;
 import javax.print.PrintService;
 import javax.print.PrintException;
 import javax.print.PrintServiceLookup;
-import javax.swing.JOptionPane;
 //extension larga
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 /**
- * Clase encargada de imprimir y dar forma al ticket.
+ * Clase encargada de imprimir y dar forma al Ticket.
  * 
  * @author unknown
  */
-public class ticket{
+public class Ticket{
     static ArrayList<String> cabezaLineas=new ArrayList<String>();
     static ArrayList<String> subcabezaLineas=new ArrayList<String>();
     static ArrayList<String> items=new ArrayList<String>();
@@ -35,7 +34,8 @@ public class ticket{
      * @param impresora a la que se imprimirá el documento.
      * @param gaveta Abrirá la gaveta.
      */
-    public ticket(String impresora,boolean gaveta){
+    public Ticket(String impresora,boolean gaveta){
+        String methodName="ticket";
         String cadena="";
         try{
             FileWriter imp=new FileWriter(impresora,StandardCharsets.UTF_8);
@@ -80,20 +80,14 @@ public class ticket{
             
             imp.flush();
             imp.close();
-        }catch(PrintException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error PE_T1",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error PE_T1: "+x.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
-            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-PE_T1",x.fillInStackTrace());
+        }catch(PrintException e){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),methodName,"PE_T1");
             remove();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO_H1",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO_H1: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
-            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-1IO_H1",e.fillInStackTrace());
+        }catch(IOException x){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Ticket.class.getName(),methodName,"2IO_H1");
             remove();
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'imprimirDocumento()'");
-            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"imprimirDocumento-15",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Ticket.class.getName(),methodName,"15");
             remove();
         }
     }
@@ -115,12 +109,12 @@ public class ticket{
     }
     
     public static void addItem(String cantidad,String item,String precio){
-        order2 newItem=new order2(' ');
+        Order2 newItem=new Order2(' ');
         items.add(newItem.generarItem(cantidad,item,precio));
     }
     
     public static void addTotal(String nombre,String precio){
-        order1 newTotal=new order1(' ');
+        Order1 newTotal=new Order1(' ');
         totales.add(newTotal.generarTotal(nombre,precio));
     }
     
@@ -141,9 +135,7 @@ public class ticket{
             char[] ESC_CUT_PAPER=new char[]{0x1B,'!',(char)formato};
             fw.write(ESC_CUT_PAPER);
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T2",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IOE_T2: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'setFormato()'");
-            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"setFormato-IOE_T2",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),"setFormato","2IO_T2");
         }
     }
     
@@ -158,9 +150,7 @@ public class ticket{
                 fw.write(abrir);
             }
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error IOE_T3",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IOE_T3: "+e.getMessage()+"\nOcurrió en la clase '"+ticket.class.getName()+"', en el método 'abrirGaveta()'");
-            new logger(Level.SEVERE).exceptionLogger(ticket.class.getName(),"abrirGaveta-IOE_T3",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),"abrirGaveta","2IO_T3");
         }
     }
 }

@@ -1,6 +1,6 @@
 package main;
 //clases
-import clases.dirs;
+import clases.Dirs;
 import venPrimarias.start;
 //java
 import java.awt.EventQueue;
@@ -27,11 +27,11 @@ public class main{
         };
         
         for(String dir:dirs){
-            new dirs().makeDir(dir);
+            new Dirs().makeDir(dir);
         }
         
-        EventQueue.invokeLater(()->{
-            new start().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new start().setVisible(true)
+        );
     }
 }

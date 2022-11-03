@@ -3,7 +3,6 @@ package clases;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import javax.swing.JOptionPane;
 //con extensión larga
 import java.util.logging.Level;
 
@@ -14,7 +13,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class thread1 implements Runnable{
+public class Thread1 implements Runnable{
     protected InputStream is;
     protected OutputStream os;
     
@@ -24,7 +23,7 @@ public class thread1 implements Runnable{
      * @param is: flujo de entrada del archivo a leer.
      * @param os: flujo de salida del archivo a escribir.
      */
-    public thread1(InputStream is,OutputStream os){
+    public Thread1(InputStream is,OutputStream os){
         this.os=os;
         this.is=is;
     }
@@ -45,9 +44,7 @@ public class thread1 implements Runnable{
             is.close();
             os.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+"\nOcurrió en la clase '"+thread1.class.getName()+"', en el método 'run()'");
-            new logger(Level.SEVERE).exceptionLogger(thread1.class.getName(),"run-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread1.class.getName(),"run","2IO");
         }
     }
 }

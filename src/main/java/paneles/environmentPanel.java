@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.logger;
+import java.awt.HeadlessException;
 import venPrimarias.start;
 //java
 import java.io.File;
@@ -26,22 +27,22 @@ public class environmentPanel extends javax.swing.JPanel{
     protected File f;
     
     protected String direccion;
+    protected String methodName;
     
     protected final void configIn(){
+        methodName="configIn";
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/env.properties"));
             
             direccion=p.getProperty("local_mysql");
             jTextField1.setText(direccion);
+            
+            p.clear();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configIn()'");
-            new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configIn-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configIn()'");
-            new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configIn-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
         }
     }
     
@@ -63,6 +64,7 @@ public class environmentPanel extends javax.swing.JPanel{
         });
         
         selDirButton.addActionListener((a)->{
+            methodName="botones.selDir";
             try{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
@@ -78,19 +80,18 @@ public class environmentPanel extends javax.swing.JPanel{
                     p.setProperty("lastdirectory_envvar",f.getPath());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
-            }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
-                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-2IO",e.fillInStackTrace());
-            }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'botones(selDirButton)'");
-                new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"botones.selDir-0",x.fillInStackTrace());
+            }catch(HeadlessException e){
+                new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"40");
+            }catch(IOException x){
+                new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
+            }catch(NullPointerException n){
+                new logger(Level.SEVERE).storeAndViewCaughtException(null,n,environmentPanel.class.getName(),methodName,"0");
             }
         });
     }
     
     protected void configOut(){
+        methodName="configOut";
         p=new Properties();
         f=new File("data/config/env.properties");
         try{
@@ -105,13 +106,9 @@ public class environmentPanel extends javax.swing.JPanel{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configOut-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'");
-            new logger(Level.SEVERE).exceptionLogger(environmentPanel.class.getName(),"configOut-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
         }
     }
     

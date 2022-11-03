@@ -1,9 +1,9 @@
 package venSecundarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
-import clases.tickets.datosTicket;
+import clases.tickets.DatosTicket;
 import java.awt.EventQueue;
 import venPrimarias.start;
 import venPrimarias.ventana1;
@@ -24,7 +24,7 @@ public class paymentWindow extends javax.swing.JDialog{
     public paymentWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new guiMediaHandler(paymentWindow.class.getName()).LookAndFeel(paymentWindow.this);
+        new GuiMediaHandler(paymentWindow.class.getName()).LookAndFeel(paymentWindow.this);
         
         botones();
         settings();
@@ -39,6 +39,7 @@ public class paymentWindow extends javax.swing.JDialog{
     
     protected String nombre;
     protected String marca;
+    protected String methodName;
     
     protected int codigo_prod;
     protected int codigo_emp;
@@ -82,7 +83,7 @@ public class paymentWindow extends javax.swing.JDialog{
     }
     
     protected final void botones(){
-        cbAddCoupon.addActionListener((a)->{
+        cbAddCoupon.addActionListener(a->{
             if(cbAddCoupon.isSelected()){
                 jTextField1.setEnabled(true);
                 if(!jTextField1.getText().equals("")){
@@ -90,18 +91,18 @@ public class paymentWindow extends javax.swing.JDialog{
                 }else{
                     //do nothing
                 }
-            }else if(!cbAddCoupon.isSelected()){
+            }else{
                 jTextField1.setEnabled(false);
                 calc1();
             }
         });
         
-        calcButton.addActionListener((a)->{
+        calcButton.addActionListener(a->{
             result=Integer.parseInt(jLabel4.getText());
             new calcWindow(new javax.swing.JFrame(),true).setVisible(true);
         });
         
-        cancelButton.addActionListener((a)->{
+        cancelButton.addActionListener(a->{
             if(estado){
                 int i=JOptionPane.showConfirmDialog(this,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if(i==0){
@@ -123,7 +124,7 @@ public class paymentWindow extends javax.swing.JDialog{
             }
         });
         
-        jComboBox1.addActionListener((a)->{
+        jComboBox1.addActionListener(a->{
             JLabel[] etiquetas={jLabel5,jLabel6,jLabel8};
             switch(jComboBox1.getSelectedIndex()){
                 case 0:{
@@ -143,8 +144,10 @@ public class paymentWindow extends javax.swing.JDialog{
             }
         });
         
-        mkPaidButton.addActionListener((a)->{
-            var ticket=new datosTicket();
+        mkPaidButton.addActionListener(a->{
+            methodName="botones.mkPaid";
+            var ticket=new DatosTicket();
+            
             try{
                 switch(jComboBox1.getSelectedIndex()){
                     case 0:{
@@ -174,18 +177,18 @@ public class paymentWindow extends javax.swing.JDialog{
                     }
                 }
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'");
-                new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"botones.mkPaid-32",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"32");
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'botones(mkPaidButton)'");
-                new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"botones.mkPaid-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,paymentWindow.class.getName(),methodName,"0");
+            }catch(SQLException n){
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,paymentWindow.class.getName(),methodName,"12");
             }
         });
     }
     
     protected void calc1(){
+        methodName="calc1";
+        
         jLabel2.setText(String.valueOf(ventana1.codigo_emp));
         try{
             int res=0;
@@ -195,42 +198,41 @@ public class paymentWindow extends javax.swing.JDialog{
             }
             jLabel4.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 32",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 32: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc1()'");
-            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc1-32",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"32");
         }
     }
     
     protected void calc2(){
+        methodName="calc2";
+        
         try{
-            ResultSet rs=new datos().buscarDatosPromo(jTextField1.getText());
+            ResultSet rs=new Datos().buscarDatosPromo(jTextField1.getText());
             if(rs.next()){
                 var cal=Integer.parseInt(jLabel4.getText())*rs.getFloat("descuento");
                 var cal2=Integer.parseInt(jLabel4.getText())-cal;
                 jLabel4.setText(String.valueOf(Math.round(cal2)));
             }else{
-                JOptionPane.showMessageDialog(this,"Error:\nEscribe correctamente el código de descuento","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 14: no existe el registro en la base de datos.\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(addButton)'");
+                new logger(Level.WARNING).storeAndViewError14(this,paymentWindow.class.getName(),methodName);
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'calc2()'");
-            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"calc2-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"14");
         }
     }
     
-    protected void confirmPurchase(){
+    protected void confirmPurchase() throws SQLException{
         if(!jTextField1.getText().isEmpty()){
             readTable();
-            new datos().actualizarDatosUsoPromo(jTextField1.getText());
+            new Datos().actualizarDatosUsoPromo(jTextField1.getText());
         }else{
             readTable();
         }
     }
     
     protected void readTable(){
+        methodName="readTable";
+        
         try{
-            var datos=new datos();
+            var datos=new Datos();
             for(int i=0;i<dtm.getRowCount();i++){
                 codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
                 codigo_emp=Integer.parseInt(jLabel2.getText());
@@ -248,9 +250,7 @@ public class paymentWindow extends javax.swing.JDialog{
             JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
             new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'");
-            new logger(Level.SEVERE).exceptionLogger(paymentWindow.class.getName(),"readTable-11",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"11");
         }
     }
     
@@ -281,7 +281,7 @@ public class paymentWindow extends javax.swing.JDialog{
         cbAddCoupon = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(paymentWindow.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(paymentWindow.class.getName()).getIconImage());
 
         cancelButton.setText("Cancelar");
 
@@ -402,10 +402,10 @@ public class paymentWindow extends javax.swing.JDialog{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new paymentWindow(new javax.swing.JFrame(),true).setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

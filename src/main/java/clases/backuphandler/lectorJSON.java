@@ -1,32 +1,34 @@
-package clases.BackupHandler;
+package clases.backuphandler;
 //clases
-import clases.datos;
+import clases.Datos;
 import clases.logger;
-import clases.mvc.mvcForm1;
-import clases.mvc.mvcForm2;
+import clases.mvc.MvcForm1;
+import clases.mvc.MvcForm2;
 //librerías
 import com.google.gson.stream.JsonReader;
 //java
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 //con extensión larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Clase encargada de leer los archivos creados para copia de seguridad.
  * 
  * @author erick
  */
-public class lectorJSON{
+public class LectorJson{
     protected JsonReader jsonr;
     
     protected int numeroVentas;
+    
+    protected String methodName;
     
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
@@ -34,10 +36,11 @@ public class lectorJSON{
      * @param dir Nombre del archivo a leer.
      */
     public void readDataWorkerJson(String dir){
+        methodName="readDataWorkerJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<mvcForm1> lista=new ArrayList<>();
-            mvcForm1 modelo=new mvcForm1();
+            List<MvcForm1> lista=new ArrayList<>();
+            MvcForm1 modelo=new MvcForm1();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
@@ -65,23 +68,19 @@ public class lectorJSON{
             
             lista.add(modelo);
             
-            new datos().insertarDatosEmpleado(lista);
-            new datos().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
+            new Datos().insertarDatosEmpleado(lista);
+            new Datos().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataWorkerJson-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataWorkerJson-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataWorkerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataWorkerJson-15",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+        }catch(SQLException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
         }
     }
     
@@ -92,26 +91,18 @@ public class lectorJSON{
      * @param json El lector del archivo json con esos datos.
      * 
      * Nota: no usar en otros métodos.
+     * 
+     * @throws IOException
+     * @throws IllegalStateException
      */
-    protected void leerDatosSecundarios(JsonReader json){
-        try{
-            json.beginObject();
-            while(json.hasNext()){
-                String name=json.nextName();
-                if(name.equals("no_ventas")){
-                    numeroVentas=jsonr.nextInt();
-                }
+    protected void leerDatosSecundarios(JsonReader json) throws IOException,IllegalStateException{
+        json.beginObject();
+        while(json.hasNext()){
+            switch(json.nextName()){
+                case "no_ventas"->numeroVentas=json.nextInt();
             }
-            json.endObject();
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'leerDatosSecundarios()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"leerDatosSecundarios-2IO",e.fillInStackTrace());
-        }catch(IllegalStateException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'leerDatosSecundarios()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"leerDatosSecundarios-15",x.fillInStackTrace());
         }
+        json.endObject();
     }
     
     /**
@@ -120,10 +111,11 @@ public class lectorJSON{
      * @param dir Nombre del archivo a leer.
      */
     public void readDataPartnerJson(String dir){
+        methodName="readDataPartnerJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<mvcForm2> lista=new ArrayList<>();
-            mvcForm2 modelo=new mvcForm2();
+            List<MvcForm2> lista=new ArrayList<>();
+            MvcForm2 modelo=new MvcForm2();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
@@ -141,22 +133,18 @@ public class lectorJSON{
                 }
             }
             lista.add(modelo);
-            new datos().insertarDatosSocio(lista);
+            new Datos().insertarDatosSocio(lista);
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataPartnerJson-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataPartnerJson-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataPartnerJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataPartnerJson-15",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+        }catch(SQLException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
         }
     }
     
@@ -173,6 +161,7 @@ public class lectorJSON{
      * @param dir Nombre del archivo a leer.
      */
     public void readDataProviderJson(String dir){
+        methodName="readDataProviderJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
             jsonr.beginObject();
@@ -188,22 +177,18 @@ public class lectorJSON{
                     default -> jsonr.skipValue();
                 }
             }
-            new datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto,new FileInputStream(foto));
+            new Datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto,new FileInputStream(foto));
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataProviderJson-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataProviderJson-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 15",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 15: "+n.getMessage()+".\nOcurrió en la clase '"+lectorJSON.class.getName()+"', en el método 'readDataProviderJson()'");
-            new logger(Level.SEVERE).exceptionLogger(lectorJSON.class.getName(),"readDataProviderJson-15",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+        }catch(SQLException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
         }
     }
 }

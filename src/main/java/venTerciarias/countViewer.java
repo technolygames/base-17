@@ -1,17 +1,17 @@
 package venTerciarias;
-
-import clases.guiMediaHandler;
+//clases
+import clases.GuiMediaHandler;
 import paneles.countPanel;
-
+//java
 import java.awt.Component;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.BorderLayout;
 
 public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new guiMediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
+        new GuiMediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
         
         setLocationRelativeTo(null);
         setTitle("Conteo de ventas");
@@ -22,7 +22,7 @@ public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal,Component panel){
         super(parent,modal);
         initComponents();
-        new guiMediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
+        new GuiMediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
         
         openPanel(panel);
         
@@ -60,10 +60,10 @@ public class countViewer extends javax.swing.JDialog{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new countViewer(new javax.swing.JFrame(),true,new countPanel(654321)).setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new countViewer(new javax.swing.JFrame(),true,new countPanel(654321)).setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

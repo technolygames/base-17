@@ -1,8 +1,8 @@
 package paneles;
 //clases
 import clases.logger;
-import clases.thread1;
-import clases.thread3;
+import clases.Thread1;
+import clases.Thread3;
 import venPrimarias.start;
 import venTerciarias.databaseWindow;
 //java
@@ -35,8 +35,12 @@ public class databaseImport extends javax.swing.JPanel{
     protected String user;
     protected String pass;
     
+    protected String methodName;
+    
     protected final void settings(){
         jTextField3.setText(databaseWindow.nombredb);
+        
+        methodName="settings";
         
         try{
             p=new Properties();
@@ -49,14 +53,12 @@ public class databaseImport extends javax.swing.JPanel{
             
             jTextField1.setText(user);
             jPasswordField1.setText(pass);
+            
+            p.clear();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"settings-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"settings-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"2IO");
         }
     }
     
@@ -70,6 +72,7 @@ public class databaseImport extends javax.swing.JPanel{
         });
         
         fileButton.addActionListener((a)->{
+            methodName="botones.file";
             try{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/filechooserd.properties"));
@@ -88,9 +91,7 @@ public class databaseImport extends javax.swing.JPanel{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'botones(fileButton)'");
-                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"botones.file-2IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"2IO");
             }
         });
         
@@ -101,6 +102,7 @@ public class databaseImport extends javax.swing.JPanel{
     }
     
     protected void importDatabase(){
+        methodName="importDatabase";
         new Thread(()->{
             String user1=jTextField1.getText();
             String pass1=String.valueOf(jPasswordField1.getPassword());
@@ -112,29 +114,26 @@ public class databaseImport extends javax.swing.JPanel{
                 p.load(new FileInputStream("data/config/env.properties"));
                 
                 Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysql.exe --user="+user1+" -p "+db+"<"+dbDir+" --password="+pass1+" --host="+host);
-                new Thread(new thread3(pr.getErrorStream())).start();
+                new Thread(new Thread3(pr.getErrorStream())).start();
                 
                 is=new FileInputStream(dbDir);
                 
-                new Thread(new thread1(is,pr.getOutputStream())).start();
+                new Thread(new Thread1(is,pr.getOutputStream())).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
                 is.close();
             }catch(IOException e){
-                JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-2IO",e.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"2IO");
             }catch(NullPointerException x){
-                JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-                new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'");
-                new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"importDatabase-0",x.fillInStackTrace());
+                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"0");
             }
         }).start();
     }
     
     protected void configOut(){
+        methodName="configOut";
         if(!jTextField3.getText().equals(database)){
             switch(JOptionPane.showConfirmDialog(this,"¿Deseas usar la base de datos importada como principal?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE)){
                 case 0:{
@@ -144,13 +143,9 @@ public class databaseImport extends javax.swing.JPanel{
                         p.setProperty("database",jTextField3.getText());
                         p.store(new FileOutputStream("data/config/databaseInfo.properties"),"DatabaseConfig");
                     }catch(FileNotFoundException e){
-                        JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'configOut()'");
-                        new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"configOut-1IO",e.fillInStackTrace());
+                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"1IO");
                     }catch(IOException x){
-                        JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-                        new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'configOut()'");
-                        new logger(Level.SEVERE).exceptionLogger(databaseImport.class.getName(),"configOut-2IO",x.fillInStackTrace());
+                        new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"2IO");
                     }
                     break;
                 }

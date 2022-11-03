@@ -1,9 +1,9 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.GuiMediaHandler;
 import clases.logger;
-import clases.win10Notification;
+import clases.DisplayNotification;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
@@ -19,7 +19,6 @@ import java.time.Period;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
@@ -31,7 +30,7 @@ import java.time.format.DateTimeFormatter;
 public final class start extends javax.swing.JFrame{
     public start(){
         initComponents();
-        new guiMediaHandler(start.class.getName()).LookAndFeel(start.this);
+        new GuiMediaHandler(start.class.getName()).LookAndFeel(start.this);
         
         botones();
         settings();
@@ -41,6 +40,8 @@ public final class start extends javax.swing.JFrame{
         setResizable(false);
         pack();
     }
+    
+    protected String methodName;
     
     protected Properties p;
     
@@ -55,31 +56,31 @@ public final class start extends javax.swing.JFrame{
     public static String role;
     
     protected final void settings(){
+        methodName="settings";
+        
         p=new Properties();
         try{
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             nameLabel.setText(p.getProperty("nombre"));
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"settings-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"2IO");
         }
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new guiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        p.clear();
+        
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
+        closeButton.addActionListener(a->{
             System.exit(0);
             dispose();
         });
         
-        loginButton.addActionListener((a)->{
-            login();
-        });
+        loginButton.addActionListener(a->
+            login()
+        );
         
         txtPassword.addKeyListener(new KeyAdapter(){
             @Override
@@ -92,9 +93,10 @@ public final class start extends javax.swing.JFrame{
     }
     
     protected void login(){
+        methodName="login";
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());
-        var datos=new datos();
+        var datos=new Datos();
         
         for(JTextField tf:new JTextField[]{txtUsuario,txtPassword}){
             campos=tf;
@@ -143,33 +145,27 @@ public final class start extends javax.swing.JFrame{
                         ResultSet rs2=ps.executeQuery();
                         if(!rs2.next()){
                             new logger(Level.INFO).staticLogger("1; no hay");
-                            new datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                            new Datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
                             new logger(Level.INFO).staticLogger("2; si hay");
                         }
                     }
                     
-                    new win10Notification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
+                    new DisplayNotification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
                     new logger(Level.INFO).staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID);
                 }else{
-                    JOptionPane.showMessageDialog(this,"Error:\nIngrese correctamente el usuario o contraseña","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se ingresaron correctamente el usuario y/o contraseña.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
+                    new logger(Level.WARNING).storeAndViewError18(this,start.class.getName(),methodName);
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                JOptionPane.showMessageDialog(this,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y cambiar.\nOcurrió en '"+start.class.getName()+"', en el método 'login()'");
+                new logger(Level.WARNING).storeAndViewError14(this,start.class.getName(),methodName);
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 9",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 9: "+e.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
-            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"login-9",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"9");
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'");
-            new logger(Level.SEVERE).exceptionLogger(start.class.getName(),"login-0",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"0");
         }
     }
     
@@ -190,7 +186,7 @@ public final class start extends javax.swing.JFrame{
         textField1.setText("textField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new guiMediaHandler(start.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(start.class.getName()).getIconImage());
 
         jLabel1.setText("Usuario:");
 
@@ -259,9 +255,9 @@ public final class start extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new start().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new start().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

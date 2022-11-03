@@ -14,7 +14,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class validation{
+public class Validation{
     protected String puesto;
     protected String clase;
     protected Frame ventana;
@@ -26,7 +26,7 @@ public class validation{
      * @param role del empleado para verificar si tiene o no permisos.
      * @param clase que es la misma que la ventana que se abrirá ak validar correctamente los datos.
      */
-    public validation(Frame frame,String role,String clase){
+    public Validation(Frame frame,String role,String clase){
         this.ventana=frame;
         this.puesto=role;
         this.clase=clase;
@@ -38,7 +38,7 @@ public class validation{
      * @param role del empleado para verificar si tiene o no permisos.
      * @param clase que es la misma que la ventana que se abrirá ak validar correctamente los datos.
      */
-    public validation(String role,String clase){
+    public Validation(String role,String clase){
         this.puesto=role;
         this.clase=clase;
     }
@@ -58,10 +58,10 @@ public class validation{
             EventQueue.invokeLater(()->{
                 ventana.setVisible(true);
             });
-            new logger(Level.INFO).staticLogger("Rel 5: validación correcta a '"+clase+"'.\nOcurrió en la clase '"+validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            new logger(Level.INFO).staticLogger("Rel 5: validación correcta a '"+clase+"'.\nOcurrió en la clase '"+Validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }else{
             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Error 38: usuario sin privilegios.\nOcurrió en la clase '"+validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario sin privilegios: "+String.valueOf(start.userID));
+            new logger(Level.WARNING).staticLogger("Error 38: usuario sin privilegios.\nOcurrió en la clase '"+Validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario sin privilegios: "+String.valueOf(start.userID));
         }
     }
     
@@ -71,10 +71,6 @@ public class validation{
      * @return si es posible ver o acceder a la característica 
      */
     public boolean isAccessible(){
-        if(puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador")){
-            return true;
-        }else{
-            return false;
-        }
+        return puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador");
     }
 }

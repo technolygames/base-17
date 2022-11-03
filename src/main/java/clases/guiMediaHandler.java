@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
 import javax.swing.UIManager;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 //extension larga
@@ -25,7 +24,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class guiMediaHandler{
+public class GuiMediaHandler{
     protected String clase;
     
     /**
@@ -34,12 +33,13 @@ public class guiMediaHandler{
      * 
      * @param clase que está usando las funciones.
      */
-    public guiMediaHandler(String clase){
+    public GuiMediaHandler(String clase){
         this.clase=clase;
     }
     
     protected String icon;
     protected String image;
+    protected String methodName;
     
     protected Properties p;
     
@@ -49,6 +49,7 @@ public class guiMediaHandler{
      * @return la imagen que se mostrará en el formulario o ventanas.
      */
     public Image getFormImage(){
+        methodName="getFormImage";
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/config.properties"));
@@ -64,14 +65,10 @@ public class guiMediaHandler{
             
             return Toolkit.getDefaultToolkit().getImage(image);
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getFormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"getFormImage-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
             return null;
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getFormImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"getFormImage-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,clase,methodName,"2IO");
             return null;
         }
     }
@@ -87,6 +84,7 @@ public class guiMediaHandler{
      * @return la imagen a usar.
      */
     public Image getIconImage(){
+        methodName="getIconImage";
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/config.properties"));
@@ -102,14 +100,10 @@ public class guiMediaHandler{
             
             return Toolkit.getDefaultToolkit().getImage(icon);
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getIconImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"getIconImage-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
             return null;
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'getIconImage()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"getIconImage-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,clase,methodName,"2IO");
             return null;
         }
     }
@@ -133,39 +127,26 @@ public class guiMediaHandler{
      * @param componente en el que mostrará el diseño o color de fondo del programa.
      */
     public void LookAndFeel(Component componente){
+        methodName="LookAndFeel";
         try{
             p=new Properties();
             p.load(new FileInputStream("data/config/config.properties"));
             UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error CNFE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error CNFE: "+e.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-CNFE",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,e,clase,methodName,"CNFE");
         }catch(InstantiationException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error IE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IE: "+x.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-IE",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,x,clase,methodName,"IE");
         }catch(IllegalAccessException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error IAE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IAE: "+n.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-IAE",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,n,clase,methodName,"IAE");
         }catch(UnsupportedLookAndFeelException y){
-            JOptionPane.showMessageDialog(null,"Error:\n"+y.getMessage(),"Error 28",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 28: "+y.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-28",y.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,y,clase,methodName,"28");
         }catch(NullPointerException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+k.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-0",k.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,k,clase,methodName,"0");
         }catch(FileNotFoundException s){
-            JOptionPane.showMessageDialog(null,"Error:\n"+s.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+s.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-1IO",s.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,s,clase,methodName,"1IO");
         }catch(IOException d){
-            JOptionPane.showMessageDialog(null,"Error:\n"+d.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+d.getMessage()+".\nOcurrió en la clase '"+clase+"', en el método 'LookAndFeel()'");
-            new logger(Level.SEVERE).exceptionLogger(clase,"LookAndFeel-2IO",d.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(componente,d,clase,methodName,"2IO");
         }
     }
 }

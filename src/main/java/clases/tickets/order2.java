@@ -1,9 +1,9 @@
 package clases.tickets;
 
-public class order2{
+public class Order2{
     char[] temp=new char[]{' '};
     
-    public order2(char delimit){
+    public Order2(char delimit){
         temp=new char[]{delimit};
     }
     

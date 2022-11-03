@@ -13,7 +13,6 @@ import java.net.URLConnection;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.net.MalformedURLException;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 
@@ -23,8 +22,10 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class resourceDownload{
+public class ResourceDownload{
     protected boolean estado=false;
+    
+    protected String methodName;
     
     protected File f;
     protected InputStream is;
@@ -44,6 +45,7 @@ public class resourceDownload{
      * @return el valor booleano si está conectado o no
      */
     public boolean checkConnection(String url,int puerto){
+        methodName="checkConnection";
         try{
             s=new Socket();
             sa=new InetSocketAddress(url,puerto);
@@ -53,14 +55,10 @@ public class resourceDownload{
             
             return s.isConnected();
         }catch(UnknownHostException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"checkConnection-1I",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceDownload.class.getName(),methodName,"1I");
             return false;
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'checkConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"checkConnection-1IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceDownload.class.getName(),methodName,"1IO");
             return false;
         }
     }
@@ -72,6 +70,7 @@ public class resourceDownload{
      * @param link Página web del recurso a decargar
      */
     public void downloadLibs(String validar,String link){
+        methodName="downloadLibs";
         f=new File("data/libs/test/"+validar);
         try{
             if(f.exists()&&f.length()==0){
@@ -81,7 +80,7 @@ public class resourceDownload{
                 is=uc.getInputStream();
                 os=new FileOutputStream("data/libs/test/"+validar);
                 
-                new Thread(new thread1(is,os)).start();
+                new Thread(new Thread1(is,os)).start();
             }else{
                 f.createNewFile();
             }
@@ -90,17 +89,11 @@ public class resourceDownload{
             os.flush();
             os.close();
         }catch(MalformedURLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 1I",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1I: "+e.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'");
-            new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"downloadLibs-1I",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceDownload.class.getName(),methodName,"1I");
         }catch(FileNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'");
-            new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"downloadLibs-1IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceDownload.class.getName(),methodName,"1IO");
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+"\nOcurrió en la clase '"+resourceDownload.class.getName()+"', en el método 'downloadLibs()'");
-            new logger(Level.SEVERE).exceptionLogger(resourceDownload.class.getName(),"downloadLibs-2IO",k.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceDownload.class.getName(),methodName,"2IO");
         }
     }
 }

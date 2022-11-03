@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.guiMediaHandler;
+import clases.GuiMediaHandler;
 import paneles.delDatosPanel4;
 import paneles.modDatosPanel4;
 //java
@@ -11,7 +11,7 @@ import java.awt.BorderLayout;
 public class menuDatosVentana4 extends javax.swing.JFrame{
     public menuDatosVentana4(){
         initComponents();
-        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -26,7 +26,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(int code){
         initComponents();
-        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -41,7 +41,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(Component panel,int code){
         initComponents();
-        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -58,7 +58,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(Component panel,boolean flag){
         initComponents();
-        new guiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -79,12 +79,12 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        miDelData.addActionListener((a)->{
+        miDelData.addActionListener(a->{
             if(codigo!=0){
                 openPanel(new delDatosPanel4(codigo));
             }else{
@@ -92,7 +92,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
             }
         });
         
-        miModData.addActionListener((a)->{
+        miModData.addActionListener(a->{
             if(codigo!=0){
                 openPanel(new modDatosPanel4(codigo));
             }else{
@@ -120,7 +120,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new guiMediaHandler(menuDatosVentana4.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(menuDatosVentana4.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -156,10 +156,10 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new menuDatosVentana4().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new menuDatosVentana4().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

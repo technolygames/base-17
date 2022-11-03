@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.guiMediaHandler;
+import clases.GuiMediaHandler;
 import clases.logger;
 import paneles.databaseConfig;
 import paneles.databaseExport;
@@ -25,7 +25,7 @@ import java.util.logging.Level;
 public class adminTools extends javax.swing.JFrame{
     public adminTools(){
         initComponents();
-        new guiMediaHandler(adminTools.class.getName()).LookAndFeel(adminTools.this);
+        new GuiMediaHandler(adminTools.class.getName()).LookAndFeel(adminTools.this);
         
         botones();
         settings();
@@ -36,7 +36,10 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }
     
+    protected String methodName;
+    
     protected final void settings(){
+        methodName="settings";
         JMenuItem[] items={jMenuItem5,jMenuItem6};
         try{
             Properties p=new Properties();
@@ -50,50 +53,47 @@ public class adminTools extends javax.swing.JFrame{
                     c.setEnabled(true);
                 }
             }
+            p.clear();
         }catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+e.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-1IO",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,adminTools.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+x.getMessage()+".\nOcurrió en la clase '"+adminTools.class.getName()+"', en el método 'settings()'");
-            new logger(Level.SEVERE).exceptionLogger(adminTools.class.getName(),"settings-2IO",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,adminTools.class.getName(),methodName,"2IO");
         }
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        jMenuItem1.addActionListener((a)->{
-            openPanel(new databaseConfig());
-        });
+        jMenuItem1.addActionListener(a->
+            openPanel(new databaseConfig())
+        );
         
-        jMenuItem2.addActionListener((a)->{
-            openPanel(new workerDataRestore());
-        });
+        jMenuItem2.addActionListener(a->
+            openPanel(new workerDataRestore())
+        );
         
-        jMenuItem3.addActionListener((a)->{
-            openPanel(new partDataRestore());
-        });
+        jMenuItem3.addActionListener(a->
+            openPanel(new partDataRestore())
+        );
         
-        jMenuItem4.addActionListener((a)->{
-            openPanel(new provDataRestore());
-        });
+        jMenuItem4.addActionListener(a->
+            openPanel(new provDataRestore())
+        );
         
-        jMenuItem5.addActionListener((a)->{
-            openPanel(new databaseImport());
-        });
+        jMenuItem5.addActionListener(a->
+            openPanel(new databaseImport())
+        );
         
-        jMenuItem6.addActionListener((a)->{
-            openPanel(new databaseExport());
-        });
+        jMenuItem6.addActionListener(a->
+            openPanel(new databaseExport())
+        );
         
-        jMenuItem7.addActionListener((a)->{
-            openPanel(new environmentPanel());
-        });
+        jMenuItem7.addActionListener(a->
+            openPanel(new environmentPanel())
+        );
     }
     
     protected void openPanel(Component panel){
@@ -122,7 +122,7 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(adminTools.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(adminTools.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -181,10 +181,10 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new adminTools().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new adminTools().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

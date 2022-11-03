@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.dbUtils;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.DbUtils;
+import clases.GuiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana2;
 import paneles.delDatosPanel2;
@@ -17,15 +17,14 @@ import javax.swing.RowSorter;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
-import javax.swing.JOptionPane;
+import javax.swing.AbstractAction;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
-import java.util.logging.Level;
-import javax.swing.AbstractAction;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshPartners extends javax.swing.JFrame{
     public ltshPartners(){
         initComponents();
-        new guiMediaHandler(ltshPartners.class.getName()).LookAndFeel(ltshPartners.this);
+        new GuiMediaHandler(ltshPartners.class.getName()).LookAndFeel(ltshPartners.this);
         
         botones();
         datosMostrar();
@@ -44,6 +43,9 @@ public class ltshPartners extends javax.swing.JFrame{
         setTitle("Socios");
         pack();
     }
+    
+    protected Object[] header;
+    protected String methodName;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
@@ -57,22 +59,22 @@ public class ltshPartners extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        jButton1.addActionListener((a)->{
-            new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString())).setVisible(true);
-        });
+        jButton1.addActionListener(a->
+            new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString())).setVisible(true)
+        );
         
-        refreshButton.addActionListener((a)->{
-            searchAndClear();
-        });
+        refreshButton.addActionListener(a->
+            searchAndClear()
+        );
         
-        searchButton.addActionListener((a)->{
-            searchData();
-        });
+        searchButton.addActionListener(a->
+            searchData()
+        );
         
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
@@ -96,7 +98,7 @@ public class ltshPartners extends javax.swing.JFrame{
             }
         });
         
-        jComboBox1.addActionListener((a)->{
+        jComboBox1.addActionListener(a->{
             int i=jComboBox1.getSelectedIndex();
             if(i>=0&&i<4){
                 searchAndClear();
@@ -114,16 +116,19 @@ public class ltshPartners extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
+        methodName="searchData";
         if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
             mostrarBoton(true);
         }else{
-            JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'botones(searchButton)'");
+            new logger(Level.WARNING).storeAndViewError18(this,ltshPartners.class.getName(),methodName);
         }
     }
     
     protected final void datosMostrar(){
+        methodName="datosMostrar";
+        header=new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"};
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -140,9 +145,9 @@ public class ltshPartners extends javax.swing.JFrame{
         
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select * from socios;");
+            ps=new Datos().getConnection().prepareStatement("select * from socios;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+            dtm.setColumnIdentifiers(header);
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
             }
@@ -154,13 +159,14 @@ public class ltshPartners extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosMostrar-16",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshPartners.class.getName(),methodName,"16");
         }
     }
     
     protected void datosBuscar(){
+        methodName="datosBuscar";
+        header=new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"};
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -178,105 +184,94 @@ public class ltshPartners extends javax.swing.JFrame{
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
-                case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                case 0->{
+                    ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshPartners.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from socios where nombre_part=?;");
+                }
+                case 1->{
+                    ps=new Datos().getConnection().prepareStatement("select * from socios where nombre_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshPartners.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from socios where apellidop_part=?;");
+                }
+                case 2->{
+                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidop_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido paterno especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshPartners.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
-                    break;
-                case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from socios where apellidom_part=?;");
+                }
+                case 3->{
+                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidom_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getInt("codigo_part"),rs.getString("nombre_part"),rs.getString("apellidop_part"),rs.getString("apellidom_part"),rs.getString("tipo_socio"),rs.getString("datos_extra"),rs.getString("fecha_ingreso"),rs.getString("fecha_ucompra")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido materno especificado.\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshPartners.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
+                }
+                default->{
                     break;
-                default:
-                    break;
+                }
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosBuscar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshPartners.class.getName(),methodName,"14");
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosBuscar-0",x.fillInStackTrace());
-        }catch(ArrayIndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(this,"Error:\n"+p.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosBuscar-AIOOBE",p.fillInStackTrace());
-        }catch(IndexOutOfBoundsException n){
-            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error IOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshPartners.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshPartners.class.getName(),"datosBuscar-IOOBE",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshPartners.class.getName(),methodName,"0");
+        }catch(ArrayIndexOutOfBoundsException n){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshPartners.class.getName(),methodName,"AIOOBE");
+        }catch(IndexOutOfBoundsException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,ltshPartners.class.getName(),methodName,"IOOBE");
         }
     }
     
@@ -354,7 +349,7 @@ public class ltshPartners extends javax.swing.JFrame{
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(ltshPartners.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(ltshPartners.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -429,10 +424,10 @@ public class ltshPartners extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    public static void main(String args[]){
-        EventQueue.invokeLater(()->{
-            new ltshPartners().setVisible(true);
-        });
+    public static void main(String[] args){
+        EventQueue.invokeLater(()->
+            new ltshPartners().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

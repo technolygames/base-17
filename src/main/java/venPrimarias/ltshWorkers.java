@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.datos;
-import clases.dbUtils;
-import clases.guiMediaHandler;
+import clases.Datos;
+import clases.DbUtils;
+import clases.GuiMediaHandler;
 import clases.logger;
 import menus.menuDatosVentana1;
 import paneles.delDatosPanel1;
@@ -17,15 +17,14 @@ import javax.swing.RowSorter;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JPopupMenu;
-import javax.swing.JOptionPane;
 import javax.swing.AbstractAction;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
-import java.util.logging.Level;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshWorkers extends javax.swing.JFrame{
     public ltshWorkers(){
         initComponents();
-        new guiMediaHandler(ltshWorkers.class.getName()).LookAndFeel(ltshWorkers.this);
+        new GuiMediaHandler(ltshWorkers.class.getName()).LookAndFeel(ltshWorkers.this);
         
         botones();
         datosMostrar();
@@ -44,6 +43,9 @@ public class ltshWorkers extends javax.swing.JFrame{
         setTitle("Empleados");
         pack();
     }
+    
+    protected Object[] header;
+    protected String methodName;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
@@ -57,22 +59,22 @@ public class ltshWorkers extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        jButton2.addActionListener((a)->{
-            new dataWindow1(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,1).toString())).setVisible(true);
-        });
+        jButton2.addActionListener(a->
+            new dataWindow1(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,1).toString())).setVisible(true)
+        );
         
-        refreshButton.addActionListener((a)->{
-            searchAndClear();
-        });
+        refreshButton.addActionListener(a->
+            searchAndClear()
+        );
         
-        searchButton.addActionListener((a)->{
-            searchData();
-        });
+        searchButton.addActionListener(a->
+            searchData()
+        );
         
         txtBuscar.addKeyListener(new KeyAdapter(){
             @Override
@@ -96,12 +98,12 @@ public class ltshWorkers extends javax.swing.JFrame{
             }
         });
         
-        jComboBox1.addActionListener((a)->{
+        jComboBox1.addActionListener(a->{
             int i=jComboBox1.getSelectedIndex();
             if(i>=0&&i<4){
                 searchAndClear();
             }
-        });
+    });
     }
     
     //NO USAR PARA BUSCAR DATOS
@@ -114,16 +116,19 @@ public class ltshWorkers extends javax.swing.JFrame{
     
     //Este es para buscar datos en concreto
     protected void searchData(){
+        methodName="searchData";
         if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
             mostrarBoton(true);
         }else{
-            JOptionPane.showMessageDialog(this,"Error:\nEscribe la palabra clave que deseas buscar","Error 14",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'botones(searchButton)'");
+            new logger(Level.WARNING).storeAndViewError18(this,ltshWorkers.class.getName(),methodName);
         }
     }
     
     protected final void datosMostrar(){
+        methodName="datosMostrar";
+        header=new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"};
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -140,9 +145,9 @@ public class ltshWorkers extends javax.swing.JFrame{
         
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new datos().getConnection().prepareStatement("select * from empleados;");
+            ps=new Datos().getConnection().prepareStatement("select * from empleados;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+            dtm.setColumnIdentifiers(header);
             while(rs.next()){
                 dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("fecha_registro"),rs.getString("fecha_sesion")});
             }
@@ -154,21 +159,18 @@ public class ltshWorkers extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 16",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 16: "+e.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosMostrar-16",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshWorkers.class.getName(),methodName,"16");
         }catch(NumberFormatException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error NFE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error NFE: "+x.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosMostrar-NFE",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshWorkers.class.getName(),methodName,"NFE");
         }catch(NullPointerException n){
-            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+n.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosMostrar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosMostrar-0",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshWorkers.class.getName(),methodName,"0");
         }
     }
     
     protected void datosBuscar(){
+        methodName="datosBuscar";
+        header=new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"};
+        
         dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
@@ -187,80 +189,76 @@ public class ltshWorkers extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                    ps=new Datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("fecha_registro"),rs.getString("fecha_sesion")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el código especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshWorkers.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
                     break;
                 case 1:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where nombre_emp=?;");
+                    ps=new Datos().getConnection().prepareStatement("select * from empleados where nombre_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("fecha_registro"),rs.getString("fecha_sesion")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el nombre especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshWorkers.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
                     break;
                 case 2:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidop_emp=?;");
+                    ps=new Datos().getConnection().prepareStatement("select * from empleados where apellidop_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("fecha_registro"),rs.getString("fecha_sesion")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido paterno especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshWorkers.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
                     rs.close();
                     break;
                 case 3:
-                    ps=new datos().getConnection().prepareStatement("select * from empleados where apellidom_emp=?;");
+                    ps=new Datos().getConnection().prepareStatement("select * from empleados where apellidom_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
-                    dtm.setColumnIdentifiers(new Object[]{"Contraseña","Código","Nombre(s)","Apellido paterno","Apellido materno","Puesto","Experiencia","Grado de estudios","Contacto","Edad","Estado","Fecha de registro","Fecha de sesión"});
+                    dtm.setColumnIdentifiers(header);
                     if(rs.next()){
                         dtm.addRow(new Object[]{rs.getString("password"),rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"),rs.getString("puesto"),rs.getString("experiencia"),rs.getString("grado_estudios"),rs.getInt("contacto"),rs.getInt("edad"),rs.getString("estado"),rs.getString("fecha_registro"),rs.getString("fecha_sesion")});
                     }else{
-                        JOptionPane.showMessageDialog(this,"Error:\nNo existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
-                        new logger(Level.WARNING).staticLogger("Error 14: no hay datos que concuerden con el apellido materno especificado.\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
+                        new logger(Level.WARNING).storeAndViewError14(this,ltshWorkers.class.getName(),methodName);
                     }
                     jTable1.setRowSorter(sorter);
                     jTable1.getRowSorter().toggleSortOrder(0);
                     jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(dbUtils.resultSetToTableModel(rs));
+                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     jTable1.setModel(dtm);
                     
                     ps.close();
@@ -270,21 +268,13 @@ public class ltshWorkers extends javax.swing.JFrame{
                     break;
             }
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 14",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 14: "+e.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosBuscar-14",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshWorkers.class.getName(),methodName,"14");
         }catch(NullPointerException x){
-            JOptionPane.showMessageDialog(this,"Error:\n"+x.getMessage(),"Error 0",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 0: "+x.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosBuscar-0",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshWorkers.class.getName(),methodName,"0");
         }catch(ArrayIndexOutOfBoundsException n){
-            JOptionPane.showMessageDialog(this,"Error:\n"+n.getMessage(),"Error AIOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error AIOOBE: "+n.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosBuscar-AIOOBE",n.fillInStackTrace());
-        }catch(IndexOutOfBoundsException p){
-            JOptionPane.showMessageDialog(this,"Error:\n"+p.getMessage(),"Error IOOBE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error IOOBE: "+p.getMessage()+".\nOcurrió en la clase '"+ltshWorkers.class.getName()+"', en el método 'datosBuscar()'");
-            new logger(Level.SEVERE).exceptionLogger(ltshWorkers.class.getName(),"datosBuscar-IOOBE",p.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshWorkers.class.getName(),methodName,"AIOOBE");
+        }catch(IndexOutOfBoundsException s){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,ltshWorkers.class.getName(),methodName,"IOOBE");
         }
     }
     
@@ -365,7 +355,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new guiMediaHandler(ltshWorkers.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(ltshWorkers.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Empleados");
@@ -438,9 +428,9 @@ public class ltshWorkers extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->{
-            new ltshWorkers().setVisible(true);
-        });
+        EventQueue.invokeLater(()->
+            new ltshWorkers().setVisible(true)
+        );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

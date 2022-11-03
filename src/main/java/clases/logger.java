@@ -1,5 +1,6 @@
 package clases;
 //java
+import java.awt.Component;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +20,8 @@ import java.util.logging.SimpleFormatter;
 public class logger{
     protected Level level;
     
+    protected String methodName;
+    
     /**
      * Inicializa la instancia para mandar el estado del mensaje log al archivo estático y/o de excepción.
      * 
@@ -35,9 +38,9 @@ public class logger{
         try{
             fh=new FileHandler("data/logs/static/staticLog.log",0,1,true);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,logger.class.getName(),"Internal","SE");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,logger.class.getName(),"Internal","1IO");
         }
     }
     
@@ -47,40 +50,74 @@ public class logger{
      * @param message Mensaje que se almacenará en el archivo .log.
      */
     public void staticLogger(String message){
+        methodName="staticLogger";
         Logger logger=Logger.getLogger("staticLogger");
         try{
             fh.setFormatter(new SimpleFormatter());
             logger.addHandler(fh);
             logger.log(level,message);
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).exceptionLogger(logger.class.getName(),"staticLogger-SE",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,logger.class.getName(),methodName,"SE");
         }
     }
     
     /**
      * Método que se encarga de guardar los datos de eventos ocurridos durante la ejecución del programa en varios archivos.
      * 
-     * @param className Nombre de la clase en la que sucede el evento.
-     * @param methodName Nombre del método en el que está ocurriendo el error.
+     * @param className2 Nombre de la clase en la que sucede el evento.
+     * @param methodName2 Nombre del método en el que está ocurriendo el error.
      * @param exception Excepción (o error) al que se le manejará y guardará en el archivo log.
      */
-    public void exceptionLogger(String className,String methodName,Throwable exception){
+    public void exceptionLogger(String className2,String methodName2,Throwable exception){
+        methodName="exceptionLogger";
         Logger logger=Logger.getLogger("exceptionLogger");
         try{
-            fh2=new FileHandler("data/logs/exceptions/"+className+"."+methodName+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
+            fh2=new FileHandler("data/logs/exceptions/"+className2+"."+methodName2+"-("+(int)(Math.random()*10000)+","+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log");
             fh2.setFormatter(new SimpleFormatter());
             logger.addHandler(fh2);
-            logger.log(level,methodName,exception);
+            logger.log(level,methodName2,exception);
             
             fh2.flush();
             fh2.close();
         }catch(SecurityException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error SE",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error SE: "+e.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,logger.class.getName(),methodName,"SE");
         }catch(IOException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+x.getMessage()+".\nOcurrió en la clase '"+logger.class.getName()+"', en el método 'exceptionLogger()'");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,logger.class.getName(),methodName,"1IO");
         }
+    }
+    
+    /**
+     * Mostrará una subventana para mostrar un mensaje de error y almacenar en un archivo este mismo para su posterior análisis.
+     * 
+     * @param component en el que se mostrará el option pane.
+     * @param exception que mostrará y almacenará en un archivo logger.
+     * @param className2 procedente del error.
+     * @param methodName2 que produjo la excepción o error.
+     * @param level2 el tipo de nivel del error.
+     */
+    public void storeAndViewCaughtException(Component component,Throwable exception,String className2,String methodName2,String level2){
+        JOptionPane.showMessageDialog(component,"Error:\n"+exception.getMessage(),"Error "+level2,JOptionPane.ERROR_MESSAGE);
+        new logger(level).staticLogger("Error "+level2+": "+exception.getMessage()+".\nOcurrió en la clase '"+className2+"', en el método '"+methodName2+"()'");
+        new logger(level).exceptionLogger(className2,methodName2+"-"+level2,exception.fillInStackTrace());
+    }
+    
+    public void storeAndViewNumberInputWarning(Component component,String className2,String methodName2){
+        JOptionPane.showMessageDialog(component,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
+        new logger(level).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+className2+"', en el método '"+methodName2+"()'");
+    }
+    
+    public void storeAndViewLetterInputWarning(Component component,String className2,String methodName2){
+        JOptionPane.showMessageDialog(component,"Solo letras","Let 7",JOptionPane.WARNING_MESSAGE);
+        new logger(level).staticLogger("Let 7: se ingresaron números en un campo equivocado.\nOcurrió en la clase '"+className2+"', en el método '"+methodName2+"()'");
+    }
+    
+    public void storeAndViewError14(Component component,String className2,String methodName2){
+        JOptionPane.showMessageDialog(component,"Error: no existen los datos","Error 14",JOptionPane.WARNING_MESSAGE);
+        new logger(level).staticLogger("Error 14: no existen o no se ingresaron los datos a buscar y/o cambiar.\nOcurrió en '"+className2+"', en el método '"+methodName2+"()'");
+    }
+    
+    public void storeAndViewError18(Component component,String className2,String methodName2){
+        JOptionPane.showMessageDialog(component,"Error:\nEscribe correctamente lo que deseas realizar en esta acción","Error 18",JOptionPane.WARNING_MESSAGE);
+        new logger(level).staticLogger("Error 18: no se escribió la palabra clave para hacer la búsqueda.\nOcurrió en la clase '"+className2+"', en el método '"+methodName2+"()'");
     }
 }

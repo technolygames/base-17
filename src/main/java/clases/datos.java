@@ -1,7 +1,7 @@
 package clases;
 //clases
-import clases.mvc.mvcForm1;
-import clases.mvc.mvcForm2;
+import clases.mvc.MvcForm1;
+import clases.mvc.MvcForm2;
 import venPrimarias.start;
 //java
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class datos{
+public class Datos{
     protected PreparedStatement ps;
     
     protected Properties p;
@@ -44,6 +44,7 @@ public class datos{
      * @return conexión a la base de datos.
      */
     public Connection getConnection(){
+        String methodName="getConnection";
         p=new Properties();
         try{
             p.load(new FileInputStream("data/config/databaseInfo.properties"));
@@ -58,24 +59,16 @@ public class datos{
             Class.forName(driver);
             return DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 10",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 10: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-10",e.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Datos.class.getName(),methodName,"10");
             return null;
         }catch(ClassNotFoundException x){
-            JOptionPane.showMessageDialog(null,"Error:\n"+x.getMessage(),"Error 37",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 37: "+x.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-37",x.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Datos.class.getName(),methodName,"37");
             return null;
         }catch(FileNotFoundException n){
-            JOptionPane.showMessageDialog(null,"Error:\n"+n.getMessage(),"Error 1IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 1IO: "+n.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-1IO",n.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Datos.class.getName(),methodName,"1IO");
             return null;
         }catch(IOException k){
-            JOptionPane.showMessageDialog(null,"Error:\n"+k.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+k.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'getConnection()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"getConnection-2IO",k.fillInStackTrace());
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,Datos.class.getName(),methodName,"2IO");
             return null;
         }
     }
@@ -92,7 +85,7 @@ public class datos{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -138,67 +131,59 @@ public class datos{
      * @param cantidad Cantidad que es entraga y almacenada.
      * @param precioUnitario Precio de cada producto del lote.
      * @param stock Disponibilidad del producto.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,int precioUnitario,String stock){
-        try{
-            ps=getConnection().prepareStatement("insert into almacen values(?,?,?,?,?,?,?,?,now())");
-            
-            ps.setInt(1,codigoProducto);
-            ps.setInt(2,codigoLote);
-            ps.setInt(3,codigoProveedor);
-            ps.setString(4,nombreProducto);
-            ps.setString(5,marca);
-            ps.setInt(6,cantidad);
-            ps.setInt(7,precioUnitario);
-            ps.setString(8,stock);
-            ps.addBatch();
-            
-            ps.executeBatch();
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosAlmacen()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosAlmacen-11",e.fillInStackTrace());
-        }
+    public void insertarDatosAlmacen(int codigoProducto,int codigoLote,int codigoProveedor,String nombreProducto,String marca,int cantidad,int precioUnitario,String stock) throws SQLException{
+        ps=getConnection().prepareStatement("insert into almacen values(?,?,?,?,?,?,?,?,now())");
+        
+        ps.setInt(1,codigoProducto);
+        ps.setInt(2,codigoLote);
+        ps.setInt(3,codigoProveedor);
+        ps.setString(4,nombreProducto);
+        ps.setString(5,marca);
+        ps.setInt(6,cantidad);
+        ps.setInt(7,precioUnitario);
+        ps.setString(8,stock);
+        ps.addBatch();
+        
+        ps.executeBatch();
+        
+        ps.close();
     }
     
     /**
      * Guarda los datos de la ventana de empleados en la base de datos.
      * 
      * @param datos que serán almacenados del empleado en la base de datos.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosEmpleado(List<mvcForm1> datos){
-        try{
-            ps=getConnection().prepareStatement("insert into empleados values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
-            ps.setString(1,datos.get(0).getPassword());
-            ps.setInt(2,datos.get(0).getCodigo());
-            ps.setString(3,datos.get(0).getNombre());
-            ps.setString(4,datos.get(0).getApellidoPaterno());
-            ps.setString(5,datos.get(0).getApellidoMaterno());
-            ps.setString(6,datos.get(0).getCurp());
-            ps.setString(7,datos.get(0).getDomicilio());
-            ps.setString(8,datos.get(0).getPuesto());
-            ps.setInt(9,datos.get(0).getExperiencia());
-            ps.setString(10,datos.get(0).getGradoEstudios());
-            ps.setInt(11,datos.get(0).getContacto());
-            ps.setString(12,datos.get(0).getFechaNacimiento());
-            ps.setInt(13,datos.get(0).getEdad());
-            ps.setString(14,datos.get(0).getEstado());
-            ps.setString(15,datos.get(0).getDatosExtra());
-            ps.setBlob(16,datos.get(0).getImagen());
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            datos.clear();
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosEmpleado()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosEmpleado-11",e.fillInStackTrace());
-        }
+    public void insertarDatosEmpleado(List<MvcForm1> datos) throws SQLException{
+        ps=getConnection().prepareStatement("insert into empleados values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
+        ps.setString(1,datos.get(0).getPassword());
+        ps.setInt(2,datos.get(0).getCodigo());
+        ps.setString(3,datos.get(0).getNombre());
+        ps.setString(4,datos.get(0).getApellidoPaterno());
+        ps.setString(5,datos.get(0).getApellidoMaterno());
+        ps.setString(6,datos.get(0).getCurp());
+        ps.setString(7,datos.get(0).getDomicilio());
+        ps.setString(8,datos.get(0).getPuesto());
+        ps.setInt(9,datos.get(0).getExperiencia());
+        ps.setString(10,datos.get(0).getGradoEstudios());
+        ps.setInt(11,datos.get(0).getContacto());
+        ps.setString(12,datos.get(0).getFechaNacimiento());
+        ps.setInt(13,datos.get(0).getEdad());
+        ps.setString(14,datos.get(0).getEstado());
+        ps.setString(15,datos.get(0).getDatosExtra());
+        ps.setBlob(16,datos.get(0).getImagen());
+        ps.execute();
+        
+        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        datos.clear();
+        ps.close();
     }
     
     /**
@@ -211,59 +196,51 @@ public class datos{
      * @param empresa Empresa procedencia del proveedor.
      * @param contacto Número de contacto del proveedor.
      * @param foto Foto del proveedor para identificarlo.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto){
-        try{
-            ps=getConnection().prepareStatement("insert into proveedor value(?,?,?,?,?,?,?,now(),now());");
-            ps.setInt(1,codigoProveedor);
-            ps.setString(2,nombreProveedor);
-            ps.setString(3,apellidoPaternoProveedor);
-            ps.setString(4,apellidoMaternoProveedor);
-            ps.setString(5,empresa);
-            ps.setInt(6,contacto);
-            ps.setBinaryStream(7,foto);
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosProveedor()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosProveedor-11",e.fillInStackTrace());
-        }
+    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto) throws SQLException{
+        ps=getConnection().prepareStatement("insert into proveedor value(?,?,?,?,?,?,?,now(),now());");
+        ps.setInt(1,codigoProveedor);
+        ps.setString(2,nombreProveedor);
+        ps.setString(3,apellidoPaternoProveedor);
+        ps.setString(4,apellidoMaternoProveedor);
+        ps.setString(5,empresa);
+        ps.setInt(6,contacto);
+        ps.setBinaryStream(7,foto);
+        ps.execute();
+        
+        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
      * Guarda los datos de la ventana de socios en la base de datos.
      * 
      * @param datos que serán almacenados del socio en la base de datos.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosSocio(List<mvcForm2> datos){
-        try{
-            ps=getConnection().prepareStatement("insert into socios values(?,?,?,?,?,?,?,?,?,now(),now());");
-            ps.setInt(1,datos.get(0).getCodigo());
-            ps.setString(2,datos.get(0).getNombre());
-            ps.setString(3,datos.get(0).getApellidoPaterno());
-            ps.setString(4,datos.get(0).getApellidoMaterno());
-            ps.setString(5,datos.get(0).getTipo());
-            ps.setString(6,datos.get(0).getCorreo());
-            ps.setString(7,datos.get(0).getRfc());
-            ps.setString(8,datos.get(0).getDatos());
-            ps.setBinaryStream(9,datos.get(0).getImagen());
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            datos.clear();
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosSocio()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosSocio-11",e.fillInStackTrace());
-        }
+    public void insertarDatosSocio(List<MvcForm2> datos) throws SQLException{
+        ps=getConnection().prepareStatement("insert into socios values(?,?,?,?,?,?,?,?,?,now(),now());");
+        ps.setInt(1,datos.get(0).getCodigo());
+        ps.setString(2,datos.get(0).getNombre());
+        ps.setString(3,datos.get(0).getApellidoPaterno());
+        ps.setString(4,datos.get(0).getApellidoMaterno());
+        ps.setString(5,datos.get(0).getTipo());
+        ps.setString(6,datos.get(0).getCorreo());
+        ps.setString(7,datos.get(0).getRfc());
+        ps.setString(8,datos.get(0).getDatos());
+        ps.setBinaryStream(9,datos.get(0).getImagen());
+        ps.execute();
+        
+        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        datos.clear();
+        ps.close();
     }
     
     /**
@@ -275,27 +252,23 @@ public class datos{
      * @param descuento Porcentaje de descuento.
      * @param inicio Fecha de inicio de la promoción.
      * @param fin Fecha de finalización de la promoción.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosPromo(String codigoPromo,String nombrePromo,String datosPromo,float descuento,java.sql.Date inicio,java.sql.Date fin){
-        try{
-            ps=getConnection().prepareStatement("insert into promociones(id_prom,nombre_prom,datos_prom,descuento,inicio,fin) values(?,?,?,?,?,?);");
-            ps.setString(1,codigoPromo);
-            ps.setString(2,nombrePromo);
-            ps.setString(3,datosPromo);
-            ps.setFloat(4,descuento);
-            ps.setDate(5,inicio);
-            ps.setDate(6,fin);
-            ps.execute();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosPromo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosPromo-11",e.fillInStackTrace());
-        }
+    public void insertarDatosPromo(String codigoPromo,String nombrePromo,String datosPromo,float descuento,java.sql.Date inicio,java.sql.Date fin) throws SQLException{
+        ps=getConnection().prepareStatement("insert into promociones(id_prom,nombre_prom,datos_prom,descuento,inicio,fin) values(?,?,?,?,?,?);");
+        ps.setString(1,codigoPromo);
+        ps.setString(2,nombrePromo);
+        ps.setString(3,datosPromo);
+        ps.setFloat(4,descuento);
+        ps.setDate(5,inicio);
+        ps.setDate(6,fin);
+        ps.execute();
+        
+        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -305,24 +278,20 @@ public class datos{
      * @param nombreEmpleado Nombre(s) del empleado.
      * @param apellidoPaternoEmpleado Apellido paterno del empleado.
      * @param apellidoMaternoEmpleado Apellido materno del empleado.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado){
-        try{
-            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values(?,?,?,?,0,now());");
-            ps.setInt(1,codigoEmpleado);
-            ps.setString(2,nombreEmpleado);
-            ps.setString(3,apellidoPaternoEmpleado);
-            ps.setString(4,apellidoMaternoEmpleado);
-            ps.execute();
-            
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo1()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo1-11",e.fillInStackTrace());
-        }
+    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado) throws SQLException{
+        ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values(?,?,?,?,0,now());");
+        ps.setInt(1,codigoEmpleado);
+        ps.setString(2,nombreEmpleado);
+        ps.setString(3,apellidoPaternoEmpleado);
+        ps.setString(4,apellidoMaternoEmpleado);
+        ps.execute();
+        
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -335,25 +304,21 @@ public class datos{
      * @param numeroVentas Cantidad de ventas realizadas por el empleado.
      * 
      * Nota: este método es solo para cargar datos de respaldo eliminados previamente.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,int numeroVentas){
-        try{
-            ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values(?,?,?,?,?,now());");
-            ps.setInt(1,codigoEmpleado);
-            ps.setString(2,nombreEmpleado);
-            ps.setString(3,apellidoPaternoEmpleado);
-            ps.setString(4,apellidoMaternoEmpleado);
-            ps.setInt(5,numeroVentas);
-            ps.execute();
-            
-            new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 11",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 11: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'insertarDatosConteo2()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"insertarDatosConteo2-11",e.fillInStackTrace());
-        }
+    public void insertarDatosConteo(int codigoEmpleado,String nombreEmpleado,String apellidoPaternoEmpleado,String apellidoMaternoEmpleado,int numeroVentas) throws SQLException{
+        ps=getConnection().prepareStatement("insert into conteo(codigo_emp,nombre_emp,apellidop_emp,apellidom_emp,no_ventas,fecha_sesion) values(?,?,?,?,?,now());");
+        ps.setInt(1,codigoEmpleado);
+        ps.setString(2,nombreEmpleado);
+        ps.setString(3,apellidoPaternoEmpleado);
+        ps.setString(4,apellidoMaternoEmpleado);
+        ps.setInt(5,numeroVentas);
+        ps.execute();
+        
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -397,19 +362,17 @@ public class datos{
      * 
      * @param password del usuario loggeado.
      * @param user1 usuario loggeado.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosLogin(String password,String user1){
-        try{
-            ps=getConnection().prepareStatement("update empleados set fecha_sesion=now() where password=? and nombre_emp=? or curp=?;");
-            ps.setString(1,password);
-            ps.setString(2,user1);
-            ps.setString(3,user1);
-            ps.executeUpdate();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosLogin()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosLogin-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosLogin(String password,String user1) throws SQLException{
+        ps=getConnection().prepareStatement("update empleados set fecha_sesion=now() where password=? and nombre_emp=? or curp=?;");
+        ps.setString(1,password);
+        ps.setString(2,user1);
+        ps.setString(3,user1);
+        ps.executeUpdate();
+        
+        ps.close();
     }
     
     /**
@@ -417,20 +380,16 @@ public class datos{
      * 
      * @param cantidad del producto que se vendió.
      * @param codigo de identificación del producto vendido.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosAlmacen(int cantidad,int codigo){
-        try{
-            ps=getConnection().prepareCall("update almacen set cantidad=cantidad-? where codigo_prod=?;");
-            ps.setInt(1,cantidad);
-            ps.setInt(2,codigo);
-            ps.executeUpdate();
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosAlmacen()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosAlmacen-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosAlmacen(int cantidad,int codigo) throws SQLException{
+        ps=getConnection().prepareCall("update almacen set cantidad=cantidad-? where codigo_prod=?;");
+        ps.setInt(1,cantidad);
+        ps.setInt(2,codigo);
+        ps.executeUpdate();
+        
+        ps.close();
     }
     
     /**
@@ -439,37 +398,31 @@ public class datos{
      * 
      * @param codigo de identificación del empleado.
      * @param fecha de inicio de sesión del empleado.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosConteoVentas(int codigo,String fecha){
-        try{
-            ps=getConnection().prepareStatement("update conteo set no_ventas=no_ventas+1 where codigo_emp=? and fecha_sesion=?;");
-            ps.setInt(1,codigo);
-            ps.setString(2,fecha);
-            ps.executeUpdate();
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosConteoVentas()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosConteoVentas-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosConteoVentas(int codigo,String fecha) throws SQLException{
+        ps=getConnection().prepareStatement("update conteo set no_ventas=no_ventas+1 where codigo_emp=? and fecha_sesion=?;");
+        ps.setInt(1,codigo);
+        ps.setString(2,fecha);
+        ps.executeUpdate();
+        
+        ps.close();
     }
     
     /**
      * Actualiza la cantidad de usos del código promocional.
      * 
      * @param codigo promocional a usar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosUsoPromo(String codigo){
-        try{
-            ps=getConnection().prepareStatement("update promociones set no_usos=no_usos+1 where id_prom=?;");
-            ps.setString(1,codigo);
-            ps.executeUpdate();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosUsoPromo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosUsoPromo-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosUsoPromo(String codigo) throws SQLException{
+        ps=getConnection().prepareStatement("update promociones set no_usos=no_usos+1 where id_prom=?;");
+        ps.setString(1,codigo);
+        ps.executeUpdate();
+        
+        ps.close();
     }
     
     /**
@@ -481,23 +434,19 @@ public class datos{
      * @param campo2 de identificación.
      * @param datos a cambiar (nuevos datos).
      * @param codigo de identificación del registro.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosString(String tabla,String campo1,String campo2,String datos,int codigo){
-        try{
-            ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
-            ps.setString(1,datos);
-            ps.setInt(2,codigo);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosString()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosString-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosString(String tabla,String campo1,String campo2,String datos,int codigo) throws SQLException{
+        ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+        ps.setString(1,datos);
+        ps.setInt(2,codigo);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -510,27 +459,23 @@ public class datos{
      * @param datos a cambiar (nuevos datos).
      * @param codigo de identificación del registro.
      * @param flag para mostrar la notificación de confirmación
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosInteger(String tabla,String campo1,String campo2,int datos,int codigo,boolean flag){
-        try{
-            ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
-            ps.setInt(1,datos);
-            ps.setInt(2,codigo);
-            ps.executeUpdate();
-            
-            if(flag){
-                JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            }else{
-                new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            }
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosInteger()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosInteger-12",e.fillInStackTrace());
+    public void actualizarDatosInteger(String tabla,String campo1,String campo2,int datos,int codigo,boolean flag) throws SQLException{
+        ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+        ps.setInt(1,datos);
+        ps.setInt(2,codigo);
+        ps.executeUpdate();
+        
+        if(flag){
+            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        }else{
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }
+        
+        ps.close();
     }
     
     /**
@@ -542,23 +487,19 @@ public class datos{
      * @param campo2 de identificación.
      * @param fecha a cambiar (nuevos datos).
      * @param codigo de identificación del registro.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosDate(String tabla,String campo1,String campo2,Date fecha,int codigo){
-        try{
-            ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
-            ps.setDate(1,fecha);
-            ps.setInt(2,codigo);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarDatosDate()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarDatosDate-12",e.fillInStackTrace());
-        }
+    public void actualizarDatosDate(String tabla,String campo1,String campo2,Date fecha,int codigo) throws SQLException{
+        ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
+        ps.setDate(1,fecha);
+        ps.setInt(2,codigo);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -577,23 +518,19 @@ public class datos{
      * @param campo de identificación del registro a cambiar la imagen.
      * @param usuario al que se le cambiará la imagen. Este es el registro, no el campo.
      * @param imagen a cambiar o subir.<br>
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarFotoPerfil(String tabla,String campo,InputStream imagen,int usuario){
-        try{
-            ps=getConnection().prepareStatement("update "+tabla+" set foto=? where "+campo+"=?;");
-            ps.setBinaryStream(1,imagen);
-            ps.setInt(2,usuario);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 12",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 12: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'actualizarFotoPerfil()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"actualizarFotoPerfil-12",e.fillInStackTrace());
-        }
+    public void actualizarFotoPerfil(String tabla,String campo,InputStream imagen,int usuario) throws SQLException{
+        ps=getConnection().prepareStatement("update "+tabla+" set foto=? where "+campo+"=?;");
+        ps.setBinaryStream(1,imagen);
+        ps.setInt(2,usuario);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -604,21 +541,17 @@ public class datos{
      * En su caso, solo será añadido un número con la cantidad de productos que vendió antes de que fueran eliminados los datos.
      * 
      * @param codigoEmpleado a eliminar los productos que ha vendido.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosProductos(int codigoEmpleado){
-        try{
-            ps=getConnection().prepareStatement("delete from productos where codigo_emp=?;");
-            ps.setInt(1,codigoEmpleado);
-            ps.executeUpdate();
-            
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProductos()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosProductos-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosProductos(int codigoEmpleado) throws SQLException{
+        ps=getConnection().prepareStatement("delete from productos where codigo_emp=?;");
+        ps.setInt(1,codigoEmpleado);
+        ps.executeUpdate();
+        
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -627,22 +560,18 @@ public class datos{
      * En este caso, no aplica la copia de seguridad con JSON.
      * 
      * @param codigoProducto a eliminar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosAlmacen(int codigoProducto){
-        try{
-            ps=getConnection().prepareStatement("delete from almacen where codigo_prod=?;");
-            ps.setInt(1,codigoProducto);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosAlmacen-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosAlmacen(int codigoProducto) throws SQLException{
+        ps=getConnection().prepareStatement("delete from almacen where codigo_prod=?;");
+        ps.setInt(1,codigoProducto);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -651,22 +580,18 @@ public class datos{
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoEmpleado a eliminar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosEmpleado(int codigoEmpleado){
-        try{
-            ps=getConnection().prepareStatement("delete from empleados where codigo_emp=?;");
-            ps.setInt(1,codigoEmpleado);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosEmpleado-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosEmpleado(int codigoEmpleado) throws SQLException{
+        ps=getConnection().prepareStatement("delete from empleados where codigo_emp=?;");
+        ps.setInt(1,codigoEmpleado);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -675,22 +600,18 @@ public class datos{
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoSocio a eliminar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosSocio(int codigoSocio){
-        try{
-            ps=getConnection().prepareStatement("delete from socios where codigo_part=?;");
-            ps.setInt(1,codigoSocio);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosSocio()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosSocio-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosSocio(int codigoSocio) throws SQLException{
+        ps=getConnection().prepareStatement("delete from socios where codigo_part=?;");
+        ps.setInt(1,codigoSocio);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -699,22 +620,18 @@ public class datos{
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoProveedor a eliminar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosProveedor(int codigoProveedor){
-        try{
-            ps=getConnection().prepareStatement("delete from proveedor where codigo_prov=?;");
-            ps.setInt(1,codigoProveedor);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosProveedor()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosProveedor-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosProveedor(int codigoProveedor) throws SQLException{
+        ps=getConnection().prepareStatement("delete from proveedor where codigo_prov=?;");
+        ps.setInt(1,codigoProveedor);
+        ps.executeUpdate();
+        
+        JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
     
     /**
@@ -723,20 +640,16 @@ public class datos{
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoEmpleado a eliminar.
+     * 
+     * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void eliminarDatosConteo(int codigoEmpleado){
-        try{
-            ps=getConnection().prepareStatement("delete from conteo where codigo_emp=?;");
-            ps.setInt(1,codigoEmpleado);
-            ps.executeUpdate();
-            
-            new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
-            
-            ps.close();
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error:\n"+e.getMessage(),"Error 13",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 13: "+e.getMessage()+".\nOcurrió en la clase '"+datos.class.getName()+"', en el método 'eliminarDatosConteo()'");
-            new logger(Level.SEVERE).exceptionLogger(datos.class.getName(),"eliminarDatosConteo-13",e.fillInStackTrace());
-        }
+    public void eliminarDatosConteo(int codigoEmpleado) throws SQLException{
+        ps=getConnection().prepareStatement("delete from conteo where codigo_emp=?;");
+        ps.setInt(1,codigoEmpleado);
+        ps.executeUpdate();
+        
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        
+        ps.close();
     }
 }
