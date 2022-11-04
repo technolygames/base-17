@@ -24,7 +24,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <ClasspathPrefix>data</ClasspathPrefix>
-                            <mainClass>main.main</mainClass>
+                            <mainClass>main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -35,7 +35,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>main.main</mainClass>
+                            <mainClass>main.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

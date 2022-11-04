@@ -9,26 +9,27 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.BorderLayout;
 
-public class menuDatosVentana1 extends javax.swing.JFrame{
-    protected String title="Menú de Datos";
-    public menuDatosVentana1(){
+public class submenuDatosVentana1 extends javax.swing.JDialog{
+    public submenuDatosVentana1(java.awt.Frame parent,boolean modal){
+        super(parent, modal);
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();
         
         setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
     
     protected int codigo;
     
-    public menuDatosVentana1(int code){
+    public submenuDatosVentana1(java.awt.Frame parent,boolean modal,int code){
+        super(parent,modal);
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();
@@ -36,43 +37,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         this.codigo=code;
         
         setLocationRelativeTo(null);
-        setTitle(title);
-        setResizable(false);
-        pack();
-    }
-    
-    public menuDatosVentana1(Component panel,int code){
-        initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
-        
-        botones();
-        settings();
-        
-        this.codigo=code;
-        
-        openPanel(panel);
-        
-        setLocationRelativeTo(null);
-        setTitle(title);
-        setResizable(false);
-        pack();
-    }
-    
-    public menuDatosVentana1(Component panel,boolean flag){
-        initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
-        
-        botones();
-        settings();
-        
-        if(!flag){
-            jMenu1.setVisible(false);
-        }
-        
-        openPanel(panel);
-        
-        setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
@@ -113,9 +78,9 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     protected void openPanel(Component panel){
         EventQueue.invokeLater(()->{
-            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
-            menuDatosVentana1.this.pack();
+            submenuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
+            submenuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
+            submenuDatosVentana1.this.pack();
         });
     }
     
@@ -131,7 +96,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         miModPic = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(menuDatosVentana1.class.getName()).getIconImage());
+        setIconImage(new GuiMediaHandler(submenuDatosVentana1.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
@@ -171,8 +136,8 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        EventQueue.invokeLater(()->
-            new menuDatosVentana1().setVisible(true)
+        java.awt.EventQueue.invokeLater(()->
+                new submenuDatosVentana1(new javax.swing.JFrame(),true).setVisible(true)
         );
     }
     

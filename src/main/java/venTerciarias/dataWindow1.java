@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
 //extension larga
 import java.util.logging.Level;
+import menus.submenuDatosVentana1;
 
 public class dataWindow1 extends javax.swing.JDialog{
     public dataWindow1(java.awt.Frame parent,boolean modal){
@@ -157,7 +158,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         );
         
         miModData.addActionListener(a->
-            new menuDatosVentana1(Integer.parseInt(etiCodigo.getText())).setVisible(true)
+            new submenuDatosVentana1(new javax.swing.JFrame(),true,Integer.parseInt(etiCodigo.getText())).setVisible(true)
         );
     }
     
