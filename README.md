@@ -2,7 +2,7 @@
 (EN)
 A program made in Java 17 to manage a grocery. Features:
 - Can store data from a graphical table to database table
-- Employee, partners and providers data storage
+- Employee, partners and providers data storage and data preview
 - Employee, partners and providers image storage if it is need to make physical IDs
 - Employee, partners, providers, sold and stored items data display on a table or detailed window
 - Bill print
@@ -13,7 +13,7 @@ A program made in Java 17 to manage a grocery. Features:
 * Switchable name
 - In case of update, download files from internet
 - Import/export database
-- JSON backup handler
+- JSON backup handler and reader
 - Exception handling
 - Execution threads
 
@@ -29,17 +29,17 @@ Installation:
 (ES)
 Programa hecho en Java 17 para administrar una tienda de abarrotes. Características:
 - Poder guardar, desde una tabla, datos a una base de datos
-- Almacena datos de empleados, socios y proveedores
+- Almacena y visualización de datos de empleados, socios y proveedores
 - Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
 - Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
 - Impresión de ticket
 - Puede ser personalizado con:
 * Look and feel
 * Icono de ventana personalizable
-* Imagen de ventana personalizable 
+* Imagen de ventana personalizable
 * Cambiar el nombre del programa
 - En caso de actualización, descarga los archivos de internet
-- Gestión de copias de seguridad con JSON
+- Gestión de escritura y lectura de copias de seguridad con JSON
 - Importar/Exportar la base de datos
 - Gestión de errores
 - Hilos de ejecución
