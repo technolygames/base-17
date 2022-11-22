@@ -25,10 +25,13 @@
 
 # Project ignore #
 /data/database/MySQL/diagram_sql.dia~
-/data/media/webcam/
+/data/media/
+/data/databackup/
 /data/logs/static/
 /data/logs/exceptions/
+/data/generic/Jasper/
 /data/generic/tickets/
+/nbproject/
 /target/
 /test/
 
@@ -37,4 +40,3 @@ hs_err_pid*
 replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java
-/nbproject/

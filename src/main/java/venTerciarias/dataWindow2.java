@@ -10,14 +10,28 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.EventQueue;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Properties;
 import javax.swing.ImageIcon;
 //extension larga
 import java.util.logging.Level;
+import java.nio.charset.StandardCharsets;
+import java.lang.reflect.InaccessibleObjectException;
+import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.util.JRFontNotFoundException;
 
 public class dataWindow2 extends javax.swing.JDialog{
     public dataWindow2(java.awt.Frame parent,boolean modal){
@@ -54,7 +68,10 @@ public class dataWindow2 extends javax.swing.JDialog{
         pack();
     }
     
+    protected String image;
     protected String methodName;
+    
+    protected Properties p;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
@@ -104,9 +121,9 @@ public class dataWindow2 extends javax.swing.JDialog{
             dispose();
         });
         
-        miCreateInvoice.addActionListener(a->{
-            
-        });
+        miCreateInvoice.addActionListener(a->
+            imprimirReporte()
+        );
         
         miStorePic.addActionListener(a->{
             methodName="botones.miStorePic";
@@ -136,6 +153,53 @@ public class dataWindow2 extends javax.swing.JDialog{
                 new logger(Level.SEVERE).storeAndViewCaughtException(this,n,dataWindow2.class.getName(),methodName,"0");
             }
         });
+    }
+    
+    protected void imprimirReporte(){
+        methodName="imprimirReporte";
+        p=new Properties();
+        try{
+            p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
+            
+            Map<String,Object> params=new HashMap<>();
+            
+            image=p.getProperty("imagenes");
+            if(!new File(image).exists()){
+                image=p.getProperty("imagen_respaldo");
+                if(!new File(image).exists()){
+                    p.load(new FileReader("data/config/preconfig.properties"));
+                    image=p.getProperty("imagenes");
+                }
+            }
+            
+            params.put("imagen",new GuiMediaHandler(dataWindow2.class.getName()).getImagePath("imagenes","imagen_respaldo"));
+            params.put("nombre_reporte",p.getProperty("nombre"));
+            params.put("codigo_emp",start.userID);
+            
+            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos().getConnection());
+            JasperViewer jv=new JasperViewer(jp);
+            jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            jv.setVisible(false);
+            
+            File f=new File("data/generic/Jasper/reporte.pdf");
+            for(int i=0;f.exists();i++){
+                f=new File("data/generic/Jasper/reporte-"+i+".pdf");
+            }
+            
+            JasperExportManager.exportReportToPdfFile(jp,f.getPath());
+        }catch(JRException e){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,dataWindow2.class.getName(),methodName,"17");
+        }catch(ExceptionInInitializerError x){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,dataWindow2.class.getName(),methodName,"EIIE");
+        }catch(NoClassDefFoundError n){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,dataWindow2.class.getName(),methodName,"NCDFE");
+        }catch(IOException k){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,k,dataWindow2.class.getName(),methodName,"2IO");
+        }catch(JRFontNotFoundException l){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,l,dataWindow2.class.getName(),methodName,"JRFNFE");
+        }catch(InaccessibleObjectException r){
+            new logger(Level.SEVERE).storeAndViewCaughtException(this,r,dataWindow2.class.getName(),methodName,"IAE");
+        }
     }
     
     @SuppressWarnings("unchecked")

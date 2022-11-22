@@ -39,13 +39,13 @@ public class delDatosPanel2 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
-            setVisible(false);
-        });
+        closeButton.addActionListener(a->
+            setVisible(false)
+        );
         
-        deleteButton.addActionListener((a)->{
-            deleteData();
-        });
+        deleteButton.addActionListener(a->
+            deleteData()
+        );
         
         jTextField1.addKeyListener(new KeyAdapter(){
             @Override
@@ -78,8 +78,7 @@ public class delDatosPanel2 extends javax.swing.JPanel{
                         break;
                 }
             }else{
-                JOptionPane.showMessageDialog(this,"Escribe el número de identificación a eliminar","Error 18",JOptionPane.WARNING_MESSAGE);
-                new logger(Level.WARNING).staticLogger("Error 18: no se escribió correctamente el código del empleado a eliminar.\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'deleteData()'");
+                new logger(Level.WARNING).storeAndViewError18(this,delDatosPanel2.class.getName(),methodName);
             }
         }catch(NumberFormatException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,e,delDatosPanel2.class.getName(),methodName,"32");
@@ -145,8 +144,7 @@ public class delDatosPanel2 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            JOptionPane.showMessageDialog(this,"Solo números","Let 6",JOptionPane.WARNING_MESSAGE);
-            new logger(Level.WARNING).staticLogger("Let 6: se ingresaron letras en un campo equivocado.\nOcurrió en la clase '"+delDatosPanel2.class.getName()+"', en el método 'jTextField1KeyPressed()'");
+            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,delDatosPanel2.class.getName(),"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed

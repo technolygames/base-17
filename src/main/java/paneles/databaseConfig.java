@@ -46,13 +46,13 @@ public class databaseConfig extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
-            setVisible(false);
-        });
+        closeButton.addActionListener(a->
+            setVisible(false)
+        );
         
-        storeButton.addActionListener((a)->{
-            configOut();
-        });
+        storeButton.addActionListener(a->
+            configOut()
+        );
     }
     
     protected void configOut(){

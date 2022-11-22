@@ -52,18 +52,7 @@ public class GuiMediaHandler{
         methodName="getFormImage";
         p=new Properties();
         try{
-            p.load(new FileInputStream("data/config/config.properties"));
-            image=p.getProperty("imagenes");
-            
-            if(!new File(image).exists()){
-                image=p.getProperty("imagen_respaldo");
-                if(!new File(image).exists()){
-                    p.load(new FileInputStream("data/config/preconfig.properties"));
-                    image=p.getProperty("imagenes");
-                }
-            }
-            
-            return Toolkit.getDefaultToolkit().getImage(image);
+            return Toolkit.getDefaultToolkit().getImage(getImagePath("imagenes","imagen_respaldo"));
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
             return null;
@@ -71,10 +60,6 @@ public class GuiMediaHandler{
             new logger(Level.SEVERE).storeAndViewCaughtException(null,x,clase,methodName,"2IO");
             return null;
         }
-    }
-    
-    public Image getFormImage(String image1){
-        return Toolkit.getDefaultToolkit().getImage(image1);
     }
     
     /**
@@ -87,18 +72,7 @@ public class GuiMediaHandler{
         methodName="getIconImage";
         p=new Properties();
         try{
-            p.load(new FileInputStream("data/config/config.properties"));
-            icon=p.getProperty("icono");
-            
-            if(!new File(icon).exists()){
-                icon=p.getProperty("icono_respaldo");
-                if(!new File(icon).exists()){
-                    p.load(new FileInputStream("data/config/preconfig.properties"));
-                    icon=p.getProperty("icono");
-                }
-            }
-            
-            return Toolkit.getDefaultToolkit().getImage(icon);
+            return Toolkit.getDefaultToolkit().getImage(getImagePath("icono","icono_respaldo"));
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
             return null;
@@ -109,16 +83,16 @@ public class GuiMediaHandler{
     }
     
     /**
-     * Obtiene el ícono destinado a usarse en las ventanas.<br>
-     * Aparece en la esquina superior izquierda de la ventana.
+     * Obtiene la imagen destinada a usarse en las ventanas y/o como icono de ventana.<br>
+     * Aparece en la esquina superior izquierda de la ventana o en un recuadro interno con borde negro en las ventanas.
      * Este método es usado para actualizar la imagen de las ventanas mientras el programa está en ejecución.
      * 
-     * @param icon1 Icono a mostrar y actualizar
+     * @param image Icono/imagen a mostrar y actualizar.
      * 
      * @return la imagen a usar.
      */
-    public Image getIconImage(String icon1){
-        return Toolkit.getDefaultToolkit().getImage(icon1);
+    public Image getImage(String image){
+        return Toolkit.getDefaultToolkit().getImage(image);
     }
     
     /**
@@ -148,5 +122,19 @@ public class GuiMediaHandler{
         }catch(IOException d){
             new logger(Level.SEVERE).storeAndViewCaughtException(componente,d,clase,methodName,"2IO");
         }
+    }
+    
+    public String getImagePath(String propName1,String propName2) throws FileNotFoundException,IOException{
+        p.load(new FileInputStream("data/config/config.properties"));
+        String dir=p.getProperty(propName1);
+        
+        if(!new File(dir).exists()){
+            dir=p.getProperty(propName2);
+            if(!new File(dir).exists()){
+                p.load(new FileInputStream("data/config/preconfig.properties"));
+                dir=p.getProperty(propName1);
+            }
+        }
+        return dir;
     }
 }

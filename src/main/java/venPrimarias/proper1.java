@@ -147,12 +147,11 @@ public final class proper1 extends javax.swing.JFrame{
                     !jTextField1.getText().equals(nombre)||
                     !jTextField4.getText().equals(ruc)||
                     !jTextField5.getText().equals(tlf)){
-                switch(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
-                    case 0:
-                        setVisible(false);
-                        dispose();
-                        laf(design);
-                        break;
+                int option=JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(option==0){
+                    setVisible(false);
+                    dispose();
+                    laf(design);
                 }
             }else{
                 new logger(Level.INFO).staticLogger("No hay cambios");
@@ -179,7 +178,7 @@ public final class proper1 extends javax.swing.JFrame{
                     jTextField3.setText(f3.getPath());
                     imageLoader("Icono",jTextField3.getText());
                     
-                    setIconImage(new GuiMediaHandler(proper1.class.getName()).getIconImage(jTextField3.getText()));
+                    setIconImage(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
                     
                     p.setProperty("lastdirectory_icon",f3.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -328,10 +327,10 @@ public final class proper1 extends javax.swing.JFrame{
                 os=new FileOutputStream(dato2+nameIcon);
                 new Thread(new Thread1(is,os)).start();
                 
-                menuVentanas.picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(proper1.class.getName()).getFormImage(jTextField2.getText())).getImage().getScaledInstance(menuVentanas.picLabel.getWidth(),menuVentanas.picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                menuVentanas.picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField2.getText())).getImage().getScaledInstance(menuVentanas.picLabel.getWidth(),menuVentanas.picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 
                 for(Frame frames:Frame.getFrames()){
-                    frames.setIconImage(new GuiMediaHandler(proper1.class.getName()).getIconImage(jTextField3.getText()));
+                    frames.setIconImage(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
                 }
                 
                 p.setProperty("nombre",jTextField1.getText());

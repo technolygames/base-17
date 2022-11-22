@@ -63,15 +63,15 @@ public class databaseImport extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
-            setVisible(false);
-        });
+        closeButton.addActionListener(a->
+            setVisible(false)
+        );
         
-        createButton.addActionListener((a)->{
-            new databaseWindow(new javax.swing.JFrame(),true).setVisible(true);
-        });
+        createButton.addActionListener(a->
+            new databaseWindow(new javax.swing.JFrame(),true).setVisible(true)
+        );
         
-        fileButton.addActionListener((a)->{
+        fileButton.addActionListener(a->{
             methodName="botones.file";
             try{
                 p=new Properties();
@@ -95,7 +95,7 @@ public class databaseImport extends javax.swing.JPanel{
             }
         });
         
-        importButton.addActionListener((a)->{
+        importButton.addActionListener(a->{
             configOut();
             importDatabase();
         });

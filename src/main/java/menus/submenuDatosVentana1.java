@@ -136,8 +136,8 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
     
     public static void main(String[] args){
-        java.awt.EventQueue.invokeLater(()->
-                new submenuDatosVentana1(new javax.swing.JFrame(),true).setVisible(true)
+        EventQueue.invokeLater(()->
+            new submenuDatosVentana1(new javax.swing.JFrame(),true).setVisible(true)
         );
     }
     

@@ -7,7 +7,7 @@ import clases.Thread2;
 import clases.Validation;
 import paneles.countPanel;
 import venPrimarias.start;
-import menus.menuDatosVentana1;
+import menus.submenuDatosVentana1;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -21,7 +21,6 @@ import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
 //extension larga
 import java.util.logging.Level;
-import menus.submenuDatosVentana1;
 
 public class dataWindow1 extends javax.swing.JDialog{
     public dataWindow1(java.awt.Frame parent,boolean modal){

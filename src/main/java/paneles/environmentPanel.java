@@ -47,23 +47,22 @@ public class environmentPanel extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
+        closeButton.addActionListener(a->{
             if(!jTextField1.getText().equals(direccion)){
-                switch(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)){
-                    case 0:
-                        setVisible(false);
-                        break;
+                int option=JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                if(option==0){
+                    setVisible(false);
                 }
             }else{
                 setVisible(false);
             }
         });
         
-        storeButton.addActionListener((a)->{
-            configOut();
-        });
+        storeButton.addActionListener(a->
+            configOut()
+        );
         
-        selDirButton.addActionListener((a)->{
+        selDirButton.addActionListener(a->{
             methodName="botones.selDir";
             try{
                 p=new Properties();

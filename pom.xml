@@ -80,13 +80,7 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>5.5.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-beanutils</groupId>
-                    <artifactId>commons-beanutils</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>6.20.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.sarxos</groupId>
@@ -96,11 +90,6 @@
         <!--Fin principales-->
         
         <!--Secundarias-->
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
-        </dependency>
         <!--Fin secundarias-->
     </dependencies>
 </project>

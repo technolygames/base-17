@@ -59,13 +59,13 @@ public class databaseExport extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
-            setVisible(false);
-        });
+        closeButton.addActionListener(a->
+            setVisible(false)
+        );
         
-        exportButton.addActionListener((a)->{
-            exportDatabase();
-        });
+        exportButton.addActionListener(a->
+            exportDatabase()
+        );
     }
     
     protected void exportDatabase(){
