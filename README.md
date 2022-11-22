@@ -5,7 +5,7 @@ A program made in Java 17 to manage a grocery. Features:
 - Employee, partners and providers data storage and data preview
 - Employee, partners and providers image storage if it is need to make physical IDs
 - Employee, partners, providers, sold and stored items data display on a table or detailed window
-- Bill print
+- Bill and invoice print
 - Can be customable with:
 * Look and feel
 * Customable window icon
@@ -32,7 +32,7 @@ Programa hecho en Java 17 para administrar una tienda de abarrotes. Característ
 - Almacena y visualización de datos de empleados, socios y proveedores
 - Almacenamiento de las imágenes de los socios, proveedores y/o empleados en caso de crear una credencial física
 - Visualización de los datos de los empleados, socios, proveedores, descuentos, productos vendidos y almacenados tablas o ventanas para ver los datos a más detalle
-- Impresión de ticket
+- Impresión de ticket y factura
 - Puede ser personalizado con:
 * Look and feel
 * Icono de ventana personalizable
