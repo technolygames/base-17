@@ -1,9 +1,9 @@
 package paneles;
 //clases
-import clases.Dirs1;
+import clases.Dirs;
 import clases.logger;
-import clases.Thread01;
-import clases.Thread03;
+import clases.Thread1;
+import clases.Thread3;
 import venPrimarias.start;
 //java
 import java.io.File;
@@ -79,7 +79,7 @@ public class databaseExport extends javax.swing.JPanel{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/env.properties"));
                 
-                String userdir=Dirs1.userdir;
+                String userdir=Dirs.userdir;
                 
                 File f=new File(userdir+"\\data\\database\\MySQL\\"+db+".sql");
                 for(int i=1;f.exists();i++){
@@ -89,11 +89,11 @@ public class databaseExport extends javax.swing.JPanel{
                 String path=f.getPath();
                 
                 Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user1+" -p "+db+" --result-file="+path+" --password="+pass2+" --host="+host+" --hex-blob --dump-date --compress");
-                new Thread(new Thread03(pr.getErrorStream())).start();
+                new Thread(new Thread3(pr.getErrorStream())).start();
                 
                 os=new FileOutputStream(path);
                 
-                new Thread(new Thread01(pr.getInputStream(),os)).start();
+                new Thread(new Thread1(pr.getInputStream(),os)).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));

@@ -2,7 +2,7 @@ package menus;
 //clases
 import clases.MediaHandler;
 import clases.logger;
-import clases.Validation1;
+import clases.Validation;
 import clases.DisplayNotification;
 import java.awt.EventQueue;
 import venPrimarias.formulario1;
@@ -69,27 +69,27 @@ public final class menuVentanas extends javax.swing.JFrame{
         );
         
         form1Button.addActionListener(a->
-            new Validation1(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
+            new Validation(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
         );
         
         form2Button.addActionListener(a->
-            new Validation1(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
+            new Validation(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
         );
         
         form3Button.addActionListener(a->
-            new Validation1(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
+            new Validation(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
         );
         
         ltprvButton.addActionListener(a->
-            new Validation1(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
+            new Validation(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
         );
         
         ltpsButton.addActionListener(a->
-            new Validation1(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
+            new Validation(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
         );
         
         ltwkButton.addActionListener(a->
-            new Validation1(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
+            new Validation(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
         );
         
         ltstButton.addActionListener(a->

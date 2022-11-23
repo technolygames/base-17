@@ -1,7 +1,7 @@
 package clases;
 //clases
-import clases.mvc.MvcForm01;
-import clases.mvc.MvcForm02;
+import clases.mvc.MvcForm1;
+import clases.mvc.MvcForm2;
 import venPrimarias.start;
 //java
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class Datos1{
+public class Datos{
     protected PreparedStatement ps;
     
     protected Properties p;
@@ -59,16 +59,16 @@ public class Datos1{
             Class.forName(driver);
             return DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Datos1.class.getName(),methodName,"10");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Datos.class.getName(),methodName,"10");
             return null;
         }catch(ClassNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Datos1.class.getName(),methodName,"37");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Datos.class.getName(),methodName,"37");
             return null;
         }catch(FileNotFoundException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Datos1.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Datos.class.getName(),methodName,"1IO");
             return null;
         }catch(IOException k){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,Datos1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,Datos.class.getName(),methodName,"2IO");
             return null;
         }
     }
@@ -85,7 +85,7 @@ public class Datos1{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1E: se creó correctamente la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -159,7 +159,7 @@ public class Datos1{
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosEmpleado(List<MvcForm01> datos) throws SQLException{
+    public void insertarDatosEmpleado(List<MvcForm1> datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into empleados values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
         ps.setString(1,datos.get(0).getPassword());
         ps.setInt(2,datos.get(0).getCodigo());
@@ -180,7 +180,7 @@ public class Datos1{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         datos.clear();
         ps.close();
@@ -211,7 +211,7 @@ public class Datos1{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -223,7 +223,7 @@ public class Datos1{
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosSocio(List<MvcForm02> datos) throws SQLException{
+    public void insertarDatosSocio(List<MvcForm2> datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into socios values(?,?,?,?,?,?,?,?,?,now(),now());");
         ps.setInt(1,datos.get(0).getCodigo());
         ps.setString(2,datos.get(0).getNombre());
@@ -237,7 +237,7 @@ public class Datos1{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         datos.clear();
         ps.close();
@@ -266,7 +266,7 @@ public class Datos1{
         ps.execute();
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -289,7 +289,7 @@ public class Datos1{
         ps.setString(4,apellidoMaternoEmpleado);
         ps.execute();
         
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -316,7 +316,7 @@ public class Datos1{
         ps.setInt(5,numeroVentas);
         ps.execute();
         
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -444,7 +444,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -470,9 +470,9 @@ public class Datos1{
         
         if(flag){
             JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }else{
-            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+            new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }
         
         ps.close();
@@ -497,7 +497,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 2: se actualizaron correctamente los datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -528,7 +528,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -549,7 +549,7 @@ public class Datos1{
         ps.setInt(1,codigoEmpleado);
         ps.executeUpdate();
         
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -569,7 +569,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -589,7 +589,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -609,7 +609,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -629,7 +629,7 @@ public class Datos1{
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }
@@ -648,7 +648,7 @@ public class Datos1{
         ps.setInt(1,codigoEmpleado);
         ps.executeUpdate();
         
-        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos1.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+        new logger(Level.INFO).staticLogger("Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en la clase '"+Datos.class.getName()+"', en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         
         ps.close();
     }

@@ -1,9 +1,9 @@
 package venTerciarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
-import clases.Thread02;
+import clases.Thread2;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -84,7 +84,7 @@ public class dataWindow2 extends javax.swing.JDialog{
     protected final void datosMostrar(){
         methodName="datosMostrar";
         try{
-            ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -131,7 +131,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos1().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
+                ps=new Datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -140,7 +140,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
-                new Thread02(rs,new FileOutputStream(f)).run();
+                new Thread2(rs,new FileOutputStream(f)).run();
                 
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
@@ -168,7 +168,7 @@ public class dataWindow2 extends javax.swing.JDialog{
             params.put("nombre_reporte",mh.getProgramName());
             params.put("codigo_emp",start.userID);
             
-            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos1().getConnection());
+            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos().getConnection());
             JasperViewer jv=new JasperViewer(jp);
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(false);

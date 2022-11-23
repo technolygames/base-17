@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.logger;
 //librerías
 import com.github.sarxos.webcam.Webcam;
@@ -88,7 +88,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
         updateButton.addActionListener(a->{
             methodName="botones.update";
             try{
-                new Datos1().actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
+                new Datos().actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
                 consulta1();
             }catch(FileNotFoundException e){
                 new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"1IO");
@@ -152,7 +152,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
         methodName="consulta1";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -176,7 +176,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
     protected final void consulta2(){
         methodName="consulta2";
         try{
-            PreparedStatement ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,Integer.parseInt(txtSearch.getText()));
             ResultSet rs=ps.executeQuery();
             if(rs.next()){

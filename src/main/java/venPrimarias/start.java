@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import clases.DisplayNotification;
@@ -93,7 +93,7 @@ public final class start extends javax.swing.JFrame{
         methodName="login";
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());
-        var datos=new Datos1();
+        var datos=new Datos();
         
         for(JTextField tf:new JTextField[]{txtUsuario,txtPassword}){
             campos=tf;
@@ -142,7 +142,7 @@ public final class start extends javax.swing.JFrame{
                         ResultSet rs2=ps.executeQuery();
                         if(!rs2.next()){
                             new logger(Level.INFO).staticLogger("1; no hay");
-                            new Datos1().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                            new Datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
                             new logger(Level.INFO).staticLogger("2; si hay");
                         }

@@ -1,8 +1,8 @@
 package paneles;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.logger;
-import clases.PlaceHolder1;
+import clases.PlaceHolder;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,7 +66,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos1();
+        var datos=new Datos();
         String tabla="socios";
         String campo="codigo_part";
         
@@ -315,7 +315,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -350,11 +350,11 @@ public class modDatosPanel2 extends javax.swing.JPanel{
     }
     
     protected void placeHolders(){
-        new PlaceHolder1(jTextField1,"Nombre(s)").inicialize();
-        new PlaceHolder1(jTextField2,"Apellido paterno").inicialize();
-        new PlaceHolder1(jTextField3,"Apellido materno").inicialize();
-        new PlaceHolder1(jTextField4,"Correo").inicialize();
-        new PlaceHolder1(jTextField5,"RFC").inicialize();
+        new PlaceHolder(jTextField1,"Nombre(s)").inicialize();
+        new PlaceHolder(jTextField2,"Apellido paterno").inicialize();
+        new PlaceHolder(jTextField3,"Apellido materno").inicialize();
+        new PlaceHolder(jTextField4,"Correo").inicialize();
+        new PlaceHolder(jTextField5,"RFC").inicialize();
     }
     
     @SuppressWarnings("unchecked")

@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 //java
@@ -49,7 +49,7 @@ public class ltshOff extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos1().getConnection().prepareStatement("select * from promociones;");
+            ps=new Datos().getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"});
             while(rs.next()){

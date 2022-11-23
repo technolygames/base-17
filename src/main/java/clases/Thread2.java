@@ -15,7 +15,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class Thread02 implements Runnable{
+public class Thread2 implements Runnable{
     protected ResultSet resultado;
     protected Blob blob;
     protected OutputStream os;
@@ -26,7 +26,7 @@ public class Thread02 implements Runnable{
      * @param result de la consulta.
      * @param os destino de la imagen.
      */
-    public Thread02(ResultSet result,OutputStream os){
+    public Thread2(ResultSet result,OutputStream os){
         this.resultado=result;
         this.os=os;
     }
@@ -50,11 +50,11 @@ public class Thread02 implements Runnable{
             os.flush();
             os.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread02.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread2.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Thread02.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Thread2.class.getName(),methodName,"2IO");
         }catch(SQLException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Thread02.class.getName(),methodName,"14");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Thread2.class.getName(),methodName,"14");
         }
     }
 }

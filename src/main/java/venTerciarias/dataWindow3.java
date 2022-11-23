@@ -1,9 +1,9 @@
 package venTerciarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
-import clases.Thread02;
+import clases.Thread2;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -61,7 +61,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         methodName="datosMostrar";
         
         try{
-            ps=new Datos1().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -102,7 +102,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos1().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
+                ps=new Datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -111,7 +111,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                     f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
-                new Thread02(rs,new FileOutputStream(f)).run();
+                new Thread2(rs,new FileOutputStream(f)).run();
                 
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 

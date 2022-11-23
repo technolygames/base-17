@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import java.awt.EventQueue;
@@ -128,7 +128,7 @@ public final class ventana2 extends javax.swing.JFrame{
                         int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
                         String stock=dtm.getValueAt(i,7).toString();
                         
-                        new Datos1().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
+                        new Datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
                     }
                     JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                     new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));

@@ -1,6 +1,6 @@
 package venTerciarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import paneles.databaseImport;
@@ -34,7 +34,7 @@ public class databaseWindow extends javax.swing.JDialog{
         
         createButton.addActionListener((a)->{
             try{
-                new Datos1().crearBD(jTextField1.getText());
+                new Datos().crearBD(jTextField1.getText());
                 databaseImport.jTextField3.setText(jTextField1.getText());
             }catch(SQLException e){
                 new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseWindow.class.getName(),"botones.create","5E");

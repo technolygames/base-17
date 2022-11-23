@@ -1,9 +1,9 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
-import clases.mvc.MvcForm02;
+import clases.mvc.MvcForm2;
 import menus.menuDatosVentana2;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -127,8 +127,8 @@ public class formulario2 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm02> lista=new ArrayList<>();
-                    MvcForm02 modelo=new MvcForm02();
+                    List<MvcForm2> lista=new ArrayList<>();
+                    MvcForm2 modelo=new MvcForm2();
                     
                     modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
                     modelo.setNombre(jTextField2.getText());
@@ -142,7 +142,7 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     lista.add(modelo);
                     
-                    new Datos1().insertarDatosSocio(lista);
+                    new Datos().insertarDatosSocio(lista);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");

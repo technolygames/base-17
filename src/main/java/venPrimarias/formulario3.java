@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana3;
@@ -126,7 +126,7 @@ public class formulario3 extends javax.swing.JFrame{
                     int contacto=Integer.parseInt(jTextField6.getText());
                     InputStream foto=new FileInputStream(direccion);
                     
-                    new Datos1().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+                    new Datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");

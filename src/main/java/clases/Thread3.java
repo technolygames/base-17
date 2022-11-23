@@ -12,7 +12,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class Thread03 implements Runnable{
+public class Thread3 implements Runnable{
     protected InputStream is;
     
     /**
@@ -20,7 +20,7 @@ public class Thread03 implements Runnable{
      * 
      * @param is Flujo de datos del mensaje de error.
      */
-    public Thread03(InputStream is){
+    public Thread3(InputStream is){
         this.is=is;
     }
     
@@ -39,7 +39,7 @@ public class Thread03 implements Runnable{
             
             is.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread03.class.getName(),"run","2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread3.class.getName(),"run","2IO");
         }
     }
 }

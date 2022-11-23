@@ -1,6 +1,6 @@
 package clases.tickets;
 //clases
-import clases.Dirs1;
+import clases.Dirs;
 import clases.logger;
 //java
 import java.io.FileReader;
@@ -23,12 +23,12 @@ import java.util.logging.Level;
  * 
  * @author unknown
  */
-public class DatosTicket1{
+public class DatosTicket{
     //protected String total;
     protected String precio;
     protected String cantidad;
     protected String items;
-    protected String userdir=Dirs1.userdir;
+    protected String userdir=Dirs.userdir;
     protected String methodName;
     
     /**
@@ -50,7 +50,7 @@ public class DatosTicket1{
             SimpleDateFormat fecha=new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh.mm.ss aa");
             
-            Ticket1 ticket=new Ticket1("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
+            Ticket ticket=new Ticket("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt",flag);
             
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
@@ -137,11 +137,11 @@ public class DatosTicket1{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket.class.getName(),methodName,"32");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket1.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket.class.getName(),methodName,"1IO");
         }catch(IOException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket.class.getName(),methodName,"2IO");
         }
     }
     
@@ -159,7 +159,7 @@ public class DatosTicket1{
         try{
             Date date=new Date();
             Properties p=new Properties();
-            Ticket1 ticket=new Ticket1("data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
+            Ticket ticket=new Ticket("data/generic/tickets/ticket-("+new SimpleDateFormat("dd-MM-yyyy hh.mm.ss aa").format(new Date())+").txt",flag);
             
             SimpleDateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat hora=new SimpleDateFormat("hh:mm:ss aa");
@@ -248,11 +248,11 @@ public class DatosTicket1{
             ticket.addPieLinea(ticket.darEspacio());
             ticket.addPieLinea("Gracias por su preferencia.");
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DatosTicket.class.getName(),methodName,"32");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket1.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DatosTicket.class.getName(),methodName,"1IO");
         }catch(IOException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DatosTicket.class.getName(),methodName,"2IO");
         }
     }
 }

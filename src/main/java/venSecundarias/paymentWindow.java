@@ -1,9 +1,9 @@
 package venSecundarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
-import clases.tickets.DatosTicket1;
+import clases.tickets.DatosTicket;
 import java.awt.EventQueue;
 import venPrimarias.start;
 import venPrimarias.ventana1;
@@ -146,7 +146,7 @@ public class paymentWindow extends javax.swing.JDialog{
         
         mkPaidButton.addActionListener(a->{
             methodName="botones.mkPaid";
-            var ticket=new DatosTicket1();
+            var ticket=new DatosTicket();
             
             try{
                 switch(jComboBox1.getSelectedIndex()){
@@ -206,7 +206,7 @@ public class paymentWindow extends javax.swing.JDialog{
         methodName="calc2";
         
         try{
-            ResultSet rs=new Datos1().buscarDatosPromo(jTextField1.getText());
+            ResultSet rs=new Datos().buscarDatosPromo(jTextField1.getText());
             if(rs.next()){
                 var cal=Integer.parseInt(jLabel4.getText())*rs.getFloat("descuento");
                 var cal2=Integer.parseInt(jLabel4.getText())-cal;
@@ -222,7 +222,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void confirmPurchase() throws SQLException{
         if(!jTextField1.getText().isEmpty()){
             readTable();
-            new Datos1().actualizarDatosUsoPromo(jTextField1.getText());
+            new Datos().actualizarDatosUsoPromo(jTextField1.getText());
         }else{
             readTable();
         }
@@ -232,7 +232,7 @@ public class paymentWindow extends javax.swing.JDialog{
         methodName="readTable";
         
         try{
-            var datos=new Datos1();
+            var datos=new Datos();
             for(int i=0;i<dtm.getRowCount();i++){
                 codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
                 codigo_emp=Integer.parseInt(jLabel2.getText());

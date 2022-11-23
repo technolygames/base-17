@@ -80,7 +80,7 @@ public class ResourceHandler{
                 is=uc.getInputStream();
                 os=new FileOutputStream(f.getPath());
                 
-                new Thread(new Thread01(is,os)).start();
+                new Thread(new Thread1(is,os)).start();
             }
             
             is.close();

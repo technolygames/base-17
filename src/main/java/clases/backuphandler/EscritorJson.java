@@ -1,6 +1,6 @@
 package clases.backuphandler;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.logger;
 //librerías
 import com.google.gson.stream.JsonWriter;
@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
  * 
  * @author erick
  */
-public class EscritorJson1{
+public class EscritorJson{
     protected JsonWriter jsonw;
     protected PreparedStatement ps;
     protected ResultSet rs;
@@ -36,7 +36,7 @@ public class EscritorJson1{
     public void writeDataWorkerJson(int codigoEmpleado){
         methodName="writeDataWorkerJson";
         try{
-            ps=new Datos1().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
+            ps=new Datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
             ps.setInt(1,codigoEmpleado);
             ps.setInt(2,codigoEmpleado);
             rs=ps.executeQuery();
@@ -46,7 +46,7 @@ public class EscritorJson1{
                 
                 new File("data/databackup/Empleados/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Empleados/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new EscritorFoto1().storePicWorker(codigo,nombre);
+                new EscritorFoto().storePicWorker(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -65,7 +65,7 @@ public class EscritorJson1{
                 jsonw.name("edad").value(rs.getInt("edad"));
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(EscritorFoto1.dir1);
+                jsonw.name("imagen").value(EscritorFoto.dir1);
                 jsonw.name("datos").beginObject();
                 jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
                 jsonw.endObject();
@@ -78,13 +78,13 @@ public class EscritorJson1{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson1.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson1.class.getName(),methodName,"14");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }catch(NullPointerException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,EscritorJson1.class.getName(),methodName,"0");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,EscritorJson.class.getName(),methodName,"0");
         }
     }
     
@@ -96,7 +96,7 @@ public class EscritorJson1{
     public void writeDataPartnerJson(int codigoSocio){
         methodName="writeDataPartnerJson";
         try{
-            ps=new Datos1().getConnection().prepareStatement("select*from socios where codigo_part=?;");
+            ps=new Datos().getConnection().prepareStatement("select*from socios where codigo_part=?;");
             ps.setInt(1,codigoSocio);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -105,7 +105,7 @@ public class EscritorJson1{
                 
                 new File("data/databackup/Socios/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Socios/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new EscritorFoto1().storePicPartner(codigo,nombre);
+                new EscritorFoto().storePicPartner(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -117,7 +117,7 @@ public class EscritorJson1{
                 jsonw.name("correo").value(rs.getString("correo"));
                 jsonw.name("rfc").value(rs.getString("rfc"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(EscritorFoto1.dir2);
+                jsonw.name("imagen").value(EscritorFoto.dir2);
                 jsonw.endObject();
                 break;
             }
@@ -127,11 +127,11 @@ public class EscritorJson1{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson1.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson1.class.getName(),methodName,"14");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }
     }
     
@@ -143,7 +143,7 @@ public class EscritorJson1{
     public void writeDataProviderJson(int codigoProveedor){
         methodName="writeDataProviderJson";
         try{
-            ps=new Datos1().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
+            ps=new Datos().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
             ps.setInt(1,codigoProveedor);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -152,7 +152,7 @@ public class EscritorJson1{
                 
                 new File("data/databackup/Proveedores/"+nombre+"-"+codigo).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream("data/databackup/Proveedores/"+nombre+"-"+codigo+"/"+nombre+"-"+codigo+".json"),StandardCharsets.UTF_8));
-                new EscritorFoto1().storePicProvider(codigo,nombre);
+                new EscritorFoto().storePicProvider(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -162,7 +162,7 @@ public class EscritorJson1{
                 jsonw.name("apellidom_prov").value(rs.getString("apellidom_prov"));
                 jsonw.name("empresa").value(rs.getString("empresa"));
                 jsonw.name("contacto").value(rs.getInt("contacto"));
-                jsonw.name("imagen").value(EscritorFoto1.dir3);
+                jsonw.name("imagen").value(EscritorFoto.dir3);
                 jsonw.endObject();
             }
             
@@ -171,11 +171,11 @@ public class EscritorJson1{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,EscritorJson.class.getName(),methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson1.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,EscritorJson.class.getName(),methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson1.class.getName(),methodName,"14");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,EscritorJson.class.getName(),methodName,"14");
         }
     }
 }

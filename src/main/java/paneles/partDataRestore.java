@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.backuphandler.LectorJson1;
+import clases.backuphandler.LectorJson;
 //java
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -51,7 +51,7 @@ public class partDataRestore extends javax.swing.JPanel{
         });
         
         loadDataButton.addActionListener((a)->{
-            new LectorJson1().readDataPartnerJson(jTextField1.getText());
+            new LectorJson().readDataPartnerJson(jTextField1.getText());
         });
     }
     

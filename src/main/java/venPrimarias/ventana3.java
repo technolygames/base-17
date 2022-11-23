@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.Datos1;
+import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 //java
@@ -67,7 +67,7 @@ public class ventana3 extends javax.swing.JFrame{
                     Date inicio=new Date(jDateChooser1.getDate().getTime());
                     Date fin=new Date(jDateChooser2.getDate().getTime());
                     
-                    new Datos1().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
+                    new Datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
                     new logger(Level.WARNING).storeAndViewError18(this,ventana3.class.getName(),methodName);
                 }

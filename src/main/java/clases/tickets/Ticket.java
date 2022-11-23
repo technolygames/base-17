@@ -21,7 +21,7 @@ import java.util.logging.Level;
  * 
  * @author unknown
  */
-public class Ticket1{
+public class Ticket{
     static ArrayList<String> cabezaLineas=new ArrayList<String>();
     static ArrayList<String> subcabezaLineas=new ArrayList<String>();
     static ArrayList<String> items=new ArrayList<String>();
@@ -34,7 +34,7 @@ public class Ticket1{
      * @param impresora a la que se imprimirá el documento.
      * @param gaveta Abrirá la gaveta.
      */
-    public Ticket1(String impresora,boolean gaveta){
+    public Ticket(String impresora,boolean gaveta){
         String methodName="ticket";
         String cadena="";
         try{
@@ -81,13 +81,13 @@ public class Ticket1{
             imp.flush();
             imp.close();
         }catch(PrintException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket1.class.getName(),methodName,"PE_T1");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),methodName,"PE_T1");
             remove();
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Ticket1.class.getName(),methodName,"2IO_H1");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Ticket.class.getName(),methodName,"2IO_H1");
             remove();
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Ticket1.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Ticket.class.getName(),methodName,"15");
             remove();
         }
     }
@@ -109,12 +109,12 @@ public class Ticket1{
     }
     
     public static void addItem(String cantidad,String item,String precio){
-        Order02 newItem=new Order02(' ');
+        Order2 newItem=new Order2(' ');
         items.add(newItem.generarItem(cantidad,item,precio));
     }
     
     public static void addTotal(String nombre,String precio){
-        Order01 newTotal=new Order01(' ');
+        Order1 newTotal=new Order1(' ');
         totales.add(newTotal.generarTotal(nombre,precio));
     }
     
@@ -135,7 +135,7 @@ public class Ticket1{
             char[] ESC_CUT_PAPER=new char[]{0x1B,'!',(char)formato};
             fw.write(ESC_CUT_PAPER);
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket1.class.getName(),"setFormato","2IO_T2");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),"setFormato","2IO_T2");
         }
     }
     
@@ -150,7 +150,7 @@ public class Ticket1{
                 fw.write(abrir);
             }
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket1.class.getName(),"abrirGaveta","2IO_T3");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Ticket.class.getName(),"abrirGaveta","2IO_T3");
         }
     }
 }
