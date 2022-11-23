@@ -11,10 +11,8 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.util.Properties;
 import java.time.Period;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
@@ -24,7 +22,6 @@ import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.TrayIcon.MessageType;
-import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 
 public final class start extends javax.swing.JFrame{
@@ -57,16 +54,15 @@ public final class start extends javax.swing.JFrame{
     
     protected final void settings(){
         methodName="settings";
-        
+        MediaHandler mh=new MediaHandler(start.class.getName());
         try{
-            nameLabel.setText(new MediaHandler(start.class.getName()).getProgramName());
+            nameLabel.setText(mh.getProgramName());
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"1IO");
         }catch(IOException x){
             new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"2IO");
         }
-        
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(mh.getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){

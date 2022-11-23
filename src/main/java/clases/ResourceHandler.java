@@ -5,87 +5,57 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.io.OutputStream;
 import java.net.URL;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.net.URLConnection;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.net.MalformedURLException;
 //extension larga
 import java.util.logging.Level;
 
 /**
- * Clase encargada de descargar los recursos necesarios para el correcto funcionamiento del programa.<br>
- * Descarga las librerías e idiomas.
+ * Clase encargada de descargar los recursos de internet en caso de que el programa tenga actualizaciones pendientes.
  * 
  * @author erick
  */
 public class ResourceHandler{
-    protected boolean estado=false;
-    
     protected String methodName;
     
     protected File f;
     protected InputStream is;
-    protected OutputStream os;
+    protected FileOutputStream fos;
     
     protected URL u;
-    protected Socket s;
-    protected SocketAddress sa;
     protected URLConnection uc;
     
     /**
-     * Esta clase se encarga de verificar si hay conectividad a internet.
+     * Método encargado de descargar de internet los recursos del programa.
      * 
-     * @param url Dirección a la que se verificará la conexión.
-     * @param puerto Número del puerto por el que se va a verificar la conexión.
-     * 
-     * @return el valor booleano si está conectado o no
+     * @param archivo que se validará y guardará.
+     * @param ext Extensión del archivo.
+     * @param link del recurso a decargar.
      */
-    public boolean checkConnection(String url,int puerto){
-        methodName="checkConnection";
-        try{
-            s=new Socket();
-            sa=new InetSocketAddress(url,puerto);
-            
-            s.bind(sa);
-            s.connect(sa);
-            
-            return s.isConnected();
-        }catch(UnknownHostException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
-            return false;
-        }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"1IO");
-            return false;
-        }
-    }
-    
-    /**
-     * Método encargado de descargar de internet las librerías(.jar).
-     * 
-     * @param validar Archivo que se validará y guardará
-     * @param link Página web del recurso a decargar
-     */
-    public void downloadLibs(String validar,String link){
+    public void downloadResources(String archivo,String ext,String link){
         methodName="downloadLibs";
-        f=new File("data/generic/temp/"+validar);
+        f=new File("data/generic/temp/"+archivo+"."+ext);
+        for(int i=0;f.exists();i++){
+            f=new File("data/generic/temp/"+archivo+"-"+i+"."+ext);
+        }
         try{
-            if(!f.exists()&&f.length()==0){
-                u=new URL(link);
-                uc=u.openConnection();
-                
-                is=uc.getInputStream();
-                os=new FileOutputStream(f.getPath());
-                
-                new Thread(new Thread1(is,os)).start();
+            while(checkConnection(link)!=null){
+                if(!f.exists()&&f.length()==0){
+                    u=new URL(link);
+                    uc=u.openConnection();
+                    
+                    is=uc.getInputStream();
+                    fos=new FileOutputStream(f.getPath());
+                    
+                    new Thread1(is,fos).run();
+                }
+                break;
             }
             
             is.close();
-            os.flush();
-            os.close();
+            fos.flush();
+            fos.close();
         }catch(MalformedURLException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
         }catch(FileNotFoundException x){
@@ -93,5 +63,22 @@ public class ResourceHandler{
         }catch(IOException k){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceHandler.class.getName(),methodName,"2IO");
         }
+    }
+    
+    /**
+     * Esta clase se encarga de verificar si hay conectividad a internet.
+     * 
+     * @param url a la que se verificará la conexión.
+     * 
+     * @return un valor cadena si está conectado o no. Puede ser null si no está conectado a una red.
+     * 
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    public String checkConnection(String url) throws MalformedURLException,IOException{
+        u=new URL(url);
+        uc=u.openConnection();
+        
+        return u.getPath();
     }
 }

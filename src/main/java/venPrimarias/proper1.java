@@ -342,8 +342,6 @@ public final class proper1 extends javax.swing.JFrame{
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
                 new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
                 
-                configIn();
-                
                 is.close();
                 os.flush();
                 os.close();
