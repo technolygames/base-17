@@ -22,7 +22,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class ResourceDownload{
+public class ResourceHandler{
     protected boolean estado=false;
     
     protected String methodName;
@@ -55,10 +55,10 @@ public class ResourceDownload{
             
             return s.isConnected();
         }catch(UnknownHostException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceDownload.class.getName(),methodName,"1I");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
             return false;
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceDownload.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"1IO");
             return false;
         }
     }
@@ -71,29 +71,27 @@ public class ResourceDownload{
      */
     public void downloadLibs(String validar,String link){
         methodName="downloadLibs";
-        f=new File("data/libs/test/"+validar);
+        f=new File("data/generic/temp/"+validar);
         try{
-            if(f.exists()&&f.length()==0){
+            if(!f.exists()&&f.length()==0){
                 u=new URL(link);
                 uc=u.openConnection();
                 
                 is=uc.getInputStream();
-                os=new FileOutputStream("data/libs/test/"+validar);
+                os=new FileOutputStream(f.getPath());
                 
-                new Thread(new Thread1(is,os)).start();
-            }else{
-                f.createNewFile();
+                new Thread(new Thread01(is,os)).start();
             }
             
             is.close();
             os.flush();
             os.close();
         }catch(MalformedURLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceDownload.class.getName(),methodName,"1I");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceDownload.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"1IO");
         }catch(IOException k){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceDownload.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceHandler.class.getName(),methodName,"2IO");
         }
     }
 }

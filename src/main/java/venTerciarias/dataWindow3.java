@@ -1,9 +1,9 @@
 package venTerciarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.Thread2;
+import clases.Thread02;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -23,7 +23,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new MediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
         
         botones();
         datosMostrar();
@@ -39,7 +39,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal,int code){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new MediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
         
         this.codigo=code;
         
@@ -61,7 +61,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         methodName="datosMostrar";
         
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps=new Datos1().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -102,7 +102,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
+                ps=new Datos1().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -111,7 +111,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                     f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
-                new Thread2(rs,new FileOutputStream(f)).run();
+                new Thread02(rs,new FileOutputStream(f)).run();
                 
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
@@ -152,7 +152,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(dataWindow3.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(dataWindow3.class.getName()).getIconImage());
 
         storeImgButton.setText("Guardar imagen");
 

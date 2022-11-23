@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
 //java
 import java.sql.ResultSet;
@@ -39,12 +39,12 @@ public class countPanel extends javax.swing.JPanel{
     protected final void datosMostrar(){
         try{
             if(codigo!=0){
-                ps=new Datos().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
+                ps=new Datos1().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
                 ps.setInt(1,codigo);
                 rs=ps.executeQuery();
                 loadData(rs);
             }else{
-                ps=new Datos().getConnection().prepareStatement("select * from conteo;");
+                ps=new Datos1().getConnection().prepareStatement("select * from conteo;");
                 rs=ps.executeQuery();
                 loadData(rs);
             }

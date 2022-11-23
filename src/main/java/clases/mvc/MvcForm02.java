@@ -6,7 +6,7 @@ import java.io.InputStream;
  * 
  * @author erick
  */
-public class MvcForm2{
+public class MvcForm02{
     protected int codigo;
     protected String nombre;
     protected String apellidoPaterno;

@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Component;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,7 +25,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class GuiMediaHandler{
+public class MediaHandler{
     protected String clase;
     
     /**
@@ -33,7 +34,7 @@ public class GuiMediaHandler{
      * 
      * @param clase que está usando las funciones.
      */
-    public GuiMediaHandler(String clase){
+    public MediaHandler(String clase){
         this.clase=clase;
     }
     
@@ -50,7 +51,6 @@ public class GuiMediaHandler{
      */
     public Image getFormImage(){
         methodName="getFormImage";
-        p=new Properties();
         try{
             return Toolkit.getDefaultToolkit().getImage(getImagePath("imagenes","imagen_respaldo"));
         }catch(FileNotFoundException e){
@@ -70,7 +70,6 @@ public class GuiMediaHandler{
      */
     public Image getIconImage(){
         methodName="getIconImage";
-        p=new Properties();
         try{
             return Toolkit.getDefaultToolkit().getImage(getImagePath("icono","icono_respaldo"));
         }catch(FileNotFoundException e){
@@ -125,6 +124,7 @@ public class GuiMediaHandler{
     }
     
     public String getImagePath(String propName1,String propName2) throws FileNotFoundException,IOException{
+        p=new Properties();
         p.load(new FileInputStream("data/config/config.properties"));
         String dir=p.getProperty(propName1);
         
@@ -136,5 +136,11 @@ public class GuiMediaHandler{
             }
         }
         return dir;
+    }
+    
+    public String getProgramName() throws FileNotFoundException,IOException{
+        p=new Properties();
+        p.load(new FileReader("data/config/config.properties"));
+        return p.getProperty("nombre");
     }
 }

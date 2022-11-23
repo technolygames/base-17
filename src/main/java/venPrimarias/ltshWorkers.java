@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.DbUtils;
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana1;
 import paneles.delDatosPanel1;
@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshWorkers extends javax.swing.JFrame{
     public ltshWorkers(){
         initComponents();
-        new GuiMediaHandler(ltshWorkers.class.getName()).LookAndFeel(ltshWorkers.this);
+        new MediaHandler(ltshWorkers.class.getName()).LookAndFeel(ltshWorkers.this);
         
         botones();
         datosMostrar();
@@ -145,7 +145,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from empleados;");
+            ps=new Datos1().getConnection().prepareStatement("select * from empleados;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -189,7 +189,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0:
-                    ps=new Datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -208,7 +208,7 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 1:
-                    ps=new Datos().getConnection().prepareStatement("select * from empleados where nombre_emp=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from empleados where nombre_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -227,7 +227,7 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 2:
-                    ps=new Datos().getConnection().prepareStatement("select * from empleados where apellidop_emp=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from empleados where apellidop_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -246,7 +246,7 @@ public class ltshWorkers extends javax.swing.JFrame{
                     rs.close();
                     break;
                 case 3:
-                    ps=new Datos().getConnection().prepareStatement("select * from empleados where apellidom_emp=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from empleados where apellidom_emp=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -355,7 +355,7 @@ public class ltshWorkers extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ltshWorkers.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ltshWorkers.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Empleados");

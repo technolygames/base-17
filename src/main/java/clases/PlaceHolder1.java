@@ -13,7 +13,7 @@ import java.awt.event.FocusAdapter;
  * 
  * @author unknown
  */
-public class PlaceHolder{
+public class PlaceHolder1{
     protected JTextField textField;
     protected JTextArea textArea;
     protected Color holderColor;
@@ -23,28 +23,28 @@ public class PlaceHolder{
     protected String font;
     protected int size;
 
-    public PlaceHolder(final JTextArea textArea,final String text){
+    public PlaceHolder1(final JTextArea textArea,final String text){
         this.inicialize();
         this.textArea=textArea;
         this.text=text;
         textArea.addFocusListener(new FocusAdapter(){
             @Override
             public void focusLost(FocusEvent evt){
-                PlaceHolder.this.showTextArea(textArea,text,textArea.getText().trim().length());
+                PlaceHolder1.this.showTextArea(textArea,text,textArea.getText().trim().length());
             }
         });
         
         textArea.addFocusListener(new FocusAdapter(){
             @Override
             public void focusGained(FocusEvent evt){
-                PlaceHolder.this.hideTextArea(textArea,text);
+                PlaceHolder1.this.hideTextArea(textArea,text);
             }
         });
         
         this.showTextArea(textArea,text,textArea.getText().trim().length());
     }
 
-    public PlaceHolder(final JTextArea textArea,Color holderColor,Color singleColor,final String text,boolean italic,String font,int size){
+    public PlaceHolder1(final JTextArea textArea,Color holderColor,Color singleColor,final String text,boolean italic,String font,int size){
         this.textArea=textArea;
         this.holderColor=holderColor;
         this.singleColor=singleColor;
@@ -55,21 +55,21 @@ public class PlaceHolder{
         textArea.addFocusListener(new FocusAdapter(){
             @Override
             public void focusLost(FocusEvent evt){
-                PlaceHolder.this.showTextArea(textArea,text,textArea.getText().trim().length());
+                PlaceHolder1.this.showTextArea(textArea,text,textArea.getText().trim().length());
             }
         });
         
         textArea.addFocusListener(new FocusAdapter(){
             @Override
             public void focusGained(FocusEvent evt){
-                PlaceHolder.this.hideTextArea(textArea,text);
+                PlaceHolder1.this.hideTextArea(textArea,text);
             }
         });
         
         this.showTextArea(textArea,text,textArea.getText().trim().length());
     }
 
-    public PlaceHolder(final JTextField textField,Color holderColor,Color singleColor,final String text,boolean italic,String font,int size){
+    public PlaceHolder1(final JTextField textField,Color holderColor,Color singleColor,final String text,boolean italic,String font,int size){
         this.textField=textField;
         this.holderColor=holderColor;
         this.singleColor=singleColor;
@@ -80,35 +80,35 @@ public class PlaceHolder{
         textField.addFocusListener(new FocusAdapter(){
             @Override
             public void focusLost(FocusEvent evt){
-                PlaceHolder.this.showText(textField,text,textField.getText().trim().length());
+                PlaceHolder1.this.showText(textField,text,textField.getText().trim().length());
             }
         });
         
         textField.addFocusListener(new FocusAdapter(){
             @Override
             public void focusGained(FocusEvent evt){
-                PlaceHolder.this.hideText(textField,text);
+                PlaceHolder1.this.hideText(textField,text);
             }
         });
         
         this.showText(textField,text,textField.getText().trim().length());
     }
     
-    public PlaceHolder(final JTextField textField,final String text){
+    public PlaceHolder1(final JTextField textField,final String text){
         this.inicialize();
         this.textField=textField;
         this.text=text;
         textField.addFocusListener(new FocusAdapter(){
             @Override
             public void focusLost(FocusEvent evt){
-                PlaceHolder.this.showText(textField,text,textField.getText().trim().length());
+                PlaceHolder1.this.showText(textField,text,textField.getText().trim().length());
             }
         });
         
         textField.addFocusListener(new FocusAdapter(){
             @Override
             public void focusGained(FocusEvent evt){
-                PlaceHolder.this.hideText(textField,text);
+                PlaceHolder1.this.hideText(textField,text);
             }
         });
         

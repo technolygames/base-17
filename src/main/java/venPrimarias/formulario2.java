@@ -1,9 +1,9 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.mvc.MvcForm2;
+import clases.mvc.MvcForm02;
 import menus.menuDatosVentana2;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -33,7 +33,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
         initComponents();
-        new GuiMediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
+        new MediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
          
         botones();
         settings();
@@ -127,8 +127,8 @@ public class formulario2 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm2> lista=new ArrayList<>();
-                    MvcForm2 modelo=new MvcForm2();
+                    List<MvcForm02> lista=new ArrayList<>();
+                    MvcForm02 modelo=new MvcForm02();
                     
                     modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
                     modelo.setNombre(jTextField2.getText());
@@ -142,7 +142,7 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     lista.add(modelo);
                     
-                    new Datos().insertarDatosSocio(lista);
+                    new Datos1().insertarDatosSocio(lista);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
@@ -232,7 +232,7 @@ public class formulario2 extends javax.swing.JFrame{
         miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new clases.GuiMediaHandler(formulario2.class.getName()).getIconImage());
+        setIconImage(new clases.MediaHandler(formulario2.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

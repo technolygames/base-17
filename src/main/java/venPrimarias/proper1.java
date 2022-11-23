@@ -1,10 +1,10 @@
 package venPrimarias;
 //clases
-import clases.Dirs;
-import clases.GuiMediaHandler;
+import clases.Dirs1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.Thread1;
-import clases.Validation;
+import clases.Thread01;
+import clases.Validation1;
 import menus.menuVentanas;
 //librerías
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -39,7 +39,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public final class proper1 extends javax.swing.JFrame{
     public proper1(){
         initComponents();
-        new GuiMediaHandler(proper1.class.getName()).LookAndFeel(proper1.this);
+        new MediaHandler(proper1.class.getName()).LookAndFeel(proper1.this);
         
         botones();
         configIn();
@@ -66,7 +66,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected String icono;
     protected String nombre;
     protected String design;
-    protected String userdir=Dirs.userdir;
+    protected String userdir=Dirs1.userdir;
     protected String imagenes;
     protected String methodName;
     protected String nombreArchivo1;
@@ -82,7 +82,7 @@ public final class proper1 extends javax.swing.JFrame{
         
         JTextField[] tf={jTextField4,jTextField5};
         
-        if(new Validation(rol,proper1.class.getName()).isAccessible()){
+        if(new Validation1(rol,proper1.class.getName()).isAccessible()){
             for(JTextField textfield:tf){
                 textfield.setEnabled(true);
             }
@@ -178,7 +178,7 @@ public final class proper1 extends javax.swing.JFrame{
                     jTextField3.setText(f3.getPath());
                     imageLoader("Icono",jTextField3.getText());
                     
-                    setIconImage(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
+                    setIconImage(new MediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
                     
                     p.setProperty("lastdirectory_icon",f3.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -252,7 +252,7 @@ public final class proper1 extends javax.swing.JFrame{
         );
         
         toolsButton.addActionListener(a->
-            new Validation(new adminTools(),rol,adminTools.class.getName()).toRestrictedForm()
+            new Validation1(new adminTools(),rol,adminTools.class.getName()).toRestrictedForm()
         );
     }
     
@@ -314,7 +314,7 @@ public final class proper1 extends javax.swing.JFrame{
                 p.setProperty("imagen_respaldo",dato1+nameImg);
                 is=new FileInputStream(dirImg);
                 os=new FileOutputStream(dato1+nameImg);
-                new Thread(new Thread1(is,os)).start();
+                new Thread(new Thread01(is,os)).start();
                 
                 p.setProperty("look_and_feel",jComboBox1.getSelectedItem().toString());
                 
@@ -325,12 +325,12 @@ public final class proper1 extends javax.swing.JFrame{
                 p.setProperty("icono_respaldo",dato2+nameIcon);
                 is=new FileInputStream(dirIcon);
                 os=new FileOutputStream(dato2+nameIcon);
-                new Thread(new Thread1(is,os)).start();
+                new Thread(new Thread01(is,os)).start();
                 
-                menuVentanas.picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField2.getText())).getImage().getScaledInstance(menuVentanas.picLabel.getWidth(),menuVentanas.picLabel.getHeight(),Image.SCALE_DEFAULT)));
+                menuVentanas.picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(proper1.class.getName()).getImage(jTextField2.getText())).getImage().getScaledInstance(menuVentanas.picLabel.getWidth(),menuVentanas.picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 
                 for(Frame frames:Frame.getFrames()){
-                    frames.setIconImage(new GuiMediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
+                    frames.setIconImage(new MediaHandler(proper1.class.getName()).getImage(jTextField3.getText()));
                 }
                 
                 p.setProperty("nombre",jTextField1.getText());
@@ -410,7 +410,7 @@ public final class proper1 extends javax.swing.JFrame{
         jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(proper1.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(proper1.class.getName()).getIconImage());
 
         jLabel2.setText("Imagen:");
 

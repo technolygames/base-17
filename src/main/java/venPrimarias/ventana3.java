@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 //java
 import java.awt.Image;
@@ -16,7 +16,7 @@ import java.util.logging.Level;
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
-        new GuiMediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
+        new MediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
         
         botones();
         settings();
@@ -36,7 +36,7 @@ public class ventana3 extends javax.swing.JFrame{
         jTextField3.setText(".");
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
@@ -67,7 +67,7 @@ public class ventana3 extends javax.swing.JFrame{
                     Date inicio=new Date(jDateChooser1.getDate().getTime());
                     Date fin=new Date(jDateChooser2.getDate().getTime());
                     
-                    new Datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
+                    new Datos1().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
                     new logger(Level.WARNING).storeAndViewError18(this,ventana3.class.getName(),methodName);
                 }
@@ -106,7 +106,7 @@ public class ventana3 extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ventana3.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ventana3.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

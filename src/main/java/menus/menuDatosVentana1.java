@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import paneles.modPicPanel1;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
@@ -13,7 +13,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     protected String title="Menú de Datos";
     public menuDatosVentana1(){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -28,7 +28,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(int code){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -43,7 +43,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(Component panel,int code){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -60,7 +60,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(Component panel,boolean flag){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -131,7 +131,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         miModPic = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(menuDatosVentana1.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(menuDatosVentana1.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

@@ -1,13 +1,10 @@
 package clases;
 //java
-import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.SystemTray;
 import java.awt.AWTException;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Properties;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
@@ -19,10 +16,8 @@ import java.awt.TrayIcon.MessageType;
  * @author erick
  */
 public class DisplayNotification{
-    protected Properties p;
-    
     /**
-     * Método encargado en mostrar la notificiación.
+     * Método encargado en mostrar una notificiación usando es sistema de notificaciones que usa el sistema operativo.
      * 
      * @param notification Título de la notificacion.
      * @param message que se mostrará en la notificación.
@@ -31,18 +26,17 @@ public class DisplayNotification{
     public void trayNotify(String notification,String message,MessageType messageType){
         String methodName="trayNotify";
         SystemTray st=SystemTray.getSystemTray();
-        p=new Properties();
+        MediaHandler mh=new MediaHandler(DisplayNotification.class.getName());
         try{
-            if(SystemTray.isSupported()){
-                p.load(new FileInputStream("data/config/config.properties"));
-                TrayIcon ti=new TrayIcon(Toolkit.getDefaultToolkit().getImage(p.getProperty("icono")));
+            TrayIcon ti=new TrayIcon(mh.getIconImage());
+            while(SystemTray.isSupported()){
                 st.add(ti);
                 ti.setImageAutoSize(true);
                 ti.displayMessage(notification,message,messageType);
-                ti.setToolTip(p.getProperty("nombre"));
-                
-                st.remove(ti);
+                ti.setToolTip(mh.getProgramName());
+                break;
             }
+            st.remove(ti);
         }catch(AWTException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DisplayNotification.class.getName(),methodName,"24");
         }catch(UnsupportedOperationException x){

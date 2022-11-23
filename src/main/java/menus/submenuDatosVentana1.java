@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import paneles.modPicPanel1;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
@@ -13,7 +13,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     public submenuDatosVentana1(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();
@@ -29,7 +29,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     public submenuDatosVentana1(java.awt.Frame parent,boolean modal,int code){
         super(parent,modal);
         initComponents();
-        new GuiMediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();
@@ -96,7 +96,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
         miModPic = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(submenuDatosVentana1.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(submenuDatosVentana1.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

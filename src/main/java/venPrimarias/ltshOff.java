@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 //java
 import java.awt.EventQueue;
@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        new GuiMediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
+        new MediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
         
         botones();
         datosMostrar();
@@ -49,7 +49,7 @@ public class ltshOff extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from promociones;");
+            ps=new Datos1().getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"});
             while(rs.next()){
@@ -78,7 +78,7 @@ public class ltshOff extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ltshOff.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ltshOff.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Descuentos");

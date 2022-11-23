@@ -1,8 +1,8 @@
 package menus;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
-import clases.Validation;
+import clases.Validation1;
 import clases.DisplayNotification;
 import java.awt.EventQueue;
 import venPrimarias.formulario1;
@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
         initComponents();
-        new GuiMediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
+        new MediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
         
         menu();
         botones();
@@ -52,7 +52,7 @@ public final class menuVentanas extends javax.swing.JFrame{
     protected final void settings(){
         String nombre=start.nameUser;
         jMenuItem2.setText(nombre);
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
@@ -69,27 +69,27 @@ public final class menuVentanas extends javax.swing.JFrame{
         );
         
         form1Button.addActionListener(a->
-            new Validation(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
+            new Validation1(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
         );
         
         form2Button.addActionListener(a->
-            new Validation(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
+            new Validation1(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
         );
         
         form3Button.addActionListener(a->
-            new Validation(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
+            new Validation1(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
         );
         
         ltprvButton.addActionListener(a->
-            new Validation(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
+            new Validation1(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
         );
         
         ltpsButton.addActionListener(a->
-            new Validation(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
+            new Validation1(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
         );
         
         ltwkButton.addActionListener(a->
-            new Validation(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
+            new Validation1(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
         );
         
         ltstButton.addActionListener(a->
@@ -175,7 +175,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(menuVentanas.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(menuVentanas.class.getName()).getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 

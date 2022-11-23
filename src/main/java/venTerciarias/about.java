@@ -1,6 +1,6 @@
 package venTerciarias;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 //java
 import java.awt.Cursor;
@@ -22,7 +22,7 @@ public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(about.class.getName()).LookAndFeel(about.this);
+        new MediaHandler(about.class.getName()).LookAndFeel(about.this);
         
         etiquetas();
         settings();
@@ -100,7 +100,7 @@ public final class about extends javax.swing.JDialog{
         jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(about.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(about.class.getName()).getIconImage());
 
         jLabel1.setText("Versión:");
 

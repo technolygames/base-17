@@ -1,6 +1,6 @@
 package venPrimarias;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 import paneles.databaseConfig;
 import paneles.databaseExport;
@@ -25,7 +25,7 @@ import java.util.logging.Level;
 public class adminTools extends javax.swing.JFrame{
     public adminTools(){
         initComponents();
-        new GuiMediaHandler(adminTools.class.getName()).LookAndFeel(adminTools.this);
+        new MediaHandler(adminTools.class.getName()).LookAndFeel(adminTools.this);
         
         botones();
         settings();
@@ -122,7 +122,7 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(adminTools.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(adminTools.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

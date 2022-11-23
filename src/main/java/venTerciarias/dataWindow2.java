@@ -1,9 +1,9 @@
 package venTerciarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.Thread2;
+import clases.Thread02;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -37,7 +37,7 @@ public class dataWindow2 extends javax.swing.JDialog{
     public dataWindow2(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
+        new MediaHandler(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
         
         botones();
         datosMostrar();
@@ -54,7 +54,7 @@ public class dataWindow2 extends javax.swing.JDialog{
     public dataWindow2(java.awt.Frame parent,boolean modal,int code){
         super(parent, modal);
         initComponents();
-        new GuiMediaHandler(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
+        new MediaHandler(dataWindow2.class.getName()).LookAndFeel(dataWindow2.this);
         
         this.codigo=code;
         
@@ -84,7 +84,7 @@ public class dataWindow2 extends javax.swing.JDialog{
     protected final void datosMostrar(){
         methodName="datosMostrar";
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -131,7 +131,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
+                ps=new Datos1().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -140,7 +140,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo1+"-("+i+").jpg");
                 }
                 
-                new Thread2(rs,new FileOutputStream(f)).run();
+                new Thread02(rs,new FileOutputStream(f)).run();
                 
                 new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
                 
@@ -158,25 +158,17 @@ public class dataWindow2 extends javax.swing.JDialog{
     protected void imprimirReporte(){
         methodName="imprimirReporte";
         p=new Properties();
+        MediaHandler mh=new MediaHandler(dataWindow2.class.getName());
         try{
             p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
             
             Map<String,Object> params=new HashMap<>();
             
-            image=p.getProperty("imagenes");
-            if(!new File(image).exists()){
-                image=p.getProperty("imagen_respaldo");
-                if(!new File(image).exists()){
-                    p.load(new FileReader("data/config/preconfig.properties"));
-                    image=p.getProperty("imagenes");
-                }
-            }
-            
-            params.put("imagen",new GuiMediaHandler(dataWindow2.class.getName()).getImagePath("imagenes","imagen_respaldo"));
-            params.put("nombre_reporte",p.getProperty("nombre"));
+            params.put("imagen",mh.getImagePath("imagenes","imagen_respaldo"));
+            params.put("nombre_reporte",mh.getProgramName());
             params.put("codigo_emp",start.userID);
             
-            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos().getConnection());
+            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos1().getConnection());
             JasperViewer jv=new JasperViewer(jp);
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(false);
@@ -237,7 +229,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         miCreateInvoice = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(dataWindow2.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(dataWindow2.class.getName()).getIconImage());
 
         storeImgButton.setText("Guardar imagen");
 

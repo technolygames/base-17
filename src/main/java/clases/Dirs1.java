@@ -7,7 +7,7 @@ import java.io.File;
  * 
  * @author erick
  */
-public class Dirs{
+public class Dirs1{
     public static String userdir=System.getProperty("user.dir");
     
     /**

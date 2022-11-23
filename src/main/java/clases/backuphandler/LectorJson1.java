@@ -1,9 +1,9 @@
 package clases.backuphandler;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
-import clases.mvc.MvcForm1;
-import clases.mvc.MvcForm2;
+import clases.mvc.MvcForm01;
+import clases.mvc.MvcForm02;
 //librerías
 import com.google.gson.stream.JsonReader;
 //java
@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets;
  * 
  * @author erick
  */
-public class LectorJson{
+public class LectorJson1{
     protected JsonReader jsonr;
     
     protected int numeroVentas;
@@ -39,8 +39,8 @@ public class LectorJson{
         methodName="readDataWorkerJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<MvcForm1> lista=new ArrayList<>();
-            MvcForm1 modelo=new MvcForm1();
+            List<MvcForm01> lista=new ArrayList<>();
+            MvcForm01 modelo=new MvcForm01();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
@@ -68,19 +68,19 @@ public class LectorJson{
             
             lista.add(modelo);
             
-            new Datos().insertarDatosEmpleado(lista);
-            new Datos().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
+            new Datos1().insertarDatosEmpleado(lista);
+            new Datos1().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson1.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson1.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson1.class.getName(),methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson1.class.getName(),methodName,"11");
         }
     }
     
@@ -114,8 +114,8 @@ public class LectorJson{
         methodName="readDataPartnerJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<MvcForm2> lista=new ArrayList<>();
-            MvcForm2 modelo=new MvcForm2();
+            List<MvcForm02> lista=new ArrayList<>();
+            MvcForm02 modelo=new MvcForm02();
             
             jsonr.beginObject();
             while(jsonr.hasNext()){
@@ -133,18 +133,18 @@ public class LectorJson{
                 }
             }
             lista.add(modelo);
-            new Datos().insertarDatosSocio(lista);
+            new Datos1().insertarDatosSocio(lista);
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson1.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson1.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson1.class.getName(),methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson1.class.getName(),methodName,"11");
         }
     }
     
@@ -177,18 +177,18 @@ public class LectorJson{
                     default -> jsonr.skipValue();
                 }
             }
-            new Datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto,new FileInputStream(foto));
+            new Datos1().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto,new FileInputStream(foto));
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson1.class.getName(),methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson1.class.getName(),methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson1.class.getName(),methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson1.class.getName(),methodName,"11");
         }
     }
 }

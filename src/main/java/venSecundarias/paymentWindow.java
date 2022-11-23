@@ -1,9 +1,9 @@
 package venSecundarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.tickets.DatosTicket;
+import clases.tickets.DatosTicket1;
 import java.awt.EventQueue;
 import venPrimarias.start;
 import venPrimarias.ventana1;
@@ -24,7 +24,7 @@ public class paymentWindow extends javax.swing.JDialog{
     public paymentWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new GuiMediaHandler(paymentWindow.class.getName()).LookAndFeel(paymentWindow.this);
+        new MediaHandler(paymentWindow.class.getName()).LookAndFeel(paymentWindow.this);
         
         botones();
         settings();
@@ -146,7 +146,7 @@ public class paymentWindow extends javax.swing.JDialog{
         
         mkPaidButton.addActionListener(a->{
             methodName="botones.mkPaid";
-            var ticket=new DatosTicket();
+            var ticket=new DatosTicket1();
             
             try{
                 switch(jComboBox1.getSelectedIndex()){
@@ -206,7 +206,7 @@ public class paymentWindow extends javax.swing.JDialog{
         methodName="calc2";
         
         try{
-            ResultSet rs=new Datos().buscarDatosPromo(jTextField1.getText());
+            ResultSet rs=new Datos1().buscarDatosPromo(jTextField1.getText());
             if(rs.next()){
                 var cal=Integer.parseInt(jLabel4.getText())*rs.getFloat("descuento");
                 var cal2=Integer.parseInt(jLabel4.getText())-cal;
@@ -222,7 +222,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void confirmPurchase() throws SQLException{
         if(!jTextField1.getText().isEmpty()){
             readTable();
-            new Datos().actualizarDatosUsoPromo(jTextField1.getText());
+            new Datos1().actualizarDatosUsoPromo(jTextField1.getText());
         }else{
             readTable();
         }
@@ -232,7 +232,7 @@ public class paymentWindow extends javax.swing.JDialog{
         methodName="readTable";
         
         try{
-            var datos=new Datos();
+            var datos=new Datos1();
             for(int i=0;i<dtm.getRowCount();i++){
                 codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
                 codigo_emp=Integer.parseInt(jLabel2.getText());
@@ -281,7 +281,7 @@ public class paymentWindow extends javax.swing.JDialog{
         cbAddCoupon = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(paymentWindow.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(paymentWindow.class.getName()).getIconImage());
 
         cancelButton.setText("Cancelar");
 

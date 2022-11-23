@@ -1,6 +1,6 @@
 package venSecundarias;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 //java
 import java.awt.EventQueue;
@@ -13,7 +13,7 @@ public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new GuiMediaHandler(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
+        new MediaHandler(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
         
         botones();
         settings();
@@ -83,7 +83,7 @@ public final class calcWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(calcWindow.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(calcWindow.class.getName()).getIconImage());
 
         jLabel1.setText("Total:");
 

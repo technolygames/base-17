@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.DbUtils;
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana4;
 import paneles.delDatosPanel4;
@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshStorage extends javax.swing.JFrame{
     public ltshStorage(){
         initComponents();
-        new GuiMediaHandler(ltshStorage.class.getName()).LookAndFeel(ltshStorage.this);
+        new MediaHandler(ltshStorage.class.getName()).LookAndFeel(ltshStorage.this);
         
         botones();
         datosMostrar();
@@ -132,7 +132,7 @@ public class ltshStorage extends javax.swing.JFrame{
         
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from almacen;");
+            ps=new Datos1().getConnection().prepareStatement("select * from almacen;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -172,7 +172,7 @@ public class ltshStorage extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -191,7 +191,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 1->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where codigo_lote=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where codigo_lote=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -210,7 +210,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 2->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where codigo_prov=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where codigo_prov=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -229,7 +229,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 3->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where nombre_prod=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where nombre_prod=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -248,7 +248,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 4->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where marca=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where marca=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -265,7 +265,7 @@ public class ltshStorage extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 5->{
-                    ps=new Datos().getConnection().prepareStatement("select * from almacen where stock=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from almacen where stock=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -342,7 +342,7 @@ public class ltshStorage extends javax.swing.JFrame{
         refreshButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ltshStorage.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ltshStorage.class.getName()).getIconImage());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

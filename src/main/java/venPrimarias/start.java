@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 import clases.DisplayNotification;
 import venSecundarias.loadWindow;
@@ -30,7 +30,7 @@ import java.time.format.DateTimeFormatter;
 public final class start extends javax.swing.JFrame{
     public start(){
         initComponents();
-        new GuiMediaHandler(start.class.getName()).LookAndFeel(start.this);
+        new MediaHandler(start.class.getName()).LookAndFeel(start.this);
         
         botones();
         settings();
@@ -43,7 +43,7 @@ public final class start extends javax.swing.JFrame{
     
     protected String methodName;
     
-    protected Properties p;
+    
     
     protected JTextField campos;
     
@@ -58,18 +58,15 @@ public final class start extends javax.swing.JFrame{
     protected final void settings(){
         methodName="settings";
         
-        p=new Properties();
         try{
-            p.load(new FileReader("data/config/config.properties",StandardCharsets.UTF_8));
-            nameLabel.setText(p.getProperty("nombre"));
+            nameLabel.setText(new MediaHandler(start.class.getName()).getProgramName());
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"1IO");
         }catch(IOException x){
             new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"2IO");
         }
-        p.clear();
         
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
@@ -96,7 +93,7 @@ public final class start extends javax.swing.JFrame{
         methodName="login";
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());
-        var datos=new Datos();
+        var datos=new Datos1();
         
         for(JTextField tf:new JTextField[]{txtUsuario,txtPassword}){
             campos=tf;
@@ -145,7 +142,7 @@ public final class start extends javax.swing.JFrame{
                         ResultSet rs2=ps.executeQuery();
                         if(!rs2.next()){
                             new logger(Level.INFO).staticLogger("1; no hay");
-                            new Datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                            new Datos1().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
                             new logger(Level.INFO).staticLogger("2; si hay");
                         }
@@ -186,7 +183,7 @@ public final class start extends javax.swing.JFrame{
         textField1.setText("textField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(start.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(start.class.getName()).getIconImage());
 
         jLabel1.setText("Usuario:");
 

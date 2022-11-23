@@ -6,7 +6,7 @@ import java.io.InputStream;
  *  
  * @author erick
  */
-public class MvcForm1{
+public class MvcForm01{
     protected String password;
     protected int codigo;
     protected String nombre;

@@ -1,6 +1,6 @@
 package menus;
 //clases
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import paneles.delDatosPanel4;
 import paneles.modDatosPanel4;
 //java
@@ -11,7 +11,7 @@ import java.awt.BorderLayout;
 public class menuDatosVentana4 extends javax.swing.JFrame{
     public menuDatosVentana4(){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new MediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -26,7 +26,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(int code){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new MediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -41,7 +41,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(Component panel,int code){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new MediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -58,7 +58,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     public menuDatosVentana4(Component panel,boolean flag){
         initComponents();
-        new GuiMediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
+        new MediaHandler(menuDatosVentana4.class.getName()).LookAndFeel(menuDatosVentana4.this);
         
         botones();
         settings();
@@ -120,7 +120,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         miModData = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(menuDatosVentana4.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(menuDatosVentana4.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

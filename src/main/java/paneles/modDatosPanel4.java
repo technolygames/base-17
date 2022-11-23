@@ -1,8 +1,8 @@
 package paneles;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
-import clases.PlaceHolder;
+import clases.PlaceHolder1;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,7 +66,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos();
+        var datos=new Datos1();
         String tabla="almacen";
         String campo="codigo_prod";
         
@@ -278,7 +278,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+                PreparedStatement ps=new Datos1().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -312,10 +312,10 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     }
     
     protected void placeHolders(){
-        new PlaceHolder(jTextField1,"Nombre del producto").inicialize();
-        new PlaceHolder(jTextField2,"Marca").inicialize();
-        new PlaceHolder(jTextField3,"Cantidad").inicialize();
-        new PlaceHolder(jTextField4,"Precio unitario").inicialize();
+        new PlaceHolder1(jTextField1,"Nombre del producto").inicialize();
+        new PlaceHolder1(jTextField2,"Marca").inicialize();
+        new PlaceHolder1(jTextField3,"Cantidad").inicialize();
+        new PlaceHolder1(jTextField4,"Precio unitario").inicialize();
     }
     
     @SuppressWarnings("unchecked")

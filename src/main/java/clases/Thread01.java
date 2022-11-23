@@ -13,7 +13,7 @@ import java.util.logging.Level;
  * 
  * @author erick
  */
-public class Thread1 implements Runnable{
+public class Thread01 implements Runnable{
     protected InputStream is;
     protected OutputStream os;
     
@@ -23,7 +23,7 @@ public class Thread1 implements Runnable{
      * @param is: flujo de entrada del archivo a leer.
      * @param os: flujo de salida del archivo a escribir.
      */
-    public Thread1(InputStream is,OutputStream os){
+    public Thread01(InputStream is,OutputStream os){
         this.os=os;
         this.is=is;
     }
@@ -44,7 +44,7 @@ public class Thread1 implements Runnable{
             is.close();
             os.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread1.class.getName(),"run","2IO");
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread01.class.getName(),"run","2IO");
         }
     }
 }

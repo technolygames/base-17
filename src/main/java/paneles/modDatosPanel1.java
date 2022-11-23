@@ -1,8 +1,8 @@
 package paneles;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
-import clases.PlaceHolder;
+import clases.PlaceHolder1;
 //java
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -69,7 +69,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos();
+        var datos=new Datos1();
         String tabla="empleados";
         String campo="codigo_emp";
         
@@ -577,7 +577,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                PreparedStatement ps=new Datos1().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -629,15 +629,15 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     }
     
     protected void placeHolders(){
-        new PlaceHolder(txtNombre,"Nombre(s)").inicialize();
-        new PlaceHolder(txtAP,"Apellido paterno").inicialize();
-        new PlaceHolder(txtAM,"Apellido materno").inicialize();
-        new PlaceHolder(txtCURP,"CURP").inicialize();
-        new PlaceHolder(txtDom,"Domicilio").inicialize();
-        new PlaceHolder(txtExp,"Experiencia").inicialize();
-        new PlaceHolder(txtGE,"Grado de estudios").inicialize();
-        new PlaceHolder(txtContacto,"Contacto").inicialize();
-        new PlaceHolder(txtEdad,"Edad").inicialize();
+        new PlaceHolder1(txtNombre,"Nombre(s)").inicialize();
+        new PlaceHolder1(txtAP,"Apellido paterno").inicialize();
+        new PlaceHolder1(txtAM,"Apellido materno").inicialize();
+        new PlaceHolder1(txtCURP,"CURP").inicialize();
+        new PlaceHolder1(txtDom,"Domicilio").inicialize();
+        new PlaceHolder1(txtExp,"Experiencia").inicialize();
+        new PlaceHolder1(txtGE,"Grado de estudios").inicialize();
+        new PlaceHolder1(txtContacto,"Contacto").inicialize();
+        new PlaceHolder1(txtEdad,"Edad").inicialize();
     }
     
     @SuppressWarnings("unchecked")

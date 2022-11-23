@@ -1,6 +1,6 @@
 package paneles;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
 //java
 import java.sql.SQLException;
@@ -60,7 +60,7 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         try{
             if(!jTextField1.getText().isEmpty()){
                 var texto=Integer.parseInt(jTextField1.getText());
-                new Datos().eliminarDatosAlmacen(texto);
+                new Datos1().eliminarDatosAlmacen(texto);
             }else{
                 new logger(Level.WARNING).storeAndViewError18(this,delDatosPanel4.class.getName(),methodName);
             }

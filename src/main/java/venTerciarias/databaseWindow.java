@@ -1,7 +1,7 @@
 package venTerciarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 import paneles.databaseImport;
 //java
@@ -14,7 +14,7 @@ public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new GuiMediaHandler(databaseWindow.class.getName()).LookAndFeel(databaseWindow.this);
+        new MediaHandler(databaseWindow.class.getName()).LookAndFeel(databaseWindow.this);
         
         botones();
         
@@ -34,7 +34,7 @@ public class databaseWindow extends javax.swing.JDialog{
         
         createButton.addActionListener((a)->{
             try{
-                new Datos().crearBD(jTextField1.getText());
+                new Datos1().crearBD(jTextField1.getText());
                 databaseImport.jTextField3.setText(jTextField1.getText());
             }catch(SQLException e){
                 new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseWindow.class.getName(),"botones.create","5E");
@@ -52,7 +52,7 @@ public class databaseWindow extends javax.swing.JDialog{
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(databaseWindow.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(databaseWindow.class.getName()).getIconImage());
 
         jLabel1.setText("Nombre de la base de datos:");
 

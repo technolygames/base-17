@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana3;
 //librerías
@@ -31,7 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario3 extends javax.swing.JFrame{
     public formulario3(){
         initComponents();
-        new GuiMediaHandler(formulario3.class.getName()).LookAndFeel(formulario3.this);
+        new MediaHandler(formulario3.class.getName()).LookAndFeel(formulario3.this);
         
         botones();
         
@@ -126,7 +126,7 @@ public class formulario3 extends javax.swing.JFrame{
                     int contacto=Integer.parseInt(jTextField6.getText());
                     InputStream foto=new FileInputStream(direccion);
                     
-                    new Datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+                    new Datos1().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario3.class.getName()+"', en el método 'botones(storeButton)'");
@@ -207,7 +207,7 @@ public class formulario3 extends javax.swing.JFrame{
         miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new clases.GuiMediaHandler(formulario3.class.getName()).getIconImage());
+        setIconImage(new clases.MediaHandler(formulario3.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

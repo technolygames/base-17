@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 import java.awt.EventQueue;
 import menus.menuDatosVentana4;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
         initComponents();
-        new GuiMediaHandler(ventana2.class.getName()).LookAndFeel(ventana2.this);
+        new MediaHandler(ventana2.class.getName()).LookAndFeel(ventana2.this);
         
         botones();
         popup();
@@ -42,7 +42,7 @@ public final class ventana2 extends javax.swing.JFrame{
     protected JTextField campos;
     
     protected final void settings(){
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
         
         dtm=new DefaultTableModel(){
             @Override
@@ -128,7 +128,7 @@ public final class ventana2 extends javax.swing.JFrame{
                         int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
                         String stock=dtm.getValueAt(i,7).toString();
                         
-                        new Datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
+                        new Datos1().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
                     }
                     JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                     new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
@@ -248,7 +248,7 @@ public final class ventana2 extends javax.swing.JFrame{
         updateDataButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ventana2.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ventana2.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 

@@ -1,7 +1,7 @@
 package venPrimarias;
 //clases
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
 import venSecundarias.paymentWindow;
 //java
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public final class ventana1 extends javax.swing.JFrame{
     public ventana1(){
         initComponents();
-        new GuiMediaHandler(ventana1.class.getName()).LookAndFeel(ventana1.this);
+        new MediaHandler(ventana1.class.getName()).LookAndFeel(ventana1.this);
         
         botones();
         popup();
@@ -52,7 +52,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected final void settings(){
         txtCodEmp.setText(String.valueOf(start.userID));
-        picLabel.setIcon(new ImageIcon(new ImageIcon(new GuiMediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
+        picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
         
         dtm=new DefaultTableModel(){
             @Override
@@ -141,7 +141,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 methodName="botones.txtCodigo";
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new Datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps=new Datos1().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
@@ -152,7 +152,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                         new logger(Level.CONFIG).staticLogger("No guarda en ventana1, pero da el aviso");
                                     }else{
                                         JOptionPane.showMessageDialog(ventana1.this,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                        new Datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
+                                        new Datos1().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
                                         new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
                                     }
                                 }else{
@@ -179,7 +179,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 methodName="botones.txtCant";
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new Datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps=new Datos1().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
@@ -329,7 +329,7 @@ public final class ventana1 extends javax.swing.JFrame{
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new clases.GuiMediaHandler(ventana1.class.getName()).getIconImage());
+        setIconImage(new clases.MediaHandler(ventana1.class.getName()).getIconImage());
 
         jLabel2.setText("Código del producto:");
 

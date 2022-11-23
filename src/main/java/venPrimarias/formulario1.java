@@ -1,10 +1,10 @@
 package venPrimarias;
 //clases
-import clases.PlaceHolder;
-import clases.Datos;
-import clases.GuiMediaHandler;
+import clases.PlaceHolder1;
+import clases.Datos1;
+import clases.MediaHandler;
 import clases.logger;
-import clases.mvc.MvcForm1;
+import clases.mvc.MvcForm01;
 import menus.menuDatosVentana1;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -41,7 +41,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
         initComponents();
-        new GuiMediaHandler(formulario1.class.getName()).LookAndFeel(formulario1.this);
+        new MediaHandler(formulario1.class.getName()).LookAndFeel(formulario1.this);
         
         botones();
         settings();
@@ -139,8 +139,8 @@ public class formulario1 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm1> datos=new ArrayList<>();
-                    MvcForm1 modelo=new MvcForm1();
+                    List<MvcForm01> datos=new ArrayList<>();
+                    MvcForm01 modelo=new MvcForm01();
                     
                     modelo.setPassword(String.valueOf(txtPassword.getPassword()));
                     modelo.setCodigo(Integer.parseInt(txtCodigo.getText()));
@@ -161,7 +161,7 @@ public class formulario1 extends javax.swing.JFrame{
                     
                     datos.add(modelo);
                     
-                    new Datos().insertarDatosEmpleado(datos);
+                    new Datos1().insertarDatosEmpleado(datos);
                 }else{
                     JOptionPane.showMessageDialog(this,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
                     new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'");
@@ -239,8 +239,8 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected void placeHolders(){
-        new PlaceHolder(txtNombre,"Primer y/o segundo nombre").inicialize();
-        new PlaceHolder(txtExp,"En años").inicialize();
+        new PlaceHolder1(txtNombre,"Primer y/o segundo nombre").inicialize();
+        new PlaceHolder1(txtExp,"En años").inicialize();
     }
     
     protected void showImage(String path){
@@ -296,7 +296,7 @@ public class formulario1 extends javax.swing.JFrame{
         miLoadJson = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(formulario1.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(formulario1.class.getName()).getIconImage());
 
         jLabel1.setText("Contraseña:");
 

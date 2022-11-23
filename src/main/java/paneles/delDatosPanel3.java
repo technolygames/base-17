@@ -1,8 +1,8 @@
 package paneles;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.logger;
-import clases.backuphandler.EscritorJson;
+import clases.backuphandler.EscritorJson1;
 //java
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -59,14 +59,14 @@ public class delDatosPanel3 extends javax.swing.JPanel{
     
     protected void deleteData(){
         String methodName="deleteData";
-        var datos=new Datos();
+        var datos=new Datos1();
         
         try{
             if(!jTextField1.getText().isEmpty()){
                 int codigo=Integer.parseInt(jTextField1.getText());
                 switch(JOptionPane.showConfirmDialog(this,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE)){
                     case 0:{
-                        new EscritorJson().writeDataProviderJson(codigo);
+                        new EscritorJson1().writeDataProviderJson(codigo);
                         datos.eliminarDatosProveedor(codigo);
                         break;
                     }

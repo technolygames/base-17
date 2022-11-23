@@ -1,8 +1,8 @@
 package venPrimarias;
 //clases
-import clases.Datos;
+import clases.Datos1;
 import clases.DbUtils;
-import clases.GuiMediaHandler;
+import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana2;
 import paneles.delDatosPanel2;
@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshPartners extends javax.swing.JFrame{
     public ltshPartners(){
         initComponents();
-        new GuiMediaHandler(ltshPartners.class.getName()).LookAndFeel(ltshPartners.this);
+        new MediaHandler(ltshPartners.class.getName()).LookAndFeel(ltshPartners.this);
         
         botones();
         datosMostrar();
@@ -145,7 +145,7 @@ public class ltshPartners extends javax.swing.JFrame{
         
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from socios;");
+            ps=new Datos1().getConnection().prepareStatement("select * from socios;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -185,7 +185,7 @@ public class ltshPartners extends javax.swing.JFrame{
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from socios where codigo_part=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -204,7 +204,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 1->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where nombre_part=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from socios where nombre_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -223,7 +223,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 2->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidop_part=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from socios where apellidop_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -242,7 +242,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 3->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidom_part=?;");
+                    ps=new Datos1().getConnection().prepareStatement("select * from socios where apellidom_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -349,7 +349,7 @@ public class ltshPartners extends javax.swing.JFrame{
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new GuiMediaHandler(ltshPartners.class.getName()).getIconImage());
+        setIconImage(new MediaHandler(ltshPartners.class.getName()).getIconImage());
 
         backButton.setText("Regresar");
 
