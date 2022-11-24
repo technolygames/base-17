@@ -11,7 +11,7 @@ public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new MediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
+        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
         
         setLocationRelativeTo(null);
         setTitle("Conteo de ventas");
@@ -22,7 +22,7 @@ public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal,Component panel){
         super(parent,modal);
         initComponents();
-        new MediaHandler(countViewer.class.getName()).LookAndFeel(countViewer.this);
+        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
         
         openPanel(panel);
         

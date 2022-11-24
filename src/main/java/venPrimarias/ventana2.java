@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
         initComponents();
-        new MediaHandler(ventana2.class.getName()).LookAndFeel(ventana2.this);
+        new MediaHandler(ventana2.class.getName()).setLookAndFeel(ventana2.this);
         
         botones();
         popup();

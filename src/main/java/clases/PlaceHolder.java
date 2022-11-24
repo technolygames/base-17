@@ -159,8 +159,8 @@ public class PlaceHolder{
         return this.font;
     }
     
-    public void setFont(String Font){
-        this.font=Font;
+    public void setFont(String font){
+        this.font=font;
     }
     
     public int getSize(){
@@ -204,12 +204,12 @@ public class PlaceHolder{
         }
     }
     
-    public void hideTextArea(JTextArea letra,String Mensaje){
-        if(letra.getText().equals(Mensaje)){
-            letra.setText("");
-            letra.setForeground(this.singleColor);
+    public void hideTextArea(JTextArea textArea,String text){
+        if(textArea.getText().equals(text)){
+            textArea.setText("");
+            textArea.setForeground(this.singleColor);
         }else{
-            letra.setForeground(this.singleColor);
+            textArea.setForeground(this.singleColor);
         }
     }
 }

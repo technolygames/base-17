@@ -41,6 +41,7 @@ public class MediaHandler{
     protected String icon;
     protected String image;
     protected String methodName;
+    protected String configDir="data/config/config.properties";
     
     protected Properties p;
     
@@ -99,11 +100,11 @@ public class MediaHandler{
      * 
      * @param componente en el que mostrará el diseño o color de fondo del programa.
      */
-    public void LookAndFeel(Component componente){
+    public void setLookAndFeel(Component componente){
         methodName="LookAndFeel";
         try{
             p=new Properties();
-            p.load(new FileInputStream("data/config/config.properties"));
+            p.load(new FileInputStream(configDir));
             UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
@@ -125,7 +126,7 @@ public class MediaHandler{
     
     public String getImagePath(String propName1,String propName2) throws FileNotFoundException,IOException{
         p=new Properties();
-        p.load(new FileInputStream("data/config/config.properties"));
+        p.load(new FileInputStream(configDir));
         String dir=p.getProperty(propName1);
         
         if(!new File(dir).exists()){
@@ -140,7 +141,7 @@ public class MediaHandler{
     
     public String getProgramName() throws FileNotFoundException,IOException{
         p=new Properties();
-        p.load(new FileReader("data/config/config.properties"));
+        p.load(new FileReader(configDir));
         return p.getProperty("nombre");
     }
 }

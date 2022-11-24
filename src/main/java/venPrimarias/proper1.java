@@ -39,7 +39,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public final class proper1 extends javax.swing.JFrame{
     public proper1(){
         initComponents();
-        new MediaHandler(proper1.class.getName()).LookAndFeel(proper1.this);
+        new MediaHandler(proper1.class.getName()).setLookAndFeel(proper1.this);
         
         botones();
         configIn();

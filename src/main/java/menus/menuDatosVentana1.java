@@ -13,7 +13,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     protected String title="Menú de Datos";
     public menuDatosVentana1(){
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -28,7 +28,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(int code){
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -43,7 +43,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(Component panel,int code){
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
@@ -60,7 +60,7 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
     
     public menuDatosVentana1(Component panel,boolean flag){
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(menuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();

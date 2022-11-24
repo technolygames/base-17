@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter;
 public final class start extends javax.swing.JFrame{
     public start(){
         initComponents();
-        new MediaHandler(start.class.getName()).LookAndFeel(start.this);
+        new MediaHandler(start.class.getName()).setLookAndFeel(start.this);
         
         botones();
         settings();

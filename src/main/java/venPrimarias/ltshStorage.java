@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshStorage extends javax.swing.JFrame{
     public ltshStorage(){
         initComponents();
-        new MediaHandler(ltshStorage.class.getName()).LookAndFeel(ltshStorage.this);
+        new MediaHandler(ltshStorage.class.getName()).setLookAndFeel(ltshStorage.this);
         
         botones();
         datosMostrar();

@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
         initComponents();
-        new MediaHandler(menuVentanas.class.getName()).LookAndFeel(menuVentanas.this);
+        new MediaHandler(menuVentanas.class.getName()).setLookAndFeel(menuVentanas.this);
         
         menu();
         botones();

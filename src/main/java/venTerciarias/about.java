@@ -22,7 +22,7 @@ public final class about extends javax.swing.JDialog{
     public about(java.awt.Frame parent, boolean modal){
         super(parent, modal);
         initComponents();
-        new MediaHandler(about.class.getName()).LookAndFeel(about.this);
+        new MediaHandler(about.class.getName()).setLookAndFeel(about.this);
         
         etiquetas();
         settings();

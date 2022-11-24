@@ -55,9 +55,9 @@ public class Validation{
      */
     public void toRestrictedForm(){
         if(puesto.equals("Dueño")||puesto.equals("Programador")||puesto.equals("Desarrollador")){
-            EventQueue.invokeLater(()->{
-                ventana.setVisible(true);
-            });
+            EventQueue.invokeLater(()->
+                ventana.setVisible(true)
+            );
             new logger(Level.INFO).staticLogger("Rel 5: validación correcta a '"+clase+"'.\nOcurrió en la clase '"+Validation.class.getName()+"', en el método 'toRestrictedForm()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
         }else{
             JOptionPane.showMessageDialog(null,"Acceso restringido","Error 38",JOptionPane.WARNING_MESSAGE);

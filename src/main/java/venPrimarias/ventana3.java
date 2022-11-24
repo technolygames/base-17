@@ -16,7 +16,7 @@ import java.util.logging.Level;
 public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
-        new MediaHandler(ventana3.class.getName()).LookAndFeel(ventana3.this);
+        new MediaHandler(ventana3.class.getName()).setLookAndFeel(ventana3.this);
         
         botones();
         settings();

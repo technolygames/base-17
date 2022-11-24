@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProviders extends javax.swing.JFrame{
     public ltshProviders(){
         initComponents();
-        new MediaHandler(ltshProviders.class.getName()).LookAndFeel(ltshProviders.this);
+        new MediaHandler(ltshProviders.class.getName()).setLookAndFeel(ltshProviders.this);
         
         botones();
         datosMostrar();

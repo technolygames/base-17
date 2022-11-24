@@ -12,7 +12,7 @@ import java.awt.BorderLayout;
 public class menuDatosVentana2 extends javax.swing.JFrame{
     public menuDatosVentana2(){
         initComponents();
-        new MediaHandler(menuDatosVentana2.class.getName()).LookAndFeel(menuDatosVentana2.this);
+        new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
         botones();
         settings();
@@ -27,7 +27,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
     
     public menuDatosVentana2(int code){
         initComponents();
-        new MediaHandler(menuDatosVentana2.class.getName()).LookAndFeel(menuDatosVentana2.this);
+        new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
         botones();
         settings();
@@ -42,7 +42,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
     
     public menuDatosVentana2(Component panel,int code){
         initComponents();
-        new MediaHandler(menuDatosVentana2.class.getName()).LookAndFeel(menuDatosVentana2.this);
+        new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
         botones();
         settings();
@@ -59,7 +59,7 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
     
     public menuDatosVentana2(Component panel,boolean flag){
         initComponents();
-        new MediaHandler(menuDatosVentana2.class.getName()).LookAndFeel(menuDatosVentana2.this);
+        new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
         botones();
         settings();

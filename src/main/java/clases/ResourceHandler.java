@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.MalformedURLException;
+import java.time.LocalDate;
+import java.sql.Date;
 //extension larga
 import java.util.logging.Level;
 
@@ -62,6 +64,36 @@ public class ResourceHandler{
             new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"1IO");
         }catch(IOException k){
             new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceHandler.class.getName(),methodName,"2IO");
+        }
+    }
+    
+    /**
+     * Verifica si el programa necesita ser actualizado revisando registros previos de actualización.
+     * 
+     * @param file que será validado si hay actualización pendiente.
+     * @param link del archivo a verificar usando internet.
+     * 
+     * @return un valor booleano en caso de que se deba actualizar o no el programa o archivo.
+     */
+    public boolean checkUpdate(String file,String link){
+        methodName="checkUpdate";
+        try{
+            u=new URL(link);
+            uc=u.openConnection();
+            
+            f=new File("data/generic/temp/"+file);
+            
+            LocalDate fechalocal1=LocalDate.parse(new Date(f.lastModified()).toString()/*,DateTimeFormatter.ofPattern("dd/MM/yyyy")*/);
+            
+            LocalDate fechalocal2=LocalDate.parse(new Date(uc.getIfModifiedSince()).toString()/*,DateTimeFormatter.ofPattern("dd/MM/yyyy")*/);
+            
+            return fechalocal1.equals(fechalocal2);
+        }catch(MalformedURLException e){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
+            return false;
+        }catch(IOException x){
+            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"2IO");
+            return false;
         }
     }
     

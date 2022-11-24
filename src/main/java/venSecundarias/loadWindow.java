@@ -11,7 +11,7 @@ import javax.swing.Timer;
 public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
         initComponents();
-        new MediaHandler(loadWindow.class.getName()).LookAndFeel(loadWindow.this);
+        new MediaHandler(loadWindow.class.getName()).setLookAndFeel(loadWindow.this);
         
         load();
         

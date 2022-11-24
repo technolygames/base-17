@@ -2,3 +2,6 @@ Ejemplos para el programador en caso de usar una de las clases del programa.
 
 -Método "downloadResources":
 new ResourceHandler().downloadResources("filename","extension","link");
+
+-Método "checkUpdate" - regresa un valor booleano:
+new ResourceHandler().checkUpdate("filename.extension","link");

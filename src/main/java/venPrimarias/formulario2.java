@@ -33,7 +33,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class formulario2 extends javax.swing.JFrame{
     public formulario2(){
         initComponents();
-        new MediaHandler(formulario2.class.getName()).LookAndFeel(formulario2.this);
+        new MediaHandler(formulario2.class.getName()).setLookAndFeel(formulario2.this);
          
         botones();
         settings();

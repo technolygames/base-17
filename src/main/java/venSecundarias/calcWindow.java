@@ -13,7 +13,7 @@ public final class calcWindow extends javax.swing.JDialog{
     public calcWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new MediaHandler(calcWindow.class.getName()).LookAndFeel(calcWindow.this);
+        new MediaHandler(calcWindow.class.getName()).setLookAndFeel(calcWindow.this);
         
         botones();
         settings();

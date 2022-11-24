@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
 public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
-        new MediaHandler(ltshOff.class.getName()).LookAndFeel(ltshOff.this);
+        new MediaHandler(ltshOff.class.getName()).setLookAndFeel(ltshOff.this);
         
         botones();
         datosMostrar();

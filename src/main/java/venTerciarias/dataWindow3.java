@@ -23,7 +23,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new MediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new MediaHandler(dataWindow3.class.getName()).setLookAndFeel(dataWindow3.this);
         
         botones();
         datosMostrar();
@@ -39,7 +39,7 @@ public class dataWindow3 extends javax.swing.JDialog{
     public dataWindow3(java.awt.Frame parent,boolean modal,int code){
         super(parent, modal);
         initComponents();
-        new MediaHandler(dataWindow3.class.getName()).LookAndFeel(dataWindow3.this);
+        new MediaHandler(dataWindow3.class.getName()).setLookAndFeel(dataWindow3.this);
         
         this.codigo=code;
         

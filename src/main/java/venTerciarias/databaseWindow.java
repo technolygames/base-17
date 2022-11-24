@@ -14,7 +14,7 @@ public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-        new MediaHandler(databaseWindow.class.getName()).LookAndFeel(databaseWindow.this);
+        new MediaHandler(databaseWindow.class.getName()).setLookAndFeel(databaseWindow.this);
         
         botones();
         

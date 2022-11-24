@@ -13,7 +13,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     public submenuDatosVentana1(java.awt.Frame parent,boolean modal){
         super(parent, modal);
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();
@@ -29,7 +29,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     public submenuDatosVentana1(java.awt.Frame parent,boolean modal,int code){
         super(parent,modal);
         initComponents();
-        new MediaHandler(menuDatosVentana1.class.getName()).LookAndFeel(submenuDatosVentana1.this);
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(submenuDatosVentana1.this);
         
         botones();
         settings();

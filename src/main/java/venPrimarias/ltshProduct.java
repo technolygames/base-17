@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ltshProduct extends javax.swing.JFrame{
     public ltshProduct(){
         initComponents();
-        new MediaHandler(ltshProduct.class.getName()).LookAndFeel(ltshProduct.this);
+        new MediaHandler(ltshProduct.class.getName()).setLookAndFeel(ltshProduct.this);
         
         botones();
         datosMostrar();
