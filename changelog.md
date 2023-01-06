@@ -1,3 +1,4 @@
+(3dec09b) -> reporte mejorado y funcional, opción para enviar un reporte a un socio agregada, clase logger modificada para que almacene de forma óptima los eventos destinados para almacenarse y reducción de código
 (e720977) -> Panel para checar si hay actualizaciones del programa creado, cambio de nombre al método Look And Feel de la clase MediaHandler y cambios menores
 (d7f6b43) -> Clase para descargar recursos y verificar si hay conectividad a internet actualizada, y cambios menores
 (2cd73e3) -> Cambios en el nombre de las clases
