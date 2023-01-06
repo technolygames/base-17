@@ -1,14 +1,16 @@
 package venPrimarias;
 //clases
-import clases.MediaHandler;
 import clases.logger;
-import paneles.updatePanel;
+import clases.MediaHandler;
+import clases.Validation;
 import paneles.databaseConfig;
 import paneles.databaseExport;
 import paneles.databaseImport;
+import paneles.environmentPanel;
 import paneles.partDataRestore;
 import paneles.provDataRestore;
-import paneles.environmentPanel;
+import paneles.smtpPanel;
+import paneles.updatePanel;
 import paneles.workerDataRestore;
 //java
 import java.awt.Component;
@@ -44,20 +46,38 @@ public class adminTools extends javax.swing.JFrame{
         try{
             Properties p=new Properties();
             p.load(new FileInputStream("data/config/env.properties"));
-            if(p.getProperty("local_mysql").isEmpty()){
+            if(!p.getProperty("local_mysql").isEmpty()){
                 for(JMenuItem c:items){
-                    c.setEnabled(false);
+                    c.setEnabled(true);
                 }
             }else{
                 for(JMenuItem c:items){
-                    c.setEnabled(true);
+                    c.setEnabled(false);
                 }
             }
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,adminTools.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,adminTools.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
+        }
+        
+        if(new Validation(start.USER_ROLE,adminTools.class.getName()).hasOwnerRole()){
+            jMenuItem9.setEnabled(true);
+        }else{
+            jMenuItem9.setEnabled(false);
+        }
+        
+        JMenuItem[] mi0=new JMenuItem[]{jMenuItem5,jMenuItem6,jMenuItem7};
+        
+        if(new Validation(start.USER_ROLE,adminTools.class.getName()).hasDevRole()){
+            for(JMenuItem mi1:mi0){
+                mi1.setEnabled(true);
+            }
+        }else{
+            for(JMenuItem mi1:mi0){
+                mi1.setEnabled(false);
+            }
         }
     }
     
@@ -94,8 +114,13 @@ public class adminTools extends javax.swing.JFrame{
         jMenuItem7.addActionListener(a->
             openPanel(new environmentPanel())
         );
+        
         jMenuItem8.addActionListener(a->
             openPanel(new updatePanel())
+        );
+        
+        jMenuItem9.addActionListener(a->
+            openPanel(new smtpPanel())
         );
     }
     
@@ -124,6 +149,7 @@ public class adminTools extends javax.swing.JFrame{
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(new clases.MediaHandler(adminTools.class.getName()).getIconImage());
@@ -163,6 +189,9 @@ public class adminTools extends javax.swing.JFrame{
 
         jMenuItem8.setText("Actualizar");
         jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setText("Correos");
+        jMenu3.add(jMenuItem9);
 
         jMenuBar1.add(jMenu3);
 
@@ -208,5 +237,6 @@ public class adminTools extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

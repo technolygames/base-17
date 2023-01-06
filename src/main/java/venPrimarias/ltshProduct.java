@@ -2,6 +2,7 @@ package venPrimarias;
 //clases
 import clases.Datos;
 import clases.DbUtils;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 //java
@@ -31,7 +32,7 @@ public class ltshProduct extends javax.swing.JFrame{
         pack();
     }
     
-    protected Object[] header;
+    protected static final Object[] header=new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"};
     protected String methodName;
     
     protected ResultSet rs;
@@ -84,13 +85,12 @@ public class ltshProduct extends javax.swing.JFrame{
         if(!txtBuscar.getText().isEmpty()){
             datosBuscar();
         }else{
-            new logger(Level.WARNING).storeAndViewError18(this,ltshProduct.class.getName(),methodName);
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
         }
     }
     
     protected final void datosMostrar(){
         methodName="datosMostrar";
-        header=new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"};
         
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
@@ -99,23 +99,19 @@ public class ltshProduct extends javax.swing.JFrame{
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
+                loadData(dtm,rs);
             }
-            jTable1.setRowSorter(sorter);
-            jTable1.getRowSorter().toggleSortOrder(0);
-            jTable1.getTableHeader().setReorderingAllowed(false);
-            jTable1.setModel(dtm);
+            Events.table(jTable1,sorter,dtm);
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProduct.class.getName(),methodName,"16");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"16");
         }
     }
     
     protected void datosBuscar(){
         methodName="datosBuscar";
-        header=new Object[]{"Código del producto","Código del empleado","Nombre del producto","Marca","Cantidad","Precio","Total","Fecha de compra"};
         
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
@@ -127,13 +123,9 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
+                        loadData(dtm,rs);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -144,13 +136,9 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
+                        loadData(dtm,rs);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -161,13 +149,9 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
+                        loadData(dtm,rs);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -178,13 +162,9 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     while(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prod"),rs.getInt("codigo_emp"),rs.getString("nombre_prod"),rs.getString("marca"),rs.getInt("cantidad"),rs.getInt("precio"),rs.getInt("total"),rs.getString("fecha_compra")});
+                        loadData(dtm,rs);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -194,18 +174,22 @@ public class ltshProduct extends javax.swing.JFrame{
                 }
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProduct.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshProduct.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
         }catch(ArrayIndexOutOfBoundsException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshProduct.class.getName(),methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"AIOOBE");
         }catch(IndexOutOfBoundsException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,ltshProduct.class.getName(),methodName,"IOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"IOOBE");
         }
     }
     
     protected void textField(String text){
         txtBuscar.setText(text);
+    }
+    
+    protected void loadData(DefaultTableModel dtm1,ResultSet rs1) throws SQLException{
+        dtm1.addRow(new Object[]{rs1.getInt("codigo_prod"),rs1.getInt("codigo_emp"),rs1.getString("nombre_prod"),rs1.getString("marca"),rs1.getInt("cantidad"),rs1.getInt("precio"),rs1.getInt("total"),rs1.getString("fecha_compra")});
     }
     
     @SuppressWarnings("unchecked")

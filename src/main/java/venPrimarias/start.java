@@ -40,17 +40,15 @@ public final class start extends javax.swing.JFrame{
     
     protected String methodName;
     
-    
-    
     protected JTextField campos;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    public static int userID;
+    public static int USERID;
     
-    public static String nameUser;
-    public static String role;
+    public static String USERNAME;
+    public static String USER_ROLE;
     
     protected final void settings(){
         methodName="settings";
@@ -58,9 +56,9 @@ public final class start extends javax.swing.JFrame{
         try{
             nameLabel.setText(mh.getProgramName());
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
         }
         picLabel.setIcon(new ImageIcon(new ImageIcon(mh.getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
@@ -102,9 +100,11 @@ public final class start extends javax.swing.JFrame{
                 if(rs.next()){
                     new loadWindow().setVisible(true);
                     dispose();
-                    nameUser=rs.getString("nombre_emp");
-                    userID=rs.getInt("codigo_emp");
-                    role=rs.getString("puesto");
+                    
+                    //variables
+                    USERID=rs.getInt("codigo_emp");
+                    USERNAME=rs.getString("nombre_emp");
+                    USER_ROLE=rs.getString("puesto");
                     
                     /*revisar la edad del empleado*/{
                         String fn=rs.getString("fecha_nacimiento");
@@ -112,10 +112,10 @@ public final class start extends javax.swing.JFrame{
                         String edad2=String.valueOf(Period.between(LocalDate.parse(fn,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
                         
                         if(!edad2.equals(String.valueOf(edad1))){
-                            new logger(Level.INFO).staticLogger("no es igual");
-                            datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),userID,false);
+                            logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
+                            datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),USERID,false);
                         }else{
-                            new logger(Level.INFO).staticLogger("es igual");
+                            logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
                         }
                     }
                     
@@ -124,41 +124,41 @@ public final class start extends javax.swing.JFrame{
                         int exp=rs.getInt("experiencia");
                         String as=String.valueOf(Period.between(LocalDate.parse(fi,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
                         if(!as.equals(String.valueOf(exp))){
-                            new logger(Level.INFO).staticLogger("no es igual");
-                            datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(as),userID,false);
+                            logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
+                            datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(as),USERID,false);
                         }else{
-                            new logger(Level.INFO).staticLogger("es igual");
+                            logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
                         }
                     }
                     
                     /*revisar registros en conteo*/{
                         ps=datos.getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
-                        ps.setInt(1,userID);
+                        ps.setInt(1,USERID);
                         ps.setString(2,LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
                         ResultSet rs2=ps.executeQuery();
                         if(!rs2.next()){
-                            new logger(Level.INFO).staticLogger("1; no hay");
-                            new Datos().insertarDatosConteo(rs.getInt("codigo_emp"),rs.getString("nombre_emp"),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                            logger.staticLogger(Level.INFO,"1; no hay",this.getClass().getName());
+                            new Datos().insertarDatosConteo(USERID,USERNAME,rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
-                            new logger(Level.INFO).staticLogger("2; si hay");
+                            logger.staticLogger(Level.INFO,"2; si hay",this.getClass().getName());
                         }
                     }
                     
-                    new DisplayNotification().trayNotify("Inicio de sesión","Bienvenido, "+nameUser,MessageType.INFO);
-                    new logger(Level.INFO).staticLogger("Inicio de sesión correcto.\nOcurrió en la clase '"+start.class.getName()+"', en el método 'login()'.\nUsuario logeado: "+userID);
+                    DisplayNotification.trayNotify("Inicio de sesión","Bienvenido, "+USERNAME,MessageType.INFO);
+                    logger.staticLogger(Level.INFO,"Inicio de sesión correcto.\nOcurrió en el método 'login()'.\nUsuario logeado: "+USERNAME,this.getClass().getName());
                 }else{
-                    new logger(Level.WARNING).storeAndViewError18(this,start.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING).storeAndViewError14(this,start.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"9");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"9");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
         }
     }
     

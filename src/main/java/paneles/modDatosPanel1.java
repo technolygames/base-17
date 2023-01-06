@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
@@ -99,7 +98,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -135,7 +134,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -172,7 +171,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -209,7 +208,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -246,7 +245,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -283,7 +282,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -321,7 +320,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -358,7 +357,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -395,7 +394,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -432,7 +431,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -469,7 +468,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
                 
@@ -506,7 +505,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -544,7 +543,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -604,20 +603,20 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     etiEdad.setText(String.valueOf(rs.getInt("edad")));
                     etiEstado.setText(rs.getString("estado"));
                 }else{
-                    new logger(Level.WARNING).storeAndViewError14(this,modDatosPanel1.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING).storeAndViewError18(this,modDatosPanel1.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modDatosPanel1.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }
     }
     
-    protected void enabledComponents(boolean flag1, boolean flag2){
+    protected final void enabledComponents(boolean flag1, boolean flag2){
         if(flag2){
             txtSearch.setEnabled(flag1);
             searchButton.setEnabled(flag1);
@@ -929,49 +928,49 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,modDatosPanel1.class.getName(),"txtNombreKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtNombreKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyPressed
     
     private void txtAPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,modDatosPanel1.class.getName(),"txtAPKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAPKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAPKeyPressed
     
     private void txtAMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,modDatosPanel1.class.getName(),"txtAMKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAMKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAMKeyPressed
     
     private void txtExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,modDatosPanel1.class.getName(),"txtExpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtExpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtExpKeyPressed
     
     private void txtGEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGEKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,modDatosPanel1.class.getName(),"txtGEKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtGEKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtGEKeyPressed
     
     private void txtContactoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,modDatosPanel1.class.getName(),"txtContactoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtContactoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
     private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,modDatosPanel1.class.getName(),"txtEdadKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtEdadKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed

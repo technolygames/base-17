@@ -40,17 +40,16 @@ public class environmentPanel extends javax.swing.JPanel{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
         }
     }
     
     protected final void botones(){
         closeButton.addActionListener(a->{
             if(!jTextField1.getText().equals(direccion)){
-                int option=JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(option==0){
+                if(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar el panel?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)==0){
                     setVisible(false);
                 }
             }else{
@@ -80,11 +79,11 @@ public class environmentPanel extends javax.swing.JPanel{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"40");
             }catch(IOException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(null,n,environmentPanel.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,n,methodName,"0");
             }
         });
     }
@@ -100,14 +99,14 @@ public class environmentPanel extends javax.swing.JPanel{
                 p.store(new FileOutputStream("data/config/env.properties"),"EnvironmentVariables");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+environmentPanel.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
             }else{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,environmentPanel.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,environmentPanel.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
         }
     }
     

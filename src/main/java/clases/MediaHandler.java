@@ -3,6 +3,7 @@ package clases;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Component;
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -40,8 +41,9 @@ public class MediaHandler{
     
     protected String icon;
     protected String image;
-    protected String methodName;
     protected String configDir="data/config/config.properties";
+    protected String className=this.getClass().getName();
+    protected String methodName;
     
     protected Properties p;
     
@@ -55,10 +57,10 @@ public class MediaHandler{
         try{
             return Toolkit.getDefaultToolkit().getImage(getImagePath("imagenes","imagen_respaldo"));
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),e,methodName,"1IO");
             return null;
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,clase,methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),x,methodName,"2IO");
             return null;
         }
     }
@@ -74,10 +76,10 @@ public class MediaHandler{
         try{
             return Toolkit.getDefaultToolkit().getImage(getImagePath("icono","icono_respaldo"));
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,clase,methodName,"1IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),e,methodName,"1IO");
             return null;
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,clase,methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),x,methodName,"2IO");
             return null;
         }
     }
@@ -108,19 +110,19 @@ public class MediaHandler{
             UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,e,clase,methodName,"CNFE");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,e,methodName,"CNFE");
         }catch(InstantiationException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,x,clase,methodName,"IE");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,x,methodName,"IE");
         }catch(IllegalAccessException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,n,clase,methodName,"IAE");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,n,methodName,"IAE");
         }catch(UnsupportedLookAndFeelException y){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,y,clase,methodName,"28");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,y,methodName,"28");
         }catch(NullPointerException k){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,k,clase,methodName,"0");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,k,methodName,"0");
         }catch(FileNotFoundException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,s,clase,methodName,"1IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,s,methodName,"1IO");
         }catch(IOException d){
-            new logger(Level.SEVERE).storeAndViewCaughtException(componente,d,clase,methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,d,methodName,"2IO");
         }
     }
     
@@ -137,6 +139,14 @@ public class MediaHandler{
             }
         }
         return dir;
+    }
+    
+    public static Frame getFrames(){
+        Frame f=null;
+        for(Frame f1:Frame.getFrames()){
+            f=f1;
+        }
+        return f;
     }
     
     public String getProgramName() throws FileNotFoundException,IOException{

@@ -1,5 +1,6 @@
 package clases;
 //java
+import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,36 +20,42 @@ import java.util.logging.Level;
  * @author erick
  */
 public class ResourceHandler{
-    protected String methodName;
+    protected ResourceHandler(){}
     
-    protected File f;
-    protected InputStream is;
-    protected FileOutputStream fos;
+    protected static Frame frame=MediaHandler.getFrames();
     
-    protected URL u;
-    protected URLConnection uc;
+    protected static String methodName;
+    protected static String className=ResourceHandler.class.getName();
+    protected static String path0="data/generic/temp/";
+    
+    protected static File f;
+    protected static InputStream is;
+    protected static FileOutputStream fos;
+    
+    protected static URL u;
+    protected static URLConnection uc;
     
     /**
      * Método encargado de descargar de internet los recursos del programa.
      * 
-     * @param archivo que se validará y guardará.
-     * @param ext Extensión del archivo.
      * @param link del recurso a decargar.
      */
-    public void downloadResources(String archivo,String ext,String link){
+    public static void downloadResources(String link){
         methodName="downloadLibs";
-        f=new File("data/generic/temp/"+archivo+"."+ext);
-        for(int i=0;f.exists();i++){
-            f=new File("data/generic/temp/"+archivo+"-"+i+"."+ext);
-        }
         try{
             while(checkConnection(link)!=null){
+                u=new URL(link);
+                uc=u.openConnection();
+                
+                String file=u.getFile();
+                
+                f=new File(path0+file);
+                
+                String path1=Dirs.exists(f);
+                
                 if(!f.exists()&&f.length()==0){
-                    u=new URL(link);
-                    uc=u.openConnection();
-                    
                     is=uc.getInputStream();
-                    fos=new FileOutputStream(f.getPath());
+                    fos=new FileOutputStream(path1);
                     
                     new Thread1(is,fos).run();
                 }
@@ -59,11 +66,11 @@ public class ResourceHandler{
             fos.flush();
             fos.close();
         }catch(MalformedURLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1I");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"1IO");
         }catch(IOException k){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,ResourceHandler.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,k,methodName,"2IO");
         }
     }
     
@@ -75,13 +82,13 @@ public class ResourceHandler{
      * 
      * @return un valor booleano en caso de que se deba actualizar o no el programa o archivo.
      */
-    public boolean checkUpdate(String file,String link){
+    public static boolean checkUpdate(String file,String link){
         methodName="checkUpdate";
         try{
             u=new URL(link);
             uc=u.openConnection();
             
-            f=new File("data/generic/temp/"+file);
+            f=new File(path0+file);
             
             LocalDate fechalocal1=LocalDate.parse(new Date(f.lastModified()).toString()/*,DateTimeFormatter.ofPattern("dd/MM/yyyy")*/);
             
@@ -89,10 +96,10 @@ public class ResourceHandler{
             
             return fechalocal1.equals(fechalocal2);
         }catch(MalformedURLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,ResourceHandler.class.getName(),methodName,"1I");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1I");
             return false;
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,ResourceHandler.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"2IO");
             return false;
         }
     }
@@ -107,7 +114,7 @@ public class ResourceHandler{
      * @throws MalformedURLException
      * @throws IOException
      */
-    public String checkConnection(String url) throws MalformedURLException,IOException{
+    protected static String checkConnection(String url) throws MalformedURLException,IOException{
         u=new URL(url);
         uc=u.openConnection();
         

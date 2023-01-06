@@ -24,11 +24,11 @@ public class workerDataRestore extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        closeButton.addActionListener((a)->{
-            setVisible(false);
-        });
+        closeButton.addActionListener(a->
+            setVisible(false)
+        );
         
-        searchButton.addActionListener((a)->{
+        searchButton.addActionListener(a->{
             filechooser=new JFileChooser("data/databackup/Empleados");
             
             filechooser.setMultiSelectionEnabled(false);
@@ -50,9 +50,9 @@ public class workerDataRestore extends javax.swing.JPanel{
             }
         });
         
-        loadDataButton.addActionListener((a)->{
-            new LectorJson().readDataWorkerJson(jTextField1.getText());
-        });
+        loadDataButton.addActionListener(a->
+            new LectorJson().readDataWorkerJson(jTextField1.getText())
+        );
     }
     
     protected void unlockLoadButton(){

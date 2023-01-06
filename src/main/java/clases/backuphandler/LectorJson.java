@@ -1,11 +1,13 @@
 package clases.backuphandler;
 //clases
 import clases.Datos;
+import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
 //librerías
 import com.google.gson.stream.JsonReader;
+import java.awt.Frame;
 //java
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,6 +26,8 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class LectorJson{
+    protected Frame frame=MediaHandler.getFrames();
+    
     protected JsonReader jsonr;
     
     protected int numeroVentas;
@@ -74,13 +78,13 @@ public class LectorJson{
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
         }
     }
     
@@ -138,13 +142,13 @@ public class LectorJson{
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
         }
     }
     
@@ -182,13 +186,13 @@ public class LectorJson{
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,LectorJson.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,LectorJson.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,LectorJson.class.getName(),methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,s,LectorJson.class.getName(),methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
         }
     }
 }

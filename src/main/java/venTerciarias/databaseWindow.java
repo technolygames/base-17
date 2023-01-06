@@ -7,8 +7,8 @@ import paneles.databaseImport;
 //java
 import java.awt.EventQueue;
 import java.sql.SQLException;
+//extension larga
 import java.util.logging.Level;
-import javax.swing.JOptionPane;
 
 public class databaseWindow extends javax.swing.JDialog{
     public databaseWindow(java.awt.Frame parent,boolean modal){
@@ -37,7 +37,7 @@ public class databaseWindow extends javax.swing.JDialog{
                 new Datos().crearBD(jTextField1.getText());
                 databaseImport.jTextField3.setText(jTextField1.getText());
             }catch(SQLException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseWindow.class.getName(),"botones.create","5E");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,"botones.create","5E");
             }
         });
     }

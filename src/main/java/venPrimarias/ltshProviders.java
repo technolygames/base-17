@@ -2,6 +2,7 @@ package venPrimarias;
 //clases
 import clases.Datos;
 import clases.DbUtils;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import menus.menuDatosVentana3;
@@ -44,7 +45,7 @@ public class ltshProviders extends javax.swing.JFrame{
         pack();
     }
     
-    protected Object[] header;
+    protected static final Object[] header=new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"};
     protected String methodName;
     
     protected ResultSet rs;
@@ -88,13 +89,8 @@ public class ltshProviders extends javax.swing.JFrame{
         jTable1.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseReleased(MouseEvent a){
-                int row=jTable1.rowAtPoint(a.getPoint());
-                if(row>=0&&row<jTable1.getRowCount()){
-                    jTable1.setRowSelectionInterval(row,row);
-                }else{
-                    jTable1.clearSelection();
-                }
-                showPopup(a);
+                Events.clearTableSelection(jTable1,a);
+                Events.showPopup(popupMenu,a);
             }
         });
         
@@ -121,66 +117,35 @@ public class ltshProviders extends javax.swing.JFrame{
             datosBuscar();
             mostrarBoton(true);
         }else{
-            new logger(Level.WARNING).storeAndViewError18(this,ltshProviders.class.getName(),methodName);
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
         }
     }
     
     protected final void datosMostrar(){
         methodName="datosMostrar";
-        header=new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"};
         
-        dtm=new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                //all cells false
-                return false;
-            }
-        };
-        
-        for(int i=0;i<dtm.getRowCount();i++){
-            for(int j=0;j<dtm.getColumnCount();j++){
-                dtm.isCellEditable(i,j);
-            }
-        }
-        
+        dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             ps=new Datos().getConnection().prepareStatement("select * from proveedor;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                loadData(dtm,rs);
             }
-            jTable1.setRowSorter(sorter);
-            jTable1.getRowSorter().toggleSortOrder(0);
-            jTable1.getTableHeader().setReorderingAllowed(false);
-            jTable1.setModel(dtm);
+            Events.table(jTable1,sorter, dtm);
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProviders.class.getName(),methodName,"16");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"16");
         }
     }
     
     protected void datosBuscar(){
         methodName="datosBuscar";
-        header=new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"};
         
-        dtm=new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                //all cells false
-                return false;
-            }
-        };
-        
-        for(int i=0;i<dtm.getRowCount();i++){
-            for(int j=0;j<dtm.getColumnCount();j++){
-                dtm.isCellEditable(i,j);
-            }
-        }
-        
+        dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
@@ -190,15 +155,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -209,15 +170,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -228,15 +185,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -247,15 +200,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -266,15 +215,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -285,15 +230,11 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
                     if(rs.next()){
-                        dtm.addRow(new Object[]{rs.getInt("codigo_prov"),rs.getString("nombre_prov"),rs.getString("apellidop_prov"),rs.getString("apellidom_prov"),rs.getString("empresa"),rs.getInt("contacto"),rs.getString("fecha_ingreso"),rs.getString("fecha_uentrega")});
+                        loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING).storeAndViewError14(this,ltshProviders.class.getName(),methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                     }
-                    jTable1.setRowSorter(sorter);
-                    jTable1.getRowSorter().toggleSortOrder(0);
-                    jTable1.getTableHeader().setReorderingAllowed(false);
-                    jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                    jTable1.setModel(dtm);
+                    Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
                     ps.close();
                     rs.close();
@@ -303,13 +244,13 @@ public class ltshProviders extends javax.swing.JFrame{
                 }
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshProviders.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ltshProviders.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
         }catch(ArrayIndexOutOfBoundsException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ltshProviders.class.getName(),methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"AIOOBE");
         }catch(IndexOutOfBoundsException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,ltshProviders.class.getName(),methodName,"IOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"IOOBE");
         }
     }
     
@@ -352,12 +293,6 @@ public class ltshProviders extends javax.swing.JFrame{
         popupMenu.add(mi3);
     }
     
-    protected void showPopup(MouseEvent a){
-        if(a.isPopupTrigger()){
-            popupMenu.show(a.getComponent(),a.getX(),a.getY());
-        }
-    }
-    
     protected void mostrarBoton(boolean flag){
         if(flag){
             jButton1.setVisible(true);
@@ -370,6 +305,10 @@ public class ltshProviders extends javax.swing.JFrame{
     
     protected void textField(String text){
         txtBuscar.setText(text);
+    }
+    
+    protected void loadData(DefaultTableModel dtm1,ResultSet rs1) throws SQLException{
+        dtm1.addRow(new Object[]{rs1.getInt("codigo_prov"),rs1.getString("nombre_prov"),rs1.getString("apellidop_prov"),rs1.getString("apellidom_prov"),rs1.getString("empresa"),rs1.getInt("contacto"),rs1.getString("fecha_ingreso"),rs1.getString("fecha_uentrega")});
     }
     
     @SuppressWarnings("unchecked")

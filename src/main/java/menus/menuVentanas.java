@@ -25,10 +25,10 @@ import venTerciarias.dataWindow1;
 import java.awt.Image;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
-import javax.swing.JOptionPane;
 
 public final class menuVentanas extends javax.swing.JFrame{
     public menuVentanas(){
@@ -47,11 +47,10 @@ public final class menuVentanas extends javax.swing.JFrame{
     
     protected Properties p;
     
-    protected String rol=start.role;
+    protected String rol=start.USER_ROLE;
     
     protected final void settings(){
-        String nombre=start.nameUser;
-        jMenuItem2.setText(nombre);
+        jMenuItem2.setText(start.USERNAME);
         picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
@@ -107,7 +106,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         closeButton.addActionListener(a->{
             switch(JOptionPane.showConfirmDialog(this,"¿Deseas cerrar el programa?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE)){
                 case 0:
-                    new logger(Level.OFF).staticLogger("Programa cerrado");
+                    logger.staticLogger(Level.OFF,"Programa cerrado",this.getClass().getName());
                     System.exit(0);
                     dispose();
                     break;
@@ -126,7 +125,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         );
         
         jMenuItem2.addActionListener(a->
-            new dataWindow1(new javax.swing.JFrame(),true,start.userID).setVisible(true)
+            new dataWindow1(new javax.swing.JFrame(),true,start.USERID).setVisible(true)
         );
         
         jMenuItem3.addActionListener(a->
@@ -140,8 +139,8 @@ public final class menuVentanas extends javax.swing.JFrame{
     
     protected void logout(){
         new start().setVisible(true);
-        new DisplayNotification().trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
-        new logger(Level.INFO).staticLogger("Sesión finalizada.\nOcurrió en la clase '"+menuVentanas.class.getName()+"', en el método 'logout()'.\nUsuario que terminó sesión: "+jMenuItem2.getText());
+        DisplayNotification.trayNotify("Has cerrado sesión","Hasta luego, "+jMenuItem2.getText(),MessageType.INFO);
+        logger.staticLogger(Level.INFO,"Sesión finalizada.\nOcurrió en el método 'logout()'.\nUsuario que terminó sesión: "+jMenuItem2.getText(),this.getClass().getName());
         dispose();
     }
     

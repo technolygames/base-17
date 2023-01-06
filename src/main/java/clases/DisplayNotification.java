@@ -16,6 +16,10 @@ import java.awt.TrayIcon.MessageType;
  * @author erick
  */
 public class DisplayNotification{
+    protected DisplayNotification(){}
+    
+    protected static final String CLASSNAME=DisplayNotification.class.getName();
+    
     /**
      * Método encargado en mostrar una notificiación usando es sistema de notificaciones que usa el sistema operativo.
      * 
@@ -23,10 +27,10 @@ public class DisplayNotification{
      * @param message que se mostrará en la notificación.
      * @param messageType de la notificación (puede ser ERROR, INFO, NONE y WARNING).
      */
-    public void trayNotify(String notification,String message,MessageType messageType){
+    public static void trayNotify(String notification,String message,MessageType messageType){
         String methodName="trayNotify";
         SystemTray st=SystemTray.getSystemTray();
-        MediaHandler mh=new MediaHandler(DisplayNotification.class.getName());
+        MediaHandler mh=new MediaHandler(CLASSNAME);
         try{
             TrayIcon ti=new TrayIcon(mh.getIconImage());
             while(SystemTray.isSupported()){
@@ -38,13 +42,13 @@ public class DisplayNotification{
             }
             st.remove(ti);
         }catch(AWTException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,DisplayNotification.class.getName(),methodName,"24");
+            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,e,methodName,"24");
         }catch(UnsupportedOperationException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,DisplayNotification.class.getName(),methodName,"25");
+            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,x,methodName,"25");
         }catch(FileNotFoundException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,DisplayNotification.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,n,methodName,"1IO");
         }catch(IOException k){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,k,DisplayNotification.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,k,methodName,"2IO");
         }
     }
 }

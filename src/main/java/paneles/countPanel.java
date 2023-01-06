@@ -49,7 +49,7 @@ public class countPanel extends javax.swing.JPanel{
                 loadData(rs);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,countPanel.class.getName(),"datosMostrar","14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,"datosMostrar","14");
         }
     }
     

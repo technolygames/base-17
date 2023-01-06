@@ -63,14 +63,14 @@ public class paymentWindow extends javax.swing.JDialog{
             "Total"
         });
         
-        for(var i=0;i<ventana1.dtm.getRowCount();i++){
+        for(var i=0;i<ventana1.DTM.getRowCount();i++){
             dtm.addRow(new Object[]{
-                ventana1.dtm.getValueAt(i,0),
-                ventana1.dtm.getValueAt(i,1),
-                ventana1.dtm.getValueAt(i,2),
-                ventana1.dtm.getValueAt(i,3), 
-                ventana1.dtm.getValueAt(i,4),
-                ventana1.dtm.getValueAt(i,5)
+                ventana1.DTM.getValueAt(i,0),
+                ventana1.DTM.getValueAt(i,1),
+                ventana1.DTM.getValueAt(i,2),
+                ventana1.DTM.getValueAt(i,3), 
+                ventana1.DTM.getValueAt(i,4),
+                ventana1.DTM.getValueAt(i,5)
             });
         }
         
@@ -104,8 +104,7 @@ public class paymentWindow extends javax.swing.JDialog{
         
         cancelButton.addActionListener(a->{
             if(estado){
-                int i=JOptionPane.showConfirmDialog(this,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if(i==0){
+                if(JOptionPane.showConfirmDialog(this,"¿Deseas cancelar la compra?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)==0){
                     setVisible(false);
                     dispose();
                 }
@@ -172,16 +171,16 @@ public class paymentWindow extends javax.swing.JDialog{
                         Aquí deberá ir el código para que se pague con tarjeta
                         Here will being the code for payment with card
                         */
-                        ticket.imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),false);
+                        ticket.imprimirTicket(jTable1,jLabel2.getText(),Integer.parseInt(jLabel4.getText()),jComboBox1.getSelectedItem().toString(),Integer.parseInt(jLabel6.getText()),false);
                         break;
                     }
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,paymentWindow.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }catch(SQLException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,paymentWindow.class.getName(),methodName,"12");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"12");
             }
         });
     }
@@ -189,7 +188,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void calc1(){
         methodName="calc1";
         
-        jLabel2.setText(String.valueOf(ventana1.codigo_emp));
+        jLabel2.setText(String.valueOf(ventana1.CODIGO_EMP));
         try{
             int res=0;
             for(int i=0;i<dtm.getRowCount();i++){
@@ -198,7 +197,7 @@ public class paymentWindow extends javax.swing.JDialog{
             }
             jLabel4.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
         }
     }
     
@@ -212,10 +211,10 @@ public class paymentWindow extends javax.swing.JDialog{
                 var cal2=Integer.parseInt(jLabel4.getText())-cal;
                 jLabel4.setText(String.valueOf(Math.round(cal2)));
             }else{
-                new logger(Level.WARNING).storeAndViewError14(this,paymentWindow.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,paymentWindow.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }
     }
     
@@ -246,7 +245,7 @@ public class paymentWindow extends javax.swing.JDialog{
         datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
         JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+paymentWindow.class.getName()+"', en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'readTable()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
     }
     
     protected void windowState(){

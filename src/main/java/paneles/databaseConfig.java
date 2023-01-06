@@ -39,9 +39,9 @@ public class databaseConfig extends javax.swing.JPanel{
             jTextField4.setText(p.getProperty("ip"));
             jTextField5.setText(p.getProperty("port"));
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseConfig.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseConfig.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
         }
     }
     
@@ -70,18 +70,18 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.store(new FileOutputStream("data/config/databaseInfo.properties"),"DatabaseConfig");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+databaseConfig.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
             }else{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseConfig.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(NumberFormatException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseConfig.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"32");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,databaseConfig.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
         }catch(IOException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,databaseConfig.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"2IO");
         }
     }
     

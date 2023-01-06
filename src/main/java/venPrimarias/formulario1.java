@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
@@ -77,13 +76,13 @@ public class formulario1 extends javax.swing.JFrame{
             dispose();
         });
         
-        jMenuItem1.addActionListener(a->{
-            new menuDatosVentana1().setVisible(true);
-        });
+        jMenuItem1.addActionListener(a->
+            new menuDatosVentana1().setVisible(true)
+        );
         
-        jMenuItem2.addActionListener(a->{
-            clearImage();
-        });
+        jMenuItem2.addActionListener(a->
+            clearImage()
+        );
         
         miClearFields.addActionListener(a->{
             campos.setText("");
@@ -114,11 +113,11 @@ public class formulario1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario1.class.getName(),methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario1.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario1.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
             }
         });
         
@@ -129,7 +128,7 @@ public class formulario1 extends javax.swing.JFrame{
             jfc.setAcceptAllFileFilterUsed(false);
             jfc.setFileFilter(new FileNameExtensionFilter("Archivos JSON","json"));
             
-            if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
+            if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(this)){
                 File f=jfc.getSelectedFile();
                 loadFromJson(f.getPath());
             }
@@ -163,19 +162,18 @@ public class formulario1 extends javax.swing.JFrame{
                     
                     new Datos().insertarDatosEmpleado(datos);
                 }else{
-                    JOptionPane.showMessageDialog(this,"Error:\nIngrese los datos que se solicitan","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario1.class.getName()+"', en el método 'botones(storeButton)'");
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario1.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario1.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }catch(NumberFormatException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario1.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"32");
             }catch(ArrayIndexOutOfBoundsException k){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,k,formulario1.class.getName(),methodName,"AIOOBE");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,k,methodName,"AIOOBE");
             }catch(SQLException s){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,s,formulario1.class.getName(),methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"11");
             }
         });
         
@@ -186,7 +184,7 @@ public class formulario1 extends javax.swing.JFrame{
                     try{
                         calcAge();
                     }catch(DateTimeParseException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(formulario1.this,e,formulario1.class.getName(),"botones.txtEdad","0");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(formulario1.this,e,"botones.txtEdad","0");
                     }
                 }
             }
@@ -225,7 +223,7 @@ public class formulario1 extends javax.swing.JFrame{
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
         }
     }
     
@@ -547,56 +545,56 @@ public class formulario1 extends javax.swing.JFrame{
     
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtCodigoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario1.class.getName(),"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtNombreKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario1.class.getName(),"txtNombreKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtNombreKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyPressed
     
     private void txtAPKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAPKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario1.class.getName(),"txtAPKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAPKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAPKeyPressed
     
     private void txtAMKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario1.class.getName(),"txtAMKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAMKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAMKeyPressed
     
     private void txtExpKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtExpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario1.class.getName(),"txtExpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtExpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtExpKeyPressed
     
     private void txtEstudiosKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEstudiosKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario1.class.getName(),"txtEstudiosKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtEstudiosKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEstudiosKeyPressed
     
     private void txtContactoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtContactoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario1.class.getName(),"txtContactoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtContactoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
     private void txtEdadKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEdadKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario1.class.getName(),"txtEdadKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtEdadKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed

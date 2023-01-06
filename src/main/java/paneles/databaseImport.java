@@ -56,9 +56,9 @@ public class databaseImport extends javax.swing.JPanel{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
         }
     }
     
@@ -91,7 +91,7 @@ public class databaseImport extends javax.swing.JPanel{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(IOException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
             }
         });
         
@@ -121,13 +121,13 @@ public class databaseImport extends javax.swing.JPanel{
                 new Thread(new Thread1(is,pr.getOutputStream())).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 2E: se importó correctamente la base de datos.\nOcurrió en la clase '"+databaseImport.class.getName()+"', en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Rel 2E: se importó correctamente la base de datos.\nOcurrió en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
                 
                 is.close();
             }catch(IOException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }
         }).start();
     }
@@ -143,9 +143,9 @@ public class databaseImport extends javax.swing.JPanel{
                         p.setProperty("database",jTextField3.getText());
                         p.store(new FileOutputStream("data/config/databaseInfo.properties"),"DatabaseConfig");
                     }catch(FileNotFoundException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseImport.class.getName(),methodName,"1IO");
+                        new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
                     }catch(IOException x){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseImport.class.getName(),methodName,"2IO");
+                        new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
                     }
                     break;
                 }

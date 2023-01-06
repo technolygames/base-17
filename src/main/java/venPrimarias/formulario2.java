@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
@@ -102,11 +101,11 @@ public class formulario2 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario2.class.getName(),methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario2.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario2.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
             }
         });
         
@@ -144,22 +143,22 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     new Datos().insertarDatosSocio(lista);
                 }else{
-                    JOptionPane.showMessageDialog(this,"Error: escribe los datos faltantes","Error 18",JOptionPane.WARNING_MESSAGE);
-                    new logger(Level.WARNING).staticLogger("Error 18: no se escribieron o faltan datos en los campos.\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'botones(storeButton)'");
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,formulario2.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,formulario2.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }catch(NumberFormatException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,formulario2.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"32");
             }catch(SQLException s){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,s,formulario2.class.getName(),methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"11");
             }
         });
     }
     
     protected void loadFromJson(String path){
+        methodName="loadFromJson";
         try{
             JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
             jsonr.beginObject();
@@ -181,9 +180,7 @@ public class formulario2 extends javax.swing.JFrame{
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            JOptionPane.showMessageDialog(this,"Error:\n"+e.getMessage(),"Error 2IO",JOptionPane.ERROR_MESSAGE);
-            new logger(Level.SEVERE).staticLogger("Error 2IO: "+e.getMessage()+".\nOcurrió en la clase '"+formulario2.class.getName()+"', en el método 'loadFromJson()'");
-            new logger(Level.SEVERE).exceptionLogger(formulario2.class.getName(),"loadFromJson-2IO",e.fillInStackTrace());
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
         }
     }
     
@@ -401,28 +398,28 @@ public class formulario2 extends javax.swing.JFrame{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,formulario2.class.getName(),"jTextField1KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField2KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField3KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField3KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,formulario2.class.getName(),"jTextField4KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField4KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed

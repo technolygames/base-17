@@ -20,7 +20,6 @@ import java.sql.PreparedStatement;
 import java.util.Properties;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
@@ -77,7 +76,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(direccion)).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 webcam.close();
             }catch(IOException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
             }
         });
         
@@ -91,9 +90,9 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 new Datos().actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
                 consulta1();
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
             }catch(SQLException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"12");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
             }
         });
         
@@ -132,11 +131,11 @@ public class modPicPanel2 extends javax.swing.JPanel{
                     }
                     p.clear();
                 }catch(HeadlessException e){
-                    new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"40");
+                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
                 }catch(FileNotFoundException x){
-                    new logger(Level.SEVERE).storeAndViewCaughtException(this,x,modPicPanel2.class.getName(),methodName,"1IO");
+                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
                 }catch(IOException n){
-                    new logger(Level.SEVERE).storeAndViewCaughtException(this,n,modPicPanel2.class.getName(),methodName,"2IO");
+                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
                 }
                 break;
             }
@@ -161,15 +160,15 @@ public class modPicPanel2 extends javax.swing.JPanel{
                     picLabel.setText(null);
                     picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 }else{
-                    new logger(Level.WARNING).storeAndViewError14(this,modPicPanel2.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
                 }
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING).storeAndViewError18(this,modPicPanel2.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }
     }
     
@@ -185,12 +184,12 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 picLabel.setText(null);
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(229,229,Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING).storeAndViewError14(this,modPicPanel2.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,modPicPanel2.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }
     }
     

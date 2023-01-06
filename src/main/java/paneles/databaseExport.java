@@ -52,9 +52,9 @@ public class databaseExport extends javax.swing.JPanel{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseExport.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseExport.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
         }
     }
     
@@ -79,14 +79,12 @@ public class databaseExport extends javax.swing.JPanel{
                 p=new Properties();
                 p.load(new FileInputStream("data/config/env.properties"));
                 
-                String userdir=Dirs.userdir;
+                String userdir=Dirs.USERDIR;
                 
-                File f=new File(userdir+"\\data\\database\\MySQL\\"+db+".sql");
-                for(int i=1;f.exists();i++){
-                    f=new File(userdir+"\\data\\database\\MySQL\\"+db+"-("+i+").sql");
-                }
+                File f=new File(userdir+"/data/database/MySQL/"+db+".sql");
                 
-                String path=f.getPath();
+                String path=Dirs.exists(f);
+                logger.staticLogger(Level.CONFIG,path,this.getClass().getName());
                 
                 Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user1+" -p "+db+" --result-file="+path+" --password="+pass2+" --host="+host+" --hex-blob --dump-date --compress");
                 new Thread(new Thread3(pr.getErrorStream())).start();
@@ -96,14 +94,14 @@ public class databaseExport extends javax.swing.JPanel{
                 new Thread(new Thread1(pr.getInputStream(),os)).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 3E: se exportó correctamente la base de datos.\nOcurrió en la clase '"+databaseExport.class.getName()+"', en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Rel 3E: se exportó correctamente la base de datos.\nOcurrió en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
                 
                 os.flush();
                 os.close();
             }catch(IOException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,databaseExport.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,databaseExport.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }
         }).start();
     }

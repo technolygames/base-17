@@ -69,14 +69,14 @@ public class ventana3 extends javax.swing.JFrame{
                     
                     new Datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
-                    new logger(Level.WARNING).storeAndViewError18(this,ventana3.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana3.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ventana3.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }catch(SQLException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ventana3.class.getName(),methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"11");
             }
         });
     }
@@ -219,7 +219,7 @@ public class ventana3 extends javax.swing.JFrame{
         
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana3.class.getName(),"jTextField2KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed

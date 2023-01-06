@@ -1,9 +1,11 @@
 package venTerciarias;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.MediaHandler;
 import clases.logger;
 import clases.Thread2;
+import clases.backuphandler.EscritorJson;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -74,19 +76,19 @@ public class dataWindow3 extends javax.swing.JDialog{
                 etiIngreso.setText(rs.getString("fecha_ingreso"));
                 etiUEntrega.setText(rs.getString("fecha_uentrega"));
                 
-                //new escritorJSON().writeDataProviderJson(Integer.parseInt(etiCodigo.getText()));
+                new EscritorJson().writeDataProviderJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING).storeAndViewError14(this,dataWindow3.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,dataWindow3.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,dataWindow3.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
         }
     }
     
@@ -107,21 +109,19 @@ public class dataWindow3 extends javax.swing.JDialog{
                 rs=ps.executeQuery();
                 
                 File f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+".jpg");
-                for(int i=0;f.exists();i++){
-                    f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+"-("+i+").jpg");
-                }
+                String path=Dirs.exists(f);
                 
-                new Thread2(rs,new FileOutputStream(f)).run();
+                new Thread2(rs,new FileOutputStream(path)).run();
                 
-                new logger(Level.INFO).staticLogger("Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
                 
                 ps.close();
             }catch(SQLException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,dataWindow3.class.getName(),methodName,"14");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,dataWindow3.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,dataWindow3.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
             }
         });
     }

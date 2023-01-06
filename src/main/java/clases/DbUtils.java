@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author unknown
  */
 public class DbUtils{
+    protected DbUtils(){}
     public static TableModel resultSetToTableModel(ResultSet rs) throws SQLException{
         ResultSetMetaData metaData=rs.getMetaData();
         int numberOfColumns=metaData.getColumnCount();

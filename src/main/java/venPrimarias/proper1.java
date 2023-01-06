@@ -66,13 +66,13 @@ public final class proper1 extends javax.swing.JFrame{
     protected String icono;
     protected String nombre;
     protected String design;
-    protected String userdir=Dirs.userdir;
+    protected String userdir=Dirs.USERDIR;
     protected String imagenes;
     protected String methodName;
     protected String nombreArchivo1;
     protected String nombreArchivo2;
     
-    protected String rol=start.role;
+    protected String rol=start.USER_ROLE;
     
     protected final void settings(){
         imageLoader("Ventanas",jTextField2.getText());
@@ -80,7 +80,7 @@ public final class proper1 extends javax.swing.JFrame{
         jTextField2.setVisible(false);
         jTextField3.setVisible(false);
         
-        JTextField[] tf={jTextField4,jTextField5};
+        JTextField[] tf={jTextField1,jTextField4,jTextField5};
         
         if(new Validation(rol,proper1.class.getName()).isAccessible()){
             for(JTextField textfield:tf){
@@ -127,13 +127,13 @@ public final class proper1 extends javax.swing.JFrame{
             
             p.clear();
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
         }catch(IOException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
         }catch(NullPointerException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,proper1.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"0");
         }
     }
     
@@ -141,20 +141,19 @@ public final class proper1 extends javax.swing.JFrame{
         p=new Properties();
         
         backButton.addActionListener(a->{
-            if(!jComboBox1.getSelectedItem().equals(design)||
+            if(!jComboBox1.getModel().getSelectedItem().equals(design)||
                     !jTextField2.getText().equals(imagenes)||
                     !jTextField3.getText().equals(icono)||
                     !jTextField1.getText().equals(nombre)||
                     !jTextField4.getText().equals(ruc)||
                     !jTextField5.getText().equals(tlf)){
-                int option=JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-                if(option==0){
+                if(JOptionPane.showConfirmDialog(this,"Hay cambios.\n¿Deseas cerrar la ventana?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)==0){
                     setVisible(false);
                     dispose();
                     laf(design);
                 }
             }else{
-                new logger(Level.INFO).staticLogger("No hay cambios");
+                logger.staticLogger(Level.INFO,"No hay cambios",this.getClass().getName());
                 setVisible(false);
                 dispose();
             }
@@ -185,11 +184,11 @@ public final class proper1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
             }
         });
         
@@ -217,11 +216,11 @@ public final class proper1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
             }
         });
         
@@ -265,13 +264,13 @@ public final class proper1 extends javax.swing.JFrame{
                 frame.pack();
             }
         }catch(ClassNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"CNFE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"CNFE");
         }catch(IllegalAccessException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"IAE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"IAE");
         }catch(InstantiationException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"IE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"IE");
         }catch(UnsupportedLookAndFeelException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,proper1.class.getName(),methodName,"28");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"28");
         }
     }
     
@@ -291,11 +290,11 @@ public final class proper1 extends javax.swing.JFrame{
                 jComboBox1.addItem(lafi.getClassName());
             }
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
         }catch(IllegalArgumentException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"34");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"34");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
         }
     }
     
@@ -316,7 +315,7 @@ public final class proper1 extends javax.swing.JFrame{
                 os=new FileOutputStream(dato1+nameImg);
                 new Thread(new Thread1(is,os)).start();
                 
-                p.setProperty("look_and_feel",jComboBox1.getSelectedItem().toString());
+                p.setProperty("look_and_feel",jComboBox1.getModel().getSelectedItem().toString());
                 
                 File icon=new File(jTextField3.getText());
                 String dirIcon=icon.getPath();
@@ -340,7 +339,7 @@ public final class proper1 extends javax.swing.JFrame{
                 p.store(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8),"config1");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                new logger(Level.INFO).staticLogger("Rel 4: se han guardado las condiguraciones.\nOcurrió en la clase '"+proper1.class.getName()+"', en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
                 
                 is.close();
                 os.flush();
@@ -350,13 +349,13 @@ public final class proper1 extends javax.swing.JFrame{
             }
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,proper1.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
         }catch(NumberFormatException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,x,proper1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"32");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,n,proper1.class.getName(),methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
         }catch(IOException s){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,s,proper1.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"2IO");
         }
     }
     
@@ -375,7 +374,7 @@ public final class proper1 extends javax.swing.JFrame{
             schButton.setEnabled(true);
         }else{
             schButton.setEnabled(false);
-            schButton.setToolTipText("No deben haber campos vacíos");
+            JOptionPane.showMessageDialog(this,"No deben haber campos vacíos");
         }
     }
     

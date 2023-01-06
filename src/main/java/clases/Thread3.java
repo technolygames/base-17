@@ -1,5 +1,6 @@
 package clases;
 //java
+import java.awt.Frame;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.JOptionPane;
@@ -13,6 +14,10 @@ import java.util.logging.Level;
  * @author erick
  */
 public class Thread3 implements Runnable{
+    protected String className=this.getClass().getName();
+    
+    protected Frame frame=MediaHandler.getFrames();
+    
     protected InputStream is;
     
     /**
@@ -34,12 +39,13 @@ public class Thread3 implements Runnable{
             byte[] buffer=new byte[1024];
             while((leido=is.read(buffer))>0){
                 String texto=new String(buffer,0,leido);
-                JOptionPane.showMessageDialog(null,"Error:\n"+texto,"Error 7E",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame,"Error:\n"+texto,"Error 7E",JOptionPane.ERROR_MESSAGE);
+                logger.staticLogger(Level.SEVERE,"Error 7E: "+texto+".\nOcurrió en el método 'run()'.",className);
             }
             
             is.close();
         }catch(IOException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread3.class.getName(),"run","2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,"run","2IO");
         }
     }
 }

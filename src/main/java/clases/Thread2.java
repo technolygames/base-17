@@ -1,5 +1,6 @@
 package clases;
 //java
+import java.awt.Frame;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.FileNotFoundException;
@@ -16,8 +17,12 @@ import java.util.logging.Level;
  * @author erick
  */
 public class Thread2 implements Runnable{
-    protected ResultSet resultado;
+    protected String className=this.getClass().getName();
+    
+    protected Frame frame=MediaHandler.getFrames();
+    
     protected Blob blob;
+    protected ResultSet resultado;
     protected OutputStream os;
     
     /**
@@ -50,11 +55,11 @@ public class Thread2 implements Runnable{
             os.flush();
             os.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,Thread2.class.getName(),methodName,"1IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,Thread2.class.getName(),methodName,"2IO");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"2IO");
         }catch(SQLException n){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,n,Thread2.class.getName(),methodName,"14");
+            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,n,methodName,"14");
         }
     }
 }

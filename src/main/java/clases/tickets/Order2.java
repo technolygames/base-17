@@ -22,7 +22,7 @@ public class Order2{
         return delimitado[2];
     }
     
-    public String generarItem(String cantidad,String nombre,String precio){
-        return cantidad+temp[0]+nombre+temp[0]+precio;
+    public String generarItem(String cantidad,String nombre,String precio,String total){
+        return cantidad+temp[0]+nombre+temp[0]+precio+temp[0]+total;
     }
 }

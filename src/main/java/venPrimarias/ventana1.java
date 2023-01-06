@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import venSecundarias.paymentWindow;
@@ -42,19 +43,19 @@ public final class ventana1 extends javax.swing.JFrame{
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    public static DefaultTableModel dtm;
+    public static DefaultTableModel DTM;
     protected JPopupMenu popupMenu;
     protected JTextField campos;
     
     protected String methodName;
     
-    public static int codigo_emp;
+    public static int CODIGO_EMP;
     
     protected final void settings(){
-        txtCodEmp.setText(String.valueOf(start.userID));
+        txtCodEmp.setText(String.valueOf(start.USERID));
         picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
         
-        dtm=new DefaultTableModel(){
+        DTM=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 //all cells false
@@ -62,7 +63,7 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         };
         
-        dtm.setColumnIdentifiers(new Object[]{
+        DTM.setColumnIdentifiers(new Object[]{
             "Código del producto",
             "Nombre del producto",
             "Marca",
@@ -71,18 +72,18 @@ public final class ventana1 extends javax.swing.JFrame{
             "Total"
         });
         
-        for(int i=0;i<dtm.getRowCount();i++){
-            for(int j=0;j<dtm.getColumnCount();j++){
-                dtm.isCellEditable(i,j);
+        for(int i=0;i<DTM.getRowCount();i++){
+            for(int j=0;j<DTM.getColumnCount();j++){
+                DTM.isCellEditable(i,j);
             }
         }
         
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setModel(dtm);
+        jTable1.setModel(DTM);
     }
     
     protected final void botones(){
-        dtm=new DefaultTableModel();
+        DTM=new DefaultTableModel();
         
         addButton.addActionListener(a->{
             methodName="botones.add";
@@ -90,7 +91,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 campos=tf;
             }
             if(!campos.getText().isEmpty()){
-                dtm.addRow(new Object[]{
+                DTM.addRow(new Object[]{
                     txtCodigo.getText(),
                     txtProd.getText(),
                     txtMarca.getText(),
@@ -100,7 +101,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 });
                 clearFields();
             }else{
-                new logger(Level.WARNING).storeAndViewError18(this,ventana1.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
             }
         });
         
@@ -110,7 +111,7 @@ public final class ventana1 extends javax.swing.JFrame{
         });
         
         cleanButton.addActionListener(a->{
-            dtm.setRowCount(0);
+            DTM.setRowCount(0);
             
             clearFields();
         });
@@ -123,15 +124,15 @@ public final class ventana1 extends javax.swing.JFrame{
             methodName="botones.mkPmnt";
             try{
                 if(jTable1.getRowCount()!=0){
-                    codigo_emp=Integer.parseInt(txtCodEmp.getText());
+                    CODIGO_EMP=Integer.parseInt(txtCodEmp.getText());
                     new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
                 }else{
-                    new logger(Level.WARNING).storeAndViewError18(this,ventana1.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,start.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,start.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }
         });
         
@@ -149,11 +150,11 @@ public final class ventana1 extends javax.swing.JFrame{
                                 if(rs.getInt("cantidad")==0){
                                     if(rs.getString("stock").equals("Agotado")){
                                         JOptionPane.showMessageDialog(ventana1.this,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                        new logger(Level.CONFIG).staticLogger("No guarda en ventana1, pero da el aviso");
+                                        logger.staticLogger(Level.CONFIG,"No guarda en ventana1, pero da el aviso",this.getClass().getName());
                                     }else{
                                         JOptionPane.showMessageDialog(ventana1.this,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                        logger.staticLogger(Level.CONFIG,"Guarda en ventana1",this.getClass().getName());
                                         new Datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
-                                        new logger(Level.CONFIG).staticLogger("Guarda en ventana1");
                                     }
                                 }else{
                                     txtProd.setText(rs.getString("nombre_prod"));
@@ -161,13 +162,13 @@ public final class ventana1 extends javax.swing.JFrame{
                                     txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
                                 }
                             }else{
-                                new logger(Level.WARNING).storeAndViewError18(ventana1.this,ventana1.class.getName(),methodName);
+                                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(ventana1.this,methodName);
                             }
                         }else{
-                            new logger(Level.WARNING).storeAndViewError14(ventana1.this,ventana1.class.getName(),methodName);
+                            new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(ventana1.this,methodName);
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(ventana1.this,e,ventana1.class.getName(),methodName,"14");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"14");
                     }
                 }
             }
@@ -189,21 +190,21 @@ public final class ventana1 extends javax.swing.JFrame{
                                 if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
                                     if(txtCantidad>cantidad){
                                         JOptionPane.showMessageDialog(ventana1.this,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
-                                        new logger(Level.SEVERE).staticLogger("Error Prueba: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                        logger.staticLogger(Level.SEVERE,"Error Prueba: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
                                     }else{
-                                        calc();
                                         JOptionPane.showMessageDialog(ventana1.this,"No hay mucho stock de este producto.\nSi realizas la venta, te quedarás sin stock de este producto.","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                        new logger(Level.WARNING).staticLogger("Error Prueba: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en la clase '"+ventana1.class.getName()+"', en el método 'botones(txtCant)'");
+                                        logger.staticLogger(Level.WARNING,"Error Prueba: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
+                                        calc();
                                     }
                                 }else{
                                     calc();
                                 }
                             }else{
-                                new logger(Level.WARNING).storeAndViewError18(ventana1.this,ventana1.class.getName(),methodName);
+                                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(ventana1.this,methodName);
                             }
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE).storeAndViewCaughtException(ventana1.this,e,ventana1.class.getName(),methodName,"14");
+                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"14");
                     }
                 }
                 if(a.getKeyCode()==KeyEvent.VK_BACK_SPACE){
@@ -221,7 +222,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 }else{
                     jTable1.clearSelection();
                 }
-                showPopup(a);
+                Events.showPopup(popupMenu,a);
             }
         });
     }
@@ -241,9 +242,9 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtCant.setText(jTable1.getValueAt(row,3).toString());
                     txtPrecio.setText(jTable1.getValueAt(row,4).toString());
                     txtTotal.setText(jTable1.getValueAt(row,5).toString());
-                    dtm.removeRow(row);
+                    DTM.removeRow(row);
                 }catch(ArrayIndexOutOfBoundsException e){
-                    new logger(Level.SEVERE).storeAndViewCaughtException(ventana1.this,e,ventana1.class.getName(),methodName,"AIOOBE");
+                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"AIOOBE");
                 }
             }
         });
@@ -259,12 +260,6 @@ public final class ventana1 extends javax.swing.JFrame{
         popupMenu.add(mi2);
     }
     
-    protected void showPopup(MouseEvent evt){
-        if(evt.isPopupTrigger()){
-            popupMenu.show(evt.getComponent(),evt.getX(),evt.getY());
-        }
-    }
-    
     protected void calc(){
         methodName="calc";
         try{
@@ -274,7 +269,7 @@ public final class ventana1 extends javax.swing.JFrame{
 
             txtTotal.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
         }
     }
     
@@ -288,12 +283,12 @@ public final class ventana1 extends javax.swing.JFrame{
         methodName="removeRow";
         try{
             if(jTable1.isRowSelected(jTable1.getRowCount())){
-                dtm.removeRow(jTable1.getSelectedRow());
+                DTM.removeRow(jTable1.getSelectedRow());
             }else{
-                new logger(Level.INFO).staticLogger("no hay nada seleccionado");
+                logger.staticLogger(Level.INFO,"no hay nada seleccionado",this.getClass().getName());
             }
         }catch(ArrayIndexOutOfBoundsException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana1.class.getName(),methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"AIOOBE");
         }
     }
     
@@ -519,49 +514,49 @@ public final class ventana1 extends javax.swing.JFrame{
     
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana1.class.getName(),"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
     private void txtCodEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEmpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana1.class.getName(),"txtCodEmpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodEmpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodEmpKeyPressed
 
     private void txtProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana1.class.getName(),"txtProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtProdKeyPressed
     
     private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana1.class.getName(),"txtMarcaKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtMarcaKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
     
     private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana1.class.getName(),"txtCantKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCantKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCantKeyPressed
 
     private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana1.class.getName(),"txtPrecioKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtPrecioKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtPrecioKeyPressed
     
     private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana1.class.getName(),"txtTotalKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtTotalKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtTotalKeyPressed

@@ -27,7 +27,7 @@ public class Main{
         };
         
         for(String dir:dirs){
-            new Dirs().makeDir(dir);
+            Dirs.makeDir(dir);
         }
         
         EventQueue.invokeLater(()->

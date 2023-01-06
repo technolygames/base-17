@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import java.awt.EventQueue;
@@ -95,7 +96,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 });
                 clearFields();
             }else{
-                new logger(Level.WARNING).storeAndViewError18(this,ventana2.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
             }
         });
         
@@ -131,16 +132,16 @@ public final class ventana2 extends javax.swing.JFrame{
                         new Datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
                     }
                     JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-                    new logger(Level.INFO).staticLogger("Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en la clase '"+ventana2.class.getName()+"', en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.userID));
+                    logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
                 }else{
-                    new logger(Level.WARNING).storeAndViewError18(this,ventana2.class.getName(),methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana2.class.getName(),methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,x,ventana2.class.getName(),methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
             }catch(SQLException n){
-                new logger(Level.SEVERE).storeAndViewCaughtException(this,n,ventana2.class.getName(),methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"11");
             }
         });
         
@@ -153,7 +154,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 }else{
                     jTable1.clearSelection();
                 }
-                showPopup(a);
+                Events.showPopup(popupMenu,a);
             }
         });
     }
@@ -177,7 +178,7 @@ public final class ventana2 extends javax.swing.JFrame{
                     jComboBox1.getModel().setSelectedItem(jTable1.getValueAt(row,7).toString());
                     dtm.removeRow(row);
                 }catch(ArrayIndexOutOfBoundsException e){
-                    new logger(Level.SEVERE).storeAndViewCaughtException(ventana2.this,e,ventana2.class.getName(),methodName,"AIOOBE");
+                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana2.this,e,methodName,"AIOOBE");
                 }
             }
         });
@@ -193,12 +194,6 @@ public final class ventana2 extends javax.swing.JFrame{
         popupMenu.add(mi2);
     }
     
-    protected void showPopup(MouseEvent evt){
-        if(evt.isPopupTrigger()){
-            popupMenu.show(evt.getComponent(),evt.getX(),evt.getY());
-        }
-    }
-    
     protected void clearFields(){
         for(JTextField tf:new JTextField[]{txtCodProd,txtCodLote,txtCodProv,txtProd,txtMarca,txtCant,txtPU}){
             tf.setText("");
@@ -210,10 +205,10 @@ public final class ventana2 extends javax.swing.JFrame{
             if(jTable1.isRowSelected(jTable1.getRowCount())){
                 dtm.removeRow(jTable1.getSelectedRow());
             }else{
-                new logger(Level.INFO).staticLogger("no hay nada seleccionado");
+                logger.staticLogger(Level.INFO,"no hay nada seleccionado",this.getClass().getName());
             }
         }catch(ArrayIndexOutOfBoundsException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ventana2.class.getName(),methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"AIOOBE");
         }
     }
     
@@ -452,49 +447,49 @@ public final class ventana2 extends javax.swing.JFrame{
     
     private void txtCodProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana2.class.getName(),"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodProdKeyPressed
     
     private void txtCodLoteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodLoteKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana2.class.getName(),"txtCodProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodLoteKeyPressed
     
     private void txtCodProvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProvKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana2.class.getName(),"txtCodProvKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodProvKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodProvKeyPressed
     
     private void txtProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana2.class.getName(),"txtProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtProdKeyPressed
     
     private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewNumberInputWarning(this,ventana2.class.getName(),"txtMarcaKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtMarcaKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
     
     private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana2.class.getName(),"txtCantKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCantKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCantKeyPressed
     
     private void txtPUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPUKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,ventana2.class.getName(),"txtPUKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtPUKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtPUKeyPressed

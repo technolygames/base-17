@@ -1,6 +1,7 @@
 package venPrimarias;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 //java
@@ -28,6 +29,8 @@ public class ltshOff extends javax.swing.JFrame{
         pack();
     }
     
+    protected static final Object[] header=new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"};
+    
     protected ResultSet rs;
     protected PreparedStatement ps;
     
@@ -51,22 +54,22 @@ public class ltshOff extends javax.swing.JFrame{
         try{
             ps=new Datos().getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
-            dtm.setColumnIdentifiers(new Object[]{"Código","Nombre","Datos","Descuento","Inicio","Usos","Fin"});
+            dtm.setColumnIdentifiers(header);
             while(rs.next()){
-                dtm.addRow(new Object[]{rs.getString("id_prom"),rs.getString("nombre_prom"),rs.getString("datos_prom"),rs.getFloat("descuento"),rs.getString("inicio"),rs.getInt("no_usos"),rs.getString("fin")});
+                loadData(dtm,rs);
             }
-            jTable1.setRowSorter(sorter);
-            jTable1.getRowSorter().toggleSortOrder(0);
-            jTable1.getTableHeader().setReorderingAllowed(false);
-            jTable1.setModel(dtm);
+            Events.table(jTable1,sorter,dtm);
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(this,e,ltshOff.class.getName(),"datosMostrar","16");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,"datosMostrar","16");
         }
     }
     
+    protected void loadData(DefaultTableModel dtm1,ResultSet rs1) throws SQLException{
+        dtm1.addRow(new Object[]{rs1.getString("id_prom"),rs1.getString("nombre_prom"),rs1.getString("datos_prom"),rs1.getFloat("descuento"),rs1.getString("inicio"),rs1.getInt("no_usos"),rs1.getString("fin")});
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

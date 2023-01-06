@@ -82,12 +82,12 @@ public class delDatosPanel1 extends javax.swing.JPanel{
                         break;
                 }
             }else{
-                new logger(Level.WARNING).storeAndViewError18(this,delDatosPanel1.class.getName(),methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
             }
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,e,delDatosPanel1.class.getName(),methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"32");
         }catch(SQLException x){
-            new logger(Level.SEVERE).storeAndViewCaughtException(null,x,delDatosPanel1.class.getName(),methodName,"13");
+            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"13");
         }
     }
     
@@ -148,7 +148,7 @@ public class delDatosPanel1 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING).storeAndViewLetterInputWarning(this,delDatosPanel1.class.getName(),"jTextField1KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed

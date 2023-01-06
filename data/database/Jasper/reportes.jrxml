@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportes" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23c0814d-ae12-40bc-8299-a20404f85f0e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportes" printOrder="Horizontal" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23c0814d-ae12-40bc-8299-a20404f85f0e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -12,13 +12,16 @@
 	<parameter name="imagen" class="java.lang.String">
 		<defaultValueExpression><![CDATA["data/media/forms/render1.jpg"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="codigo_part" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select*from productos where codigo_emp=$P{codigo_emp};]]>
+		<![CDATA[select*from registro_socio where codigo_socio=$P{codigo_part};]]>
 	</queryString>
-	<field name="codigo_prod" class="java.lang.Integer">
+	<field name="codigo_socio" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="codigo_emp" class="java.lang.Integer">
+	<field name="codigo_prod" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nombre_prod" class="java.lang.String">
@@ -45,29 +48,22 @@
 	<title>
 		<band height="76" splitType="Stretch">
 			<textField>
-				<reportElement x="266" y="19" width="224" height="32" uuid="bb579cb3-bb47-4c6f-b7fa-586b737bd41f"/>
+				<reportElement x="266" y="19" width="225" height="30" uuid="bb579cb3-bb47-4c6f-b7fa-586b737bd41f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="SansSerif" size="14" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombre_reporte}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="0" y="0" width="79" height="75" uuid="87676463-11d6-431a-bc02-bcb5b5b00eb7"/>
+				<reportElement x="0" y="0" width="75" height="75" uuid="87676463-11d6-431a-bc02-bcb5b5b00eb7"/>
 				<imageExpression><![CDATA[$P{imagen}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement x="58" y="0" width="43" height="20" uuid="7a9f3402-e33b-495a-b2ae-7b36b9e9eb65"/>
-				<textElement>
-					<font fontName="SansSerif" size="10"/>
-				</textElement>
-				<text><![CDATA[Fecha:]]></text>
-			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="101" y="0" width="100" height="20" uuid="7abd8cb5-efcc-4d7c-9dc3-b3467875065f"/>
+				<reportElement x="45" y="0" width="100" height="20" uuid="7abd8cb5-efcc-4d7c-9dc3-b3467875065f"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -77,6 +73,13 @@
 			<staticText>
 				<reportElement x="530" y="0" width="111" height="20" uuid="43245de6-a70a-4282-8304-ebd5510d7323"/>
 				<text><![CDATA[Código del vendedor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="43" height="20" uuid="7a9f3402-e33b-495a-b2ae-7b36b9e9eb65"/>
+				<textElement>
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
