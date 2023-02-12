@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.logger;
 import clases.PlaceHolder;
 //java
@@ -8,11 +9,15 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.time.Period;
+import java.time.LocalDate;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.time.format.DateTimeFormatter;
 
 public class modDatosPanel1 extends javax.swing.JPanel{
     protected int user;
@@ -98,7 +103,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -134,7 +139,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -171,7 +176,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -208,7 +213,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -245,7 +250,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -282,7 +287,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -320,7 +325,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -357,7 +362,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -394,7 +399,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -431,7 +436,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -463,12 +468,12 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         long date=dcFN.getDate().getTime();
                         user=Integer.parseInt(txtSearch.getText());
                         while(date!=0&&cbFN.isSelected()&&dcFN.isEnabled()){
-                            datos.actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
+                            ageRecalc(tabla,campo,date);
                             consulta();
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
                 
@@ -505,7 +510,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -543,7 +548,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -587,32 +592,52 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     etiCURP.setText(rs.getString("curp"));
                     etiDom.setText(rs.getString("domicilio"));
                     etiPuesto.setText(rs.getString("puesto"));
-                    
-                    int exp=rs.getInt("experiencia");
-                    if(exp==0){
-                        etiExp.setText("Sin experiencia");
-                    }else if(exp==1){
-                        etiExp.setText(String.valueOf(exp).concat(" año"));
-                    }else if(exp>=2){
-                        etiExp.setText(String.valueOf(exp).concat(" años"));
-                    }
-                    
+                    etiExp.setText(Events.exp(rs.getInt("experiencia")));
                     etiGE.setText(rs.getString("grado_estudios"));
                     etiContacto.setText(String.valueOf(rs.getInt("contacto")));
                     etiFN.setText(rs.getDate("fecha_nacimiento").toString());
                     etiEdad.setText(String.valueOf(rs.getInt("edad")));
                     etiEstado.setText(rs.getString("estado"));
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
+        }
+    }
+    
+    protected void ageRecalc(String tabla,String campo,long date) throws SQLException{
+        switch(JOptionPane.showConfirmDialog(this,"¿Deseas recalcular la edad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)){
+            case 0:{
+                var datos=new Datos();
+                
+                String fn=new Date(date).toString();
+                int edad1=Integer.parseInt(etiEdad.getText());
+                String edad2=String.valueOf(Period.between(LocalDate.parse(fn,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
+                
+                System.out.println(fn);
+                System.out.println(edad2);
+                
+                if(!edad2.equals(String.valueOf(edad1))){
+                    datos.actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
+                    datos.actualizarDatosInteger(tabla,"edad",campo,Integer.parseInt(edad2),user,false);
+                    logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
+                }else{
+                    logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
+                }
+                break;
+            }
+            case 1:{
+                new Datos().actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
+                break;
+            }
+            default: break;
         }
     }
     
@@ -928,49 +953,49 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtNombreKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtNombreKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyPressed
     
     private void txtAPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAPKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtAPKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAPKeyPressed
     
     private void txtAMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAMKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtAMKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAMKeyPressed
     
     private void txtExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtExpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtExpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtExpKeyPressed
     
     private void txtGEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGEKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtGEKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtGEKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtGEKeyPressed
     
     private void txtContactoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtContactoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtContactoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
     private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtEdadKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtEdadKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed

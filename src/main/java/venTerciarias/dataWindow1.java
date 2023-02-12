@@ -2,6 +2,7 @@ package venTerciarias;
 //clases
 import clases.Datos;
 import clases.Dirs;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import clases.Thread2;
@@ -93,7 +94,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiCURP.setText(rs.getString("curp"));
                 jTextArea1.setText(rs.getString("domicilio"));
                 etiPuesto.setText(rs.getString("puesto"));
-                etiExp.setText(rs.getString("experiencia"));
+                etiExp.setText(Events.exp(rs.getInt("experiencia")));
                 etiEstudios.setText(rs.getString("grado_estudios"));
                 etiContacto.setText(rs.getString("contacto"));
                 etiFN.setText(rs.getString("fecha_nacimiento"));
@@ -107,15 +108,15 @@ public class dataWindow1 extends javax.swing.JDialog{
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }
     }
     
@@ -144,11 +145,11 @@ public class dataWindow1 extends javax.swing.JDialog{
                 
                 ps.close();
             }catch(SQLException e){
-                new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,e,methodName,"14");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,n,methodName,"0");
             }
         });
         

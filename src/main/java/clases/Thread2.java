@@ -55,11 +55,11 @@ public class Thread2 implements Runnable{
             os.flush();
             os.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1IO");
+            new logger(Level.SEVERE,className).catchException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"2IO");
+            new logger(Level.SEVERE,className).catchException(frame,x,methodName,"2IO");
         }catch(SQLException n){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,n,methodName,"14");
+            new logger(Level.SEVERE,className).catchException(frame,n,methodName,"14");
         }
     }
 }

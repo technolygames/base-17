@@ -48,7 +48,7 @@ public class smtpPanel extends javax.swing.JPanel{
             jComboBox1.getModel().setSelectedItem(port);
             jComboBox2.getModel().setSelectedItem(server);
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
         }
     }
     
@@ -89,9 +89,9 @@ public class smtpPanel extends javax.swing.JPanel{
             JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
             logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"2IO");
         }
     }
     

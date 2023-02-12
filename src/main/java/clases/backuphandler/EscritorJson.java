@@ -53,7 +53,6 @@ public class EscritorJson{
                 f=new File("data/databackup/Empleados/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
                 new File(f.getParent()).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
-                String dir=new EscritorFoto().storePicWorker(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -72,7 +71,7 @@ public class EscritorJson{
                 jsonw.name("edad").value(rs.getInt("edad"));
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(dir);
+                jsonw.name("imagen").value(new EscritorFoto().storePicWorker(codigo,nombre));
                 jsonw.name("datos").beginObject();
                 jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
                 jsonw.endObject();
@@ -85,13 +84,13 @@ public class EscritorJson{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"14");
         }catch(NullPointerException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"0");
         }
     }
     
@@ -113,7 +112,6 @@ public class EscritorJson{
                 f=new File("data/databackup/Socios/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
                 new File(f.getParent()).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
-                String dir=new EscritorFoto().storePicPartner(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -125,7 +123,7 @@ public class EscritorJson{
                 jsonw.name("correo").value(rs.getString("correo"));
                 jsonw.name("rfc").value(rs.getString("rfc"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(dir);
+                jsonw.name("imagen").value(new EscritorFoto().storePicPartner(codigo,nombre));
                 jsonw.endObject();
                 break;
             }
@@ -135,11 +133,11 @@ public class EscritorJson{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"14");
         }
     }
     
@@ -161,7 +159,6 @@ public class EscritorJson{
                 f=new File("data/databackup/Proveedores/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
                 new File(f.getParent()).mkdir();
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
-                String dir=new EscritorFoto().storePicProvider(codigo,nombre);
                 
                 jsonw.beginObject();
                 jsonw.setIndent("   ");
@@ -171,7 +168,7 @@ public class EscritorJson{
                 jsonw.name("apellidom_prov").value(rs.getString("apellidom_prov"));
                 jsonw.name("empresa").value(rs.getString("empresa"));
                 jsonw.name("contacto").value(rs.getInt("contacto"));
-                jsonw.name("imagen").value(dir);
+                jsonw.name("imagen").value(new EscritorFoto().storePicProvider(codigo,nombre));
                 jsonw.endObject();
             }
             
@@ -180,11 +177,11 @@ public class EscritorJson{
             jsonw.flush();
             jsonw.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"2IO");
         }catch(IllegalStateException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"15");
         }catch(SQLException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"14");
         }
     }
 }

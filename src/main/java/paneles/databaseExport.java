@@ -52,9 +52,9 @@ public class databaseExport extends javax.swing.JPanel{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"2IO");
         }
     }
     
@@ -99,9 +99,9 @@ public class databaseExport extends javax.swing.JPanel{
                 os.flush();
                 os.close();
             }catch(IOException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }
         }).start();
     }

@@ -62,10 +62,10 @@ public final class calcWindow extends javax.swing.JDialog{
                 txtCambio.setText(res);
                 paymentWindow.jLabel6.setText(txtCambio.getText());
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
         }
     }
     

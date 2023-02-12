@@ -53,16 +53,7 @@ public class MediaHandler{
      * @return la imagen que se mostrará en el formulario o ventanas.
      */
     public Image getFormImage(){
-        methodName="getFormImage";
-        try{
-            return Toolkit.getDefaultToolkit().getImage(getImagePath("imagenes","imagen_respaldo"));
-        }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),e,methodName,"1IO");
-            return null;
-        }catch(IOException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),x,methodName,"2IO");
-            return null;
-        }
+        return Toolkit.getDefaultToolkit().getImage(getImagePath("imagenes","imagen_respaldo"));
     }
     
     /**
@@ -72,16 +63,7 @@ public class MediaHandler{
      * @return la imagen a usar.
      */
     public Image getIconImage(){
-        methodName="getIconImage";
-        try{
-            return Toolkit.getDefaultToolkit().getImage(getImagePath("icono","icono_respaldo"));
-        }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),e,methodName,"1IO");
-            return null;
-        }catch(IOException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(getFrames(),x,methodName,"2IO");
-            return null;
-        }
+        return Toolkit.getDefaultToolkit().getImage(getImagePath("icono","icono_respaldo"));
     }
     
     /**
@@ -110,37 +92,58 @@ public class MediaHandler{
             UIManager.setLookAndFeel(p.getProperty("look_and_feel"));
             SwingUtilities.updateComponentTreeUI(componente);
         }catch(ClassNotFoundException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,e,methodName,"CNFE");
+            new logger(Level.SEVERE,className).catchException(componente,e,methodName,"CNFE");
         }catch(InstantiationException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,x,methodName,"IE");
+            new logger(Level.SEVERE,className).catchException(componente,x,methodName,"IE");
         }catch(IllegalAccessException n){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,n,methodName,"IAE");
+            new logger(Level.SEVERE,className).catchException(componente,n,methodName,"IAE");
         }catch(UnsupportedLookAndFeelException y){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,y,methodName,"28");
+            new logger(Level.SEVERE,className).catchException(componente,y,methodName,"28");
         }catch(NullPointerException k){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,k,methodName,"0");
+            new logger(Level.SEVERE,className).catchException(componente,k,methodName,"0");
         }catch(FileNotFoundException s){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,s,methodName,"1IO");
+            new logger(Level.SEVERE,className).catchException(componente,s,methodName,"1IO");
         }catch(IOException d){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(componente,d,methodName,"2IO");
+            new logger(Level.SEVERE,className).catchException(componente,d,methodName,"2IO");
         }
     }
     
-    public String getImagePath(String propName1,String propName2) throws FileNotFoundException,IOException{
-        p=new Properties();
-        p.load(new FileInputStream(configDir));
-        String dir=p.getProperty(propName1);
-        
-        if(!new File(dir).exists()){
-            dir=p.getProperty(propName2);
+    /**
+     * Carga la imagen solicitada desde un archivo .properties para se usada en el programa.
+     * 
+     * @param propName1 nombre de la propiedad 1.
+     * @param propName2 nombre de la propiedad 2.
+     * 
+     * @return la dirección de la imagen.
+     */
+    public String getImagePath(String propName1,String propName2){
+        try{
+            p=new Properties();
+            p.load(new FileInputStream(configDir));
+            String dir=p.getProperty(propName1);
+            
             if(!new File(dir).exists()){
-                p.load(new FileInputStream("data/config/preconfig.properties"));
-                dir=p.getProperty(propName1);
+                dir=p.getProperty(propName2);
+                if(!new File(dir).exists()){
+                    p.load(new FileInputStream("data/config/preconfig.properties"));
+                    dir=p.getProperty(propName1);
+                }
             }
+            return dir;
+        }catch(FileNotFoundException e){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(getFrames(),e,methodName,"1IO");
+            return null;
+        }catch(IOException x){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(getFrames(),x,methodName,"2IO");
+            return null;
         }
-        return dir;
     }
     
+    /**
+     * Obtiene las ventanas existentes en el programa.
+     * 
+     * @return ventana que se está mostrando en pantalla.
+     */
     public static Frame getFrames(){
         Frame f=null;
         for(Frame f1:Frame.getFrames()){
@@ -149,9 +152,22 @@ public class MediaHandler{
         return f;
     }
     
-    public String getProgramName() throws FileNotFoundException,IOException{
+    /**
+     * Obtiene el nombre del negocio para mostrarlo en pantalla.
+     * 
+     * @return el nombre del negocio asignado al programa.
+     */
+    public String getProgramName(){
         p=new Properties();
-        p.load(new FileReader(configDir));
-        return p.getProperty("nombre");
+        try{
+            p.load(new FileReader(configDir));
+            return p.getProperty("nombre");
+        }catch(FileNotFoundException e){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(getFrames(),e,methodName,"1IO");
+            return null;
+        }catch(IOException x){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(getFrames(),x,methodName,"2IO");
+            return null;
+        }
     }
 }

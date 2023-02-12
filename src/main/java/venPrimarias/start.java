@@ -4,6 +4,7 @@ import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import clases.DisplayNotification;
+import clases.mvc.MvcVar;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
@@ -11,8 +12,6 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.time.Period;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
@@ -53,13 +52,7 @@ public final class start extends javax.swing.JFrame{
     protected final void settings(){
         methodName="settings";
         MediaHandler mh=new MediaHandler(start.class.getName());
-        try{
-            nameLabel.setText(mh.getProgramName());
-        }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
-        }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
-        }
+        nameLabel.setText(mh.getProgramName());
         picLabel.setIcon(new ImageIcon(new ImageIcon(mh.getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
@@ -98,7 +91,12 @@ public final class start extends javax.swing.JFrame{
                 datos.actualizarDatosLogin(pass,user);
                 rs=datos.login(pass,user);
                 if(rs.next()){
-                    new loadWindow().setVisible(true);
+                    MvcVar mvc=new MvcVar();
+                    mvc.setUserID(rs.getInt("codigo_emp"));
+                    mvc.setUsername(rs.getString("nombre_emp"));
+                    mvc.setUserRole(rs.getString("puesto"));
+                    
+                    new loadWindow(mvc).setVisible(true);
                     dispose();
                     
                     //variables
@@ -147,18 +145,18 @@ public final class start extends javax.swing.JFrame{
                     DisplayNotification.trayNotify("Inicio de sesión","Bienvenido, "+USERNAME,MessageType.INFO);
                     logger.staticLogger(Level.INFO,"Inicio de sesión correcto.\nOcurrió en el método 'login()'.\nUsuario logeado: "+USERNAME,this.getClass().getName());
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
                 
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"9");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"9");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }
     }
     

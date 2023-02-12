@@ -76,7 +76,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(direccion)).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 webcam.close();
             }catch(IOException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
             }
         });
         
@@ -90,9 +90,9 @@ public class modPicPanel1 extends javax.swing.JPanel{
                 new Datos().actualizarFotoPerfil("empleados","codigo_emp",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
                 consulta1();
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
             }catch(SQLException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
             }
         });
         
@@ -131,11 +131,11 @@ public class modPicPanel1 extends javax.swing.JPanel{
                     }
                     p.clear();
                 }catch(HeadlessException e){
-                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                    new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
                 }catch(FileNotFoundException x){
-                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                    new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
                 }catch(IOException n){
-                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                    new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
                 }
                 break;
             }
@@ -160,15 +160,15 @@ public class modPicPanel1 extends javax.swing.JPanel{
                     picLabel.setText(null);
                     picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                 }
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }
     }
     
@@ -184,12 +184,12 @@ public class modPicPanel1 extends javax.swing.JPanel{
                 picLabel.setText(null);
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(300,300,Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING, this.getClass().getName()).storeAndViewError14(this,methodName);
+                new logger(Level.WARNING, this.getClass().getName()).storeError14(this,methodName);
             }
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE, this.getClass().getName()).catchException(this,e,methodName,"14");
         }
     }
     

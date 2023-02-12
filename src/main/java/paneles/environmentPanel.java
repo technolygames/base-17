@@ -40,9 +40,9 @@ public class environmentPanel extends javax.swing.JPanel{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(null,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(null,x,methodName,"2IO");
         }
     }
     
@@ -79,11 +79,11 @@ public class environmentPanel extends javax.swing.JPanel{
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
                 }
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(null,e,methodName,"40");
             }catch(IOException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(null,x,methodName,"2IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,n,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(null,n,methodName,"0");
             }
         });
     }
@@ -104,9 +104,9 @@ public class environmentPanel extends javax.swing.JPanel{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(null,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(null,x,methodName,"2IO");
         }
     }
     

@@ -101,11 +101,11 @@ public class formulario2 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
             }
         });
         
@@ -143,16 +143,16 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     new Datos().insertarDatosSocio(lista);
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }catch(NumberFormatException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"32");
             }catch(SQLException s){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"11");
             }
         });
     }
@@ -180,7 +180,7 @@ public class formulario2 extends javax.swing.JFrame{
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
         }
     }
     
@@ -398,28 +398,28 @@ public class formulario2 extends javax.swing.JFrame{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField1KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField2KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField3KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField3KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField4KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField4KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed

@@ -1,6 +1,7 @@
 package venSecundarias;
 //clases
 import clases.MediaHandler;
+import clases.mvc.MvcVar;
 import menus.menuVentanas;
 //java
 import java.awt.Cursor;
@@ -12,6 +13,21 @@ public final class loadWindow extends javax.swing.JFrame{
     public loadWindow(){
         initComponents();
         new MediaHandler(loadWindow.class.getName()).setLookAndFeel(loadWindow.this);
+        
+        load();
+        
+        setLocationRelativeTo(null);
+        setResizable(false);
+        pack();
+    }
+    
+    protected MvcVar mvc;
+    
+    public loadWindow(MvcVar modelo){
+        initComponents();
+        new MediaHandler(loadWindow.class.getName()).setLookAndFeel(loadWindow.this);
+        
+        this.mvc=modelo;
         
         load();
         
@@ -98,7 +114,7 @@ public final class loadWindow extends javax.swing.JFrame{
             }else{
                 t.stop();
                 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                new menuVentanas().setVisible(true);
+                new menuVentanas(mvc).setVisible(true);
                 dispose();
             }
         });

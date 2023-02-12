@@ -1,14 +1,16 @@
 package clases.backuphandler;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
+import clases.mvc.MvcForm3;
 //librerías
 import com.google.gson.stream.JsonReader;
-import java.awt.Frame;
 //java
+import java.awt.Frame;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
@@ -52,7 +54,7 @@ public class LectorJson{
                     case "password" -> modelo.setPassword(jsonr.nextString());
                     case "codigo_emp" -> modelo.setCodigo(jsonr.nextInt());
                     case "nombre_emp" -> modelo.setNombre(jsonr.nextString());
-                    case "apellidop_emp" -> modelo.setApellidoMaterno(jsonr.nextString());
+                    case "apellidop_emp" -> modelo.setApellidoPaterno(jsonr.nextString());
                     case "apellidom_emp" -> modelo.setApellidoMaterno(jsonr.nextString());
                     case "curp" -> modelo.setCurp(jsonr.nextString());
                     case "domicilio" -> modelo.setDomicilio(jsonr.nextString());
@@ -64,49 +66,39 @@ public class LectorJson{
                     case "edad" -> modelo.setEdad(jsonr.nextInt());
                     case "estado" -> modelo.setEstado(jsonr.nextString());
                     case "datos_extra" -> modelo.setDatosExtra(jsonr.nextString());
-                    case "imagen" -> modelo.setImagen(new FileInputStream(jsonr.nextString()));
-                    case "datos" -> leerDatosSecundarios(jsonr);
+                    case "imagen" -> {
+                        String img=Dirs.findPic(dir,jsonr.nextString());
+                        modelo.setImagen(new FileInputStream(img));
+                    }
+                    case "datos" -> {
+                        jsonr.beginObject();
+                        while(jsonr.hasNext()){
+                            switch(jsonr.nextName()){
+                                case "no_ventas"->numeroVentas=jsonr.nextInt();
+                                default->jsonr.skipValue();
+                            }
+                        }
+                        jsonr.endObject();
+                    }
                     default -> jsonr.skipValue();
                 }
             }
-            
             lista.add(modelo);
-            
             new Datos().insertarDatosEmpleado(lista);
-            new Datos().insertarDatosConteo(lista.get(0).getCodigo(),lista.get(0).getNombre(),lista.get(0).getApellidoPaterno(),lista.get(0).getApellidoMaterno(),numeroVentas);
+            new Datos().insertarDatosConteo(modelo.getCodigo(),modelo.getNombre(),modelo.getApellidoPaterno(),modelo.getApellidoMaterno(),numeroVentas);
             jsonr.endObject();
             
+            lista.clear();
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
         }
-    }
-    
-    /**
-     * Lee datos del método para cargar datos de los empleados.<br>
-     * Estos datos son los que vienen como objetos secundarios.
-     * 
-     * @param json El lector del archivo json con esos datos.
-     * 
-     * Nota: no usar en otros métodos.
-     * 
-     * @throws IOException
-     * @throws IllegalStateException
-     */
-    protected void leerDatosSecundarios(JsonReader json) throws IOException,IllegalStateException{
-        json.beginObject();
-        while(json.hasNext()){
-            switch(json.nextName()){
-                case "no_ventas"->numeroVentas=json.nextInt();
-            }
-        }
-        json.endObject();
     }
     
     /**
@@ -132,7 +124,10 @@ public class LectorJson{
                     case "correo" -> modelo.setCorreo(jsonr.nextString());
                     case "rfc" -> modelo.setRfc(jsonr.nextString());
                     case "datos_extra" -> modelo.setDatos(jsonr.nextString());
-                    case "imagen" -> modelo.setImagen(new FileInputStream(jsonr.nextString()));
+                    case "imagen" -> {
+                        String img=Dirs.findPic(dir,jsonr.nextString());
+                        modelo.setImagen(new FileInputStream(img));
+                    }
                     default -> jsonr.skipValue();
                 }
             }
@@ -140,25 +135,19 @@ public class LectorJson{
             new Datos().insertarDatosSocio(lista);
             jsonr.endObject();
             
+            lista.clear();
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
         }
     }
     
-    protected int codigoProveedor;
-    protected String nombreProveedor;
-    protected String apellidoPaternoProveedor;
-    protected String apellidoMaternoProveedor;
-    protected String empresa;
-    protected int contacto;
-    protected String foto;
     /**
      * Se encarga de leer un archivo JSON, con la estructura de la tabla de proveedor, para volver a almacenar los datos en la base de datos.
      * 
@@ -168,31 +157,37 @@ public class LectorJson{
         methodName="readDataProviderJson";
         try{
             jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
+            List<MvcForm3> lista=new ArrayList<>();
+            MvcForm3 modelo=new MvcForm3();
             jsonr.beginObject();
             while(jsonr.hasNext()){
                 switch(jsonr.nextName()){
-                    case "codigo_prov" -> codigoProveedor=jsonr.nextInt();
-                    case "nombre_prov" -> nombreProveedor=jsonr.nextString();
-                    case "apellidop_prov" -> apellidoPaternoProveedor=jsonr.nextString();
-                    case "apellidom_prov" -> apellidoMaternoProveedor=jsonr.nextString();
-                    case "empresa" -> empresa=jsonr.nextString();
-                    case "contacto" -> contacto=jsonr.nextInt();
-                    case "imagen" -> foto=jsonr.nextString();
+                    case "codigo_prov" -> modelo.setCodigo(jsonr.nextInt());
+                    case "nombre_prov" -> modelo.setNombre(jsonr.nextString());
+                    case "apellidop_prov" -> modelo.setApellidoPaterno(jsonr.nextString());
+                    case "apellidom_prov" -> modelo.setApellidoMaterno(jsonr.nextString());
+                    case "empresa" -> modelo.setEmpresa(jsonr.nextString());
+                    case "contacto" -> modelo.setContacto(jsonr.nextInt());
+                    case "imagen" -> {
+                        String img=Dirs.findPic(dir,jsonr.nextString());
+                        modelo.setImagen(new FileInputStream(img));
+                    }
                     default -> jsonr.skipValue();
                 }
             }
-            new Datos().insertarDatosProveedor(codigoProveedor,nombreProveedor,apellidoPaternoProveedor,apellidoMaternoProveedor,empresa,contacto,new FileInputStream(foto));
+            lista.add(modelo);
+            new Datos().insertarDatosProveedor(lista);
             jsonr.endObject();
             
             jsonr.close();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
         }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"11");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
         }
     }
 }

@@ -4,6 +4,7 @@ import clases.MediaHandler;
 import clases.logger;
 import clases.Validation;
 import clases.DisplayNotification;
+import clases.mvc.MvcVar;
 import java.awt.EventQueue;
 import venPrimarias.formulario1;
 import venPrimarias.formulario2;
@@ -31,6 +32,7 @@ import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
 
 public final class menuVentanas extends javax.swing.JFrame{
+    protected MvcVar mvc;
     public menuVentanas(){
         initComponents();
         new MediaHandler(menuVentanas.class.getName()).setLookAndFeel(menuVentanas.this);
@@ -45,12 +47,29 @@ public final class menuVentanas extends javax.swing.JFrame{
         pack();
     }
     
+    public menuVentanas(MvcVar modelo){
+        initComponents();
+        new MediaHandler(menuVentanas.class.getName()).setLookAndFeel(menuVentanas.this);
+        
+        this.mvc=modelo;
+        
+        menu();
+        botones();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Ventana principal");
+        setResizable(false);
+        pack();
+    }
+    
     protected Properties p;
     
-    protected String rol=start.USER_ROLE;
+    protected String rol;
     
     protected final void settings(){
-        jMenuItem2.setText(start.USERNAME);
+        rol=mvc.getUserRole();
+        jMenuItem2.setText(mvc.getUsername());
         picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
@@ -125,7 +144,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         );
         
         jMenuItem2.addActionListener(a->
-            new dataWindow1(new javax.swing.JFrame(),true,start.USERID).setVisible(true)
+            new dataWindow1(new javax.swing.JFrame(),true,mvc.getUserID()).setVisible(true)
         );
         
         jMenuItem3.addActionListener(a->

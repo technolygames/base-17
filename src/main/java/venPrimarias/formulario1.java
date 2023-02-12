@@ -113,11 +113,11 @@ public class formulario1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
             }
         });
         
@@ -162,18 +162,18 @@ public class formulario1 extends javax.swing.JFrame{
                     
                     new Datos().insertarDatosEmpleado(datos);
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }catch(NumberFormatException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"32");
             }catch(ArrayIndexOutOfBoundsException k){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,k,methodName,"AIOOBE");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,k,methodName,"AIOOBE");
             }catch(SQLException s){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"11");
             }
         });
         
@@ -184,7 +184,7 @@ public class formulario1 extends javax.swing.JFrame{
                     try{
                         calcAge();
                     }catch(DateTimeParseException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(formulario1.this,e,"botones.txtEdad","0");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(formulario1.this,e,"botones.txtEdad","0");
                     }
                 }
             }
@@ -223,7 +223,7 @@ public class formulario1 extends javax.swing.JFrame{
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
         }
     }
     
@@ -545,56 +545,56 @@ public class formulario1 extends javax.swing.JFrame{
     
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtCodigoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtNombreKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtNombreKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtNombreKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyPressed
     
     private void txtAPKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAPKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAPKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtAPKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAPKeyPressed
     
     private void txtAMKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtAMKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtAMKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtAMKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtAMKeyPressed
     
     private void txtExpKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtExpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtExpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtExpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtExpKeyPressed
     
     private void txtEstudiosKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEstudiosKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtEstudiosKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtEstudiosKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEstudiosKeyPressed
     
     private void txtContactoKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtContactoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtContactoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtContactoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtContactoKeyPressed
     
     private void txtEdadKeyPressed(java.awt.event.KeyEvent evt){//GEN-FIRST:event_txtEdadKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtEdadKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtEdadKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtEdadKeyPressed

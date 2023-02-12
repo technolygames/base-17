@@ -3,8 +3,6 @@ package clases;
 import java.awt.TrayIcon;
 import java.awt.SystemTray;
 import java.awt.AWTException;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 //extension larga
 import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
@@ -33,22 +31,17 @@ public class DisplayNotification{
         MediaHandler mh=new MediaHandler(CLASSNAME);
         try{
             TrayIcon ti=new TrayIcon(mh.getIconImage());
-            while(SystemTray.isSupported()){
+            if(SystemTray.isSupported()){
                 st.add(ti);
                 ti.setImageAutoSize(true);
                 ti.displayMessage(notification,message,messageType);
                 ti.setToolTip(mh.getProgramName());
-                break;
             }
             st.remove(ti);
         }catch(AWTException e){
-            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,e,methodName,"24");
+            new logger(Level.SEVERE,CLASSNAME).catchException(null,e,methodName,"24");
         }catch(UnsupportedOperationException x){
-            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,x,methodName,"25");
-        }catch(FileNotFoundException n){
-            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,n,methodName,"1IO");
-        }catch(IOException k){
-            new logger(Level.SEVERE,CLASSNAME).storeAndViewCaughtException(null,k,methodName,"2IO");
+            new logger(Level.SEVERE,CLASSNAME).catchException(null,x,methodName,"25");
         }
     }
 }

@@ -37,7 +37,7 @@ public class databaseWindow extends javax.swing.JDialog{
                 new Datos().crearBD(jTextField1.getText());
                 databaseImport.jTextField3.setText(jTextField1.getText());
             }catch(SQLException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,"botones.create","5E");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,"botones.create","5E");
             }
         });
     }

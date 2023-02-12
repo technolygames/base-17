@@ -150,13 +150,13 @@ public class DatosTicket{
             
             ticket.imprimir(Dirs.exists(new File("data/generic/tickets/ticket-("+fecha.format(date)+"-"+hora.format(date)+").txt")),flag);
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"32");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"1IO");
         }catch(IOException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"2IO");
         }catch(NoSuchAlgorithmException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,s,methodName,"Prueba");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"Prueba");
         }
     }
 }

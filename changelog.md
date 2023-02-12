@@ -1,3 +1,4 @@
+(31c38d2) -> Changelog.md updated
 (3cf0676) -> cambios menores
 (2d4edf5) -> Cambios menores
 (3dec09b) -> reporte mejorado y funcional, opción para enviar un reporte a un socio agregada, clase logger modificada para que almacene de forma óptima los eventos destinados para almacenarse y reducción de código

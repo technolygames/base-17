@@ -60,9 +60,9 @@ public final class about extends javax.swing.JDialog{
             
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"2IO");
         }
     }
     
@@ -261,13 +261,13 @@ public final class about extends javax.swing.JDialog{
             Desktop.getDesktop().browse(new URI(p.getProperty("website")));
             p.clear();
         }catch(URISyntaxException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1I");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1I");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }catch(FileNotFoundException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"1I0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"1I0");
         }catch(IOException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"2IO");
         }
     }//GEN-LAST:event_websiteLabelMouseClicked
     

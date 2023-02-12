@@ -117,7 +117,7 @@ public class ltshProviders extends javax.swing.JFrame{
             datosBuscar();
             mostrarBoton(true);
         }else{
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+            new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
         }
     }
     
@@ -138,7 +138,7 @@ public class ltshProviders extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"16");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"16");
         }
     }
     
@@ -157,7 +157,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -172,7 +172,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -187,7 +187,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -202,7 +202,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -217,7 +217,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -232,7 +232,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     if(rs.next()){
                         loadData(dtm,rs);
                     }else{
-                        new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                        new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                     }
                     Events.table(jTable1,sorter,DbUtils.resultSetToTableModel(rs),dtm);
                     
@@ -244,13 +244,13 @@ public class ltshProviders extends javax.swing.JFrame{
                 }
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }catch(ArrayIndexOutOfBoundsException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"AIOOBE");
         }catch(IndexOutOfBoundsException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"IOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"IOOBE");
         }
     }
     

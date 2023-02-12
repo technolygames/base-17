@@ -129,7 +129,7 @@ public class dataWindow2 extends javax.swing.JDialog{
             port=p.getProperty("puerto");
             server=p.getProperty("server");
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
         }
     }
     
@@ -156,15 +156,15 @@ public class dataWindow2 extends javax.swing.JDialog{
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }
     }
     
@@ -197,11 +197,11 @@ public class dataWindow2 extends javax.swing.JDialog{
                 
                 ps.close();
             }catch(SQLException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
             }
         });
         
@@ -243,17 +243,17 @@ public class dataWindow2 extends javax.swing.JDialog{
                 Desktop.getDesktop().open(f);
             }
         }catch(JRException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"17");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"17");
         }catch(ExceptionInInitializerError x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"EIIE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"EIIE");
         }catch(NoClassDefFoundError n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"NCDFE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"NCDFE");
         }catch(IOException k){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,k,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,k,methodName,"2IO");
         }catch(JRFontNotFoundException l){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,l,methodName,"JRFNFE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,l,methodName,"JRFNFE");
         }catch(InaccessibleObjectException r){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,r,methodName,"IAE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,r,methodName,"IAE");
         }
     }
     
@@ -267,7 +267,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                     sendEmail(etiCorreo.getText(),"Test","Prueba de mandar un archivo");
                     logger.staticLogger(Level.INFO,"existe el archivo y se puede enviar",this.getClass().getName());
                 }else{
-                    JOptionPane.showMessageDialog(null,"Crea el reporte para poder usar esta función","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Crea el reporte/factura para poder usar esta función","Error Prueba",JOptionPane.WARNING_MESSAGE);
                     logger.staticLogger(Level.INFO,"no existe",this.getClass().getName());
                 }
             }
@@ -321,9 +321,9 @@ public class dataWindow2 extends javax.swing.JDialog{
             
             Transport.send(msg);
         }catch(MessagingException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"Prueba1");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"Prueba1");
         }catch(UnsupportedEncodingException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"Prueba2");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"Prueba2");
         }
     }
     

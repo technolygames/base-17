@@ -96,7 +96,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 });
                 clearFields();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         });
         
@@ -134,14 +134,14 @@ public final class ventana2 extends javax.swing.JFrame{
                     JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
                     logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }catch(SQLException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"11");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"11");
             }
         });
         
@@ -178,7 +178,7 @@ public final class ventana2 extends javax.swing.JFrame{
                     jComboBox1.getModel().setSelectedItem(jTable1.getValueAt(row,7).toString());
                     dtm.removeRow(row);
                 }catch(ArrayIndexOutOfBoundsException e){
-                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana2.this,e,methodName,"AIOOBE");
+                    new logger(Level.SEVERE,this.getClass().getName()).catchException(ventana2.this,e,methodName,"AIOOBE");
                 }
             }
         });
@@ -208,7 +208,7 @@ public final class ventana2 extends javax.swing.JFrame{
                 logger.staticLogger(Level.INFO,"no hay nada seleccionado",this.getClass().getName());
             }
         }catch(ArrayIndexOutOfBoundsException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"AIOOBE");
         }
     }
     
@@ -447,49 +447,49 @@ public final class ventana2 extends javax.swing.JFrame{
     
     private void txtCodProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodProdKeyPressed
     
     private void txtCodLoteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodLoteKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodLoteKeyPressed
     
     private void txtCodProvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProvKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodProvKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodProvKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodProvKeyPressed
     
     private void txtProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtProdKeyPressed
     
     private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtMarcaKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtMarcaKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
     
     private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCantKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCantKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCantKeyPressed
     
     private void txtPUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPUKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtPUKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtPUKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtPUKeyPressed

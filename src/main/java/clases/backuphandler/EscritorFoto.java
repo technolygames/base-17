@@ -56,13 +56,13 @@ public class EscritorFoto{
             
             return dir1;
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"14");
             return null;
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"1IO");
             return null;
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"0");
             return null;
         }
     }
@@ -91,13 +91,13 @@ public class EscritorFoto{
             
             return dir2;
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"14");
             return null;
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"1IO");
             return null;
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"0");
             return null;
         }
     }
@@ -126,13 +126,13 @@ public class EscritorFoto{
             
             return dir3;
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"14");
             return null;
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"1IO");
             return null;
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"0");
             return null;
         }
     }

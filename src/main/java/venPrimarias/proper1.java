@@ -127,13 +127,13 @@ public final class proper1 extends javax.swing.JFrame{
             
             p.clear();
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
         }catch(IOException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
         }catch(NullPointerException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"0");
         }
     }
     
@@ -184,11 +184,11 @@ public final class proper1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
             }
         });
         
@@ -216,11 +216,11 @@ public final class proper1 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
             }
         });
         
@@ -264,13 +264,13 @@ public final class proper1 extends javax.swing.JFrame{
                 frame.pack();
             }
         }catch(ClassNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"CNFE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"CNFE");
         }catch(IllegalAccessException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"IAE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"IAE");
         }catch(InstantiationException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"IE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"IE");
         }catch(UnsupportedLookAndFeelException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"28");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"28");
         }
     }
     
@@ -290,11 +290,11 @@ public final class proper1 extends javax.swing.JFrame{
                 jComboBox1.addItem(lafi.getClassName());
             }
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
         }catch(IllegalArgumentException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"34");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"34");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
         }
     }
     
@@ -349,13 +349,13 @@ public final class proper1 extends javax.swing.JFrame{
             }
             p.clear();
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(NumberFormatException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"32");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
         }catch(IOException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"2IO");
         }
     }
     

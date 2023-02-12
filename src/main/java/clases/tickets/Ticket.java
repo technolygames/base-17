@@ -1,6 +1,8 @@
 package clases.tickets;
 //clases
+import clases.MediaHandler;
 import clases.logger;
+import java.awt.Frame;
 //java
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,6 +27,8 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
  */
 public class Ticket{
     public static final String LINE_BREAK="\n";
+    
+    protected Frame frame=MediaHandler.getFrames();
     
     static ArrayList<String> cabezaLineas=new ArrayList<>();
     static ArrayList<String> subcabezaLineas=new ArrayList<>();
@@ -79,16 +83,16 @@ public class Ticket{
             imp.flush();
             imp.close();
         }catch(PrintException e){
-            new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(null,e,methodName,"PE_T1");
+            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,e,methodName,"PE_T1");
             remove();
         }catch(IOException x){
-            new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(null,x,methodName,"2IO_H1");
+            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,x,methodName,"2IO_H1");
             remove();
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(null,n,methodName,"15");
+            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,n,methodName,"15");
             remove();
         }catch(IllegalArgumentException s){
-            new logger(Level.SEVERE, this.getClass().getName()).storeAndViewCaughtException(null,s,methodName,"Prueba_T1");
+            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,s,methodName,"Prueba_T1");
             remove();
         }
     }

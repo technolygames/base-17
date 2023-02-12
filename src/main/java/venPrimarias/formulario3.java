@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.MvcForm3;
 import menus.menuDatosVentana3;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -12,12 +13,13 @@ import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -92,11 +94,11 @@ public class formulario3 extends javax.swing.JFrame{
                 }
                 p.clear();
             }catch(HeadlessException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"40");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"40");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(IOException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"2IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"2IO");
             }
         });
         
@@ -117,26 +119,31 @@ public class formulario3 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||picLabel.getIcon()!=null){
-                    int codigo=Integer.parseInt(jTextField1.getText());
-                    String nombre=jTextField2.getText();
-                    String apellidop=jTextField3.getText();
-                    String apellidom=jTextField4.getText();
-                    String empresa=jTextField5.getText();
-                    int contacto=Integer.parseInt(jTextField6.getText());
-                    InputStream foto=new FileInputStream(direccion);
+                    List<MvcForm3> datos=new ArrayList<>();
+                    MvcForm3 modelo=new MvcForm3();
                     
-                    new Datos().insertarDatosProveedor(codigo,nombre,apellidop,apellidom,empresa,contacto,foto);
+                    modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
+                    modelo.setNombre(jTextField2.getText());
+                    modelo.setApellidoPaterno(jTextField3.getText());
+                    modelo.setApellidoMaterno(jTextField4.getText());
+                    modelo.setEmpresa(jTextField5.getText());
+                    modelo.setContacto(Integer.parseInt(jTextField6.getText()));
+                    modelo.setImagen(new FileInputStream(direccion));
+                    
+                    datos.add(modelo);
+                    
+                    new Datos().insertarDatosProveedor(datos);
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
             }catch(FileNotFoundException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }catch(NumberFormatException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"32");
             }catch(SQLException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
             }
         });
     }
@@ -158,11 +165,12 @@ public class formulario3 extends javax.swing.JFrame{
                     default->jsonr.skipValue();
                 }      
             }
+            
             showImage(direccion);
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
         }
     }
     
@@ -361,42 +369,42 @@ public class formulario3 extends javax.swing.JFrame{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField1KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField2KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField3KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField3KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField4KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField4KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed
     
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField5KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField5KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField5KeyPressed
     
     private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField6KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"jTextField6KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField6KeyPressed

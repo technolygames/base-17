@@ -100,4 +100,12 @@ public class Events{
         table.setModel(tm);
         table.setModel(dtm);
     }
+    
+    public static String exp(int exp){
+        return switch(exp){
+            case 0->"Sin experiencia";
+            case 1->String.valueOf(exp).concat(" año");
+            default->String.valueOf(exp).concat(" años");
+        };
+    }
 }

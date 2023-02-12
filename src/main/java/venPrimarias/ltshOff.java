@@ -63,7 +63,7 @@ public class ltshOff extends javax.swing.JFrame{
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,"datosMostrar","16");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,"datosMostrar","16");
         }
     }
     

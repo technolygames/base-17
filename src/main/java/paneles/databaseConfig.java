@@ -39,9 +39,9 @@ public class databaseConfig extends javax.swing.JPanel{
             jTextField4.setText(p.getProperty("ip"));
             jTextField5.setText(p.getProperty("port"));
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(IOException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"2IO");
         }
     }
     
@@ -75,13 +75,13 @@ public class databaseConfig extends javax.swing.JPanel{
                 f.createNewFile();
             }
         }catch(FileNotFoundException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(NumberFormatException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"32");
         }catch(NullPointerException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
         }catch(IOException s){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,s,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,s,methodName,"2IO");
         }
     }
     

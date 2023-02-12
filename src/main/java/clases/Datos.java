@@ -2,6 +2,7 @@ package clases;
 //clases
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
+import clases.mvc.MvcForm3;
 import java.awt.Frame;
 import venPrimarias.start;
 //java
@@ -64,16 +65,16 @@ public class Datos{
             Class.forName(driver);
             return DriverManager.getConnection("jdbc:mysql://"+ip+":"+port+"/"+db+"?serverTimezone=UTC",user,pass);
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,e,methodName,"10");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"10");
             return null;
         }catch(ClassNotFoundException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,x,methodName,"37");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"37");
             return null;
         }catch(FileNotFoundException n){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,n,methodName,"1IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"1IO");
             return null;
         }catch(IOException k){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(frame,k,methodName,"2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,k,methodName,"2IO");
             return null;
         }
     }
@@ -86,7 +87,7 @@ public class Datos{
      * @throws SQLException si el gestor gestor detecta un problema, lanza este error.
      */
     public void crearBD(String nombre) throws SQLException{
-        ps=getConnection().prepareStatement("create database "+nombre+";");
+        ps=getConnection().prepareStatement(String.format("create database %s;",nombre));
         ps.execute();
         
         JOptionPane.showMessageDialog(frame,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
@@ -184,8 +185,7 @@ public class Datos{
         ps.setBlob(16,datos.get(0).getImagen());
         ps.execute();
         
-        JOptionPane.showMessageDialog(frame,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosEmpleado()");
         
         datos.clear();
         ps.close();
@@ -194,30 +194,24 @@ public class Datos{
     /**
      * Guarda los datos de la ventana de proveedor en la base de datos.
      * 
-     * @param codigoProveedor Código de identificación del proveedor.
-     * @param nombreProveedor Nombre(s) del proveedor.
-     * @param apellidoPaternoProveedor Apellido paterno del proveedor.
-     * @param apellidoMaternoProveedor Apellido materno del proveedor.
-     * @param empresa Empresa procedencia del proveedor.
-     * @param contacto Número de contacto del proveedor.
-     * @param foto Foto del proveedor para identificarlo.
+     * @param datos lista con los datos del proveedor.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosProveedor(int codigoProveedor,String nombreProveedor,String apellidoPaternoProveedor,String apellidoMaternoProveedor,String empresa,int contacto,InputStream foto) throws SQLException{
+    public void insertarDatosProveedor(List<MvcForm3> datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into proveedor value(?,?,?,?,?,?,?,now(),now());");
-        ps.setInt(1,codigoProveedor);
-        ps.setString(2,nombreProveedor);
-        ps.setString(3,apellidoPaternoProveedor);
-        ps.setString(4,apellidoMaternoProveedor);
-        ps.setString(5,empresa);
-        ps.setInt(6,contacto);
-        ps.setBinaryStream(7,foto);
+        ps.setInt(1,datos.get(0).getCodigo());
+        ps.setString(2,datos.get(0).getNombre());
+        ps.setString(3,datos.get(0).getApellidoPaterno());
+        ps.setString(4,datos.get(0).getApellidoMaterno());
+        ps.setString(5,datos.get(0).getEmpresa());
+        ps.setInt(6,datos.get(0).getContacto());
+        ps.setBinaryStream(7,datos.get(0).getImagen());
         ps.execute();
         
-        JOptionPane.showMessageDialog(frame,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosProveedor()");
         
+        datos.clear();
         ps.close();
     }
     
@@ -241,8 +235,7 @@ public class Datos{
         ps.setBinaryStream(9,datos.get(0).getImagen());
         ps.execute();
         
-        JOptionPane.showMessageDialog(frame,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosSocio()");
         
         datos.clear();
         ps.close();
@@ -284,8 +277,7 @@ public class Datos{
         ps.setDate(6,fin);
         ps.execute();
         
-        JOptionPane.showMessageDialog(frame,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosPromo()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosPromo()");
         
         ps.close();
     }
@@ -462,8 +454,7 @@ public class Datos{
         ps.setInt(2,codigo);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosString()");
         
         ps.close();
     }
@@ -488,8 +479,7 @@ public class Datos{
         ps.executeUpdate();
         
         if(flag){
-            JOptionPane.showMessageDialog(frame,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-            logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+            new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosInteger()");
         }else{
             logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
         }
@@ -515,8 +505,7 @@ public class Datos{
         ps.setInt(2,codigo);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han actualizado los datos","Rel 2",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosDate()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosDate()");
         
         ps.close();
     }
@@ -546,8 +535,7 @@ public class Datos{
         ps.setInt(2,usuario);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 2: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'actualizarFotoPerfil()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarFotoPerfil()");
         
         ps.close();
     }
@@ -587,8 +575,7 @@ public class Datos{
         ps.setInt(1,codigoProducto);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosAlmacen()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).deleteMessageConfirmation(frame,"eliminarDatosAlmacen()");
         
         ps.close();
     }
@@ -607,8 +594,7 @@ public class Datos{
         ps.setInt(1,codigoEmpleado);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosEmpleado()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).deleteMessageConfirmation(frame,"eliminarDatosEmpleado()");
         
         ps.close();
     }
@@ -627,8 +613,7 @@ public class Datos{
         ps.setInt(1,codigoSocio);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosSocio()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).deleteMessageConfirmation(frame,"eliminarDatosSocio()");
         
         ps.close();
     }
@@ -647,8 +632,7 @@ public class Datos{
         ps.setInt(1,codigoProveedor);
         ps.executeUpdate();
         
-        JOptionPane.showMessageDialog(frame,"Se han eliminado los datos","Rel 3",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosProveedor()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        new logger(Level.CONFIG,this.getClass().getName()).deleteMessageConfirmation(frame,"eliminarDatosProveedor()");
         
         ps.close();
     }

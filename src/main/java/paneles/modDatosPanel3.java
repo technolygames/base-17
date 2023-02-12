@@ -88,7 +88,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -125,7 +125,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -162,7 +162,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -199,7 +199,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -236,7 +236,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                             break;
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"12");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
                     }
                 });
             }else{
@@ -279,15 +279,15 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                     jLabel4.setText(rs.getString("empresa"));
                     jLabel5.setText(rs.getString("contacto"));
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
                 }
                 ps.close();
                 rs.close();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }
     }
     
@@ -471,35 +471,35 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField1KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField1KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
     
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField2KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField2KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField2KeyPressed
     
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField3KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField3KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField3KeyPressed
     
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"jTextField4KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"jTextField4KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField4KeyPressed
     
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"jTextField5KeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"jTextField5KeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_jTextField5KeyPressed

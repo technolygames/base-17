@@ -43,6 +43,8 @@ public class ResourceHandler{
     public static void downloadResources(String link){
         methodName="downloadLibs";
         try{
+            //Checa si hay conexión a internet
+            //Checks if there's internet connection
             while(checkConnection(link)!=null){
                 u=new URL(link);
                 uc=u.openConnection();
@@ -53,6 +55,10 @@ public class ResourceHandler{
                 
                 String path1=Dirs.exists(f);
                 
+                /**
+                 * Checa si existe el archivo a modificar y si no es igual al peso del archivo local
+                 * Checks if the file to change exists and if is not equal to the local file
+                 */
                 if(!f.exists()&&f.length()==0){
                     is=uc.getInputStream();
                     fos=new FileOutputStream(path1);
@@ -66,11 +72,11 @@ public class ResourceHandler{
             fos.flush();
             fos.close();
         }catch(MalformedURLException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1I");
+            new logger(Level.SEVERE,className).catchException(frame,e,methodName,"1I");
         }catch(FileNotFoundException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"1IO");
+            new logger(Level.SEVERE,className).catchException(frame,x,methodName,"1IO");
         }catch(IOException k){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,k,methodName,"2IO");
+            new logger(Level.SEVERE,className).catchException(frame,k,methodName,"2IO");
         }
     }
     
@@ -96,10 +102,10 @@ public class ResourceHandler{
             
             return fechalocal1.equals(fechalocal2);
         }catch(MalformedURLException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,methodName,"1I");
+            new logger(Level.SEVERE,className).catchException(frame,e,methodName,"1I");
             return false;
         }catch(IOException x){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,x,methodName,"2IO");
+            new logger(Level.SEVERE,className).catchException(frame,x,methodName,"2IO");
             return false;
         }
     }

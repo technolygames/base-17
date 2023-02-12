@@ -80,15 +80,15 @@ public class dataWindow3 extends javax.swing.JDialog{
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
             }
             
             ps.close();
             rs.close();
         }catch(SQLException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
         }catch(NullPointerException x){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
         }
     }
     
@@ -117,11 +117,11 @@ public class dataWindow3 extends javax.swing.JDialog{
                 
                 ps.close();
             }catch(SQLException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"14");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,n,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
             }
         });
     }

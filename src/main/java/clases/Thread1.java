@@ -44,7 +44,7 @@ public class Thread1 implements Runnable{
             is.close();
             os.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(MediaHandler.getFrames(),e,"run","2IO");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(MediaHandler.getFrames(),e,"run","2IO");
         }
     }
 }

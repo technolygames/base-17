@@ -45,7 +45,7 @@ public class Thread3 implements Runnable{
             
             is.close();
         }catch(IOException e){
-            new logger(Level.SEVERE,className).storeAndViewCaughtException(frame,e,"run","2IO");
+            new logger(Level.SEVERE,className).catchException(frame,e,"run","2IO");
         }
     }
 }

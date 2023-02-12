@@ -101,7 +101,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 });
                 clearFields();
             }else{
-                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }
         });
         
@@ -127,12 +127,12 @@ public final class ventana1 extends javax.swing.JFrame{
                     CODIGO_EMP=Integer.parseInt(txtCodEmp.getText());
                     new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
                 }else{
-                    new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(this,methodName);
+                    new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
             }catch(NumberFormatException e){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
             }catch(NullPointerException x){
-                new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,x,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
             }
         });
         
@@ -162,13 +162,13 @@ public final class ventana1 extends javax.swing.JFrame{
                                     txtPrecio.setText(String.valueOf(rs.getInt("precio_unitario")));
                                 }
                             }else{
-                                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(ventana1.this,methodName);
+                                new logger(Level.WARNING,this.getClass().getName()).storeError18(ventana1.this,methodName);
                             }
                         }else{
-                            new logger(Level.WARNING,this.getClass().getName()).storeAndViewError14(ventana1.this,methodName);
+                            new logger(Level.WARNING,this.getClass().getName()).storeError14(ventana1.this,methodName);
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"14");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(ventana1.this,e,methodName,"14");
                     }
                 }
             }
@@ -200,11 +200,11 @@ public final class ventana1 extends javax.swing.JFrame{
                                     calc();
                                 }
                             }else{
-                                new logger(Level.WARNING,this.getClass().getName()).storeAndViewError18(ventana1.this,methodName);
+                                new logger(Level.WARNING,this.getClass().getName()).storeError18(ventana1.this,methodName);
                             }
                         }
                     }catch(SQLException e){
-                        new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"14");
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(ventana1.this,e,methodName,"14");
                     }
                 }
                 if(a.getKeyCode()==KeyEvent.VK_BACK_SPACE){
@@ -244,7 +244,7 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtTotal.setText(jTable1.getValueAt(row,5).toString());
                     DTM.removeRow(row);
                 }catch(ArrayIndexOutOfBoundsException e){
-                    new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(ventana1.this,e,methodName,"AIOOBE");
+                    new logger(Level.SEVERE,this.getClass().getName()).catchException(ventana1.this,e,methodName,"AIOOBE");
                 }
             }
         });
@@ -269,7 +269,7 @@ public final class ventana1 extends javax.swing.JFrame{
 
             txtTotal.setText(String.valueOf(res));
         }catch(NumberFormatException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"32");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
         }
     }
     
@@ -288,7 +288,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 logger.staticLogger(Level.INFO,"no hay nada seleccionado",this.getClass().getName());
             }
         }catch(ArrayIndexOutOfBoundsException e){
-            new logger(Level.SEVERE,this.getClass().getName()).storeAndViewCaughtException(this,e,methodName,"AIOOBE");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"AIOOBE");
         }
     }
     
@@ -514,49 +514,49 @@ public final class ventana1 extends javax.swing.JFrame{
     
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodigoKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodigoKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
     
     private void txtCodEmpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodEmpKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCodEmpKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCodEmpKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCodEmpKeyPressed
 
     private void txtProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProdKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtProdKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtProdKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtProdKeyPressed
     
     private void txtMarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyPressed
         if(Character.isDigit(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewNumberInputWarning(this,"txtMarcaKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeNumberInputWarning(this,"txtMarcaKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtMarcaKeyPressed
     
     private void txtCantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtCantKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtCantKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtCantKeyPressed
 
     private void txtPrecioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtPrecioKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtPrecioKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtPrecioKeyPressed
     
     private void txtTotalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyPressed
         if(Character.isLetter(evt.getKeyChar())){
-            new logger(Level.WARNING,this.getClass().getName()).storeAndViewLetterInputWarning(this,"txtTotalKeyPressed");
+            new logger(Level.WARNING,this.getClass().getName()).storeLetterInputWarning(this,"txtTotalKeyPressed");
             evt.consume();
         }
     }//GEN-LAST:event_txtTotalKeyPressed
