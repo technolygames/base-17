@@ -1,9 +1,11 @@
 package venPrimarias;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm2;
+import clases.mvc.Controlador;
 import menus.menuDatosVentana2;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -34,6 +36,23 @@ public class formulario2 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(formulario2.class.getName()).setLookAndFeel(formulario2.this);
          
+        botones();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Formulario 2");
+        setResizable(false);
+        pack();
+    }
+    
+    protected Controlador modelo0;
+    
+    public formulario2(Controlador modelo){
+        initComponents();
+        new MediaHandler(formulario2.class.getName()).setLookAndFeel(formulario2.this);
+        
+        this.modelo0=modelo;
+        
         botones();
         settings();
         
@@ -92,9 +111,7 @@ public class formulario2 extends javax.swing.JFrame{
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     File f=jfc.getSelectedFile();
-                    direccion=f.getPath();
-                    
-                    showImage(direccion);
+                    showImage(f.getPath());
                     
                     p.setProperty("lastdirectory_form2",f.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -141,7 +158,7 @@ public class formulario2 extends javax.swing.JFrame{
                     
                     lista.add(modelo);
                     
-                    new Datos().insertarDatosSocio(lista);
+                    new Datos(modelo0).insertarDatosSocio(lista);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -172,11 +189,10 @@ public class formulario2 extends javax.swing.JFrame{
                     case "correo"->jTextField5.setText(jsonr.nextString());
                     case "rfc"->jTextField6.setText(jsonr.nextString());
                     case "datos_extra"->jTextArea1.setText(jsonr.nextString());
-                    case "imagen"->direccion=jsonr.nextString();
+                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
                     default->jsonr.skipValue();
                 }
             }
-            showImage(direccion);
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
@@ -190,6 +206,7 @@ public class formulario2 extends javax.swing.JFrame{
     }
     
     protected void showImage(String path){
+        direccion=path;
         picLabel.setText(null);
         picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }

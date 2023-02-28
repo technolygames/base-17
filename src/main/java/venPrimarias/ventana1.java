@@ -3,7 +3,9 @@ package venPrimarias;
 import clases.Datos;
 import clases.Events;
 import clases.MediaHandler;
+import clases.Validation;
 import clases.logger;
+import clases.mvc.Controlador;
 import venSecundarias.paymentWindow;
 //java
 import java.awt.Image;
@@ -36,26 +38,41 @@ public final class ventana1 extends javax.swing.JFrame{
         settings();
         
         setLocationRelativeTo(null);
-        setTitle("Productos");
+        setTitle("Ventas");
+        pack();
+    }
+    
+    protected Controlador modelo;
+    
+    public ventana1(Controlador modelo){
+        initComponents();
+        new MediaHandler(ventana1.class.getName()).setLookAndFeel(ventana1.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        popup();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Ventas");
         pack();
     }
     
     protected ResultSet rs;
     protected PreparedStatement ps;
     
-    public static DefaultTableModel DTM;
+    protected DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
     protected JTextField campos;
     
     protected String methodName;
     
-    public static int CODIGO_EMP;
-    
     protected final void settings(){
-        txtCodEmp.setText(String.valueOf(start.USERID));
+        txtCodEmp.setText(String.valueOf(modelo.getUserID()));
         picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(start.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
         
-        DTM=new DefaultTableModel(){
+        dtm=new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column){
                 //all cells false
@@ -63,7 +80,7 @@ public final class ventana1 extends javax.swing.JFrame{
             }
         };
         
-        DTM.setColumnIdentifiers(new Object[]{
+        dtm.setColumnIdentifiers(new Object[]{
             "Código del producto",
             "Nombre del producto",
             "Marca",
@@ -72,18 +89,19 @@ public final class ventana1 extends javax.swing.JFrame{
             "Total"
         });
         
-        for(int i=0;i<DTM.getRowCount();i++){
-            for(int j=0;j<DTM.getColumnCount();j++){
-                DTM.isCellEditable(i,j);
+        for(int i=0;i<dtm.getRowCount();i++){
+            for(int j=0;j<dtm.getColumnCount();j++){
+                dtm.isCellEditable(i,j);
             }
         }
         
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setModel(DTM);
+        jTable1.setModel(dtm);
     }
     
     protected final void botones(){
-        DTM=new DefaultTableModel();
+        dtm=new DefaultTableModel();
+        var datos=new Datos(modelo);
         
         addButton.addActionListener(a->{
             methodName="botones.add";
@@ -91,7 +109,7 @@ public final class ventana1 extends javax.swing.JFrame{
                 campos=tf;
             }
             if(!campos.getText().isEmpty()){
-                DTM.addRow(new Object[]{
+                dtm.addRow(new Object[]{
                     txtCodigo.getText(),
                     txtProd.getText(),
                     txtMarca.getText(),
@@ -111,7 +129,7 @@ public final class ventana1 extends javax.swing.JFrame{
         });
         
         cleanButton.addActionListener(a->{
-            DTM.setRowCount(0);
+            dtm.setRowCount(0);
             
             clearFields();
         });
@@ -124,8 +142,7 @@ public final class ventana1 extends javax.swing.JFrame{
             methodName="botones.mkPmnt";
             try{
                 if(jTable1.getRowCount()!=0){
-                    CODIGO_EMP=Integer.parseInt(txtCodEmp.getText());
-                    new paymentWindow(new javax.swing.JFrame(),true).setVisible(true);
+                    new paymentWindow(new javax.swing.JFrame(),true,modelo,dtm).setVisible(true);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -142,19 +159,26 @@ public final class ventana1 extends javax.swing.JFrame{
                 methodName="botones.txtCodigo";
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new Datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps=datos.getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
                             if(!txtCodigo.getText().isEmpty()){
                                 if(rs.getInt("cantidad")==0){
-                                    if(rs.getString("stock").equals("Agotado")){
-                                        JOptionPane.showMessageDialog(ventana1.this,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                                    String etiqueta="stock";
+                                    String[] mensaje=new String[]{"Sin stock","Error Prueba"};
+                                    if(rs.getString(etiqueta).equals(Validation.stock(1))){
+                                        JOptionPane.showMessageDialog(ventana1.this,mensaje[0],mensaje[1],JOptionPane.WARNING_MESSAGE);
                                         logger.staticLogger(Level.CONFIG,"No guarda en ventana1, pero da el aviso",this.getClass().getName());
                                     }else{
-                                        JOptionPane.showMessageDialog(ventana1.this,"Sin stock","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                        logger.staticLogger(Level.CONFIG,"Guarda en ventana1",this.getClass().getName());
-                                        new Datos().actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()));
+                                        if(rs.getString(etiqueta).equals(Validation.stock(0))){
+                                            JOptionPane.showMessageDialog(ventana1.this,mensaje[0],mensaje[1],JOptionPane.WARNING_MESSAGE);
+                                            logger.staticLogger(Level.CONFIG,"Guarda en ventana1",this.getClass().getName());
+                                            datos.actualizarDatosString("almacen","stock","codigo_prod","Agotado",Integer.parseInt(txtCodigo.getText()),false);
+                                        }else if(rs.getString(etiqueta).equals(Validation.stock(1))){
+                                            JOptionPane.showMessageDialog(ventana1.this,mensaje[0],mensaje[1],JOptionPane.WARNING_MESSAGE);
+                                            logger.staticLogger(Level.CONFIG,"No guarda en ventana1 porque el valor es igual",this.getClass().getName());
+                                        }
                                     }
                                 }else{
                                     txtProd.setText(rs.getString("nombre_prod"));
@@ -180,20 +204,21 @@ public final class ventana1 extends javax.swing.JFrame{
                 methodName="botones.txtCant";
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        ps=new Datos().getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
+                        ps=datos.getConnection().prepareStatement("select*from almacen where codigo_prod=?;");
                         ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
                         rs=ps.executeQuery();
                         if(rs.next()){
                             if(!txtCant.getText().isEmpty()){
                                 int txtCantidad=Integer.parseInt(txtCant.getText());
                                 int cantidad=rs.getInt("cantidad");
+                                String nombre=rs.getString("nombre_prod");
                                 if(txtCantidad>=cantidad&&txtCantidad>cantidad||txtCantidad==cantidad&&cantidad>=1){
                                     if(txtCantidad>cantidad){
                                         JOptionPane.showMessageDialog(ventana1.this,"No tienes mucho stock a partir de la cantidad ingresada.","Error Prueba",JOptionPane.ERROR_MESSAGE);
-                                        logger.staticLogger(Level.SEVERE,"Error Prueba: sin stock de "+rs.getString("nombre_prod")+".\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
+                                        logger.staticLogger(Level.SEVERE,"Error Prueba: sin stock de "+nombre+".\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
                                     }else{
                                         JOptionPane.showMessageDialog(ventana1.this,"No hay mucho stock de este producto.\nSi realizas la venta, te quedarás sin stock de este producto.","Error Prueba",JOptionPane.WARNING_MESSAGE);
-                                        logger.staticLogger(Level.WARNING,"Error Prueba: escasez de "+rs.getString("nombre_prod")+" (cantidad en almacén: "+rs.getInt("cantidad")+").\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
+                                        logger.staticLogger(Level.WARNING,"Error Prueba: escasez de "+nombre+" (cantidad en almacén: "+cantidad+").\nOcurrió en el método 'botones(txtCant)'",this.getClass().getName());
                                         calc();
                                     }
                                 }else{
@@ -242,7 +267,7 @@ public final class ventana1 extends javax.swing.JFrame{
                     txtCant.setText(jTable1.getValueAt(row,3).toString());
                     txtPrecio.setText(jTable1.getValueAt(row,4).toString());
                     txtTotal.setText(jTable1.getValueAt(row,5).toString());
-                    DTM.removeRow(row);
+                    dtm.removeRow(row);
                 }catch(ArrayIndexOutOfBoundsException e){
                     new logger(Level.SEVERE,this.getClass().getName()).catchException(ventana1.this,e,methodName,"AIOOBE");
                 }
@@ -283,7 +308,7 @@ public final class ventana1 extends javax.swing.JFrame{
         methodName="removeRow";
         try{
             if(jTable1.isRowSelected(jTable1.getRowCount())){
-                DTM.removeRow(jTable1.getSelectedRow());
+                dtm.removeRow(jTable1.getSelectedRow());
             }else{
                 logger.staticLogger(Level.INFO,"no hay nada seleccionado",this.getClass().getName());
             }
@@ -369,7 +394,7 @@ public final class ventana1 extends javax.swing.JFrame{
         backButton.setText("Regresar");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel8.setText("Productos");
+        jLabel8.setText("Ventas");
 
         txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -446,7 +471,7 @@ public final class ventana1 extends javax.swing.JFrame{
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()

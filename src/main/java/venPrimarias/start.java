@@ -4,15 +4,14 @@ import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
 import clases.DisplayNotification;
-import clases.mvc.MvcVar;
+import clases.Events;
+import clases.mvc.Controlador;
 import venSecundarias.loadWindow;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.time.Period;
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -21,6 +20,7 @@ import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.TrayIcon.MessageType;
+import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 
 public final class start extends javax.swing.JFrame{
@@ -42,12 +42,7 @@ public final class start extends javax.swing.JFrame{
     protected JTextField campos;
     
     protected ResultSet rs;
-    protected PreparedStatement ps;
-    
-    public static int USERID;
-    
-    public static String USERNAME;
-    public static String USER_ROLE;
+    protected Datos datos;
     
     protected final void settings(){
         methodName="settings";
@@ -80,7 +75,8 @@ public final class start extends javax.swing.JFrame{
         methodName="login";
         String user=txtUsuario.getText();
         String pass=String.valueOf(txtPassword.getPassword());
-        var datos=new Datos();
+        Controlador modelo=new Controlador();
+        datos=new Datos(modelo);
         
         for(JTextField tf:new JTextField[]{txtUsuario,txtPassword}){
             campos=tf;
@@ -91,64 +87,36 @@ public final class start extends javax.swing.JFrame{
                 datos.actualizarDatosLogin(pass,user);
                 rs=datos.login(pass,user);
                 if(rs.next()){
-                    MvcVar mvc=new MvcVar();
-                    mvc.setUserID(rs.getInt("codigo_emp"));
-                    mvc.setUsername(rs.getString("nombre_emp"));
-                    mvc.setUserRole(rs.getString("puesto"));
+                    modelo.setUserID(rs.getInt("codigo_emp"));
+                    modelo.setUsername(rs.getString("nombre_emp"));
+                    modelo.setUserRole(rs.getString("puesto"));
                     
-                    new loadWindow(mvc).setVisible(true);
+                    new loadWindow(modelo).setVisible(true);
                     dispose();
                     
-                    //variables
-                    USERID=rs.getInt("codigo_emp");
-                    USERNAME=rs.getString("nombre_emp");
-                    USER_ROLE=rs.getString("puesto");
+                    /*revisar la edad del empleado*/
+                    datos.actualizarDatosInteger("empleados","edad","codigo_emp",Events.calcAge(Date.valueOf(rs.getString("fecha_nacimiento")).getTime(),rs.getInt("edad")),modelo.getUserID(),false);
                     
-                    /*revisar la edad del empleado*/{
-                        String fn=rs.getString("fecha_nacimiento");
-                        int edad1=rs.getInt("edad");
-                        String edad2=String.valueOf(Period.between(LocalDate.parse(fn,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
-                        
-                        if(!edad2.equals(String.valueOf(edad1))){
-                            logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
-                            datos.actualizarDatosInteger("empleados","edad","codigo_emp",Integer.parseInt(edad2),USERID,false);
-                        }else{
-                            logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
-                        }
-                    }
-                    
-                    /*revisar los años de servicio en ese negocio*/{
-                        String fi=rs.getString("fecha_registro");
-                        int exp=rs.getInt("experiencia");
-                        String as=String.valueOf(Period.between(LocalDate.parse(fi,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
-                        if(!as.equals(String.valueOf(exp))){
-                            logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
-                            datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Integer.parseInt(as),USERID,false);
-                        }else{
-                            logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
-                        }
-                    }
+                    /*revisar los años de servicio en ese negocio*/
+                    datos.actualizarDatosInteger("empleados","experiencia","codigo_emp",Events.calcYoS(Date.valueOf(rs.getString("fecha_registro")).getTime(),rs.getInt("experiencia")),modelo.getUserID(),false);
                     
                     /*revisar registros en conteo*/{
-                        ps=datos.getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
-                        ps.setInt(1,USERID);
-                        ps.setString(2,LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
-                        ResultSet rs2=ps.executeQuery();
+                        ResultSet rs2=datos.buscarDatosConteo(modelo.getUserID(),LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE));
                         if(!rs2.next()){
                             logger.staticLogger(Level.INFO,"1; no hay",this.getClass().getName());
-                            new Datos().insertarDatosConteo(USERID,USERNAME,rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
+                            datos.insertarDatosConteo(modelo.getUserID(),modelo.getUsername(),rs.getString("apellidop_emp"),rs.getString("apellidom_emp"));
                         }else{
                             logger.staticLogger(Level.INFO,"2; si hay",this.getClass().getName());
                         }
+                        rs2.close();
                     }
                     
-                    DisplayNotification.trayNotify("Inicio de sesión","Bienvenido, "+USERNAME,MessageType.INFO);
-                    logger.staticLogger(Level.INFO,"Inicio de sesión correcto.\nOcurrió en el método 'login()'.\nUsuario logeado: "+USERNAME,this.getClass().getName());
+                    DisplayNotification.trayNotify("Inicio de sesión","Bienvenido, "+modelo.getUsername(),MessageType.INFO);
+                    logger.staticLogger(Level.INFO,"Inicio de sesión correcto.\nOcurrió en el método 'login()'.\nUsuario logeado: "+modelo.getUserID(),this.getClass().getName());
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
                 
-                ps.close();
                 rs.close();
             }else{
                 new logger(Level.WARNING,this.getClass().getName()).storeError14(this,methodName);
@@ -157,6 +125,8 @@ public final class start extends javax.swing.JFrame{
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"9");
         }catch(NullPointerException x){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
+        }catch(NumberFormatException n){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"32");
         }
     }
     

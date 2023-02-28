@@ -1,10 +1,14 @@
 package clases;
 //java
+import java.sql.Date;
+import java.time.Period;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.JPopupMenu;
 //extension larga
 import java.awt.event.MouseEvent;
+import java.time.format.DateTimeFormatter;
 import javax.swing.table.TableModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,10 +33,10 @@ public class Events{
     }
     
     /**
-     * Método usado para crear una instancia de DefaultTableModel con bloqueo para editar celdas.
-     * Este método se usa con frecuencia en algunas ventanas
+     * Método usado para crear una instancia de DefaultTableModel con bloqueo para editar celdas. 
+     * Este método se usa con frecuencia en algunas ventanas.
      * 
-     * @return instancia de la clase DefaultTableModel
+     * @return instancia de la clase DefaultTableModel.
      */
     public static DefaultTableModel tableModel(){
         DefaultTableModel dtm=new DefaultTableModel(){
@@ -83,9 +87,10 @@ public class Events{
     
     /**
      * Método encargado de establecer los parámetros necesarios para usar las funciones de una tabla, como:
+     * <br>
      * <ul>
-     * <li>ordenar los datos de las filas.</li>
-     * <li>al realizar búsqueda de datos específicos, estos los agrega a la tabla destino.</li>
+     * <li>Ordenar los datos de las filas.</li>
+     * <li>Al realizar búsqueda de datos específicos, estos los agrega a la tabla destino.</li>
      * </ul>
      * 
      * @param table a la que se le darán los parámetros y los valores de la búsqueda realizada.
@@ -101,11 +106,62 @@ public class Events{
         table.setModel(dtm);
     }
     
+    /**
+     * Crea una cadena con los años y el texto concorde a la experiencia del empleado.<br>
+     * Por ejemplo:
+     * <ul>
+     * <li>0 años = Sin Experiencia.</li>
+     * <li>1 año = 1 año.</li>
+     * <li>+2 años = 2 años.</li>
+     * </ul>
+     * 
+     * @param exp la experiencia de empleado.
+     * @return regresa una cadena con los años de experiencia.
+     */
     public static String exp(int exp){
+        //este método lo usan 3 ventanas
+        //para no estar copiando y pegando, mejor lo hago un método externo y que lo puedan utilizar varias clases
         return switch(exp){
             case 0->"Sin experiencia";
             case 1->String.valueOf(exp).concat(" año");
             default->String.valueOf(exp).concat(" años");
         };
+    }
+    
+    /**
+     * Calcula la edad del empleado. Si no es igual, regresa la edad acorde a su fecha de nacimiento.<br>
+     * Si es igual, regresa la edad que se ingresó en la variable del método.
+     * 
+     * @param date fecha de nacimiento del empleado.
+     * @param age edad a calcular y validar si es igual o no.
+     * @return la edad calculada según la fecha de nacimiento.
+     */
+    public static int calcAge(long date,int age){
+        int edad=Period.between(LocalDate.parse(new Date(date).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears();
+        String edad2=String.valueOf(edad);
+        
+        if(edad2.equals(String.valueOf(age))){
+            return age;
+        }
+        return edad;
+    }
+    
+    /**
+     * Calcula los años de servicio de un empleado trabajando en el negocio. 
+     * Si es igual, regresa el valor de la variable "exp". Si no es igual, regresa la fecha calculada.
+     * 
+     * @param yos los años de experiencia.
+     * @param exp la cantidad de años registrada.
+     * 
+     * @return los años de servicio según la fecha dada.
+     */
+    public static int calcYoS(long yos,int exp){
+        int years=Period.between(LocalDate.parse(new Date(yos).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears();
+        String ads=String.valueOf(years);
+        
+        if(ads.equals(String.valueOf(exp))){
+            return exp;
+        }
+        return years;
     }
 }

@@ -4,7 +4,7 @@ import clases.Dirs;
 import clases.logger;
 import clases.Thread1;
 import clases.Thread3;
-import venPrimarias.start;
+import clases.mvc.Controlador;
 //java
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,17 @@ import java.util.logging.Level;
 public class databaseExport extends javax.swing.JPanel{
     public databaseExport(){
         initComponents();
+        
+        botones();
+        settings();
+    }
+    
+    protected Controlador modelo;
+    
+    public databaseExport(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         settings();
@@ -94,7 +105,7 @@ public class databaseExport extends javax.swing.JPanel{
                 new Thread(new Thread1(pr.getInputStream(),os)).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha exportado correctamente la base de datos","Rel 3E",JOptionPane.INFORMATION_MESSAGE);
-                logger.staticLogger(Level.INFO,"Rel 3E: se exportó correctamente la base de datos.\nOcurrió en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Rel 3E: se exportó correctamente la base de datos.\nOcurrió en el método 'exportDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 os.flush();
                 os.close();

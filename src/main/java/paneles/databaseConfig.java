@@ -1,7 +1,7 @@
 package paneles;
 //clases
 import clases.logger;
-import venPrimarias.start;
+import clases.mvc.Controlador;
 //java
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +16,17 @@ import java.util.logging.Level;
 public class databaseConfig extends javax.swing.JPanel{
     public databaseConfig(){
         initComponents();
+        
+        botones();
+        configIn();
+    }
+    
+    protected Controlador modelo;
+    
+    public databaseConfig(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         configIn();
@@ -70,7 +81,7 @@ public class databaseConfig extends javax.swing.JPanel{
                 p.store(new FileOutputStream("data/config/databaseInfo.properties"),"DatabaseConfig");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
             }else{
                 f.createNewFile();
             }

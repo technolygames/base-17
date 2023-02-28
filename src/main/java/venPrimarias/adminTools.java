@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.logger;
 import clases.MediaHandler;
 import clases.Validation;
+import clases.mvc.Controlador;
 import paneles.databaseConfig;
 import paneles.databaseExport;
 import paneles.databaseImport;
@@ -13,9 +14,7 @@ import paneles.smtpPanel;
 import paneles.updatePanel;
 import paneles.workerDataRestore;
 //java
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,10 +37,28 @@ public class adminTools extends javax.swing.JFrame{
         pack();
     }
     
+    protected Controlador modelo;
+    
+    public adminTools(Controlador modelo){
+        initComponents();
+        new MediaHandler(adminTools.class.getName()).setLookAndFeel(adminTools.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Herramientas de administrador");
+        setResizable(false);
+        pack();
+    }
+    
     protected String methodName;
     
     protected final void settings(){
         methodName="settings";
+        String rol=modelo.getUserRole();
         JMenuItem[] items={jMenuItem5,jMenuItem6};
         try{
             Properties p=new Properties();
@@ -62,7 +79,7 @@ public class adminTools extends javax.swing.JFrame{
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"2IO");
         }
         
-        if(new Validation(start.USER_ROLE,adminTools.class.getName()).hasOwnerRole()){
+        if(new Validation(modelo,rol,adminTools.class.getName()).hasOwnerRole()){
             jMenuItem9.setEnabled(true);
         }else{
             jMenuItem9.setEnabled(false);
@@ -70,7 +87,7 @@ public class adminTools extends javax.swing.JFrame{
         
         JMenuItem[] mi0=new JMenuItem[]{jMenuItem5,jMenuItem6,jMenuItem7};
         
-        if(new Validation(start.USER_ROLE,adminTools.class.getName()).hasDevRole()){
+        if(new Validation(modelo,rol,adminTools.class.getName()).hasDevRole()){
             for(JMenuItem mi1:mi0){
                 mi1.setEnabled(true);
             }
@@ -88,48 +105,40 @@ public class adminTools extends javax.swing.JFrame{
         });
         
         jMenuItem1.addActionListener(a->
-            openPanel(new databaseConfig())
+            MediaHandler.openPanel(this,new databaseConfig(modelo))
         );
         
         jMenuItem2.addActionListener(a->
-            openPanel(new workerDataRestore())
+            MediaHandler.openPanel(this,new workerDataRestore(modelo))
         );
         
         jMenuItem3.addActionListener(a->
-            openPanel(new partDataRestore())
+            MediaHandler.openPanel(this,new partDataRestore(modelo))
         );
         
         jMenuItem4.addActionListener(a->
-            openPanel(new provDataRestore())
+            MediaHandler.openPanel(this,new provDataRestore(modelo))
         );
         
         jMenuItem5.addActionListener(a->
-            openPanel(new databaseImport())
+            MediaHandler.openPanel(this,new databaseImport(modelo))
         );
         
         jMenuItem6.addActionListener(a->
-            openPanel(new databaseExport())
+            MediaHandler.openPanel(this,new databaseExport(modelo))
         );
         
         jMenuItem7.addActionListener(a->
-            openPanel(new environmentPanel())
+            MediaHandler.openPanel(this,new environmentPanel(modelo))
         );
         
         jMenuItem8.addActionListener(a->
-            openPanel(new updatePanel())
+            MediaHandler.openPanel(this,new updatePanel())
         );
         
         jMenuItem9.addActionListener(a->
-            openPanel(new smtpPanel())
+            MediaHandler.openPanel(this,new smtpPanel())
         );
-    }
-    
-    protected void openPanel(Component panel){
-        EventQueue.invokeLater(()->{
-            this.getContentPane().setLayout(new BorderLayout());
-            this.getContentPane().add(panel,BorderLayout.CENTER);
-            this.pack();
-        });
     }
     
     @SuppressWarnings("unchecked")

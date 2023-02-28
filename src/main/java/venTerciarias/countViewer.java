@@ -1,11 +1,11 @@
 package venTerciarias;
 //clases
 import clases.MediaHandler;
+import clases.mvc.Controlador;
 import paneles.countPanel;
 //java
 import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 
 public class countViewer extends javax.swing.JDialog{
     public countViewer(java.awt.Frame parent,boolean modal){
@@ -19,12 +19,12 @@ public class countViewer extends javax.swing.JDialog{
         pack();
     }
     
-    public countViewer(java.awt.Frame parent,boolean modal,Component panel){
+    protected Controlador modelo;
+    
+    public countViewer(java.awt.Frame parent,boolean modal,Controlador modelo){
         super(parent,modal);
         initComponents();
         new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
-        
-        openPanel(panel);
         
         setLocationRelativeTo(null);
         setTitle("Conteo de ventas");
@@ -32,12 +32,34 @@ public class countViewer extends javax.swing.JDialog{
         pack();
     }
     
-    protected final void openPanel(Component panel){
-        EventQueue.invokeLater(()->{
-            countViewer.this.getContentPane().setLayout(new BorderLayout());
-            countViewer.this.getContentPane().add(panel,BorderLayout.CENTER);
-            countViewer.this.pack();
-        });
+    public countViewer(java.awt.Frame parent,boolean modal,Component panel,Controlador modelo){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
+        
+        this.modelo=modelo;
+        
+        MediaHandler.openPanel(this,panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Conteo de ventas");
+        setResizable(false);
+        pack();
+    }
+    
+    public countViewer(java.awt.Frame parent,boolean modal,Component panel){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
+        
+        this.modelo=modelo;
+        
+        MediaHandler.openPanel(this,panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Conteo de ventas");
+        setResizable(false);
+        pack();
     }
     
     @SuppressWarnings("unchecked")

@@ -5,6 +5,7 @@ import clases.MediaHandler;
 import clases.logger;
 import clases.Thread1;
 import clases.Validation;
+import clases.mvc.Controlador;
 import menus.menuVentanas;
 //librerías
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -52,6 +53,25 @@ public final class proper1 extends javax.swing.JFrame{
         pack();
     }
     
+    protected Controlador modelo;
+    
+    public proper1(Controlador modelo){
+        initComponents();
+        new MediaHandler(proper1.class.getName()).setLookAndFeel(proper1.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        configIn();
+        combo();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Configuración");
+        setResizable(false);
+        pack();
+    }
+    
     protected File f1;
     protected Properties p;
     protected InputStream is;
@@ -72,7 +92,7 @@ public final class proper1 extends javax.swing.JFrame{
     protected String nombreArchivo1;
     protected String nombreArchivo2;
     
-    protected String rol=start.USER_ROLE;
+    protected String rol=modelo.getUserRole();
     
     protected final void settings(){
         imageLoader("Ventanas",jTextField2.getText());
@@ -82,7 +102,7 @@ public final class proper1 extends javax.swing.JFrame{
         
         JTextField[] tf={jTextField1,jTextField4,jTextField5};
         
-        if(new Validation(rol,proper1.class.getName()).isAccessible()){
+        if(new Validation(modelo, rol,proper1.class.getName()).isAccessible()){
             for(JTextField textfield:tf){
                 textfield.setEnabled(true);
             }
@@ -251,7 +271,7 @@ public final class proper1 extends javax.swing.JFrame{
         );
         
         toolsButton.addActionListener(a->
-            new Validation(new adminTools(),rol,adminTools.class.getName()).toRestrictedForm()
+            new Validation(new adminTools(), modelo,rol,adminTools.class.getName()).toRestrictedForm()
         );
     }
     
@@ -339,7 +359,7 @@ public final class proper1 extends javax.swing.JFrame{
                 p.store(new FileWriter("data/config/config.properties",StandardCharsets.UTF_8),"config1");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 is.close();
                 os.flush();

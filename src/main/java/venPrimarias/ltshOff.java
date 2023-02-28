@@ -4,6 +4,7 @@ import clases.Datos;
 import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 //java
 import java.awt.EventQueue;
 import java.sql.PreparedStatement;
@@ -20,6 +21,22 @@ public class ltshOff extends javax.swing.JFrame{
     public ltshOff(){
         initComponents();
         new MediaHandler(ltshOff.class.getName()).setLookAndFeel(ltshOff.this);
+        
+        botones();
+        datosMostrar();
+        
+        setLocationRelativeTo(null);
+        setTitle("Descuentos");
+        pack();
+    }
+    
+    protected Controlador modelo;
+    
+    public ltshOff(Controlador modelo){
+        initComponents();
+        new MediaHandler(ltshOff.class.getName()).setLookAndFeel(ltshOff.this);
+        
+        this.modelo=modelo;
         
         botones();
         datosMostrar();
@@ -52,7 +69,7 @@ public class ltshOff extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from promociones;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from promociones;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){

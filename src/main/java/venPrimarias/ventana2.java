@@ -4,6 +4,7 @@ import clases.Datos;
 import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 import java.awt.EventQueue;
 import menus.menuDatosVentana4;
 //java
@@ -26,6 +27,23 @@ public final class ventana2 extends javax.swing.JFrame{
     public ventana2(){
         initComponents();
         new MediaHandler(ventana2.class.getName()).setLookAndFeel(ventana2.this);
+        
+        botones();
+        popup();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Almacén");
+        pack();
+    }
+    
+    protected Controlador modelo;
+    
+    public ventana2(Controlador modelo){
+        initComponents();
+        new MediaHandler(ventana2.class.getName()).setLookAndFeel(ventana2.this);
+        
+        this.modelo=modelo;
         
         botones();
         popup();
@@ -129,10 +147,10 @@ public final class ventana2 extends javax.swing.JFrame{
                         int preciou=Integer.parseInt(dtm.getValueAt(i,6).toString());
                         String stock=dtm.getValueAt(i,7).toString();
                         
-                        new Datos().insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
+                        new Datos(modelo).insertarDatosAlmacen(codigoProducto,codigoLote,codigoProveedor,nombreProducto,marca,cantidad,preciou,stock);
                     }
                     JOptionPane.showMessageDialog(this,"Se han guardado los datos","Rel 1",JOptionPane.INFORMATION_MESSAGE);
-                    logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
+                    logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a ka base de datos.\nOcurrió en el método 'botones(svdtButton)'.\nUsuario que hizo los cambios: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }

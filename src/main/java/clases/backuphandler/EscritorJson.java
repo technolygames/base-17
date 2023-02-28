@@ -1,8 +1,10 @@
 package clases.backuphandler;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 //librerías
 import com.google.gson.stream.JsonWriter;
 import java.awt.Frame;
@@ -24,6 +26,12 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class EscritorJson{
+    protected Controlador modelo;
+    
+    public EscritorJson(Controlador modelo){
+        this.modelo=modelo;
+    }
+    
     protected Frame frame=MediaHandler.getFrames();
     
     protected File f;
@@ -42,7 +50,7 @@ public class EscritorJson{
     public void writeDataWorkerJson(int codigoEmpleado){
         methodName="writeDataWorkerJson";
         try{
-            ps=new Datos().getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select empleados.*,conteo.no_ventas from empleados,conteo where empleados.codigo_emp=? and conteo.codigo_emp=?;");
             ps.setInt(1,codigoEmpleado);
             ps.setInt(2,codigoEmpleado);
             rs=ps.executeQuery();
@@ -51,7 +59,7 @@ public class EscritorJson{
                 String nombre=rs.getString("nombre_emp");
                 
                 f=new File("data/databackup/Empleados/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
-                new File(f.getParent()).mkdir();
+                Dirs.makeDir(f.getParent());
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
                 
                 jsonw.beginObject();
@@ -71,7 +79,7 @@ public class EscritorJson{
                 jsonw.name("edad").value(rs.getInt("edad"));
                 jsonw.name("estado").value(rs.getString("estado"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(new EscritorFoto().storePicWorker(codigo,nombre));
+                jsonw.name("imagen").value(new EscritorFoto(modelo).storePicWorker(codigo,nombre));
                 jsonw.name("datos").beginObject();
                 jsonw.name("no_ventas").value(rs.getInt("no_ventas"));
                 jsonw.endObject();
@@ -102,7 +110,7 @@ public class EscritorJson{
     public void writeDataPartnerJson(int codigoSocio){
         methodName="writeDataPartnerJson";
         try{
-            ps=new Datos().getConnection().prepareStatement("select*from socios where codigo_part=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select*from socios where codigo_part=?;");
             ps.setInt(1,codigoSocio);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -110,7 +118,7 @@ public class EscritorJson{
                 String nombre=rs.getString("nombre_part");
                 
                 f=new File("data/databackup/Socios/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
-                new File(f.getParent()).mkdir();
+                Dirs.makeDir(f.getParent());
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
                 
                 jsonw.beginObject();
@@ -123,7 +131,7 @@ public class EscritorJson{
                 jsonw.name("correo").value(rs.getString("correo"));
                 jsonw.name("rfc").value(rs.getString("rfc"));
                 jsonw.name("datos_extra").value(rs.getString("datos_extra"));
-                jsonw.name("imagen").value(new EscritorFoto().storePicPartner(codigo,nombre));
+                jsonw.name("imagen").value(new EscritorFoto(modelo).storePicPartner(codigo,nombre));
                 jsonw.endObject();
                 break;
             }
@@ -149,7 +157,7 @@ public class EscritorJson{
     public void writeDataProviderJson(int codigoProveedor){
         methodName="writeDataProviderJson";
         try{
-            ps=new Datos().getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select*from proveedor where codigo_prov=?;");
             ps.setInt(1,codigoProveedor);
             rs=ps.executeQuery();
             while(rs.next()){
@@ -157,7 +165,7 @@ public class EscritorJson{
                 String nombre=rs.getString("nombre_prov");
                 
                 f=new File("data/databackup/Proveedores/"+nombre+"-"+codigo,nombre+"-"+codigo+".json");
-                new File(f.getParent()).mkdir();
+                Dirs.makeDir(f.getParent());
                 jsonw=new JsonWriter(new OutputStreamWriter(new FileOutputStream(f),StandardCharsets.UTF_8));
                 
                 jsonw.beginObject();
@@ -168,7 +176,7 @@ public class EscritorJson{
                 jsonw.name("apellidom_prov").value(rs.getString("apellidom_prov"));
                 jsonw.name("empresa").value(rs.getString("empresa"));
                 jsonw.name("contacto").value(rs.getInt("contacto"));
-                jsonw.name("imagen").value(new EscritorFoto().storePicProvider(codigo,nombre));
+                jsonw.name("imagen").value(new EscritorFoto(modelo).storePicProvider(codigo,nombre));
                 jsonw.endObject();
             }
             

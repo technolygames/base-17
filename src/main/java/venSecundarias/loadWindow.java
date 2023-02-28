@@ -1,7 +1,7 @@
 package venSecundarias;
 //clases
 import clases.MediaHandler;
-import clases.mvc.MvcVar;
+import clases.mvc.Controlador;
 import menus.menuVentanas;
 //java
 import java.awt.Cursor;
@@ -21,9 +21,9 @@ public final class loadWindow extends javax.swing.JFrame{
         pack();
     }
     
-    protected MvcVar mvc;
+    protected Controlador mvc;
     
-    public loadWindow(MvcVar modelo){
+    public loadWindow(Controlador modelo){
         initComponents();
         new MediaHandler(loadWindow.class.getName()).setLookAndFeel(loadWindow.this);
         

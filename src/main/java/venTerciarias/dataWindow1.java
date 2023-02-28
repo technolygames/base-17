@@ -8,8 +8,8 @@ import clases.logger;
 import clases.Thread2;
 import clases.Validation;
 import clases.backuphandler.EscritorJson;
+import clases.mvc.Controlador;
 import paneles.countPanel;
-import venPrimarias.start;
 import menus.submenuDatosVentana1;
 //java
 import java.awt.Image;
@@ -26,6 +26,8 @@ import javax.swing.ImageIcon;
 import java.util.logging.Level;
 
 public class dataWindow1 extends javax.swing.JDialog{
+    protected Controlador modelo;
+    
     public dataWindow1(java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
@@ -41,13 +43,31 @@ public class dataWindow1 extends javax.swing.JDialog{
         pack();
     }
     
-    protected int codigo;
-    
-    public dataWindow1(java.awt.Frame parent,boolean modal,int code){
+    public dataWindow1(java.awt.Frame parent,boolean modal,Controlador modelo){
         super(parent,modal);
         initComponents();
         new MediaHandler(dataWindow1.class.getName()).setLookAndFeel(dataWindow1.this);
         
+        this.modelo=modelo;
+        
+        botones();
+        datosMostrar();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Datos del empleado");
+        setResizable(false);
+        pack();
+    }
+    
+    protected int codigo;
+    
+    public dataWindow1(java.awt.Frame parent,boolean modal,Controlador modelo,int code){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(dataWindow1.class.getName()).setLookAndFeel(dataWindow1.this);
+        
+        this.modelo=modelo;
         this.codigo=code;
         
         botones();
@@ -73,7 +93,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         
         miModData.setVisible(false);
         
-        if(new Validation(etiPuesto.getText(),dataWindow1.class.getName()).isAccessible()&&codigo!=0){
+        if(new Validation(modelo,etiPuesto.getText(),dataWindow1.class.getName()).isAccessible()&&codigo!=0){
             miModData.setVisible(true);
         }
     }
@@ -82,7 +102,7 @@ public class dataWindow1 extends javax.swing.JDialog{
         methodName="datosMostrar";
         
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -104,7 +124,7 @@ public class dataWindow1 extends javax.swing.JDialog{
                 etiIngreso.setText(rs.getString("fecha_registro"));
                 etiSesion.setText(rs.getString("fecha_sesion"));
                 
-                new EscritorJson().writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
+                new EscritorJson(modelo).writeDataWorkerJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
@@ -126,13 +146,21 @@ public class dataWindow1 extends javax.swing.JDialog{
             dispose();
         });
         
+        miCountViewer.addActionListener(a->
+            new countViewer(new javax.swing.JFrame(),true,new countPanel(modelo,Integer.parseInt(etiCodigo.getText())),modelo).setVisible(true)
+        );
+        
+        miModData.addActionListener(a->
+            new submenuDatosVentana1(new javax.swing.JFrame(),true,modelo,Integer.parseInt(etiCodigo.getText())).setVisible(true)
+        );
+        
         miStorePic.addActionListener(a->{
             methodName="botones.miStorePic";
             try{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos().getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
+                ps=new Datos(modelo).getConnection().prepareStatement("select foto from empleados where codigo_emp=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -141,25 +169,19 @@ public class dataWindow1 extends javax.swing.JDialog{
                 
                 new Thread2(rs,new FileOutputStream(path)).run();
                 
-                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del empleado.\nOcurrió en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del empleado.\nOcurrió en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 ps.close();
             }catch(SQLException e){
-                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,e,methodName,"14");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
             }catch(FileNotFoundException x){
-                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,x,methodName,"1IO");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"1IO");
             }catch(NullPointerException n){
-                new logger(Level.SEVERE, this.getClass().getName()).catchException(this,n,methodName,"0");
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,n,methodName,"0");
             }
         });
         
-        miCountViewer.addActionListener(a->
-            new countViewer(new javax.swing.JFrame(),true,new countPanel(Integer.parseInt(etiCodigo.getText()))).setVisible(true)
-        );
-        
-        miModData.addActionListener(a->
-            new submenuDatosVentana1(new javax.swing.JFrame(),true,Integer.parseInt(etiCodigo.getText())).setVisible(true)
-        );
+        miUpdateScn.addActionListener(a->datosMostrar());
     }
     
     @SuppressWarnings("unchecked")
@@ -210,9 +232,10 @@ public class dataWindow1 extends javax.swing.JDialog{
         miStorePic = new javax.swing.JMenuItem();
         miCountViewer = new javax.swing.JMenuItem();
         miModData = new javax.swing.JMenuItem();
+        miUpdateScn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new MediaHandler(dataWindow1.class.getName()).getIconImage());
+        setIconImage(new clases.MediaHandler(dataWindow1.class.getName()).getIconImage());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel1.setText("Datos");
@@ -322,6 +345,9 @@ public class dataWindow1 extends javax.swing.JDialog{
 
         miModData.setText("Modificar datos");
         jMenu1.add(miModData);
+
+        miUpdateScn.setText("Actualizar");
+        jMenu1.add(miUpdateScn);
 
         jMenuBar1.add(jMenu1);
 
@@ -517,5 +543,6 @@ public class dataWindow1 extends javax.swing.JDialog{
     private javax.swing.JMenuItem miCountViewer;
     private javax.swing.JMenuItem miModData;
     private javax.swing.JMenuItem miStorePic;
+    private javax.swing.JMenuItem miUpdateScn;
     // End of variables declaration//GEN-END:variables
 }

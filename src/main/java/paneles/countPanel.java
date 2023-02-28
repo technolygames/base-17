@@ -1,7 +1,9 @@
 package paneles;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.logger;
+import clases.mvc.Controlador;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +27,18 @@ public class countPanel extends javax.swing.JPanel{
     public countPanel(int code){
         initComponents();
         
+        this.modelo=modelo;
+        this.codigo=code;
+        
+        datosMostrar();
+    }
+    
+    protected Controlador modelo;
+    
+    public countPanel(Controlador modelo,int code){
+        initComponents();
+        
+        this.modelo=modelo;
         this.codigo=code;
         
         datosMostrar();
@@ -39,12 +53,12 @@ public class countPanel extends javax.swing.JPanel{
     protected final void datosMostrar(){
         try{
             if(codigo!=0){
-                ps=new Datos().getConnection().prepareStatement("select * from conteo where codigo_emp=?");
+                ps=new Datos(modelo).getConnection().prepareStatement("select * from conteo where codigo_emp=?");
                 ps.setInt(1,codigo);
                 rs=ps.executeQuery();
                 loadData(rs);
             }else{
-                ps=new Datos().getConnection().prepareStatement("select * from conteo;");
+                ps=new Datos(modelo).getConnection().prepareStatement("select * from conteo;");
                 rs=ps.executeQuery();
                 loadData(rs);
             }
@@ -54,16 +68,13 @@ public class countPanel extends javax.swing.JPanel{
     }
     
     protected void loadData(ResultSet rs) throws SQLException{
-        dtm=new DefaultTableModel();
+        dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         dtm.setColumnIdentifiers(new Object[]{"Número de ventas","Fecha de sesión"});
         while(rs.next()){
             dtm.addRow(new Object[]{rs.getInt("no_ventas"),rs.getString("fecha_sesion")});
         }
-        jTable1.setRowSorter(sorter);
-        jTable1.getRowSorter().toggleSortOrder(0);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setModel(dtm);
+        Events.table(jTable1,sorter,dtm);
     }
     
     @SuppressWarnings("unchecked")

@@ -1,6 +1,7 @@
 package paneles;
 
 import clases.logger;
+import clases.mvc.Controlador;
 import venPrimarias.start;
 
 import java.io.FileReader;
@@ -15,6 +16,17 @@ import java.util.logging.Level;
 public class smtpPanel extends javax.swing.JPanel{
     public smtpPanel(){
         initComponents();
+        
+        botones();
+        configIn();
+    }
+    
+    protected Controlador modelo;
+    
+    public smtpPanel(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         configIn();
@@ -87,7 +99,7 @@ public class smtpPanel extends javax.swing.JPanel{
             p.store(new FileWriter("data/config/smtp.properties"),"SmtpUserData");
             
             JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-            logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
+            logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
         }catch(IOException x){

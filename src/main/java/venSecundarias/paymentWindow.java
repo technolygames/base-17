@@ -1,9 +1,11 @@
 package venSecundarias;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.MediaHandler;
 import clases.Validation;
 import clases.logger;
+import clases.mvc.Controlador;
 import clases.tickets.DatosTicket;
 import java.awt.EventQueue;
 import venPrimarias.start;
@@ -36,14 +38,35 @@ public class paymentWindow extends javax.swing.JDialog{
         pack();
     }
     
+    protected DefaultTableModel dtm0;
+    
+    protected Controlador modelo;
+    
+    public paymentWindow(java.awt.Frame parent,boolean modal,Controlador modelo,DefaultTableModel dtm){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(paymentWindow.class.getName()).setLookAndFeel(paymentWindow.this);
+        
+        this.dtm0=dtm;
+        this.modelo=modelo;
+        
+        botones();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Realizar pago");
+        setResizable(false);
+        pack();
+    }
+    
     protected DefaultTableModel dtm;
     
     protected String nombre;
     protected String marca;
     protected String methodName;
     
-    protected int codigo_prod;
-    protected int codigo_emp;
+    protected int codigoProducto;
+    protected int codigoEmpleado;
     protected int resultado;
     protected int cantidad;
     protected int precio;
@@ -73,14 +96,14 @@ public class paymentWindow extends javax.swing.JDialog{
         * Obtiene los datos de la tabla en la ventana de ventas
         * Gets data from table sales window
         */
-        for(var i=0;i<ventana1.DTM.getRowCount();i++){
+        for(var i=0;i<dtm0.getRowCount();i++){
             dtm.addRow(new Object[]{
-                ventana1.DTM.getValueAt(i,0),
-                ventana1.DTM.getValueAt(i,1),
-                ventana1.DTM.getValueAt(i,2),
-                ventana1.DTM.getValueAt(i,3), 
-                ventana1.DTM.getValueAt(i,4),
-                ventana1.DTM.getValueAt(i,5)
+                dtm0.getValueAt(i,0),
+                dtm0.getValueAt(i,1),
+                dtm0.getValueAt(i,2),
+                dtm0.getValueAt(i,3), 
+                dtm0.getValueAt(i,4),
+                dtm0.getValueAt(i,5)
             });
         }
         
@@ -198,7 +221,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void calc1(){
         methodName="calc1";
         
-        jLabel2.setText(String.valueOf(ventana1.CODIGO_EMP));
+        jLabel2.setText(String.valueOf(modelo.getUserID()));
         try{
             int res=0;
             for(int i=0;i<dtm.getRowCount();i++){
@@ -215,7 +238,7 @@ public class paymentWindow extends javax.swing.JDialog{
         methodName="calc2";
         
         try{
-            ResultSet rs=new Datos().buscarDatosPromo(jTextField1.getText());
+            ResultSet rs=new Datos(modelo).buscarDatosPromo(jTextField1.getText());
             if(rs.next()){
                 var desc=rs.getFloat("descuento");
                 var cal=Integer.parseInt(jLabel4.getText())*desc;
@@ -234,7 +257,7 @@ public class paymentWindow extends javax.swing.JDialog{
     protected void confirmPurchase() throws SQLException{
         if(!jTextField1.getText().isEmpty()){
             readTable();
-            new Datos().actualizarDatosUsoPromo(jTextField1.getText());
+            new Datos(modelo).actualizarDatosUsoPromo(jTextField1.getText());
         }else{
             readTable();
         }
@@ -242,20 +265,20 @@ public class paymentWindow extends javax.swing.JDialog{
     
     protected void readTable() throws SQLException{
         methodName="readTable";
-        var datos=new Datos();
+        var datos=new Datos(modelo);
         for(int i=0;i<dtm.getRowCount();i++){
-            codigo_prod=Integer.parseInt(dtm.getValueAt(i,0).toString());
-            codigo_emp=Integer.parseInt(jLabel2.getText());
+            codigoProducto=Integer.parseInt(dtm.getValueAt(i,0).toString());
+            codigoEmpleado=Integer.parseInt(jLabel2.getText());
             nombre=dtm.getValueAt(i,1).toString();
             marca=dtm.getValueAt(i,2).toString();
             cantidad=Integer.parseInt(dtm.getValueAt(i,3).toString());
             precio=Integer.parseInt(dtm.getValueAt(i,4).toString());
             total=Integer.parseInt(dtm.getValueAt(i,5).toString());
             
-            datos.insertarDatosProducto(codigo_prod,codigo_emp,nombre,marca,cantidad,precio,total);
-            datos.actualizarDatosAlmacen(cantidad,codigo_prod);
+            datos.insertarDatosProducto(codigoProducto,codigoEmpleado,nombre,marca,cantidad,precio,total);
+            datos.actualizarDatosAlmacen(cantidad,codigoProducto);
         }
-        datos.actualizarDatosConteoVentas(codigo_emp,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        datos.actualizarDatosConteoVentas(codigoEmpleado,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
         new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(this, methodName);
     }

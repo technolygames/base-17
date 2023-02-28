@@ -6,6 +6,8 @@ import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import clases.Thread2;
+import clases.backuphandler.EscritorJson;
+import clases.mvc.Controlador;
 import java.awt.Desktop;
 import venPrimarias.start;
 //java
@@ -78,12 +80,15 @@ public class dataWindow2 extends javax.swing.JDialog{
     
     protected int codigo;
     
-    public dataWindow2(java.awt.Frame parent,boolean modal,int code){
+    protected Controlador modelo;
+    
+    public dataWindow2(java.awt.Frame parent, boolean modal, int code, Controlador modelo){
         super(parent, modal);
         initComponents();
         new MediaHandler(dataWindow2.class.getName()).setLookAndFeel(dataWindow2.this);
         
         this.codigo=code;
+        this.modelo=modelo;
         
         botones();
         datosMostrar();
@@ -137,7 +142,7 @@ public class dataWindow2 extends javax.swing.JDialog{
         methodName="datosMostrar";
         
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -152,7 +157,7 @@ public class dataWindow2 extends javax.swing.JDialog{
                 etiIngreso.setText(rs.getString("fecha_ingreso"));
                 etiUCompra.setText(rs.getString("fecha_ucompra"));
                 
-                //new escritorJSON().writeDataPartnerJson(Integer.parseInt(etiCodigo.getText()));
+                new EscritorJson(modelo).writeDataPartnerJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
@@ -184,16 +189,16 @@ public class dataWindow2 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos().getConnection().prepareStatement("select foto from socios where codigo_part=?;");
+                ps=new Datos(modelo).getConnection().prepareStatement("select foto from socios where codigo_part=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Socios/"+nombre+"-"+codigo1+".jpg");
+                File f=new File("data/media/dataImage/Socios",nombre+"-"+codigo1+".jpg");
                 String path=Dirs.exists(f);
                 
                 new Thread2(rs,new FileOutputStream(path)).run();
                 
-                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 ps.close();
             }catch(SQLException e){
@@ -224,10 +229,10 @@ public class dataWindow2 extends javax.swing.JDialog{
             
             params.put("imagen",mh.getImagePath("imagenes","imagen_respaldo"));
             params.put("nombre_reporte",mh.getProgramName());
-            params.put("codigo_emp",start.USERID);
+            params.put("codigo_emp",modelo.getUserID());
             params.put("codigo_part",Integer.parseInt(etiCodigo.getText()));
             
-            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos().getConnection());
+            JasperPrint jp=JasperFillManager.fillReport(JasperCompileManager.compileReport("data/database/Jasper/reportes.jrxml"),params,new Datos(modelo).getConnection());
             JasperViewer jv=new JasperViewer(jp);
             jv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             jv.setVisible(false);

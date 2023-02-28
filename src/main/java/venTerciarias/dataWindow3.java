@@ -6,6 +6,7 @@ import clases.MediaHandler;
 import clases.logger;
 import clases.Thread2;
 import clases.backuphandler.EscritorJson;
+import clases.mvc.Controlador;
 import venPrimarias.start;
 //java
 import java.awt.Image;
@@ -38,12 +39,15 @@ public class dataWindow3 extends javax.swing.JDialog{
     
     protected int codigo;
     
-    public dataWindow3(java.awt.Frame parent,boolean modal,int code){
+    protected Controlador modelo;
+    
+    public dataWindow3(java.awt.Frame parent, boolean modal, int code, Controlador modelo){
         super(parent, modal);
         initComponents();
         new MediaHandler(dataWindow3.class.getName()).setLookAndFeel(dataWindow3.this);
         
         this.codigo=code;
+        this.modelo=modelo;
         
         botones();
         datosMostrar();
@@ -63,7 +67,7 @@ public class dataWindow3 extends javax.swing.JDialog{
         methodName="datosMostrar";
         
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
             ps.setInt(1,codigo);
             rs=ps.executeQuery();
             if(rs.next()){
@@ -76,7 +80,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 etiIngreso.setText(rs.getString("fecha_ingreso"));
                 etiUEntrega.setText(rs.getString("fecha_uentrega"));
                 
-                new EscritorJson().writeDataProviderJson(Integer.parseInt(etiCodigo.getText()));
+                new EscritorJson(modelo).writeDataProviderJson(Integer.parseInt(etiCodigo.getText()));
                 
                 etiFoto.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(rs.getBytes("foto"))).getImage().getScaledInstance(etiFoto.getWidth(),etiFoto.getHeight(),Image.SCALE_DEFAULT)));
             }else{
@@ -104,7 +108,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 int codigo1=Integer.parseInt(etiCodigo.getText());
                 String nombre=etiNombre.getText();
                 
-                ps=new Datos().getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
+                ps=new Datos(modelo).getConnection().prepareStatement("select foto from proveedor where codigo_prov=?;");
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
@@ -113,7 +117,7 @@ public class dataWindow3 extends javax.swing.JDialog{
                 
                 new Thread2(rs,new FileOutputStream(path)).run();
                 
-                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 ps.close();
             }catch(SQLException e){

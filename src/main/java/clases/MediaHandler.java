@@ -1,9 +1,12 @@
 package clases;
 //java
+import java.awt.BorderLayout;
+import java.awt.Frame;
 import java.awt.Image;
+import java.awt.Dialog;
 import java.awt.Toolkit;
 import java.awt.Component;
-import java.awt.Frame;
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,7 +33,7 @@ public class MediaHandler{
     protected String clase;
     
     /**
-     * Inicializa la instancia para que registre en qué clase se ustá usando las funciones de esta clase.<br>
+     * Inicializa la instancia para que registre en qué clase se ustá usando las funciones de esta clase. 
      * Esto para ver si hay problemas en la clase que usa las funciones de esta clase.
      * 
      * @param clase que está usando las funciones.
@@ -57,7 +60,7 @@ public class MediaHandler{
     }
     
     /**
-     * Carga, desde un archivo .properties, el ícono destinado a usarse en las ventanas.<br>
+     * Carga, desde un archivo .properties, el ícono destinado a usarse en las ventanas. 
      * Aparece en la esquina superior izquierda de la ventana.
      * 
      * @return la imagen a usar.
@@ -67,8 +70,8 @@ public class MediaHandler{
     }
     
     /**
-     * Obtiene la imagen destinada a usarse en las ventanas y/o como icono de ventana.<br>
-     * Aparece en la esquina superior izquierda de la ventana o en un recuadro interno con borde negro en las ventanas.
+     * Obtiene la imagen destinada a usarse en las ventanas y/o como icono de ventana. 
+     * Aparece en la esquina superior izquierda de la ventana o en un recuadro interno con borde negro en las ventanas. 
      * Este método es usado para actualizar la imagen de las ventanas mientras el programa está en ejecución.
      * 
      * @param image Icono/imagen a mostrar y actualizar.
@@ -169,5 +172,21 @@ public class MediaHandler{
             new logger(Level.SEVERE,this.getClass().getName()).catchException(getFrames(),x,methodName,"2IO");
             return null;
         }
+    }
+    
+    public static void openPanel(Dialog parent,Component child){
+        EventQueue.invokeLater(()->{
+            parent.setLayout(new BorderLayout());
+            parent.add(child,BorderLayout.CENTER);
+            parent.pack();
+        });
+    }
+    
+    public static void openPanel(Frame parent,Component child){
+        EventQueue.invokeLater(()->{
+            parent.setLayout(new BorderLayout());
+            parent.add(child,BorderLayout.CENTER);
+            parent.pack();
+        });
     }
 }

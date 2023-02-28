@@ -3,6 +3,7 @@ package paneles;
 import clases.Datos;
 import clases.logger;
 import clases.backuphandler.EscritorJson;
+import clases.mvc.Controlador;
 //java
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -18,16 +19,30 @@ public class delDatosPanel1 extends javax.swing.JPanel{
         botones();
     }
     
-    public delDatosPanel1(int code){
+    protected Controlador modelo;
+    
+    public delDatosPanel1(Controlador modelo){
         initComponents();
+        
+        this.modelo=modelo;
+        
+        botones();
+    }
+    
+    public delDatosPanel1(int code,Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         jTextField1.setText(String.valueOf(code));
         
         botones();
     }
     
-    public delDatosPanel1(int code,boolean flag){
+    public delDatosPanel1(int code,boolean flag,Controlador modelo){
         initComponents();
+        
+        this.modelo=modelo;
         
         if(!flag){
             closeButton.setEnabled(false);
@@ -59,14 +74,14 @@ public class delDatosPanel1 extends javax.swing.JPanel{
     
     protected void deleteData(){
         String methodName="deleteData";
-        var datos=new Datos();
+        var datos=new Datos(modelo);
         
         try{
             if(!jTextField1.getText().isEmpty()){
                 int codigo=Integer.parseInt(jTextField1.getText());
                 switch(JOptionPane.showConfirmDialog(this,"¿Deseas crear una copia de seguridad?","Notice 1",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE)){
                     case 0:{
-                        new EscritorJson().writeDataWorkerJson(codigo);
+                        new EscritorJson(modelo).writeDataWorkerJson(codigo);
                         datos.eliminarDatosProductos(codigo);
                         datos.eliminarDatosConteo(codigo); 
                         datos.eliminarDatosEmpleado(codigo);

@@ -2,9 +2,12 @@ package venPrimarias;
 //clases
 import clases.PlaceHolder;
 import clases.Datos;
+import clases.Dirs;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm1;
+import clases.mvc.Controlador;
 import menus.menuDatosVentana1;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -20,8 +23,6 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.Period;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -33,7 +34,6 @@ import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.nio.charset.StandardCharsets;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -41,6 +41,24 @@ public class formulario1 extends javax.swing.JFrame{
     public formulario1(){
         initComponents();
         new MediaHandler(formulario1.class.getName()).setLookAndFeel(formulario1.this);
+        
+        botones();
+        settings();
+        
+        setSize(510,565);
+        setLocationRelativeTo(null);
+        setTitle("Formulario 1");
+        setResizable(false);
+        pack();
+    }
+    
+    protected Controlador modelo0;
+    
+    public formulario1(Controlador modelo){
+        initComponents();
+        new MediaHandler(formulario1.class.getName()).setLookAndFeel(formulario1.this);
+        
+        this.modelo0=modelo;
         
         botones();
         settings();
@@ -104,9 +122,7 @@ public class formulario1 extends javax.swing.JFrame{
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     File f=jfc.getSelectedFile();
-                    direccion=f.getPath();
-                    
-                    showImage(direccion);
+                    showImage(f.getPath());
                     
                     p.setProperty("lastdirectory_form1",f.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -160,7 +176,7 @@ public class formulario1 extends javax.swing.JFrame{
                     
                     datos.add(modelo);
                     
-                    new Datos().insertarDatosEmpleado(datos);
+                    new Datos(modelo0).insertarDatosEmpleado(datos);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -182,7 +198,7 @@ public class formulario1 extends javax.swing.JFrame{
             public void keyPressed(KeyEvent a){
                 if(a.getKeyCode()==KeyEvent.VK_ENTER){
                     try{
-                        calcAge();
+                        calcAge(Integer.parseInt(txtEdad.getText()));
                     }catch(DateTimeParseException e){
                         new logger(Level.SEVERE,this.getClass().getName()).catchException(formulario1.this,e,"botones.txtEdad","0");
                     }
@@ -210,16 +226,13 @@ public class formulario1 extends javax.swing.JFrame{
                     case "grado_estudios"->txtEstudios.setText(jsonr.nextString());
                     case "contacto"->txtContacto.setText(String.valueOf(jsonr.nextInt()));
                     case "fecha_nacimiento"->jDateChooser1.setDate(Date.valueOf(jsonr.nextString()));
-                    case "edad"->txtEdad.setText(String.valueOf(jsonr.nextInt()));
+                    case "edad"->txtEdad.setText(String.valueOf(Events.calcAge(jDateChooser1.getDate().getTime(),jsonr.nextInt())));
                     case "estado"->jComboBox2.getModel().setSelectedItem(jsonr.nextString());
                     case "datos_extra"->jTextArea1.setText(jsonr.nextString());
-                    case "imagen"->direccion=jsonr.nextString();
+                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
                     default->jsonr.skipValue();
                 }
             }
-            showImage(direccion);
-            calcAge();
-            
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
@@ -227,8 +240,8 @@ public class formulario1 extends javax.swing.JFrame{
         }
     }
     
-    protected void calcAge(){
-        txtEdad.setText(String.valueOf(Period.between(LocalDate.parse(new Date(jDateChooser1.getDate().getTime()).toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears()));
+    protected void calcAge(int edad){
+        txtEdad.setText(String.valueOf(Events.calcAge(jDateChooser1.getDate().getTime(),edad)));
     }
     
     protected void clearImage(){
@@ -242,6 +255,7 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected void showImage(String path){
+        direccion=path;
         picLabel.setText(null);
         picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }

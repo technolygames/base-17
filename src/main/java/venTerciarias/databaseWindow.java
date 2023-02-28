@@ -3,6 +3,7 @@ package venTerciarias;
 import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 import paneles.databaseImport;
 //java
 import java.awt.EventQueue;
@@ -24,17 +25,34 @@ public class databaseWindow extends javax.swing.JDialog{
         pack();
     }
     
+    protected Controlador modelo;
+    
+    public databaseWindow(java.awt.Frame parent,boolean modal,Controlador modelo){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(databaseWindow.class.getName()).setLookAndFeel(databaseWindow.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        
+        setLocationRelativeTo(null);
+        setTitle("Crear base de datos");
+        setResizable(false);
+        pack();
+    }
+    
     public static String nombredb;
     
     protected final void botones(){
-        backButton.addActionListener((a)->{
+        backButton.addActionListener(a->{
             setVisible(false);
             dispose();
         });
         
-        createButton.addActionListener((a)->{
+        createButton.addActionListener(a->{
             try{
-                new Datos().crearBD(jTextField1.getText());
+                new Datos(modelo).crearBD(jTextField1.getText());
                 databaseImport.jTextField3.setText(jTextField1.getText());
             }catch(SQLException e){
                 new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,"botones.create","5E");

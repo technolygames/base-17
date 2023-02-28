@@ -14,7 +14,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Clase encargada de manejar los eventos del programa.<br>
+ * Clase encargada de manejar los eventos del programa. 
  * Guarda los eventos del programa mientras este se está ejecutando.
  * 
  * @author erick

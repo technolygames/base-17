@@ -5,6 +5,7 @@ import clases.DbUtils;
 import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 //java
 import java.awt.EventQueue;
 import java.sql.ResultSet;
@@ -23,6 +24,22 @@ public class ltshProduct extends javax.swing.JFrame{
     public ltshProduct(){
         initComponents();
         new MediaHandler(ltshProduct.class.getName()).setLookAndFeel(ltshProduct.this);
+        
+        botones();
+        datosMostrar();
+        
+        setLocationRelativeTo(null);
+        setTitle("Ventas");
+        pack();
+    }
+    
+    protected Controlador modelo;
+    
+    public ltshProduct(Controlador modelo){
+        initComponents();
+        new MediaHandler(ltshProduct.class.getName()).setLookAndFeel(ltshProduct.this);
+        
+        this.modelo=modelo;
         
         botones();
         datosMostrar();
@@ -95,7 +112,7 @@ public class ltshProduct extends javax.swing.JFrame{
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from productos;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from productos;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -113,12 +130,13 @@ public class ltshProduct extends javax.swing.JFrame{
     protected void datosBuscar(){
         methodName="datosBuscar";
         
+        var datos=new Datos(modelo);
         dtm=new DefaultTableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0->{
-                    ps=new Datos().getConnection().prepareStatement("select * from productos where codigo_prod=?;");
+                    ps=datos.getConnection().prepareStatement("select * from productos where codigo_prod=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -131,7 +149,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 1->{
-                    ps=new Datos().getConnection().prepareStatement("select * from productos where codigo_emp=?;");
+                    ps=datos.getConnection().prepareStatement("select * from productos where codigo_emp=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -144,7 +162,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 2->{
-                    ps=new Datos().getConnection().prepareStatement("select * from productos where nombre_prod=?;");
+                    ps=datos.getConnection().prepareStatement("select * from productos where nombre_prod=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -157,7 +175,7 @@ public class ltshProduct extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 3->{
-                    ps=new Datos().getConnection().prepareStatement("select * from productos where marca=?;");
+                    ps=datos.getConnection().prepareStatement("select * from productos where marca=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);

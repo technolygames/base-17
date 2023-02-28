@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.logger;
+import clases.mvc.Controlador;
 import java.awt.HeadlessException;
 import venPrimarias.start;
 //java
@@ -18,6 +19,17 @@ import java.util.logging.Level;
 public class environmentPanel extends javax.swing.JPanel{
     public environmentPanel(){
         initComponents();
+        
+        botones();
+        configIn();
+    }
+    
+    protected Controlador modelo;
+    
+    public environmentPanel(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         configIn();
@@ -99,7 +111,7 @@ public class environmentPanel extends javax.swing.JPanel{
                 p.store(new FileOutputStream("data/config/env.properties"),"EnvironmentVariables");
                 
                 JOptionPane.showMessageDialog(this,"Se guardaron correctamente","Rel 4",JOptionPane.INFORMATION_MESSAGE);
-                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Rel 4: se han guardado las condiguraciones.\nOcurrió en el método 'configOut()'.\nUsuario que hizo los cambios: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
             }else{
                 f.createNewFile();
             }

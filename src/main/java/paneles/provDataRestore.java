@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.backuphandler.LectorJson;
+import clases.mvc.Controlador;
 //java
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -12,6 +13,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class provDataRestore extends javax.swing.JPanel{
     public provDataRestore(){
         initComponents();
+        
+        botones();
+        settings();
+    }
+    
+    protected Controlador modelo;
+    
+    public provDataRestore(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         settings();
@@ -51,7 +63,7 @@ public class provDataRestore extends javax.swing.JPanel{
         });
         
         loadDataButton.addActionListener(a->
-            new LectorJson().readDataProviderJson(jTextField1.getText())
+            new LectorJson(modelo).readDataProviderJson(jTextField1.getText())
         );
     }
     

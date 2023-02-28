@@ -1,6 +1,6 @@
 package clases.mvc;
 
-public class MvcVar{
+public class Controlador{
     protected int userID;
     protected String username;
     protected String userRole;

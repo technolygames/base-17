@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
 
 /**
- * Clase encargada de mostrar notificaciones.<br>
+ * Clase encargada de mostrar notificaciones. 
  * Muestra notificaciones en sistemas que lo soporten.
  * 
  * @author erick

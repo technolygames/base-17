@@ -2,11 +2,13 @@ package clases.backuphandler;
 //clases
 import clases.Datos;
 import clases.Dirs;
+import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
 import clases.mvc.MvcForm3;
+import clases.mvc.Controlador;
 //librerías
 import com.google.gson.stream.JsonReader;
 //java
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 //con extensión larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
 
 /**
  * Clase encargada de leer los archivos creados para copia de seguridad.
@@ -28,6 +31,12 @@ import java.nio.charset.StandardCharsets;
  * @author erick
  */
 public class LectorJson{
+    protected Controlador modelo0;
+    
+    public LectorJson(Controlador modelo){
+        this.modelo0=modelo;
+    }
+    
     protected Frame frame=MediaHandler.getFrames();
     
     protected JsonReader jsonr;
@@ -63,18 +72,15 @@ public class LectorJson{
                     case "grado_estudios" -> modelo.setGradoEstudios(jsonr.nextString());
                     case "contacto" -> modelo.setContacto(jsonr.nextInt());
                     case "fecha_nacimiento" -> modelo.setFechaNacimiento(jsonr.nextString());
-                    case "edad" -> modelo.setEdad(jsonr.nextInt());
+                    case "edad" -> modelo.setEdad(Events.calcAge(Date.valueOf(modelo.getFechaNacimiento()).getTime(),jsonr.nextInt()));
                     case "estado" -> modelo.setEstado(jsonr.nextString());
                     case "datos_extra" -> modelo.setDatosExtra(jsonr.nextString());
-                    case "imagen" -> {
-                        String img=Dirs.findPic(dir,jsonr.nextString());
-                        modelo.setImagen(new FileInputStream(img));
-                    }
+                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
                     case "datos" -> {
                         jsonr.beginObject();
                         while(jsonr.hasNext()){
                             switch(jsonr.nextName()){
-                                case "no_ventas"->numeroVentas=jsonr.nextInt();
+                                case "no_ventas"->modelo.setNumeroVentas(jsonr.nextInt());
                                 default->jsonr.skipValue();
                             }
                         }
@@ -84,8 +90,8 @@ public class LectorJson{
                 }
             }
             lista.add(modelo);
-            new Datos().insertarDatosEmpleado(lista);
-            new Datos().insertarDatosConteo(modelo.getCodigo(),modelo.getNombre(),modelo.getApellidoPaterno(),modelo.getApellidoMaterno(),numeroVentas);
+            new Datos(modelo0).insertarDatosEmpleado(lista);
+            new Datos(modelo0).insertarDatosConteo(modelo.getCodigo(),modelo.getNombre(),modelo.getApellidoPaterno(),modelo.getApellidoMaterno(),modelo.getNumeroVentas());
             jsonr.endObject();
             
             lista.clear();
@@ -124,15 +130,12 @@ public class LectorJson{
                     case "correo" -> modelo.setCorreo(jsonr.nextString());
                     case "rfc" -> modelo.setRfc(jsonr.nextString());
                     case "datos_extra" -> modelo.setDatos(jsonr.nextString());
-                    case "imagen" -> {
-                        String img=Dirs.findPic(dir,jsonr.nextString());
-                        modelo.setImagen(new FileInputStream(img));
-                    }
+                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
                     default -> jsonr.skipValue();
                 }
             }
             lista.add(modelo);
-            new Datos().insertarDatosSocio(lista);
+            new Datos(modelo0).insertarDatosSocio(lista);
             jsonr.endObject();
             
             lista.clear();
@@ -168,15 +171,12 @@ public class LectorJson{
                     case "apellidom_prov" -> modelo.setApellidoMaterno(jsonr.nextString());
                     case "empresa" -> modelo.setEmpresa(jsonr.nextString());
                     case "contacto" -> modelo.setContacto(jsonr.nextInt());
-                    case "imagen" -> {
-                        String img=Dirs.findPic(dir,jsonr.nextString());
-                        modelo.setImagen(new FileInputStream(img));
-                    }
+                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
                     default -> jsonr.skipValue();
                 }
             }
             lista.add(modelo);
-            new Datos().insertarDatosProveedor(lista);
+            new Datos(modelo0).insertarDatosProveedor(lista);
             jsonr.endObject();
             
             jsonr.close();

@@ -4,20 +4,18 @@ import clases.Datos;
 import clases.Events;
 import clases.logger;
 import clases.PlaceHolder;
+import clases.mvc.Controlador;
 //java
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.time.Period;
-import java.time.LocalDate;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.time.format.DateTimeFormatter;
 
 public class modDatosPanel1 extends javax.swing.JPanel{
     protected int user;
@@ -25,6 +23,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     protected String methodName;
     
     protected JCheckBox[] checkboxes;
+    
+    protected Controlador modelo;
     
     public modDatosPanel1(){
         initComponents();
@@ -36,10 +36,23 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel1(int code){
+    public modDatosPanel1(Controlador modelo){
+        initComponents();
+        
+        estado=true;
+        
+        this.modelo=modelo;
+        
+        botones();
+        enabledComponents(true,estado);
+        settings();
+    }
+    
+    public modDatosPanel1(int code,Controlador modelo){
         initComponents();
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(user));
         estado=false;
         
@@ -49,7 +62,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel1(int code,boolean flag){
+    public modDatosPanel1(int code,boolean flag,Controlador modelo){
         initComponents();
         
         if(!flag){
@@ -57,6 +70,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         }
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(user));
         estado=false;
         
@@ -73,7 +87,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos();
+        var datos=new Datos(modelo);
         String tabla="empleados";
         String campo="codigo_emp";
         
@@ -98,7 +112,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String password=String.valueOf(txtContra.getPassword());
                         user=Integer.parseInt(txtSearch.getText());
                         while(!password.isEmpty()&&cbContra.isSelected()&&txtContra.isEnabled()){
-                            datos.actualizarDatosString(tabla,"password",campo,password,user);
+                            datos.actualizarDatosString(tabla,"password",campo,password,user, true);
                             consulta();
                             break;
                         }
@@ -134,7 +148,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String name=txtNombre.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!name.isEmpty()&&cbNombre.isSelected()&&txtNombre.isEnabled()){
-                            datos.actualizarDatosString(tabla,"nombre_emp",campo,name,user);
+                            datos.actualizarDatosString(tabla,"nombre_emp",campo,name,user, true);
                             consulta();
                             break;
                         }
@@ -171,7 +185,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String lastname=txtAP.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!lastname.isEmpty()&&cbAP.isSelected()&&txtAP.isEnabled()){
-                            datos.actualizarDatosString(tabla,"apellidop_emp",campo,lastname,user);
+                            datos.actualizarDatosString(tabla,"apellidop_emp",campo,lastname,user, true);
                             consulta();
                             break;
                         }
@@ -208,7 +222,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String surname=txtAM.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!surname.isEmpty()&&cbAM.isSelected()&&txtAM.isEnabled()){
-                            datos.actualizarDatosString(tabla,"apellidom_emp",campo,surname,user);
+                            datos.actualizarDatosString(tabla,"apellidom_emp",campo,surname,user, true);
                             consulta();
                             break;
                         }
@@ -245,7 +259,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String id=txtCURP.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!id.isEmpty()&&cbCURP.isSelected()&&txtCURP.isEnabled()){
-                            datos.actualizarDatosString(tabla,"curp",campo,id,user);
+                            datos.actualizarDatosString(tabla,"curp",campo,id,user, true);
                             consulta();
                             break;
                         }
@@ -282,7 +296,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String add=txtDom.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!add.isEmpty()&&cbDomicilio.isSelected()&&txtDom.isEnabled()){
-                            datos.actualizarDatosString(tabla,"domicilio",campo,add,user);
+                            datos.actualizarDatosString(tabla,"domicilio",campo,add,user, true);
                             consulta();
                             break;
                         }
@@ -320,7 +334,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String combo=jComboBox1.getModel().getSelectedItem().toString();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!combo.equals(etiPuesto.getText())&&cbPuesto.isSelected()&&jComboBox1.isEnabled()){
-                            datos.actualizarDatosString(tabla,"puesto",campo,combo,user);
+                            datos.actualizarDatosString(tabla,"puesto",campo,combo,user, true);
                             consulta();
                             break;
                         }
@@ -394,7 +408,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String school=txtGE.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!school.isEmpty()&&cbGE.isSelected()&&txtGE.isEnabled()){
-                            datos.actualizarDatosString(tabla,"grado_estudios",campo,school,user);
+                            datos.actualizarDatosString(tabla,"grado_estudios",campo,school,user, true);
                             consulta();
                             break;
                         }
@@ -437,6 +451,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         }
                     }catch(SQLException e){
                         new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"12");
+                    }catch(NumberFormatException x){
+                        new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"32");
                     }
                 });
             }else{
@@ -468,7 +484,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         long date=dcFN.getDate().getTime();
                         user=Integer.parseInt(txtSearch.getText());
                         while(date!=0&&cbFN.isSelected()&&dcFN.isEnabled()){
-                            ageRecalc(tabla,campo,date);
+                            ageRecalc(tabla,campo,date,Integer.parseInt(etiEdad.getText()));
                             consulta();
                             break;
                         }
@@ -543,7 +559,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                         String combo=jComboBox2.getModel().getSelectedItem().toString();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!combo.equals(etiEstado.getText())&&cbEstado.isSelected()&&jComboBox2.isEnabled()){
-                            datos.actualizarDatosString(tabla,"estado",campo,combo,user);
+                            datos.actualizarDatosString(tabla,"estado",campo,combo,user, true);
                             consulta();
                             break;
                         }
@@ -581,7 +597,7 @@ public class modDatosPanel1 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
+                PreparedStatement ps=new Datos(modelo).getConnection().prepareStatement("select * from empleados where codigo_emp=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -595,7 +611,8 @@ public class modDatosPanel1 extends javax.swing.JPanel{
                     etiExp.setText(Events.exp(rs.getInt("experiencia")));
                     etiGE.setText(rs.getString("grado_estudios"));
                     etiContacto.setText(String.valueOf(rs.getInt("contacto")));
-                    etiFN.setText(rs.getDate("fecha_nacimiento").toString());
+                    etiFN.setText(rs.getString("fecha_nacimiento"));
+                    dcFN.setDate(Date.valueOf(etiFN.getText()));
                     etiEdad.setText(String.valueOf(rs.getInt("edad")));
                     etiEstado.setText(rs.getString("estado"));
                 }else{
@@ -609,35 +626,22 @@ public class modDatosPanel1 extends javax.swing.JPanel{
             }
         }catch(SQLException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
+        }catch(NumberFormatException x){
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"32");
         }
     }
     
-    protected void ageRecalc(String tabla,String campo,long date) throws SQLException{
+    protected void ageRecalc(String tabla,String campo,long date,int age) throws SQLException{
+        var datos=new Datos(modelo);
         switch(JOptionPane.showConfirmDialog(this,"¿Deseas recalcular la edad?","Notice 1",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)){
-            case 0:{
-                var datos=new Datos();
-                
-                String fn=new Date(date).toString();
-                int edad1=Integer.parseInt(etiEdad.getText());
-                String edad2=String.valueOf(Period.between(LocalDate.parse(fn,DateTimeFormatter.ofPattern("yyyy-MM-dd")),LocalDate.now()).getYears());
-                
-                System.out.println(fn);
-                System.out.println(edad2);
-                
-                if(!edad2.equals(String.valueOf(edad1))){
-                    datos.actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
-                    datos.actualizarDatosInteger(tabla,"edad",campo,Integer.parseInt(edad2),user,false);
-                    logger.staticLogger(Level.INFO,"no es igual",this.getClass().getName());
-                }else{
-                    logger.staticLogger(Level.INFO,"es igual",this.getClass().getName());
-                }
-                break;
+            case 0->{
+                datos.actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
+                datos.actualizarDatosInteger(tabla,"edad",campo,Events.calcAge(date,age),user,false);
             }
-            case 1:{
-                new Datos().actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
-                break;
+            case 1->{
+                datos.actualizarDatosDate(tabla,"fecha_nacimiento",campo,new Date(date),user);
             }
-            default: break;
+            default->{}
         }
     }
     

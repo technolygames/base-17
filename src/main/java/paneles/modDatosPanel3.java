@@ -3,6 +3,7 @@ package paneles;
 import clases.Datos;
 import clases.logger;
 import clases.PlaceHolder;
+import clases.mvc.Controlador;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,8 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     
     protected JCheckBox[] checkboxes;
     
+    protected Controlador modelo;
+    
     public modDatosPanel3(){
         initComponents();
         
@@ -27,10 +30,20 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel3(int code){
+    public modDatosPanel3(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
+        
+        botones();
+        settings();
+    }
+    
+    public modDatosPanel3(int code,Controlador modelo){
         initComponents();
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(code));
         consulta();
         
@@ -38,7 +51,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel3(int code,boolean flag){
+    public modDatosPanel3(int code,boolean flag,Controlador modelo){
         initComponents();
         
         if(!flag){
@@ -46,6 +59,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         }
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(user));
         consulta();
         
@@ -58,7 +72,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos();
+        var datos=new Datos(modelo);
         String tabla="proveedor";
         String campo="codigo_prov";
         
@@ -83,7 +97,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                         String tf1=jTextField1.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf1.equals("")&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                            datos.actualizarDatosString(tabla,"nombre_prov",campo,tf1,user);
+                            datos.actualizarDatosString(tabla,"nombre_prov",campo,tf1,user, true);
                             consulta();
                             break;
                         }
@@ -120,7 +134,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                         String tf2=jTextField2.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf2.isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                            datos.actualizarDatosString(tabla,"apellidop_prov",campo,tf2,user);
+                            datos.actualizarDatosString(tabla,"apellidop_prov",campo,tf2,user, true);
                             consulta();
                             break;
                         }
@@ -157,7 +171,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                         String tf3=jTextField3.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf3.isEmpty()&&jCheckBox3.isSelected()&&jTextField3.isEnabled()){
-                            datos.actualizarDatosString(tabla,"apellidom_prov",campo,tf3,user);
+                            datos.actualizarDatosString(tabla,"apellidom_prov",campo,tf3,user, true);
                             consulta();
                             break;
                         }
@@ -194,7 +208,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
                         String tf4=jTextField4.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf4.isEmpty()&&jCheckBox4.isSelected()&&jTextField4.isEnabled()){
-                            datos.actualizarDatosString(tabla,"empresa",campo,tf4,user);
+                            datos.actualizarDatosString(tabla,"empresa",campo,tf4,user, true);
                             consulta();
                             break;
                         }
@@ -269,7 +283,7 @@ public class modDatosPanel3 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+                PreparedStatement ps=new Datos(modelo).getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){

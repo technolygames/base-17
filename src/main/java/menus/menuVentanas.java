@@ -4,7 +4,7 @@ import clases.MediaHandler;
 import clases.logger;
 import clases.Validation;
 import clases.DisplayNotification;
-import clases.mvc.MvcVar;
+import clases.mvc.Controlador;
 import java.awt.EventQueue;
 import venPrimarias.formulario1;
 import venPrimarias.formulario2;
@@ -32,7 +32,7 @@ import java.util.logging.Level;
 import java.awt.TrayIcon.MessageType;
 
 public final class menuVentanas extends javax.swing.JFrame{
-    protected MvcVar mvc;
+    protected Controlador modelo;
     public menuVentanas(){
         initComponents();
         new MediaHandler(menuVentanas.class.getName()).setLookAndFeel(menuVentanas.this);
@@ -47,11 +47,11 @@ public final class menuVentanas extends javax.swing.JFrame{
         pack();
     }
     
-    public menuVentanas(MvcVar modelo){
+    public menuVentanas(Controlador modelo){
         initComponents();
         new MediaHandler(menuVentanas.class.getName()).setLookAndFeel(menuVentanas.this);
         
-        this.mvc=modelo;
+        this.modelo=modelo;
         
         menu();
         botones();
@@ -68,58 +68,58 @@ public final class menuVentanas extends javax.swing.JFrame{
     protected String rol;
     
     protected final void settings(){
-        rol=mvc.getUserRole();
-        jMenuItem2.setText(mvc.getUsername());
+        rol=modelo.getUserRole();
+        jMenuItem2.setText(modelo.getUsername());
         picLabel.setIcon(new ImageIcon(new ImageIcon(new MediaHandler(menuVentanas.class.getName()).getFormImage()).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }
     
     protected final void botones(){
         offButton.addActionListener(a->
-            new ventana3().setVisible(true)
+            new ventana3(modelo).setVisible(true)
         );
         
         productButton.addActionListener(a->
-            new ventana1().setVisible(true)
+            new ventana1(modelo).setVisible(true)
         );
         
         storeButton.addActionListener(a->
-            new ventana2().setVisible(true)
+            new ventana2(modelo).setVisible(true)
         );
         
         form1Button.addActionListener(a->
-            new Validation(new formulario1(),rol,formulario1.class.getName()).toRestrictedForm()
+            new Validation(new formulario1(modelo),modelo,rol,formulario1.class.getName()).toRestrictedForm()
         );
         
         form2Button.addActionListener(a->
-            new Validation(new formulario2(),rol,formulario2.class.getName()).toRestrictedForm()
+            new Validation(new formulario2(modelo),modelo,rol,formulario2.class.getName()).toRestrictedForm()
         );
         
         form3Button.addActionListener(a->
-            new Validation(new formulario3(),rol,formulario3.class.getName()).toRestrictedForm()
+            new Validation(new formulario3(modelo),modelo,rol,formulario3.class.getName()).toRestrictedForm()
         );
         
         ltprvButton.addActionListener(a->
-            new Validation(new ltshProviders(),rol,ltshProviders.class.getName()).toRestrictedForm()
+            new Validation(new ltshProviders(modelo),modelo,rol,ltshProviders.class.getName()).toRestrictedForm()
         );
         
         ltpsButton.addActionListener(a->
-            new Validation(new ltshPartners(),rol,ltshPartners.class.getName()).toRestrictedForm()
+            new Validation(new ltshPartners(modelo),modelo,rol,ltshPartners.class.getName()).toRestrictedForm()
         );
         
         ltwkButton.addActionListener(a->
-            new Validation(new ltshWorkers(),rol,ltshWorkers.class.getName()).toRestrictedForm()
+            new Validation(new ltshWorkers(modelo),modelo,rol,ltshWorkers.class.getName()).toRestrictedForm()
         );
         
         ltstButton.addActionListener(a->
-            new ltshStorage().setVisible(true)
+            new ltshStorage(modelo).setVisible(true)
         );
         
         ltshButton.addActionListener(a->
-            new ltshProduct().setVisible(true)
+            new ltshProduct(modelo).setVisible(true)
         );
         
         ltoffButton.addActionListener(a->
-            new ltshOff().setVisible(true)
+            new ltshOff(modelo).setVisible(true)
         );
         
         closeButton.addActionListener(a->{
@@ -140,11 +140,11 @@ public final class menuVentanas extends javax.swing.JFrame{
     
     protected final void menu(){
         aboutButton.addActionListener(a->
-            new about(new javax.swing.JFrame(),true).setVisible(true)
+            new about(this,true).setVisible(true)
         );
         
         jMenuItem2.addActionListener(a->
-            new dataWindow1(new javax.swing.JFrame(),true,mvc.getUserID()).setVisible(true)
+            new dataWindow1(this,true,modelo,modelo.getUserID()).setVisible(true)
         );
         
         jMenuItem3.addActionListener(a->
@@ -193,7 +193,7 @@ public final class menuVentanas extends javax.swing.JFrame{
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(new MediaHandler(menuVentanas.class.getName()).getIconImage());
+        setIconImage(new clases.MediaHandler(menuVentanas.class.getName()).getIconImage());
 
         ltwkButton.setText("Lista de empleados");
 
@@ -205,7 +205,7 @@ public final class menuVentanas extends javax.swing.JFrame{
 
         storeButton.setText("Almacén");
 
-        productButton.setText("Productos");
+        productButton.setText("Ventas");
 
         closeButton.setText("Salir");
 

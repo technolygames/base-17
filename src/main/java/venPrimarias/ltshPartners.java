@@ -5,6 +5,7 @@ import clases.DbUtils;
 import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 import menus.menuDatosVentana2;
 import paneles.delDatosPanel2;
 import paneles.modDatosPanel2;
@@ -45,6 +46,24 @@ public class ltshPartners extends javax.swing.JFrame{
         pack();
     }
     
+    protected Controlador modelo;
+    
+    public ltshPartners(Controlador modelo){
+        initComponents();
+        new MediaHandler(ltshPartners.class.getName()).setLookAndFeel(ltshPartners.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        datosMostrar();
+        popup();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Socios");
+        pack();
+    }
+    
     protected static final Object[] header=new Object[]{"Código","Nombre(s)","Apellido paterno","Apellido materno","Tipo de socio","Datos extra","Fecha de registro","Fecha de última compra"};
     
     protected String methodName;
@@ -67,7 +86,7 @@ public class ltshPartners extends javax.swing.JFrame{
         });
         
         jButton1.addActionListener(a->
-            new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString())).setVisible(true)
+            new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString()), modelo).setVisible(true)
         );
         
         refreshButton.addActionListener(a->
@@ -128,7 +147,7 @@ public class ltshPartners extends javax.swing.JFrame{
         dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from socios;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from socios;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -145,13 +164,13 @@ public class ltshPartners extends javax.swing.JFrame{
     
     protected void datosBuscar(){
         methodName="datosBuscar";
-        
+        var datos=new Datos(modelo);
         dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                    ps=datos.getConnection().prepareStatement("select * from socios where codigo_part=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -166,7 +185,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 1->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where nombre_part=?;");
+                    ps=datos.getConnection().prepareStatement("select * from socios where nombre_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -181,7 +200,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 2->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidop_part=?;");
+                    ps=datos.getConnection().prepareStatement("select * from socios where apellidop_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -196,7 +215,7 @@ public class ltshPartners extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 3->{
-                    ps=new Datos().getConnection().prepareStatement("select * from socios where apellidom_part=?;");
+                    ps=datos.getConnection().prepareStatement("select * from socios where apellidom_part=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -231,28 +250,28 @@ public class ltshPartners extends javax.swing.JFrame{
         JMenuItem mi1=new JMenuItem(new AbstractAction("Ver datos"){
             @Override
             public void actionPerformed(ActionEvent e){
-                new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
+                new dataWindow2(new javax.swing.JFrame(),true,Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()), modelo).setVisible(true);
             }
         });
         
         JMenuItem mi2=new JMenuItem(new AbstractAction("Modificar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana2(new modDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
+                new menuDatosVentana2(new modDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false,modelo),false,modelo).setVisible(true);
             }
         });
         
         JMenuItem mi3=new JMenuItem(new AbstractAction("Eliminar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana2(new delDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
+                new menuDatosVentana2(new delDatosPanel2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false,modelo),false,modelo).setVisible(true);
             }
         });
         
         JMenuItem mi4=new JMenuItem(new AbstractAction("Menú"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
+                new menuDatosVentana2(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),modelo).setVisible(true);
             }
         });
         

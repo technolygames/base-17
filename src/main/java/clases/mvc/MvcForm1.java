@@ -16,13 +16,14 @@ public class MvcForm1{
     protected String domicilio;
     protected String puesto;
     protected int experiencia;
-    protected String grado_estudios;
+    protected String gradoEstudios;
     protected int contacto;
     protected String fechaNacimiento;
     protected int edad;
     protected String estado;
     protected String datosExtra;
     protected InputStream imagen;
+    protected int numeroVentas;
     
     public String getPassword(){
         return password;
@@ -88,10 +89,10 @@ public class MvcForm1{
     }
     
     public String getGradoEstudios(){
-        return grado_estudios;
+        return gradoEstudios;
     }
     public void setGradoEstudios(String gradoEstudios){
-        this.grado_estudios=gradoEstudios;
+        this.gradoEstudios=gradoEstudios;
     }
     
     public int getContacto(){
@@ -134,5 +135,12 @@ public class MvcForm1{
     }
     public void setImagen(InputStream imagen){
         this.imagen=imagen;
+    }
+    
+    public int getNumeroVentas(){
+        return numeroVentas;
+    }
+    public void setNumeroVentas(int numeroVentas){
+        this.numeroVentas=numeroVentas;
     }
 }

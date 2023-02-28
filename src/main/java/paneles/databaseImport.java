@@ -3,7 +3,7 @@ package paneles;
 import clases.logger;
 import clases.Thread1;
 import clases.Thread3;
-import venPrimarias.start;
+import clases.mvc.Controlador;
 import venTerciarias.databaseWindow;
 //java
 import java.io.File;
@@ -22,6 +22,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class databaseImport extends javax.swing.JPanel{
     public databaseImport(){
         initComponents();
+        
+        botones();
+        settings();
+    }
+    
+    protected Controlador modelo;
+    
+    public databaseImport(Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         botones();
         settings();
@@ -121,7 +132,7 @@ public class databaseImport extends javax.swing.JPanel{
                 new Thread(new Thread1(is,pr.getOutputStream())).start();
                 
                 JOptionPane.showMessageDialog(this,"Se ha importado correctamente la base de datos","Rel 2E",JOptionPane.INFORMATION_MESSAGE);
-                logger.staticLogger(Level.INFO,"Rel 2E: se importó correctamente la base de datos.\nOcurrió en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+                logger.staticLogger(Level.INFO,"Rel 2E: se importó correctamente la base de datos.\nOcurrió en el método 'importDatabase()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 
                 is.close();
             }catch(IOException e){

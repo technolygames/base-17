@@ -3,6 +3,7 @@ package venPrimarias;
 import clases.Datos;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
@@ -17,6 +18,24 @@ public class ventana3 extends javax.swing.JFrame{
     public ventana3(){
         initComponents();
         new MediaHandler(ventana3.class.getName()).setLookAndFeel(ventana3.this);
+        
+        botones();
+        settings();
+        
+        setSize(500,305);
+        setLocationRelativeTo(null);
+        setTitle("Descuentos y promociones");
+        setResizable(false);
+        pack();
+    }
+    
+    protected Controlador modelo;
+    
+    public ventana3(Controlador modelo){
+        initComponents();
+        new MediaHandler(ventana3.class.getName()).setLookAndFeel(ventana3.this);
+        
+        this.modelo=modelo;
         
         botones();
         settings();
@@ -67,7 +86,7 @@ public class ventana3 extends javax.swing.JFrame{
                     Date inicio=new Date(jDateChooser1.getDate().getTime());
                     Date fin=new Date(jDateChooser2.getDate().getTime());
                     
-                    new Datos().insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
+                    new Datos(modelo).insertarDatosPromo(codigo,nombre,datos,descuento,inicio,fin);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }

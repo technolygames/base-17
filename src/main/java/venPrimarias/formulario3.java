@@ -1,9 +1,11 @@
 package venPrimarias;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.MediaHandler;
 import clases.logger;
 import clases.mvc.MvcForm3;
+import clases.mvc.Controlador;
 import menus.menuDatosVentana3;
 //librerías
 import com.google.gson.stream.JsonReader;
@@ -33,6 +35,22 @@ public class formulario3 extends javax.swing.JFrame{
     public formulario3(){
         initComponents();
         new MediaHandler(formulario3.class.getName()).setLookAndFeel(formulario3.this);
+        
+        botones();
+        
+        setLocationRelativeTo(null);
+        setTitle("Formulario 3");
+        setResizable(false);
+        pack();
+    }
+    
+    protected Controlador modelo0;
+    
+    public formulario3(Controlador modelo){
+        initComponents();
+        new MediaHandler(formulario3.class.getName()).setLookAndFeel(formulario3.this);
+        
+        this.modelo0=modelo;
         
         botones();
         
@@ -85,9 +103,7 @@ public class formulario3 extends javax.swing.JFrame{
                 
                 if(JFileChooser.APPROVE_OPTION==jfc.showOpenDialog(null)){
                     File f=jfc.getSelectedFile();
-                    direccion=f.getPath();
-                    
-                    showImage(direccion);
+                    showImage(f.getPath());
                     
                     p.setProperty("lastdirectory_form3",f.getParent());
                     p.store(new FileOutputStream("data/config/filechooserd.properties"),"JFileChooserDirection");
@@ -132,7 +148,7 @@ public class formulario3 extends javax.swing.JFrame{
                     
                     datos.add(modelo);
                     
-                    new Datos().insertarDatosProveedor(datos);
+                    new Datos(modelo0).insertarDatosProveedor(datos);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -161,12 +177,10 @@ public class formulario3 extends javax.swing.JFrame{
                     case "apellidom_prov"->jTextField4.setText(jsonr.nextString());
                     case "empresa"->jTextField5.setText(jsonr.nextString());
                     case "contacto"->jTextField6.setText(String.valueOf(jsonr.nextInt()));
-                    case "imagen"->direccion=jsonr.nextString();
+                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
                     default->jsonr.skipValue();
                 }      
             }
-            
-            showImage(direccion);
             jsonr.endObject();
             jsonr.close();
         }catch(IOException e){
@@ -180,6 +194,7 @@ public class formulario3 extends javax.swing.JFrame{
     }
     
     protected void showImage(String path){
+        direccion=path;
         picLabel.setText(null);
         picLabel.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));
     }

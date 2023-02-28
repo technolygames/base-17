@@ -1,16 +1,15 @@
 package menus;
 //clases
 import clases.MediaHandler;
+import clases.mvc.Controlador;
 import paneles.modPicPanel1;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
 //java
 import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 
 public class menuDatosVentana1 extends javax.swing.JFrame{
-    protected String title="Menú de Datos";
     public menuDatosVentana1(){
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
@@ -19,14 +18,31 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         settings();
         
         setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
     
     protected int codigo;
     
-    public menuDatosVentana1(int code){
+    protected Controlador modelo;
+    
+    public menuDatosVentana1(Controlador modelo){
+        initComponents();
+        new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    public menuDatosVentana1(int code,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
@@ -34,14 +50,15 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         settings();
         
         this.codigo=code;
+        this.modelo=modelo;
         
         setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
     
-    public menuDatosVentana1(Component panel,int code){
+    public menuDatosVentana1(Component panel,int code,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
@@ -49,30 +66,33 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         settings();
         
         this.codigo=code;
+        this.modelo=modelo;
         
-        openPanel(panel);
+        MediaHandler.openPanel(menuDatosVentana1.this,panel);
         
         setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
     
-    public menuDatosVentana1(Component panel,boolean flag){
+    public menuDatosVentana1(Component panel,boolean flag,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
         settings();
+        
+        this.modelo=modelo;
         
         if(!flag){
             jMenu1.setVisible(false);
         }
         
-        openPanel(panel);
+        MediaHandler.openPanel(menuDatosVentana1.this,panel);
         
         setLocationRelativeTo(null);
-        setTitle(title);
+        setTitle("Menú de Datos");
         setResizable(false);
         pack();
     }
@@ -88,34 +108,26 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         
         miDelData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new delDatosPanel1(codigo));
+                MediaHandler.openPanel(menuDatosVentana1.this,new delDatosPanel1(codigo,modelo));
             }else{
-                openPanel(new delDatosPanel1());
+                MediaHandler.openPanel(menuDatosVentana1.this,new delDatosPanel1(modelo));
             }
         });
          
         miModData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new modDatosPanel1(codigo));
+                MediaHandler.openPanel(menuDatosVentana1.this,new modDatosPanel1(codigo,modelo));
             }else{
-                openPanel(new modDatosPanel1());
+                MediaHandler.openPanel(menuDatosVentana1.this,new modDatosPanel1(modelo));
             }
         });
         
         miModPic.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new modPicPanel1(codigo));
+                MediaHandler.openPanel(menuDatosVentana1.this,new modPicPanel1(codigo,modelo));
             }else{
-                openPanel(new modPicPanel1());
+                MediaHandler.openPanel(menuDatosVentana1.this,new modPicPanel1());
             }
-        });
-    }
-    
-    protected void openPanel(Component panel){
-        EventQueue.invokeLater(()->{
-            menuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
-            menuDatosVentana1.this.pack();
         });
     }
     

@@ -5,6 +5,7 @@ import clases.DbUtils;
 import clases.Events;
 import clases.MediaHandler;
 import clases.logger;
+import clases.mvc.Controlador;
 import menus.menuDatosVentana3;
 import paneles.delDatosPanel3;
 import paneles.modDatosPanel3;
@@ -45,6 +46,24 @@ public class ltshProviders extends javax.swing.JFrame{
         pack();
     }
     
+    protected Controlador modelo;
+    
+    public ltshProviders(Controlador modelo){
+        initComponents();
+        new MediaHandler(ltshProviders.class.getName()).setLookAndFeel(ltshProviders.this);
+        
+        this.modelo=modelo;
+        
+        botones();
+        datosMostrar();
+        popup();
+        settings();
+        
+        setLocationRelativeTo(null);
+        setTitle("Proveedores");
+        pack();
+    }
+    
     protected static final Object[] header=new Object[]{"Código","Nombre","Apellido paterno","Apellido materno","Empresa","Contacto","Fecha de registro","Fecha de última entrega"};
     protected String methodName;
     
@@ -66,7 +85,7 @@ public class ltshProviders extends javax.swing.JFrame{
         });
         
         jButton1.addActionListener(a->
-            new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString())).setVisible(true)
+            new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(dtm.getValueAt(0,0).toString()), modelo).setVisible(true)
         );
         
         refreshButton.addActionListener(a->
@@ -127,7 +146,7 @@ public class ltshProviders extends javax.swing.JFrame{
         dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
-            ps=new Datos().getConnection().prepareStatement("select * from proveedor;");
+            ps=new Datos(modelo).getConnection().prepareStatement("select * from proveedor;");
             rs=ps.executeQuery();
             dtm.setColumnIdentifiers(header);
             while(rs.next()){
@@ -145,12 +164,13 @@ public class ltshProviders extends javax.swing.JFrame{
     protected void datosBuscar(){
         methodName="datosBuscar";
         
+        var datos=new Datos(modelo);
         dtm=Events.tableModel();
         sorter=new TableRowSorter<>(dtm);
         try{
             switch(jComboBox1.getSelectedIndex()){
                 case 0->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where codigo_prov=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -165,7 +185,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 1->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where nombre_prov=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where nombre_prov=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -180,7 +200,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 2->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where apellidop_prov=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where apellidop_prov=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -195,7 +215,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 3->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where apellidom_prov=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where apellidom_prov=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -210,7 +230,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 4->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where empresa=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where empresa=?;");
                     ps.setString(1,txtBuscar.getText());
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -225,7 +245,7 @@ public class ltshProviders extends javax.swing.JFrame{
                     rs.close();
                 }
                 case 5->{
-                    ps=new Datos().getConnection().prepareStatement("select * from proveedor where contacto=?;");
+                    ps=datos.getConnection().prepareStatement("select * from proveedor where contacto=?;");
                     ps.setInt(1,Integer.parseInt(txtBuscar.getText()));
                     rs=ps.executeQuery();
                     dtm.setColumnIdentifiers(header);
@@ -260,28 +280,28 @@ public class ltshProviders extends javax.swing.JFrame{
         JMenuItem mi1=new JMenuItem(new AbstractAction("Ver datos"){
             @Override
             public void actionPerformed(ActionEvent e){
-                new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
+                new dataWindow3(new javax.swing.JFrame(),true,Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()), modelo).setVisible(true);
             }
         });
         
         JMenuItem mi2=new JMenuItem(new AbstractAction("Modificar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana3(new modDatosPanel3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
+                new menuDatosVentana3(new modDatosPanel3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false, modelo),false, modelo).setVisible(true);
             }
         });
         
         JMenuItem mi3=new JMenuItem(new AbstractAction("Eliminar datos"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana3(new delDatosPanel3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false),false).setVisible(true);
+                new menuDatosVentana3(new delDatosPanel3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()),false, modelo),false, modelo).setVisible(true);
             }
         });
         
         JMenuItem mi4=new JMenuItem(new AbstractAction("Menú"){
             @Override
             public void actionPerformed(ActionEvent a){
-                new menuDatosVentana3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString())).setVisible(true);
+                new menuDatosVentana3(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()), modelo).setVisible(true);
             }
         });
         

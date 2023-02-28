@@ -3,9 +3,9 @@ package clases;
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
 import clases.mvc.MvcForm3;
-import java.awt.Frame;
-import venPrimarias.start;
+import clases.mvc.Controlador;
 //java
+import java.awt.Frame;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileInputStream;
@@ -23,12 +23,18 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 
 /**
- * Clase intermedia entre el gestor de base de datos y el programa.<br>
+ * Clase intermedia entre el gestor de base de datos y el programa. 
  * Se encarga de registrar, actualizar y eliminar los datos que el usuario desee.
  * 
  * @author erick
  */
 public class Datos{
+    protected Controlador modelo;
+    
+    public Datos(Controlador modelo){
+        this.modelo=modelo;
+    }
+    
     protected Frame frame=MediaHandler.getFrames();
     
     protected PreparedStatement ps;
@@ -45,9 +51,9 @@ public class Datos{
     protected String user;
     
     /**
-     * Método para conectar a la base de datos.
+     * Método para conectar a la base de modelo.
      * 
-     * @return conexión a la base de datos.
+     * @return conexión a la base de modelo.
      */
     public Connection getConnection(){
         String methodName="getConnection";
@@ -80,10 +86,10 @@ public class Datos{
     }
     
     /**
-     * Crea la base de datos que se usará para importar el archivo en el que está la base de datos.
+     * Crea la base de datos que se usará para importar el archivo en el que está la base de datos. 
      * Advertencia: no usar en otras clases.
      * 
-     * @param nombre Nombre de la base de datos.
+     * @param nombre Nombre de la base de modelo.
      * @throws SQLException si el gestor gestor detecta un problema, lanza este error.
      */
     public void crearBD(String nombre) throws SQLException{
@@ -91,13 +97,13 @@ public class Datos{
         ps.execute();
         
         JOptionPane.showMessageDialog(frame,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
-        logger.staticLogger(Level.INFO,"Rel 1E: se creó correctamente la base de datos.\nOcurrió en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        logger.staticLogger(Level.INFO,"Rel 1E: se creó correctamente la base de datos.\nOcurrió en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
     }
     
     /**
-     * Guarda los datos de la ventana de productos en la base de datos.
+     * Guarda los modelo de la ventana de productos en la base de modelo.
      * 
      * @param codigoProducto Código de identificación del producto.
      * @param codigoEmpleado Código de identificación del empleado que atendió la venta.
@@ -127,7 +133,7 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos de la ventana de almacén en la base de datos.
+     * Guarda los modelo de la ventana de almacén en la base de modelo.
      * 
      * @param codigoProducto Código de identificación del almacén.
      * @param codigoLote Código de identificación del lote de productos que se almacenará.
@@ -159,9 +165,9 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos de la ventana de empleados en la base de datos.
+     * Guarda los modelo de la ventana de empleados en la base de modelo.
      * 
-     * @param datos que serán almacenados del empleado en la base de datos.
+     * @param datos que serán almacenados del empleado en la base de modelo.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
@@ -192,9 +198,9 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos de la ventana de proveedor en la base de datos.
+     * Guarda los modelo de la ventana de proveedor en la base de modelo.
      * 
-     * @param datos lista con los datos del proveedor.
+     * @param datos lista con los modelo del proveedor.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
@@ -216,9 +222,9 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos de la ventana de socios en la base de datos.
+     * Guarda los modelo de la ventana de socios en la base de modelo.
      * 
-     * @param datos que serán almacenados del socio en la base de datos.
+     * @param datos que serán almacenados del socio en la base de modelo.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
@@ -256,7 +262,7 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos de la ventana de promociones en la base de datos.
+     * Guarda los modelo de la ventana de promociones en la base de modelo.
      * 
      * @param codigoPromo Código de la promoción.
      * @param nombrePromo Nombre de la promoción.
@@ -283,7 +289,7 @@ public class Datos{
     }
     
     /**
-     * Guarda los datos para conteo de asistencia del empleado.
+     * Guarda los modelo para conteo de asistencia del empleado.
      * 
      * @param codigoEmpleado Código de identificación del empleado.
      * @param nombreEmpleado Nombre(s) del empleado.
@@ -300,21 +306,21 @@ public class Datos{
         ps.setString(4,apellidoMaternoEmpleado);
         ps.execute();
         
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosConteo1()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
     }
     
     /**
-     * Guarda los datos para conteo de asistencia del empleado.
+     * Guarda los modelo para conteo de asistencia del empleado.
      * 
      * @param codigoEmpleado Código de identificación del empleado.
      * @param nombreEmpleado Nombre(s) del empleado.
      * @param apellidoPaternoEmpleado Apellido paterno del empleado.
      * @param apellidoMaternoEmpleado Apellido materno del empleado.
      * @param numeroVentas Cantidad de ventas realizadas por el empleado.
-     * 
-     * Nota: este método es solo para cargar datos de respaldo eliminados previamente.
+ 
+ Nota: este método es solo para cargar modelo de respaldo eliminados previamente.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
@@ -327,13 +333,13 @@ public class Datos{
         ps.setInt(5,numeroVentas);
         ps.execute();
         
-        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        logger.staticLogger(Level.INFO,"Rel 1: se guardaron correctamente los datos a la base de datos.\nOcurrió en el método 'insertarDatosConteo2()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
     }
     
     /**
-     * Verifica si los datos para loggear son correctos.
+     * Verifica si los modelo para loggear son correctos.
      * 
      * @param password del usuario que iniciará sesión.
      * @param user1 usuario que iniciará sesión.
@@ -352,17 +358,35 @@ public class Datos{
     }
     
     /**
-     * Busca los datos de la promoción en la base de datos.
+     * Busca los modelo de la promoción en la base de modelo.
      * 
      * @param idPromo a buscar. Puede ser String o Integer.
      * 
-     * @return los datos requeridos.
+     * @return los modelo requeridos.
      * 
      * @throws SQLException en caso de que el gestor detecte algún problema en la búsqueda del registro.
      */
     public ResultSet buscarDatosPromo(String idPromo) throws SQLException{
         ps=getConnection().prepareStatement("select * from promociones where id_prom=?;");
         ps.setString(1,idPromo);
+        
+        return ps.executeQuery();
+    }
+    
+    /**
+     * Busca los registros de conteo de asistencia de un empleado en la base de modelo.
+     * 
+     * @param id del empleado.
+     * @param date fecha de sesión del empleado.
+     * 
+     * @return los registros de conteo de asistencia del empleado.
+     * 
+     * @throws SQLException si no hay modelo o ingresan modelo erróneos.
+     */
+    public ResultSet buscarDatosConteo(int id,String date) throws SQLException{
+        ps=getConnection().prepareStatement("select * from conteo where codigo_emp=? and fecha_sesion=?;");
+        ps.setInt(1,id);
+        ps.setString(2,date);
         
         return ps.executeQuery();
     }
@@ -404,7 +428,7 @@ public class Datos{
     }
     
     /**
-     * Actualiza el historial de ventas del empleado de ese día.
+     * Actualiza el historial de ventas del empleado de ese día. 
      * No actualiza los registros de otros días.
      * 
      * @param codigo de identificación del empleado.
@@ -437,38 +461,43 @@ public class Datos{
     }
     
     /**
-     * Actualiza registros en la base de datos.<br>
+     * Actualiza registros en la base de datos. 
      * Este método es específico para cadena de texto.
      * 
      * @param tabla a cambiar registros.
      * @param campo1 del registro a cambiar.
      * @param campo2 de identificación.
-     * @param datos a cambiar (nuevos datos).
+     * @param datos a cambiar (nuevos modelo).
      * @param codigo de identificación del registro.
+     * @param flag para mostrar la notificación de confirmación.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void actualizarDatosString(String tabla,String campo1,String campo2,String datos,int codigo) throws SQLException{
+    public void actualizarDatosString(String tabla,String campo1,String campo2,String datos,int codigo,boolean flag) throws SQLException{
         ps=getConnection().prepareStatement("update "+tabla+" set "+campo1+"=? where "+campo2+"=?;");
         ps.setString(1,datos);
         ps.setInt(2,codigo);
         ps.executeUpdate();
         
-        new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosString()");
+        if(flag){
+            new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosString()");
+        }else{
+            logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosString()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
+        }
         
         ps.close();
     }
     
     /**
-     * Actualiza registros en la base de datos.<br>
+     * Actualiza registros en la base de datos. 
      * Este método es específico para enteros (números).
      * 
      * @param tabla a cambiar registros.
      * @param campo1 del registro a cambiar.
      * @param campo2 de identificación.
-     * @param datos a cambiar (nuevos datos).
+     * @param datos a cambiar (nuevos modelo).
      * @param codigo de identificación del registro.
-     * @param flag para mostrar la notificación de confirmación
+     * @param flag para mostrar la notificación de confirmación.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
@@ -481,20 +510,20 @@ public class Datos{
         if(flag){
             new logger(Level.CONFIG,this.getClass().getName()).updateMessageConfirmation(frame,"actualizarDatosInteger()");
         }else{
-            logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+            logger.staticLogger(Level.INFO,"Rel 2: se actualizaron correctamente los datos.\nOcurrió en el método 'actualizarDatosInteger()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         }
         
         ps.close();
     }
     
     /**
-     * Actualiza registros en la base de datos.<br>
+     * Actualiza registros en la base de datos. 
      * Este método es específico para fechas.
      * 
      * @param tabla a cambiar registros.
      * @param campo1 del registro a cambiar.
      * @param campo2 de identificación.
-     * @param fecha a cambiar (nuevos datos).
+     * @param fecha a cambiar (nuevos modelo).
      * @param codigo de identificación del registro.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
@@ -511,9 +540,9 @@ public class Datos{
     }
     
     /**
-     * Actualiza la imagen de un registro.<br>
-     * Este método es universal.<br>
-     * Se debe escribir en la consulta en qué tabla se modificará la imagen y el identificador del registro a cambiar.<br>
+     * Actualiza la imagen de un registro. 
+     * Este método es universal. 
+     * Se debe escribir en la consulta en qué tabla se modificará la imagen y el identificador del registro a cambiar. 
      * Las tablas que tienen campos aptos para guardar una imagen son:
      * <ul>
      * <li>Empleados</li>
@@ -541,10 +570,10 @@ public class Datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla productos.<br>
-     * Prácticamente son todos los productos que ha vendido el empleado al que se le eliminarán los datos de la base de datos.
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio.
-     * Se pueden reestablecer si previamente se creó la copia de seguridad (excepto los productos que ha vendido).
+     * Elimina datos específicos de la tabla productos. 
+     * Prácticamente son todos los productos que ha vendido el empleado al que se le eliminarán los datos de la base de datos. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio. 
+     * Se pueden reestablecer si previamente se creó la copia de seguridad (excepto los productos que ha vendido). 
      * En su caso, solo será añadido un número con la cantidad de productos que vendió antes de que fueran eliminados los datos.
      * 
      * @param codigoEmpleado a eliminar los productos que ha vendido.
@@ -556,14 +585,14 @@ public class Datos{
         ps.setInt(1,codigoEmpleado);
         ps.executeUpdate();
         
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosProductos()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
     }
     
     /**
-     * Elimina datos específicos de la tabla almacén.<br>
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de fuerza mayor (producto de venta prohibida).
+     * Elimina datos específicos de la tabla almacén. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de fuerza mayor (producto de venta prohibida).  
      * En este caso, no aplica la copia de seguridad con JSON.
      * 
      * @param codigoProducto a eliminar.
@@ -581,8 +610,8 @@ public class Datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla empleados.<br>
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio.
+     * Elimina datos específicos de la tabla empleados. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio. 
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoEmpleado a eliminar.
@@ -600,8 +629,8 @@ public class Datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla socios.<br>
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de desafiliación.
+     * Elimina datos específicos de la tabla socios. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de desafiliación. 
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoSocio a eliminar.
@@ -619,8 +648,8 @@ public class Datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla proveedor.<br>
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen.
+     * Elimina datos específicos de la tabla proveedor. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido de la empresa de origen. 
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoProveedor a eliminar.
@@ -638,8 +667,8 @@ public class Datos{
     }
     
     /**
-     * Elimina datos específicos de la tabla conteo.<br>
-     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio.
+     * Elimina datos específicos de la tabla conteo. 
+     * Si se eliminan los datos, no se podrán recuperar. Usar solamente en caso de despido del negocio. 
      * Se pueden reestablecer si previamente se creó la copia de seguridad.
      * 
      * @param codigoEmpleado a eliminar.
@@ -651,7 +680,7 @@ public class Datos{
         ps.setInt(1,codigoEmpleado);
         ps.executeUpdate();
         
-        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(start.USERID),this.getClass().getName());
+        logger.staticLogger(Level.INFO,"Rel 3: se eliminaron correctamente los registros de la base de datos.\nOcurrió en el método 'eliminarDatosConteo()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
     }

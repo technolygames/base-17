@@ -2,6 +2,7 @@ package paneles;
 //clases
 import clases.Datos;
 import clases.logger;
+import clases.mvc.Controlador;
 //java
 import java.sql.SQLException;
 //extension larga
@@ -16,16 +17,30 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         botones();
     }
     
-    public delDatosPanel4(int code){
+    protected Controlador modelo;
+    
+    public delDatosPanel4(Controlador modelo){
         initComponents();
+        
+        this.modelo=modelo;
+        
+        botones();
+    }
+    
+    public delDatosPanel4(int code,Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         jTextField1.setText(String.valueOf(code));
         
         botones();
     }
     
-    public delDatosPanel4(int code,boolean flag){
+    public delDatosPanel4(int code,boolean flag,Controlador modelo){
         initComponents();
+        
+        this.modelo=modelo;
         
         if(!flag){
             closeButton.setEnabled(false);
@@ -60,7 +75,7 @@ public class delDatosPanel4 extends javax.swing.JPanel{
         try{
             if(!jTextField1.getText().isEmpty()){
                 var texto=Integer.parseInt(jTextField1.getText());
-                new Datos().eliminarDatosAlmacen(texto);
+                new Datos(modelo).eliminarDatosAlmacen(texto);
             }else{
                 new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
             }

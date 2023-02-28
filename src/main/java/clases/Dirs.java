@@ -27,7 +27,7 @@ public class Dirs{
     }
     
     /**
-     * Verifica si el archivo a guardar existe en la carpeta destino.
+     * Verifica si el archivo a guardar existe en la carpeta destino. 
      * Si existe, este le agrega un valor incrementable para que no se sobreescriba.
      * 
      * @param f archivo con la dirección a validar.
@@ -49,7 +49,7 @@ public class Dirs{
     }
     
     /**
-     * Valida si existe o no en la dirección almacenada en un archivo de una imagen.
+     * Valida si existe o no en la dirección almacenada en un archivo de una imagen. 
      * En caso de que no exista, verificará en la carpeta del archivo en la que está almacenada esta dirección.
      * 
      * @param parent dirección del archivo con la dirección almacenada.

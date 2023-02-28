@@ -3,6 +3,7 @@ package paneles;
 import clases.Datos;
 import clases.logger;
 import clases.PlaceHolder;
+import clases.mvc.Controlador;
 //java
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,6 +21,8 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     
     protected JCheckBox[] checkboxes;
     
+    protected Controlador modelo;
+    
     public modDatosPanel4(){
         initComponents();
         
@@ -30,10 +33,23 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel4(int code){
+    public modDatosPanel4(Controlador modelo){
+        initComponents();
+        
+        estado=true;
+        
+        this.modelo=modelo;
+        
+        botones();
+        enabledComponents(true,estado);
+        settings();
+    }
+    
+    public modDatosPanel4(int code,Controlador modelo){
         initComponents();
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(user));
         estado=false;
         
@@ -43,7 +59,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         settings();
     }
     
-    public modDatosPanel4(int code,boolean flag){
+    public modDatosPanel4(int code,boolean flag,Controlador modelo){
         initComponents();
         
         if(!flag){
@@ -51,6 +67,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         }
         
         this.user=code;
+        this.modelo=modelo;
         txtSearch.setText(String.valueOf(user));
         estado=false;
         
@@ -65,7 +82,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
     }
     
     protected final void botones(){
-        var datos=new Datos();
+        var datos=new Datos(modelo);
         String tabla="almacen";
         String campo="codigo_prod";
         
@@ -90,7 +107,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                         String tf1=jTextField1.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf1.isEmpty()&&jCheckBox1.isSelected()&&jTextField1.isEnabled()){
-                            datos.actualizarDatosString(tabla,"nombre_prod",campo,tf1,user);
+                            datos.actualizarDatosString(tabla,"nombre_prod",campo,tf1,user, true);
                             consulta();
                             break;
                         }
@@ -127,7 +144,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                         String tf2=jTextField2.getText();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!tf2.isEmpty()&&jCheckBox2.isSelected()&&jTextField2.isEnabled()){
-                            datos.actualizarDatosString(tabla,"marca",campo,tf2,user);
+                            datos.actualizarDatosString(tabla,"marca",campo,tf2,user, true);
                             consulta();
                             break;
                         }
@@ -239,7 +256,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
                         String combo=jComboBox1.getModel().getSelectedItem().toString();
                         user=Integer.parseInt(txtSearch.getText());
                         while(!combo.equals(jLabel5.getText())&&jCheckBox5.isSelected()&&jComboBox1.isEnabled()){
-                            datos.actualizarDatosString(tabla,"stock",campo,combo,user);
+                            datos.actualizarDatosString(tabla,"stock",campo,combo,user, true);
                             consulta();
                             break;
                         }
@@ -277,7 +294,7 @@ public class modDatosPanel4 extends javax.swing.JPanel{
         methodName="consulta";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+                PreparedStatement ps=new Datos(modelo).getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){

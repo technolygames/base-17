@@ -1,13 +1,12 @@
 package menus;
 //clases
 import clases.MediaHandler;
+import clases.mvc.Controlador;
 import paneles.modPicPanel1;
 import paneles.delDatosPanel1;
 import paneles.modDatosPanel1;
 //java
-import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 
 public class submenuDatosVentana1 extends javax.swing.JDialog{
     public submenuDatosVentana1(java.awt.Frame parent,boolean modal){
@@ -26,7 +25,9 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
     
     protected int codigo;
     
-    public submenuDatosVentana1(java.awt.Frame parent,boolean modal,int code){
+    protected Controlador modelo;
+    
+    public submenuDatosVentana1(java.awt.Frame parent,boolean modal,Controlador modelo,int code){
         super(parent,modal);
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(submenuDatosVentana1.this);
@@ -34,6 +35,7 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
         botones();
         settings();
         
+        this.modelo=modelo;
         this.codigo=code;
         
         setLocationRelativeTo(null);
@@ -53,34 +55,26 @@ public class submenuDatosVentana1 extends javax.swing.JDialog{
         
         miDelData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new delDatosPanel1(codigo));
+                MediaHandler.openPanel(submenuDatosVentana1.this,new delDatosPanel1(codigo, modelo));
             }else{
-                openPanel(new delDatosPanel1());
+                MediaHandler.openPanel(submenuDatosVentana1.this,new delDatosPanel1());
             }
         });
          
         miModData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new modDatosPanel1(codigo));
+                MediaHandler.openPanel(submenuDatosVentana1.this,new modDatosPanel1(codigo, modelo));
             }else{
-                openPanel(new modDatosPanel1());
+                MediaHandler.openPanel(submenuDatosVentana1.this,new modDatosPanel1());
             }
         });
         
         miModPic.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new modPicPanel1(codigo));
+                MediaHandler.openPanel(submenuDatosVentana1.this,new modPicPanel1(codigo, modelo));
             }else{
-                openPanel(new modPicPanel1());
+                MediaHandler.openPanel(submenuDatosVentana1.this,new modPicPanel1());
             }
-        });
-    }
-    
-    protected void openPanel(Component panel){
-        EventQueue.invokeLater(()->{
-            submenuDatosVentana1.this.getContentPane().setLayout(new BorderLayout());
-            submenuDatosVentana1.this.getContentPane().add(panel,BorderLayout.CENTER);
-            submenuDatosVentana1.this.pack();
         });
     }
     

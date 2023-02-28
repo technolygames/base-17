@@ -2,6 +2,7 @@ package paneles;
 //clases
 import clases.Datos;
 import clases.logger;
+import clases.mvc.Controlador;
 //librerías
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -34,8 +35,20 @@ public class modPicPanel2 extends javax.swing.JPanel{
         botones();
     }
     
-    public modPicPanel2(int code){
+    protected Controlador modelo;
+    
+    public modPicPanel2(Controlador modelo){
         initComponents();
+        
+        this.modelo=modelo;
+        
+        botones();
+    }
+    
+    public modPicPanel2(int code, Controlador modelo){
+        initComponents();
+        
+        this.modelo=modelo;
         
         txtSearch.setText(String.valueOf(code));
         txtSearch.setEnabled(false);
@@ -70,6 +83,9 @@ public class modPicPanel2 extends javax.swing.JPanel{
                 webcam.setViewSize(WebcamResolution.VGA.getSize());
                 
                 webcam.open();
+                
+                
+                
                 direccion="data/media/webcam/"+nombre+"-"+codigo+".jpg";
                 ImageIO.write(webcam.getImage(),"JPG",new File(direccion));
                 picLabel.setText(null);
@@ -87,7 +103,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
         updateButton.addActionListener(a->{
             methodName="botones.update";
             try{
-                new Datos().actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
+                new Datos(modelo).actualizarFotoPerfil("socios","codigo_part",new FileInputStream(direccion),Integer.parseInt(txtSearch.getText()));
                 consulta1();
             }catch(FileNotFoundException e){
                 new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"1IO");
@@ -151,7 +167,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
         methodName="consulta1";
         try{
             if(!txtSearch.getText().isEmpty()){
-                PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+                PreparedStatement ps=new Datos(modelo).getConnection().prepareStatement("select * from socios where codigo_part=?;");
                 ps.setInt(1,Integer.parseInt(txtSearch.getText()));
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()){
@@ -175,7 +191,7 @@ public class modPicPanel2 extends javax.swing.JPanel{
     protected final void consulta2(){
         methodName="consulta2";
         try{
-            PreparedStatement ps=new Datos().getConnection().prepareStatement("select * from socios where codigo_part=?;");
+            PreparedStatement ps=new Datos(modelo).getConnection().prepareStatement("select * from socios where codigo_part=?;");
             ps.setInt(1,Integer.parseInt(txtSearch.getText()));
             ResultSet rs=ps.executeQuery();
             if(rs.next()){

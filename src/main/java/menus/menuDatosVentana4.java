@@ -1,12 +1,12 @@
 package menus;
 //clases
 import clases.MediaHandler;
+import clases.mvc.Controlador;
 import paneles.delDatosPanel4;
 import paneles.modDatosPanel4;
 //java
 import java.awt.Component;
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
 
 public class menuDatosVentana4 extends javax.swing.JFrame{
     public menuDatosVentana4(){
@@ -24,14 +24,16 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
     
     protected int codigo;
     
-    public menuDatosVentana4(int code){
+    protected Controlador modelo;
+    
+    public menuDatosVentana4(Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana4.class.getName()).setLookAndFeel(menuDatosVentana4.this);
         
+        this.modelo=modelo;
+        
         botones();
         settings();
-        
-        this.codigo=code;
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -39,7 +41,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         pack();
     }
     
-    public menuDatosVentana4(Component panel,int code){
+    public menuDatosVentana4(int code,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana4.class.getName()).setLookAndFeel(menuDatosVentana4.this);
         
@@ -47,8 +49,7 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         settings();
         
         this.codigo=code;
-        
-        openPanel(panel);
+        this.modelo=modelo;
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -56,7 +57,25 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         pack();
     }
     
-    public menuDatosVentana4(Component panel,boolean flag){
+    public menuDatosVentana4(Component panel,int code,Controlador modelo){
+        initComponents();
+        new MediaHandler(menuDatosVentana4.class.getName()).setLookAndFeel(menuDatosVentana4.this);
+        
+        botones();
+        settings();
+        
+        this.codigo=code;
+        this.modelo=modelo;
+        
+        MediaHandler.openPanel(menuDatosVentana4.this,panel);
+        
+        setLocationRelativeTo(null);
+        setTitle("Menú de Datos");
+        setResizable(false);
+        pack();
+    }
+    
+    public menuDatosVentana4(Component panel,boolean flag,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana4.class.getName()).setLookAndFeel(menuDatosVentana4.this);
         
@@ -67,7 +86,9 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
             jMenu1.setVisible(false);
         }
         
-        openPanel(panel);
+        this.modelo=modelo;
+        
+        MediaHandler.openPanel(menuDatosVentana4.this,panel);
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -86,26 +107,18 @@ public class menuDatosVentana4 extends javax.swing.JFrame{
         
         miDelData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new delDatosPanel4(codigo));
+                MediaHandler.openPanel(menuDatosVentana4.this,new delDatosPanel4(codigo,modelo));
             }else{
-                openPanel(new delDatosPanel4());
+                MediaHandler.openPanel(menuDatosVentana4.this,new delDatosPanel4(modelo));
             }
         });
         
         miModData.addActionListener(a->{
             if(codigo!=0){
-                openPanel(new modDatosPanel4(codigo));
+                MediaHandler.openPanel(menuDatosVentana4.this,new modDatosPanel4(codigo,modelo));
             }else{
-                openPanel(new modDatosPanel4());
+                MediaHandler.openPanel(menuDatosVentana4.this,new modDatosPanel4(modelo));
             }
-        });
-    }
-    
-    protected void openPanel(Component panel){
-        EventQueue.invokeLater(()->{
-            menuDatosVentana4.this.getContentPane().setLayout(new BorderLayout());
-            menuDatosVentana4.this.getContentPane().add(panel,BorderLayout.CENTER);
-            menuDatosVentana4.this.pack();
         });
     }
     
