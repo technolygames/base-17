@@ -3,32 +3,27 @@ package venPrimarias;
 import clases.Datos;
 import clases.Dirs;
 import clases.MediaHandler;
+import clases.backuphandler.LectorJson;
 import clases.logger;
 import clases.mvc.MvcForm3;
 import clases.mvc.Controlador;
 import menus.menuDatosVentana3;
-//librerías
-import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
 //con extensión larga
 import java.util.logging.Level;
-import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario3 extends javax.swing.JFrame{
@@ -86,7 +81,9 @@ public class formulario3 extends javax.swing.JFrame{
         );
         
         miClearFields.addActionListener(a->{
-            campos.setText("");
+            for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField4,jTextField5,jTextField6}){
+                tf.setText("");
+            }
             clearImage();
         });
         
@@ -135,7 +132,6 @@ public class formulario3 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm3> datos=new ArrayList<>();
                     MvcForm3 modelo=new MvcForm3();
                     
                     modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
@@ -146,9 +142,7 @@ public class formulario3 extends javax.swing.JFrame{
                     modelo.setContacto(Integer.parseInt(jTextField6.getText()));
                     modelo.setImagen(new FileInputStream(direccion));
                     
-                    datos.add(modelo);
-                    
-                    new Datos(modelo0).insertarDatosProveedor(datos);
+                    new Datos(modelo0).insertarDatosProveedor(modelo);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -165,27 +159,15 @@ public class formulario3 extends javax.swing.JFrame{
     }
     
     protected void loadFromJson(String path){
-        methodName="loadFromJson";
-        try{
-            JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "codigo_prov"->jTextField1.setText(String.valueOf(jsonr.nextInt()));
-                    case "nombre_prov"->jTextField2.setText(jsonr.nextString());
-                    case "apellidop_prov"->jTextField3.setText(jsonr.nextString());
-                    case "apellidom_prov"->jTextField4.setText(jsonr.nextString());
-                    case "empresa"->jTextField5.setText(jsonr.nextString());
-                    case "contacto"->jTextField6.setText(String.valueOf(jsonr.nextInt()));
-                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
-                    default->jsonr.skipValue();
-                }      
-            }
-            jsonr.endObject();
-            jsonr.close();
-        }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
-        }
+        var data=new LectorJson().readDataProviderJson(path);
+        
+        jTextField1.setText(String.valueOf(data.getCodigo()));
+        jTextField2.setText(data.getNombre());
+        jTextField3.setText(data.getApellidoPaterno());
+        jTextField4.setText(data.getApellidoMaterno());
+        jTextField5.setText(data.getEmpresa());
+        jTextField6.setText(String.valueOf(data.getContacto()));
+        showImage(Dirs.findPic(path,data.getDirImagen()));
     }
     
     protected void clearImage(){

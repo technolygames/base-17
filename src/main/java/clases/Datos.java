@@ -16,7 +16,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.List;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
@@ -89,14 +88,14 @@ public class Datos{
      * Crea la base de datos que se usará para importar el archivo en el que está la base de datos. 
      * Advertencia: no usar en otras clases.
      * 
-     * @param nombre Nombre de la base de modelo.
+     * @param nombre Nombre de la base de datos.
      * @throws SQLException si el gestor gestor detecta un problema, lanza este error.
      */
     public void crearBD(String nombre) throws SQLException{
         ps=getConnection().prepareStatement(String.format("create database %s;",nombre));
         ps.execute();
         
-        JOptionPane.showMessageDialog(frame,"Se creó la base de datos, pero falta importar la base","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame,"Se creó la base de datos, pero falta importar el archivo","Rel 1E",JOptionPane.INFORMATION_MESSAGE);
         logger.staticLogger(Level.INFO,"Rel 1E: se creó correctamente la base de datos.\nOcurrió en el método 'crearBD()'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
         
         ps.close();
@@ -171,29 +170,28 @@ public class Datos{
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosEmpleado(List<MvcForm1> datos) throws SQLException{
+    public void insertarDatosEmpleado(MvcForm1 datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into empleados values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),now());");
-        ps.setString(1,datos.get(0).getPassword());
-        ps.setInt(2,datos.get(0).getCodigo());
-        ps.setString(3,datos.get(0).getNombre());
-        ps.setString(4,datos.get(0).getApellidoPaterno());
-        ps.setString(5,datos.get(0).getApellidoMaterno());
-        ps.setString(6,datos.get(0).getCurp());
-        ps.setString(7,datos.get(0).getDomicilio());
-        ps.setString(8,datos.get(0).getPuesto());
-        ps.setInt(9,datos.get(0).getExperiencia());
-        ps.setString(10,datos.get(0).getGradoEstudios());
-        ps.setInt(11,datos.get(0).getContacto());
-        ps.setString(12,datos.get(0).getFechaNacimiento());
-        ps.setInt(13,datos.get(0).getEdad());
-        ps.setString(14,datos.get(0).getEstado());
-        ps.setString(15,datos.get(0).getDatosExtra());
-        ps.setBlob(16,datos.get(0).getImagen());
+        ps.setString(1,datos.getPassword());
+        ps.setInt(2,datos.getCodigo());
+        ps.setString(3,datos.getNombre());
+        ps.setString(4,datos.getApellidoPaterno());
+        ps.setString(5,datos.getApellidoMaterno());
+        ps.setString(6,datos.getCurp());
+        ps.setString(7,datos.getDomicilio());
+        ps.setString(8,datos.getPuesto());
+        ps.setInt(9,datos.getExperiencia());
+        ps.setString(10,datos.getGradoEstudios());
+        ps.setInt(11,datos.getContacto());
+        ps.setString(12,datos.getFechaNacimiento());
+        ps.setInt(13,datos.getEdad());
+        ps.setString(14,datos.getEstado());
+        ps.setString(15,datos.getDatosExtra());
+        ps.setBlob(16,datos.getImagen());
         ps.execute();
         
         new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosEmpleado()");
         
-        datos.clear();
         ps.close();
     }
     
@@ -204,20 +202,19 @@ public class Datos{
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosProveedor(List<MvcForm3> datos) throws SQLException{
+    public void insertarDatosProveedor(MvcForm3 datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into proveedor value(?,?,?,?,?,?,?,now(),now());");
-        ps.setInt(1,datos.get(0).getCodigo());
-        ps.setString(2,datos.get(0).getNombre());
-        ps.setString(3,datos.get(0).getApellidoPaterno());
-        ps.setString(4,datos.get(0).getApellidoMaterno());
-        ps.setString(5,datos.get(0).getEmpresa());
-        ps.setInt(6,datos.get(0).getContacto());
-        ps.setBinaryStream(7,datos.get(0).getImagen());
+        ps.setInt(1,datos.getCodigo());
+        ps.setString(2,datos.getNombre());
+        ps.setString(3,datos.getApellidoPaterno());
+        ps.setString(4,datos.getApellidoMaterno());
+        ps.setString(5,datos.getEmpresa());
+        ps.setInt(6,datos.getContacto());
+        ps.setBinaryStream(7,datos.getImagen());
         ps.execute();
         
         new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosProveedor()");
         
-        datos.clear();
         ps.close();
     }
     
@@ -228,22 +225,21 @@ public class Datos{
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */
-    public void insertarDatosSocio(List<MvcForm2> datos) throws SQLException{
+    public void insertarDatosSocio(MvcForm2 datos) throws SQLException{
         ps=getConnection().prepareStatement("insert into socios values(?,?,?,?,?,?,?,?,?,now(),now());");
-        ps.setInt(1,datos.get(0).getCodigo());
-        ps.setString(2,datos.get(0).getNombre());
-        ps.setString(3,datos.get(0).getApellidoPaterno());
-        ps.setString(4,datos.get(0).getApellidoMaterno());
-        ps.setString(5,datos.get(0).getTipo());
-        ps.setString(6,datos.get(0).getCorreo());
-        ps.setString(7,datos.get(0).getRfc());
-        ps.setString(8,datos.get(0).getDatos());
-        ps.setBinaryStream(9,datos.get(0).getImagen());
+        ps.setInt(1,datos.getCodigo());
+        ps.setString(2,datos.getNombre());
+        ps.setString(3,datos.getApellidoPaterno());
+        ps.setString(4,datos.getApellidoMaterno());
+        ps.setString(5,datos.getTipo());
+        ps.setString(6,datos.getCorreo());
+        ps.setString(7,datos.getRfc());
+        ps.setString(8,datos.getDatos());
+        ps.setBinaryStream(9,datos.getImagen());
         ps.execute();
         
         new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(frame,"insertarDatosSocio()");
         
-        datos.clear();
         ps.close();
     }
     
@@ -319,8 +315,8 @@ public class Datos{
      * @param apellidoPaternoEmpleado Apellido paterno del empleado.
      * @param apellidoMaternoEmpleado Apellido materno del empleado.
      * @param numeroVentas Cantidad de ventas realizadas por el empleado.
- 
- Nota: este método es solo para cargar modelo de respaldo eliminados previamente.
+     * 
+     * Nota: este método es solo para cargar modelo de respaldo eliminados previamente.
      * 
      * @throws SQLException si el gestor detecta un problema, lanzará este error.
      */

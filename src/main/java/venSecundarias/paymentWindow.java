@@ -1,15 +1,11 @@
 package venSecundarias;
 //clases
 import clases.Datos;
-import clases.Events;
 import clases.MediaHandler;
-import clases.Validation;
 import clases.logger;
 import clases.mvc.Controlador;
 import clases.tickets.DatosTicket;
 import java.awt.EventQueue;
-import venPrimarias.start;
-import venPrimarias.ventana1;
 //java
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,11 +27,6 @@ public class paymentWindow extends javax.swing.JDialog{
         
         botones();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Realizar pago");
-        setResizable(false);
-        pack();
     }
     
     protected DefaultTableModel dtm0;
@@ -52,11 +43,6 @@ public class paymentWindow extends javax.swing.JDialog{
         
         botones();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Realizar pago");
-        setResizable(false);
-        pack();
     }
     
     protected DefaultTableModel dtm;
@@ -113,6 +99,7 @@ public class paymentWindow extends javax.swing.JDialog{
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setModel(dtm);
         jTextField1.setEnabled(false);
+        MediaHandler.load(paymentWindow.this,"Realizar pago",false);
     }
     
     protected final void botones(){
@@ -280,15 +267,7 @@ public class paymentWindow extends javax.swing.JDialog{
         }
         datos.actualizarDatosConteoVentas(codigoEmpleado,new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         
-        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(this, methodName);
-    }
-    
-    protected void checkPartner(){
-        if(jComboBox1.getModel().getSelectedItem().toString().equals(Validation.paymentType(1))){
-            
-        }else{
-            
-        }
+        new logger(Level.CONFIG,this.getClass().getName()).storeMessageConfirmation(this,methodName);
     }
     
     protected void windowState(){

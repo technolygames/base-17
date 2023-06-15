@@ -7,7 +7,6 @@ import clases.logger;
 import clases.Thread2;
 import clases.backuphandler.EscritorJson;
 import clases.mvc.Controlador;
-import venPrimarias.start;
 //java
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,11 +29,6 @@ public class dataWindow3 extends javax.swing.JDialog{
         
         botones();
         datosMostrar();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del proveedor");
-        setResizable(false);
-        pack();
     }
     
     protected int codigo;
@@ -51,17 +45,16 @@ public class dataWindow3 extends javax.swing.JDialog{
         
         botones();
         datosMostrar();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del proveedor");
-        setResizable(false);
-        pack();
     }
     
     protected String methodName;
     
     protected ResultSet rs;
     protected PreparedStatement ps;
+    
+    protected final void settings(){
+        MediaHandler.load(dataWindow3.this,"Datos del empleado",false);
+    }
     
     protected final void datosMostrar(){
         methodName="datosMostrar";
@@ -112,10 +105,9 @@ public class dataWindow3 extends javax.swing.JDialog{
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Proveedor/"+nombre+"-"+codigo1+".jpg");
-                String path=Dirs.exists(f);
+                File f=new File("data/media/dataImage/Proveedor",nombre+"-"+codigo1+".jpg");
                 
-                new Thread2(rs,new FileOutputStream(path)).run();
+                new Thread2(rs,new FileOutputStream(Dirs.exists(f))).run();
                 
                 logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del proveedor.\nOcurrió en la clase '"+dataWindow3.class.getName()+"', en el método 'botones(storeImgButton)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 

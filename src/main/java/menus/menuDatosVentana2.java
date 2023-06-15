@@ -15,7 +15,6 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -34,7 +33,6 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         this.modelo=modelo;
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -46,11 +44,10 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -62,11 +59,10 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         MediaHandler.openPanel(menuDatosVentana2.this,panel);
         
@@ -76,14 +72,13 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         pack();
     }
     
-    public menuDatosVentana2(Component panel, boolean flag, Controlador modelo){
+    public menuDatosVentana2(Component panel,boolean flag,Controlador modelo){
         initComponents();
         new MediaHandler(menuDatosVentana2.class.getName()).setLookAndFeel(menuDatosVentana2.this);
         
-        botones();
-        settings();
-        
         this.modelo=modelo;
+        
+        botones();
         
         if(!flag){
             jMenu1.setVisible(false);
@@ -95,9 +90,6 @@ public class menuDatosVentana2 extends javax.swing.JFrame{
         setTitle("Menú de Datos");
         setResizable(false);
         pack();
-    }
-    
-    protected final void settings(){
     }
     
     protected final void botones(){

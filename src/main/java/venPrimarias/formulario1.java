@@ -5,26 +5,22 @@ import clases.Datos;
 import clases.Dirs;
 import clases.Events;
 import clases.MediaHandler;
+import clases.backuphandler.LectorJson;
 import clases.logger;
 import clases.mvc.MvcForm1;
 import clases.mvc.Controlador;
 import menus.menuDatosVentana1;
-//librerías
-import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -33,7 +29,6 @@ import javax.swing.JFileChooser;
 import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
-import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeParseException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -85,7 +80,7 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        for(JTextField tf:new JTextField[]{txtPassword,txtCodigo,txtNombre,txtAP,txtAM,txtDom,txtExp,txtEstudios,txtContacto,txtEdad}){
+        for(JTextField tf:new JTextField[]{txtPassword,txtCodigo,txtNombre,txtAP,txtAM,txtCURP,txtDom,txtExp,txtEstudios,txtContacto,txtEdad}){
             campos=tf;
         }
         
@@ -95,7 +90,7 @@ public class formulario1 extends javax.swing.JFrame{
         });
         
         jMenuItem1.addActionListener(a->
-            new menuDatosVentana1().setVisible(true)
+            new menuDatosVentana1(modelo0).setVisible(true)
         );
         
         jMenuItem2.addActionListener(a->
@@ -103,7 +98,11 @@ public class formulario1 extends javax.swing.JFrame{
         );
         
         miClearFields.addActionListener(a->{
-            campos.setText("");
+            for(JTextField tf:new JTextField[]{txtPassword,txtCodigo,txtNombre,txtAP,txtAM,txtCURP,txtDom,txtExp,txtEstudios,txtContacto,txtEdad}){
+                tf.setText("");
+            }
+            jComboBox1.getModel().setSelectedItem("Empleado");
+            jDateChooser1.setDate(null);
             jTextArea1.setText("");
             clearImage();
             placeHolders();
@@ -154,7 +153,6 @@ public class formulario1 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm1> datos=new ArrayList<>();
                     MvcForm1 modelo=new MvcForm1();
                     
                     modelo.setPassword(String.valueOf(txtPassword.getPassword()));
@@ -174,9 +172,7 @@ public class formulario1 extends javax.swing.JFrame{
                     modelo.setDatosExtra(jTextArea1.getText());
                     modelo.setImagen(new FileInputStream(direccion));
                     
-                    datos.add(modelo);
-                    
-                    new Datos(modelo0).insertarDatosEmpleado(datos);
+                    new Datos(modelo0).insertarDatosEmpleado(modelo);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -208,36 +204,24 @@ public class formulario1 extends javax.swing.JFrame{
     }
     
     protected void loadFromJson(String path){
-        methodName="loadFromJson";
-        try{
-            JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "password"->txtPassword.setText(jsonr.nextString());
-                    case "codigo_emp"->txtCodigo.setText(String.valueOf(jsonr.nextInt()));
-                    case "nombre_emp"->txtNombre.setText(jsonr.nextString());
-                    case "apellidop_emp"->txtAP.setText(jsonr.nextString());
-                    case "apellidom_emp"->txtAM.setText(jsonr.nextString());
-                    case "curp"->txtCURP.setText(jsonr.nextString());
-                    case "domicilio"->txtDom.setText(jsonr.nextString());
-                    case "puesto"->jComboBox1.getModel().setSelectedItem(jsonr.nextString());
-                    case "experiencia"->txtExp.setText(String.valueOf(jsonr.nextInt()));
-                    case "grado_estudios"->txtEstudios.setText(jsonr.nextString());
-                    case "contacto"->txtContacto.setText(String.valueOf(jsonr.nextInt()));
-                    case "fecha_nacimiento"->jDateChooser1.setDate(Date.valueOf(jsonr.nextString()));
-                    case "edad"->txtEdad.setText(String.valueOf(Events.calcAge(jDateChooser1.getDate().getTime(),jsonr.nextInt())));
-                    case "estado"->jComboBox2.getModel().setSelectedItem(jsonr.nextString());
-                    case "datos_extra"->jTextArea1.setText(jsonr.nextString());
-                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
-                    default->jsonr.skipValue();
-                }
-            }
-            jsonr.endObject();
-            jsonr.close();
-        }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
-        }
+        var data=new LectorJson().readDataWorkerJson(path);
+        
+        txtPassword.setText(data.getPassword());
+        txtCodigo.setText(String.valueOf(data.getCodigo()));
+        txtNombre.setText(data.getNombre());
+        txtAP.setText(data.getApellidoPaterno());
+        txtAM.setText(data.getApellidoMaterno());
+        txtCURP.setText(data.getCurp());
+        txtDom.setText(data.getDomicilio());
+        jComboBox1.getModel().setSelectedItem(data.getPuesto());
+        txtExp.setText(String.valueOf(data.getExperiencia()));
+        txtEstudios.setText(data.getGradoEstudios());
+        txtContacto.setText(String.valueOf(data.getContacto()));
+        jDateChooser1.setDate(Date.valueOf(data.getFechaNacimiento()));
+        txtEdad.setText(String.valueOf(Events.calcAge(jDateChooser1.getDate().getTime(),data.getEdad())));
+        jComboBox2.getModel().setSelectedItem(data.getEstado());
+        jTextArea1.setText(data.getDatosExtra());
+        showImage(Dirs.findPic(path,data.getDirImagen()));
     }
     
     protected void calcAge(int edad){

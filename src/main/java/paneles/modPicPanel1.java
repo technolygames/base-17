@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.Datos;
+import clases.Dirs;
 import clases.logger;
 import clases.mvc.Controlador;
 //librerías
@@ -83,7 +84,7 @@ public class modPicPanel1 extends javax.swing.JPanel{
                 webcam.setViewSize(WebcamResolution.VGA.getSize());
                 
                 webcam.open();
-                direccion="data/media/webcam/"+nombre+"-"+codigo+".jpg";
+                direccion=Dirs.exists(new File("data/media/webcam",nombre+"-"+codigo+".jpg"));
                 ImageIO.write(webcam.getImage(),"JPG",new File(direccion));
                 picLabel.setText(null);
                 picLabel.setIcon(new ImageIcon(new ImageIcon(Toolkit.getDefaultToolkit().createImage(direccion)).getImage().getScaledInstance(picLabel.getWidth(),picLabel.getHeight(),Image.SCALE_DEFAULT)));

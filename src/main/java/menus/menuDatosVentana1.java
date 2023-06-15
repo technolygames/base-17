@@ -15,7 +15,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -34,7 +33,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         this.modelo=modelo;
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -46,11 +44,10 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -62,11 +59,10 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         MediaHandler.openPanel(menuDatosVentana1.this,panel);
         
@@ -80,10 +76,9 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana1.class.getName()).setLookAndFeel(menuDatosVentana1.this);
         
-        botones();
-        settings();
-        
         this.modelo=modelo;
+        
+        botones();
         
         if(!flag){
             jMenu1.setVisible(false);
@@ -95,9 +90,6 @@ public class menuDatosVentana1 extends javax.swing.JFrame{
         setTitle("Menú de Datos");
         setResizable(false);
         pack();
-    }
-    
-    protected final void settings(){
     }
     
     protected final void botones(){

@@ -18,11 +18,7 @@ public class databaseWindow extends javax.swing.JDialog{
         new MediaHandler(databaseWindow.class.getName()).setLookAndFeel(databaseWindow.this);
         
         botones();
-        
-        setLocationRelativeTo(null);
-        setTitle("Crear base de datos");
-        setResizable(false);
-        pack();
+        settings();
     }
     
     protected Controlador modelo;
@@ -35,11 +31,11 @@ public class databaseWindow extends javax.swing.JDialog{
         this.modelo=modelo;
         
         botones();
-        
-        setLocationRelativeTo(null);
-        setTitle("Crear base de datos");
-        setResizable(false);
-        pack();
+        settings();
+    }
+    
+    protected final void settings(){
+        MediaHandler.load(databaseWindow.this,"Crear base de datos",false);
     }
     
     public static String nombredb;

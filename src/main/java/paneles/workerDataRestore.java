@@ -1,11 +1,15 @@
 package paneles;
 //clases
+import clases.Datos;
+import clases.logger;
 import clases.backuphandler.LectorJson;
 import clases.mvc.Controlador;
 //java
 import java.io.File;
+import java.sql.SQLException;
 import javax.swing.JFileChooser;
 //extension larga
+import java.util.logging.Level;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -62,9 +66,15 @@ public class workerDataRestore extends javax.swing.JPanel{
             }
         });
         
-        loadDataButton.addActionListener(a->
-            new LectorJson(modelo).readDataWorkerJson(jTextField1.getText())
-        );
+        loadDataButton.addActionListener(a->{
+            try{
+                var data=new LectorJson().readDataWorkerJson(jTextField1.getText());
+                new Datos(modelo).insertarDatosEmpleado(data);
+                new Datos(modelo).insertarDatosConteo(data.getCodigo(),data.getNombre(),data.getApellidoPaterno(),data.getApellidoMaterno(),data.getNumeroVentas());
+            }catch(SQLException e){
+                new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,"botones.loadData","11");
+            }
+        });
     }
     
     protected void unlockLoadButton(){

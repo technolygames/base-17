@@ -123,6 +123,7 @@ public class ResourceHandler{
     protected static String checkConnection(String url) throws MalformedURLException,IOException{
         u=new URL(url);
         uc=u.openConnection();
+        uc.connect();
         
         return u.getPath();
     }

@@ -23,6 +23,7 @@ public class MvcForm1{
     protected String estado;
     protected String datosExtra;
     protected InputStream imagen;
+    protected String dirImagen;
     protected int numeroVentas;
     
     public String getPassword(){
@@ -137,10 +138,22 @@ public class MvcForm1{
         this.imagen=imagen;
     }
     
+    public String getDirImagen(){
+        return dirImagen;
+    }
+    public void setDirImagen(String dirImagen){
+        this.dirImagen=dirImagen;
+    }
+    
     public int getNumeroVentas(){
         return numeroVentas;
     }
     public void setNumeroVentas(int numeroVentas){
         this.numeroVentas=numeroVentas;
+    }
+    
+    @Override
+    public String toString(){
+        return "MvcForm1{" + "password=" + password + ", codigo=" + codigo + ", nombre=" + nombre + ", apellidoMaterno=" + apellidoMaterno + ", apellidoPaterno=" + apellidoPaterno + ", curp=" + curp + ", domicilio=" + domicilio + ", puesto=" + puesto + ", experiencia=" + experiencia + ", gradoEstudios=" + gradoEstudios + ", contacto=" + contacto + ", fechaNacimiento=" + fechaNacimiento + ", edad=" + edad + ", estado=" + estado + ", datosExtra=" + datosExtra + ", imagen=" + imagen + ", numeroVentas=" + numeroVentas + '}';
     }
 }

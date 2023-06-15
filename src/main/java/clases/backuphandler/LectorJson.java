@@ -1,29 +1,28 @@
 package clases.backuphandler;
 //clases
-import clases.Datos;
 import clases.Dirs;
 import clases.Events;
-import clases.MediaHandler;
 import clases.logger;
+import clases.MediaHandler;
 import clases.mvc.MvcForm1;
 import clases.mvc.MvcForm2;
 import clases.mvc.MvcForm3;
-import clases.mvc.Controlador;
 //librerías
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonElement;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 //java
+import java.sql.Date;
 import java.awt.Frame;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 //con extensión larga
 import java.util.logging.Level;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
 
 /**
  * Clase encargada de leer los archivos creados para copia de seguridad.
@@ -31,163 +30,140 @@ import java.sql.Date;
  * @author erick
  */
 public class LectorJson{
-    protected Controlador modelo0;
-    
-    public LectorJson(Controlador modelo){
-        this.modelo0=modelo;
-    }
-    
     protected Frame frame=MediaHandler.getFrames();
-    
-    protected JsonReader jsonr;
-    
-    protected int numeroVentas;
     
     protected String methodName;
     
     /**
-     * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados, para volver a almacenar los datos en la base de datos.
+     * Se encarga de leer un archivo JSON, con la estructura de la tabla de empleados. 
+     * Devuelve los datos organizados en una clase llamada MvcForm1.
      * 
      * @param dir Nombre del archivo a leer.
+     * 
+     * @return los datos rescatados del archivo leído.
      */
-    public void readDataWorkerJson(String dir){
+    public MvcForm1 readDataWorkerJson(String dir){
         methodName="readDataWorkerJson";
         try{
-            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<MvcForm1> lista=new ArrayList<>();
+            JsonElement je=JsonParser.parseReader(new JsonReader(new FileReader(dir,StandardCharsets.UTF_8)));
             MvcForm1 modelo=new MvcForm1();
+            Gson gson=new GsonBuilder().create();
             
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "password" -> modelo.setPassword(jsonr.nextString());
-                    case "codigo_emp" -> modelo.setCodigo(jsonr.nextInt());
-                    case "nombre_emp" -> modelo.setNombre(jsonr.nextString());
-                    case "apellidop_emp" -> modelo.setApellidoPaterno(jsonr.nextString());
-                    case "apellidom_emp" -> modelo.setApellidoMaterno(jsonr.nextString());
-                    case "curp" -> modelo.setCurp(jsonr.nextString());
-                    case "domicilio" -> modelo.setDomicilio(jsonr.nextString());
-                    case "puesto" -> modelo.setPuesto(jsonr.nextString());
-                    case "experiencia" -> modelo.setExperiencia(jsonr.nextInt());
-                    case "grado_estudios" -> modelo.setGradoEstudios(jsonr.nextString());
-                    case "contacto" -> modelo.setContacto(jsonr.nextInt());
-                    case "fecha_nacimiento" -> modelo.setFechaNacimiento(jsonr.nextString());
-                    case "edad" -> modelo.setEdad(Events.calcAge(Date.valueOf(modelo.getFechaNacimiento()).getTime(),jsonr.nextInt()));
-                    case "estado" -> modelo.setEstado(jsonr.nextString());
-                    case "datos_extra" -> modelo.setDatosExtra(jsonr.nextString());
-                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
-                    case "datos" -> {
-                        jsonr.beginObject();
-                        while(jsonr.hasNext()){
-                            switch(jsonr.nextName()){
-                                case "no_ventas"->modelo.setNumeroVentas(jsonr.nextInt());
-                                default->jsonr.skipValue();
-                            }
-                        }
-                        jsonr.endObject();
-                    }
-                    default -> jsonr.skipValue();
-                }
-            }
-            lista.add(modelo);
-            new Datos(modelo0).insertarDatosEmpleado(lista);
-            new Datos(modelo0).insertarDatosConteo(modelo.getCodigo(),modelo.getNombre(),modelo.getApellidoPaterno(),modelo.getApellidoMaterno(),modelo.getNumeroVentas());
-            jsonr.endObject();
+            var data=gson.toJsonTree(je).getAsJsonObject();
+            var data2=gson.toJsonTree(je).getAsJsonObject().getAsJsonObject("datos");
             
-            lista.clear();
-            jsonr.close();
+            modelo.setPassword(data.get("password").getAsString());
+            modelo.setCodigo(data.get("codigo_emp").getAsInt());
+            modelo.setNombre(data.get("nombre_emp").getAsString());
+            modelo.setApellidoPaterno(data.get("apellidop_emp").getAsString());
+            modelo.setApellidoMaterno(data.get("apellidom_emp").getAsString());
+            modelo.setCurp(data.get("curp").getAsString());
+            modelo.setDomicilio(data.get("domicilio").getAsString());
+            modelo.setPuesto(data.get("puesto").getAsString());
+            modelo.setExperiencia(data.get("experiencia").getAsInt());
+            modelo.setGradoEstudios(data.get("grado_estudios").getAsString());
+            modelo.setContacto(data.get("contacto").getAsInt());
+            modelo.setFechaNacimiento(data.get("fecha_nacimiento").getAsString());
+            modelo.setEdad(Events.calcAge(Date.valueOf(modelo.getFechaNacimiento()).getTime(),data.get("edad").getAsInt()));
+            modelo.setEstado(data.get("estado").getAsString());
+            modelo.setDatosExtra(data.get("datos_extra").getAsString());
+            String dirImage=Dirs.findPic(dir,data.get("imagen").getAsString());
+            modelo.setImagen(new FileInputStream(dirImage));
+            modelo.setDirImagen(dirImage);
+            modelo.setNumeroVentas(data2.get("no_ventas").getAsInt());
+            
+            return modelo;
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
+            return null;
         }catch(IOException x){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
+            return null;
         }catch(IllegalStateException n){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
-        }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
+            return null;
         }
     }
     
     /**
-     * Se encarga de leer un archivo JSON, con la estructura de la tabla de socios, para volver a almacenar los datos en la base de datos.
+     * Se encarga de leer un archivo JSON, con la estructura de la tabla de socios. 
+     * Devuelve los datos organizados en una clase llamada MvcForm2.
      * 
      * @param dir Nombre del archivo a leer.
+     * 
+     * @return los datos rescatados del archivo leído.
      */
-    public void readDataPartnerJson(String dir){
+    public MvcForm2 readDataPartnerJson(String dir){
         methodName="readDataPartnerJson";
         try{
-            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<MvcForm2> lista=new ArrayList<>();
+            JsonElement je=JsonParser.parseReader(new JsonReader(new FileReader(dir,StandardCharsets.UTF_8)));
             MvcForm2 modelo=new MvcForm2();
+            Gson gson=new GsonBuilder().create();
             
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "codigo_part" -> modelo.setCodigo(jsonr.nextInt());
-                    case "nombre_part" -> modelo.setNombre(jsonr.nextString());
-                    case "apellidop_part" -> modelo.setApellidoPaterno(jsonr.nextString());
-                    case "apellidom_part" -> modelo.setApellidoMaterno(jsonr.nextString());
-                    case "tipo_socio" -> modelo.setTipo(jsonr.nextString());
-                    case "correo" -> modelo.setCorreo(jsonr.nextString());
-                    case "rfc" -> modelo.setRfc(jsonr.nextString());
-                    case "datos_extra" -> modelo.setDatos(jsonr.nextString());
-                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
-                    default -> jsonr.skipValue();
-                }
-            }
-            lista.add(modelo);
-            new Datos(modelo0).insertarDatosSocio(lista);
-            jsonr.endObject();
+            var data=gson.toJsonTree(je).getAsJsonObject();
             
-            lista.clear();
-            jsonr.close();
+            modelo.setCodigo(data.get("codigo_part").getAsInt());
+            modelo.setNombre(data.get("nombre_part").getAsString());
+            modelo.setApellidoPaterno(data.get("apellidop_part").getAsString());
+            modelo.setApellidoMaterno(data.get("apellidom_part").getAsString());
+            modelo.setTipo(data.get("tipo_socio").getAsString());
+            modelo.setCorreo(data.get("correo").getAsString());
+            modelo.setRfc(data.get("rfc").getAsString());
+            modelo.setDatos(data.get("datos_extra").getAsString());
+            String dirImage=Dirs.findPic(dir,data.get("imagen").getAsString());
+            modelo.setImagen(new FileInputStream(dirImage));
+            modelo.setDirmagen(dirImage);
+            
+            return modelo;
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
+            return null;
         }catch(IOException x){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
+            return null;
         }catch(IllegalStateException n){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
-        }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
+            return null;
         }
     }
     
     /**
-     * Se encarga de leer un archivo JSON, con la estructura de la tabla de proveedor, para volver a almacenar los datos en la base de datos.
+     * Se encarga de leer un archivo JSON, con la estructura de la tabla de proveedor. 
+     * Devuelve los datos organizados en una clase llamada MvcForm3.
      * 
      * @param dir Nombre del archivo a leer.
+     * 
+     * @return los datos rescatados del archivo leído.
      */
-    public void readDataProviderJson(String dir){
+    public MvcForm3 readDataProviderJson(String dir){
         methodName="readDataProviderJson";
         try{
-            jsonr=new JsonReader(new FileReader(dir,StandardCharsets.UTF_8));
-            List<MvcForm3> lista=new ArrayList<>();
+            JsonElement je=JsonParser.parseReader(new JsonReader(new FileReader(dir,StandardCharsets.UTF_8)));
+            Gson gson=new GsonBuilder().create();
             MvcForm3 modelo=new MvcForm3();
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "codigo_prov" -> modelo.setCodigo(jsonr.nextInt());
-                    case "nombre_prov" -> modelo.setNombre(jsonr.nextString());
-                    case "apellidop_prov" -> modelo.setApellidoPaterno(jsonr.nextString());
-                    case "apellidom_prov" -> modelo.setApellidoMaterno(jsonr.nextString());
-                    case "empresa" -> modelo.setEmpresa(jsonr.nextString());
-                    case "contacto" -> modelo.setContacto(jsonr.nextInt());
-                    case "imagen" -> modelo.setImagen(new FileInputStream(Dirs.findPic(dir,jsonr.nextString())));
-                    default -> jsonr.skipValue();
-                }
-            }
-            lista.add(modelo);
-            new Datos(modelo0).insertarDatosProveedor(lista);
-            jsonr.endObject();
             
-            jsonr.close();
+            var data=gson.toJsonTree(je).getAsJsonObject();
+            
+            modelo.setCodigo(data.get("codigo_prov").getAsInt());
+            modelo.setNombre(data.get("nombre_prov").getAsString());
+            modelo.setApellidoPaterno(data.get("apellidop_prov").getAsString());
+            modelo.setApellidoMaterno(data.get("apellidom_prov").getAsString());
+            modelo.setEmpresa(data.get("empresa").toString());
+            modelo.setContacto(data.get("contato").getAsInt());
+            String dirImage=Dirs.findPic(dir,data.get("iamgen").getAsString());
+            modelo.setImagen(new FileInputStream(dirImage));
+            modelo.setDirImagen(dirImage);
+            
+            return modelo;
         }catch(FileNotFoundException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"1IO");
+            return null;
         }catch(IOException x){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO");
+            return null;
         }catch(IllegalStateException n){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
-        }catch(SQLException s){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"11");
+            return null;
         }
     }
 }

@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.time.Period;
 import java.time.LocalDate;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.RowSorter;
+import javax.swing.JTextField;
 import javax.swing.JPopupMenu;
 //extension larga
 import java.awt.event.MouseEvent;
@@ -41,7 +44,7 @@ public class Events{
     public static DefaultTableModel tableModel(){
         DefaultTableModel dtm=new DefaultTableModel(){
             @Override
-            public boolean isCellEditable(int row, int column){
+            public boolean isCellEditable(int row,int column){
                 //all cells false
                 return false;
             }
@@ -163,5 +166,23 @@ public class Events{
             return exp;
         }
         return years;
+    }
+    
+    public static void setEnabled(JCheckBox[] checkBox,boolean status){
+        for(JCheckBox cb:checkBox){
+            cb.setEnabled(status);
+            cb.setSelected(status);
+        }
+    }
+    
+    public static void enabledComponents(JTextField textField,JButton button,boolean flag1,boolean flag2){
+        if(flag2){
+            textField.setEnabled(flag1);
+            button.setEnabled(flag1);
+        }
+        if(!flag2){
+            textField.setEnabled(false);
+            button.setEnabled(false);
+        }
     }
 }

@@ -8,10 +8,9 @@ import clases.logger;
 import clases.Thread2;
 import clases.backuphandler.EscritorJson;
 import clases.mvc.Controlador;
-import java.awt.Desktop;
-import venPrimarias.start;
 //java
 import java.awt.Image;
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.EventQueue;
 import java.io.File;
@@ -71,11 +70,6 @@ public class dataWindow2 extends javax.swing.JDialog{
         datosMostrar();
         popup();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del socio");
-        setResizable(false);
-        pack();
     }
     
     protected int codigo;
@@ -94,11 +88,6 @@ public class dataWindow2 extends javax.swing.JDialog{
         datosMostrar();
         popup();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del socio");
-        setResizable(false);
-        pack();
     }
     
     protected String dir;
@@ -123,6 +112,8 @@ public class dataWindow2 extends javax.swing.JDialog{
         
         jTextArea1.setLineWrap(true);
         jTextArea1.setWrapStyleWord(true);
+        
+        MediaHandler.load(dataWindow2.this,"Datos del empleado",false);
         
         try{
             p=new Properties();
@@ -194,9 +185,8 @@ public class dataWindow2 extends javax.swing.JDialog{
                 rs=ps.executeQuery();
                 
                 File f=new File("data/media/dataImage/Socios",nombre+"-"+codigo1+".jpg");
-                String path=Dirs.exists(f);
                 
-                new Thread2(rs,new FileOutputStream(path)).run();
+                new Thread2(rs,new FileOutputStream(Dirs.exists(f))).run();
                 
                 logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del socio.\nOcurrió en la clase '"+dataWindow2.class.getName()+"', en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 

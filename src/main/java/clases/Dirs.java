@@ -1,8 +1,8 @@
 package clases;
+//librerías
+import org.apache.commons.io.FilenameUtils;
 //java
 import java.io.File;
-//extension larga
-import org.apache.commons.io.FilenameUtils;
 
 /**
  * Clase encargada de verificar las carpetas que utiliza el programa.

@@ -16,6 +16,7 @@ public class MvcForm2{
     protected String rfc;
     protected String datos;
     protected InputStream imagen;
+    protected String dirImagen;
     
     public int getCodigo(){
         return codigo;
@@ -78,5 +79,17 @@ public class MvcForm2{
     }
     public void setImagen(InputStream imagen){
         this.imagen=imagen;
+    }
+    
+    public String getDirImagen(){
+        return dirImagen;
+    }
+    public void setDirmagen(String dirImagen){
+        this.dirImagen=dirImagen;
+    }
+    
+    @Override
+    public String toString(){
+        return "MvcForm2{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", tipo=" + tipo + ", correo=" + correo + ", rfc=" + rfc + ", datos=" + datos + ", imagen=" + imagen + '}';
     }
 }

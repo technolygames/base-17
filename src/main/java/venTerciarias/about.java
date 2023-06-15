@@ -23,13 +23,10 @@ public final class about extends javax.swing.JDialog{
         initComponents();
         new MediaHandler(about.class.getName()).setLookAndFeel(about.this);
         
+        MediaHandler.load(about.this,"Acerca del programa",false);
+        
         etiquetas();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Acerca del programa");
-        setResizable(false);
-        pack();
     }
     
     protected String methodName;

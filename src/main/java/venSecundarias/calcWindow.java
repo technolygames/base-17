@@ -17,15 +17,11 @@ public final class calcWindow extends javax.swing.JDialog{
         
         botones();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Calculadora");
-        setResizable(false);
-        pack();
     }
     
     protected final void settings(){
         txtTotal.setText(String.valueOf(paymentWindow.result));
+        MediaHandler.load(calcWindow.this,"Calculadora",false);
     }
     
     protected final void botones(){

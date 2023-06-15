@@ -83,16 +83,16 @@ public class Ticket{
             imp.flush();
             imp.close();
         }catch(PrintException e){
-            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,e,methodName,"PE_T1");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,e,methodName,"PE_T1");
             remove();
         }catch(IOException x){
-            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,x,methodName,"2IO_H1");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,x,methodName,"2IO_H1");
             remove();
         }catch(IllegalStateException n){
-            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,n,methodName,"15");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,n,methodName,"15");
             remove();
         }catch(IllegalArgumentException s){
-            new logger(Level.SEVERE, this.getClass().getName()).catchException(frame,s,methodName,"Prueba_T1");
+            new logger(Level.SEVERE,this.getClass().getName()).catchException(frame,s,methodName,"Prueba_T1");
             remove();
         }
     }
@@ -128,8 +128,7 @@ public class Ticket{
     }
     
     public void setFormato(FileWriter fw,int formato) throws IOException{
-        char[] cortarPapel=new char[]{0x1B,'!',(char)formato};
-        fw.write(cortarPapel);
+        fw.write(new char[]{0x1B,'!',(char)formato});
     }
     
     public void abrirGaveta(FileWriter fw,boolean flag) throws IOException{

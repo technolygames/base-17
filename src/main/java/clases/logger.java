@@ -21,10 +21,10 @@ import java.util.logging.SimpleFormatter;
  */
 public class logger{
     protected Level level0;
-    protected FileHandler fh1;
+    protected FileHandler fh0;
     
     protected static Logger logger0;
-    protected static FileHandler fh0;
+    protected static FileHandler fh1;
     
     protected static final Frame frames=MediaHandler.getFrames();
     
@@ -36,17 +36,17 @@ public class logger{
      * Inicializa la instancia para mandar el estado del mensaje log al archivo estático y/o de excepción.
      * 
      * @param level para clasificar de mejor manera al mensaje log en el/los archivos log.
-     * @param className1 Nombre de la clase de la que almacenará el evento.
+     * @param className Nombre de la clase de la que almacenará el evento.
      */
-    public logger(Level level,String className1){
+    public logger(Level level,String className){
         this.level0=level;
-        this.className2=className1;
+        this.className2=className;
     }
     
     static{
         try{
-            fh0=new FileHandler("data/logs/static/staticLog.log",0,1,true);
-            fh0.setFormatter(new SimpleFormatter());
+            fh1=new FileHandler("data/logs/static/staticLog.log",0,1,true);
+            fh1.setFormatter(new SimpleFormatter());
         }catch(SecurityException e){
             new logger(Level.SEVERE,CLASSNAME).catchException(frames,e,"Internal","SE");
         }catch(IOException x){
@@ -59,12 +59,12 @@ public class logger{
      * 
      * @param level del evento.
      * @param message que se almacenará en el archivo .log.
-     * @param className1
+     * @param className de la que almacenará los eventos.
      */
-    public static void staticLogger(Level level,String message,String className1){
-        logger0=Logger.getLogger(className1);
+    public static void staticLogger(Level level,String message,String className){
+        logger0=Logger.getLogger(className);
         try{
-            logger0.addHandler(fh0);
+            logger0.addHandler(fh1);
             logger0.log(level,message);
         }catch(SecurityException e){
             new logger(Level.SEVERE,CLASSNAME).catchException(frames,e,"staticLogger","SE");
@@ -74,20 +74,20 @@ public class logger{
     /**
      * Método que se encarga de guardar los datos de eventos ocurridos durante la ejecución del programa en varios archivos.
      * 
-     * @param methodName1 Nombre del método en el que está ocurriendo el error.
+     * @param methodName en el que está ocurriendo el error.
      * @param ex Excepción (o error) al que se le manejará y guardará en el archivo log.
      */
-    public void exceptionLogger(String methodName1,Throwable ex){
+    public void exceptionLogger(String methodName,Throwable ex){
         logger0=Logger.getLogger(className2);
         methodName0="exceptionLogger";
         try{
-            fh1=new FileHandler(Dirs.exists(new File("data/logs/exceptions/"+methodName1+"-("+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log")));
-            fh1.setFormatter(new SimpleFormatter());
-            logger0.addHandler(fh1);
-            logger0.log(level0,methodName1,ex);
+            fh0=new FileHandler(Dirs.exists(new File("data/logs/exceptions/"+methodName+"-("+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+").log")));
+            fh0.setFormatter(new SimpleFormatter());
+            logger0.addHandler(fh0);
+            logger0.log(level0,methodName,ex);
             
-            fh1.flush();
-            fh1.close();
+            fh0.flush();
+            fh0.close();
         }catch(SecurityException e){
             new logger(Level.SEVERE,CLASSNAME).catchException(frames,e,methodName0,"SE");
         }catch(IOException x){
@@ -99,14 +99,14 @@ public class logger{
      * Mostrará una subventana para mostrar un mensaje de error y almacenar en un archivo este mismo para su posterior análisis.
      * 
      * @param comp en el que se mostrará el option pane.
-     * @param ex que mostrará y almacenará en un archivo logger.
-     * @param methodName1 que produjo la excepción o error.
-     * @param level1 el tipo de nivel del error.
+     * @param ex que mostrará y almacenará en un archivo .log.
+     * @param methodName que produjo la excepción o error.
+     * @param level el tipo de nivel del error.
      */
-    public void catchException(Component comp,Throwable ex,String methodName1,String level1){
-        JOptionPane.showMessageDialog(comp,"Error:\n"+ex.getMessage(),"Error "+level1,JOptionPane.ERROR_MESSAGE);
-        logger.staticLogger(level0,"Error "+level1+": "+ex.getMessage()+".\nOcurrió en el método '"+methodName1+"()'",className2);
-        new logger(level0,className2).exceptionLogger(methodName1+"-"+level1,ex.fillInStackTrace());
+    public void catchException(Component comp,Throwable ex,String methodName,String level){
+        JOptionPane.showMessageDialog(comp,"Error:\n"+ex.getMessage(),"Error "+level,JOptionPane.ERROR_MESSAGE);
+        logger.staticLogger(level0,"Error "+level+": "+ex.getMessage()+".\nOcurrió en el método '"+methodName+"()'",className2);
+        new logger(level0,className2).exceptionLogger(methodName+"-"+level,ex.fillInStackTrace());
     }
     
     /**

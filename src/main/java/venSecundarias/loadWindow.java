@@ -15,10 +15,7 @@ public final class loadWindow extends javax.swing.JFrame{
         new MediaHandler(loadWindow.class.getName()).setLookAndFeel(loadWindow.this);
         
         load();
-        
-        setLocationRelativeTo(null);
-        setResizable(false);
-        pack();
+        settings();
     }
     
     protected Controlador mvc;
@@ -30,13 +27,14 @@ public final class loadWindow extends javax.swing.JFrame{
         this.mvc=modelo;
         
         load();
-        
-        setLocationRelativeTo(null);
-        setResizable(false);
-        pack();
+        settings();
     }
     
     protected Timer t;
+    
+    protected final void settings(){
+        MediaHandler.load(loadWindow.this,"",false);
+    }
     
     protected final void load(){
         Taskbar tb=Taskbar.getTaskbar();

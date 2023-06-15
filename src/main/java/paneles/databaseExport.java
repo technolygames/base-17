@@ -22,7 +22,7 @@ public class databaseExport extends javax.swing.JPanel{
         initComponents();
         
         botones();
-        settings();
+        configIn();
     }
     
     protected Controlador modelo;
@@ -33,7 +33,7 @@ public class databaseExport extends javax.swing.JPanel{
         this.modelo=modelo;
         
         botones();
-        settings();
+        configIn();
     }
     
     protected Properties p;
@@ -46,8 +46,8 @@ public class databaseExport extends javax.swing.JPanel{
     
     protected String methodName;
     
-    protected final void settings(){
-        methodName="settings";
+    protected final void configIn(){
+        methodName="configIn";
         try{
             p=new Properties();
             p.load(new FileInputStream("data/config/databaseInfo.properties"));
@@ -95,7 +95,6 @@ public class databaseExport extends javax.swing.JPanel{
                 File f=new File(userdir+"/data/database/MySQL/"+db+".sql");
                 
                 String path=Dirs.exists(f);
-                logger.staticLogger(Level.CONFIG,path,this.getClass().getName());
                 
                 Process pr=Runtime.getRuntime().exec("cmd /c "+p.getProperty("local_mysql")+"mysqldump.exe --user="+user1+" -p "+db+" --result-file="+path+" --password="+pass2+" --host="+host+" --hex-blob --dump-date --compress");
                 new Thread(new Thread3(pr.getErrorStream())).start();

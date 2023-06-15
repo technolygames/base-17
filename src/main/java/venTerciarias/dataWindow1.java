@@ -36,11 +36,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         botones();
         datosMostrar();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del empleado");
-        setResizable(false);
-        pack();
     }
     
     public dataWindow1(java.awt.Frame parent,boolean modal,Controlador modelo){
@@ -53,11 +48,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         botones();
         datosMostrar();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del empleado");
-        setResizable(false);
-        pack();
     }
     
     protected int codigo;
@@ -73,11 +63,6 @@ public class dataWindow1 extends javax.swing.JDialog{
         botones();
         datosMostrar();
         settings();
-        
-        setLocationRelativeTo(null);
-        setTitle("Datos del empleado");
-        setResizable(false);
-        pack();
     }
     
     protected String methodName;
@@ -96,6 +81,8 @@ public class dataWindow1 extends javax.swing.JDialog{
         if(new Validation(modelo,etiPuesto.getText(),dataWindow1.class.getName()).isAccessible()&&codigo!=0){
             miModData.setVisible(true);
         }
+        
+        MediaHandler.load(dataWindow1.this,"Datos del empleado",false);
     }
     
     protected final void datosMostrar(){
@@ -164,10 +151,9 @@ public class dataWindow1 extends javax.swing.JDialog{
                 ps.setInt(1,codigo1);
                 rs=ps.executeQuery();
                 
-                File f=new File("data/media/dataImage/Empleados/"+nombre+"-"+codigo1+".jpg");
-                String path=Dirs.exists(f);
+                File f=new File("data/media/dataImage/Empleados",nombre+"-"+codigo1+".jpg");
                 
-                new Thread2(rs,new FileOutputStream(path)).run();
+                new Thread2(rs,new FileOutputStream(Dirs.exists(f))).run();
                 
                 logger.staticLogger(Level.INFO,"Se guardó correctamente la imagen del empleado.\nOcurrió en el método 'botones(miStorePic)'.\nUsuario que hizo la acción: "+String.valueOf(modelo.getUserID()),this.getClass().getName());
                 

@@ -1,12 +1,12 @@
 package clases;
 //java
-import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Dialog;
 import java.awt.Toolkit;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -112,7 +112,7 @@ public class MediaHandler{
     }
     
     /**
-     * Carga la imagen solicitada desde un archivo .properties para se usada en el programa.
+     * Carga la imagen solicitada desde un archivo .properties para ser usada en el programa.
      * 
      * @param propName1 nombre de la propiedad 1.
      * @param propName2 nombre de la propiedad 2.
@@ -120,8 +120,9 @@ public class MediaHandler{
      * @return la dirección de la imagen.
      */
     public String getImagePath(String propName1,String propName2){
+        p=new Properties();
+        methodName="getImagePath";
         try{
-            p=new Properties();
             p.load(new FileInputStream(configDir));
             String dir=p.getProperty(propName1);
             
@@ -188,5 +189,19 @@ public class MediaHandler{
             parent.add(child,BorderLayout.CENTER);
             parent.pack();
         });
+    }
+    
+    public static void load(Frame parent,String title,boolean resize){
+        parent.setLocationRelativeTo(null);
+        parent.setTitle(title);
+        parent.setResizable(resize);
+        parent.pack();
+    }
+    
+    public static void load(Dialog parent,String title,boolean resize){
+        parent.setLocationRelativeTo(null);
+        parent.setTitle(title);
+        parent.setResizable(resize);
+        parent.pack();
     }
 }

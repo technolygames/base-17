@@ -24,7 +24,7 @@ public class databaseImport extends javax.swing.JPanel{
         initComponents();
         
         botones();
-        settings();
+        configIn();
     }
     
     protected Controlador modelo;
@@ -35,7 +35,7 @@ public class databaseImport extends javax.swing.JPanel{
         this.modelo=modelo;
         
         botones();
-        settings();
+        configIn();
     }
     
     protected Properties p;
@@ -48,11 +48,10 @@ public class databaseImport extends javax.swing.JPanel{
     
     protected String methodName;
     
-    protected final void settings(){
+    protected final void configIn(){
         jTextField3.setText(databaseWindow.nombredb);
         
         methodName="settings";
-        
         try{
             p=new Properties();
             p.load(new FileInputStream("data/config/databaseInfo.properties"));

@@ -35,6 +35,7 @@ public final class ventana1 extends javax.swing.JFrame{
         
         botones();
         popup();
+        popup1();
         settings();
         
         setLocationRelativeTo(null);
@@ -52,6 +53,7 @@ public final class ventana1 extends javax.swing.JFrame{
         
         botones();
         popup();
+        popup1();
         settings();
         
         setLocationRelativeTo(null);
@@ -64,6 +66,7 @@ public final class ventana1 extends javax.swing.JFrame{
     
     protected DefaultTableModel dtm;
     protected JPopupMenu popupMenu;
+    protected JPopupMenu popupMenu1;
     protected JTextField campos;
     
     protected String methodName;
@@ -150,6 +153,17 @@ public final class ventana1 extends javax.swing.JFrame{
                 new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"32");
             }catch(NullPointerException x){
                 new logger(Level.SEVERE,this.getClass().getName()).catchException(this,x,methodName,"0");
+            }
+        });
+        
+        txtCodigo.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseReleased(MouseEvent a){
+                if(!txtCodigo.getText().equals("")){
+                    Events.showPopup(popupMenu1,a);
+                }else{
+                    logger.staticLogger(Level.CONFIG,"no hace la búsqueda","ventana 1");
+                }
             }
         });
         
@@ -283,6 +297,32 @@ public final class ventana1 extends javax.swing.JFrame{
         
         popupMenu.add(mi1);
         popupMenu.add(mi2);
+    }
+    
+    protected final void popup1(){
+        popupMenu1=new JPopupMenu();
+        
+        JMenuItem mi1=new JMenuItem(new AbstractAction("Consultar precio"){
+            @Override
+            public void actionPerformed(ActionEvent a){
+                try{
+                    ps=new Datos(modelo).getConnection().prepareStatement("select * from almacen where codigo_prod=?;");
+                    ps.setInt(1,Integer.parseInt(txtCodigo.getText()));
+                    rs=ps.executeQuery();
+                    if(rs.next()){
+                        JOptionPane.showMessageDialog(ventana1.this,"Nombre: "+rs.getString("nombre_prod")+"\nPrecio: $"+rs.getInt("precio_unitario"),"Notice 1",JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(ventana1.this,"Escribe correctamente el valor requerido","Error Prueba",JOptionPane.WARNING_MESSAGE);
+                    }
+                }catch(SQLException e){
+                    new logger(Level.SEVERE,ventana1.this.getClass().getName()).catchException(ventana1.this,e,"popup1","14");
+                }catch(NumberFormatException x){
+                    new logger(Level.SEVERE,ventana1.this.getClass().getName()).catchException(ventana1.this,x,"popup1","32");
+                }
+            }
+        });
+        
+        popupMenu1.add(mi1);
     }
     
     protected void calc(){

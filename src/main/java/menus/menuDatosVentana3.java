@@ -15,7 +15,6 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         new MediaHandler(menuDatosVentana3.class.getName()).setLookAndFeel(menuDatosVentana3.this);
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -34,7 +33,6 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         this.modelo=modelo;
         
         botones();
-        settings();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -46,11 +44,10 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana3.class.getName()).setLookAndFeel(menuDatosVentana3.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         setLocationRelativeTo(null);
         setTitle("Menú de Datos");
@@ -62,11 +59,10 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana3.class.getName()).setLookAndFeel(menuDatosVentana3.this);
         
-        botones();
-        settings();
-        
         this.codigo=code;
         this.modelo=modelo;
+        
+        botones();
         
         MediaHandler.openPanel(menuDatosVentana3.this,panel);
         
@@ -80,14 +76,13 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         initComponents();
         new MediaHandler(menuDatosVentana3.class.getName()).setLookAndFeel(menuDatosVentana3.this);
         
+        this.modelo=modelo;
+        
         botones();
-        settings();
         
         if(!flag){
             jMenu1.setVisible(false);
         }
-        
-        this.modelo=modelo;
         
         MediaHandler.openPanel(menuDatosVentana3.this,panel);
         
@@ -95,9 +90,6 @@ public class menuDatosVentana3 extends javax.swing.JFrame{
         setTitle("Menú de Datos");
         setResizable(false);
         pack();
-    }
-    
-    protected final void settings(){
     }
     
     protected final void botones(){

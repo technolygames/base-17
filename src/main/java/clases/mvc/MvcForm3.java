@@ -14,11 +14,11 @@ public class MvcForm3{
     protected String empresa;
     protected int contacto;
     protected InputStream imagen;
+    protected String dirImagen;
     
     public int getCodigo(){
         return codigo;
     }
-    
     public void setCodigo(int codigo){
         this.codigo=codigo;
     }
@@ -26,7 +26,6 @@ public class MvcForm3{
     public String getNombre(){
         return nombre;
     }
-    
     public void setNombre(String nombre){
         this.nombre=nombre;
     }
@@ -34,7 +33,6 @@ public class MvcForm3{
     public String getApellidoPaterno(){
         return apellidoPaterno;
     }
-    
     public void setApellidoPaterno(String apellidoPaterno){
         this.apellidoPaterno=apellidoPaterno;
     }
@@ -42,7 +40,6 @@ public class MvcForm3{
     public String getApellidoMaterno(){
         return apellidoMaterno;
     }
-    
     public void setApellidoMaterno(String apellidoMaterno){
         this.apellidoMaterno=apellidoMaterno;
     }
@@ -50,7 +47,6 @@ public class MvcForm3{
     public String getEmpresa(){
         return empresa;
     }
-    
     public void setEmpresa(String empresa){
         this.empresa=empresa;
     }
@@ -58,7 +54,6 @@ public class MvcForm3{
     public int getContacto(){
         return contacto;
     }
-    
     public void setContacto(int contacto){
         this.contacto=contacto;
     }
@@ -66,8 +61,19 @@ public class MvcForm3{
     public InputStream getImagen(){
         return imagen;
     }
-    
     public void setImagen(InputStream imagen){
         this.imagen=imagen;
+    }
+    
+    public String getDirImagen(){
+        return dirImagen;
+    }
+    public void setDirImagen(String dirImagen){
+        this.dirImagen=dirImagen;
+    }
+    
+    @Override
+    public String toString(){
+        return "MvcForm3{" + "codigo=" + codigo + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", empresa=" + empresa + ", contacto=" + contacto + ", imagen=" + imagen + '}';
     }
 }

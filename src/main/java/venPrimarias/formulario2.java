@@ -3,32 +3,27 @@ package venPrimarias;
 import clases.Datos;
 import clases.Dirs;
 import clases.MediaHandler;
+import clases.backuphandler.LectorJson;
 import clases.logger;
 import clases.mvc.MvcForm2;
 import clases.mvc.Controlador;
 import menus.menuDatosVentana2;
-//librerías
-import com.google.gson.stream.JsonReader;
 //java
 import java.awt.Image;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
 //extension larga
 import java.util.logging.Level;
-import java.nio.charset.StandardCharsets;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class formulario2 extends javax.swing.JFrame{
@@ -75,7 +70,7 @@ public class formulario2 extends javax.swing.JFrame{
     }
     
     protected final void botones(){
-        for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField4}){
+        for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField4,jTextField5,jTextField6}){
             campos=tf;
         }
         
@@ -93,7 +88,10 @@ public class formulario2 extends javax.swing.JFrame{
         );
         
         miClearFields.addActionListener(a->{
-            campos.setText("");
+            for(JTextField tf:new JTextField[]{jTextField1,jTextField2,jTextField3,jTextField4,jTextField5,jTextField6}){
+                tf.setText("");
+            }
+            jComboBox1.getModel().setSelectedItem("Item 1");
             jTextArea1.setText("");
             clearImage();
         });
@@ -143,7 +141,6 @@ public class formulario2 extends javax.swing.JFrame{
             methodName="botones.store";
             try{
                 if(!campos.getText().isEmpty()||!jTextArea1.getText().isEmpty()||picLabel.getIcon()!=null){
-                    List<MvcForm2> lista=new ArrayList<>();
                     MvcForm2 modelo=new MvcForm2();
                     
                     modelo.setCodigo(Integer.parseInt(jTextField1.getText()));
@@ -156,9 +153,7 @@ public class formulario2 extends javax.swing.JFrame{
                     modelo.setDatos(jTextArea1.getText());
                     modelo.setImagen(new FileInputStream(direccion));
                     
-                    lista.add(modelo);
-                    
-                    new Datos(modelo0).insertarDatosSocio(lista);
+                    new Datos(modelo0).insertarDatosSocio(modelo);
                 }else{
                     new logger(Level.WARNING,this.getClass().getName()).storeError18(this,methodName);
                 }
@@ -175,29 +170,17 @@ public class formulario2 extends javax.swing.JFrame{
     }
     
     protected void loadFromJson(String path){
-        methodName="loadFromJson";
-        try{
-            JsonReader jsonr=new JsonReader(new FileReader(path,StandardCharsets.UTF_8));
-            jsonr.beginObject();
-            while(jsonr.hasNext()){
-                switch(jsonr.nextName()){
-                    case "codigo_part"->jTextField1.setText(String.valueOf(jsonr.nextInt()));
-                    case "nombre_part"->jTextField2.setText(jsonr.nextString());
-                    case "apellidop_part"->jTextField3.setText(jsonr.nextString());
-                    case "apellidom_part"->jTextField4.setText(jsonr.nextString());
-                    case "tipo_socio"->jComboBox1.getModel().setSelectedItem(jsonr.nextString());
-                    case "correo"->jTextField5.setText(jsonr.nextString());
-                    case "rfc"->jTextField6.setText(jsonr.nextString());
-                    case "datos_extra"->jTextArea1.setText(jsonr.nextString());
-                    case "imagen"->showImage(Dirs.findPic(path,jsonr.nextString()));
-                    default->jsonr.skipValue();
-                }
-            }
-            jsonr.endObject();
-            jsonr.close();
-        }catch(IOException e){
-            new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"2IO");
-        }
+        var data=new LectorJson().readDataPartnerJson(path);
+        
+        jTextField1.setText(String.valueOf(data.getCodigo()));
+        jTextField2.setText(data.getNombre());
+        jTextField3.setText(data.getApellidoPaterno());
+        jTextField4.setText(data.getApellidoMaterno());
+        jComboBox1.getModel().setSelectedItem(data.getTipo());
+        jTextField5.setText(data.getCorreo());
+        jTextField6.setText(data.getRfc());
+        jTextArea1.setText(data.getDatos());
+        showImage(Dirs.findPic(path,data.getDirImagen()));
     }
     
     protected void clearImage(){

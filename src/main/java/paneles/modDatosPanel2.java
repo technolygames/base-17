@@ -1,6 +1,7 @@
 package paneles;
 //clases
 import clases.Datos;
+import clases.Events;
 import clases.logger;
 import clases.PlaceHolder;
 import clases.mvc.Controlador;
@@ -29,7 +30,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         estado=true;
         
         botones();
-        enabledComponents(true,estado);
+        Events.enabledComponents(txtSearch,searchButton,true,estado);
         settings();
     }
     
@@ -41,7 +42,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         this.modelo=modelo;
         
         botones();
-        enabledComponents(true,estado);
+        Events.enabledComponents(txtSearch,searchButton,true,estado);
         settings();
     }
     
@@ -55,7 +56,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         botones();
         consulta();
-        enabledComponents(false,estado);
+        Events.enabledComponents(txtSearch,searchButton,false,estado);
         settings();
     }
     
@@ -73,7 +74,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
         
         botones();
         consulta();
-        enabledComponents(false,estado);
+        Events.enabledComponents(txtSearch,searchButton,false,estado);
         settings();
     }
     
@@ -94,12 +95,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox1";
             checkboxes=new JCheckBox[]{jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5,jCheckBox6};
             if(jCheckBox1.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 jTextField1.setEnabled(true);
                 //función
                 updateButton.addActionListener(b->{
@@ -120,7 +118,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     c.setEnabled(true);
                 }
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
                 jTextField1.setEnabled(false);
                 jTextField1.setText("");
                 placeHolders();
@@ -131,12 +129,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox2";
             checkboxes=new JCheckBox[]{jCheckBox1,jCheckBox3,jCheckBox4,jCheckBox5,jCheckBox6};
             if(jCheckBox2.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 jTextField2.setEnabled(true);
                 //función
                 updateButton.addActionListener(b->{
@@ -157,7 +152,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     c.setEnabled(true);
                 }
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
                 jTextField2.setEnabled(false);
                 jTextField2.setText("");
                 placeHolders();
@@ -168,12 +163,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox3";
             checkboxes=new JCheckBox[]{jCheckBox1,jCheckBox2,jCheckBox4,jCheckBox5,jCheckBox6};
             if(jCheckBox3.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 jTextField3.setEnabled(true);
                 //función
                 updateButton.addActionListener(b->{
@@ -194,7 +186,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     c.setEnabled(true);
                 }
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
                 jTextField3.setEnabled(false);
                 jTextField3.setText("");
                 placeHolders();
@@ -205,14 +197,11 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox4";
             checkboxes=new JCheckBox[]{jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox5,jCheckBox6};
             if(jCheckBox4.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //combo
                 jComboBox1.setEnabled(true);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 //función
                 updateButton.addActionListener(b->{
                     try{
@@ -235,7 +224,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                 jComboBox1.setEnabled(false);
                 jComboBox1.getModel().setSelectedItem("Item 1");
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
             }
         });
         
@@ -243,12 +232,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox5";
             checkboxes=new JCheckBox[]{jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox6};
             if(jCheckBox5.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 jTextField4.setEnabled(true);
                 //función
                 updateButton.addActionListener(b->{
@@ -269,7 +255,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     c.setEnabled(true);
                 }
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
                 jTextField4.setEnabled(false);
                 jTextField4.setText("");
                 placeHolders();
@@ -280,12 +266,9 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             methodName="botones.jCheckBox6";
             checkboxes=new JCheckBox[]{jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jCheckBox5};
             if(jCheckBox6.isSelected()){
-                for(JCheckBox c:checkboxes){
-                    c.setEnabled(false);
-                    c.setSelected(false);
-                }
+                Events.setEnabled(checkboxes,false);
                 //textfields
-                enabledComponents(false,estado);
+                Events.enabledComponents(txtSearch,searchButton,false,estado);
                 jTextField5.setEnabled(true);
                 //función
                 updateButton.addActionListener(b->{
@@ -306,7 +289,7 @@ public class modDatosPanel2 extends javax.swing.JPanel{
                     c.setEnabled(true);
                 }
                 //textfields
-                enabledComponents(true,estado);
+                Events.enabledComponents(txtSearch,searchButton,true,estado);
                 jTextField5.setEnabled(false);
                 jTextField5.setText("");
                 placeHolders();
@@ -351,17 +334,6 @@ public class modDatosPanel2 extends javax.swing.JPanel{
             }
         }catch(SQLException e){
             new logger(Level.SEVERE,this.getClass().getName()).catchException(this,e,methodName,"14");
-        }
-    }
-    
-    protected void enabledComponents(boolean flag1, boolean flag2){
-        if(flag2){
-            txtSearch.setEnabled(flag1);
-            searchButton.setEnabled(flag1);
-        }
-        if(!flag2){
-            txtSearch.setEnabled(false);
-            searchButton.setEnabled(false);
         }
     }
     

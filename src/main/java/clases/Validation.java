@@ -1,10 +1,14 @@
 package clases;
 //clases
 import clases.mvc.Controlador;
-import venPrimarias.start;
 //java
 import java.awt.Frame;
 import java.awt.EventQueue;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 //extension larga
 import java.util.logging.Level;
@@ -25,6 +29,8 @@ public class Validation{
     protected String puesto;
     protected String clase;
     protected Frame ventana;
+    
+    protected Properties p;
     
     /**
      * Inicializa la instancia para mandar los datos solicitados y la ventana destino para que pueda hacer uso del método.
@@ -110,6 +116,21 @@ public class Validation{
      * @return un valor booleano si tiene o no permiso.
      */
     protected boolean hasPermission(){
+        return true;
+    }
+    
+    protected boolean isOnExclusionList(String name){
+        p=new Properties();
+        try{
+            p.load(new FileReader("",StandardCharsets.UTF_8));
+            while(!p.isEmpty()){
+                
+            }
+        }catch(FileNotFoundException e){
+            return false;
+        }catch(IOException x){
+            return false;
+        }
         return true;
     }
     

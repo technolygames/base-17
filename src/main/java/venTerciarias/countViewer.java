@@ -13,10 +13,17 @@ public class countViewer extends javax.swing.JDialog{
         initComponents();
         new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
         
-        setLocationRelativeTo(null);
-        setTitle("Conteo de ventas");
-        setResizable(false);
-        pack();
+        settings();
+    }
+    
+    public countViewer(java.awt.Frame parent,boolean modal,Component panel){
+        super(parent,modal);
+        initComponents();
+        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
+        
+        MediaHandler.openPanel(countViewer.this,panel);
+        
+        settings();
     }
     
     protected Controlador modelo;
@@ -26,10 +33,9 @@ public class countViewer extends javax.swing.JDialog{
         initComponents();
         new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
         
-        setLocationRelativeTo(null);
-        setTitle("Conteo de ventas");
-        setResizable(false);
-        pack();
+        this.modelo=modelo;
+        
+        settings();
     }
     
     public countViewer(java.awt.Frame parent,boolean modal,Component panel,Controlador modelo){
@@ -39,27 +45,13 @@ public class countViewer extends javax.swing.JDialog{
         
         this.modelo=modelo;
         
-        MediaHandler.openPanel(this,panel);
+        MediaHandler.openPanel(countViewer.this,panel);
         
-        setLocationRelativeTo(null);
-        setTitle("Conteo de ventas");
-        setResizable(false);
-        pack();
+        settings();
     }
     
-    public countViewer(java.awt.Frame parent,boolean modal,Component panel){
-        super(parent,modal);
-        initComponents();
-        new MediaHandler(countViewer.class.getName()).setLookAndFeel(countViewer.this);
-        
-        this.modelo=modelo;
-        
-        MediaHandler.openPanel(this,panel);
-        
-        setLocationRelativeTo(null);
-        setTitle("Conteo de ventas");
-        setResizable(false);
-        pack();
+    protected final void settings(){
+        MediaHandler.load(countViewer.this,"Conteo de ventas",false);
     }
     
     @SuppressWarnings("unchecked")
